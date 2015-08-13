@@ -1,0 +1,1630 @@
+<apiPackage id="com.supermap.web.mapping"><apiName>com.supermap.web.mapping</apiName><apiDetail/><apiClassifier id="com.supermap.web.mapping:ImageFormat"><apiName>ImageFormat</apiName><shortdesc>
+	 图片格式枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图片格式枚举类.
+	 该类是图层加载图片时，图片文件格式的常数值枚举。  
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.mapping:ImageFormat:GIF"><apiName>GIF</apiName><shortdesc>
+		 定义 ImageFormat.JPG 常量的 type 属性值为 gif。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>gif</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 ImageFormat.JPG 常量的 type 属性值为 gif。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:ImageFormat:JPG"><apiName>JPG</apiName><shortdesc>
+		 定义 ImageFormat.JPG 常量的 type 属性值为 jpg。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>jpg</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 ImageFormat.JPG 常量的 type 属性值为 jpg。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:ImageFormat:PNG"><apiName>PNG</apiName><shortdesc>
+		 定义 ImageFormat.PNG 常量的 type 属性值为 png。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>png</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 ImageFormat.PNG 常量的 type 属性值为 png。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:TiledDynamicIServerLayer"><apiName>TiledDynamicIServerLayer</apiName><shortdesc>
+	 SuperMap iServer Java 2008 分块动态图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:TiledDynamicLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SuperMap iServer Java 2008 分块动态图层.
+	 该类有四个必设属性：Url、mapServiceAddress、mapServicePort、mapName。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:TiledDynamicIServerLayer:TiledDynamicIServerLayer"><apiName>TiledDynamicIServerLayer</apiName><shortdesc>
+		 初始化 TiledDynamicIServerLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TiledDynamicIServerLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:TiledDynamicIServerLayer:protected:getTileURL"><apiName>getTileURL</apiName><shortdesc conref="TiledDynamicLayer#getTileURL()">
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="flash.net:URLRequest"/><apiDesc>返回指定图片块在服务器端的存放地址。
+		 
+		 </apiDesc></apiReturn><apiParam><apiItemName>row</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的行号。
+		 </apiDesc></apiParam><apiParam><apiItemName>col</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的列号。
+		 </apiDesc></apiParam><apiParam><apiItemName>resolution</apiItemName><apiType value="Number"/><apiDesc>指定图片块显示的分辨率。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc conref="TiledDynamicLayer#getTileURL()">
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledDynamicIServerLayer:refresh"><apiName>refresh</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:TiledDynamicIServerLayer:isScaleCentric:get"><apiName>isScaleCentric</apiName><shortdesc conref="Layer#isScaleCentric">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc conref="Layer#isScaleCentric">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledDynamicIServerLayer:layersKey:get"><apiName>layersKey</apiName><shortdesc conref="DynamicIServerLayer#layersKey">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="DynamicIServerLayer#layersKey">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledDynamicIServerLayer:mapName:get"><apiName>mapName</apiName><shortdesc conref="DynamicIServerLayer#mapName">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="DynamicIServerLayer#mapName">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledDynamicIServerLayer:mapServiceAddress:get"><apiName>mapServiceAddress</apiName><shortdesc conref="DynamicIServerLayer#mapServiceAddress">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="DynamicIServerLayer#mapServiceAddress">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledDynamicIServerLayer:mapServicePort:get"><apiName>mapServicePort</apiName><shortdesc conref="DynamicIServerLayer#mapServicePort">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="DynamicIServerLayer#mapServicePort">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledDynamicIServerLayer:url:get"><apiName>url</apiName><shortdesc conref="Layer#url">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="Layer#url">
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:TiledCachedLayer"><apiName>TiledCachedLayer</apiName><shortdesc>
+	 分块缓存图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:TiledLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 分块缓存图层.
+	 <p>该类为抽象类，不同服务的分块缓存图层都继承该类。之所以称之为缓存图层，是因为这些正方形图片块是预先切割好的。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:TiledCachedLayer:TiledCachedLayer"><apiName>TiledCachedLayer</apiName><shortdesc>
+		 初始化 TiledCachedLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TiledCachedLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:TiledCachedLayer:protected:getTileURL"><apiName>getTileURL</apiName><shortdesc>
+		 获取指定图片块在服务器端的存放地址。TiledCachedLayer 的子类必须重写该方法来实现此功能。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiDesc>返回指定图片块在服务器端的存放地址。
+		 
+		 </apiDesc><apiType value="flash.net:URLRequest"/></apiReturn><apiParam><apiItemName>row</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的行号。
+		 </apiDesc></apiParam><apiParam><apiItemName>col</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的列号。
+		 </apiDesc></apiParam><apiParam><apiItemName>level</apiItemName><apiType value="int"/><apiDesc>指定图片块显示的分辨率级别，即在分辨率数组中的索引号。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定图片块在服务器端的存放地址。TiledCachedLayer 的子类必须重写该方法来实现此功能。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:TiledCachedLayer:resolutions:get"><apiName>resolutions</apiName><shortdesc>
+		 获取或设置当前图层的分辨率数组。该属性与 scales 属性选择其中一个设置即可。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置当前图层的分辨率数组。该属性与 scales 属性选择其中一个设置即可。.
+		 <p>该属性与 Map 中的 Resolutions 属性之间的关系是：当分块缓存图层和 Map 的分辨率数组 Resolutions 中存在相等的分辨率值时以该分辨率出图，否则不显示。当没有设置 Map 的分辨率数组 Resolutions 时，以图层的 Resolutions 显示。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.mapping.xml#TiledCachedLayer/scales"><linktext>scales</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.mapping:TiledCachedLayer:scales:get"><apiName>scales</apiName><shortdesc>
+		 获取或设置当前图层的比例尺数组。该属性与 resolutions 属性选择其中一个设置即可.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置当前图层的比例尺数组。该属性与 resolutions 属性选择其中一个设置即可.
+		 该属性与 Map 中的 scales 属性之间的关系是：当分块缓存图层和 Map 的比例尺数组 Scales 中有存在相等比例尺值时以该比例尺出图，否则不显示。当没有设置 Map 的比例尺数组 Scales 时，以图层的 Scales 显示。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.mapping.xml#TiledCachedLayer/resolutions"><linktext>resolutions</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:ElementsLayer"><apiName>ElementsLayer</apiName><shortdesc>
+	 Flex 元素图层.</shortdesc><prolog><asMetadata><DefaultProperty name="elements"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:Layer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Flex 元素图层.
+	 <p>该类专用于承载显示 Element 类型的可视组件元素。可以添加 Adobe Flex 提供的所有可视组件，比如 Button、Rectangle；可以添加图片、音频和视频；可以添加自定义的任意 Flex 元素。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.core.xml#Element"><linktext>com.supermap.web.core.Element</linktext></link></related-links><apiConstructor id="com.supermap.web.mapping:ElementsLayer:ElementsLayer"><apiName>ElementsLayer</apiName><shortdesc>
+		 初始化 ElementsLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ElementsLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:ElementsLayer:addComponentAt"><apiName>addComponentAt</apiName><shortdesc>
+		 将可视组件添加至指定索引位置处，并返回用于唯一标识该对象的 id.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>id。
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>component</apiItemName><apiType value="mx.core:UIComponent"/><apiDesc>UIComponent 组件。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>bBox</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>组件在元素图层中的显示区域。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将可视组件添加至指定索引位置处，并返回用于唯一标识该对象的 id.
+		 <p>该方法的处理逻辑为：首先通过 component、bBox 参数封装一个 Element 对象，然后将此 Element 添加至元素图层中。</p> 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#ElementsLayer/elements"><linktext>elements</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:addComponent"><apiName>addComponent</apiName><shortdesc>
+		 添加可视组件，并返回用于唯一标识该对象的 id。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>id。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>component</apiItemName><apiType value="mx.core:UIComponent"/><apiDesc>UIComponent 组件。
+		 </apiDesc></apiParam><apiParam><apiItemName>bBox</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>组件在元素图层中的显示区域。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 添加可视组件，并返回用于唯一标识该对象的 id。.
+		 <p>该方法的处理逻辑为：首先通过 component、bBox 参数封装一个 Element 对象，然后将此 Element 添加至元素图层中。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:addElementAt"><apiName>addElementAt</apiName><shortdesc>
+		 将元素添加至指定索引位置处，并返回用于唯一标识元素的 id 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>id。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>element</apiItemName><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier><apiDesc>被添加的元素。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将元素添加至指定索引位置处，并返回用于唯一标识元素的 id 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:addElement"><apiName>addElement</apiName><shortdesc>
+		 添加元素，并返回用于唯一标识元素的 id。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>id。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>element</apiItemName><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier><apiDesc>被添加的元素。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 添加元素，并返回用于唯一标识元素的 id。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:clear"><apiName>clear</apiName><shortdesc>
+		 清除元素图层。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 清除元素图层。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:getElementAt"><apiName>getElementAt</apiName><shortdesc>
+		 获取指定位置处的元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>要获取的元素。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>要获取的元素在 elements 中的索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定位置处的元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:getElementIndex"><apiName>getElementIndex</apiName><shortdesc>
+		 获取指定元素在 elements 中的索引位置。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>指定元素在 elements 中的索引位置。
+		 </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>element</apiItemName><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier><apiDesc>指定的元素。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定元素在 elements 中的索引位置。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#ElementsLayer/elements"><linktext>elements</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:moveElementAt"><apiName>moveElementAt</apiName><shortdesc>
+		 将指定位置处的元素移动至另一位置 。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>fromIndex</apiItemName><apiType value="int"/><apiDesc>被移动元素所处的位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>toIndex</apiItemName><apiType value="int"/><apiDesc>移动的目标位置。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定位置处的元素移动至另一位置 。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:moveElement"><apiName>moveElement</apiName><shortdesc>
+		 将指定元素移动至指定的索引位置。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>element</apiItemName><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier><apiDesc>被移动的元素。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的索引位置，即被移动元素在属性 elements 中的索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定元素移动至指定的索引位置。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#ElementsLayer/elements"><linktext>elements</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:moveToTop"><apiName>moveToTop</apiName><shortdesc>
+		 将指定的元素移动至 ElementsLayer 的顶层。即 elements 的尾部。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>element</apiItemName><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier><apiDesc>被移动的元素。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定的元素移动至 ElementsLayer 的顶层。即 elements 的尾部。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#ElementsLayer/elements"><linktext>elements</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:removeElementAt"><apiName>removeElementAt</apiName><shortdesc>
+		 移除指定位置处的元素，并返回该元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>被移除的元素。
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>被移除元素在 elements 中的索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 移除指定位置处的元素，并返回该元素。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#ElementsLayer/elements"><linktext>elements</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:removeElement"><apiName>removeElement</apiName><shortdesc>
+		 移除元素，并返回该元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>被移除的元素。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Element</apiOperationClassifier></apiReturn><apiParam><apiItemName>component</apiItemName><apiType value="mx.core:UIComponent"/><apiDesc>被移除的、UIComponent 类型的元素。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 移除元素，并返回该元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:protected:viewBoundsChangedHandler"><apiName>viewBoundsChangedHandler</apiName><shortdesc>
+		 
+		 处理 viewBoundsChanged 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ViewBoundsEvent</apiOperationClassifier><apiDesc>ViewBoundsEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 viewBoundsChanged 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:protected:zoomEndHandler"><apiName>zoomEndHandler</apiName><shortdesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:ElementsLayer:protected:zoomStartHandler"><apiName>zoomStartHandler</apiName><shortdesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:ElementsLayer:ELEMENT_ADD"><apiName>ELEMENT_ADD</apiName><shortdesc>
+		 添加元素 Element。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>elementAdd</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 添加元素 Element。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:ElementsLayer:ELEMENT_REMOVE_ALL"><apiName>ELEMENT_REMOVE_ALL</apiName><shortdesc>
+		 移除 ElementsLayer 上的所有元素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>elementRemoveAll</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 移除 ElementsLayer 上的所有元素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:ElementsLayer:ELEMENT_REMOVE"><apiName>ELEMENT_REMOVE</apiName><shortdesc>
+		 移除 ElementsLayer 上的某一元素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>elementRemove</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 移除 ElementsLayer 上的某一元素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:ElementsLayer:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 
+		 当前图层的地理范围。默认值为（0,0,0,0）.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 当前图层的地理范围。默认值为（0,0,0,0）.
+		 若当前图层为 Map 的第一个图层，且 Map 的 ViewBounds 为 null，则将当前图层的 bounds 作为 Map 的 ViewBounds。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:ElementsLayer:elements:get"><apiName>elements</apiName><shortdesc>
+		 获取或设置元素图层 ElementsLayer 上的所有元素 Element。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.collections:ArrayCollection"/></apiValueDef><apiDesc>
+		 获取或设置元素图层 ElementsLayer 上的所有元素 Element。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.xml#Element"><linktext>com.supermap.web.core.Element</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.mapping:ElementsLayer:numElements:get"><apiName>numElements</apiName><shortdesc>
+		 获取或设置元素图层 ElementsLayer 上的元素个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置元素图层 ElementsLayer 上的元素个数。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:DynamicIServerLayer"><apiName>DynamicIServerLayer</apiName><shortdesc>
+	 SuperMap iServer Java 2008 动态图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:DynamicLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SuperMap iServer Java 2008 动态图层.
+	 该类有四个必设属性：Url、mapServiceAddress、mapServicePort、mapName。
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.mapping.xml#DynamicIServerLayer/url"><linktext>url</linktext></link><link href="com.supermap.web.mapping.xml#DynamicIServerLayer/mapName"><linktext>mapName</linktext></link></related-links><apiConstructor id="com.supermap.web.mapping:DynamicIServerLayer:DynamicIServerLayer"><apiName>DynamicIServerLayer</apiName><shortdesc>
+		 初始化 DynamicIServerLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DynamicIServerLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:DynamicIServerLayer:protected:loadMapImage"><apiName>loadMapImage</apiName><shortdesc conref="DynamicLayer#loadMapImage()">
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>loader</apiItemName><apiType value="flash.display:Loader"/><apiDesc>需要载入的图片。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc conref="DynamicLayer#loadMapImage()">
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicIServerLayer:refresh"><apiName>refresh</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:DynamicIServerLayer:isScaleCentric:get"><apiName>isScaleCentric</apiName><shortdesc>
+		 
+		 获取是否以比例尺为基准计算 dpi。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 获取是否以比例尺为基准计算 dpi。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicIServerLayer:layersKey:get"><apiName>layersKey</apiName><shortdesc>
+		 获取或设置描述图层显示状态的哈希码，每个哈希码对应服务端返回的图层唯一显示状态.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置描述图层显示状态的哈希码，每个哈希码对应服务端返回的图层唯一显示状态.
+		 在专题图和子图层显示控制应用中，会从服务器返回一个哈希码，将这个哈希码设置到该属性，该图层就会以哈希码描述的显示状态在客户端显示。   
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicIServerLayer:mapName:get"><apiName>mapName</apiName><shortdesc>
+		 获取或设置请求服务的地图名称。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置请求服务的地图名称。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicIServerLayer:mapServiceAddress:get"><apiName>mapServiceAddress</apiName><shortdesc>
+		 获取或设置地图 GIS 服务地址。例如 192.168.11.11，注意：无须在 IP 值前加 “HTTP：//”。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置地图 GIS 服务地址。例如 192.168.11.11，注意：无须在 IP 值前加 “HTTP：//”。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicIServerLayer:mapServicePort:get"><apiName>mapServicePort</apiName><shortdesc>
+		 获取或设置地图服务的端口号。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置地图服务的端口号。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicIServerLayer:url:get"><apiName>url</apiName><shortdesc conref="Layer#url">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="Layer#url">
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:Map"><apiName>Map</apiName><shortdesc>
+	 地图组件.</shortdesc><prolog><asMetadata><DefaultProperty name="layers"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>mx.core:Container</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图组件. 
+	 <p>Map 用于装载各类图层，它有自己的比例尺、分辨率、地理坐标等属性，虽然图层也有这些属性，但是当图层加载到地图中进行显示时就会以地图的属性值来显示。<br/>该类中声明了一些与地图相关的事件，这样做可以在标签中直接注册事件的侦听器函数。例如 &lt;iClient:Map load="onLoad(event)"/>，onLoad(event) 函数即为事件 load 的侦听器函数。侦听器函数也称为事件的响应函数，当触发某一事件时，则执行侦听器函数中的操作。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.mapping:Map_flash.events.Event_minScaleChange"><apiName>minScaleChange</apiName><shortdesc>
+	 地图最小比例尺改变时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图最小比例尺改变时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_flash.events.Event_maxScaleChange"><apiName>maxScaleChange</apiName><shortdesc>
+	 地图最大比例尺改变时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图最大比例尺改变时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_flash.events.Event_minResolutionChange"><apiName>minResolutionChange</apiName><shortdesc>
+	 地图最小分辨率改变时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图最小分辨率改变时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_flash.events.Event_maxResolutionChange"><apiName>maxResolutionChange</apiName><shortdesc>
+	 地图最大分辨率改变时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图最大分辨率改变时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.ViewBoundsEvent.VIEWBOUNDS_UPDATE_viewBoundsUpdate"><apiName>viewBoundsUpdate</apiName><shortdesc>
+	 更新地图可视范围时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.ViewBoundsEvent.VIEWBOUNDS_UPDATE</apiEventType><adobeApiEventClassifier>com.supermap.web.events.ViewBoundsEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 更新地图可视范围时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.ViewBoundsEvent.VIEWBOUNDS_CHANGE_viewBoundsChange"><apiName>viewBoundsChange</apiName><shortdesc>
+	 地图可视范围改变时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.ViewBoundsEvent.VIEWBOUNDS_CHANGE</apiEventType><adobeApiEventClassifier>com.supermap.web.events.ViewBoundsEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图可视范围改变时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.ZoomEvent.ZOOM_END_zoomEnd"><apiName>zoomEnd</apiName><shortdesc>
+	 地图缩放结束时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.ZoomEvent.ZOOM_END</apiEventType><adobeApiEventClassifier>com.supermap.web.events.ZoomEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图缩放结束时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.ZoomEvent.ZOOM_UPDATE_zoomUpdate"><apiName>zoomUpdate</apiName><shortdesc>
+	 地图缩放更新时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.ZoomEvent.ZOOM_UPDATE</apiEventType><adobeApiEventClassifier>com.supermap.web.events.ZoomEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图缩放更新时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.ZoomEvent.ZOOM_START_zoomStart"><apiName>zoomStart</apiName><shortdesc>
+	 地图缩放时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.ZoomEvent.ZOOM_START</apiEventType><adobeApiEventClassifier>com.supermap.web.events.ZoomEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图缩放时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_flash.events.Event_resolutionsChange"><apiName>resolutionsChange</apiName><shortdesc>
+	 地图分辨率数组改变时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 地图分辨率数组改变时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.PanEvent.PAN_END_panEnd"><apiName>panEnd</apiName><shortdesc>
+	 平移结束时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.PanEvent.PAN_END</apiEventType><adobeApiEventClassifier>com.supermap.web.events.PanEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 平移结束时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.PanEvent.PAN_UPDATE_panUpdate"><apiName>panUpdate</apiName><shortdesc>
+	 平移更新时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.PanEvent.PAN_UPDATE</apiEventType><adobeApiEventClassifier>com.supermap.web.events.PanEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 平移更新时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.PanEvent.PAN_START_panStart"><apiName>panStart</apiName><shortdesc>
+	 
+	 
+	 开始平移时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.PanEvent.PAN_START</apiEventType><adobeApiEventClassifier>com.supermap.web.events.PanEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 
+	 
+	 开始平移时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.MapMouseEvent.MAP_CLICK_map_click"><apiName>map_click</apiName><shortdesc>
+	 单击地图时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.MapMouseEvent.MAP_CLICK</apiEventType><adobeApiEventClassifier>com.supermap.web.events.MapMouseEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 单击地图时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.MapEvent.LAYER_REORDER_layerMove"><apiName>layerMove</apiName><shortdesc>
+	 更改图层顺序时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.MapEvent.LAYER_REORDER</apiEventType><adobeApiEventClassifier>com.supermap.web.events.MapEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 更改图层顺序时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.MapEvent.LAYER_REMOVE_ALL_layerRemoveAll"><apiName>layerRemoveAll</apiName><shortdesc>
+	 删除所有图层时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.MapEvent.LAYER_REMOVE_ALL</apiEventType><adobeApiEventClassifier>com.supermap.web.events.MapEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 删除所有图层时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.MapEvent.LAYER_REMOVE_layerRemove"><apiName>layerRemove</apiName><shortdesc>
+	 删除图层时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.MapEvent.LAYER_REMOVE</apiEventType><adobeApiEventClassifier>com.supermap.web.events.MapEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 删除图层时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.MapEvent.LAYER_ADD_layerAdd"><apiName>layerAdd</apiName><shortdesc>
+	 添加图层时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.MapEvent.LAYER_ADD</apiEventType><adobeApiEventClassifier>com.supermap.web.events.MapEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 添加图层时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_com.supermap.web.events.MapEvent.LOAD_load"><apiName>load</apiName><shortdesc>
+	 当地图控件载入第一个图层完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.MapEvent.LOAD</apiEventType><adobeApiEventClassifier>com.supermap.web.events.MapEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当地图控件载入第一个图层完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Map_flash.events.event_CRS_Change"><apiName>CRS_Change</apiName><shortdesc>
+	 当地图控件坐标参考系 CRS 发生变化时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当地图控件坐标参考系 CRS 发生变化时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.mapping:Map:Map"><apiName>Map</apiName><shortdesc>
+		 初始化 Map 类的新实例。
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Map 类的新实例。
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:Map:addChildAt"><apiName>addChildAt</apiName><shortdesc>
+		 向 Map 容器中的指定位置添加一个 DisplayObject 子项。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>添加的子项将作为 DisplayObject 类型的对象返回。
+		 
+		 </apiDesc><apiType value="flash.display:DisplayObject"/></apiReturn><apiParam><apiItemName>child</apiItemName><apiType value="flash.display:DisplayObject"/><apiDesc>要添加至 Map 的 DisplayObject 子项。 
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的位置索引。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向 Map 容器中的指定位置添加一个 DisplayObject 子项。.
+		 <p>若该子项为 Layer 则将其添加至 Map 的 Layers 数组中。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:addChild"><apiName>addChild</apiName><shortdesc>
+		 向 Map 容器中添加一个 DisplayObject 子项.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>添加的子项将作为 DisplayObject 类型的对象返回。
+		 
+		 </apiDesc><apiType value="flash.display:DisplayObject"/></apiReturn><apiParam><apiItemName>child</apiItemName><apiType value="flash.display:DisplayObject"/><apiDesc>要添加至 Map 的 DisplayObject 子项。 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向 Map 容器中添加一个 DisplayObject 子项.
+		 <p>若该子项为 Layer 则将其添加至 Map 的 Layers 数组中。</p>
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:addLayer"><apiName>addLayer</apiName><shortdesc>
+		 在指定位置添加图层。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回图层 ID 号。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>layer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Layer</apiOperationClassifier><apiDesc>所要添加的图层。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiData>-1</apiData><apiDesc>指定的位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 在指定位置添加图层。.
+		 <p>如果 layer 的 id 属性为 null，则会给 layer 默认生成一个唯一的 id 值。如果 index 小于0，则默认加载到最顶层，即图层数组的最末端。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:protected:collectionChangeHandler"><apiName>collectionChangeHandler</apiName><shortdesc>
+		 CollectionEvent.COLLECTION_CHANGE 类型事件的回调函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:CollectionEvent"/><apiDesc>CollectionEvent 事件。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 CollectionEvent.COLLECTION_CHANGE 类型事件的回调函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:getLayer"><apiName>getLayer</apiName><shortdesc>
+		 根据图层 ID 号获取图层。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回与 ID 号对应的图层 Layer。 
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.mapping:Layer</apiOperationClassifier></apiReturn><apiParam><apiItemName>layerId</apiItemName><apiType value="String"/><apiDesc>图层 ID 号。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据图层 ID 号获取图层。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:mapToScreen"><apiName>mapToScreen</apiName><shortdesc>
+		 将地图中指定点的地图坐标转换为像素坐标。即地图坐标点在地图控件中的像素坐标。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回像素坐标点。
+		 
+		 </apiDesc><apiType value="flash.geom:Point"/></apiReturn><apiParam><apiItemName>mapPoint</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>要转换的地图坐标点。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将地图中指定点的地图坐标转换为像素坐标。即地图坐标点在地图控件中的像素坐标。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:mapToStage"><apiName>mapToStage</apiName><shortdesc>
+		 将地图中指定点的地图坐标转换为全局屏幕坐标。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回地图点对应的全局屏幕坐标点。
+		 
+		 </apiDesc><apiType value="flash.geom:Point"/></apiReturn><apiParam><apiItemName>mapPoint</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>要转换的地图坐标点。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将地图中指定点的地图坐标转换为全局屏幕坐标。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:moveLayer"><apiName>moveLayer</apiName><shortdesc>
+		 移动图层，即将指定的图层移动到指定的位置。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>layerId</apiItemName><apiType value="String"/><apiDesc>指定的图层 ID 号。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的索引位置。即图层将被移动到的位置。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 移动图层，即将指定的图层移动到指定的位置。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:panByPixel"><apiName>panByPixel</apiName><shortdesc>
+		 根据指定的像素大小平移地图。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>offsetX</apiItemName><apiType value="Number"/><apiDesc>指定地图在 X 方向的移动距离，单位：像素。
+		 </apiDesc></apiParam><apiParam><apiItemName>offsetY</apiItemName><apiType value="Number"/><apiDesc>指定地图在 Y 方向的移动距离，单位：像素。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据指定的像素大小平移地图。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:panTo"><apiName>panTo</apiName><shortdesc>
+		 以地图中心点为基准，将地图平移到指定的点。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>pnt2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的二维点坐标。坐标单位为经纬度。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 以地图中心点为基准，将地图平移到指定的点。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:pan"><apiName>pan</apiName><shortdesc>
+		 根据给定的平移距离进行平移操作。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>offsetX</apiItemName><apiType value="Number"/><apiDesc>X 方向上平移的距离，单位与地图坐标系单位相同，如 WGS_84 坐标单位为经纬度。
+		 </apiDesc></apiParam><apiParam><apiItemName>offsetY</apiItemName><apiType value="Number"/><apiDesc>Y 方向上平移的距离，单位与地图坐标系单位相同，如 WGS_84 坐标单位为经纬度。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据给定的平移距离进行平移操作。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:refresh"><apiName>refresh</apiName><shortdesc>
+		 刷新地图。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 刷新地图。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:removeAllLayers"><apiName>removeAllLayers</apiName><shortdesc>
+		 删除所有图层。
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 删除所有图层。
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:removeLayer"><apiName>removeLayer</apiName><shortdesc>
+		 删除指指定的图层。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>layer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Layer</apiOperationClassifier><apiDesc>指定的图层 Layer。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 删除指指定的图层。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:screenToMap"><apiName>screenToMap</apiName><shortdesc>
+		 将指定点像素坐标转换为地图坐标。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回地图坐标。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>screenPoint</apiItemName><apiType value="flash.geom:Point"/><apiDesc>像素坐标。指在地图控件上指定点的像素坐标。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定点像素坐标转换为地图坐标。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:stageToMap"><apiName>stageToMap</apiName><shortdesc>
+		 将指定点的屏幕坐标转换为地图坐标。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回地图坐标。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>stage</apiItemName><apiType value="flash.geom:Point"/><apiDesc>屏幕坐标。指在整个电脑屏幕上指定点的像素坐标。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定点的屏幕坐标转换为地图坐标。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:viewEntire"><apiName>viewEntire</apiName><shortdesc>
+		 全幅显示。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 全幅显示。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:zoomIn"><apiName>zoomIn</apiName><shortdesc>
+		 地图缩小 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>factor</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>地图缩小因子，该属性必须大于 0，默认值为 1，表示地图缩小一倍，若 level 值不为 -1，则 level 减 1。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 地图缩小 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:zoomOut"><apiName>zoomOut</apiName><shortdesc>
+		 地图放大.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>factor</apiItemName><apiType value="Number"/><apiData>1</apiData></apiParam></apiOperationDef><apiDesc>
+		 地图放大.
+		 <p>地图放大因子，该属性必须大于 0，默认值为 1，表示地图缩大一倍，若 level 值不为 -1，则 level 加 1。</p> 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:zoomToLevel"><apiName>zoomToLevel</apiName><shortdesc>
+		 按给定的缩放级别及目标中心点进行对地图进行缩放。即以目标中心点为中心点，将地图缩放至目标缩放级别.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>level</apiItemName><apiType value="int"/><apiDesc>目标缩放级别。即目标分辨率或比例尺在 resolutions 或 scales 中的索引值。
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiData>null</apiData><apiDesc>目标中心点地图坐标。默认值为 null，即默认为 Map 的中心点。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 按给定的缩放级别及目标中心点进行对地图进行缩放。即以目标中心点为中心点，将地图缩放至目标缩放级别.
+		 仅当 Map 的 resolutions 或 scales 属性不为空时，才可使用该方法。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#Map/level"><linktext>level</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:Map:zoomToResolution"><apiName>zoomToResolution</apiName><shortdesc>
+		 按给定的目标分辨率及目标中心点进行缩放。即以目标中心点为中心点，将地图缩放至目标分辨率。当地图中设置了分辨率数组 Resolutions 时，则以数组中与设置的目标分辨率最接近的值为目标分辨率来进行地图缩放。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>resolution</apiItemName><apiType value="Number"/><apiDesc>目标分辨率。
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiData>null</apiData><apiDesc>目标中心点地图坐标。默认值为 null，即默认为 Map 的中心点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 按给定的目标分辨率及目标中心点进行缩放。即以目标中心点为中心点，将地图缩放至目标分辨率。当地图中设置了分辨率数组 Resolutions 时，则以数组中与设置的目标分辨率最接近的值为目标分辨率来进行地图缩放。
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Map:zoomToScale"><apiName>zoomToScale</apiName><shortdesc>
+		 按给定的目标比例尺及目标中心点进行缩放。即以目标中心点为中心点，将地图缩放至目标比例尺。当地图中设置了比例尺数组 Sclaes 时，则以数组中与设置的目标比例尺最接近的值为目标比例尺来进行地图缩放。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>scale</apiItemName><apiType value="Number"/><apiDesc>目标比例尺。
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiData>null</apiData><apiDesc>目标中心点地图坐标。默认值为 null，即默认为 Map 的中心点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 按给定的目标比例尺及目标中心点进行缩放。即以目标中心点为中心点，将地图缩放至目标比例尺。当地图中设置了比例尺数组 Sclaes 时，则以数组中与设置的目标比例尺最接近的值为目标比例尺来进行地图缩放。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:Map:CRS:get"><apiName>CRS</apiName><shortdesc>
+		 获取地图的坐标参考系（ CoordinateReferenceSystem ）.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:CoordinateReferenceSystem</apiValueClassifier></apiValueDef><apiDesc>
+		 获取地图的坐标参考系（ CoordinateReferenceSystem ）.
+		 <p>坐标参考系使用 EPSG 发布的代表特定椭球体、单位、地理坐标系或投影坐标系的 Well Konwn ID 值（简称 WKID）。该属性遵循以下两个规则：<br/>1）如果 MAP 的 CRS 为空或者 CRS 的 wkid 属性值为0，则任何 Layer 都可以加载到 Map 中，且加入以后 Map 的 CRS 等于第一个加载的、CRS不为空、或者 CRS 的 wkid 属性值不为 0 的 Layer 的 CRS。<br/>2）如果 Map 上的 CRS 不为空，且 CRS 的 wkid 属性值不为 0，则只有待加入的 Layer 的 CRS 为空、或者 CRS 的 wkid 属性值为 0、或者与 Map 的 CRS 保持一致，则该图层才能被加载到 Map 中。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:action:get"><apiName>action</apiName><shortdesc>
+		 获取或设置与 Map 关联的地图操作。如平移、缩放、绘制点/线/面等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.actions:MapAction</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与 Map 关联的地图操作。如平移、缩放、绘制点/线/面等。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 获取地图的地理范围。该属性等于 Map 中加载的所有图层的地理范围的并集。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取地图的地理范围。该属性等于 Map 中加载的所有图层的地理范围的并集。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:center:get"><apiName>center</apiName><shortdesc>
+		 获取地图的中心点坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取地图的中心点坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:doubleClickZoomEnabled:get"><apiName>doubleClickZoomEnabled</apiName><shortdesc>
+		 获取或设置双击时地图是否可以缩放。默认值为 true。在双击 Map 时放大地图，按 Shift 键并双击 Map 则缩小地图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置双击时地图是否可以缩放。默认值为 true。在双击 Map 时放大地图，按 Shift 键并双击 Map 则缩小地图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:infoWindow:get"><apiName>infoWindow</apiName><shortdesc>
+		 与 Map 绑定的信息提示窗口 Infowindow，该窗口只能由 Map 来调用，不能创建。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.mapping:InfoWindow</apiValueClassifier></apiValueDef><apiDesc>
+		 与 Map 绑定的信息提示窗口 Infowindow，该窗口只能由 Map 来调用，不能创建。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:keyboardNavigationEnabled:get"><apiName>keyboardNavigationEnabled</apiName><shortdesc>
+		 获取或设置是否可以通过键盘操作地图。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否可以通过键盘操作地图。.
+		 <p>当点击上下左右键时地图在垂直或水平方向平移；点击 “+” 号或 “-” 号时进行地图缩放；f 键为全幅显示；home、end、pageup、pagedown分别为右下、右上、左下、左上四个方向的平移。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:layerIds:get"><apiName>layerIds</apiName><shortdesc>
+		 获取地图控件所包含的所有图层的 ID 号。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取地图控件所包含的所有图层的 ID 号。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:layers:get"><apiName>layers</apiName><shortdesc>
+		 获取或设置当前地图中的所有图层.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置当前地图中的所有图层.
+		 此处获取的 layers 是一个 layer 数组对象—— ArrayCollection。当设置该属性时可使用三种类型的变量：Layer、Array、ArrayCollection。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:level:get"><apiName>level</apiName><shortdesc>
+		 获取地图的缩放级别.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取地图的缩放级别.
+		 该值等于当前地图控件 Map 的 Resolution 在 Resolutions 数组中的索引值。如果 Resolutions 为空，则该属性为默认值-1，即无限制缩放。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:loaded:get"><apiName>loaded</apiName><shortdesc>
+		 判断地图控件当前是否已加载第一个图层。默认值为 false，即未加载。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 判断地图控件当前是否已加载第一个图层。默认值为 false，即未加载。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:maxResolution:get"><apiName>maxResolution</apiName><shortdesc>
+		 获取或设置地图的最大分辨率.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图的最大分辨率.
+		 Map 的 maxResolution 与 Layer 的 maxResolution 之间的区别：Map_maxResolution 用于控制地图的最大放大级别，即当地图放大至 Map_maxResolution时， 则无法再放大；而 Layer_maxResolution 是用于控制地图的最大显示级别，即当地图放大至 Layer_maxResolution 时，地图可以再进行放大，但无法显示。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:maxScale:get"><apiName>maxScale</apiName><shortdesc>
+		 获取或设置地图的最大比例尺.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图的最大比例尺.
+		 若该属性未设置，且比例尺数组 Scales 不为空，则该值为比例尺数组 Scales 的最大值；若比例尺数组 Scales 为空，则该值自动由分辨率数组 resolutions 中的最小值转换得来（有关分辨率与比例尺之间的转换请参见“分辨率和比例尺”专题）；若 Scales、resolutions 均为空，则该值默认为 0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:minResolution:get"><apiName>minResolution</apiName><shortdesc>
+		 获取或设置地图的最小分辨率.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图的最小分辨率.
+		 Map 的 minResolution 与 Layer 的 minResolution 之间的区别：Map_minResolution 用于控制地图的最小缩小级别，即当地图缩小至 Map_minResolution时， 则无法再缩小；而 Layer_minResolution 是用于控制地图的最小显示级别，即当地图缩小至 Layer_minResolution 时，地图可以再进行缩小，但无法显示。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:minScale:get"><apiName>minScale</apiName><shortdesc>
+		 获取或设置地图的最小比例尺.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图的最小比例尺.
+		 若该属性未设置，且比例尺数组 Scales 不为空，则该值为比例尺数组 Scales 的最小值；若比例尺数组 Scales 为空，则该值自动由分辨率数组 resolutions 中的最大值转换得来（有关分辨率与比例尺之间的转换请参见“分辨率和比例尺”专题）；若 Scales、resolutions 均为空，则该值默认为 0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:panDuration:get"><apiName>panDuration</apiName><shortdesc>
+		 获取或设置地图从一个指定点平移到下一指定点的持续时间。默认值为 300 毫秒（ 0.3 秒），最小取值为 1 毫秒.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图从一个指定点平移到下一指定点的持续时间。默认值为 300 毫秒（ 0.3 秒），最小取值为 1 毫秒.
+		 <p>该属性其实质是用于设置地图平移过程中的动画时间，当平移的距离超出当前地图可视范围的宽或高时，则动画不起作用。<br/>注意：对于使用鼠标进行平移该属性不起作用。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:panEasingFactor:get"><apiName>panEasingFactor</apiName><shortdesc>
+		 获取或设置地图随鼠标移动的速度。取值范围在 0~1 之间，默认值为 0.2，值越大，平移速度越快。该属性仅对鼠标平移有效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图随鼠标移动的速度。取值范围在 0~1 之间，默认值为 0.2，值越大，平移速度越快。该属性仅对鼠标平移有效。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:panFactor:get"><apiName>panFactor</apiName><shortdesc>
+		 获取或设置利用键盘上下左右键平移地图时的平移距离。取值范围在 0~1 之间，默认值为 0.2。例如当按下“&lt;-”键时，地图向左平移整个屏幕显示范围宽度的 0.2 倍距离。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0.2
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置利用键盘上下左右键平移地图时的平移距离。取值范围在 0~1 之间，默认值为 0.2。例如当按下“&lt;-”键时，地图向左平移整个屏幕显示范围宽度的 0.2 倍距离。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:panHandCursorVisible:get"><apiName>panHandCursorVisible</apiName><shortdesc>
+		 获取或设置地图在平移过程中鼠标是否可见。默认值为 false，即不可见。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置地图在平移过程中鼠标是否可见。默认值为 false，即不可见。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:resolution:get"><apiName>resolution</apiName><shortdesc>
+		 获取地图当前分辨率。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取地图当前分辨率。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:resolutions:get"><apiName>resolutions</apiName><shortdesc>
+		 获取或设置地图的分辨率数组。默认值为 null，该属性与比例尺数组 scales 属性只需设置其一即可，系统内部会自动进行转换.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置地图的分辨率数组。默认值为 null，该属性与比例尺数组 scales 属性只需设置其一即可，系统内部会自动进行转换.
+		 若未设置该属性，但 scales 不为空，则系统内部会根据 scales 自动计算出分辨率数组。对于不同类型的图层遵循以下规则：<br/>1.对于分块缓存图层也拥有 resolutions 属性，它们之间的关系是：当分块缓存图层与 Map 的 resolutions 属性均不为空时，则取两者的并集做为 Map 的 resolutions 进行出图显示; 当没有设置 Map 的 resolutions 时，则取图层的 resolutions 作为 Map 的 resolutions 显示出图。注意：对于分块缓存图层，图层与 Map 的 resolutions 必须选择其一进行设置，否则不出图。<br/>2.对于动态图层，图层中没有 resolutions 属性，当不设置 Map 的 resolutions 时，地图为无极缩放。若已设置，则按照 Map 的 resolutions 出图显示。<br/>注意：对于 SuperMap iserver 的服务地图，Resolutions 与 scales 两个系列的属性都可进行设置，且只需设置一个即可，内部会自行将 scales 转换为 Resolutions，最终以 Resolutions 出图；而对于 BingMap 等其他服务地图，则只能设置 Resolutions 属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:scale:get"><apiName>scale</apiName><shortdesc>
+		 获取地图当前比例尺。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取地图当前比例尺。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:scales:get"><apiName>scales</apiName><shortdesc>
+		 获取或设置地图比例尺数组。该属性与分辨率数组 resolutions 属性只需设置其一即可.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置地图比例尺数组。该属性与分辨率数组 resolutions 属性只需设置其一即可.
+		 系统内部会自动将 scales 转换为 resolutions，最终以 resolutions 为基准显示出图。有关 resolutions 与 Layer、Map 之间的关系，详情请参见 resolutions 属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:screenContainer:get"><apiName>screenContainer</apiName><shortdesc>
+		 获取与地图相关的，但不随地图缩放、平移等操作变化的控件、标签等。返回类型为 Group。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="com.supermap.web.mapping.supportClasses:ScreenContainer"/></apiValueDef><apiDesc>
+		 获取与地图相关的，但不随地图缩放、平移等操作变化的控件、标签等。返回类型为 Group。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:scrollRectX:get"><apiName>scrollRectX</apiName><shortdesc>
+		 获取地图控件滚动矩形范围的 X 值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取地图控件滚动矩形范围的 X 值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:scrollRectY:get"><apiName>scrollRectY</apiName><shortdesc>
+		 获取地图控件滚动矩形范围的 Y 值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取地图控件滚动矩形范围的 Y 值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:scrollWheelZoomEnabled:get"><apiName>scrollWheelZoomEnabled</apiName><shortdesc>
+		 获取或设置当鼠标滚轮滚动时地图是否可以缩放。默认值为 true，即向前滚动时地图放大；反之，则缩小。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置当鼠标滚轮滚动时地图是否可以缩放。默认值为 true，即向前滚动时地图放大；反之，则缩小。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:theme:get"><apiName>theme</apiName><shortdesc>
+		 静态变量，要素主题风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.themes:Theme</apiValueClassifier></apiValueDef><apiDesc>
+		 静态变量，要素主题风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:viewBounds:get"><apiName>viewBounds</apiName><shortdesc>
+		 获取或设置地图的地理可视范围。例如现有一幅世界地图的 Bounds 为 （-180，-90，180，90），在初始化地图时设置 viewBounds 为 （0，0，180，90），则这时地图上将显示东经0-180度、北纬0-90度的地理范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置地图的地理可视范围。例如现有一幅世界地图的 Bounds 为 （-180，-90，180，90），在初始化地图时设置 viewBounds 为 （0，0，180，90），则这时地图上将显示东经0-180度、北纬0-90度的地理范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:zoomDuration:get"><apiName>zoomDuration</apiName><shortdesc>
+		 获取或设置地图缩放的速度。默认值为 250 毫秒（ 0.25 秒），最小取值为 1 毫秒. 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图缩放的速度。默认值为 250 毫秒（ 0.25 秒），最小取值为 1 毫秒. 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:zoomEffectEnabled:get"><apiName>zoomEffectEnabled</apiName><shortdesc>
+		 是否为地图添加缩放动画，默认为 true。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否为地图添加缩放动画，默认为 true。.
+		 <p>当该值为 true 时表示地图在缩放时，会有四个箭头指示当前的缩放状态，如下图为放大状态：<br/><img src="../../../../images/zoomEffectEnable.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Map:zoomFactor:get"><apiName>zoomFactor</apiName><shortdesc>
+		 地图缩放因子。默认值为2，当分辨率数组不为空时，每次放大或缩小时地图的 level 加 1 或减 1。若分辨率数组为空，则表示地图比例尺放大 1 倍或缩小 1 倍。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 地图缩放因子。默认值为2，当分辨率数组不为空时，每次放大或缩小时地图的 level 加 1 或减 1。若分辨率数组为空，则表示地图比例尺放大 1 倍或缩小 1 倍。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:DynamicWMSLayer"><apiName>DynamicWMSLayer</apiName><shortdesc>
+	 动态 WMS 图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:DynamicLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 动态 WMS 图层.
+	 <p>该类属于动态栅格图层的一种。<br />加载此类图层有两个必设参数：Url（服务器地址）、layers（子图层名称）。<br/><br/>本产品支持任何标准的 WMS 1.1.1 和 WMS 1.3.0。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:DynamicWMSLayer:DynamicWMSLayer"><apiName>DynamicWMSLayer</apiName><shortdesc>
+		 使用服务器地址、WMS图层参数（ WMSParams ）等来初始化 DynamicWMSLayer 类的新实例。.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>发布 WMS 地图服务的地址。
+		 </apiDesc></apiParam><apiParam><apiItemName>layers</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>WMS 图层参数（ WMSParams ）。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器地址、WMS图层参数（ WMSParams ）等来初始化 DynamicWMSLayer 类的新实例。. 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:DynamicWMSLayer:protected:loadMapImage"><apiName>loadMapImage</apiName><shortdesc conref="DynamicLayer#loadMapImage()">
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>loader</apiItemName><apiType value="flash.display:Loader"/><apiDesc>需要载入的图片。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc conref="DynamicLayer#loadMapImage()">
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:DynamicWMSLayer:bgcolor:get"><apiName>bgcolor</apiName><shortdesc>
+		 获取或设置动态 WMS 图层的背景颜色，类型为 16 进制，默认为 0xFFFFFF。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置动态 WMS 图层的背景颜色，类型为 16 进制，默认为 0xFFFFFF。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicWMSLayer:enableGetCapabilities:get"><apiName>enableGetCapabilities</apiName><shortdesc conref="TiledWMSLayer#enableGetCapabilities">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc conref="TiledWMSLayer#enableGetCapabilities">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicWMSLayer:exception:get"><apiName>exception</apiName><shortdesc>
+		 获取或设置 WMS 异常输出文件的格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 WMS 异常输出文件的格式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicWMSLayer:layers:get"><apiName>layers</apiName><shortdesc>
+		 <b>必设属性</b>，获取或设置 WMS 子图层集合。图层间用逗号分隔。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 <b>必设属性</b>，获取或设置 WMS 子图层集合。图层间用逗号分隔。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicWMSLayer:url:get"><apiName>url</apiName><shortdesc>
+		 
+		 图层所在的服务地址。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 图层所在的服务地址。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:DynamicWMSLayer:version:get"><apiName>version</apiName><shortdesc conref="TiledWMSLayer#version">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="TiledWMSLayer#version">
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:FeaturesLayer"><apiName>FeaturesLayer</apiName><shortdesc>
+	 要素图层类.</shortdesc><prolog><asMetadata><DefaultProperty name="features"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:Layer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 要素图层类. 
+	 <p>该类用于承载矢量要素 Feature，包括点、线、面、文本等。</p>
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.mapping:FeaturesLayer_com.supermap.web.events.FeatureLayerEvent_featureRemoveAll"><apiName>featureRemoveAll</apiName><shortdesc>
+	 当移除在 FeatureLayer 中所有矢量要素时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.events.FeatureLayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当移除在 FeatureLayer 中所有矢量要素时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:FeaturesLayer_com.supermap.web.events.FeatureLayerEvent_featureRemove"><apiName>featureRemove</apiName><shortdesc>
+	 当在 FeatureLayer 中删除矢量要素时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.events.FeatureLayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当在 FeatureLayer 中删除矢量要素时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:FeaturesLayer_com.supermap.web.events.FeatureLayerEvent_featureAdd"><apiName>featureAdd</apiName><shortdesc>
+	 当在 FeatureLayer 中添加矢量要素时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.events.FeatureLayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当在 FeatureLayer 中添加矢量要素时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:FeaturesLayer_flash.events.Event_styleChange"><apiName>styleChange</apiName><shortdesc>
+	 当 FeatureLayer 的显示风格 style 发生变化时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当 FeatureLayer 的显示风格 style 发生变化时触发该事件。 
+	 </apiDesc></adobeApiEventDetail><related-links><link href="com.supermap.web.mapping.xml#FeaturesLayer/style"><linktext>style</linktext></link></related-links></adobeApiEvent><apiConstructor id="com.supermap.web.mapping:FeaturesLayer:FeaturesLayer"><apiName>FeaturesLayer</apiName><shortdesc>
+		 初始化 FeatureLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FeatureLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:FeaturesLayer:addFeatureAt"><apiName>addFeatureAt</apiName><shortdesc>
+		 在指定位置处添加矢量要素。若传入的索引值超出范围（小于 0 或大于 features.length），将会抛出异常信息 SmResource.OUT_OF_ARRAY_RANGE。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回矢量要素 ID。
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>要添加的矢量要素。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 在指定位置处添加矢量要素。若传入的索引值超出范围（小于 0 或大于 features.length），将会抛出异常信息 SmResource.OUT_OF_ARRAY_RANGE。 
+		 </apiDesc></apiOperationDetail><related-links><link href="" invalidHref="com.supermap.web.mapping.features.xml"><linktext>features</linktext></link><link href="com.supermap.web.resources.xml#SmResource"><linktext>com.supermap.web.resources.SmResource</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:addFeature"><apiName>addFeature</apiName><shortdesc>
+		 在当前图层中添加矢量要素。当 isFront 属性为 true 时，新增的要素添加于 features 集合的最末端，反之添加到最前端。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>要添加的矢量要素。
+		 </apiDesc></apiParam><apiParam><apiItemName>isfront</apiItemName><apiType value="Boolean"/><apiData>true</apiData></apiParam></apiOperationDef><apiDesc>
+		 在当前图层中添加矢量要素。当 isFront 属性为 true 时，新增的要素添加于 features 集合的最末端，反之添加到最前端。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#FeaturesLayer/isFront"><linktext>isFront</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:addMapListeners"><apiName>addMapListeners</apiName><shortdesc>
+		 
+		 为当前图层添加事件侦听器，以使侦听器能够接收 ZoomEvent、 ViewBoundsEvent 事件的触发通知。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 为当前图层添加事件侦听器，以使侦听器能够接收 ZoomEvent、 ViewBoundsEvent 事件的触发通知。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:clear"><apiName>clear</apiName><shortdesc>
+		 添除当前图层中的所有矢量要素。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 添除当前图层中的所有矢量要素。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:creationCompleteHandler"><apiName>creationCompleteHandler</apiName><shortdesc>
+		 当 FeatureLayer 创建完毕事件 FlexEvent.CREATION_COMPLETE 的侦听函数。的 features 属性发生变化是将触发 CollectionEvent.COLLECTION_CHANGE 事件，该方法用于侦听该事件。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/></apiParam></apiOperationDef><apiDesc>
+		 当 FeatureLayer 创建完毕事件 FlexEvent.CREATION_COMPLETE 的侦听函数。的 features 属性发生变化是将触发 CollectionEvent.COLLECTION_CHANGE 事件，该方法用于侦听该事件。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:enterFrameHandler"><apiName>enterFrameHandler</apiName><shortdesc>
+		 Event.ENTER_FRAME 事件的侦听函数。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:Event"/></apiParam></apiOperationDef><apiDesc>
+		 Event.ENTER_FRAME 事件的侦听函数。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:getFeatureAt"><apiName>getFeatureAt</apiName><shortdesc>
+		 获取指定位置处的矢量要素。如果 index 超出范围则抛出异常信息： SmResource.OUT_OF_ARRAY_RANGE。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回获取到的矢量要素。
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定位置处的矢量要素。如果 index 超出范围则抛出异常信息： SmResource.OUT_OF_ARRAY_RANGE。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.resources.xml#SmResource"><linktext>com.supermap.web.resources.SmResource</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:getFeatureByID"><apiName>getFeatureByID</apiName><shortdesc>
+		 通过要素 ID 获取要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回与 ID 对应的要素。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier></apiReturn><apiParam><apiItemName>id</apiItemName><apiType value="String"/><apiDesc>要素 ID。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 通过要素 ID 获取要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:getFeatureIndex"><apiName>getFeatureIndex</apiName><shortdesc>
+		 获取矢量要素索引位置。如果指定的要素不在该图层中，则返回-1。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回矢量要素索引位置。
+		 
+		 </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>矢量要素。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取矢量要素索引位置。如果指定的要素不在该图层中，则返回-1。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:moveFeatureAt"><apiName>moveFeatureAt</apiName><shortdesc>
+		 将矢量要素移动至指定位置。如果 index 超出范围则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>fromIndex</apiItemName><apiType value="int"/><apiDesc>要移动的矢量要素。
+		 </apiDesc></apiParam><apiParam><apiItemName>toIndex</apiItemName><apiType value="int"/><apiDesc>指定的索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将矢量要素移动至指定位置。如果 index 超出范围则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.resources.xml#SmResource"><linktext>com.supermap.web.resources.SmResource</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:moveFeature"><apiName>moveFeature</apiName><shortdesc>
+		 将指定位置处的矢量要素移动至另一位置。如果索引值超出范围则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>被移动的矢量要素的索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>另一索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定位置处的矢量要素移动至另一位置。如果索引值超出范围则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.resources.xml#SmResource"><linktext>com.supermap.web.resources.SmResource</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:moveToTop"><apiName>moveToTop</apiName><shortdesc>
+		 将指定矢量要素移动至顶端显示。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>被移动的矢量要素。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定矢量要素移动至顶端显示。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:removeAllChildren"><apiName>removeAllChildren</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:removeFeatureAt"><apiName>removeFeatureAt</apiName><shortdesc>
+		 移除指定位置处的矢量要素。如果索引值超出范围则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>$[mapping_FeatureLayer_method_removeFeatureAt_return}
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>索引位置。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 移除指定位置处的矢量要素。如果索引值超出范围则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.resources.xml#SmResource"><linktext>com.supermap.web.resources.SmResource</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:removeFeature"><apiName>removeFeature</apiName><shortdesc>
+		 移除指定的矢量要素。如果待移除的 Feature 不在图层中，则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回被移除的矢量要素。
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>被移除的矢量要素。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 移除指定的矢量要素。如果待移除的 Feature 不在图层中，则抛出异常信息：SmResource.OUT_OF_ARRAY_RANGE。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.resources.xml#SmResource"><linktext>com.supermap.web.resources.SmResource</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:removeMapListeners"><apiName>removeMapListeners</apiName><shortdesc>
+		 
+		 移除通过 addMapListeners 添加的事件侦听器。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 移除通过 addMapListeners 添加的事件侦听器。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:showHandler"><apiName>showHandler</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:zoomEndHandler"><apiName>zoomEndHandler</apiName><shortdesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:FeaturesLayer:protected:zoomStartHandler"><apiName>zoomStartHandler</apiName><shortdesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:FeaturesLayer:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 获取或设置当前图层的地理范围，默认为该图层中所有 Feature 的 bounds （获取方法：Feature.geometry.bounds）的并集。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置当前图层的地理范围，默认为该图层中所有 Feature 的 bounds （获取方法：Feature.geometry.bounds）的并集。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#Geometry/bounds"><linktext>com.supermap.web.core.geometry.Geometry.bounds</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:clusterer:get"><apiName>clusterer</apiName><shortdesc>
+		 获取或设置与 FeatureLayer 关联的 Clusterer 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.clustering:Clusterer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与 FeatureLayer 关联的 Clusterer 对象。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.clustering.xml#Clusterer"><linktext>com.supermap.web.clustering.Clusterer</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:features:get"><apiName>features</apiName><shortdesc>
+		 获取或设置当前图层的矢量要素集。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置当前图层的矢量要素集。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:isFeatureMouseOver:get"><apiName>isFeatureMouseOver</apiName><shortdesc>
+		 指定要素图层中的要素是否自动显示于图层最顶端.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 指定要素图层中的要素是否自动显示于图层最顶端.
+		 <p>若该属性值为 true，则当鼠标悬停至 FeatureLayer 中任何一个要素 Feature 上时，该要素将自动显示于要素图层的最顶端。若属性值为 false，则屏蔽这种功能。默认值为 true。若想某一单个要素指定或屏蔽此功能，设置 Feature.autoMoveToTop 属性即可。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.xml#Feature/autoMoveToTop"><linktext>com.supermap.web.core.Feature.autoMoveToTop</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:isFront:get"><apiName>isFront</apiName><shortdesc>
+		 指定要素的加载顺序.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 指定要素的加载顺序.
+		 <p>当该属性值为 true 时，表示最先加载的要素显示于 FeatureLayer 的最底端，最后加载的要素显示于 FeatureLayer 的最顶端。当该属性值为 false 时，表示最先加载的要素显示于 FeatureLayer 的最顶端，最后加载的要素显示于 FeatureLayer 的最底端。默认值为 true。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:isPanEnableOnFeature:get"><apiName>isPanEnableOnFeature</apiName><shortdesc>
+		 指定鼠标焦点在要素（Feature）上时是否可以进行地图平移操作。默认值为：false，表示鼠标焦点在要素（如面要素）上时不可进行地图平移操作，仅当鼠标焦点落在要素以外的地图范围内方可平移地图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 指定鼠标焦点在要素（Feature）上时是否可以进行地图平移操作。默认值为：false，表示鼠标焦点在要素（如面要素）上时不可进行地图平移操作，仅当鼠标焦点落在要素以外的地图范围内方可平移地图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:isRealtimeRefresh:get"><apiName>isRealtimeRefresh</apiName><shortdesc>
+		 获取或设置当地图可视范围发生变化时否实时更新要素图层 FeatureLayer。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置当地图可视范围发生变化时否实时更新要素图层 FeatureLayer。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:isViewportClip:get"><apiName>isViewportClip</apiName><shortdesc>
+		 是否对 FeatureLayer 上不在可视范围内的要素 Feature 进行裁剪，即对不在可视范围内的要素不进行绘制.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 是否对 FeatureLayer 上不在可视范围内的要素 Feature 进行裁剪，即对不在可视范围内的要素不进行绘制.
+		 <p>当该属性值为 true 时，表示对不在可视范围内的要素 Feature 进行裁剪。当地图可视范围发生变化时，则实时绘制可视范围内被裁剪掉的要素 Feature。默认值为 false。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:numFeatures:get"><apiName>numFeatures</apiName><shortdesc>
+		 获取当前图层包含的矢量要素个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取当前图层包含的矢量要素个数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:renderer:get"><apiName>renderer</apiName><shortdesc>
+		 获取或设置 FeatureLayer 的渲染方式。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.rendering:Renderer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置 FeatureLayer 的渲染方式。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:FeaturesLayer:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置 FeatureLayer 的显示风格。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置 FeatureLayer 的显示风格。.
+		 <p>FeatureLayer.style、Feature.style、FeatureLayer.renderer 属性中的渲染样式这三者的优先级为：1——Feature.style，2——FeatureLayer.renderer 属性中的渲染样式，3——FeatureLayer.style。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.mapping.xml#FeaturesLayer/renderer"><linktext>renderer</linktext></link><link href="com.supermap.web.core.xml#Feature"><linktext>style</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:TiledLayer"><apiName>TiledLayer</apiName><shortdesc>
+	 分块栅格图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:ImageLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 分块栅格图层.
+	 <p>TiledLayer 主要将一个完整的地图切割成多个相同大小的正方形块图片，地图最终呈现时就是由这些块图片拼合而成。该类是所有分块栅格图层的基类，如 TiledCachedLayer、 TiledDynamicLayer。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.mapping:TiledLayer_flash.events.Event_fadeInFrameCountChange"><apiName>fadeInFrameCountChange</apiName><shortdesc/><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc></apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.mapping:TiledLayer:TiledLayer"><apiName>TiledLayer</apiName><shortdesc>
+		 初始化 TiledLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TiledLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:addMapListeners"><apiName>addMapListeners</apiName><shortdesc>
+		 
+		 为当前图层添加事件侦听器，以使侦听器能够接收 ZoomEvent、 ViewBoundsEvent 事件的触发通知。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 为当前图层添加事件侦听器，以使侦听器能够接收 ZoomEvent、 ViewBoundsEvent 事件的触发通知。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:hideHandler"><apiName>hideHandler</apiName><shortdesc>
+		 
+		 处理 FlexEvent.HIDE 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/><apiDesc>事件对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 FlexEvent.HIDE 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:refresh"><apiName>refresh</apiName><shortdesc>
+		 
+		 刷新图层。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 刷新图层。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:removeAllChildren"><apiName>removeAllChildren</apiName><shortdesc>
+		 
+		 删除 Layer 上的所有对象。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 删除 Layer 上的所有对象。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:removeMapListeners"><apiName>removeMapListeners</apiName><shortdesc>
+		 
+		 移除通过 addMapListeners 添加的事件侦听器。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 移除通过 addMapListeners 添加的事件侦听器。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:removedHandler"><apiName>removedHandler</apiName><shortdesc>
+		 
+		 处理 Event.REMOVED 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:Event"/><apiDesc>事件对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 Event.REMOVED 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:showHandler"><apiName>showHandler</apiName><shortdesc>
+		 
+		 处理 FlexEvent.SHOW 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/><apiDesc>事件对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 FlexEvent.SHOW 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:viewBoundsChangedHandler"><apiName>viewBoundsChangedHandler</apiName><shortdesc>
+		 
+		 处理 viewBoundsChanged 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ViewBoundsEvent</apiOperationClassifier><apiDesc>ViewBoundsEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 viewBoundsChanged 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:zoomEndHandler"><apiName>zoomEndHandler</apiName><shortdesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:zoomStartHandler"><apiName>zoomStartHandler</apiName><shortdesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledLayer:protected:zoomUpdateHandler"><apiName>zoomUpdateHandler</apiName><shortdesc>
+		 
+		 处理 zoomUpdate 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomUpdate 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:TiledLayer:fadeInFrameCount:get"><apiName>fadeInFrameCount</apiName><shortdesc>
+		 获取或设置图层在缩放过程中渐显帧数，这样可使缩放过程更加平滑。默认值为4.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 获取或设置图层在缩放过程中渐显帧数，这样可使缩放过程更加平滑。默认值为4.
+		 若该值小于 0，则取默认值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledLayer:origin:get"><apiName>origin</apiName><shortdesc>
+		 获取或设置分块图层的起点坐标（左上角点）.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置分块图层的起点坐标（左上角点）.
+		 即图层（ Layer ）的地理可视范围（ bounds ）的左上角点坐标。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledLayer:tileSize:get"><apiName>tileSize</apiName><shortdesc>
+		 获取或者设置图层分块大小，单位为像素，默认值为 256.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或者设置图层分块大小，单位为像素，默认值为 256.
+		 该块为正方形，故其大小是指其边长，也就是说一个边长即可确定图片块大小。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:InfoWindow"><apiName>InfoWindow</apiName><shortdesc>
+	 信息窗类.</shortdesc><prolog><asMetadata><styles><style format="Length" inherit="no" name="lowerRightRadius" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 右下角弧度，默认为 5 度。 
+	 </description>
+	</style><style format="Length" inherit="no" name="upperRightRadius" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 右上角弧度，默认为 5 度。 
+	 </description>
+	</style><style format="Length" inherit="no" name="lowerLeftRadius" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 左下角弧度，默认为 5 度。 
+	 </description>
+	</style><style format="Length" inherit="no" name="upperLeftRadius" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 左上角弧度，默认为 5 度。 
+	 </description>
+	</style><style format="Length" inherit="no" name="shadowDistance" owner="com.supermap.web.mapping:InfoWindow" theme="halo, spark" type="Number">
+<description>
+	  阴影深度，默认为 0.0。 
+	  </description>
+	</style><style format="Color" inherit="yes" name="shadowColor" owner="com.supermap.web.mapping:InfoWindow" type="uint">
+<description>
+	 阴影颜色，默认为黑色。 
+	 </description>
+	</style><style inherit="no" name="shadowAngle" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 阴影角度，默认为 45 度，顺时针表示正方向，逆时针表示负方向。 
+	 </description>
+	</style><style inherit="no" name="shadowAlpha" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 阴影透明度，默认为 1.0，表示不透明。 
+	 </description>
+	</style><style format="Length" inherit="no" name="infoOffsetW" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 InfoWindow 的指示箭头与显示面板的相交长度，默认为 10，单位：像素。
+	 </description>
+	</style><style format="Length" inherit="no" name="infoOffsetY" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 纵轴领衔量，默认值为 12，单位为像素。 
+	 </description>
+	</style><style format="Length" inherit="no" name="infoOffsetX" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 横轴偏移量，默认值为 12，单位为像素。 
+	 </description>
+	</style><style inherit="no" name="infoPlacement" owner="com.supermap.web.mapping:InfoWindow" type="String">
+<description>
+	 InfoWindow 显示方位，即方向位置，包括：右上、右下、左上、左下、上、下、左、右。该样式由 InfoPlacement 枚举类定义。默认为右上位置：upperRight。 
+	 </description>
+	<related-links><link href="com.supermap.web.mapping.xml#InfoPlacement"><linktext>com.supermap.web.mapping.InfoPlacement</linktext></link></related-links></style><style inherit="no" name="infoPlacementMode" owner="com.supermap.web.mapping:InfoWindow" type="String">
+<description>
+	 定义 InfoWindow 流动显示模式，包括 auto 和 none 两种值。auto 表示 InfoWindow 随地图的平移会流动显示，none 表示不流动显示。 
+	 </description>
+	</style><style inherit="no" name="borderAlpha" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 边界透明度。默认为 1.0，表示不透明。取值范围为 0~1。 
+	 </description>
+	</style><style format="Color" inherit="no" name="borderColor" owner="com.supermap.web.mapping:InfoWindow" type="uint">
+<description>
+	 边界颜色。默认为黑色。 
+	 </description>
+	</style><style inherit="no" name="borderThickness" owner="com.supermap.web.mapping:InfoWindow" type="Number">
+<description>
+	 边界宽度。默认为 0，单位为像素。 
+	 </description>
+	</style></styles></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping.supportClasses:InfoContainer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 信息窗类.
+	 <p>初始化地图控件，就会自带一个 InfoWindow 对象，它不能创建，只能通过地图控件获取这个对象，或定义该对象的属性。一个地图控件对应一个 InfoWindow，可以显示、隐藏等。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiOperation id="com.supermap.web.mapping:InfoWindow:hide"><apiName>hide</apiName><shortdesc>
+		 隐藏 InfoWindow。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 隐藏 InfoWindow。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:InfoWindow:show"><apiName>show</apiName><shortdesc>
+		 在指定的点显示 InfoWindow。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>point2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的点对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 在指定的点显示 InfoWindow。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:InfoWindow:closeButtonVisible:get"><apiName>closeButtonVisible</apiName><shortdesc>
+		 获取或设置 InfoWindow 的关闭按钮是否可见。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/><code>map.infoWindow.closeButtonVisible</code>。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 InfoWindow 的关闭按钮是否可见。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/><code>map.infoWindow.closeButtonVisible</code>。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoWindow:closeButton:get"><apiName>closeButton</apiName><shortdesc>
+		 获取或设置 InfoWindow 的关闭按钮。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="spark.components:Button"/></apiValueDef><apiDesc>
+		 获取或设置 InfoWindow 的关闭按钮。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoWindow:content:get"><apiName>content</apiName><shortdesc>
+		 获取或设置信息窗显示内容。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/><code>map.infoWindow.content</code>.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.core:UIComponent"/></apiValueDef><apiDesc>
+		 获取或设置信息窗显示内容。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/><code>map.infoWindow.content</code>.
+		 注意：该属性类型不是 string，而是 UTComponent，即可以任何可视化组件来定义 InfoWindow 的显示内容。InfoWindow 的大小可根据 content 的大小而自适应的放大、缩小。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoWindow:customCloseRect:get"><apiName>customCloseRect</apiName><shortdesc>
+		 用户自定义关闭区域，默认为 null。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="flash.geom:Rectangle"/></apiValueDef><apiDesc>
+		 用户自定义关闭区域，默认为 null。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoWindow:infoWindowLabelVisible:get"><apiName>infoWindowLabelVisible</apiName><shortdesc>
+		 获取或设置 InfoWindow 的标签是否可见。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/><code>map.infoWindow.labelVisible</code>。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 InfoWindow 的标签是否可见。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/><code>map.infoWindow.labelVisible</code>。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoWindow:infoWindowLabel:get"><apiName>infoWindowLabel</apiName><shortdesc>
+		 获取或设置 InfoWindow 的标签。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="spark.components:Label"/></apiValueDef><apiDesc>
+		 获取或设置 InfoWindow 的标签。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoWindow:isDisplayedOnCluster:get"><apiName>isDisplayedOnCluster</apiName><shortdesc>
+		 获取或设置 InfoWindow 是否可以应用于聚散点 Cluster。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/>map.infoWindow.isDisplayedOnCluster。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 InfoWindow 是否可以应用于聚散点 Cluster。要使用该方法必须首先通过地图控件获取到 InfoWindow：<br/>map.infoWindow.isDisplayedOnCluster。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:InfoPlacement"><apiName>InfoPlacement</apiName><shortdesc>
+	 信息窗 InfoWindow 方位枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiFinal/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 信息窗 InfoWindow 方位枚举类.
+	 <p>该类用于定义 InfoWindow 显示的方向位置，包括：右上、右下、左上、左下、上、下、左、右。默认为右上。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.mapping:InfoPlacement:BOTTOM"><apiName>BOTTOM</apiName><shortdesc>
+		 下方位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>bottom</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 下方位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:CENTER"><apiName>CENTER</apiName><shortdesc>
+		 中心。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>center</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 中心。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:LEFT"><apiName>LEFT</apiName><shortdesc>
+		 左方位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>left</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左方位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:LOWERLEFT"><apiName>LOWERLEFT</apiName><shortdesc>
+		 左下。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>lowerLeft</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左下。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:LOWERRIGHT"><apiName>LOWERRIGHT</apiName><shortdesc>
+		 右下。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>lowerRight</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右下。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:RIGHT"><apiName>RIGHT</apiName><shortdesc>
+		 右方位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>right</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右方位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:TOP"><apiName>TOP</apiName><shortdesc>
+		 上方位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>top</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 上方位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:UPPERLEFT"><apiName>UPPERLEFT</apiName><shortdesc>
+		 左上。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>upperLeft</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左上。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:InfoPlacement:UPPERRIGHT"><apiName>UPPERRIGHT</apiName><shortdesc>
+		 右上。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>upperRight</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右上。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:HeatMapLayer"><apiName>HeatMapLayer</apiName><shortdesc>
+	 热点图.</shortdesc><prolog><asMetadata><DefaultProperty name="heatPoints"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:DynamicLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 热点图.
+	 <p>热点图是动态栅格图的一种。它是在二维表面上通过颜色用图示化方法来表达二维离散数据分布的一种方式。常常以一张具备显著颜色差异图片的方式呈现最终结果，暖色一般代表事件发生频率较高或事物分布密度较大，冷色反之，它能够明显的表现地图中事件发生频率或事物分布密度。<br/>热点图生成原理是：对于整幅栅格图，每个热点（HeatPoint）给定一个缓冲半径（像素坐标系），每个像素的值根据距离从中心向外递减渐变；把每个像素所分配的值计算总和，然后再根据这个值赋予相应颜色，形成热点圆。因此生成热点图有四个相关参数：热点集合、配色方案、缓冲半径和颜色值计算。<br/><img src="../../../../images/HeatMapLayer.png"/></p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.mapping.xml#HeatPoint"><linktext>HeatPoint</linktext></link></related-links><apiConstructor id="com.supermap.web.mapping:HeatMapLayer:HeatMapLayer"><apiName>HeatMapLayer</apiName><shortdesc>
+		 初始化 HeatMapLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 HeatMapLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:HeatMapLayer:protected:drawHeatMap"><apiName>drawHeatMap</apiName><shortdesc>
+		 绘制热点图。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 绘制热点图。
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:HeatMapLayer:protected:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:HeatMapLayer:protected:updatePoints"><apiName>updatePoints</apiName><shortdesc>
+		 更新热点集合。 
+		 该方法用于将当前图层的所有热点的 Value 属性利用 weightFunction 属性转换为能够表达颜色的权重值。因此，当 HeatMapLayer 的 heatPoints 属性不为空时该方法才可执行。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 更新热点集合。 
+		 <p>该方法用于将当前图层的所有热点的 Value 属性利用 weightFunction 属性转换为能够表达颜色的权重值。因此，当 HeatMapLayer 的 heatPoints 属性不为空时该方法才可执行。</p>
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.mapping.xml#HeatPoint/Value"><linktext>HeatPoint.Value</linktext></link><link href="com.supermap.web.mapping.xml#HeatPoint"><linktext>HeatPoint</linktext></link></related-links></apiOperation><apiValue id="com.supermap.web.mapping:HeatMapLayer:heatPoints:get"><apiName>heatPoints</apiName><shortdesc>
+		 获取或设置热度图中热点（HeatPoint）集合，必设属性。各热点拥有各自的坐标和所代表的值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置热度图中热点（HeatPoint）集合，必设属性。各热点拥有各自的坐标和所代表的值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:HeatMapLayer:heatStops:get"><apiName>heatStops</apiName><shortdesc>
+		 获取或设置热点圆渐变填充中的颜色过渡站点（HeatStop）集合。其中站点的信息包括位置和颜色.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置热点圆渐变填充中的颜色过渡站点（HeatStop）集合。其中站点的信息包括位置和颜色.
+		 <p>集合中站点的排列顺序代表热点圆的颜色由冷色到暖色、由外围到中心的过渡顺序，即排列在前面的代表冷色，排列在后的代表暖色。暖色一般代表事件发生频率较高或事物分布密度较大，冷色反之。<br/><br/>注意：由于类库内部使 ARGB 色彩模式来渲染热点圆中的每个像素，其中颜色的取值范围在 0~255（十进制），因此该集合中的颜色过渡站点个数最多为 256 个，索引大于 255 的站点将被忽略。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.mapping.xml#HeatStop"><linktext>HeatStop</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.mapping:HeatMapLayer:radius:get"><apiName>radius</apiName><shortdesc>
+		 获取或设置热点圆半径，即热点的缓冲半径。默认为25个像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置热点圆半径，即热点的缓冲半径。默认为25个像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:HeatMapLayer:transformationFunction:set"><apiName>transformationFunction</apiName><shortdesc>
+		 获取或设置将需要表达为热点图的对象转换成热点对象的转换函数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 获取或设置将需要表达为热点图的对象转换成热点对象的转换函数.
+		 <p>默认的转换方式如下：</p>
+		 <codeph>private function transformationFunction(o:Object):HeatPoint
+		 	{
+		       var point:Point = this.map.mapToScreen(new Point2D(o["x"], o["y"]));
+		 	var value:Number = 1;
+		 	if(o.hasOwnProperty("value"))
+		 	{
+		 			value = o["value"];
+		 	}
+		 	return new HeatPoint(point.x, point.y, value);
+		 }</codeph>
+		 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.mapping.xml#HeatPoint"><linktext>HeatPoint</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:HeatPoint"><apiName>HeatPoint</apiName><shortdesc>
+	 热点.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>flash.events:IEventDispatcher</apiBaseInterface><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 热点.
+	 <p>热点为生成热点图的基本要素。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:HeatPoint:HeatPoint"><apiName>HeatPoint</apiName><shortdesc>
+		 初始化 HeatPoint 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>x</apiItemName><apiType value="Number"/><apiDesc>热点的 x 坐标。 
+		 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="Number"/><apiDesc>热点的 y 坐标。 
+		 </apiDesc></apiParam><apiParam><apiItemName>value</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>获取或设置热点所代表的值。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 HeatPoint 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:HeatPoint:addEventListener"><apiName>addEventListener</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam><apiParam><apiItemName>listener</apiItemName><apiType value="Function"/></apiParam><apiParam><apiItemName>useCapture</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam><apiParam><apiItemName>priority</apiItemName><apiType value="int"/><apiData>0</apiData></apiParam><apiParam><apiItemName>weakRef</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.mapping:HeatPoint:dispatchEvent"><apiName>dispatchEvent</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:Event"/></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.mapping:HeatPoint:hasEventListener"><apiName>hasEventListener</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.mapping:HeatPoint:removeEventListener"><apiName>removeEventListener</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam><apiParam><apiItemName>listener</apiItemName><apiType value="Function"/></apiParam><apiParam><apiItemName>useCapture</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.mapping:HeatPoint:willTrigger"><apiName>willTrigger</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiValue id="com.supermap.web.mapping:HeatPoint:point2D:get"><apiName>point2D</apiName><shortdesc>
+		 获取热点坐标值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取热点坐标值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:HeatPoint:value:get"><apiName>value</apiName><shortdesc>
+		 获取或设置热点所代表的值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置热点所代表的值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:HeatPoint:x:get"><apiName>x</apiName><shortdesc>
+		 获取或设置热点在地图坐标系下的 X 坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置热点在地图坐标系下的 X 坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:HeatPoint:y:get"><apiName>y</apiName><shortdesc>
+		 获取或设置热点在地图坐标系下的 Y 坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置热点在地图坐标系下的 Y 坐标。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:ImageLayer"><apiName>ImageLayer</apiName><shortdesc>
+	 栅格图层类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:Layer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 栅格图层类.
+	 <p>该类为所有栅格图层的基类。如 DynamicLayer、TiledLayer。 </p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:ImageLayer:ImageLayer"><apiName>ImageLayer</apiName><shortdesc>
+		 初始化 ImageLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ImageLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.mapping:ImageLayer:imageFormat:get"><apiName>imageFormat</apiName><shortdesc>
+		 获取或设置载入 ImageLayer 的图片格式，默认为 png 格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置载入 ImageLayer 的图片格式，默认为 png 格式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:ImageLayer:transparent:get"><apiName>transparent</apiName><shortdesc>
+		 指定图片是否透明显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 指定图片是否透明显示。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:Layer"><apiName>Layer</apiName><shortdesc>
+	 图层类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>mx.core:UIComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层类.
+	 <p>所有图层的基类。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.mapping:Layer_flash.events.Event_visibleChange"><apiName>visibleChange</apiName><shortdesc>
+	 当图层的 visible 属性发生改变时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当图层的 visible 属性发生改变时触发该事件。
+	 </apiDesc></adobeApiEventDetail><related-links><link href="com.supermap.web.mapping.xml#Layer/visible"><linktext>visible</linktext></link></related-links></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Layer_flash.events.Event_maxVisibleResolutionChange"><apiName>maxVisibleResolutionChange</apiName><shortdesc>
+	 当图层最大显示分辨率改变时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当图层最大显示分辨率改变时触发该事件。 
+	 </apiDesc></adobeApiEventDetail><related-links><link href="" invalidHref="com.supermap.web.mapping.maxVisibleResolution.xml"><linktext>maxVisibleResolution</linktext></link></related-links></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Layer_flash.events.Event_minVisibleResolutionChange"><apiName>minVisibleResolutionChange</apiName><shortdesc>
+	 当图层最小显示分辨率改变时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当图层最小显示分辨率改变时触发该事件。 
+	 </apiDesc></adobeApiEventDetail><related-links><link href="com.supermap.web.mapping.xml#Layer/maxVisibleResolution"><linktext>maxVisibleResolution</linktext></link></related-links></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Layer_com.supermap.web.events.LayerEvent.UPDATE_START_updateStart"><apiName>updateStart</apiName><shortdesc>
+	 当更新图层开始时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.LayerEvent.UPDATE_START</apiEventType><adobeApiEventClassifier>com.supermap.web.events.LayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当更新图层开始时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Layer_com.supermap.web.events.LayerEvent.UPDATE_END_updateEnd"><apiName>updateEnd</apiName><shortdesc>
+	 当完成更新图层时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.LayerEvent.UPDATE_END</apiEventType><adobeApiEventClassifier>com.supermap.web.events.LayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当完成更新图层时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Layer_com.supermap.web.events.LayerEvent.LOAD_ERROR_loadError"><apiName>loadError</apiName><shortdesc>
+	 当载入图层出错时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.LayerEvent.LOAD_ERROR</apiEventType><adobeApiEventClassifier>com.supermap.web.events.LayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当载入图层出错时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Layer_com.supermap.web.events.LayerEvent.LOAD_load"><apiName>load</apiName><shortdesc>
+	 当图层初始化完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.LayerEvent.LOAD</apiEventType><adobeApiEventClassifier>com.supermap.web.events.LayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当图层初始化完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.mapping:Layer_com.supermap.web.events.LayerEvent.IS_IN_RESOLUTION_RANGE_CHANGE_isInResolutionRangeChange"><apiName>isInResolutionRangeChange</apiName><shortdesc>
+	 当 Layer 的 IsInResolutionRange 属性发生变化时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><apiEventType>com.supermap.web.events.LayerEvent.IS_IN_RESOLUTION_RANGE_CHANGE</apiEventType><adobeApiEventClassifier>com.supermap.web.events.LayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当 Layer 的 IsInResolutionRange 属性发生变化时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.mapping:Layer:Layer"><apiName>Layer</apiName><shortdesc>
+		 初始化 Layer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Layer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:Layer:protected:addMapListeners"><apiName>addMapListeners</apiName><shortdesc>
+		 为当前图层添加事件侦听器，以使侦听器能够接收 ZoomEvent、 ViewBoundsEvent 事件的触发通知。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 为当前图层添加事件侦听器，以使侦听器能够接收 ZoomEvent、 ViewBoundsEvent 事件的触发通知。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:addedHandler"><apiName>addedHandler</apiName><shortdesc>
+		 处理 Event.ADDED 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:Event"/><apiDesc>事件对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 Event.ADDED 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:draw"><apiName>draw</apiName><shortdesc>
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:hideHandler"><apiName>hideHandler</apiName><shortdesc>
+		 处理 FlexEvent.HIDE 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/><apiDesc>事件对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 FlexEvent.HIDE 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:invalidateLayer"><apiName>invalidateLayer</apiName><shortdesc>
+		 通过子类调用以更新图层。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 通过子类调用以更新图层。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:refresh"><apiName>refresh</apiName><shortdesc>
+		 刷新图层。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 刷新图层。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:removeAllChildren"><apiName>removeAllChildren</apiName><shortdesc>
+		 删除 Layer 上的所有对象。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 删除 Layer 上的所有对象。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:removeMapListeners"><apiName>removeMapListeners</apiName><shortdesc>
+		 移除通过 addMapListeners 添加的事件侦听器。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 移除通过 addMapListeners 添加的事件侦听器。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:removedHandler"><apiName>removedHandler</apiName><shortdesc>
+		 处理 Event.REMOVED 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:Event"/><apiDesc>事件对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 Event.REMOVED 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:setLoaded"><apiName>setLoaded</apiName><shortdesc>
+		 设置图层是否加载完闭，会触发 LayerEvent.LOAD 事件。true 表示当前图层已加载完毕。注意：任何继承 Layer 的子类都必须在 Layer 初始化完成之后调用该接口设置对应的图层是否加载完毕。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>value</apiItemName><apiType value="Boolean"/><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 设置图层是否加载完闭，会触发 LayerEvent.LOAD 事件。true 表示当前图层已加载完毕。注意：任何继承 Layer 的子类都必须在 Layer 初始化完成之后调用该接口设置对应的图层是否加载完毕。 
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.events.xml#LayerEvent"><linktext>com.supermap.web.events.LayerEvent</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:showHandler"><apiName>showHandler</apiName><shortdesc>
+		 处理 FlexEvent.SHOW 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/><apiDesc>事件对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 FlexEvent.SHOW 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:viewBoundsChangedHandler"><apiName>viewBoundsChangedHandler</apiName><shortdesc>
+		 处理 viewBoundsChanged 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ViewBoundsEvent</apiOperationClassifier><apiDesc>ViewBoundsEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 viewBoundsChanged 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail><related-links><link href="" invalidHref="com.supermap.web.mapping.ViewBoundsEvent.xml"><linktext>ViewBoundsEvent Class</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:zoomEndHandler"><apiName>zoomEndHandler</apiName><shortdesc>
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail><related-links><link href="" invalidHref="com.supermap.web.mapping.ZoomEvent.xml"><linktext>ZoomEvent Class</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:zoomStartHandler"><apiName>zoomStartHandler</apiName><shortdesc>
+		 处理 zoomStart 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 zoomStart 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail><related-links><link href="" invalidHref="com.supermap.web.mapping.ZoomEvent.xml"><linktext>ZoomEvent Class</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.mapping:Layer:protected:zoomUpdateHandler"><apiName>zoomUpdateHandler</apiName><shortdesc>
+		 处理 zoomUpdate 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>ZoomEvent 事件类对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 处理 zoomUpdate 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail><related-links><link href="" invalidHref="com.supermap.web.mapping.ZoomEvent.xml"><linktext>ZoomEvent Class</linktext></link></related-links></apiOperation><apiValue id="com.supermap.web.mapping:Layer:CRS:get"><apiName>CRS</apiName><shortdesc>
+		 获取或设置当前图层的坐标参考系（ CoordinateReferenceSystem ）。默认值为 null.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:CoordinateReferenceSystem</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置当前图层的坐标参考系（ CoordinateReferenceSystem ）。默认值为 null.
+		 坐标参考系使用 EPSG 发布的代表特定椭球体、单位、地理坐标系或投影坐标系的 Well Konwn ID 值（简称 WKID）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 当前图层的地理范围。默认值为（0,0,0,0）.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 当前图层的地理范围。默认值为（0,0,0,0）.
+		 若当前图层为 Map 的第一个图层，且 Map 的 ViewBounds 为 null，则将当前图层的 bounds 作为 Map 的 ViewBounds。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:protected:dpi:get"><apiName>dpi</apiName><shortdesc>
+		 获取当前图层的扫描精度，即单位面积内的像素的个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取当前图层的扫描精度，即单位面积内的像素的个数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:isInResolutionRange:get"><apiName>isInResolutionRange</apiName><shortdesc>
+		 判断与当前图层关联的 Map 的分辨率是否在当前图层的最大、最小分辨率范围内。true 表示在最大、最小范围内。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 判断与当前图层关联的 Map 的分辨率是否在当前图层的最大、最小分辨率范围内。true 表示在最大、最小范围内。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:isScaleCentric:get"><apiName>isScaleCentric</apiName><shortdesc>
+		 获取是否以比例尺为基准计算 dpi。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取是否以比例尺为基准计算 dpi。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:loaded:get"><apiName>loaded</apiName><shortdesc>
+		 若当前图层已加载完闭则返回 true，否则返回 false。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 若当前图层已加载完闭则返回 true，否则返回 false。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:maxVisibleResolution:get"><apiName>maxVisibleResolution</apiName><shortdesc>
+		 当前图层的最大显示分辨率。即当图层缩放至该分辨率时就不能再放大。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 当前图层的最大显示分辨率。即当图层缩放至该分辨率时就不能再放大。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:metadata:get"><apiName>metadata</apiName><shortdesc>
+		 获取或设置当前图层信息，包括图层标题、描述信息、图层所在地图控件名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置当前图层信息，包括图层标题、描述信息、图层所在地图控件名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:minVisibleResolution:get"><apiName>minVisibleResolution</apiName><shortdesc>
+		 当前图层的最小显示分辨率。即当图层缩放至该分辨率时就不能再缩小。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 当前图层的最小显示分辨率。即当图层缩放至该分辨率时就不能再缩小。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:resolution:get"><apiName>resolution</apiName><shortdesc>
+		 获取当前图层的显示分辨率。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取当前图层的显示分辨率。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:url:get"><apiName>url</apiName><shortdesc>
+		 图层所在的服务地址。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 图层所在的服务地址。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:Layer:visible:get"><apiName>visible</apiName><shortdesc>
+		 获取或设置当前图层是否可见。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置当前图层是否可见。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:TiledCachedIServerLayer"><apiName>TiledCachedIServerLayer</apiName><shortdesc>
+	 SuperMap iServer Java 2008 分块缓存图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:TiledCachedLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SuperMap iServer Java 2008 分块缓存图层.
+	 该类有六个必设属性：cachedUrl、Url、mapServiceAddress、mapServicePort、mapName、scales。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:TiledCachedIServerLayer:TiledCachedIServerLayer"><apiName>TiledCachedIServerLayer</apiName><shortdesc>
+		 初始化 TiledCachedIServerLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TiledCachedIServerLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:TiledCachedIServerLayer:protected:commitProperties"><apiName>commitProperties</apiName><shortdesc>
+		 private 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 private 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledCachedIServerLayer:protected:getTileURL"><apiName>getTileURL</apiName><shortdesc conref="TiledCachedLayer#getTileURL()">
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="flash.net:URLRequest"/><apiDesc>返回指定图片块在服务器端的存放地址。
+		 
+		 </apiDesc></apiReturn><apiParam><apiItemName>row</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的行号。
+		 </apiDesc></apiParam><apiParam><apiItemName>col</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的列号。
+		 </apiDesc></apiParam><apiParam><apiItemName>level</apiItemName><apiType value="int"/><apiDesc>指定图片块显示的分辨率级别，即在分辨率数组中的索引号。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc conref="TiledCachedLayer#getTileURL()">
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:TiledCachedIServerLayer:cachedUrl:get"><apiName>cachedUrl</apiName><shortdesc>
+		 获取或设置分块缓存图片在服务端的存放地址。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置分块缓存图片在服务端的存放地址。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledCachedIServerLayer:isScaleCentric:get"><apiName>isScaleCentric</apiName><shortdesc conref="Layer#isScaleCentric">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc conref="Layer#isScaleCentric">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledCachedIServerLayer:mapName:get"><apiName>mapName</apiName><shortdesc conref="DynamicIServerLayer#mapName">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="DynamicIServerLayer#mapName">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledCachedIServerLayer:mapServiceAddress:get"><apiName>mapServiceAddress</apiName><shortdesc conref="DynamicIServerLayer#mapServiceAddress">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="DynamicIServerLayer#mapServiceAddress">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledCachedIServerLayer:mapServicePort:get"><apiName>mapServicePort</apiName><shortdesc conref="DynamicIServerLayer#mapServicePort">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="DynamicIServerLayer#mapServicePort">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledCachedIServerLayer:url:get"><apiName>url</apiName><shortdesc conref="Layer#url">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="Layer#url">
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:DynamicLayer"><apiName>DynamicLayer</apiName><shortdesc>
+	 动态栅格图层类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:ImageLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 动态栅格图层类.
+	 <p>该类图层是动态生成只有一张图片的图层，该张图片为即时生成，而非事先预缓存显示。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:DynamicLayer:DynamicLayer"><apiName>DynamicLayer</apiName><shortdesc>
+		 初始化 DynamicLayer 类的新实例。
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DynamicLayer 类的新实例。
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:calcImageBounds"><apiName>calcImageBounds</apiName><shortdesc>
+		 计算图片的地理范围。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 计算图片的地理范围。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 渲染出图，注意：子类必须重写该方法来实现渲染出图。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:hideHandler"><apiName>hideHandler</apiName><shortdesc>
+		 
+		 处理 FlexEvent.HIDE 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 FlexEvent.HIDE 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:loadMapImage"><apiName>loadMapImage</apiName><shortdesc>
+		 载入图片（ PNG、JPEG ）。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>loader</apiItemName><apiType value="flash.display:Loader"/><apiDesc>需要载入的图片。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 载入图片（ PNG、JPEG ）。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:removedHandler"><apiName>removedHandler</apiName><shortdesc>
+		 
+		 处理 Event.REMOVED 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:Event"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 Event.REMOVED 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:showHandler"><apiName>showHandler</apiName><shortdesc>
+		 
+		 处理 FlexEvent.SHOW 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:FlexEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 FlexEvent.SHOW 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:zoomEndHandler"><apiName>zoomEndHandler</apiName><shortdesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomEnd 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:zoomStartHandler"><apiName>zoomStartHandler</apiName><shortdesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomStart 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:DynamicLayer:protected:zoomUpdateHandler"><apiName>zoomUpdateHandler</apiName><shortdesc>
+		 
+		 处理 zoomUpdate 事件的侦听器函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.supermap.web.events:ZoomEvent</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 处理 zoomUpdate 事件的侦听器函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.mapping:TiledWMSLayer"><apiName>TiledWMSLayer</apiName><shortdesc>
+	 分块动态 WMS 图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:TiledDynamicLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 分块动态 WMS 图层.
+	 <p>该类是分块动态图层的一种，<br />加载此类图层有两个必设参数：Url（服务器地址）、layers（子图层名称）。<br/><br/>本产品支持任何标准的 WMS 1.1.1 和 WMS 1.3.0。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:TiledWMSLayer:TiledWMSLayer"><apiName>TiledWMSLayer</apiName><shortdesc>
+		 使用服务器地址、WMS图层参数（ WMSParams ）等来初始化 DynamicWMSLayer 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>发布 WMS 地图服务的地址。
+		 </apiDesc></apiParam><apiParam><apiItemName>layers</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>需要显示的 WMS 子图层集合。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器地址、WMS图层参数（ WMSParams ）等来初始化 DynamicWMSLayer 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:TiledWMSLayer:protected:commitProperties"><apiName>commitProperties</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.mapping:TiledWMSLayer:protected:getTileURL"><apiName>getTileURL</apiName><shortdesc conref="TiledDynamicLayer#getTileURL()">
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="flash.net:URLRequest"/><apiDesc>返回指定图片块在服务器端的存放地址。
+		 
+		 </apiDesc></apiReturn><apiParam><apiItemName>row</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的行号。
+		 </apiDesc></apiParam><apiParam><apiItemName>col</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的列号。
+		 </apiDesc></apiParam><apiParam><apiItemName>resolution</apiItemName><apiType value="Number"/><apiDesc>指定图片块显示的分辨率。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc conref="TiledDynamicLayer#getTileURL()">
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.mapping:TiledWMSLayer:bgcolor:get"><apiName>bgcolor</apiName><shortdesc>
+		 获取或设置 TiledWMSLayer 的背景颜色。颜色值类型为十六进制，默认颜色为白色——0xFFFFFF。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 TiledWMSLayer 的背景颜色。颜色值类型为十六进制，默认颜色为白色——0xFFFFFF。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledWMSLayer:enableGetCapabilities:get"><apiName>enableGetCapabilities</apiName><shortdesc>
+		 指定是否获取 OGC 发布的 WMS 图层属性。默认值为 true。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 指定是否获取 OGC 发布的 WMS 图层属性。默认值为 true。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledWMSLayer:exception:get"><apiName>exception</apiName><shortdesc>
+		 获取或设置 WMS 异常输出文件的格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 WMS 异常输出文件的格式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledWMSLayer:layers:get"><apiName>layers</apiName><shortdesc>
+		 <b>必设属性</b>，获取或设置 WMS 子图层集合。图层间用逗号分隔。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 <b>必设属性</b>，获取或设置 WMS 子图层集合。图层间用逗号分隔。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledWMSLayer:url:get"><apiName>url</apiName><shortdesc>
+		 
+		 图层所在的服务地址。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 图层所在的服务地址。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:TiledWMSLayer:version:get"><apiName>version</apiName><shortdesc>
+		 获取或设置 WMS 图层的版本号，目前支持任何标准的 WMS 1.1.1 和 WMS 1.3.0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 WMS 图层的版本号，目前支持任何标准的 WMS 1.1.1 和 WMS 1.3.0。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.mapping:TiledDynamicLayer"><apiName>TiledDynamicLayer</apiName><shortdesc>
+	 分块动态图层.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:TiledLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 分块动态图层.
+	 <p>分块动态图层是客户端呈现栅格图层的一种。分块动态图层主要根据地图控件实时的比例尺或分辨率来计算图层的比例尺或分辨率，然后根据当前图层的比例尺或分辨率将要显示的部分地图图片动态切割成多个相同大小的正方形图片块，地图就是由这些图片块拼合而成最终呈现的。之所以称之为动态图层，是因为这些正方形图片块是即时生成，而非事先切好。 </p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:TiledDynamicLayer:TiledDynamicLayer"><apiName>TiledDynamicLayer</apiName><shortdesc>
+		 初始化 TiledDynamicLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TiledDynamicLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.mapping:TiledDynamicLayer:protected:getTileURL"><apiName>getTileURL</apiName><shortdesc>
+		 获取指定图片块在服务器端的存放地址。TiledDynamicLayer 的子类必须重写该方法来实现此功能。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiDesc>返回指定图片块在服务器端的存放地址。
+		 
+		 </apiDesc><apiType value="flash.net:URLRequest"/></apiReturn><apiParam><apiItemName>row</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的行号。
+		 </apiDesc></apiParam><apiParam><apiItemName>col</apiItemName><apiType value="int"/><apiDesc>指定图片块在整幅图层中的列号。
+		 </apiDesc></apiParam><apiParam><apiItemName>resolution</apiItemName><apiType value="Number"/><apiDesc>指定图片块显示的分辨率。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定图片块在服务器端的存放地址。TiledDynamicLayer 的子类必须重写该方法来实现此功能。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.mapping:HeatStop"><apiName>HeatStop</apiName><shortdesc>
+	 渐变填充的过渡站点类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 渐变填充的过渡站点类.
+	 <p>该类用于设置热点图中各热点缓冲范围内的渐变填充过渡站点，包括站点位置和站点所代表的颜色。例如：渐变填充色彩为：红-->黄-->绿，其中红、黄、绿即为渐变填充的过渡站点。<br/>在各站点之间，系统内部又采用适当的插值算法内插出各过渡站点之间的插值点，即由某一颜色到另一颜色的过渡颜色及过渡位置。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.mapping:HeatStop:HeatStop"><apiName>HeatStop</apiName><shortdesc>
+		 使用颜色和位置初始化 HeatStop 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>color</apiItemName><apiType value="uint"/><apiData>0xFFFFFFFF</apiData><apiDesc>HeatStop 所代表的颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>offset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>HeatStop 的位置。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用颜色和位置初始化 HeatStop 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.mapping:HeatStop:color:get"><apiName>color</apiName><shortdesc>
+		 获取或设置 HeatStop 所代表的颜色值，ARGB 颜色模式，如：红色为 0xFFFF0000。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 获取或设置 HeatStop 所代表的颜色值，ARGB 颜色模式，如：红色为 0xFFFF0000。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.mapping:HeatStop:offset:get"><apiName>offset</apiName><shortdesc>
+		 获取或设置 HeatStop 的位置.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 HeatStop 的位置.
+		 <p>该属性的取值范围在 0~1 之间，值越大，表示当前站点离热点圆（由热点缓冲形成，详情请查看 HeatMapLayer 类）的中心越近。<br/><br/>例如：热点圆渐变填充色彩为：红-->黄-->绿，半径为 10 个像素，当前站点所代表的颜色为红色，位置为 0.3，则 HeatStop 在热点圆中的位置 = 10*0.3，即在热点圆中半径为 10*0.3 的位置处使用红色填充。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.mapping.xml#HeatMapLayer"><linktext>HeatMapLayer</linktext></link></related-links></apiValue></apiClassifier></apiPackage>

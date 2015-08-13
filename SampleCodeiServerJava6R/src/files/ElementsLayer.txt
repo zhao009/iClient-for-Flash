@@ -1,0 +1,6 @@
+<font color="#0033FF">元素图层</font>
+<font color="#006633">1. 功能描述：</font>在 ElementsLayer 上可以添加任意的 Flash 提供的继承自UIComponent的组件,如 画布、按钮、视频和图片等。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map。
+<font color="#006633">3. 注意：</font> 
+		1). 添加元素时，需要指定元素的bBox属性：如果bBox宽和高不为0，则将随图缩放，反之则不随图缩放，且用户可以设置其宽和高；
+		2). 该示例所使用的视频数据为 flv 格式，若您的系统为 Windows XP，请确保示例代码中的路径不包含中文。 

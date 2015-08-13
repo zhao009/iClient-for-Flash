@@ -1,0 +1,18 @@
+<font color="#0033FF">交通换乘分析</font>
+<font color="#006633">1. 功能描述：</font>根据指定的起点和终点，分析出交通换乘的方案和路线。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——Changchun。
+<font color="#006633">3. 操作指南：</font>
+    1）在起点和终点文本框中输入要查询的站点，在弹出的下拉列表中选择交通换乘分析的起始站和终止站；
+    2）点击“查询”按钮；
+    3）点击弹出结果面板中的换乘线路，高亮显示其对应的路径；
+    4）切换交通换乘策略的按钮，获取不同策略下的交通换乘方案。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义站点查询所需参数 StopQueryParameters，根据输入的站点名称执行站点查询 StopQueryService；
+    2）获取查询结果，如站点ID；
+    3）定义交通换乘方案分析所需的参数 TransferSolutionParameters，输入查询出的起始和终止站点ID；
+    4）执行交通换乘方案分析服务 TransferSolutionService；
+    5）获取分析结果，如换乘方案TransferSolution集合；
+	6）定义交通换乘路径分析所需的参数 TransferPathParameters，输入要查询的起始和终止站点ID和需要分析的换乘线路TransferLine集合；
+    7）执行交通换乘路径分析服务 TransferPathService；
+	8）获取分析结果，如换乘导引对象TransferGuide。
+<font color="#006633">5. 其它说明：</font>有关交通换乘分析的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

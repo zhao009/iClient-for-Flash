@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+
+<!--
+
+	SUPERMAP ICLIENT 6R FOR FLEX 
+	Copyright 2005-2010 SuperMap Software Co., Ltd
+	All Rights Reserved.
+
+-->
+
+<componentPackage>
+	
+	
+	<!-- geometry -->
+	<component id="Geometry" class="com.supermap.web.core.geometry.Geometry"/>
+	<component id="GeoPoint" class="com.supermap.web.core.geometry.GeoPoint"/>
+	<component id="GeoLine" class="com.supermap.web.core.geometry.GeoLine"/>
+	<component id="GeoRegion" class="com.supermap.web.core.geometry.GeoRegion"/>
+	<component id="Route" class="com.supermap.web.core.geometry.Route"/>
+	
+	
+		<!-- style -->
+	<component id="Style" class="com.supermap.web.core.styles.Style"/>
+	<component id="FillStyle" class="com.supermap.web.core.styles.FillStyle"/>
+	<component id="LineStyle" class="com.supermap.web.core.styles.LineStyle"/>
+	<component id="MarkerStyle" class="com.supermap.web.core.styles.MarkerStyle"/>	
+	<component id="PictureMarkerStyle" class="com.supermap.web.core.styles.PictureMarkerStyle"/>
+	<component id="PredefinedFillStyle" class="com.supermap.web.core.styles.PredefinedFillStyle"/>
+	<component id="PredefinedLineStyle" class="com.supermap.web.core.styles.PredefinedLineStyle"/>
+	<component id="PredefinedMarkerStyle" class="com.supermap.web.core.styles.PredefinedMarkerStyle"/>  
+	<component id="CompositeStyle" class="com.supermap.web.core.styles.CompositeStyle"/>  
+	<component id="InfoStyle" class="com.supermap.web.core.styles.InfoStyle"/>
+	<component id="PictureFillStyle" class="com.supermap.web.core.styles.PictureFillStyle"/>
+	<component id="TextStyle" class="com.supermap.web.core.styles.TextStyle"/>
+	<component id="GradientFillStyle" class="com.supermap.web.core.styles.GradientFillStyle"/>
+	<component id="GraphicFillStyle" class="com.supermap.web.core.styles.graphicStyles.GraphicFillStyle"/>
+	<component id="GraphicLineStyle" class="com.supermap.web.core.styles.graphicStyles.GraphicLineStyle"/>
+	<component id="GraphicMarkerStyle" class="com.supermap.web.core.styles.graphicStyles.GraphicMarkerStyle"/>
+
+
+	<!-- core -->
+	<component id="Credential" class="com.supermap.web.core.Credential"/>
+	<component id="Element" class="com.supermap.web.core.Element"/>
+	<component id="Feature" class="com.supermap.web.core.Feature"/>
+	<component id="Point2D" class="com.supermap.web.core.Point2D"/>
+	<component id="Rectangle2D" class="com.supermap.web.core.Rectangle2D"/>
+	<component id="Graphic" class="com.supermap.web.core.Graphic"/>
+	<component id="PointWithMeasure" class="com.supermap.web.core.PointWithMeasure"/>
+	
+	<!-- mapping -->
+	<component id="DynamicLayer" class="com.supermap.web.mapping.DynamicLayer"/>
+	<component id="DynamicWMSLayer" class="com.supermap.web.mapping.DynamicWMSLayer"/>
+	<component id="HeatMapLayer" class="com.supermap.web.mapping.HeatMapLayer"/>
+	<component id="HeatStop" class="com.supermap.web.mapping.HeatStop"/>
+	<component id="HeatPoint" class="com.supermap.web.mapping.HeatPoint"/>
+	<component id="ImageFormat" class="com.supermap.web.mapping.ImageFormat"/>
+	<component id="ImageLayer" class="com.supermap.web.mapping.ImageLayer"/>
+	<component id="FeaturesLayer" class="com.supermap.web.mapping.FeaturesLayer"/>
+	<component id="Layer" class="com.supermap.web.mapping.Layer"/>
+	<component id="Map" class="com.supermap.web.mapping.Map"/>
+	<component id="FeaturesLayer" class="com.supermap.web.mapping.FeaturesLayer"/>
+	<component id="TiledLayer" class="com.supermap.web.mapping.TiledLayer"/>
+	<component id="ElementsLayer" class="com.supermap.web.mapping.ElementsLayer"/>
+	<component id="TiledCachedLayer" class="com.supermap.web.mapping.TiledCachedLayer"/>
+	<component id="TiledDynamicLayer" class="com.supermap.web.mapping.TiledDynamicLayer"/>
+	<component id="DynamicRESTLayer" class="com.supermap.web.mapping.DynamicRESTLayer"/>
+	<component id="TiledDynamicRESTLayer" class="com.supermap.web.mapping.TiledDynamicRESTLayer"/>
+	<component id="HighlightLayer" class="com.supermap.web.mapping.HighlightLayer"/>
+	<component id="UTFGridLayer" class="com.supermap.web.mapping.UTFGridLayer"/>
+	<component id="MBTilesLayer" class="com.supermap.web.mapping.MBTilesLayer"/>
+	<component id="TiledWMSLayer" class="com.supermap.web.mapping.TiledWMSLayer"/>
+	<component id="TiledWMTSLayer" class="com.supermap.web.mapping.TiledWMTSLayer"/>
+	<component id="CloudLayer" class="com.supermap.web.mapping.CloudLayer"/>
+	<component id="InfoWindow" class="com.supermap.web.mapping.InfoWindow"/>
+	<component id="InfoPlacement" class="com.supermap.web.mapping.InfoPlacement"/>
+	<component id="InfoBorder" class="com.supermap.web.mapping.supportClasses.InfoBorder"/>
+	<component id="OfflineStorage" class="com.supermap.web.mapping.OfflineStorage"/>
+	<component id="GraphicsLayer" class="com.supermap.web.mapping.GraphicsLayer"/>
+	<component id="UTFLoader" class="com.supermap.web.mapping.UTFLoader"/>
+	
+	
+	<!-- actions -->	
+	<component id="MapAction" class="com.supermap.web.actions.MapAction"/>
+	<component id="DrawAction" class="com.supermap.web.actions.DrawAction"/>
+	<component id="DrawFreeLine" class="com.supermap.web.actions.DrawFreeLine"/>
+	<component id="DrawFreePolygon" class="com.supermap.web.actions.DrawFreePolygon"/>
+	<component id="DrawLine" class="com.supermap.web.actions.DrawLine"/>
+	<component id="DrawPoint" class="com.supermap.web.actions.DrawPoint"/>
+	<component id="DrawPolygon" class="com.supermap.web.actions.DrawPolygon"/>
+	<component id="Edit" class="com.supermap.web.actions.Edit"/>
+	<component id="Pan" class="com.supermap.web.actions.Pan"/>
+	<component id="TouchAction" class="com.supermap.web.actions.TouchAction"/>
+	<component id="ZoomAction" class="com.supermap.web.actions.ZoomAction"/>
+	<component id="ZoomIn" class="com.supermap.web.actions.ZoomIn"/>	
+	<component id="ZoomOut" class="com.supermap.web.actions.ZoomOut"/>
+	
+	<!-- events -->
+	<component id="ActionEvent" class="com.supermap.web.events.ActionEvent"/>
+	<component id="DrawEvent" class="com.supermap.web.events.DrawEvent"/>
+	<component id="InfoPlacementEvent" class="com.supermap.web.events.InfoPlacementEvent"/>
+	<component id="LayerEvent" class="com.supermap.web.events.LayerEvent"/>
+	<component id="MapEvent" class="com.supermap.web.events.MapEvent"/>
+	<component id="MapMouseEvent" class="com.supermap.web.events.MapMouseEvent"/>
+	<component id="PanEvent" class="com.supermap.web.events.PanEvent"/>
+	<component id="ViewBoundsEvent" class="com.supermap.web.events.ViewBoundsEvent"/>
+	<component id="ZoomEvent" class="com.supermap.web.events.ZoomEvent"/>
+	<component id="WMTSResultEvent" class="com.supermap.web.events.WMTSResultEvent"/>
+	<component id="GraphicsLayerEvent" class="com.supermap.web.events.GraphicsLayerEvent"/>
+	
+	
+	<!-- components -->
+	<component id="ScaleBar" class="com.supermap.web.components.ScaleBar"/>
+	<component id="ZoomSlider" class="com.supermap.web.components.ZoomSlider"/>
+	<component id="MapHistoryManager" class="com.supermap.web.components.MapHistoryManager"/>
+	
+
+	<!-- service -->
+	<component id="ServiceBase" class="com.supermap.web.service.ServiceBase"/> 
+	
+	<!-- OGC -->
+	<component id="GetWMTSCapabilities" class="com.supermap.web.ogc.wmts.GetWMTSCapabilities"/>
+	<component id="RequestEncoding" class="com.supermap.web.ogc.wmts.RequestEncoding"/>
+	<component id="TileMatrix" class="com.supermap.web.ogc.wmts.TileMatrix"/>
+	<component id="TileMatrixLimits" class="com.supermap.web.ogc.wmts.TileMatrixLimits"/>
+	<component id="TileMatrixSetLink" class="com.supermap.web.ogc.wmts.TileMatrixSetLink"/>
+	<component id="WMTSCapabilitiesResult" class="com.supermap.web.ogc.wmts.WMTSCapabilitiesResult"/>
+	<component id="WMTSLayerInfo" class="com.supermap.web.ogc.wmts.WMTSLayerInfo"/>
+	<component id="WMTSManager" class="com.supermap.web.ogc.wmts.WMTSManager"/>
+	<component id="WMTSManagerResult" class="com.supermap.web.ogc.wmts.WMTSManagerResult"/>
+	<component id="WMTSTileMatrixSetInfo" class="com.supermap.web.ogc.wmts.WMTSTileMatrixSetInfo"/>
+	<!-- utils -->
+	<component id="GeoUtil" class="com.supermap.web.utils.GeoUtil"/> 
+	<component id="JsonUtil" class="com.supermap.web.utils.JsonUtil"/> 
+	<component id="ScaleUtil" class="com.supermap.web.utils.ScaleUtil"/> 
+	<component id="Hashtable" class="com.supermap.web.utils.Hashtable"/>  
+	<component id="Units" class="com.supermap.web.utils.Unit"/>	
+	<component id="CoordinateReferenceSystem" class="com.supermap.web.utils.CoordinateReferenceSystem"/>
+	"src/manifest.xml"
+	<!-- utils.serverTypes -->
+	<component id="FillGradientMode" class="com.supermap.web.utils.serverTypes.FillGradientMode"/>
+	<component id="MapColorMode" class="com.supermap.web.utils.serverTypes.MapColorMode"/>
+	<component id="ServerColor" class="com.supermap.web.utils.serverTypes.ServerColor"/>
+	<component id="ServerFeature" class="com.supermap.web.utils.serverTypes.ServerFeature"/>
+	<component id="ServerGeometry" class="com.supermap.web.utils.serverTypes.ServerGeometry"/>
+	<component id="ServerGeometryType" class="com.supermap.web.utils.serverTypes.ServerGeometryType"/>
+	<component id="ServerStyle" class="com.supermap.web.utils.serverTypes.ServerStyle"/>
+	<component id="ServerTextStyle" class="com.supermap.web.utils.serverTypes.ServerTextStyle"/>
+	<component id="TextAlignment" class="com.supermap.web.utils.serverTypes.TextAlignment"/>
+	<component id="OverlapDisplayedOptions" class="com.supermap.web.utils.serverTypes.OverlapDisplayedOptions"/>
+
+	<!-- themes -->
+	<component id="RawTheme" class="com.supermap.web.themes.RawTheme"/> 
+	<component id="Theme" class="com.supermap.web.themes.Theme"/>
+	
+	<!-- serialization.json -->
+	<component id="JSON" class="com.supermap.web.serialization.json.JSON"/> 
+	<component id="JSONDecoder" class="com.supermap.web.serialization.json.JSONDecoder"/> 
+	<component id="JSONEncoder" class="com.supermap.web.serialization.json.JSONEncoder"/> 
+	<component id="JSONParseError" class="com.supermap.web.serialization.json.JSONParseError"/> 
+	<component id="JSONToken" class="com.supermap.web.serialization.json.JSONToken"/> 
+	<component id="JSONTokenizer" class="com.supermap.web.serialization.json.JSONTokenizer"/> 
+	<component id="JSONTokenType" class="com.supermap.web.serialization.json.JSONTokenType"/>
+</componentPackage>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+@private
+-->
+<s:MXTreeItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					  xmlns:s="library://ns.adobe.com/flex/spark" 
+					  xmlns:mx="library://ns.adobe.com/flex/mx" 
+					  xmlns:supportClasses="com.supermap.web.iServerJava6R.components.supportClasses.*" 
+		  	 
+					  >
+	<fx:Script>
+		<![CDATA[ 
+			import com.supermap.web.gears.components.*;
+			protected function image1_ioErrorHandler(event:IOErrorEvent):void
+			{
+				//this.pngIcon.removeChild(this.pngIcon.content);
+			}
+			
+			protected function loadBitmapData(url:String):BitmapData
+			{
+				var loader:Loader = new Loader;
+				loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR,image1_ioErrorHandler);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function comHandler(event:Event):void
+				{
+					pngIcon.source = (event.target as LoaderInfo).content as Bitmap;
+				}
+				);
+				loader.load(new URLRequest(encodeURI(url)));
+				return null;
+			}
+            
+		]]>
+	</fx:Script>
+                                     
+	<s:states>
+		<s:State name="normal" />            
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>
+	<s:HGroup id="hGroup" height="24" left="0" right="0" top="0" bottom="0" verticalAlign="middle" 
+			  >
+		<s:Rect id="indentationSpacer" width="{treeListData.indent}" alpha="0">
+			<s:fill>
+				<s:SolidColor color="0" />
+			</s:fill>
+		</s:Rect>
+		<s:Group id="disclosureGroup">
+			<s:BitmapImage source="{treeListData.disclosureIcon}" visible="{(this.data as TreeItem).isHasChildren}" />
+		</s:Group>
+		<s:Group height="{(this.data as TreeItem).legendItemInfo.imageHeight > 24 ? 24 : (this.data as TreeItem).legendItemInfo.imageHeight}">
+			<s:layout>
+				<s:BasicLayout/>
+			</s:layout>
+			<s:BitmapImage id="pngIcon" source="{loadBitmapData((this.data as TreeItem).legendItemInfo.imageSource)}"
+					  width="{(this.data as TreeItem).legendItemInfo.imageWidth > 24 ? 24 : (this.data as TreeItem).legendItemInfo.imageWidth}" 
+					  alpha="1"/>
+      
+		</s:Group> 
+		<s:Label id="labelField" text="{(this.data as TreeItem).legendItemInfo.caption}" paddingTop="2"
+				
+				 />
+	</s:HGroup>
+</s:MXTreeItemRenderer>

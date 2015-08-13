@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+							xmlns:s="library://ns.adobe.com/flex/spark"
+							firstView="com.supermap.views.MainView"
+							splashScreenImage="com.supermap.components.LoadingImage"
+							applicationDPI="160">
+	<fx:Metadata>
+		[ResourceBundle("SuperMapMessage")]
+	</fx:Metadata>
+	<fx:Style>
+		@namespace fm "http://www.supermap.com/mobile/2010";
+		fm|InfoWindow
+		{
+			infoPlacement:top;
+		}
+	</fx:Style>
+</s:ViewNavigatorApplication>
+	

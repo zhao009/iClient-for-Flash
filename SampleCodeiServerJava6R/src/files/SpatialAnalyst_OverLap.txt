@@ -1,0 +1,12 @@
+<font color="#0033FF">叠加分析</font>
+<font color="#006633">1. 功能描述：</font>对符合条件的要素做叠加分析。叠加分析包括：裁剪、擦除、同一、求交、合并、更新、对称差七种类型，本示例以裁剪为例。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——世界地图。
+<font color="#006633">3. 操作指南：</font>
+    1）点击“叠加分析”。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义几何对象叠加分析参数 GeometryOverlayAnalystParameters；
+    2）执定几何对象叠加分析 GeometryOverlayAnalystService；
+    3）获取分析的最终结果。有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关几何对象叠加分析的详细参数介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<!--添加动态 WMS 地图-->
+	<s:Panel title="分块动态图层与动态 WMS 图层叠加" width="100%" height="100%" fontSize="18" fontFamily="宋体" textAlign="center">
+		<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}"
+										 mapServiceAddress="{viewConfig.gisUrl}"
+										 mapServicePort="8600" 
+										 mapName="World">
+			</is:TiledDynamicIServerLayer>
+			
+			<ic:DynamicWMSLayer url="http://sampleserver1.arcgisonline.com/ArcGIS/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer" 
+								layers="0,1" transparent="true" version="1.3.0" imageFormat="png"/>
+		</ic:Map>
+	</s:Panel>
+</s:Application>

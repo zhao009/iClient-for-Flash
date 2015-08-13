@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"  
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--地图旋转-->
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.MapAction;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.events.MapMouseEvent;
+			
+			import mx.controls.Alert;
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			private var WIDTH:Number;
+			private var HEIGHT:Number;
+			private var currentRotation:Number = 0;
+			[Bindable]
+			private var restUrl:String;
+			//初始化应用程序
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				
+				WIDTH = map.width;
+				HEIGHT = map.height;
+			}
+
+			//旋转参数设置
+			protected function valueChangeHandler(event:Event):void
+			{
+				if(map.loaded)
+				{
+					var center:Vector3D = new Vector3D(WIDTH/2, HEIGHT/2, HEIGHT/2);
+					var rotation:Vector3D = new Vector3D(xAngle.value, yAngle.value, zAngle.value);
+					map.transformAround(center, null, rotation); 
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<s:Panel id="panel" width="100%" height="100%" title="请改变旋转参数" textAlign="center" 
+			 fontSize="18" fontFamily="宋体" fontWeight="bold" >
+		<ic:Map id="map" scales="{[5e-9]}"
+				width="{this.panel.width*0.8}" height="{this.panel.height*0.6}" horizontalCenter="0" verticalCenter="0">
+			<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+		</ic:Map>
+	</s:Panel>
+	
+	<!--地图旋转参数设置设置窗口-->
+	<s:Panel  left="5"
+			  title="地图旋转参数设置"
+			  top="200"  
+			  chromeColor="#E9E4E4"
+			  backgroundColor="#454343" 
+			  backgroundAlpha="0.5">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="right"
+							  paddingBottom="0"
+							  paddingTop="0"/>
+		</s:layout>
+		
+		<mx:Form  paddingTop="5"
+				  width="100%">		
+			<!--X 轴-->
+			<mx:FormItem label="X轴:">
+				<s:HSlider id="xAngle"
+						   liveDragging="true"
+						   maximum="360"
+						   minimum="0.5"
+						   snapInterval="0.1"
+						   value="0"
+						   width="100" change="valueChangeHandler(event)"/>
+			</mx:FormItem>
+			<!--Y 轴-->
+			<mx:FormItem label="Y轴:">
+				<s:HSlider id="yAngle"
+						   liveDragging="true"
+						   maximum="360"
+						   minimum="0"
+						   snapInterval="0.1"
+						   value="0"
+						   width="100" change="valueChangeHandler(event)"/>
+			</mx:FormItem>
+			<!--Z 轴-->
+			<mx:FormItem label="Z轴:">
+				<s:HSlider id="zAngle"
+						   liveDragging="true"
+						   maximum="360"
+						   minimum="0"
+						   snapInterval="0.1"
+						   value="0"
+						   width="100" change="valueChangeHandler(event)"/>
+			</mx:FormItem>		
+		</mx:Form>
+	</s:Panel>
+</s:Application>

@@ -1,0 +1,196 @@
+<apiPackage id="com.supermap.web.rendering"><apiName>com.supermap.web.rendering</apiName><apiDetail/><apiClassifier id="com.supermap.web.rendering:RangeRenderer"><apiName>RangeRenderer</apiName><shortdesc>
+	 范围分段渲染.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.rendering:Renderer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 范围分段渲染. 
+	 <p>范围分段渲染是利用图层的某一属性信息映射为多个范围段，使用不同的颜色或符号（线型、填充）表示不同范围段落的属性值在整体上的分布情况。下图为对 ID 属于不同范围的要素进行渲染：<br/><img src="../../../../images/RangeRender.png"/></p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.rendering:RangeRenderer:RangeRenderer"><apiName>RangeRenderer</apiName><shortdesc>
+		 初始化 RangeRenderer 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>attribute</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>属性字段。
+		 </apiDesc></apiParam><apiParam><apiItemName>defaultStyle</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier><apiData>null</apiData><apiDesc>默认样式。
+		 </apiDesc></apiParam><apiParam><apiItemName>items</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>范围分段渲染子项 RangeItem 集合。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 RangeRenderer 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.rendering:RangeRenderer:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Renderer 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.rendering:Renderer</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Renderer 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.rendering:RangeRenderer:getStyle"><apiName>getStyle</apiName><shortdesc>
+		 
+		 获取矢量要素的显示风格。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 获取矢量要素的显示风格。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.rendering:RangeRenderer:attribute:get"><apiName>attribute</apiName><shortdesc>
+		 获取或设置用于范围分段渲染的属性字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置用于范围分段渲染的属性字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.rendering:RangeRenderer:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 获取或设置 RangeRenderer 的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置 RangeRenderer 的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.rendering:RangeRenderer:items:get"><apiName>items</apiName><shortdesc>
+		 获取或设置范围分段渲染子项集合。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置范围分段渲染子项集合。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.rendering.xml#RangeItem"><linktext>RangeItem</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.rendering:Renderer"><apiName>Renderer</apiName><shortdesc>
+	 渲染基类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 渲染基类 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.rendering:Renderer:Renderer"><apiName>Renderer</apiName><shortdesc>
+		 初始化 Renderer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Renderer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.rendering:Renderer:clone"><apiName>clone</apiName><shortdesc>
+		 克隆 Renderer 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.rendering:Renderer</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆 Renderer 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.rendering:Renderer:getStyle"><apiName>getStyle</apiName><shortdesc>
+		 获取矢量要素的显示风格。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>矢量要素。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取矢量要素的显示风格。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.rendering:RangeItem"><apiName>RangeItem</apiName><shortdesc>
+	 范围分段子项类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 范围分段子项类.
+	 <p>在分段渲染中，每个分段都有其分段起始值、终止值、风格。每个分段所表示的范围为[minValue, maxValue]。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.rendering:RangeItem:RangeItem"><apiName>RangeItem</apiName><shortdesc>
+		 初始化 RangeItem 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>style</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier><apiData>null</apiData><apiDesc>显示风格。
+		 </apiDesc></apiParam><apiParam><apiItemName>minValue</apiItemName><apiType value="Number"/><apiData>-1</apiData><apiDesc>分段范围最小值。
+		 </apiDesc></apiParam><apiParam><apiItemName>maxValue</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>分段范围最大值。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 RangeItem 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.rendering:RangeItem:clone"><apiName>clone</apiName><shortdesc>
+		 克隆 RangeItem 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.rendering:RangeItem</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆 RangeItem 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.rendering:RangeItem:maxValue:get"><apiName>maxValue</apiName><shortdesc>
+		 获取或设置范围分段渲染子项的终止值 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置范围分段渲染子项的终止值 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.rendering:RangeItem:minValue:get"><apiName>minValue</apiName><shortdesc>
+		 获取或设置范围分段渲染子项的起始值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置范围分段渲染子项的起始值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.rendering:RangeItem:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置范围分段渲染子项的显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置范围分段渲染子项的显示风格。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.rendering:UniqueItem"><apiName>UniqueItem</apiName><shortdesc>
+	 单值渲染子项类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 单值渲染子项类.
+	 <p>单值渲染是将属性值相同的要素归为一类，为每一类设定一种渲染风格，其中每一类就是一个渲染子项。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.rendering:UniqueItem:UniqueItem"><apiName>UniqueItem</apiName><shortdesc>
+		 初始化 UniqueItem 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>style</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier><apiData>null</apiData><apiDesc>渲染风格。
+		 </apiDesc></apiParam><apiParam><apiItemName>value</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>字段值。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 UniqueItem 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.rendering:UniqueItem:clone"><apiName>clone</apiName><shortdesc>
+		 克隆 UniqueItem 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.rendering:UniqueItem</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆 UniqueItem 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.rendering:UniqueItem:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置单值渲染子项风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置单值渲染子项风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.rendering:UniqueItem:value:get"><apiName>value</apiName><shortdesc>
+		 获取或设置单值渲染子项的字段值。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置单值渲染子项的字段值。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.rendering:UniformRenderer"><apiName>UniformRenderer</apiName><shortdesc>
+	 统一渲染.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.rendering:Renderer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 统一渲染.
+	 <p>对所有要素使用同一风格进行渲染。如下图，所有要素均渲染为同一种风格：<br/><img src="../../../../images/uniformRender.png"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.rendering:UniformRenderer:UniformRenderer"><apiName>UniformRenderer</apiName><shortdesc>
+		 初始化 UniformRenderer 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>style</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier><apiData>null</apiData><apiDesc>统一渲染风格。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 UniformRenderer 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.rendering:UniformRenderer:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Renderer 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.rendering:Renderer</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Renderer 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.rendering:UniformRenderer:getStyle"><apiName>getStyle</apiName><shortdesc>
+		 
+		 获取矢量要素的显示风格。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 获取矢量要素的显示风格。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.rendering:UniformRenderer:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置 UniformRenderer 的渲染风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置 UniformRenderer 的渲染风格。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.rendering:UniqueRenderer"><apiName>UniqueRenderer</apiName><shortdesc>
+	 单值渲染.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.rendering:Renderer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 单值渲染.
+	 <p>单值渲染是将属性值相同的要素归为一类，为每一类设定一种渲染风格。下图为针对要素的 ID 属性值进行单值渲染，由于每个要素均有唯一的 ID 值，因此每个要素的渲染颜色不一样：<br/><img src="../../../../images/uniqueRender.png"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.rendering:UniqueRenderer:UniqueRenderer"><apiName>UniqueRenderer</apiName><shortdesc>
+		 初始化 UniqueRenderer 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>attribute</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>属性字段。
+		 </apiDesc></apiParam><apiParam><apiItemName>defaultStyle</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier><apiData>null</apiData><apiDesc>默认样式。
+		 </apiDesc></apiParam><apiParam><apiItemName>items</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>单值渲染子项 RangeItem 集合。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 UniqueRenderer 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.rendering:UniqueRenderer:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Renderer 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.rendering:Renderer</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Renderer 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.rendering:UniqueRenderer:getStyle"><apiName>getStyle</apiName><shortdesc>
+		 
+		 获取矢量要素的显示风格。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 获取矢量要素的显示风格。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.rendering:UniqueRenderer:attribute:get"><apiName>attribute</apiName><shortdesc>
+		 获取或设置 UniqueRenderer 的属性字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 UniqueRenderer 的属性字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.rendering:UniqueRenderer:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 获取或设置 UniqueRenderer 的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置 UniqueRenderer 的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.rendering:UniqueRenderer:items:get"><apiName>items</apiName><shortdesc>
+		 获取或设置单值渲染子项集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置单值渲染子项集合。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

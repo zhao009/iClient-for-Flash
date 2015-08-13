@@ -1,0 +1,6 @@
+<font color="#0033FF">客户端与服务端交互地物编辑</font>
+<font color="#006633">1. 功能描述：</font>客户端与服务端交互完成地物添加、选择、删除、编辑；
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层（Changchun）中的面数据 vegetable。在属性表中 SmID 字段值为系统自动生成，SmArea 和 SmPerimeter 的值是根据地物形状自动计算，也无需用户输入。用户在更换自己的数据前，最好事先了解新数据集的属性表字段信息。
+<font color="#006633">3. 操作指南：</font>鼠标左击单击相应的操作，开始地物编辑操作。
+<font color="#006633">4. 注意：</font>体验该功能前，请确保服务端的地图处于可编辑状态。具体方法为：打开 [SuperMap iServer Java 2008 安装包]\demo\WEB-INF\web.xml 文件，如下图，确保 enableEdit 的值为 true。<img src="../assets/editfeature.png"/>
+<font color="#006633">5. 其它说明：</font>有关客户端与服务端交互地物编辑（Edit、editServices）的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

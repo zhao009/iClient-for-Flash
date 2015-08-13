@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="100%" height="100%"
+			   xmlns:ic="http://www.supermap.com/iclient/2010" 
+			   xmlns:isj6="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()">
+	<!--范围分段专题图-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			import com.supermap.web.iServerJava6R.themeServices.RangeMode;
+			import com.supermap.web.iServerJava6R.themeServices.RemoveThemeParameters;
+			import com.supermap.web.iServerJava6R.themeServices.RemoveThemeResult;
+			import com.supermap.web.iServerJava6R.themeServices.RemoveThemeService;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeParameters;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeRange;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeRangeItem;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeResult;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeService;
+			import com.supermap.web.mapping.TiledDynamicRESTLayer;
+			
+			import mx.rpc.*;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var isTheme:Boolean = false;//判断是否已制作专题图
+			private var themeLayer:TiledDynamicRESTLayer;
+			private var layerid:String;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapURL:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapURL = viewConfig.webUrl + ViewConfig.World_MAP;
+			}
+		 
+			//定义范围分段专题图子项
+			private function setItems():Array
+			{
+				var items:Array = new Array(); 
+				var item:ThemeRangeItem;
+				
+				//子项1
+				item = new ThemeRangeItem(); 
+				item.start = 0.0;
+				item.end = 59973;
+				item.visible = true;
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(216, 244, 254);
+				//item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				//item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项2
+				item = new ThemeRangeItem();
+				item.start = 59973,
+				item.end = 1097234,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(131, 232, 252);
+				//item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				//item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项3
+				item = new ThemeRangeItem();
+				item.start = 1097234,
+				item.end = 5245515,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(112, 212, 243);
+				//item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				//item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项4
+				item = new ThemeRangeItem();
+				item.start = 5245515,
+				item.end = 17250390,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(23, 198, 238);
+				//item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				//item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项5
+				item = new ThemeRangeItem();
+				item.start = 17250390,
+				item.end = 894608700,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(0, 187, 236);
+				//item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				//item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项6
+				item = new ThemeRangeItem();
+				item.start = 894608700,
+				item.end = 12e+8,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(0, 133, 236);
+				//item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				//item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				 
+				return items;
+			}
+			
+			private function submitHandler():void
+			{
+				if(this.isTheme == true)
+					return;
+				//定义范围分段专题图
+				var theme:ThemeRange = new ThemeRange();
+				theme.rangeExpression = "Pop_1994";
+				theme.rangeMode = RangeMode.EQUALINTERVAL;
+				theme.items = this.setItems();
+				theme.rangeParameter = 6;
+				
+				//定义获取专题图时所需参数
+				var themePara:ThemeParameters = new ThemeParameters();
+				themePara.themes = [theme];
+				themePara.datasetNames = ["Countries"];
+				themePara.dataSourceNames = ["World"];
+				
+				//获取专题图
+				var themeService:ThemeService = new ThemeService(mapURL);
+				themeService.processAsync(themePara,new AsyncResponder(this.displayTheme, excuteThemeErros, null));
+			}
+			
+			//与服务端交互失败时调用 的处理函数
+			private function excuteThemeErros(event:FaultEvent, mark:Object = null):void
+			{
+			}
+			
+			//专题图获取成功时调用的处理函数
+			private function displayTheme(themeresult:ThemeResult, mark:Object = null):void
+			{
+				this.isTheme = true;
+				themeLayer = new TiledDynamicRESTLayer();
+				themeLayer.enableServerCaching = false;
+				themeLayer.url = mapURL;				
+				themeLayer.transparent = true;
+				themeLayer.layersID = themeresult.resourceInfo.newResourceID;	
+				layerid = themeresult.resourceInfo.newResourceID;
+				this.map.addLayer(themeLayer);
+			}
+			
+			//删除专题图
+			private function deleteHandler():void
+			{
+				var themeRemove:RemoveThemeService = new RemoveThemeService(mapURL);	
+				var themeRemoveParam:RemoveThemeParameters = new RemoveThemeParameters();
+				themeRemoveParam.id = layerid;				
+				themeRemove.processAsync(themeRemoveParam,new AsyncResponder(this.delTheme, excuteThemeErros, null));
+			}
+			
+			//专题图删除成功时调用的处理函数
+			private function delTheme(themeResult:RemoveThemeResult,mark:Object = null):void
+			{
+				this.isTheme = false;
+				if(themeResult.succeed = "true" && themeLayer)
+				{
+					this.map.removeLayer(themeLayer);
+				}
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<s:Group width="100%" height="100%">	
+		<ic:Map id="map" x="0" y="0"  height="100%" width="100%" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<ic:TiledDynamicRESTLayer url="{mapURL}"/>
+		</ic:Map> 
+	</s:Group>
+	
+	<!--操作窗口-->
+	<s:Panel id="titlewin" title="范围分段专题图" fontFamily="宋体" fontSize="12" right="5" top="10" 
+			 backgroundColor="#454343" backgroundAlpha="0.48" height="108">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">  
+			<mx:Text text="对世界图层SQKM字段制作范围分段专题图"/>
+			<s:HGroup horizontalAlign="center" width="100%">
+				<s:Button id="addButton" label="生成专题图" click="submitHandler()"/>
+				<mx:Spacer width="10"/>
+				<s:Button id="deleteButton" label="移除专题图" click="deleteHandler()" x="100"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel> 
+</s:Application>

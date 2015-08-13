@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="view/samplecode.mxml" projectUUID="73fea6d8-4df7-47b8-9cd9-9ebef2a647c1" version="10">
+  <compiler additionalCompilerArguments="-locale zh_CN" autoRSLOrdering="false" copyDependentFiles="true" flexSDK="Flex 4.6.0" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/SuperMapiServerJava6R/bin/SuperMapiServerJava6R.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/iClientFlexGearLib/bin/iClientFlexGearLib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/iClientFlexLib6R/bin/iClientFlexLib6R.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/iClientFlexSymbolLib/bin/iClientFlexSymbolLib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="1" path="${FLEXUNIT_LIB_LOCATION}/version4libs/Common"/>
+      <libraryPathEntry kind="1" linkType="1" path="${FLEXUNIT_LIB_LOCATION}/version4libs/FlexProject"/>
+      <libraryPathEntry kind="1" linkType="1" path="${FLEXUNIT_LIB_LOCATION}/version4libs/FlexProject_Extended"/>
+      <libraryPathEntry kind="1" linkType="1" path="${FLEXUNIT_LOCALE_LOCATION}/version4locale/"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="view/samplecode.mxml"/>
+    <application path="applications/SpatialAnalyst_Buffer.mxml"/>
+    <application path="applications/MarkerStyles.mxml"/>
+    <application path="applications/ElementsLayerAutoAvoidance.mxml"/>
+    <application path="applications/UTFGridLayerFlags.mxml"/>
+    <application path="applications/ClientFeatureEdit.mxml"/>
+    <application path="applications/Theme_GraduatedSymbol.mxml"/>
+    <application path="applications/MarkerTrack.mxml"/>
+    <application path="applications/MapRotation.mxml"/>
+    <application path="applications/CompositeStyles.mxml"/>
+    <application path="applications/ServiceExtend.mxml"/>
+    <application path="applications/UTFGridLayer.mxml"/>
+    <application path="applications/MapSwitch.mxml"/>
+    <application path="applications/ClientProjection.mxml"/>
+    <application path="applications/QueryByGeometry.mxml"/>
+    <application path="applications/CommonComponents.mxml"/>
+    <application path="applications/Theme_Composite.mxml"/>
+    <application path="applications/LineStyles.mxml"/>
+    <application path="applications/FindServiceArea.mxml"/>
+    <application path="applications/GOIsSample.mxml"/>
+    <application path="applications/SpatialAnalyst_Interpolation.mxml"/>
+    <application path="applications/EditFeature.mxml"/>
+    <application path="applications/AppBookMark.mxml"/>
+    <application path="applications/ZoomByRightClick.mxml"/>
+    <application path="applications/SpatialAnalyst_OverLap.mxml"/>
+    <application path="applications/LayerManager.mxml"/>
+    <application path="applications/MapInfoWindow.mxml"/>
+    <application path="applications/CircleStyle.mxml"/>
+    <application path="applications/TrafficTransferAnalyst.mxml"/>
+    <application path="applications/SuperMapCloudLayer.mxml"/>
+    <application path="applications/ElementsLayer.mxml"/>
+    <application path="applications/ASInteractWithJS.mxml"/>
+    <application path="applications/FindMTSPPath.mxml"/>
+    <application path="applications/GetFeatureByBuffer.mxml"/>
+    <application path="applications/is6TiledWMTSLayer.mxml"/>
+    <application path="applications/GetFeatureByGeometry.mxml"/>
+    <application path="applications/Map_Magnifier.mxml"/>
+    <application path="applications/QueryBySQL.mxml"/>
+    <application path="applications/SpatialAnalyst_Surface.mxml"/>
+    <application path="applications/TrackingAnimation.mxml"/>
+    <application path="applications/GetFeatureBySQL.mxml"/>
+    <application path="applications/Graphic_Action.mxml"/>
+    <application path="applications/OpenStreetMap.mxml"/>
+    <application path="applications/FillStyles.mxml"/>
+    <application path="applications/Theme_GridUnique.mxml"/>
+    <application path="applications/DynamicWMSandIServerLayer.mxml"/>
+    <application path="applications/Theme_Label.mxml"/>
+    <application path="applications/Theme_Graph.mxml"/>
+    <application path="applications/FeatureInfoStyle.mxml"/>
+    <application path="applications/Bezier.mxml"/>
+    <application path="applications/iS6DynamicRESTLayer.mxml"/>
+    <application path="applications/AddSnap.mxml"/>
+    <application path="applications/ClosestFacility.mxml"/>
+    <application path="applications/BaiduLayer.mxml"/>
+    <application path="applications/AddFeature.mxml"/>
+    <application path="applications/SpatialAnalyst_Generate.mxml"/>
+    <application path="applications/FindPath.mxml"/>
+    <application path="applications/HeatMap.mxml"/>
+    <application path="applications/ClientRenderer.mxml"/>
+    <application path="applications/RouteCalculateMeasure.mxml"/>
+    <application path="applications/ClipMap.mxml"/>
+    <application path="applications/iS6TiledDynamicRESTLayer.mxml"/>
+    <application path="applications/CustomSkin.mxml"/>
+    <application path="applications/Graphic_Meteorology.mxml"/>
+    <application path="applications/is6TiledWMSLayer.mxml"/>
+    <application path="applications/Theme_Range.mxml"/>
+    <application path="applications/Mesure.mxml"/>
+    <application path="applications/GradientFillStyleApp.mxml"/>
+    <application path="applications/ClientGraphTheme.mxml"/>
+    <application path="applications/MapHistory.mxml"/>
+    <application path="applications/GeoRSS.mxml"/>
+    <application path="applications/RouteLocatorPoint.mxml"/>
+    <application path="applications/TextStyles.mxml"/>
+    <application path="applications/FindLocation.mxml"/>
+    <application path="applications/FeatureCluster.mxml"/>
+    <application path="applications/MapTimeSlider.mxml"/>
+    <application path="applications/Theme_GridRange.mxml"/>
+    <application path="applications/MapManager.mxml"/>
+    <application path="applications/Graphic_Airplane.mxml"/>
+    <application path="applications/TDTLayer.mxml"/>
+    <application path="applications/FindTspPath.mxml"/>
+    <application path="applications/TokenCredential.mxml"/>
+    <application path="applications/PrintMap.mxml"/>
+    <application path="applications/GetFeatureByIDs.mxml"/>
+    <application path="applications/RouteLocatorLine.mxml"/>
+    <application path="applications/ArcGIS93Layer.mxml"/>
+    <application path="applications/BingMaps.mxml"/>
+    <application path="applications/Theme_DotDensity.mxml"/>
+    <application path="applications/QueryByDistance.mxml"/>
+    <application path="applications/GoogleLayer.mxml"/>
+    <application path="applications/HeatGridLayer.mxml"/>
+    <application path="applications/MapLegend.mxml"/>
+    <application path="applications/AppWFSService.mxml"/>
+    <application path="applications/Theme_Unique.mxml"/>
+    <application path="applications/LayerFilter.mxml"/>
+    <application path="applications/InterpolationAnalyst.mxml"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+</actionScriptProperties>
+
+

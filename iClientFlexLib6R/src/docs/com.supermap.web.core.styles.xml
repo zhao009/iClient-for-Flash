@@ -1,0 +1,985 @@
+<apiPackage id="com.supermap.web.core.styles"><apiName>com.supermap.web.core.styles</apiName><apiDetail/><apiClassifier id="com.supermap.web.core.styles:LineStyle"><apiName>LineStyle</apiName><shortdesc>
+	 线要素风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 线要素风格类.
+	 <p>对线要素进行风格设置的父类。系统提供了一种预定义线要素风格 PredefinedLineStyle 类（继承于 LineStyle）。用户也可以继承 LineStyle 类，自定义线要素风格。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:LineStyle:LineStyle"><apiName>LineStyle</apiName><shortdesc>
+		 初始化 LineStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 LineStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.core.styles:LineStyle:alpha:get"><apiName>alpha</apiName><shortdesc>
+		 获取或设置线要素的透明度，默认为 1.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置线要素的透明度，默认为 1.
+		 <p>取值范围为0-1，0表示完全透明，1表示不透明。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:LineStyle:color:get"><apiName>color</apiName><shortdesc>
+		 获取或设置线要素颜色。默认为蓝色。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/><apiDefaultValue>0xFF0000
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置线要素颜色。默认为蓝色。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:LineStyle:weight:get"><apiName>weight</apiName><shortdesc>
+		 获取或设置线要素宽度。默认为 2，单位：像素。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置线要素宽度。默认为 2，单位：像素。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:Style"><apiName>Style</apiName><shortdesc>
+	 矢量要素显示风格基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 矢量要素显示风格基类.
+	 <p>设置地理要素 Feature 风格的父类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:Style:Style"><apiName>Style</apiName><shortdesc>
+		 初始化 Style 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Style 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:Style:clear"><apiName>clear</apiName><shortdesc>
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:clone"><apiName>clone</apiName><shortdesc>
+		 克隆 Sytle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆 Sytle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:createSwatch"><apiName>createSwatch</apiName><shortdesc>
+		 创建样式的样例。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>以组件的形式返回样式的样例。
+		 
+		 </apiDesc><apiType value="mx.core:UIComponent"/></apiReturn><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>样例的宽度。
+		 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>样例的高度。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 创建样式的样例。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:destroy"><apiName>destroy</apiName><shortdesc>
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		  
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:protected:dispatchEventChange"><apiName>dispatchEventChange</apiName><shortdesc>
+		 派发 Event.CHANGE 事件。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 派发 Event.CHANGE 事件。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:draw"><apiName>draw</apiName><shortdesc>
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>要素几何信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>要素属性信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>用于装载要素的地图。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:initialize"><apiName>initialize</apiName><shortdesc>
+		 初始化 style。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>点要素几何信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>点要素属性信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>用于装载点要素的地图。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 初始化 style。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:protected:removeAllChildren"><apiName>removeAllChildren</apiName><shortdesc>
+		 清除 Sprite 中的所有子项。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 清除 Sprite 中的所有子项。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:protected:toScreenX"><apiName>toScreenX</apiName><shortdesc>
+		 将地图上某一点的 X 坐标转换为屏幕坐标。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiDesc>转换后的坐标值。
+		 
+		 </apiDesc><apiType value="Number"/></apiReturn><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>点对象所在的地图控件。
+		 </apiDesc></apiParam><apiParam><apiItemName>mapX</apiItemName><apiType value="Number"/><apiDesc>点对象的 X 坐标。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将地图上某一点的 X 坐标转换为屏幕坐标。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:Style:protected:toScreenY"><apiName>toScreenY</apiName><shortdesc>
+		 将地图上某一点的 Y 坐标转换为屏幕坐标。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiDesc>转换后的坐标值。
+		 
+		 </apiDesc><apiType value="Number"/></apiReturn><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>点对象所在的地图控件。
+		 </apiDesc></apiParam><apiParam><apiItemName>mapY</apiItemName><apiType value="Number"/><apiDesc>点对象的 Y 坐标。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将地图上某一点的 Y 坐标转换为屏幕坐标。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.core.styles:PredefinedFillStyle"><apiName>PredefinedFillStyle</apiName><shortdesc>
+	 系统预定义面要素显示风格设置类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:FillStyle</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 系统预定义面要素显示风格设置类.
+	 <p>用户可以直接使用该类设置面要素风格，也可以继承 FillStyle 类自定义其他的面要素风格。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:PredefinedFillStyle:PredefinedFillStyle"><apiName>PredefinedFillStyle</apiName><shortdesc>
+		 初始化 PredefinedFillStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>symbol</apiItemName><apiType value="String"/><apiData>unknown</apiData><apiDesc>面要素填充类型常量。
+		 </apiDesc></apiParam><apiParam><apiItemName>color</apiItemName><apiType value="Number"/><apiData>0x4272d7</apiData><apiDesc>面要素填充颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>alpha</apiItemName><apiType value="Number"/><apiData>0.4</apiData><apiDesc>面要素填充透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>border</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:PredefinedLineStyle</apiOperationClassifier><apiData>null</apiData><apiDesc>面要素边界，PredefinedLineStyle 类型。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 PredefinedFillStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:PredefinedFillStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedFillStyle:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Sytle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Sytle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedFillStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		  
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedFillStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>要素几何信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>要素属性信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>用于装载要素的地图。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedFillStyle:setStyle"><apiName>setStyle</apiName><shortdesc>
+		 设置图像透明度、颜色。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>bitmap</apiItemName><apiType value="flash.display:Bitmap"/><apiDesc>需要设置的图像。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 设置图像透明度、颜色。 
+		 </apiDesc></apiOperationDetail><related-links><link href="" invalidHref="flash.display.Bitmap.BitData.colorTransform.xml"><linktext>flash.display.Bitmap.BitData.colorTransform</linktext></link></related-links></apiOperation><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:Backslash"><apiName>Backslash</apiName><shortdesc>
+		 获取或设置面要素填充的右斜线图片。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiType value="Class"/></apiValueDef><apiDesc>
+		 获取或设置面要素填充的右斜线图片。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:Cross"><apiName>Cross</apiName><shortdesc>
+		 获取或设置面要素填充的交叉线图片。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiType value="Class"/></apiValueDef><apiDesc>
+		 获取或设置面要素填充的交叉线图片。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:Horizontal"><apiName>Horizontal</apiName><shortdesc>
+		 获取或设置面要素填充的水平线图片。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiType value="Class"/></apiValueDef><apiDesc>
+		 获取或设置面要素填充的水平线图片。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:SYMBOL_BACKSLASH"><apiName>SYMBOL_BACKSLASH</apiName><shortdesc>
+		 右斜线填充.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>backslash</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右斜线填充.
+		 <p><img src="../../../../../images/PredefinedFillRight.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:SYMBOL_CROSS"><apiName>SYMBOL_CROSS</apiName><shortdesc>
+		 交叉线填充.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>cross</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 交叉线填充.
+		 <p><img src="../../../../../images/PredefinedFillC.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:SYMBOL_HORIZONTAL"><apiName>SYMBOL_HORIZONTAL</apiName><shortdesc>
+		 水平线填充.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>horizontal</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 水平线填充.
+		 <p><img src="../../../../../images/PredefinedFillH.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:SYMBOL_NULL"><apiName>SYMBOL_NULL</apiName><shortdesc>
+		 无填充。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>null</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无填充。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:SYMBOL_SLASH"><apiName>SYMBOL_SLASH</apiName><shortdesc>
+		 左斜线填充.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>slash</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左斜线填充.
+		 <p><img src="../../../../../images/PredefinedFillLeft.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:SYMBOL_SOLID"><apiName>SYMBOL_SOLID</apiName><shortdesc>
+		 实填充。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>solid</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 实填充。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:SYMBOL_VERTICAL"><apiName>SYMBOL_VERTICAL</apiName><shortdesc>
+		 垂直线填充.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>vertical</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 垂直线填充.
+		 <p><img src="../../../../../images/PredefinedFillV.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:Slash"><apiName>Slash</apiName><shortdesc>
+		 获取或设置面要素填充的左斜线图片。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiType value="Class"/></apiValueDef><apiDesc>
+		 获取或设置面要素填充的左斜线图片。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:Vertical"><apiName>Vertical</apiName><shortdesc>
+		 获取或设置面要素填充的垂直线图片。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiType value="Class"/></apiValueDef><apiDesc>
+		 获取或设置面要素填充的垂直线图片。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:alpha:get"><apiName>alpha</apiName><shortdesc>
+		 获取或设置面要素的填充透明度。默认值为 0.156，取值在 0~1 之间，1 表示不透明。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置面要素的填充透明度。默认值为 0.156，取值在 0~1 之间，1 表示不透明。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:color:get"><apiName>color</apiName><shortdesc>
+		 获取或设置面要素的填充颜色。默认为蓝色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/><apiDefaultValue>color
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置面要素的填充颜色。默认为蓝色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 获取 PredefinedFillStyle 类的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:PredefinedFillStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取 PredefinedFillStyle 类的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:pattern:get"><apiName>pattern</apiName><shortdesc>
+		 获取面要素边界线型编码。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取面要素边界线型编码。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedFillStyle:symbol:get"><apiName>symbol</apiName><shortdesc>
+		 获取或设置面要素填充类型，默认为实填充。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/><apiDefaultValue>PredefinedFillStyle.SYMBOL_SOLID 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置面要素填充类型，默认为实填充。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:GradientFillStyle"><apiName>GradientFillStyle</apiName><shortdesc>
+	 面要素渐变填充样式.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:FillStyle</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 面要素渐变填充样式.
+	 <p>渐变填充多边形。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:GradientFillStyle:GradientFillStyle"><apiName>GradientFillStyle</apiName><shortdesc>
+		 初始化 GradientFillStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>渐变填充类型。默认为 GradientType.LINEAR。
+		 </apiDesc></apiParam><apiParam><apiItemName>colors</apiItemName><apiType value="Array"/><apiDesc>渐变颜色数组。
+		 </apiDesc></apiParam><apiParam><apiItemName>alphas</apiItemName><apiType value="Array"/><apiDesc>渐变颜色透明度，与 colors 数组中的颜色值一一对应。
+		 </apiDesc></apiParam><apiParam><apiItemName>ratios</apiItemName><apiType value="Array"/><apiDesc> 渐变颜色分布比率，有效值为 0 到 255。与 colors 数组中的颜色值一一对应。
+		 
+		 </apiDesc></apiParam><apiParam><apiItemName>border</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:PredefinedLineStyle</apiOperationClassifier><apiData>null</apiData></apiParam><apiParam><apiItemName>matrix</apiItemName><apiType value="flash.geom:Matrix"/><apiData>null</apiData></apiParam><apiParam><apiItemName>spreadMethod</apiItemName><apiType value="String"/><apiData>pad</apiData></apiParam><apiParam><apiItemName>interpolationMethod</apiItemName><apiType value="String"/><apiData>rgb</apiData></apiParam><apiParam><apiItemName>focalPointRatio</apiItemName><apiType value="Number"/><apiData>0</apiData></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GradientFillStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:GradientFillStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>要素几何信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>要素属性信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>用于装载要素的地图。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:GradientFillStyle:alphas:get"><apiName>alphas</apiName><shortdesc>
+		 获取或设置渐变颜色透明度，与 colors 数组中的颜色值一一对应，即在渐变填充中每种颜色的显示透明度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置渐变颜色透明度，与 colors 数组中的颜色值一一对应，即在渐变填充中每种颜色的显示透明度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:GradientFillStyle:colors:get"><apiName>colors</apiName><shortdesc>
+		 获取或设置渐变颜色（十六进制）数组，即渐变填充中所显示的所有颜色数组。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置渐变颜色（十六进制）数组，即渐变填充中所显示的所有颜色数组。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:GradientFillStyle:focalPointRatio:get"><apiName>focalPointRatio</apiName><shortdesc>
+		 一个控制渐变的焦点位置的数字。0 表示焦点位于中心。1 表示焦点位于渐变圆的一条边界上。-1 表示焦点位于渐变圆的另一条边界上。小于 -1 或大于 1 的值将舍入为 -1 或 1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 一个控制渐变的焦点位置的数字。0 表示焦点位于中心。1 表示焦点位于渐变圆的一条边界上。-1 表示焦点位于渐变圆的另一条边界上。小于 -1 或大于 1 的值将舍入为 -1 或 1。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:GradientFillStyle:interpolationMethod:get"><apiName>interpolationMethod</apiName><shortdesc>
+		 用于指定要使用哪个值的 InterpolationMethod 类的值：InterpolationMethod.LINEAR_RGB 或 InterpolationMethod.RGB。关于 InterpolationMethod 类，详情请查看 Flex 4.0 帮助文档。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 用于指定要使用哪个值的 InterpolationMethod 类的值：InterpolationMethod.LINEAR_RGB 或 InterpolationMethod.RGB。关于 InterpolationMethod 类，详情请查看 Flex 4.0 帮助文档。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:GradientFillStyle:matrix:get"><apiName>matrix</apiName><shortdesc>
+		 一个由 flash.geom.Matrix 类定义的转换矩阵。flash.geom.Matrix 类包括 createGradientBox() 方法，通过该方法可以方便地设置矩阵，以便与 beginGradientFill() 方法一起使用。详情请查看 Flex 4.0 帮助文档。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="flash.geom:Matrix"/></apiValueDef><apiDesc>
+		 一个由 flash.geom.Matrix 类定义的转换矩阵。flash.geom.Matrix 类包括 createGradientBox() 方法，通过该方法可以方便地设置矩阵，以便与 beginGradientFill() 方法一起使用。详情请查看 Flex 4.0 帮助文档。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:GradientFillStyle:ratios:get"><apiName>ratios</apiName><shortdesc>
+		 获取或设置渐变颜色分布比率，有效值为 0 到 255。与 colors 数组中的颜色值一一对应。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置渐变颜色分布比率，有效值为 0 到 255。与 colors 数组中的颜色值一一对应。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:GradientFillStyle:spreadMethod:get"><apiName>spreadMethod</apiName><shortdesc>
+		 用于指定要使用哪种 spread 方法的 SpreadMethod 类的值：SpreadMethod.PAD、SpreadMethod.REFLECT 或 SpreadMethod.REPEAT。 关于 SpreadMethod 类，详情请查看 Flex 4.0 帮助文档。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 用于指定要使用哪种 spread 方法的 SpreadMethod 类的值：SpreadMethod.PAD、SpreadMethod.REFLECT 或 SpreadMethod.REPEAT。 关于 SpreadMethod 类，详情请查看 Flex 4.0 帮助文档。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:GradientFillStyle:type:get"><apiName>type</apiName><shortdesc>
+		 获取或设置渐变填充类型。默认为 GradientType.LINEAR，即线性渐变.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置渐变填充类型。默认为 GradientType.LINEAR，即线性渐变.
+		 <p>其中 GradientType 为 Flex SDK 4.0 中的自有类，有关详情请参阅 Flex 4.0 帮助文档。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:PredefinedLineStyle"><apiName>PredefinedLineStyle</apiName><shortdesc>
+	 系统预定义线要素风格设置类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:LineStyle</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 系统预定义线要素风格设置类.
+	 <p>用户可以直接使用该类设置线要素风格，也可以继承 LineStyle 类自定义其它线要素风格。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:PredefinedLineStyle:PredefinedLineStyle"><apiName>PredefinedLineStyle</apiName><shortdesc>
+		 初始化 PredefinedLineStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>symbol</apiItemName><apiType value="String"/><apiData>unknown</apiData><apiDesc>线类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>color</apiItemName><apiType value="Number"/><apiData>0x5082e5</apiData><apiDesc>线颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>alpha</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>线要素透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>weight</apiItemName><apiType value="Number"/><apiData>2</apiData><apiDesc>线要素宽度。
+		 </apiDesc></apiParam><apiParam><apiItemName>cap</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>线要素端点类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>join</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>线要素拐点类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>miterLimit</apiItemName><apiType value="Number"/><apiData>3</apiData><apiDesc>切断尖角的位置，详细说明请参见 miterLimit 属性。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 PredefinedLineStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:PredefinedLineStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedLineStyle:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Sytle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Sytle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedLineStyle:destroy"><apiName>destroy</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedLineStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedLineStyle:protected:setLineStyle"><apiName>setLineStyle</apiName><shortdesc>
+		 根据 PredefinedLineStyle 的属性设置 Graphics 对象的样式 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>graphics</apiItemName><apiType value="flash.display:Graphics"/><apiDesc>需要设置样式的 Graphics 对象。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据 PredefinedLineStyle 的属性设置 Graphics 对象的样式 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:CAP_NONE"><apiName>CAP_NONE</apiName><shortdesc>
+		 线要素端点不显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>null</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线要素端点不显示.
+		 <p><img src="../../../../../images/cap_null.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:CAP_ROUND"><apiName>CAP_ROUND</apiName><shortdesc>
+		 线要素端点以半圆形显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>round</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线要素端点以半圆形显示.
+		 <p><img src="../../../../../images/cap_round.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:CAP_SQUARE"><apiName>CAP_SQUARE</apiName><shortdesc>
+		 线要素端点以方形显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>square</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线要素端点以方形显示.
+		 <p><img src="../../../../../images/cap_square.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:JOIN_BEVEL"><apiName>JOIN_BEVEL</apiName><shortdesc>
+		 线要素拐点以平角显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>bevel</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线要素拐点以平角显示.
+		 <p><img src="../../../../../images/join_bevel.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:JOIN_MITER"><apiName>JOIN_MITER</apiName><shortdesc>
+		 线要素拐点以尖角显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>miter</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线要素拐点以尖角显示.
+		 <p><img src="../../../../../images/join_mitter.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:JOIN_ROUND"><apiName>JOIN_ROUND</apiName><shortdesc>
+		 线要素拐点以弧形显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>round</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线要素拐点以弧形显示.
+		 <p><img src="../../../../../images/join_round.png"/> </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:SYMBOL_COUSTOM"><apiName>SYMBOL_COUSTOM</apiName><shortdesc>
+		 自定义样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>coustom</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 自定义样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:SYMBOL_DASHDOTDOT"><apiName>SYMBOL_DASHDOTDOT</apiName><shortdesc>
+		 点点划线.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>dashdotdot</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 点点划线.
+		 <p><img src="../../../../../images/dashdotdot.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:SYMBOL_DASHDOT"><apiName>SYMBOL_DASHDOT</apiName><shortdesc>
+		 点划线.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>dashdot</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 点划线.
+		 <p><img src="../../../../../images/dashdot.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:SYMBOL_DASH"><apiName>SYMBOL_DASH</apiName><shortdesc>
+		 划线.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>dash</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 划线.
+		 <p><img src="../../../../../images/dash.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:SYMBOL_DOT"><apiName>SYMBOL_DOT</apiName><shortdesc>
+		 虚线.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>dot</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 虚线.
+		 <p><img src="../../../../../images/dot.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:SYMBOL_NULL"><apiName>SYMBOL_NULL</apiName><shortdesc>
+		 无填充。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>null</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无填充。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:SYMBOL_SOLID"><apiName>SYMBOL_SOLID</apiName><shortdesc>
+		 实线。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>solid</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 实线。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:cap:get"><apiName>cap</apiName><shortdesc>
+		 获取或设置线要素端点显示类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置线要素端点显示类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 静态变量，获取 PredefinedLineStyle 类的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 静态变量，获取 PredefinedLineStyle 类的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:join:get"><apiName>join</apiName><shortdesc>
+		 获取或设置线要素拐点显示类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置线要素拐点显示类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:miterLimit:get"><apiName>miterLimit</apiName><shortdesc>
+		 获取或设置在哪个限制位置切断尖角。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置在哪个限制位置切断尖角。.
+		 <p>有效值的范围是 1 到 255（超出该范围的值将舍入为 1 或 255）。此值只可用于 join 设置为 "miter" 的情况下。miterLimit 值表示向外延伸的尖角可以超出角边相交所形成的结合点的长度。此值表示为线条 thickness 的因子。例如，miterLimit 因子为 2.5 且 thickness 为 10 像素时，尖角将在 25 像素处切断。<br/>例如，请考虑下列带拐角的线条，每个线条都以 thickness 20 进行绘制，但它们的 miterLimit 分别设置为 1、2 和 4。重叠在其上的黑色参考线条显示了结合处的联结点：<br/><img src="../../../../../images/mitterLimit.png"/></p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.styles.xml#PredefinedLineStyle/join"><linktext>join</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:pattern:get"><apiName>pattern</apiName><shortdesc>
+		 获取点要素边界类型编码。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取点要素边界类型编码。.
+		 <p>如 PredefinedLineStyle.SYMBOL_DASHDOT 线型的编码为（6，4，1，4，4），表示 DASH 的长度为 6，它与 DOT 之间的距离为 4，DOT 的大小为 1，重复距离为 4。如此反复则成一条线。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedLineStyle:symbol:get"><apiName>symbol</apiName><shortdesc>
+		 获取或设置线要素样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置线要素样式。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:FillStyle"><apiName>FillStyle</apiName><shortdesc>
+	 面要素风格类.</shortdesc><prolog><author>zyn
+	 
+	 </author><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 面要素风格类.
+	 <p>对面状要素进行风格设置的父类。系统提供了一种预定义的面要素风格 PredefinedFillStyle 类，用户可以继承 FillStyle 自定义面要素显示风格。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.core.styles.xml#PredefinedFillStyle"><linktext>PredefinedFillStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.core.styles:FillStyle:FillStyle"><apiName>FillStyle</apiName><shortdesc>
+		 初始化 FillStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FillStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.core.styles:FillStyle:border:get"><apiName>border</apiName><shortdesc>
+		 获取或设置面要素的边界风格，PredefinedLineStyle 类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:PredefinedLineStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置面要素的边界风格，PredefinedLineStyle 类型。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:MarkerStyle"><apiName>MarkerStyle</apiName><shortdesc>
+	 点要素风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 点要素风格类.
+	 <p>对点要素进行风格设置的父类。系统提供了一种预定义点要素风格 PredefinedMarkerStyle 类.用户也可以继承 MarkerStyle 类自定义点要素风格。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:MarkerStyle:MarkerStyle"><apiName>MarkerStyle</apiName><shortdesc>
+		 初始化 MarkerStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 MarkerStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.core.styles:MarkerStyle:angle:get"><apiName>angle</apiName><shortdesc>
+		 获取或设置点的旋转角度，对于以中心对称的点样式（如：Circle） 该属性不起作用。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置点的旋转角度，对于以中心对称的点样式（如：Circle） 该属性不起作用。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:MarkerStyle:xOffset:get"><apiName>xOffset</apiName><shortdesc>
+		 获取或设置锚点横向（X 方向）偏移量。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置锚点横向（X 方向）偏移量。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:MarkerStyle:yOffset:get"><apiName>yOffset</apiName><shortdesc>
+		 获取或设置锚点纵向（Y 方向）偏移量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置锚点纵向（Y 方向）偏移量。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:PictureMarkerStyle"><apiName>PictureMarkerStyle</apiName><shortdesc>
+	 点要素图片显示风格.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:MarkerStyle</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 点要素图片显示风格.
+	 <p>将图片作为点状符号显示。如下图所示：<br/><img src="../../../../../images/sunny.png"/></p>
+	 </apiDesc><example>以下示例示范了如何在 FeaturesLayr 中添加一个点要素，该点要素的样式为一张图片。 
+	 <codeblock>
+	 var geoPoint:GeoPoint = new GeoPoint(0,30);
+	 var pictureMarkerStyle:PictureMarkerStyle = new PictureMarkerStyle("../assets/sunny.png");
+	 var feature:Feature = new Feature(geoPoint,pictureMarkerStyle);
+	 featureLayer.addFeature(feature);
+	 </codeblock> 
+	 
+	 </example></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:PictureMarkerStyle:PictureMarkerStyle"><apiName>PictureMarkerStyle</apiName><shortdesc>
+		 初始化 PictureMarkerStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>source</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>图片获取路径。
+		 </apiDesc></apiParam><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片宽度。
+		 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片高度。
+		 </apiDesc></apiParam><apiParam><apiItemName>xoffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片锚点水平（y 方向）偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>yoffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片锚点垂直（x 方向）偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>alpha</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>图片透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>angle</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片旋转角度。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 PictureMarkerStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:PictureMarkerStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PictureMarkerStyle:createSwatch"><apiName>createSwatch</apiName><shortdesc>
+		 
+		 创建样式的样例。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="mx.core:UIComponent"/></apiReturn><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 创建样式的样例。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PictureMarkerStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PictureMarkerStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:PictureMarkerStyle:alpha:get"><apiName>alpha</apiName><shortdesc>
+		 获取或设置图片的透明度。0 表示完全透明，1表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置图片的透明度。0 表示完全透明，1表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureMarkerStyle:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureMarkerStyle:height:get"><apiName>height</apiName><shortdesc>
+		 获取或设置图片的高度，以像素为单位.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片的高度，以像素为单位.
+		 <p>值为 0 时表示以原图高度显示，为负时表示以反方向显示图片。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureMarkerStyle:source:get"><apiName>source</apiName><shortdesc>
+		 获取或设置导入图片的路径。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置导入图片的路径。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureMarkerStyle:width:get"><apiName>width</apiName><shortdesc>
+		 获取或设置图片的宽度，以像素为单位.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片的宽度，以像素为单位.
+		 <p>值为 0 时表示以原图宽度显示，为负时表示以反方向显示图片。</p>
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:InfoStyle"><apiName>InfoStyle</apiName><shortdesc>
+	  信息显示风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	  信息显示风格类.
+	  <p>该类用于定义要素信息显示风格，用户可以在其中加入任何 flex 组件，如：图片、文本等。InfoStyle 可以显示在多个位置上，即地图上可以包含多个 InfoStyle。需要注意的是，其显示位置必须是地图单位的坐标点。</p> 
+	  </apiDesc><example>下面示例显示如何使用 InfoStyle：
+	  <codeblock> 
+	  	<!--定义 InfoStyle-->
+	  	&lt;fx:Declarations&gt;
+	  		&lt;ic:InfoStyle id="infoSty1"&gt;
+	  			&lt;ic:infoRenderer&gt;
+	  				&lt;fx:Component&gt;
+	  					&lt;s:HGroup gap="5"&gt;
+	  						&lt;mx:Image width="100" height="75" source="../assets/pic3.jpg"/&gt;
+	  						&lt;mx:Text text="千岛湖是世界上岛屿最多的湖。位于东经118°58′—119°17′，北纬29°31′—29°41′之间" 
+	  								 color="#255" width="150" height="100%"/&gt;
+	  					&lt;/s:HGroup&gt;
+	  				&lt;/fx:Component&gt;
+	  			&lt;/ic:infoRenderer&gt;
+	  		&lt;/ic:InfoStyle&gt;
+	  	&lt;/fx:Declarations&gt;
+	  	
+	  	//使用 InfoStyle
+	  	var feature:Feature = new Feature();
+	  	feature.geometry = new GeoPoint(119,29); 
+	  	feature.style = infoStyle;
+	  	featureLayer.addFeature(feature); 
+	  </codeblock>
+	  </example></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:InfoStyle:InfoStyle"><apiName>InfoStyle</apiName><shortdesc>
+		 初始化 InfoStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 InfoStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:InfoStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:InfoStyle:containerStyleName"><apiName>containerStyleName</apiName><shortdesc>
+		 样式名称，该样式用于定义 infoStyle 的容器外观。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiType value="String"/></apiValueDef><apiDesc>
+		 样式名称，该样式用于定义 infoStyle 的容器外观。.
+		 <p>样式可以使用标签语言&lt;fx:style&gt;定义，也可在CSS样式表中定义。InfoStyle 的容器外观样式所包含的类型请参见 Adobe Flex 4.0 API 的 Container 容器样式列表。 </p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.mapping.xml#InfoWindow"><linktext>com.supermap.web.mapping.InfoWindow</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.styles:InfoStyle:infoPlacement:get"><apiName>infoPlacement</apiName><shortdesc>
+		 获取或设置 InfoStyle 显示的位置.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 InfoStyle 显示的位置.
+		 <p>默认为右上角，即 InfoPlacement.UPPERRIGHT。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.mapping.supportClasses.InfoPlacement.xml"><linktext>com.supermap.web.mapping.supportClasses.InfoPlacement</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.styles:InfoStyle:infoRenderer:get"><apiName>infoRenderer</apiName><shortdesc>
+		 IFactory 类，用户可以通过该属性定义信息显示内容。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.core:IFactory"/></apiValueDef><apiDesc>
+		 IFactory 类，用户可以通过该属性定义信息显示内容。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:TextStyle"><apiName>TextStyle</apiName><shortdesc>
+	 文本样式类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 文本样式类.
+	 <p>该类继承了 MarkerStyle 类，其实质是一个点要素，使用方法与 PredefinedMarkerStyle 类似。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:TextStyle:TextStyle"><apiName>TextStyle</apiName><shortdesc>
+		 初始化 TextStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>text</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>文本内容。
+		 </apiDesc></apiParam><apiParam><apiItemName>color</apiItemName><apiType value="uint"/><apiData>0</apiData><apiDesc>文本颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>border</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>文本是否有边界。
+		 </apiDesc></apiParam><apiParam><apiItemName>borderColor</apiItemName><apiType value="uint"/><apiData>0</apiData><apiDesc>文本边界颜色。当 border 为 true 时有效。
+		 </apiDesc></apiParam><apiParam><apiItemName>background</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>文本是否有背景色。
+		 </apiDesc></apiParam><apiParam><apiItemName>backgroundColor</apiItemName><apiType value="uint"/><apiData>0xffffff</apiData><apiDesc>文本背景颜色。当 background 为 true 时有效。
+		 </apiDesc></apiParam><apiParam><apiItemName>angle</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>文本对齐方式。
+		 </apiDesc></apiParam><apiParam><apiItemName>placement</apiItemName><apiType value="String"/><apiData>middle</apiData><apiDesc>文本旋转角度。
+		 </apiDesc></apiParam><apiParam><apiItemName>xoffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>文本锚点横轴（即 X 轴）偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>yoffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>文本锚点纵轴（即 Y 轴）偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>htmlText</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>文本格式。
+		 </apiDesc></apiParam><apiParam><apiItemName>textFormat</apiItemName><apiType value="flash.text:TextFormat"/><apiData>null</apiData><apiDesc>文本属性。
+		 </apiDesc></apiParam><apiParam><apiItemName>textAttribute</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>文本对象方法。
+		 
+		 </apiDesc></apiParam><apiParam><apiItemName>textFunction</apiItemName><apiType value="Function"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 初始化 TextStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:TextStyle:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Sytle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Sytle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:TextStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:TextStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:TextStyle:PLACEMENT_BOTTOM"><apiName>PLACEMENT_BOTTOM</apiName><shortdesc>
+		 底对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>bottom</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 底对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:PLACEMENT_LEFT"><apiName>PLACEMENT_LEFT</apiName><shortdesc>
+		 左对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>left</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:PLACEMENT_MIDDLE"><apiName>PLACEMENT_MIDDLE</apiName><shortdesc>
+		 居中。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>middle</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 居中。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:PLACEMENT_RIGHT"><apiName>PLACEMENT_RIGHT</apiName><shortdesc>
+		 右对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>right</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:PLACEMENT_TOP"><apiName>PLACEMENT_TOP</apiName><shortdesc>
+		 顶对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>top</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 顶对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:alpha:get"><apiName>alpha</apiName><shortdesc>
+		 获取或设置文本透明度。取值范围在0~1之间，0表示完全透明，1表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置文本透明度。取值范围在0~1之间，0表示完全透明，1表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:angle:get"><apiName>angle</apiName><shortdesc>
+		 获取或设置文本旋转角度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本旋转角度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:backgroundColor:get"><apiName>backgroundColor</apiName><shortdesc>
+		 获取或设置文本背景颜色，默认为白色，当 background 为 true 时有效。。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/><apiDefaultValue>0xffffff
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本背景颜色，默认为白色，当 background 为 true 时有效。。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:background:get"><apiName>background</apiName><shortdesc>
+		 获取或设置文本是否添加背景。默认为无背景。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本是否添加背景。默认为无背景。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:borderColor:get"><apiName>borderColor</apiName><shortdesc>
+		 获取或设置文本边界颜色，默认为黑色，当 border 为 true 时有效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本边界颜色，默认为黑色，当 border 为 true 时有效。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.styles.xml#TextStyle/boder"><linktext>boder</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:border:get"><apiName>border</apiName><shortdesc>
+		 获取或设置文本是否有边界，默认值为无边界。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本是否有边界，默认值为无边界。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:color:get"><apiName>color</apiName><shortdesc>
+		 获取或设置文本字体颜色，默认为黑色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本字体颜色，默认为黑色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 静态变量，获取 TextStyle 类的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 静态变量，获取 TextStyle 类的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:htmlText:get"><apiName>htmlText</apiName><shortdesc>
+		 获取或设置文本内容（Html 格式）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置文本内容（Html 格式）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:placement:get"><apiName>placement</apiName><shortdesc>
+		 获取或设置文本对齐方式，默认值为居中对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/><apiDefaultValue>middle
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本对齐方式，默认值为居中对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:textAttribute:get"><apiName>textAttribute</apiName><shortdesc>
+		 获取或设置文本属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置文本属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:textFormat:get"><apiName>textFormat</apiName><shortdesc>
+		 获取或设置文本格式。如：字体、字间距、行间距等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="flash.text:TextFormat"/></apiValueDef><apiDesc>
+		 获取或设置文本格式。如：字体、字间距、行间距等。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="flash.text.TextFormat.xml"><linktext>flash.text.TextFormat</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:textFunction:get"><apiName>textFunction</apiName><shortdesc>
+		 Funcion 对象，获取或设置文本函数。该属性为定义文本信息的方法之一。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 Funcion 对象，获取或设置文本函数。该属性为定义文本信息的方法之一。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:text:get"><apiName>text</apiName><shortdesc>
+		 获取或设置文本属性。
+		 </shortdesc><prolog><asCustoms><defautl>null  
+		 </defautl></asCustoms></prolog><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置文本属性。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:xoffset:get"><apiName>xoffset</apiName><shortdesc>
+		 获取或设置文本锚点纵轴（即 Y 轴）偏移量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本锚点纵轴（即 Y 轴）偏移量。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:TextStyle:yoffset:get"><apiName>yoffset</apiName><shortdesc>
+		 获取或设置文本锚点横轴（即 X 轴）偏移量。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置文本锚点横轴（即 X 轴）偏移量。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:PictureFillStyle"><apiName>PictureFillStyle</apiName><shortdesc>
+	 面要素图片填充显示风格.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:FillStyle</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 面要素图片填充显示风格.
+	 <p>使用图片来填充多边形。<br/><img src="../../../../../images/pictureFillStyle.png"/></p> 
+	 </apiDesc><example>以下示例示范了如何在 FeaturesLayr 中添加一个面要素，该面要素使用图片填充。<br/>
+	 <codeblock>
+	 var geoRegion:GeoRegion = new GeoRegion();
+	 geoRegion.addPart([new Point2D(-20,60),new Point2D(20,60),new Point2D(20,30),new Point2D(-20,30)]);
+	 var pictureFillStyle:PictureFillStyle = new PictureFillStyle("../assets/sunny.png");
+	 var feature:Feature = new Feature(geoRegion,pictureFillStyle);
+	 featureLayer.addFeature(feature);
+	 </codeblock> 
+	 
+	 </example></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:PictureFillStyle:PictureFillStyle"><apiName>PictureFillStyle</apiName><shortdesc>
+		 初始化 PictureFillStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>source</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>图片获取路径。
+		 </apiDesc></apiParam><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片宽度。
+		 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片高度。
+		 </apiDesc></apiParam><apiParam><apiItemName>xScale</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>图片的水平（X 方向）缩放系数。
+		 </apiDesc></apiParam><apiParam><apiItemName>yScale</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>图片的垂直（Y 方向）缩放系数。
+		 </apiDesc></apiParam><apiParam><apiItemName>xOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片锚点的水平（X 方向）偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>yOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片锚点的垂直（Y 方向）偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>alpha</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>图片透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>angle</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>图片旋转角度。
+		 </apiDesc></apiParam><apiParam><apiItemName>border</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:PredefinedLineStyle</apiOperationClassifier><apiData>null</apiData><apiDesc>图片边界。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 PictureFillStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:PictureFillStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PictureFillStyle:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Sytle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Sytle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PictureFillStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PictureFillStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:PictureFillStyle:alpha:get"><apiName>alpha</apiName><shortdesc>
+		 获取或设置图片透明度。取值在 0~1 之间，0 表示完全透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片透明度。取值在 0~1 之间，0 表示完全透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:angle:get"><apiName>angle</apiName><shortdesc>
+		 获取或设置图片的旋转角度，逆时针方向为正。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片的旋转角度，逆时针方向为正。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 静态变量，获取 PictureFillStyle 类的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 静态变量，获取 PictureFillStyle 类的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:height:get"><apiName>height</apiName><shortdesc>
+		 获取或设置用于填充面的图片的高度，以像素为单位 
+		 值为 0 时表示以原图高度显示，为负时表示以反方向显示图片。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置用于填充面的图片的高度，以像素为单位 
+		 <p>值为 0 时表示以原图高度显示，为负时表示以反方向显示图片。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:pattern:get"><apiName>pattern</apiName><shortdesc>
+		 获取面要素边界线型编码。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取面要素边界线型编码。.
+		 <p>如 PredefinedLineStyle.SYMBOL_DASHDOT 线型的编码为（6，4，1，4，4），表示 DASH 的长度为 6，它与 DOT 之间的距离为 4，DOT 的大小为 1，重复距离为 4。如此反复则成一条线。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:source:get"><apiName>source</apiName><shortdesc>
+		 获取或设置导入图片的路径。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置导入图片的路径。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:width:get"><apiName>width</apiName><shortdesc>
+		 获取或设置用于填充面的图片的宽度，以像素为单位.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置用于填充面的图片的宽度，以像素为单位.
+		 <p>值为 0 时表示以原图宽度显示，为负时表示以反方向显示图片。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:xOffset:get"><apiName>xOffset</apiName><shortdesc>
+		 获取或设置图片的水平（X 方向）偏移量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片的水平（X 方向）偏移量。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:xScale:get"><apiName>xScale</apiName><shortdesc>
+		 获取或设置图片锚点的水平（X 方向）缩放系数，1 表示不缩放。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片锚点的水平（X 方向）缩放系数，1 表示不缩放。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:yOffset:get"><apiName>yOffset</apiName><shortdesc>
+		 获取或设置图片的垂直（Y 方向）偏移量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片的垂直（Y 方向）偏移量。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PictureFillStyle:yScale:get"><apiName>yScale</apiName><shortdesc>
+		 获取或设置图片锚点的垂直（Y 方向）缩放系数，1 表示不缩放。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置图片锚点的垂直（Y 方向）缩放系数，1 表示不缩放。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:PredefinedMarkerStyle"><apiName>PredefinedMarkerStyle</apiName><shortdesc>
+	 系统预定义的点要素风格设置类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:MarkerStyle</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 系统预定义的点要素风格设置类.
+	 <p>用户可以直接使用该类设置点要素风格，也可以继承 MarkerStyle 类自定义其他的点要素风格。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:PredefinedMarkerStyle:PredefinedMarkerStyle"><apiName>PredefinedMarkerStyle</apiName><shortdesc>
+		 初始化 PredefinedMarkerStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>symbol</apiItemName><apiType value="String"/><apiData>unknown</apiData><apiDesc>点样式。
+		 </apiDesc></apiParam><apiParam><apiItemName>size</apiItemName><apiType value="Number"/><apiData>12</apiData><apiDesc>点要素大小。
+		 </apiDesc></apiParam><apiParam><apiItemName>color</apiItemName><apiType value="Number"/><apiData>0x4272d7</apiData><apiDesc>要素颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>alpha</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>要素的透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>xOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>要素锚点横向（X 方向）偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>yOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>要素锚点纵向（Y 方向）偏移量，默认为0。
+		 </apiDesc></apiParam><apiParam><apiItemName>angle</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>要素的旋转角度。
+		 </apiDesc></apiParam><apiParam><apiItemName>border</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:PredefinedLineStyle</apiOperationClassifier><apiData>null</apiData><apiDesc>点边界。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 PredefinedMarkerStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:PredefinedMarkerStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedMarkerStyle:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆 Sytle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆 Sytle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedMarkerStyle:createSwatch"><apiName>createSwatch</apiName><shortdesc>
+		 
+		 创建样式的样例。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="mx.core:UIComponent"/></apiReturn><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 创建样式的样例。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedMarkerStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:PredefinedMarkerStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:SYMBOL_CIRCLE"><apiName>SYMBOL_CIRCLE</apiName><shortdesc>
+		 圆。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>circle</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 圆。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:SYMBOL_DIAMOND"><apiName>SYMBOL_DIAMOND</apiName><shortdesc>
+		 菱形。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>diamond</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 菱形。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:SYMBOL_SECTOR"><apiName>SYMBOL_SECTOR</apiName><shortdesc>
+		 扇形。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sector</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 扇形。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:SYMBOL_SQUARE"><apiName>SYMBOL_SQUARE</apiName><shortdesc>
+		 正方形。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>square</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 正方形。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:SYMBOL_STAR"><apiName>SYMBOL_STAR</apiName><shortdesc>
+		 五角星。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>star</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 五角星。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:SYMBOL_TRIANGLE"><apiName>SYMBOL_TRIANGLE</apiName><shortdesc>
+		 三角形。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>triangle</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 三角形。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:SYMBOL_X"><apiName>SYMBOL_X</apiName><shortdesc>
+		 X 形。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>x</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 X 形。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:alpha:get"><apiName>alpha</apiName><shortdesc>
+		 获取或设置要素透明度，0表示完全透明，1表示不透明。默认值为 1。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置要素透明度，0表示完全透明，1表示不透明。默认值为 1。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:border:get"><apiName>border</apiName><shortdesc>
+		 获取或设置点要素的边界。PredefinedLineStyle 类。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:PredefinedLineStyle</apiValueClassifier><apiDefaultValue>null
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置点要素的边界。PredefinedLineStyle 类。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:color:get"><apiName>color</apiName><shortdesc>
+		 获取或设置点要素填充颜色。默认为蓝色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/><apiDefaultValue>0xFF0000
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置点要素填充颜色。默认为蓝色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 静态变量，获取 PredefinedMarkerStyle 类的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 静态变量，获取 PredefinedMarkerStyle 类的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:pattern:get"><apiName>pattern</apiName><shortdesc>
+		 获取点要素边界类型编码。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取点要素边界类型编码。.
+		 <p>如 PredefinedLineStyle.SYMBOL_DASHDOT 线型的编码为（6，4，1，4，4），表示 DASH 的长度为 6，它与 DOT 之间的距离为 4，DOT 的大小为 1，重复距离为 4。如此反复则成一条线。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:size:get"><apiName>size</apiName><shortdesc>
+		 获取或设置点要素大小。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>10 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置点要素大小。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.styles:PredefinedMarkerStyle:symbol:get"><apiName>symbol</apiName><shortdesc>
+		 获取或设置点要素形状。请参见常量部分。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置点要素形状。请参见常量部分。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.styles:CompositeStyle"><apiName>CompositeStyle</apiName><shortdesc>
+	 组合样式类.</shortdesc><prolog><asMetadata><DefaultProperty name="styles"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 组合样式类.
+	 <p>该类用于定义点、线、面的组合显示风格。例如，将点、线、面要素的显示风格均定义为 CompositeStyle 时，就等于将点、线、面要素的 style 属性分别定义为 CompositeStyle 中对应的点、线、填充样式，其方法和定义其它样式的方法相同：<br/><code>var point:Featrue = new Feature(GeoPoint, CompositeStyle)</code>。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.styles:CompositeStyle:CompositeStyle"><apiName>CompositeStyle</apiName><shortdesc>
+		 使用样式集合初始化 CompositeStyle 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>styles</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>样式集合，其中包括点、线、填充样式。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用样式集合初始化 CompositeStyle 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.styles:CompositeStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:CompositeStyle:protected:collectionChangeHandler"><apiName>collectionChangeHandler</apiName><shortdesc>
+		 CollectionEvent.COLLECTION_CHANGE 事件的侦听函数。当 CompositeStyle 的 styles 属性发生改变时触发该事件。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="mx.events:CollectionEvent"/></apiParam></apiOperationDef><apiDesc>
+		 CollectionEvent.COLLECTION_CHANGE 事件的侦听函数。当 CompositeStyle 的 styles 属性发生改变时触发该事件。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:CompositeStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.styles:CompositeStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.styles:CompositeStyle:styles:get"><apiName>styles</apiName><shortdesc>
+		 样式集合，其中包括点、线、填充样式。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 样式集合，其中包括点、线、填充样式。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

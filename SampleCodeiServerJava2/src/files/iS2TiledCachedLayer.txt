@@ -1,0 +1,3 @@
+<font color="#0033FF">SuperMap iServer Java 2008 分块缓存图层（TiledCachedLayer）</font>
+<font color="#006633">1. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块缓存图层——World。
+<font color="#006633">2. 其它说明：</font>有关分块缓存图层的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

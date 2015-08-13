@@ -1,0 +1,241 @@
+<apiPackage id="com.supermap.web.iServerJava2.editServices"><apiName>com.supermap.web.iServerJava2.editServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava2.editServices:DeleteEntityService"><apiName>DeleteEntityService</apiName><shortdesc>
+	 删除地物服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 删除地物服务类.
+	 <p>该类负责将客户端图层中要删除的地物相关参数 DeleteEntityParameters 提交到服务器端，并获取服务端返回的结果数据，将其存储在 EditResult 中。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:DeleteEntityService:DeleteEntityService"><apiName>DeleteEntityService</apiName><shortdesc>
+		 使用服务器地址 URL 实例化 DeleteEntityService 对象。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器地址 URL 实例化 DeleteEntityService 对象。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.editServices:DeleteEntityService:execute"><apiName>execute</apiName><shortdesc>
+		 将客户端要删除的地物相关参数传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>AsyncResponder 类，该类提供特定于 RPC 的 mx.rpc.IResponder 实现。允许创建者将数据（一个标记）和请求完成后应调用的方法相关联。有关 AsyncResponder 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 </apiDesc></apiParam><apiParam><apiItemName>deleteEntityParameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.editServices:DeleteEntityParameters</apiOperationClassifier><apiDesc>{iServer2_editServices_DeleteEntityService_method_execute_param_parameters}
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端要删除的地物相关参数传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.editServices:DeleteEntityService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的删除地物的结果数据。
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.editServices:EditResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的删除地物的结果数据。
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:UpdateEntityService"><apiName>UpdateEntityService</apiName><shortdesc>
+	 更新地物服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 更新地物服务类.
+	 <p>该类负责将客户端图层中修改的地物相关参数提交到服务器，并获取服务端返回的结果数据，将其存储在 EditResult 中。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:UpdateEntityService:UpdateEntityService"><apiName>UpdateEntityService</apiName><shortdesc>
+		 使用服务器地址 URL 实例化 UpdateEntityService 对象。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器地址 URL 实例化 UpdateEntityService 对象。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.editServices:UpdateEntityService:execute"><apiName>execute</apiName><shortdesc>
+		 将客户端编辑的地物相关参数传递给服务端，与服务端完成异步通讯。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>AsyncResponder 类，该类提供特定于 RPC 的 mx.rpc.IResponder 实现。允许创建者将数据（一个标记）和请求完成后应调用的方法相关联。有关 AsyncResponder 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 </apiDesc></apiParam><apiParam><apiItemName>updateEntityParameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.editServices:UpdateEntityParameters</apiOperationClassifier><apiDesc>UpdateEntityService 类，存储从服务端获取地物时所需的参数。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端编辑的地物相关参数传递给服务端，与服务端完成异步通讯。
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.editServices:UpdateEntityService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的更新地物的结果数据。
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.editServices:EditResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的更新地物的结果数据。
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:GetEntityParameters"><apiName>GetEntityParameters</apiName><shortdesc>
+	 获取地物参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取地物参数类.
+	 <p>根据指定的 ID（只能指定一个），在指定的图层中获取与其对应的地物。该类中三个属性都为必设属性。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:GetEntityParameters:GetEntityParameters"><apiName>GetEntityParameters</apiName><shortdesc>
+		 使用地图名称实例化 GetEntityParameters 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称实例化 GetEntityParameters 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.editServices:GetEntityParameters:id:get"><apiName>id</apiName><shortdesc>
+		 获取或设置要获取的地物 ID 号。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置要获取的地物 ID 号。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:GetEntityParameters:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置客户端要获取的地物所在的图层名称。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置客户端要获取的地物所在的图层名称。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:EditResult"><apiName>EditResult</apiName><shortdesc>
+	 地物编辑结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地物编辑结果类.
+	 <p>该类为编辑地物操作完成后返回的结果对象，包含操作成功与否、被编辑地物 ID、地图受影响的范围和操作之后的地图描述。<br/>AddEntityService、DeleteEntityService、GetEntityService、UpdateEntityService 执行的结果数据均会存储在该类。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.editServices:EditResult:editBounds:get"><apiName>editBounds</apiName><shortdesc>
+		 获取地图被编辑的区域.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取地图被编辑的区域.
+		 <p>即被编辑过的地图数据（地物）所对应的矩形范围（外接矩形）。</p>
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:EditResult:ids:get"><apiName>ids</apiName><shortdesc>
+		 获取被编辑地物的 ID 号列表。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取被编辑地物的 ID 号列表。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:EditResult:message:get"><apiName>message</apiName><shortdesc>
+		 通常这些信息都是提示编辑时出现的错误信息，如图层不存在等。
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 通常这些信息都是提示编辑时出现的错误信息，如图层不存在等。
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:EditResult:succeed:get"><apiName>succeed</apiName><shortdesc>
+		 获取编辑操作是否成功。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取编辑操作是否成功。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:UpdateEntityParameters"><apiName>UpdateEntityParameters</apiName><shortdesc>
+	 更新地物参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 更新地物参数类.
+	 <p>该类用于存储客户端已编辑过的地物参数。该类中三个属性都为必设属性。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:UpdateEntityParameters:UpdateEntityParameters"><apiName>UpdateEntityParameters</apiName><shortdesc>
+		 使用地图名称实例化 UpdateEntityParameters 对象。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称实例化 UpdateEntityParameters 对象。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.editServices:UpdateEntityParameters:entity:get"><apiName>entity</apiName><shortdesc>
+		 获取或设置地物新的几何形状和属性信息。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.editServices:Entity</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置地物新的几何形状和属性信息。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:UpdateEntityParameters:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置编辑地物所在图层名。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置编辑地物所在图层名。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:AddEntityService"><apiName>AddEntityService</apiName><shortdesc>
+	 添加地物服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 添加地物服务类.
+	 <p>该类负责将客户端图层中新增地物（几何对象）保存到服务端数据中，并将服务端返回的结果数据存储在 EntityResult 中。</p>
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:AddEntityService:AddEntityService"><apiName>AddEntityService</apiName><shortdesc>
+		 使用地图服务地址 url 实例化 AddEntityService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器地址 URL。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图服务地址 url 实例化 AddEntityService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.editServices:AddEntityService:execute"><apiName>execute</apiName><shortdesc>
+		 将客户端新增的地物参数传递给服务端，与服务端完成异步通讯。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>AsyncResponder 类，该类提供特定于 RPC 的 mx.rpc.IResponder 实现。允许创建者将数据（一个标记）和请求完成后应调用的方法相关联。有关 AsyncResponder 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 </apiDesc></apiParam><apiParam><apiItemName>addEntityParameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.editServices:AddEntityParameters</apiOperationClassifier><apiDesc>添加地物参数类。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端新增的地物参数传递给服务端，与服务端完成异步通讯。
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.editServices:AddEntityService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的地物添加的结果数据.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.editServices:EditResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的地物添加的结果数据.
+		 <p>包括地物是否添加成功、所添加地物的 ID 号、地物外接矩形等。</p> 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:GetEntityService"><apiName>GetEntityService</apiName><shortdesc>
+	 获取地物服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取地物服务类.
+	 <p>该类负责将客户端图层中要获取的地物相关参数提交到服务器。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:GetEntityService:GetEntityService"><apiName>GetEntityService</apiName><shortdesc>
+		 使用服务器地址 URL 实例化 GetEntityService 对象。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器地址 URL 实例化 GetEntityService 对象。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.editServices:GetEntityService:execute"><apiName>execute</apiName><shortdesc>
+		 将客户端要获取的地物相关参数传递给服务端，与服务端完成异步通讯。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>AsyncResponder 类，该类提供特定于 RPC 的 mx.rpc.IResponder 实现。允许创建者将数据（一个标记）和请求完成后应调用的方法相关联。有关 AsyncResponder 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 </apiDesc></apiParam><apiParam><apiItemName>getEntityParameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.editServices:GetEntityParameters</apiOperationClassifier><apiDesc>GetEntityService 类，存储从服务端获取地物时所需的参数。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端要获取的地物相关参数传递给服务端，与服务端完成异步通讯。
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.editServices:GetEntityService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的获取地物的结果数据。
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.editServices:Entity</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的获取地物的结果数据。
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:DeleteEntityParameters"><apiName>DeleteEntityParameters</apiName><shortdesc>
+	 删除地物参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 删除地物参数类.
+	 <p>删除指定图层中一个或多个地物。该类中三个属性都为必设属性。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:DeleteEntityParameters:DeleteEntityParameters"><apiName>DeleteEntityParameters</apiName><shortdesc>
+		 使用地图名称实例化 DeleteEntityParameters 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称实例化 DeleteEntityParameters 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.editServices:DeleteEntityParameters:ids:get"><apiName>ids</apiName><shortdesc>
+		 获取或设置要删除的地物 ID 列表。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置要删除的地物 ID 列表。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:DeleteEntityParameters:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置要删除的地物所在的图层名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置要删除的地物所在的图层名。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:Entity"><apiName>Entity</apiName><shortdesc>
+	 描述地物实体的类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 描述地物实体的类.
+	 <p>该类不仅包含地物的空间信息，还包含地物的属性信息。其中地物几何形状为服务端几何对象类型 ServerGeometry 类。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:Entity:Entity"><apiName>Entity</apiName><shortdesc>
+		 初始化 Entity 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Entity 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.editServices:Entity:fieldNames:get"><apiName>fieldNames</apiName><shortdesc>
+		 获取或设置地物属性信息的字段名列表.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置地物属性信息的字段名列表.
+		 <p>该属性取值来源于地物所在图层的属性表字段，只能为属性表已有字段赋予属性值。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:Entity:fieldValues:get"><apiName>fieldValues</apiName><shortdesc>
+		 获取或设置地物属性值列表 
+		 该属性是 FieldNames 属性字段的值，因此需要与指定的属性字段对应。字段及其值会按在各自列表中的索引顺序一一对应。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置地物属性值列表 
+		 <p>该属性是 FieldNames 属性字段的值，因此需要与指定的属性字段对应。字段及其值会按在各自列表中的索引顺序一一对应。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.editServices.xml#Entity/fieldNames"><linktext>fieldNames</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:Entity:id:get"><apiName>id</apiName><shortdesc>
+		 获取或设置唯一标识地物的 ID 号.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置唯一标识地物的 ID 号.
+		 <p>在添加地物时，系统可以自动编排 ID 号，无需用户输入。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:Entity:shape:get"><apiName>shape</apiName><shortdesc>
+		 获取或设置地物的几何形状（服务端几何对象类型 ServerGeometry），必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2:ServerGeometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置地物的几何形状（服务端几何对象类型 ServerGeometry），必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.editServices:AddEntityParameters"><apiName>AddEntityParameters</apiName><shortdesc>
+	 添加地物参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 添加地物参数类. 
+	 <p>该类用于在指定图层上添加与该图层类型相同的地物。所添加的地物会被自动分配一个 ID 号，该 ID 号无需用户指定也不能被更改。在为新增地物添加属性前需要了解新增地物所在图层的属性表结构，才能为相应字段赋予正确的属性值。<br/>该类中三个属性都为必设属性。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.editServices:AddEntityParameters:AddEntityParameters"><apiName>AddEntityParameters</apiName><shortdesc>
+		 使用地图名称初始化 AddEntityParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称初始化 AddEntityParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.editServices:AddEntityParameters:entity:get"><apiName>entity</apiName><shortdesc>
+		 Entity 类，用于获取或设置新增地物实体，包括地物 ID、几何形状和属性，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.editServices:Entity</apiValueClassifier></apiValueDef><apiDesc>
+		 Entity 类，用于获取或设置新增地物实体，包括地物 ID、几何形状和属性，必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.editServices:AddEntityParameters:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置添加地物的图层名，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置添加地物的图层名，必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

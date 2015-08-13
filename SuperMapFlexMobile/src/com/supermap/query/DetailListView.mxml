@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:topbar="com.supermap.topbar.*"
+		xmlns:query="com.supermap.query.*"
+		xmlns:containers="com.supermap.topbar.containers.*"
+		xmlns:renderers="com.supermap.query.renderers.*"
+		xmlns:components="com.supermap.components.*"
+		actionBarVisible="false"
+		creationComplete="init(event)"
+		destructionPolicy="never">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.components.serviceExtend.ExtendRecordSet;
+			import com.supermap.components.serviceExtend.ExtendService;
+			import com.supermap.components.skins.CustomButtonSkin;
+			import com.supermap.views.MainView;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.styles.PictureMarkerStyle;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.events.FaultEvent;
+			
+			import spark.transitions.CrossFadeViewTransition;
+
+			[Bindable]
+			private var listProvider:ArrayCollection;
+			[Bindable]
+			public var itemName:String;
+			[Bindable]
+			private var features:Array = [];
+			private var _messageTimer:Timer = new Timer(6000);
+			private var picStyle:PictureMarkerStyle;
+			private var transit:CrossFadeViewTransition = new CrossFadeViewTransition();
+
+			protected function init(event:FlexEvent):void
+			{
+				// feature Sytle 
+				if(data)
+				{
+					itemName = data.itemName;
+					if(data.src == "mainView")
+					{
+						listProvider = new ArrayCollection();
+						for(var i:int = 0; i < data.features.length; i++)
+						{
+							listProvider.addItem([i, data.features[i]]);
+						}
+						data.src = "other";
+					}
+					else
+					{
+						listProvider = new ArrayCollection();
+						queryData();
+					}
+				}
+			}
+
+			/**
+			 * 执行查询。
+			 */
+			public function queryData():void
+			{
+				//清除之前的数据
+				listProvider.removeAll();
+				listProvider.refresh();
+				//从服务端查询数据
+				itemName = data.itemName;
+				if(itemName != null)
+				{
+					var extendSrv:ExtendService = new ExtendService();
+					extendSrv.viewBounds = data.mapViewBounds;
+					extendSrv.execute(itemName, new AsyncResponder(queryRecordsHandler, faultHandler, null));
+				}
+				//　提示正执行查询操作
+				tipBar.currentState = "loading";
+				tipBar.showTip(false);
+				_messageTimer.addEventListener(TimerEvent.TIMER, stopTip);
+				_messageTimer.start();
+			}
+
+			protected function stopTip(event:TimerEvent):void
+			{
+				tipBar.currentState = "netWorkFault";
+				tipBar.showTip(true);
+				_messageTimer.stop();
+			}
+
+			/**
+			 * 返回结果处理。
+			 */
+			private function queryRecordsHandler(resultSet:ExtendRecordSet, mark:Object = null):void
+			{
+				if(resultSet == null || resultSet.features == null || resultSet.features.length < 0)
+				{
+					tipBar.currentState = "nullResult";
+					tipBar.showTip(true);
+				}
+				else
+				{
+					tipBar.hide();
+				}
+				_messageTimer.stop();
+				if(resultSet)
+				{
+					//　添加到列表中
+					var index:int = 0;
+					for each(var f:Feature in resultSet.features)
+					{
+						listProvider.addItem([index, f]);
+	
+						picStyle = new PictureMarkerStyle("assets/search/" + index + ".png");
+	
+						f.style = picStyle;
+						features.push(f);
+						index++;
+					}
+					data.features = features;
+				}
+			}
+
+			private function faultHandler(event:FaultEvent, mark:Object = null):void
+			{
+				tipBar.currentState = "netWorkFault";
+				tipBar.showTip(true);
+				_messageTimer.stop();
+			}
+
+			protected function detailList_clickHandler(event:Event):void
+			{
+				var currentFeature:Feature = event.target.data[1] as Feature;
+				data.currentFeature = currentFeature;
+				data.itemName = itemName;
+				this.navigator.popView(transit);
+			}
+
+			protected function toSearch_clickHandler(event:MouseEvent):void
+			{
+				this.navigator.popView(transit);
+			}
+
+			override public function createReturnObject():Object
+			{
+				return data;
+			}
+			protected function clearResult_clickHandler(event:MouseEvent):void
+			{
+				//清除之前的数据
+				listProvider.removeAll();
+				listProvider.refresh();
+				data.features = [];
+
+				data.features = null;
+				this.navigator.popView(transit);
+			}
+		]]>
+	</fx:Script>
+	<topbar:TopNavigatorBar id="topBar"
+							isResultPage="true"/>
+	<!-- -->
+	<s:Group id="message"
+			 width="100%"
+			 height="{topBar.height }">
+		<s:Label id="itemName_label"
+				 x="10"
+				 y="13"
+				 fontSize="17"
+				 text="{ '&quot;' + itemName + '&quot;结果列表' }"/>
+		<s:HGroup y="5"
+				  right="20"
+				  gap="10">
+			<s:Button id="toSearch"
+					  label="返回"
+					  color="0xFFFFFF"
+					  click="toSearch_clickHandler(event)"
+					  skinClass="com.supermap.components.skins.CustomButtonSkin2"/>
+			<s:Button id="clearResult"
+					  label="清除"
+					  color="0xFFFFFF"
+					  click="clearResult_clickHandler(event)"
+					  skinClass="com.supermap.components.skins.CustomButtonSkin2"/>
+		</s:HGroup>
+	</s:Group>
+	<!-- 结果显示列表-->
+	<renderers:DetailList id="detailList"
+						  y="{topBar.height}"
+						  width="100%"
+						  height="100%"
+						  dataProvider="{listProvider}"
+						  detailItemClick="detailList_clickHandler(event)"/>
+	<!-- 状态提示 -->
+	<components:StateTip id="tipBar"
+						 visible="false"
+						 bottom="0"
+						 width="100%"
+						 height="40"/>
+</s:View>

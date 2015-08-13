@@ -1,0 +1,1264 @@
+<apiPackage id="com.supermap.web.iServerJava2.themeServices"><apiName>com.supermap.web.iServerJava2.themeServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeGraph"><apiName>ThemeGraph</apiName><shortdesc>
+	 统计专题图.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 统计专题图.
+	 <p>统计专题图可同时表示多个字段属性信息，在区域本身与各区域之间形成横向和纵向的对比。它允许一次分析多个数值型变量，即可以将多个变量的值绘制在一个统计图上。目前提供的统计图类型有：面积图，阶梯图，折线图，点状图，柱状图，三维柱状图，饼图，三维饼图，玫瑰图，三维玫瑰图，堆叠柱状图以及三维堆叠柱状图。多用于具有相关数量特征的地图上，比如表示不同地区多年的粮食产量、GDP、人口等，不同时段客运量、地铁流量等。<br/>统计专题图必须设置用于制作专题图的子项，因此 Items 属性为必设值。<br/>下图为对我国南方八省市某年的几项经济指标制作的统计图：<br/><img src="../../../../../images/GraphTheme1.bmp"/><img src="../../../../../images/GraphTheme2.bmp"/></p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:ThemeGraph"><apiName>ThemeGraph</apiName><shortdesc>
+		 初始化 ThemeGraph 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeGraph 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:axesColor:get"><apiName>axesColor</apiName><shortdesc>
+		 获取或设置坐标轴颜色，默认为黑色。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerColor</apiValueClassifier><apiDefaultValue>(0,0,0) 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置坐标轴颜色，默认为黑色。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:axesTextStyle:get"><apiName>axesTextStyle</apiName><shortdesc>
+		 获取或设置坐标轴文本风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerTextStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置坐标轴文本风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:barWidth:get"><apiName>barWidth</apiName><shortdesc>
+		 获取或设置柱状专题图中每一个柱的宽度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置柱状专题图中每一个柱的宽度.
+		 <p>使用地图坐标单位，只有选择的统计图类型为柱状图（柱状图、三维柱状图、堆叠柱状图、三维堆叠柱状图）时，此项才可设置。 </p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:graduatedMode:get"><apiName>graduatedMode</apiName><shortdesc>
+		 获取或设置统计图中地理要素的值与图表尺寸间的映射关系（常数、对数、平方根），即分级方式。默认值为常数分级方式。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>GraduatedMode.CONSTANT
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置统计图中地理要素的值与图表尺寸间的映射关系（常数、对数、平方根），即分级方式。默认值为常数分级方式。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#GraduatedMode"><linktext>GraduatedMode</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:graphTextFormat:get"><apiName>graphTextFormat</apiName><shortdesc>
+		 获取或设置统计专题图文本格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置统计专题图文本格式。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#GraphTextFormat"><linktext>GraphTextFormat</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:graphTextStyle:get"><apiName>graphTextStyle</apiName><shortdesc>
+		 获取或设置统计图上的文字标注风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerTextStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置统计图上的文字标注风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:graphType:get"><apiName>graphType</apiName><shortdesc>
+		 获取或设置统计专题图类型.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置统计专题图类型.
+		 <p>SuperMap 提供了多种类型的统计图，分别为面积图、阶梯图、折线图、点状图、柱状图、三维柱状图、饼图、三维饼图、玫瑰图、三维玫瑰图、堆叠柱状图、三维堆叠柱状图、环状图。默认为饼图。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#GraphType"><linktext>GraphType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isAxesDisplayed:get"><apiName>isAxesDisplayed</apiName><shortdesc>
+		 获取或设置是否显示坐标轴。false 表示不显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否显示坐标轴。false 表示不显示.
+		 <p>由于饼状图和环状图无坐标轴，故该属性以及所有与坐标轴设置相关的属性都不适用于它们。并且只有当 IsAxesDisplayed 为 true 时，其它设置坐标轴的属性才起作用。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isAxesGridDisplayed:get"><apiName>isAxesGridDisplayed</apiName><shortdesc>
+		 获取或设置是否在统计图坐标轴上显示网格。false 表示不显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否在统计图坐标轴上显示网格。false 表示不显示。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isAxesTextDisplayed:get"><apiName>isAxesTextDisplayed</apiName><shortdesc>
+		 获取或设置是否显示坐标轴的文本标注。false 表示不显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否显示坐标轴的文本标注。false 表示不显示。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isFlowEnabled:get"><apiName>isFlowEnabled</apiName><shortdesc>
+		 获取或设置是否流动显示统计图。默认为 false，即不流动显示。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否流动显示统计图。默认为 false，即不流动显示。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isGraphSizeFixed:get"><apiName>isGraphSizeFixed</apiName><shortdesc>
+		 获取或设置缩放地图时统计图符号是否固定大小。false 表示随地图缩放。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置缩放地图时统计图符号是否固定大小。false 表示随地图缩放。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isGraphTextDisplayed:get"><apiName>isGraphTextDisplayed</apiName><shortdesc>
+		 获取或设置是否显示统计图上的文字标注。false 表示不显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否显示统计图上的文字标注。false 表示不显示。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isLeaderLineDisplayed:get"><apiName>isLeaderLineDisplayed</apiName><shortdesc>
+		 获取或设置是否显示统计图和它所表示的对象之间的牵引线，默认为 false，表示不显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否显示统计图和它所表示的对象之间的牵引线，默认为 false，表示不显示.
+		 <p>如果渲染符号偏移该对象，图与对象之间可以采用牵引线进行连接。只有设置了 IsFlowEnabled 为 true 时，牵引线才起作用。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeGraph/isFlowEnabled"><linktext>isFlowEnabled</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:isNegativeDisplayed:get"><apiName>isNegativeDisplayed</apiName><shortdesc>
+		 获取或设置专题图中是否显示属性为负值的数据，false 表示不显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置专题图中是否显示属性为负值的数据，false 表示不显示。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:items:get"><apiName>items</apiName><shortdesc>
+		 获取或设置统计专题图子集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置统计专题图子集合.
+		 <p>统计专题图可以基于多个变量，反映多种属性，即可以将多个专题变量的值绘制在一个统计图上。每一个专题变量对应的统计图即为一个专题图子项。 对于每个专题图子项可以为其设置标题、风格，甚至可以将该子项再制作成范围分段专题图。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:leaderLineStyle:get"><apiName>leaderLineStyle</apiName><shortdesc>
+		 获取或设置统计图与其表示对象之间牵引线的风格.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置统计图与其表示对象之间牵引线的风格.
+		 如果渲染符号偏移该对象，符号与对象之间可以采用牵引线进行连接。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:maxGraphSize:get"><apiName>maxGraphSize</apiName><shortdesc>
+		 获取或设置统计图中显示的最大图表尺寸基准值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>60
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置统计图中显示的最大图表尺寸基准值.
+		 <p>专题图表的尺寸大小与基准值、分级方式及专题字段值的大小都有着紧密联系。它是利用指定的分级方式，最大基准值、最小基准值以及字段的最大值和最小值计算统计图中各个值对应的图表尺寸的大小。该参数建议使用系统提供的默认值。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:minGraphSize:get"><apiName>minGraphSize</apiName><shortdesc>
+		 获取或设置统计图中显示的最小图表尺寸基准值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>40
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置统计图中显示的最小图表尺寸基准值.
+		 <p>专题图表的大小与基准值、分级方式及专题字段值的大小都有着紧密联系。它是利用指定的分级方式，最大基准值、最小基准值以及字段的最大值和最小值计算统计图中各个值对应的图表尺寸的大小。该参数建议使用系统提供的默认值。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:offsetX:get"><apiName>offsetX</apiName><shortdesc>
+		 统计图的水平偏移量或者表达偏移量的字段(该字段必须为数值型字段)表达式。默认使用地图单位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/><apiDefaultValue>0.0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 统计图的水平偏移量或者表达偏移量的字段(该字段必须为数值型字段)表达式。默认使用地图单位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:offsetY:get"><apiName>offsetY</apiName><shortdesc>
+		 统计图的垂直偏移量或者表达偏移量的字段(该字段必须为数值型字段)表达式。默认使用地图单位。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/><apiDefaultValue>0.0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 统计图的垂直偏移量或者表达偏移量的字段(该字段必须为数值型字段)表达式。默认使用地图单位。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:roseAngle:get"><apiName>roseAngle</apiName><shortdesc>
+		 获取或设置统计图中玫瑰图或三维玫瑰图用于等分的角度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置统计图中玫瑰图或三维玫瑰图用于等分的角度.
+		 <p>默认为0度，精确到0.1度。在角度为0或者大于360度的情况下均使用360度来等分制作统计图的字段数。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraph:startAngle:get"><apiName>startAngle</apiName><shortdesc>
+		 获取或设置饼状统计图扇形的起始角。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置饼状统计图扇形的起始角。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:GraduatedMode"><apiName>GraduatedMode</apiName><shortdesc>
+	 专题图分级模式.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图分级模式.
+	 分级主要是为了减少制作统计专题图中数据大小之间的差异。有三种分级模式：常数、对数和平方根。不同的分级模式用于确定符号大小的数值是不相同的，常数按照字段的原始数据进行，对数则是对每条记录对应的专题变量取自然对数、平方根则是对其取平方根，用最终得到的结果来确定其等级符号的大小。<br/>对于有值为负数的字段，不可以采用对数和平方根的分级方式。对于所有值均大于 0 的字段，如果数据之间差距较大，则可以采用对数或者平方根的分级方式来进行，这样就减少了数据之间的绝对大小的差异，使得等级符号图的视觉效果比较好，同时不同类别之间的比较也还是有意义的；若需突出小于 1 的值和大于 1 的值之间的区别，则可选用对数模式。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:GraduatedMode:CONSTANT"><apiName>CONSTANT</apiName><shortdesc>
+		 常量分级模式，对应值为 0.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 常量分级模式，对应值为 0.
+		 <p>按属性表中原始数值的线性比例进行分级运算。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraduatedMode:LOGARITHM"><apiName>LOGARITHM</apiName><shortdesc>
+		 对数分级模式，对应值为 2.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 对数分级模式，对应值为 2.
+		 <p>按属性表中原始数值自然对数的线性比例进行分级运算。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraduatedMode:SQUARE_ROOT"><apiName>SQUARE_ROOT</apiName><shortdesc>
+		 平方根分级模式，对应值为 1.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 平方根分级模式，对应值为 1.
+		 <p>按属性表中原始数值平方根的线性比例进行分级运算。</p>
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:RemoveThemesService"><apiName>RemoveThemesService</apiName><shortdesc>
+	 移除专题图服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 移除专题图服务类.
+	 <p>该类负责将用于清除专题图时所需的参数传递给服务端，并接收服务端返回的移除专题图后的结果数据。与制作专题图一样，服务端清除专题图后会返回一个显示状态，该状态对应唯一的 HashCode 值。<br/>服务端与客户端的交互过程为：例如现有一个图层 A 并已对图层 A 生成了多次专题图，清除服务端专题图就是清除以前保存在服务端的所有专题图状态从而形成一个新的显示状态，则移除专题图的状态以一串 HashCode 存储在移除返回结果类 RemoveThemeResult.layerKey 中，根据这个 key 值在客户端对图层 A 数据生成图层 B，最后将该图层 B 显示在客户端。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:RemoveThemesService:RemoveThemesService"><apiName>RemoveThemesService</apiName><shortdesc>
+		 使用服务器地址 url 初始化 RemoveThemesService 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器地址 url 初始化 RemoveThemesService 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.themeServices:RemoveThemesService:execute"><apiName>execute</apiName><shortdesc>
+		 执行移除专题图操作，即将客户端定义的移除专题图时所需的相关参数 RemoveThemesParameters 传递至服务端，并获取服务端返回的移除专题图后的数据，将结果保存于 RemoveThemesResult 中。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>远程或异步请求服务完成时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.themeServices:RemoveThemesParameters</apiOperationClassifier><apiDesc>移除专题图时需要向服务端传递的参数。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行移除专题图操作，即将客户端定义的移除专题图时所需的相关参数 RemoveThemesParameters 传递至服务端，并获取服务端返回的移除专题图后的数据，将结果保存于 RemoveThemesResult 中。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:RemoveThemesResult"><apiName>RemoveThemesResult</apiName><shortdesc>
+	 服务端返回的移除专题图结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端返回的移除专题图结果类.
+	 <p>该类中包含一个用于唯一标识专题图移除后的地图显示状态的 key 值。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:RemoveThemesResult:layerKey:get"><apiName>layerKey</apiName><shortdesc>
+		 描述专题图移除后的地图显示状态。   
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 描述专题图移除后的地图显示状态。   
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeLabel"><apiName>ThemeLabel</apiName><shortdesc>
+	 标签专题图.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 标签专题图.
+	 <p>标签专题图是用文本的形式在图层中显示点、线、面等对象的属性信息，一般将文本型或数值型字段标注于图层中，如地名、道路名称、河流等级、宽度等信息。<br/>标签专题图有两种表达方式:第一种为分段标签专题图。这种方法是对标签专题图进行分段，要求属性 rangeExpression 必须不为空并且合法，而且 items 中的每个子对象的 [Start，End] 分段值必须来源于属性 rangeExpression 的字段值；<br/>第二种是统一标签专题图，即将指定图层的表达式的所有值使用统一的风格输出，这种情况下必须设置属性 LabelExpression，用于设定标签专题图所使用的字段，因此这种情况下属性 labelExpression 必须合法。<br/>两种方法以第一种为主，即如果两种方法都设置合法，则优先使用第一种方式进行标签专题图的制作。<br/>下图对各省、直辖市名称生成的标签专题图：<br/><img src="../../../../../images/ThemeLabel.png"/></p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:ThemeLabel"><apiName>ThemeLabel</apiName><shortdesc>
+		 初始化 ThemeLable 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeLable 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:backStyle:get"><apiName>backStyle</apiName><shortdesc>
+		 获取或设置标签的背景风格.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置标签的背景风格.
+		 <p>当背景形状 LabelBackShape 属性为默认值，即不显示任何风格时，该属性无效。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:isAlongLine:get"><apiName>isAlongLine</apiName><shortdesc>
+		 获取或设置文本是否沿着线的方向标注。false 表示不沿线标注。默认值为 false。该属性仅对线图层和网络图层有效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置文本是否沿着线的方向标注。false 表示不沿线标注。默认值为 false。该属性仅对线图层和网络图层有效。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:isAngleFixed:get"><apiName>isAngleFixed</apiName><shortdesc>
+		 获取或设置当沿线显示文本时是否将文本角度固定。false 表示不固定，按照沿线角度显示文本。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置当沿线显示文本时是否将文本角度固定。false 表示不固定，按照沿线角度显示文本。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:isFlowEnabled:get"><apiName>isFlowEnabled</apiName><shortdesc>
+		 获取或设置是否流动显示标签。false 表示不流动.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否流动显示标签。false 表示不流动.
+		 <p>即标签会随着地图窗口的变化而移动以达到全部显示的优化效果，流动显示只适合于线和面要素的标注。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:isLabelRepeated:get"><apiName>isLabelRepeated</apiName><shortdesc>
+		 获取或设置当线对象较长时，是否进行循环标注。false 表示不进行循环标注.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置当线对象较长时，是否进行循环标注。false 表示不进行循环标注.
+		 <p>例如：用于道路标注时，需要设定是否每隔一段距离重复显示道路标注。只有当标签设为沿线标注时，该属性有效，即 isAlongLine 属性值为 true。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeLabel/isAlongLine"><linktext>isAlongLine</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:isLeaderLineDisplayed:get"><apiName>isLeaderLineDisplayed</apiName><shortdesc>
+		 获取或设置是否显示标签和它标注对象之间的牵引线。false 表示不显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否显示标签和它标注对象之间的牵引线。false 表示不显示.
+		 <p>只有当 isFlowEnabled 为 true 且水平或垂直偏移量任意一值不为 0 时，牵引线会显示。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:isOverlapAvoided:get"><apiName>isOverlapAvoided</apiName><shortdesc>
+		 获取或设置是否允许以文本避让方式显示文本。true 表示自动避免文本叠盖.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否允许以文本避让方式显示文本。true 表示自动避免文本叠盖.
+		 <p>该属性只针对标签专题图层中的文本数据。<br/>异常：在标签重叠度很大的情况下，使用该属性可能无法实现自动避让功能。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:items:get"><apiName>items</apiName><shortdesc>
+		 获取或设置标签专题图子项 ThemeLableItem。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置标签专题图子项 ThemeLableItem。
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava2.themeServices.ThemeLableItem.xml"><linktext>ThemeLableItem</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:labelBackShape:get"><apiName>labelBackShape</apiName><shortdesc>
+		 获取或设置标签专题图中标签的背景形状.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置标签专题图中标签的背景形状.
+		 <p>背景形状可以是矩形、圆角矩形、菱形、椭圆形、三角形和符号等，默认为不显示任何背景。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#LabelBackShape"><linktext>LabelBackShape</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:labelExpression:get"><apiName>labelExpression</apiName><shortdesc>
+		 获取或设置标注使用的字段或字段表达式。系统将设置的字段值以标签的形式显示在图层中。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置标注使用的字段或字段表达式。系统将设置的字段值以标签的形式显示在图层中。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:labelRepeatInterval:get"><apiName>labelRepeatInterval</apiName><shortdesc>
+		 获取或设置沿线循环标注的间隔。长度的单位与地图单位一致。只有当 IsLabelRepeated 为 true 时，该属性才有效。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置沿线循环标注的间隔。长度的单位与地图单位一致。只有当 IsLabelRepeated 为 true 时，该属性才有效。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeLabel/isLabelRepeated"><linktext>isLabelRepeated</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:leaderLineStyle:get"><apiName>leaderLineStyle</apiName><shortdesc>
+		 获取或设置标签与其标注对象之间牵引线的风格.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置标签与其标注对象之间牵引线的风格.
+		 <p>如果标签偏移对象，它们间可以用牵引线连接。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:maxLabelLength:get"><apiName>maxLabelLength</apiName><shortdesc>
+		 获取或设置标签单行显示的最大长度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>256
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置标签单行显示的最大长度.
+		 <p>当注记长度超过这个长度，可以采用三种方式来处理：请参见 OverLengthLabelMode 类。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:offsetX:get"><apiName>offsetX</apiName><shortdesc>
+		 获取或设置标签专题图中标记相对于要素内点的水平偏移量，单位为地图单位.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置标签专题图中标记相对于要素内点的水平偏移量，单位为地图单位.
+		 <p>可以直接输入数值设置偏移量；也可以选择该图层的一个数值型字段，使用字段值作为偏移量。例如设置水平偏移量为字段表达式 SmID 的值，若 SmID=2，那么水平偏移量的值为2。</p> 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:offsetY:get"><apiName>offsetY</apiName><shortdesc>
+		 获取或设置标签专题图中标记相对于要素内点的垂直偏移量，单位为地图单位.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置标签专题图中标记相对于要素内点的垂直偏移量，单位为地图单位.
+		 <p>可以直接输入数值设置偏移量；也可以选择该图层的一个数值型字段，使用字段值作为偏移量。例如设置垂直偏移量为字段表达式 SmID 的值，若 SmID=2，那么垂直移量的值为2。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:overLengthLabelMode:get"><apiName>overLengthLabelMode</apiName><shortdesc>
+		 获取或设置超长标签处理模式
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置超长标签处理模式
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#OverLengthLabelMode"><linktext>OverLengthLabelMode</linktext></link><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeLabel/maxLabelLength"><linktext>maxLabelLength</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:rangeExpression:get"><apiName>rangeExpression</apiName><shortdesc>
+		 获取或设置分段字段表达式。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置分段字段表达式。.
+		 <p>该表达式对应的字段或字段表达式的值必须为数值型。当 RangeExpression 和 LabelExpression 都设置时，以 RangeExpression 属性优先。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeLabel/labelExpression"><linktext>labelExpression</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabel:uniformStyle:get"><apiName>uniformStyle</apiName><shortdesc>
+		 获取或设置标签文本的统一风格.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerTextStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置标签文本的统一风格.
+		 <p>当标签专题图子项未设置 style 属性时，所有标签会以该风格显示；但如果专题图子项已设置 style 属性，该属性就不起作用。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeGraphItem"><apiName>ThemeGraphItem</apiName><shortdesc>
+	 统计专题图子项类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 统计专题图子项类.
+	 <p>该类用来设置统计专题图子项的标题，专题变量，显示风格和分段风格。<br/>统计专题图通过为每个要素或记录绘制统计图来反映其对应的专题值的大小。统计专题图可以基于多个变量，反映多种属性，即可以将多个专题变量的值绘制在一个统计图上。每一个专题变量对应的统计图即为一个专题图子项。<br/>设置统计专题图子项时，GraphExpression 和 UniformStyle 为必设属性。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeGraphItem:ThemeGraphItem"><apiName>ThemeGraphItem</apiName><shortdesc>
+		 初始化 ThemeGraphItem 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeGraphItem 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraphItem:caption:get"><apiName>caption</apiName><shortdesc>
+		 获取或设置专题图子项的标题。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置专题图子项的标题。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraphItem:graphExpression:get"><apiName>graphExpression</apiName><shortdesc>
+		 获取或设置统计专题图的专题变量.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置统计专题图的专题变量.
+		 <p>专题变量可以是一个字段或字段表达式。字段必须为数值型；表达式只能为数值型的字段间的运算。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraphItem:rangeSetting:get"><apiName>rangeSetting</apiName><shortdesc>
+		 获取或设置统计专题图子项的分段风格.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ThemeRange</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置统计专题图子项的分段风格.
+		 <p>通过该属性，可以对该子项的字段或表达式进行分段，并对每段赋予不同的显示风格。也就是说可以对每个子项再制作范围分段专题图。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraphItem:uniformStyle:get"><apiName>uniformStyle</apiName><shortdesc>
+		 获取或设置统计专题图子项的显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置统计专题图子项的显示风格。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:RemoveThemesParameters"><apiName>RemoveThemesParameters</apiName><shortdesc>
+	 移除专题图参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 移除专题图参数类.
+	 <p>该类存储了移除服务端专题图所需的参数，继承于 ParameterBase 类，其中包含 mapName 必设字段。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:RemoveThemesParameters:RemoveThemesParameters"><apiName>RemoveThemesParameters</apiName><shortdesc>
+		 使用地图名称初始化 RemoveThemesParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称初始化 RemoveThemesParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:RemoveThemesParameters:layerNames:get"><apiName>layerNames</apiName><shortdesc>
+		 要删除的专题图层名称。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 要删除的专题图层名称。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueItem"><apiName>ThemeUniqueItem</apiName><shortdesc>
+	 单值专题图子项.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 单值专题图子项.
+	 <p>单值专题图是将专题值相同的要素归为一类，为每一类设定一种渲染风格，其中每一类就是一个专题图子项。比如，利用单值专题图制作行政区划图，Name 字段代表省/直辖市名，该字段用来做专题变量，如果该字段的字段值总共有5种不同值，则该行政区划图有5个专题图子项。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueItem:ThemeUniqueItem"><apiName>ThemeUniqueItem</apiName><shortdesc>
+		 初始化 ThemeUniqueItem 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeUniqueItem 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueItem:caption:get"><apiName>caption</apiName><shortdesc>
+		 获取或设置专题图子项的标题。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置专题图子项的标题。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueItem:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置单值专题图子项的显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置单值专题图子项的显示风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueItem:unique:get"><apiName>unique</apiName><shortdesc>
+		 获取或设置单值专题图子项的单值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置单值专题图子项的单值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueItem:visible:get"><apiName>visible</apiName><shortdesc>
+		 获取或设置单值专题图子项的可见性。true 表示可见。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置单值专题图子项的可见性。true 表示可见。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeLabelItem"><apiName>ThemeLabelItem</apiName><shortdesc>
+	 分段标签专题图子项.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 分段标签专题图子项.
+	 <p>标签专题图允许用户对数值型字段进行分段标记，同一范围段内的标签具有相同的显示风格，其中每一个范围段就是一个专题图子项，每一个子项都具有名称、风格、起始值和终止值。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeLabelItem:ThemeLabelItem"><apiName>ThemeLabelItem</apiName><shortdesc>
+		 初始化 ThemeLableItem 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeLableItem 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabelItem:caption:get"><apiName>caption</apiName><shortdesc>
+		 获取或设置标签专题子项的标题。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置标签专题子项的标题。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabelItem:end:get"><apiName>end</apiName><shortdesc>
+		 获取或设置标签专题图子项的分段终止值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置标签专题图子项的分段终止值.
+		 <p>如果该子项是分段中最后一项，那么该终止值就是分段的最大值；如果非最后一项，该终止值必须与下一子项的起始值相同，否则系统抛出异常。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabelItem:start:get"><apiName>start</apiName><shortdesc>
+		 获取或设置标签专题图子项的分段起始值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置标签专题图子项的分段起始值.
+		 <p>如果该子项是分段中的第一项，那么该起始值就是分段的最小值；如果该子项非第一项时，该项起始值必须与前一子项的终止值相同，否则系统会抛出异常。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabelItem:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置标签专题图子项的文本显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerTextStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置标签专题图子项的文本显示风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeLabelItem:visible:get"><apiName>visible</apiName><shortdesc>
+		 获取或设置标签专题图子项是否可见。true 表示可见。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置标签专题图子项是否可见。true 表示可见。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeService"><apiName>ThemeService</apiName><shortdesc>
+	 专题图服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图服务类.
+	 <p>该类负责将客户端制作专题图的参数传递给服务端，并接收服务端返回的专题图结果数据。<br/>服务端与客户端的交互过程为：例如对图层 A 制作一个专题图，则服务端生成的专题图的显示状态以一串 Hashcode 存储在返回结果类 ThemeResult.key 中，根据这个 key 值再在客户端生成一张专题图 B，最后将图层 B 显示在客户端。如果再一次对图层 A 制作专题图，若不调用移除专题图服务类 RemoveThemeService，则在客户端显示的专题图 B 中是多次专题图状态的叠加。需要注意的是：目前仅有 TiledDynamicIServerLayer 和 DynamicIServerLayer 支持制作专题图的功能，但图层 B 可以是任意的 iServer 图层类型。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeService:ThemeService"><apiName>ThemeService</apiName><shortdesc>
+		 与客户端交互的服务器地址。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 与客户端交互的服务器地址。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.themeServices:ThemeService:execute"><apiName>execute</apiName><shortdesc>
+		 执行制作专题图服务，即将客户端定义的专题图参数 ThemeParameters 传递至服务端，并获取服务端返回的专题图数据，将结果保存于 ThemeResult 中。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>远程或异步请求服务完成时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.themeServices:ThemeParameters</apiOperationClassifier><apiDesc>制作专题图时需要服务端传递的参数。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行制作专题图服务，即将客户端定义的专题图参数 ThemeParameters 传递至服务端，并获取服务端返回的专题图数据，将结果保存于 ThemeResult 中。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeService:themeResult:get"><apiName>themeResult</apiName><shortdesc>
+		 获取服务端返回的专题图数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ThemeResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的专题图数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueParam"><apiName>ThemeUniqueParam</apiName><shortdesc>
+	 单值专题图参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 单值专题图参数类.
+	 <p>该类用于存储制作单值专题图所需的参数，其中 LayerName 属性为必设属性。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueParam:ThemeUniqueParam"><apiName>ThemeUniqueParam</apiName><shortdesc>
+		 初始化 ThemeUniqueParam 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeUniqueParam 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueParam:colorGradientType:get"><apiName>colorGradientType</apiName><shortdesc>
+		 获取或设置单值专题图配色方案。默认值为黄~绿。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>ColorGradientType.YELLOW_GREEN
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置单值专题图配色方案。默认值为黄~绿。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ColorGradientType"><linktext>ColorGradientType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUniqueParam:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置制作单值专题图的图层名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置制作单值专题图的图层名。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ColorGradientType"><apiName>ColorGradientType</apiName><shortdesc>
+	 渐变颜色枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 渐变颜色枚举类.
+	 <p>渐变色是由起始色根据一定算法逐渐过渡到终止色的一种混合型颜色。<br/>该类作为单值专题图参数类、分段专题图参数类的属性，负责设置单值专题图、分段专题图的配色方案，在默认情况下专题图所有子项会根据这个配色方案完成填充。但如果为某几个子项的风格进行单独设置后（设置了 ThemeUniqueItem 或 ThemeRangeItem 类中 Style 属性），该配色方案对于这几个子项将不起作用。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:BLACK_WHITE"><apiName>BLACK_WHITE</apiName><shortdesc>
+		 黑白渐变色，对应值为0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 黑白渐变色，对应值为0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:BLUE_BLACK"><apiName>BLUE_BLACK</apiName><shortdesc>
+		 蓝黑渐变色，对应值为9。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>9</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 蓝黑渐变色，对应值为9。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:BLUE_RED"><apiName>BLUE_RED</apiName><shortdesc>
+		 蓝红渐变色，对应值为18。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>18</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 蓝红渐变色，对应值为18。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:BLUE_WHITE"><apiName>BLUE_WHITE</apiName><shortdesc>
+		 蓝白渐变色，对应值为3。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 蓝白渐变色，对应值为3。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:CYAN_BLACK"><apiName>CYAN_BLACK</apiName><shortdesc>
+		 青黑渐变色，对应值为12。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>12</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 青黑渐变色，对应值为12。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:CYAN_BLUE"><apiName>CYAN_BLUE</apiName><shortdesc>
+		 青蓝渐变色，对应值为21。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>21</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 青蓝渐变色，对应值为21。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:CYAN_GREEN"><apiName>CYAN_GREEN</apiName><shortdesc>
+		 青绿渐变色，对应值为22。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>22</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 青绿渐变色，对应值为22。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:CYAN_WHITE"><apiName>CYAN_WHITE</apiName><shortdesc>
+		 青白渐变色，对应值为6。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>6</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 青白渐变色，对应值为6。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:GREEN_BLACK"><apiName>GREEN_BLACK</apiName><shortdesc>
+		 绿黑渐变色，对应值为8。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>8</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 绿黑渐变色，对应值为8。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:GREEN_BLUE"><apiName>GREEN_BLUE</apiName><shortdesc>
+		 绿蓝渐变色，对应值为16。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>16</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 绿蓝渐变色，对应值为16。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:GREEN_ORANGE_VIOLET"><apiName>GREEN_ORANGE_VIOLET</apiName><shortdesc>
+		 绿橙紫渐变色，对应值为24。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>24</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 绿橙紫渐变色，对应值为24。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:GREEN_RED"><apiName>GREEN_RED</apiName><shortdesc>
+		 绿红渐变色，对应值为17。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>17</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 绿红渐变色，对应值为17。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:GREEN_WHITE"><apiName>GREEN_WHITE</apiName><shortdesc>
+		 绿白渐变色，对应值为2。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 绿白渐变色，对应值为2。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:PINK_BLACK"><apiName>PINK_BLACK</apiName><shortdesc>
+		 粉红到黑渐变色，对应值为11。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>11</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 粉红到黑渐变色，对应值为11。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:PINK_BLUE"><apiName>PINK_BLUE</apiName><shortdesc>
+		 粉红到蓝渐变色，对应值为20。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>20</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 粉红到蓝渐变色，对应值为20。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:PINK_RED"><apiName>PINK_RED</apiName><shortdesc>
+		 粉红到红渐变色，对应值为19。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>19</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 粉红到红渐变色，对应值为19。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:PINK_WHITE"><apiName>PINK_WHITE</apiName><shortdesc>
+		 粉红到白渐变色，对应值为5。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 粉红到白渐变色，对应值为5。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:RAIN_BOW"><apiName>RAIN_BOW</apiName><shortdesc>
+		 彩虹色，对应值为23。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>23</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 彩虹色，对应值为23。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:RED_BLACK"><apiName>RED_BLACK</apiName><shortdesc>
+		 红黑渐变色，对应值为7。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>7</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 红黑渐变色，对应值为7。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:RED_WHITE"><apiName>RED_WHITE</apiName><shortdesc>
+		 红白渐变色，对应值为1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 红白渐变色，对应值为1。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:SPECTRUM"><apiName>SPECTRUM</apiName><shortdesc>
+		 光谱渐变色，对应值为26。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>26</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 光谱渐变色，对应值为26。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:TERRAIN"><apiName>TERRAIN</apiName><shortdesc>
+		 地形渐变色，对应值为25。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>25</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 地形渐变色，对应值为25。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:YELLOW_BLACK"><apiName>YELLOW_BLACK</apiName><shortdesc>
+		 黄黑渐变色，对应值为10。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>10</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 黄黑渐变色，对应值为10。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:YELLOW_BLUE"><apiName>YELLOW_BLUE</apiName><shortdesc>
+		 黄蓝渐变色，对应值为15。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>15</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 黄蓝渐变色，对应值为15。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:YELLOW_GREEN"><apiName>YELLOW_GREEN</apiName><shortdesc>
+		 黄绿渐变色，对应值为14。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>14</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 黄绿渐变色，对应值为14。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:YELLOW_RED"><apiName>YELLOW_RED</apiName><shortdesc>
+		 黄红渐变色，对应值为13。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>13</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 黄红渐变色，对应值为13。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ColorGradientType:YELLOW_WHITE"><apiName>YELLOW_WHITE</apiName><shortdesc>
+		 黄白渐变色，对应值为4。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 黄白渐变色，对应值为4。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ServerColor"><apiName>ServerColor</apiName><shortdesc>
+	 专题图三原色类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图三原色类.
+	 <p>在制作专题图时用户使用 ServerStyle 类设置专题图的风格，其中就包括专题图要素的颜色设置。因此该类用于设置专题图要素的颜色，用 RGB 表示。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ServerColor:ServerColor"><apiName>ServerColor</apiName><shortdesc>
+		 使用 RGB 三原色初始化 ServerColor 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>red</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>三原色的红色值，范围为0-255。
+		 </apiDesc></apiParam><apiParam><apiItemName>green</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>三原色的绿色值，范围为0-255。
+		 </apiDesc></apiParam><apiParam><apiItemName>blue</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>三原色的蓝色值，范围为0-255。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用 RGB 三原色初始化 ServerColor 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerColor:blue:get"><apiName>blue</apiName><shortdesc>
+		 获取或设置三原色的蓝色值，范围为0-255。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置三原色的蓝色值，范围为0-255。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerColor:green:get"><apiName>green</apiName><shortdesc>
+		 获取或设置三原色的绿色值，范围为0-255。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置三原色的绿色值，范围为0-255。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerColor:red:get"><apiName>red</apiName><shortdesc>
+		 获取或设置三原色的红色值，范围为0-255。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>255
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置三原色的红色值，范围为0-255。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:FillGradientMode"><apiName>FillGradientMode</apiName><shortdesc>
+	 渐变填充模式枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 渐变填充模式枚举类.
+	 所有渐变类型都是两种颜色之间的渐变，即从渐变起始色到渐变终止色之间的渐变。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:FillGradientMode:CONICAL"><apiName>CONICAL</apiName><shortdesc>
+		 锥形渐变。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 锥形渐变。.
+		 <p>从起始母线到终止母线，渐变在逆时针和顺时针两个方向发生渐变，都是从起始色渐变到终止色。<br/>注意填充区域范围中心点为圆锥的顶点，在圆锥的母线上颜色不发生变化。<br/>如图所示，渐变的起始母线在填充区域范围中心点右侧的并经过该中心点的水平线上，上半圆锥颜色按逆时针发生渐变，下半圆锥按顺时针发生渐变，两个方向渐变的起始母线和终止母线分别相同，在逆时针方向和顺时针方向两个方向从起始母线转到终止母线的过程中，渐变都是从起始色均匀渐变到终止色。<br/><img src="../../../../../images/fillGradientModeConical.bmp"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:FillGradientMode:LINEAR"><apiName>LINEAR</apiName><shortdesc>
+		 线性渐变。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 线性渐变。.
+		 <p>从水平线段的起始点到终止点，如图所示，其颜色从起始色均匀渐变到终止色，垂直于该线段的直线上颜色不发生渐变。<br/><img src="../../../../../images/fillGradientModeLinear.bmp"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:FillGradientMode:NONE"><apiName>NONE</apiName><shortdesc>
+		 无渐变 .</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 无渐变 .
+		 <p>当使用普通填充模式时，设置渐变类型为无渐变。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:FillGradientMode:RADIAL"><apiName>RADIAL</apiName><shortdesc>
+		 圆形渐变。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 圆形渐变。.
+		 <p>以填充区域范围的中心点作为渐变填充的起始点，距离中心点最远的边界点作为终止点的圆形渐变。<br/>注意在同一个圆周上颜色不发生变化，不同的圆之间颜色发生渐变。<br/>如图所示，从渐变填充的起始点到终止点，其以起始点为圆心的各个圆的颜色随着圆的半径的增大从起始色均匀渐变到终止色。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:FillGradientMode:SQUARE"><apiName>SQUARE</apiName><shortdesc>
+		 方形渐变。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 方形渐变。.
+		 <p>以填充区域范围的中心点作为渐变填充的起始点，以填充区域范围的最小外接矩形的较短边的中点为终止点的正方形渐变。<br/>注意在每个正方形上的颜色不发生变化, 不同的正方形之间颜色发生变化。<br/>如图所示，从渐变填充的起始点到终止点，其以起始点为中心的正方形的颜色随着边长的增大从起始色均匀渐变到终止色。<br/><img src="../../../../../images/fillGradientModeSquare.bmp"/></p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:RangeMode"><apiName>RangeMode</apiName><shortdesc>
+	 范围分段专题图分段方式枚举类。 
+	 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 范围分段专题图分段方式枚举类。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:RangeMode:CUSTOM_INTERVAL"><apiName>CUSTOM_INTERVAL</apiName><shortdesc>
+		 自定义分段法，对应值为5.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 自定义分段法，对应值为5.
+		 <p>在自定义分段中，由用户指定各段的长度，即间隔距离来进行分段，分段数由 SuperMap 根据指定的间隔距离以及专题变量的最大和最小值来计算。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:RangeMode:EQUAL_INTERVAL"><apiName>EQUAL_INTERVAL</apiName><shortdesc>
+		 等距离分段法，对应值为0.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 等距离分段法，对应值为0.
+		 <p>等距离分段是根据作为专题变量的字段或表达式的最大值和最小值，按照用户设定的分段数进行相等间距的分段。在等距离分段中，每一段具有相等的长度。按照这种分段方式，很有可能某个分段中没有数值，即落到该段中的记录或要素为0个。 </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:RangeMode:LOGARITHM"><apiName>LOGARITHM</apiName><shortdesc>
+		 对数分段法，对应值为3.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 对数分段法，对应值为3.
+		 <p>数据中有负数不适合这种方法。对数分段方法的实现的原理与平方根分段方法基本相同，所不同的是平方根方法是对原数据取平方根，而对数分段方法是对原数据取对数，即对原数据的以10为底的对数值的等距离分段，其首先对原数据所有值的对数进行等距离分段，得到处理后数据的分段点，然后以10为底，以这些分段点的值作为指数的幂得到原数据的各分段点的值，从而得到分段方案。适用于最大值与最小值相差很大，用等距离分段不是很理想的情况，对数分段法比平方根分段法具有更高的压缩率，使数据间的差异尺度更小，优化分段结果。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:RangeMode:QUANTILE"><apiName>QUANTILE</apiName><shortdesc>
+		 等计数分段法，对应值为4.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 等计数分段法，对应值为4.
+		 <p>在等计数分段中，每个分段中具有相等数目的要素个数，当然，这个相等的个数是多少是由用户指定的分段数以及实际的要素个数来决定的，在可以均分的情况下，每段中对象数目应该是一样的，但是当对象数目不可均分时，分段结果在最后一段内会有出入，例如75个数据，分成8段，则每一段有9个要素，但最后一段只有3个要素。这种分段方法适合于线性分布的数据。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:RangeMode:SQUARE_ROOT"><apiName>SQUARE_ROOT</apiName><shortdesc>
+		 平方根分段法，对应值为1.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 平方根分段法，对应值为1.
+		 <p>平方根分段方法实质上是对原数据的平方根的等距离分段，其首先取所有数据的平方根进行等距离分段，得到处理后数据的分段点，然后将这些分段点的值进行平方作为原数据的分段点，从而得到原数据的分段方案。所以，数据中有负数不适合这种方法。按照这种分段方式，很有可能某个分段中没有数值，即落到该段中的记录或要素为0个。该方法适用于一些特定数据，如最小值与最大值之间相差比较大时，用等距离分段法可能需要分成很多的段才能区分，用平方根分段方法可以压缩数据间的差异，用较少的分段数却比较准确地进行分段。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:RangeMode:STDDEVIATION"><apiName>STDDEVIATION</apiName><shortdesc>
+		 标准差分段法，对应值为2.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 标准差分段法，对应值为2.
+		 <p>标准差的段数由计算结果决定，用户不可控制。标准差分段方法反映了各要素的某属性值对其平均值的偏离。该方法首先计算出专题变量的平均值和标准偏差，在此基础上进行分段。标准差分段的每个分段长度都是一个标准差，最中间的那一段以平均值为中心，即左边分段点和右边分段点分别与平均值相差0.5个标准差。 </p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeRange"><apiName>ThemeRange</apiName><shortdesc>
+	 范围分段专题图.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 范围分段专题图.
+	 <p>范围分段专题图是利用图层的某一属性信息映射为多个范围段，使用不同的颜色或符号（线型、填充）表示不同范围段落的属性值在整体上的分布情况，体现区域的差异。范围分段专题图多用于具有数量特征的地图，比如表示不同地区的粮食产量、GDP、人口、面积等的等级。<br/>制作范围分段专题图时必须设置用于制作专题图的字段，故该类中 RangeExpression 属性为必设值。<br/>如下图所示，在中部六省地图中将1990年人口分为6段显示，单位为万人：<br/><img src="../../../../../images/RangeTheme1.bmp"/><img src="../../../../../images/RangeTheme2.bmp"/></p>
+	 <p>对范围分段专题图风格设置进行如下说明：<br/>1.ColorGradientType 会根据选择的配色方案自动为每个字段值分配专题渲染风格。<br/>2.当在子项 ThemeRangeItem 中设置了风格 style 后，将以该风格进行显示，没有设置风格的子项将以系统自动分配风格显示。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeRange:ThemeRange"><apiName>ThemeRange</apiName><shortdesc>
+		 初始化 ThemeRange 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeRange 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRange:items:get"><apiName>items</apiName><shortdesc>
+		 获取或设置范围分段专题图子项集合。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置范围分段专题图子项集合。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeRangeItem"><linktext>ThemeRangeItem</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRange:makeDefaultParam:get"><apiName>makeDefaultParam</apiName><shortdesc>
+		 用于制作范围分段专题图的参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ThemeRangeParam</apiValueClassifier></apiValueDef><apiDesc>
+		 用于制作范围分段专题图的参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRange:rangeExpression:get"><apiName>rangeExpression</apiName><shortdesc>
+		 获取或设置用于制作范围分段专题图的字段或字段表达式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置用于制作范围分段专题图的字段或字段表达式.
+		 <p>由于范围分段专题图基于各种分段方法根据一定的距离进行分段，因而范围分段专题图所基于的字段值的数据类型必须为数值型。对于字段表达式，只能为数值型的字段间的运算。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeDotDensity"><apiName>ThemeDotDensity</apiName><shortdesc>
+	 点密度专题图.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 点密度专题图.
+	 <p>点密度专题图使用点的个数或密集程度来反映一个区域或范围某一专题数据的值，因此只有面数据才能制作点密度专题图。<br/>点密度专题图的一个点代表了一定数值，则一个区域内点的个数乘以一个点所表示的数值就是此区域对应的专题数据的值。例如指定一个点代表1000，则若一个区域的人口为1000000，则该区域点的个数为1000个。影响点密度专题图显示风格和效果的参数主要是：点代表的值和点风格。<br/>如下图所示，中部六省地图中，对1990年人口数量使用点密度来表示，设置基准值为10万人（即一个点代表10万人）：<br/> <img src="../../../../../images/ThemeDotDensity.png"/></p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeDotDensity:ThemeDotDensity"><apiName>ThemeDotDensity</apiName><shortdesc>
+		 初始化 ThemeDotDensity 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeDotDensity 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeDotDensity:dotExpression"><apiName>dotExpression</apiName><shortdesc>
+		 用于创建点密度专题图的字段或字段表达式，字段或字段表达式应为数值型。必设参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiType value="String"/></apiValueDef><apiDesc>
+		 用于创建点密度专题图的字段或字段表达式，字段或字段表达式应为数值型。必设参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeDotDensity:style"><apiName>style</apiName><shortdesc>
+		 定义点密度专题图符号显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 定义点密度专题图符号显示风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeDotDensity:value"><apiName>value</apiName><shortdesc>
+		 点密度专题图的基准值，单位同 dotExpression 属性。例如一个区域的人口为1000000，设置基准值为1000，则该区域点的个数为1000个。<br/>点值的确定与地图比例尺以及点的大小有关。地图比例尺越大，点可以越多，此时点值就可以设置相对小一些。点形状越大，点值相应就应该设置大一些。尽量做到点符号之间无层叠，点密度较紧凑，能清楚区分各个面域间点密度的差异和专题图美观。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiData>1</apiData><apiType value="Number"/><apiDefaultValue>1 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 点密度专题图的基准值，单位同 dotExpression 属性。例如一个区域的人口为1000000，设置基准值为1000，则该区域点的个数为1000个。<br/>点值的确定与地图比例尺以及点的大小有关。地图比例尺越大，点可以越多，此时点值就可以设置相对小一些。点形状越大，点值相应就应该设置大一些。尽量做到点符号之间无层叠，点密度较紧凑，能清楚区分各个面域间点密度的差异和专题图美观。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:OverLengthLabelMode"><apiName>OverLengthLabelMode</apiName><shortdesc>
+	 标签专题图中超长标签的处理模式.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 标签专题图中超长标签的处理模式.
+	 <p>即对文本过长时标签的显示方式。系统提供3种处理方式：省略号、换行或者不处理即全部显示。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:OverLengthLabelMode:NEW_LINE"><apiName>NEW_LINE</apiName><shortdesc>
+		 换行显示。此模式将标签中超出标签最大长度的部分换行显示，即用多行来显示。对应值为2。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 换行显示。此模式将标签中超出标签最大长度的部分换行显示，即用多行来显示。对应值为2。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:OverLengthLabelMode:NONE"><apiName>NONE</apiName><shortdesc>
+		 对超长标签不进行处理，此为默认模式，即在一行中全部显示文本。对应值为0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 对超长标签不进行处理，此为默认模式，即在一行中全部显示文本。对应值为0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:OverLengthLabelMode:OMIT"><apiName>OMIT</apiName><shortdesc>
+		 以省略号表示超出部分。此模式将标签中超出指定的标签最大长度 MaxLabelLength 的部分用省略号表示。对应值为1。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 以省略号表示超出部分。此模式将标签中超出指定的标签最大长度 MaxLabelLength 的部分用省略号表示。对应值为1。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeLabelItem/MaxLabelLength"><linktext>ThemeLabelItem.MaxLabelLength</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:GraphType"><apiName>GraphType</apiName><shortdesc>
+	 统计专题图类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 统计专题图类型枚举类.
+	 <p>该枚举主要用来设置制作的统计图的类型。SuperMap 为您提供了13种类型的统计图，分别为面积图、阶梯图、折线图、点状图、柱状图、三维柱状图、饼图、三维饼图、玫瑰图、三维玫瑰图、堆叠柱状图、三维堆叠柱状图、环状图。 </p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:AREA"><apiName>AREA</apiName><shortdesc>
+		 面积图，对应值为0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 面积图，对应值为0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:BAR3D"><apiName>BAR3D</apiName><shortdesc>
+		 三维柱状图，对应值为5。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 三维柱状图，对应值为5。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:BAR"><apiName>BAR</apiName><shortdesc>
+		 柱状图，对应值为4。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 柱状图，对应值为4。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:LINE"><apiName>LINE</apiName><shortdesc>
+		 折线图，对应值为2。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 折线图，对应值为2。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:PIE3D"><apiName>PIE3D</apiName><shortdesc>
+		 三维饼图，对应值为7。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>7</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 三维饼图，对应值为7。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:PIE"><apiName>PIE</apiName><shortdesc>
+		 饼图，对应值为6。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>6</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 饼图，对应值为6。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:POINT"><apiName>POINT</apiName><shortdesc>
+		 点状图，对应值为3。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 点状图，对应值为3。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:RING"><apiName>RING</apiName><shortdesc>
+		 环状图，对应值为14。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>14</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 环状图，对应值为14。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:ROSE3D"><apiName>ROSE3D</apiName><shortdesc>
+		 三维玫瑰图，对应值为9。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>9</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 三维玫瑰图，对应值为9。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:ROSE"><apiName>ROSE</apiName><shortdesc>
+		 玫瑰图，对应值为8。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>8</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 玫瑰图，对应值为8。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:STACK_BAR3D"><apiName>STACK_BAR3D</apiName><shortdesc>
+		 三维堆叠柱状图，对应值为13。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>13</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 三维堆叠柱状图，对应值为13。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:STACK_BAR"><apiName>STACK_BAR</apiName><shortdesc>
+		 堆叠柱状图，对应值为12。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>12</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 堆叠柱状图，对应值为12。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphType:STEP"><apiName>STEP</apiName><shortdesc>
+		 阶梯图，对应值为1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 阶梯图，对应值为1。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeUnique"><apiName>ThemeUnique</apiName><shortdesc>
+	 单值专题图.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 单值专题图.
+	 <p>单值专题图是利用不同的颜色或符号（线型、填充）表示图层中某一属性信息的不同属性值，属性值相同的要素具有相同的渲染风格。单值专题图多用于具有分类属性的地图上，比如土壤类型分布图、土地利用图、行政区划图等。<br/>制作单值专题图时必须设置用于制作专题图的字段，故该类中 UniqueExpression 属性为必设值。<br/>如下图所示，采用土地利用类型字段制作的某地区土地利用分类图：<br/><img src="../../../../../images/UniqueTheme1.bmp"/><img src="../../../../../images/UniqueTheme2.bmp"/><br/>对单值专题图风格设置进行如下说明： </p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeUnique:ThemeUnique"><apiName>ThemeUnique</apiName><shortdesc>
+		 初始化 ThemeUnique 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeUnique 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUnique:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 获取或设置未参与单值专题图制作的对象的显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置未参与单值专题图制作的对象的显示风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUnique:items:get"><apiName>items</apiName><shortdesc>
+		 获取或设置单值专题图子项 ThemeUniqueItem 集合。如果该值为设置，则直接按字段值自动分段，即字段有多少种值就有多少个子项。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置单值专题图子项 ThemeUniqueItem 集合。如果该值为设置，则直接按字段值自动分段，即字段有多少种值就有多少个子项。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeUniqueItem"><linktext>ThemeUniqueItem</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUnique:makeDefaultParam:get"><apiName>makeDefaultParam</apiName><shortdesc>
+		 用于制作单值专题图的参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ThemeUniqueParam</apiValueClassifier></apiValueDef><apiDesc>
+		 用于制作单值专题图的参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeUnique:uniqueExpression:get"><apiName>uniqueExpression</apiName><shortdesc>
+		 获取或设置用于制作单值专题图的字段或字段表达式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置用于制作单值专题图的字段或字段表达式.
+		 <p>该字段值的数据类型可以为数值型或字符型。如果设置字段表达式，只能是相同数据类型字段间的运算。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol"><apiName>ThemeGraduatedSymbol</apiName><shortdesc>
+	 等级符号专题图.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 等级符号专题图.
+	 <p>等级符号专题图是利用符号的大小来表示图层的数值型的某一字段或字段表达式的值。等级符号专题图多用于具有数量特征的地图，比如表示不同地区的粮食产量、GDP、人口等的分级。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:ThemeGraduatedSymbol"><apiName>ThemeGraduatedSymbol</apiName><shortdesc>
+		 初始化 ThemeGraduatedSymbol 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeGraduatedSymbol 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:baseValue:get"><apiName>baseValue</apiName><shortdesc>
+		 等级符号专题图的基准值，单位同专题变量的单位。必设参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 等级符号专题图的基准值，单位同专题变量的单位。必设参数.
+		 <p>每个符号的显示大小等于：positiveStyle或ZeroStyle 或 NegativeStyle. MarkerSize * value / basevalue，这里的 value 就是 Expression 所对应的值，即 value 是经过分级计算之后的值。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:expression:get"><apiName>expression</apiName><shortdesc>
+		 用于创建等级符号专题图的字段或字段表达式，字段或字段表达式应为数值型。必设参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 用于创建等级符号专题图的字段或字段表达式，字段或字段表达式应为数值型。必设参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:graduatedMode:get"><apiName>graduatedMode</apiName><shortdesc>
+		 等级符号专题图分级模式。 .</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 等级符号专题图分级模式。 .
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#GraduatedMode"><linktext>GraduatedMode</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:isFlowEnabled:get"><apiName>isFlowEnabled</apiName><shortdesc>
+		 是否允许等级符号图追随其对应的对象流动显示。false 表示不允许对象流动显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 是否允许等级符号图追随其对应的对象流动显示。false 表示不允许对象流动显示。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:isLeaderLineDisplayed:get"><apiName>isLeaderLineDisplayed</apiName><shortdesc>
+		 是否显示统计图和它所表示的对象之间的牵引线。false 表示不显示.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 是否显示统计图和它所表示的对象之间的牵引线。false 表示不显示.
+		 <p>如果等级符号偏移了其所表示对象（即 offsetX 或 offsetY 的值不为零），图与对象之间可以采用牵引线进行连接。<br/>注意：只有设置了 IsFlowEnabled 为 True 时，牵引线才起作用。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeGraduatedSymbol/isFlowEnabled"><linktext>isFlowEnabled</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:isNegativeDisplayed:get"><apiName>isNegativeDisplayed</apiName><shortdesc>
+		 是否显示值为负的等级符号。false 表示不显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 是否显示值为负的等级符号。false 表示不显示。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:isZeroDisplayed:get"><apiName>isZeroDisplayed</apiName><shortdesc>
+		 是否显示值为 0 的等级符号。false 表示不显示。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 是否显示值为 0 的等级符号。false 表示不显示。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:leaderLineStyle:get"><apiName>leaderLineStyle</apiName><shortdesc>
+		 等级符号与其表示对象间的牵引线的风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 等级符号与其表示对象间的牵引线的风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:negativeStyle:get"><apiName>negativeStyle</apiName><shortdesc>
+		 负值的等级符号风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 负值的等级符号风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:offsetX:get"><apiName>offsetX</apiName><shortdesc>
+		 等级符号专题图的水平偏移量.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 等级符号专题图的水平偏移量.
+		 <p>默认单位为地图单位。该值既可由直接输入的数值进行设置，如：offsetY = 2；也可以选择该图层的一个属性字段的表达式进行设置，但该字段必须为数值型，如：offsetX = offset，其中 offset 为图层中的一个属性字段，若 offset 值为2，则表示专题图的水平偏移量 offsetX 的值为 2。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:offsetY:get"><apiName>offsetY</apiName><shortdesc>
+		 等级符号专题图的垂直偏移量.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 等级符号专题图的垂直偏移量.
+		 <p>默认单位为地图单位。该值既可由直接输入的数值进行设置，如：offsetY = 2；也可以选择该图层的一个属性字段进行设置，但该字段必须为数值型，如：offsetY = offset，其中 offset 为图层中的一个属性字段，若 offset 值为2，则表示专题图的垂直偏移量 offsetY 的值为 2。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:positiveStyle:get"><apiName>positiveStyle</apiName><shortdesc>
+		 正值的等级符号风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 正值的等级符号风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeGraduatedSymbol:zeroStyle:get"><apiName>zeroStyle</apiName><shortdesc>
+		 0值的等级符号风格。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 0值的等级符号风格。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:GraphTextFormat"><apiName>GraphTextFormat</apiName><shortdesc>
+	 统计专题图文本显示格式.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 统计专题图文本显示格式.
+	 <p>在统计专题图中，可以设置各子项文本的显示形式，包括百分数 PERCENT 、真实数值 VALUE、标题 CAPTION、标题+百分数 CAPTION_PERCENT、标题+真实数值 CAPTION_VALUE 五种形式。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphTextFormat:CAPTION_PERCENT"><apiName>CAPTION_PERCENT</apiName><shortdesc>
+		 标题 + 百分数，对应值为4。以各子项的标题和百分比来进行标注。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 标题 + 百分数，对应值为4。以各子项的标题和百分比来进行标注。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphTextFormat:CAPTION_VALUE"><apiName>CAPTION_VALUE</apiName><shortdesc>
+		 标题 + 实际数值，对应值为5。以各子项的标题和真实数值来进行标注。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 标题 + 实际数值，对应值为5。以各子项的标题和真实数值来进行标注。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphTextFormat:CAPTION"><apiName>CAPTION</apiName><shortdesc>
+		 标题，对应值为3。以各子项的标题来进行标注。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 标题，对应值为3。以各子项的标题来进行标注。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphTextFormat:PERCENT"><apiName>PERCENT</apiName><shortdesc>
+		 百分数，对应值为1。以各子项所占的百分比来进行标注。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 百分数，对应值为1。以各子项所占的百分比来进行标注。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:GraphTextFormat:VALUE"><apiName>VALUE</apiName><shortdesc>
+		 实际数值，对应值为2。以各子项的真实数值来进行标注。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 实际数值，对应值为2。以各子项的真实数值来进行标注。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle"><apiName>ServerTextStyle</apiName><shortdesc>
+	 文本对象的显示风格。 
+	 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 文本对象的显示风格。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:ServerTextStyle"><apiName>ServerTextStyle</apiName><shortdesc>
+		 初始化 ServerTextStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerTextStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:align:get"><apiName>align</apiName><shortdesc>
+		 获取或设置注记对象的对齐方式。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>ServerTextAlignment.BASE_LINE_CENTER
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记对象的对齐方式。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ServerTextAlignment"><linktext>ServerTextAlignment</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:bgColor:get"><apiName>bgColor</apiName><shortdesc>
+		 获取或设置注记对象的背景色。默认值为红色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerColor</apiValueClassifier><apiDefaultValue>(255,0,0)
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记对象的背景色。默认值为红色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:bold:get"><apiName>bold</apiName><shortdesc>
+		 获取或设置注记对象的文本是否为粗体字。false 表示不加粗。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记对象的文本是否为粗体字。false 表示不加粗。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:color:get"><apiName>color</apiName><shortdesc>
+		 获取或设置注记对象的颜色。默认值为红色。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerColor</apiValueClassifier><apiDefaultValue>(255,0,0) 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记对象的颜色。默认值为红色。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:fixedSize:get"><apiName>fixedSize</apiName><shortdesc>
+		 获取或设置是否固定文本的大小尺寸。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否固定文本的大小尺寸。.
+		 <p>如果该属性值为 true，那么无论地图比例尺如何变化，文本对象的大小将按照固定的尺寸显示，而不随着比例尺的缩放而变化。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:fixedTextSize:get"><apiName>fixedTextSize</apiName><shortdesc>
+		 获取或设置固定文本的大小尺寸。像素单位。当 fixedSize 为 true 时有效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置固定文本的大小尺寸。像素单位。当 fixedSize 为 true 时有效。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ServerTextStyle/fixedSize"><linktext>fixedSize</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:fontHeight:get"><apiName>fontHeight</apiName><shortdesc>
+		 获取或设置注记字体的高度。使用地图单位。当 fixedSize 为 false 时有效。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记字体的高度。使用地图单位。当 fixedSize 为 false 时有效。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:fontName:get"><apiName>fontName</apiName><shortdesc>
+		 获取或设置注记字体的名称。默认值为"宋体"。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置注记字体的名称。默认值为"宋体"。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:fontWeight:get"><apiName>fontWeight</apiName><shortdesc>
+		 获取或设置注记字体粗体表示的具体数值。以磅为单位。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>100 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记字体粗体表示的具体数值。以磅为单位。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:fontWidth:get"><apiName>fontWidth</apiName><shortdesc>
+		 获取或设置注记字体的宽度。使用地图单位。当 fixedSize 为 false 时有效。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记字体的宽度。使用地图单位。当 fixedSize 为 false 时有效。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:italic:get"><apiName>italic</apiName><shortdesc>
+		 获取或设置注记字体是否采用斜体。false 表示不采用斜体。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记字体是否采用斜体。false 表示不采用斜体。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:outline:get"><apiName>outline</apiName><shortdesc>
+		 获取或设置是否以轮廓的方式来显示注记的背景。false 表示不加轮廓。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否以轮廓的方式来显示注记的背景。false 表示不加轮廓。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:rotation:get"><apiName>rotation</apiName><shortdesc>
+		 获取或设置注记旋转的角度，逆时针方向为正。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记旋转的角度，逆时针方向为正。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:shadow:get"><apiName>shadow</apiName><shortdesc>
+		 获取或设置注记是否有阴影。false 表示无阴影。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记是否有阴影。false 表示无阴影。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:stroke:get"><apiName>stroke</apiName><shortdesc>
+		 获取或设置注记字体是否加删除线。false 表示不加删除线。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记字体是否加删除线。false 表示不加删除线。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:transparent:get"><apiName>transparent</apiName><shortdesc>
+		 获取或设置注记背景是否透明。false 表示透明。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记背景是否透明。false 表示透明。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextStyle:underline:get"><apiName>underline</apiName><shortdesc>
+		 获取或设置注记字体是否加下划线。false 表示不加注。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置注记字体是否加下划线。false 表示不加注。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeRangeItem"><apiName>ThemeRangeItem</apiName><shortdesc>
+	 范围分段专题图子项类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 范围分段专题图子项类.
+	 <p>在分段专题图中，将分段字段的表达式的值按照某种分段模式被分成多个范围段。每个分段都有其分段起始值、终止值、名称和风格等。每个分段所表示的范围为[Start, End)。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeRangeItem:ThemeRangeItem"><apiName>ThemeRangeItem</apiName><shortdesc>
+		 初始化 ThemeRangeItem 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeRangeItem 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeItem:caption:get"><apiName>caption</apiName><shortdesc>
+		 获取或设置范围分段专题图子项的标题。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置范围分段专题图子项的标题。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeItem:end:get"><apiName>end</apiName><shortdesc>
+		 获取或设置范围分段专题图子项的终止值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置范围分段专题图子项的终止值.
+		 <p>如果该子项是分段中最后一个子项，那么该终止值就是分段的最大值；如果不是最后一项，该终止值必须与其下一子项的起始值相同，否则系统抛出异常。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeItem:start:get"><apiName>start</apiName><shortdesc>
+		 获取或设置范围分段专题图子项的起始值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置范围分段专题图子项的起始值.
+		 <p>如果该子项是分段中第一个子项，那么该起始值就是分段的最小值；如果不是第一个子项，该起始值必须与前一子项的终止值相同，否则系统会抛出异常。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeItem:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置范围分段专题图子项的显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置范围分段专题图子项的显示风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeItem:visible:get"><apiName>visible</apiName><shortdesc>
+		 获取或设置范围分段专题图子项的可见性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置范围分段专题图子项的可见性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeResult"><apiName>ThemeResult</apiName><shortdesc>
+	 服务端返回的专题图结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端返回的专题图结果类.
+	 该类中包含专题图图层名和一个描述专题图显示状态的 Key 值。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeResult:key:get"><apiName>key</apiName><shortdesc>
+		 获取用于描述专题图显示状态的 Key 值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取用于描述专题图显示状态的 Key 值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeResult:name:get"><apiName>name</apiName><shortdesc>
+		 获取专题图图层名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取专题图图层名称。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment"><apiName>ServerTextAlignment</apiName><shortdesc>
+	 文本对齐方式.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 文本对齐方式.
+	 <p>指定文本中的各子对象的对齐方式。文本对象的每个子对象的位置是由文本的锚点和文本的对齐方式共同确定的。当文本子对象的锚点固定，对齐方式确定文本子对象与锚点的相对位置，从而确定文本子对象的位置。 </p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:BASE_LINE_CENTER"><apiName>BASE_LINE_CENTER</apiName><shortdesc>
+		 基准线居中对齐，对应值为4。当文本的对齐方式为基准线居中对齐时，文本子对象的基线的中点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 基准线居中对齐，对应值为4。当文本的对齐方式为基准线居中对齐时，文本子对象的基线的中点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:BASE_LINE_LEFT"><apiName>BASE_LINE_LEFT</apiName><shortdesc>
+		 基准线左对齐，对应值为3。当文本的对齐方式为基准线左对齐时，文本子对象的基线的左端点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 基准线左对齐，对应值为3。当文本的对齐方式为基准线左对齐时，文本子对象的基线的左端点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:BASE_LINE_RIGHT"><apiName>BASE_LINE_RIGHT</apiName><shortdesc>
+		 基准线右对齐，对应值为5。当文本的对齐方式为基准线右对齐时，文本子对象的基线的中点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 基准线右对齐，对应值为5。当文本的对齐方式为基准线右对齐时，文本子对象的基线的中点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:BOTTOM_CENTER"><apiName>BOTTOM_CENTER</apiName><shortdesc>
+		 底部居中对齐，对应值为7。当文本的对齐方式为底线居中对齐时，文本子对象的最小外接矩形的底线的中点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>7</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 底部居中对齐，对应值为7。当文本的对齐方式为底线居中对齐时，文本子对象的最小外接矩形的底线的中点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:BOTTOM_LEFT"><apiName>BOTTOM_LEFT</apiName><shortdesc>
+		 左下角对齐，对应值为6。当文本的对齐方式为左下角对齐时，文本子对象的最小外接矩形的左下角点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>6</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 左下角对齐，对应值为6。当文本的对齐方式为左下角对齐时，文本子对象的最小外接矩形的左下角点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:BOTTOM_RIGHT"><apiName>BOTTOM_RIGHT</apiName><shortdesc>
+		 右下角对齐，对应值为8。当文本的对齐方式为右下角对齐时，文本子对象的最小外接矩形的右下角点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>8</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 右下角对齐，对应值为8。当文本的对齐方式为右下角对齐时，文本子对象的最小外接矩形的右下角点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:MIDDLE_CENTER"><apiName>MIDDLE_CENTER</apiName><shortdesc>
+		 中心对齐，对应值为10。当文本的对齐方式为中心对齐时，文本子对象的最小外接矩形的中心点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>10</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 中心对齐，对应值为10。当文本的对齐方式为中心对齐时，文本子对象的最小外接矩形的中心点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:MIDDLE_LEFT"><apiName>MIDDLE_LEFT</apiName><shortdesc>
+		 左中对齐，对应值为9。当文本的对齐方式为左中对齐时，文本子对象的最小外接矩形的左边线的中点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>9</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 左中对齐，对应值为9。当文本的对齐方式为左中对齐时，文本子对象的最小外接矩形的左边线的中点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:MIDDLE_RIGHT"><apiName>MIDDLE_RIGHT</apiName><shortdesc>
+		 右中对齐，对应值为11。当文本的对齐方式为右中对齐时，文本子对象的最小外接矩形的右边线的中点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>11</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 右中对齐，对应值为11。当文本的对齐方式为右中对齐时，文本子对象的最小外接矩形的右边线的中点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:TOP_CENTER"><apiName>TOP_CENTER</apiName><shortdesc>
+		 顶部居中对齐，对应值为1。当文本的对齐方式为上面居中对齐时，文本子对象的最小外接矩形的上边线的中点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 顶部居中对齐，对应值为1。当文本的对齐方式为上面居中对齐时，文本子对象的最小外接矩形的上边线的中点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:TOP_LEFT"><apiName>TOP_LEFT</apiName><shortdesc>
+		 左上角对齐，对应值为0。当文本的对齐方式为左上角对齐时，文本子对象的最小外接矩形的左上角点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 左上角对齐，对应值为0。当文本的对齐方式为左上角对齐时，文本子对象的最小外接矩形的左上角点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerTextAlignment:TOP_RIGHT"><apiName>TOP_RIGHT</apiName><shortdesc>
+		 右上角对齐，对应值为2。当文本的对齐方式为上面居中对齐时，文本子对象的最小外接矩形的右上角点在该文本子对象的锚点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 右上角对齐，对应值为2。当文本的对齐方式为上面居中对齐时，文本子对象的最小外接矩形的右上角点在该文本子对象的锚点位置。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeType"><apiName>ThemeType</apiName><shortdesc>
+	 专题图类型枚举类 
+	 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图类型枚举类 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeType:DOT_DENSITY"><apiName>DOT_DENSITY</apiName><shortdesc>
+		 点密度专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 点密度专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeType:GRADUATED_SYMBOL"><apiName>GRADUATED_SYMBOL</apiName><shortdesc>
+		 等级符号专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 等级符号专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeType:GRAPH"><apiName>GRAPH</apiName><shortdesc>
+		 统计专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 统计专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeType:LABEL"><apiName>LABEL</apiName><shortdesc>
+		 标签专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>7</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 标签专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeType:RANGE"><apiName>RANGE</apiName><shortdesc>
+		 渲染专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 渲染专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeType:UNIQUE"><apiName>UNIQUE</apiName><shortdesc>
+		 单值专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 单值专题图。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:LabelBackShape"><apiName>LabelBackShape</apiName><shortdesc>
+	 标签专题图中标签的背景形状枚举类。.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 标签专题图中标签的背景形状枚举类。.
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.themeServices:LabelBackShape:DIAMOUND"><apiName>DIAMOUND</apiName><shortdesc>
+		 菱形背景，即标签背景的形状为菱形。对应值为4。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 菱形背景，即标签背景的形状为菱形。对应值为4。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:LabelBackShape:ELLIPSE"><apiName>ELLIPSE</apiName><shortdesc>
+		 椭圆形背景，即标签背景的形状为椭圆形。对应值为3。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 椭圆形背景，即标签背景的形状为椭圆形。对应值为3。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:LabelBackShape:MARKER"><apiName>MARKER</apiName><shortdesc>
+		 符号背景，即标签背景的形状为设定的符号。对应值为100。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>100</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 符号背景，即标签背景的形状为设定的符号。对应值为100。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:LabelBackShape:NONE"><apiName>NONE</apiName><shortdesc>
+		 空背景，即不使用任何形状作为标签的背景。此为默认值。对应值为 0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 空背景，即不使用任何形状作为标签的背景。此为默认值。对应值为 0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:LabelBackShape:RECT"><apiName>RECT</apiName><shortdesc>
+		 =矩形背景，即标签背景的形状为矩形。对应值为1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 =矩形背景，即标签背景的形状为矩形。对应值为1。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:LabelBackShape:ROUND_RECT"><apiName>ROUND_RECT</apiName><shortdesc>
+		 圆角矩形背，即标签背景的形状为圆角矩形。对应值为2。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 圆角矩形背，即标签背景的形状为圆角矩形。对应值为2。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:LabelBackShape:TRIANGLE"><apiName>TRIANGLE</apiName><shortdesc>
+		 三角形背景，即标签背景的形状为三角形。对应值为5。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 三角形背景，即标签背景的形状为三角形。对应值为5。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeRangeParam"><apiName>ThemeRangeParam</apiName><shortdesc>
+	 范围分段专题图参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 范围分段专题图参数类.
+	 <p>该类用于存储制作范围分段专题图所需的参数，其中 LayerName 为必设属性。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeRangeParam:ThemeRangeParam"><apiName>ThemeRangeParam</apiName><shortdesc>
+		 初始化 ThemeRangeParam 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ThemeRangeParam 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeParam:colorGradientType:get"><apiName>colorGradientType</apiName><shortdesc>
+		 获取或设置范围分段专题图的颜色渐变方案。默认值为：黄~绿。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置范围分段专题图的颜色渐变方案。默认值为：黄~绿。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ColorGradientType"><linktext>ColorGradientType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeParam:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置制作范围分段专题图的图层名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置制作范围分段专题图的图层名。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeParam:rangeMode:get"><apiName>rangeMode</apiName><shortdesc>
+		 获取或设置范围分段模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置范围分段模式.
+		 <p>在分段专题图中，作为专题变量的字段或表达式的值按照某种分段方式被分成多个范围段。目前 SuperMap 提供的分段方式包括：等距离分段法、平方根分段法、标准差分段法、对数分段法、等计数分段法和自定义距离法，显然这些分段方法根据一定的距离进行分段，因而范围分段专题图所基于的专题变量必须为数值型。默认值为等距离分段法。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#RangeMode"><linktext>RangeMode</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeRangeParam:rangeParameter:get"><apiName>rangeParameter</apiName><shortdesc>
+		 获取或设置范围分段的段数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>3
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置范围分段的段数。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:Theme"><apiName>Theme</apiName><shortdesc>
+	 专题图基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图基类.
+	 <p>该类为各种类型专题图的抽象基类。专题图类型请参考 ThemeType 类。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeType"><linktext>ThemeType</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava2.themeServices:Theme:Theme"><apiName>Theme</apiName><shortdesc>
+		 初始化 Theme 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Theme 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:Theme:themeType:set"><apiName>themeType</apiName><shortdesc>
+		 获取或设置专题图类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置专题图类型。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#ThemeType"><linktext>ThemeType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ServerStyle"><apiName>ServerStyle</apiName><shortdesc>
+	 服务端专题图显示风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端专题图显示风格类.
+	 <p>该类用于定义从服务端获取的专题图显示风格。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ServerStyle:ServerStyle"><apiName>ServerStyle</apiName><shortdesc>
+		 初始化 ServerStyle 的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerStyle 的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillBackColor:get"><apiName>fillBackColor</apiName><shortdesc>
+		 填充符号的背景色.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 填充符号的背景色.
+		 <p>当填充模式为渐变填充时，该颜色为填充终止色。默认值为白色。  </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillBackOpaque:get"><apiName>fillBackOpaque</apiName><shortdesc>
+		 填充符号的背景是否不透明，默认为 false 表示透明。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 填充符号的背景是否不透明，默认为 false 表示透明。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillForeColor:get"><apiName>fillForeColor</apiName><shortdesc>
+		 填充符号的前景色.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 填充符号的前景色.
+		 <p>当填充模式为渐变填充时，该颜色为填充起始颜色。默认值为红色。  </p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillGradientAngle:get"><apiName>fillGradientAngle</apiName><shortdesc>
+		 渐变填充的旋转角度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 渐变填充的旋转角度.
+		 <p>默认值为0，单位为度，精确到0.1度，逆时针方向为正方向。对于不同的渐变填充模式，其旋转后的效果各异，但都是以最小外接矩形的中心为旋转中心，逆时针旋转的。<br/>1.线性渐变（Linear）<br/>当设置的角度为0-360度的任意角度时，经过起始点和终止点的线以最小外接矩形的中心为旋转中心逆时针旋转，渐变风格随之旋转，依然从线的起始端渐变到终止端的线性渐变。如下列举在特殊角度的渐变风格：<br/>1）当渐变填充角度设置为 0 度或者 360 度的时候，那么渐变填充风格为由左到右从起始色到终止色的线性渐变，如图所示起始色为黄色，终止色为粉红色；<br/><img src="../../../../../images/fillGradientAngleLinear0.bmp"/><br/>2）当渐变填充角度设置为180度时，渐变填充风格与上述风格正好相反，即从右到左，从起始色到终止色线性渐变；<br/><img src="../../../../../images/fillGradientAngleLinear180.bmp"/><br/>3）当渐变填充角度设置为90度时，渐变填充风格为由下到上，起始色到终止色的线性渐变； <br/><img src="../../../../../images/fillGradientAngleLinear90.bmp"/><br/>4）当渐变填充角度设置为270度时，渐变填充风格与上述风格正好相反，即从上到下，起始色到终止色线性渐变。<br/><img src="../../../../../images/fillGradientAngleLinear270.bmp"/><br/>2、辐射渐变（Radial）<br/>渐变填充角度设置为任何角度（不超出正常范围）时，将定义辐射渐变的圆形按照设置的角度进行旋转，由于圆是关于填充范围的最小外接矩形的中心点对称的，所以旋转之后的渐变填充的风格始终保持一样，即从中心点到填充范围的边界，从前景色到背景色的辐射渐变。<br/>3、圆锥渐变（Conical）<br/>当渐变角度设置为0-360度之间的任何角度，该圆锥的所有母线将发生旋转，以圆锥的中心点，即填充区域的最小外接矩形的中心为旋转中心，逆时针方向旋转。如图所示，旋转角度为90度，所有的母线都从起始位置（旋转角度为0的位置）开始旋转到指定角度，以经过起始点的母线为例，其从0度位置旋转到90度位置。<br/><img src="../../../../../images/fillGradientAngleConical0.bmp"/><img src="../../../../../images/fillGradientAngleConical90.bmp"/><br/>4、四角渐变（Square）<br/>根据给定的渐变填充角度，将发生渐变的正方形以填充区域范围的中心为中心进行相应的旋转，所有正方形都是从初始位置即旋转角度为0的默认位置开始旋转。渐变依然是从内部的正方形到外部的正方形发生从起始色到终止色的渐变。  </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillGradientMode:get"><apiName>fillGradientMode</apiName><shortdesc>
+		 填充符号的渐变填充方式常量.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 填充符号的渐变填充方式常量.
+		 <p>包括线形渐变填充、辐射渐变填充、圆锥渐变填充和方形渐变填充。默认值为 FillGradientMode.None。  </p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.themeServices.xml#FillGradientMode/NONE"><linktext>FillGradientMode.NONE</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillGradientOffsetRatioX:get"><apiName>fillGradientOffsetRatioX</apiName><shortdesc>
+		 渐变填充中心点相对于填充区域范围中心点的水平偏移百分比.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 渐变填充中心点相对于填充区域范围中心点的水平偏移百分比.
+		 <p>设填充区域范围中心点的坐标为（x0, y0），填充中心点的坐标为（x, y），填充区域范围的宽度为 a，水平偏移百分比为 dx，则 x=x0 + a*dx/100。该百分比可以为负，当其为负时，填充中心点相对于填充区域范围中心点向 x 轴负方向偏移。<br/>该属性仅对辐射渐变、圆锥渐变和四角渐变填充有效，不适用于线性渐变填充。  </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillGradientOffsetRatioY:get"><apiName>fillGradientOffsetRatioY</apiName><shortdesc>
+		 填充中心点相对于填充区域范围中心点的垂直偏移百分比.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 填充中心点相对于填充区域范围中心点的垂直偏移百分比.
+		 <p>设填充区域范围中心点的坐标为（x0, y0），填充中心点的坐标为（x, y），填充区域范围的高度为 b，垂直偏移百分比为 dy，则 y=y0 + b*dy/100。该百分比可以为负，当其为负时，填充中心点相对于填充区域范围中心点向 y 轴负方向偏移。<br/>该属性仅对辐射渐变、圆锥渐变和四角渐变填充有效，不适用于线性渐变填充。  </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillOpaqueRate:get"><apiName>fillOpaqueRate</apiName><shortdesc>
+		 填充不透明度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>100 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 填充不透明度.
+		 <p>合法值为 0—100 的数值。其中0表示完全透明；100 表示完全不透明。赋值小于 0 时按照 0 处理，大于 100 时按照 100 处理。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:fillSymbolID:get"><apiName>fillSymbolID</apiName><shortdesc>
+		 填充符号在填充符号库中的 ID 值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 填充符号在填充符号库中的 ID 值.
+		 <p>一个 ID 值对应唯一的符号样式。符号库在普通填充风格（即 fillGradientMode = None）时才适用。有关各种面状符号 ID，请从 SuperMap Deskpro 桌面程序中查询。若该值小于 0，则按 0 来处理。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:lineColor:get"><apiName>lineColor</apiName><shortdesc>
+		 线符号或填充符号的边线颜色。默认值为黑色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 线符号或填充符号的边线颜色。默认值为黑色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:lineSymbolID:get"><apiName>lineSymbolID</apiName><shortdesc>
+		 线状符号在线型库中的 ID 值。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 线状符号在线型库中的 ID 值。.
+		 <p>此编码用于唯一标识各线状符号。有关各种线状符号的 ID，请从 SuperMap Deskpro 桌面程序中查询。若该值小于 0，则按 0 来处理。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:lineWidth:get"><apiName>lineWidth</apiName><shortdesc>
+		 边线宽度。默认值为0.01，单位为毫米。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 边线宽度。默认值为0.01，单位为毫米。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:markerAngle:get"><apiName>markerAngle</apiName><shortdesc>
+		 点状符号的旋转角度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 点状符号的旋转角度.
+		 <p>以度为单位，精确到0.1度，逆时针方向为正方向。此角度可以作为普通填充风格（即 fillGradientMode = None）中填充符号的旋转角度。默认值为0。 </p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:markerSize:get"><apiName>markerSize</apiName><shortdesc>
+		 点状符号的大小.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 点状符号的大小.
+		 <p>单位为毫米，精度为0.1。其值必须大于等于0，如果为0，则表示不显示。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ServerStyle:markerSymbolID:get"><apiName>markerSymbolID</apiName><shortdesc>
+		 点状符号在符号库中的 ID 值.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>-1
+		  
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 点状符号在符号库中的 ID 值.
+		 <p>此编码用于唯一标识各点状符号。有关各种线状符号的 ID，请从 SuperMap Deskpro 桌面程序中查询。若该值小于 0，则按 0 来处理。</p>
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.themeServices:ThemeParameters"><apiName>ThemeParameters</apiName><shortdesc>
+	 专题图参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图参数类.
+	 <p>该类存储了制作专题时所需的参数，包括地图名称、图层名称以及专题图对象。其中地图名称 mapName 继承了 ParametersBase 类，为必设属性。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.themeServices:ThemeParameters:ThemeParameters"><apiName>ThemeParameters</apiName><shortdesc>
+		 使用地图名称初始化 ThemeParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称初始化 ThemeParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeParameters:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置要制作专题图的图层名称。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置要制作专题图的图层名称。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.themeServices:ThemeParameters:theme:get"><apiName>theme</apiName><shortdesc>
+		 获取或设置专题图对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.themeServices:Theme</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置专题图对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

@@ -1,0 +1,6 @@
+<font color="#0033FF">聚散显示 (Clusterer)</font>
+<font color="#006633">1. 功能描述：</font>聚散显示是指将一定范围内的点要素聚合显示至一个点，以提高地图显示效率。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。被聚合的点要素为各国的首都。 
+<font color="#006633">3. 操作指南：</font>将鼠标移动至聚合点上，您可获取更多信息。选择动态样式修改，体验聚合点与离散点样式的实时变化。
+<font color="#006633">4. 注意：</font>本示例例举了三种聚散显示：权重聚散显示（WeightedClusterer）、中心聚散显示（CenterClusterer）、区域聚散显示（RegionClusterer），为您带来 Clusterer 的丰富体验。示例中聚散显示样式为发散显示风格（SparkClusterStyle），即当您将鼠标移动至聚合点时，被聚合的离散点将以聚合点为中心向四周发散显示。每个发散点都有属于其本身的发散圆，每个发散圆的半径、发散圆上面所显示的发散点个数、发散圆之间的距离等用户均可通过 Clusterer 中的属性自定义。
+<font color="#006633">5. 其它说明：</font>有关聚散显示 (Clusterer)的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

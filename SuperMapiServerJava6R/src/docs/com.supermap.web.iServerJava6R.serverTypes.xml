@@ -1,0 +1,409 @@
+<apiPackage id="com.supermap.web.iServerJava6R.serverTypes"><apiName>com.supermap.web.iServerJava6R.serverTypes</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:MapColorMode"><apiName>MapColorMode</apiName><shortdesc>
+	 地图颜色模式枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiFinal/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图颜色模式枚举类.
+	 <p>地图颜色模式是针对地图显示而言，而且只对矢量要素起作用。SuperMap在设置地图风格时提供了 5 种颜色模式。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.serverTypes:MapColorMode:BLACKWHITE"><apiName>BLACKWHITE</apiName><shortdesc>
+		 黑白模式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BLACKWHITE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 黑白模式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:MapColorMode:BLACK_WHITE_REVERSE"><apiName>BLACK_WHITE_REVERSE</apiName><shortdesc>
+		 黑白反色模式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BLACK_WHITE_REVERSE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 黑白反色模式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:MapColorMode:DEFAULT"><apiName>DEFAULT</apiName><shortdesc>
+		 默认彩色模式，对应32位增强真彩色模式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>DEFAULT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 默认彩色模式，对应32位增强真彩色模式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:MapColorMode:GRAY"><apiName>GRAY</apiName><shortdesc>
+		 灰色模式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>GRAY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 灰色模式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:MapColorMode:ONLY_BLACK_WHITE_REVERSE"><apiName>ONLY_BLACK_WHITE_REVERSE</apiName><shortdesc>
+		 黑白反色，其它颜色不变。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ONLY_BLACK_WHITE_REVERSE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 黑白反色，其它颜色不变。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry"><apiName>ServerGeometry</apiName><shortdesc>
+	 服务端几何对象类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端几何对象类.
+	 <p>该类描述几何对象（矢量）的特征数据（坐标点对、几何对象的类型等）。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:ServerGeometry"><apiName>ServerGeometry</apiName><shortdesc>
+		 初始化 ServerGeometry 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerGeometry 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:fromGeometry"><apiName>fromGeometry</apiName><shortdesc>
+		 将客户端几何对象 Geometry 转换成服务端几何对象 ServerGeometry。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>iServer6R 服务端几何对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerGeometry</apiOperationClassifier></apiReturn><apiParam><apiItemName>geo</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>要转换的客户端几何对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端几何对象 Geometry 转换成服务端几何对象 ServerGeometry。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:fromJson"><apiName>fromJson</apiName><shortdesc>
+		 将 JSON 对象转换为 ServerGeometry 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回 ServerGeometry。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerGeometry</apiOperationClassifier></apiReturn><apiParam><apiItemName>object</apiItemName><apiType value="Object"/><apiDesc>被转换的 JSON 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将 JSON 对象转换为 ServerGeometry 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:toGeometry"><apiName>toGeometry</apiName><shortdesc>
+		 将服务端几何对象 ServerGeometry 转换为客户端几何对象 Geometry。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回客户端几何对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier></apiReturn><apiParam><apiItemName>serverGeometry</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerGeometry</apiOperationClassifier><apiDesc>要转换的服务端几何对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将服务端几何对象 ServerGeometry 转换为客户端几何对象 Geometry。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:toJson"><apiName>toJson</apiName><shortdesc>
+		 将 ServerGeometry 对象转换 JSON 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回 JSOM 对象。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn><apiParam><apiItemName>serverGeometry</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerGeometry</apiOperationClassifier><apiDesc>被转换的 ServerGeometry 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将 ServerGeometry 对象转换 JSON 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:id:get"><apiName>id</apiName><shortdesc>
+		 获取或设置服务端几何对象唯一标识符。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置服务端几何对象唯一标识符。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:parts:get"><apiName>parts</apiName><shortdesc>
+		 获取或设置服务端几何对象中各个子对象所包含的节点个数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置服务端几何对象中各个子对象所包含的节点个数.
+		 <p>1. 几何对象从结构上可以分为简单几何对象和复杂几何对象。简单几何对象与复杂几何对象的区别：简单的几何对象一般为单一对象，而复杂的几何对象由多个简单对象组成或经过一定的空间运算之后产生，如：矩形为简单的区域对象，而中空的矩形为复杂的区域对象。<br/>2. 通常情况，一个简单几何对象的子对象就是它本身，因此对于简单对象来说的该字段为长度为1的整型数组，其中的元素值就是这个简单对象节点的个数。如果一个几何对象是由几个简单对象组合而成的，例如，一个岛状几何对象由3个简单的多边形组成而成，那么这个岛状的几何对象的 Parts 字段值就是一个长度为3的整型数组，数组中每个成员的值分别代表这三个多边形所包含的节点个数。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:points:get"><apiName>points</apiName><shortdesc>
+		 获取或设置组成几何对象结点的坐标对数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置组成几何对象结点的坐标对数组.
+		 <p>1. 所有几何对象（点、线、面）都是由一些简单的点坐标组成的，该字段存放了组成几何对象的点坐标数组。对于简单的面对象，他的起点和终点的坐标点相同。<br/>2. 对于复杂的几何对象，根据 Parts 属性来确定每一个组成复杂几何对象的简单对象所对应的节点的个数，从而确定 Points 字段中坐标对的分配归属问题。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.serverTypes.xml#ServerGeometry/parts"><linktext>parts</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置服务端几何对象的风格（ ServerStyle 类型）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置服务端几何对象的风格（ ServerStyle 类型）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometry:type:get"><apiName>type</apiName><shortdesc>
+		 获取或设置几何对象的类型（ GeometryType ）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置几何对象的类型（ GeometryType ）。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava6R.serverTypes.GeometryType.xml"><linktext>GeometryType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle"><apiName>ServerStyle</apiName><shortdesc>
+	 服务端矢量要素风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端矢量要素风格类.
+	 <p>该类用于定义点状符号、线状符号、填充符号风格及其相关属性。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:ServerStyle"><apiName>ServerStyle</apiName><shortdesc>
+		 初始化 ServerStyle 类。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerStyle 类。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillBackColor:get"><apiName>fillBackColor</apiName><shortdesc>
+		 获取或设置填充背景颜色。当填充模式为渐变填充时，该颜色为填充终止色。默认为白色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置填充背景颜色。当填充模式为渐变填充时，该颜色为填充终止色。默认为白色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillBackOpaque:get"><apiName>fillBackOpaque</apiName><shortdesc>
+		 获取或设置背景是否不透明，默认值为 false 表示透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置背景是否不透明，默认值为 false 表示透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillForeColor:get"><apiName>fillForeColor</apiName><shortdesc>
+		 获取或设置填充颜色。当填充模式为渐变填充时，该颜色为填充起始颜色。默认为红色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置填充颜色。当填充模式为渐变填充时，该颜色为填充起始颜色。默认为红色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillGradientAngle:get"><apiName>fillGradientAngle</apiName><shortdesc>
+		 获取或设置渐变填充的旋转角度。单位为度，精确到0.1度，默认为 0.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置渐变填充的旋转角度。单位为度，精确到0.1度，默认为 0.
+		 <p>逆时针方向为正方向。对于不同的渐变填充模式 FillGradientMode，其旋转后的效果各异，但都是以最小外接矩形的中心为旋转中心，逆时针旋转的。<br/>1.线性渐变（Linear）<br/>当设置的角度为0-360度的任意角度时，经过起始点和终止点的线以最小外接矩形的中心为旋转中心逆时针旋转，渐变风格随之旋转，依然从线的起始端渐变到终止端的线性渐变。如下列举在特殊角度的渐变风格：<br/>a.当渐变填充角度设置为0度或者360度的时候，那么渐变填充风格为由左到右从起始色到终止色的线性渐变，如图所示起始色为黄色，终止色为粉红色；<br/><img src="../../../../../images/fillGradientAngleLinear0.bmp"/><br/>b.当渐变填充角度设置为180度时，渐变填充风格与上述风格正好相反，即从右到左，从起始色到终止色线性渐变；<br/><img src="../../../../../images/fillGradientAngleLinear180.bmp"/><br/>c.当渐变填充角度设置为90度时，渐变填充风格为由下到上，起始色到终止色的线性渐变；<br/><img src="../../../../../images/fillGradientAngleLinear90.bmp"/><br/>d.当渐变填充角度设置为270度时，渐变填充风格与上述风格正好相反，即从上到下，起始色到终止色线性渐变。<br/><img src="../../../../../images/fillGradientAngleLinear270.bmp"/></p> 
+		 <p>2、辐射渐变（Radial）<br/>渐变填充角度设置为任何角度（不超出正常范围）时，将定义辐射渐变的圆形按照设置的角度进行旋转，由于圆是关于填充范围的最小外接矩形的中心点对称的，所以旋转之后的渐变填充的风格始终保持一样，即从中心点到填充范围的边界，从前景色到背景色的辐射渐变。<br/>3、圆锥渐变（Conical）<br/>当渐变角度设置为0-360度之间的任何角度，该圆锥的所有母线将发生旋转，以圆锥的中心点，即填充区域的最小外接矩形的中心为旋转中心，逆时针方向旋转。如图所示，旋转角度为90度，所有的母线都从起始位置（旋转角度为0的位置）开始旋转到指定角度，以经过起始点的母线为例，其从0度位置旋转到90度位置。<br/><img src="../../../../../images/fillGradientAngleConical0.bmp"/><img src="../../../../../images/fillGradientAngleConical90.bmp"/></p> 
+		 <p>4、四角渐变（Square）<br/>根据给定的渐变填充角度，将发生渐变的正方形以填充区域范围的中心为中心进行相应的旋转，所有正方形都是从初始位置即旋转角度为0的默认位置开始旋转。渐变依然是从内部的正方形到外部的正方形发生从起始色到终止色的渐变。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillGradientMode:get"><apiName>fillGradientMode</apiName><shortdesc>
+		 获取或设置矢量要素的渐变填充风格的渐变类型，FillGradientMode 类常量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/><apiDefaultValue>FillGradientMode.NONE
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置矢量要素的渐变填充风格的渐变类型，FillGradientMode 类常量。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.serverTypes.xml#FillGradientMode"><linktext>FillGradientMode</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillGradientOffsetRatioX:get"><apiName>fillGradientOffsetRatioX</apiName><shortdesc>
+		 获取或设置渐变填充中心点相对于填充区域范围中心点的水平偏移百分比.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置渐变填充中心点相对于填充区域范围中心点的水平偏移百分比.
+		 <p>它们的关系如下：<br/>设填充区域范围中心点的坐标为（x0, y0），填充中心点的坐标为（x, y），填充区域范围的宽度为 a，水平偏移百分比为 dx，则 <code>x=x0 + a*dx/100</code> <br/>。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillGradientOffsetRatioY:get"><apiName>fillGradientOffsetRatioY</apiName><shortdesc>
+		 获取或设置渐变填充中心点相对于填充区域范围中心点的垂直偏移百分比.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置渐变填充中心点相对于填充区域范围中心点的垂直偏移百分比.
+		 <p>它们的关系如下：<br/>设填充区域范围中心点的坐标为（x0, y0），填充中心点的坐标为（x, y），填充区域范围的高度为 b，垂直偏移百分比为 dy，则 <code>y=y0 + b*dx/100</code> <br/>。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillOpaqueRate:get"><apiName>fillOpaqueRate</apiName><shortdesc>
+		 获取或设置填充不透明度，合法值为0--100的数值。默认值为 100.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置填充不透明度，合法值为0--100的数值。默认值为 100.
+		 <p>其中为 0 表示完全透明；100 表示完全不透明。赋值小于 0 时按照 0 处理，大于 100 时按照 100 处理。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:fillSymbolID:get"><apiName>fillSymbolID</apiName><shortdesc>
+		 获取或设置填充符号的编码，即在填充库中填充风格的 ID.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置填充符号的编码，即在填充库中填充风格的 ID.
+		 <p>此编码用于唯一标识各普通填充风格的填充符号。关于填充符号的样式与对应的 ID 号欢迎访问 SuperMap 桌面软件。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:lineColor:get"><apiName>lineColor</apiName><shortdesc>
+		 获取或设置矢量要素的边线颜色。默认为黑色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置矢量要素的边线颜色。默认为黑色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:lineSymbolID:get"><apiName>lineSymbolID</apiName><shortdesc>
+		 获取或设置线状符号的编码，即线型库中线型的 ID.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置线状符号的编码，即线型库中线型的 ID.
+		 <p>此编码用于唯一标识线型库中的线状符号，默认值为0。关于线型库中各种线状符号的风格与对应的 ID 号欢迎访问 SuperMap 桌面软件。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:lineWidth:get"><apiName>lineWidth</apiName><shortdesc>
+		 获取或设置边线的宽度，单位为毫米，精度到0.1，默认值为1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置边线的宽度，单位为毫米，精度到0.1，默认值为1。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:markerAngle:get"><apiName>markerAngle</apiName><shortdesc>
+		 获取或设置点状符号的旋转角度，以度为单位，精确到0.1度，逆时针方向为正方向，默认值为0.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置点状符号的旋转角度，以度为单位，精确到0.1度，逆时针方向为正方向，默认值为0.
+		 <p>此角度亦可以作为普通填充风格中填充符号的旋转角度。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:markerSize:get"><apiName>markerSize</apiName><shortdesc>
+		 获取或设置点状符号的大小，单位为毫米，精度为0.1，默认值为1.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置点状符号的大小，单位为毫米，精度为0.1，默认值为1.
+		 <p>当该属性设置为0时，采用符号默认大小1.0显示。当该属性设置为非法值时，交由服务器默认处理。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerStyle:markerSymbolID:get"><apiName>markerSymbolID</apiName><shortdesc>
+		 获取或设置点状符号的编码.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置点状符号的编码.
+		 <p>此编码用于唯一标识各点状符号。有关点状符号风格及其对应 ID 请在 SuperMap 桌面软件中查找。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle"><apiName>ServerTextStyle</apiName><shortdesc>
+	 文本对象的风格 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 文本对象的风格 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:ServerTextStyle"><apiName>ServerTextStyle</apiName><shortdesc>
+		 初始化 ServerTextStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerTextStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:align:get"><apiName>align</apiName><shortdesc>
+		 获取或设置注记文本的对齐方式，默认为 TextAlignment.BASELINECENTER。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置注记文本的对齐方式，默认为 TextAlignment.BASELINECENTER。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.serverTypes.xml#TextAlignment"><linktext>TextAlignment</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:backColor:get"><apiName>backColor</apiName><shortdesc>
+		 获取或设置注记文本的背景色。默认值为蓝色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置注记文本的背景色。默认值为蓝色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:backOpaque:get"><apiName>backOpaque</apiName><shortdesc>
+		 获取或设置注记背景是否透明。默认为 false，即透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置注记背景是否透明。默认为 false，即透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:bold:get"><apiName>bold</apiName><shortdesc>
+		 获取或设置注记对象是否为粗体字。默认为 false，表示非粗体。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置注记对象是否为粗体字。默认为 false，表示非粗体。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:fontHeight:get"><apiName>fontHeight</apiName><shortdesc>
+		 获取或设置注记字体的高度。使用地图单位，默认值为39.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置注记字体的高度。使用地图单位，默认值为39.
+		 <p>当地图数据比例尺较小时，该值尽量设置大一些；当地图数据比例尺很大时，该值尽量设置小一些。这样字体才能正常显示。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:fontName:get"><apiName>fontName</apiName><shortdesc>
+		 获取或设置注记字体的名称。默认值为" Times New Roman "。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置注记字体的名称。默认值为" Times New Roman "。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:fontWeight:get"><apiName>fontWeight</apiName><shortdesc>
+		 获取或设置文本字体的磅数，表示粗体的具体数值。默认值为 400 磅 
+		 取值范围为从0－900之间的整百数，如400表示正常显示，700表示为粗体，可参见微软 MSDN 帮助中关于 LOGFONT 类的介绍。 默认值为400。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置文本字体的磅数，表示粗体的具体数值。默认值为 400 磅 
+		 <p>取值范围为从0－900之间的整百数，如400表示正常显示，700表示为粗体，可参见微软 MSDN 帮助中关于 LOGFONT 类的介绍。 默认值为400。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:fontWidth:get"><apiName>fontWidth</apiName><shortdesc>
+		 获取或设置注记字体的宽度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置注记字体的宽度.
+		 <p>字体宽度以英文字符为标准，一个中文字符相当于两个英文字符。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:foreColor:get"><apiName>foreColor</apiName><shortdesc>
+		 获取或设置注记文本颜色。默认值为红色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置注记文本颜色。默认值为红色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:italicAngle:get"><apiName>italicAngle</apiName><shortdesc>
+		 获取或设置文本的倾斜角度，默认值为 0 度。只有当属性 <code>italic=True</code>时有效.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置文本的倾斜角度，默认值为 0 度。只有当属性 <code>italic=True</code>时有效.
+		 <p>值域范围为-60.0到60.0，左倾斜为负值，右倾斜为正。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.serverTypes.xml#ServerTextStyle/italic"><linktext>italic</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:italic:get"><apiName>italic</apiName><shortdesc>
+		 获取或设置注记字体是否采用斜体。默认为 false，表示不采用斜体。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置注记字体是否采用斜体。默认为 false，表示不采用斜体。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:opaqueRate:get"><apiName>opaqueRate</apiName><shortdesc>
+		 获取或设置文本的不透明度，取值范围为 0~100，0 表示完全不透明，100 表示完全透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置文本的不透明度，取值范围为 0~100，0 表示完全不透明，100 表示完全透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:outline:get"><apiName>outline</apiName><shortdesc>
+		 获取或设置是否以轮廓的方式来显示注记的背景。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否以轮廓的方式来显示注记的背景。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:rotation:get"><apiName>rotation</apiName><shortdesc>
+		 获取或设置注记旋转的角度，逆时针方向为正，单位为度，默认为 0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置注记旋转的角度，逆时针方向为正，单位为度，默认为 0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:shadow:get"><apiName>shadow</apiName><shortdesc>
+		 获取或设置注记文本是否有阴影。默认为 false，表示无阴影。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置注记文本是否有阴影。默认为 false，表示无阴影。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:sizeFixed:get"><apiName>sizeFixed</apiName><shortdesc>
+		 获取或设置是否固定文本的大小尺寸。当 FixedSize 为 true 时有效。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否固定文本的大小尺寸。当 FixedSize 为 true 时有效。.
+		 <p>如果该属性值为 true，那么无论地图比例尺如何变化，文本对象的大小将按照固定的尺寸显示，而不随着比例尺的缩放而变化。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:strikeout:get"><apiName>strikeout</apiName><shortdesc>
+		 获取或设置文本注记是否加下划线。默认为 false，表示不加下划线。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置文本注记是否加下划线。默认为 false，表示不加下划线。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerTextStyle:underline:get"><apiName>underline</apiName><shortdesc>
+		 获取或设置注记字体是否加下划线。默认为 false。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置注记字体是否加下划线。默认为 false。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:ServerFeature"><apiName>ServerFeature</apiName><shortdesc>
+	 服务端矢量要素类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端矢量要素类.
+	 <p>该类描述了服务端返回的矢量要素的相关信息，包括字段和几何信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serverTypes:ServerFeature:ServerFeature"><apiName>ServerFeature</apiName><shortdesc>
+		 初始化 ServerFeature 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerFeature 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerFeature:fieldNames:get"><apiName>fieldNames</apiName><shortdesc>
+		 获取矢量要素的属性字段名集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取矢量要素的属性字段名集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerFeature:fieldValues:get"><apiName>fieldValues</apiName><shortdesc>
+		 获取矢量要素的属性字段值集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取矢量要素的属性字段值集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerFeature:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 获取矢量要素的几何信息 ServerGeometry。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerGeometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取矢量要素的几何信息 ServerGeometry。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:ServerColor"><apiName>ServerColor</apiName><shortdesc>
+	 颜色类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 颜色类.
+	 <p>该类使用三原色（ RGB ）来表达颜色。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serverTypes:ServerColor:ServerColor"><apiName>ServerColor</apiName><shortdesc>
+		 使用 RGB 三原色来初始化 ServerColor 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>red</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>红色。
+		 </apiDesc></apiParam><apiParam><apiItemName>green</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>绿色。
+		 </apiDesc></apiParam><apiParam><apiItemName>blue</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>蓝色。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用 RGB 三原色来初始化 ServerColor 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerColor:blue:get"><apiName>blue</apiName><shortdesc>
+		 获取或设置蓝色值，默认值为0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置蓝色值，默认值为0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerColor:green:get"><apiName>green</apiName><shortdesc>
+		 获取或设置绿色值，默认值为0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置绿色值，默认值为0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerColor:red:get"><apiName>red</apiName><shortdesc>
+		 获取或设置红色值，默认值为255。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置红色值，默认值为255。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:FillGradientMode"><apiName>FillGradientMode</apiName><shortdesc>
+	 渐变填充风格的渐变类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 渐变填充风格的渐变类型枚举类.
+	 <p>该类提供了五种渐变填充类型，所有渐变类型都是两种颜色之间的渐变，即从渐变起始色到渐变终止色之间的渐变。渐变填充范围的计算都是以填充区域的边界矩形，即最小外接矩形作为基础的。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.serverTypes:FillGradientMode:CONICAL"><apiName>CONICAL</apiName><shortdesc>
+		 圆锥渐变填充。 
+		  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CONICAL</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 圆锥渐变填充。 
+		 <adobeimage href="../../../../../images/fillGradientModeConical.bmp"/> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:FillGradientMode:LINEAR"><apiName>LINEAR</apiName><shortdesc>
+		 线性渐变填充。
+		  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LINEAR</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线性渐变填充。
+		 <adobeimage href="../../../../../images/fillGradientAngleLinear0.bmp"/> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:FillGradientMode:NONE"><apiName>NONE</apiName><shortdesc>
+		 无渐变。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NONE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无渐变。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:FillGradientMode:RADIAL"><apiName>RADIAL</apiName><shortdesc>
+		 辐射渐变填充。 
+		  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>RADIAL</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 辐射渐变填充。 
+		 <adobeimage href="../../../../../images/fillGradientModeRadial.bmp"/> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:FillGradientMode:SQUARE"><apiName>SQUARE</apiName><shortdesc>
+		 四角渐变填充。 
+		  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SQUARE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 四角渐变填充。 
+		 <adobeimage href="../../../../../images/fillGradientModeSquare.bmp"/> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometryType"><apiName>ServerGeometryType</apiName><shortdesc>
+	 服务端几何对象类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端几何对象类型枚举类.
+	 <p>该类定义了服务端一系列几何对象类型。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometryType:LINEM"><apiName>LINEM</apiName><shortdesc>
+		 路由对象（Route），是一组线类型的地物对象，线对象的每个节点除了有地理坐标值，还有一个M坐标值，代表该节点到起点的距离。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LINEM</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 路由对象（Route），是一组线类型的地物对象，线对象的每个节点除了有地理坐标值，还有一个M坐标值，代表该节点到起点的距离。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#Route"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.Route</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometryType:LINE"><apiName>LINE</apiName><shortdesc>
+		 线几何对象类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LINE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线几何对象类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometryType:POINT"><apiName>POINT</apiName><shortdesc>
+		 点几何对象类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>POINT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 点几何对象类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometryType:REGION"><apiName>REGION</apiName><shortdesc>
+		 线几何对象类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>REGION</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线几何对象类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometryType:TEXT"><apiName>TEXT</apiName><shortdesc>
+		 线几何对象类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TEXT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线几何对象类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:ServerGeometryType:UNKNOWN"><apiName>UNKNOWN</apiName><shortdesc>
+		 未定义。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>UNKNOWN</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 未定义。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment"><apiName>TextAlignment</apiName><shortdesc>
+	 文本对齐方式枚举类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 文本对齐方式枚举类 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:BASELINECENTER"><apiName>BASELINECENTER</apiName><shortdesc>
+		 基准线居中对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BASELINECENTER</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 基准线居中对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:BASELINELEFT"><apiName>BASELINELEFT</apiName><shortdesc>
+		 基准线左对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BASELINELEFT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 基准线左对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:BASELINERIGHT"><apiName>BASELINERIGHT</apiName><shortdesc>
+		 基准线右对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BASELINERIGHT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 基准线右对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:BOTTOMCENTER"><apiName>BOTTOMCENTER</apiName><shortdesc>
+		 底部居中对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BOTTOMCENTER</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 底部居中对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:BOTTOMLEFT"><apiName>BOTTOMLEFT</apiName><shortdesc>
+		 左下角对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BOTTOMLEFT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左下角对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:BOTTOMRIGHT"><apiName>BOTTOMRIGHT</apiName><shortdesc>
+		 右下角对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BOTTOMRIGHT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右下角对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:MIDDLECENTER"><apiName>MIDDLECENTER</apiName><shortdesc>
+		 中心对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>MIDDLECENTER</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 中心对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:MIDDLELEFT"><apiName>MIDDLELEFT</apiName><shortdesc>
+		 左中对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>MIDDLELEFT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左中对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:MIDDLERIGHT"><apiName>MIDDLERIGHT</apiName><shortdesc>
+		 右中对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>MIDDLERIGHT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右中对齐。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:TOPCENTER"><apiName>TOPCENTER</apiName><shortdesc>
+		 顶部居中对齐 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TOPCENTER</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 顶部居中对齐 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:TOPLEFT"><apiName>TOPLEFT</apiName><shortdesc>
+		 左上角对齐 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TOPLEFT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左上角对齐 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serverTypes:TextAlignment:TOPRIGHT"><apiName>TOPRIGHT</apiName><shortdesc>
+		 右上角对齐。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TOPRIGHT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右上角对齐。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

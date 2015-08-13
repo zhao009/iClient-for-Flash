@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+    <!--自定义缩放条皮肤-->
+	
+    <fx:Metadata>
+        [HostComponent("com.supermap.web.components.ZoomSlider")]
+    </fx:Metadata>
+    <fx:Declarations>
+        <mx:NumberFormatter id="numberFormatter" rounding="nearest"/>
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[   
+			import com.supermap.web.resources.SmResource;
+			
+			import mx.events.FlexEvent;
+			import mx.resources.ResourceManager;
+			
+			import spark.filters.GlowFilter;
+			
+			//发光效果
+			private var glow:GlowFilter = new GlowFilter(0x000000, 0.5, 10, 10);
+			 
+			//划动条在划动过程中的提示文本
+			private function formatSliderDataTip(value:Number):String
+			{  
+				var scale:Number = this.hostComponent.map.scales[value]; 
+				return "1:" + numberFormatter.format(1 / scale);
+			}
+			
+			//用户将鼠标指针移动至放大缩小按钮时的回调函数 ——用于设置按钮的发光效果
+			private function rollOverHandler(evt:MouseEvent):void
+			{
+				Button(evt.currentTarget).filters = [glow];
+			}
+			
+			//用户将鼠标指针从放大缩小按钮上移开时的回调函数 ——用于支除按钮的发光效果
+			private function rollOutHandler(evt:MouseEvent):void
+			{
+				Button(evt.currentTarget).filters = null;
+			}
+        ]]>
+    </fx:Script>
+
+	<!--状态-->
+    <s:states>
+        <s:State name="normal"/>
+        <s:State name="disabled"/>
+        <s:State name="normalWithSlider"/>
+        <s:State name="disabledWithSlider"/>
+    </s:states>  
+	    
+	<!--导航条按钮-->
+    <s:VGroup gap="2" horizontalAlign="center">
+		<!--放大按钮-->
+        <s:Button id="zoomInButton"
+                  enabled.disabled="false"
+                  enabled.disabledWithSlider="false"
+                  skinClass="{ZoomSliderZoomInButtonSkin}"
+				  rollOver="rollOverHandler(event)"
+				  rollOut="rollOutHandler(event)"
+                  toolTip="放大一级" 
+				  width="24" height="24"/>
+		<!--划动条-->
+        <mx:VSlider id="slider"
+					dataTipFormatFunction="formatSliderDataTip"
+                    dataTipPlacement="right"
+                    enabled.disabled="false"
+                    enabled.disabledWithSlider="false"
+                    enabled.normalWithSlider="true"
+				   
+				    thumbSkin="{ZoomSliderThumbSkin}"
+                    includeIn="normalWithSlider,disabledWithSlider"
+				    value="{this.hostComponent.map.level}"
+					height="{(this.hostComponent.map.scales.length) * this.hostComponent.sliderHeightParam}"
+					maximum="{this.hostComponent.map.resolutions.length - 1}"
+                    showDataTip="true"
+                    snapInterval="1"
+                    tickColor="#0792d2"
+                    tickInterval="1"  
+				    tickOffset="9"
+				    tickLength="10"
+                    tickThickness="2"/>
+		<!--缩小按钮-->
+        <s:Button id="zoomOutButton"
+                  enabled.disabled="false"
+                  enabled.disabledWithSlider="false"
+                  skinClass="{ZoomSliderZoomOutButtonSkin}"
+				  rollOver="rollOverHandler(event)"
+				  rollOut="rollOutHandler(event)"
+                  toolTip="缩小一级" 
+				  width="24" height="24"/>
+    </s:VGroup>
+</s:Skin>

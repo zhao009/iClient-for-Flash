@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:components="com.supermap.components.*">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.events.ToggleSwitchClickEvent;
+			import mx.events.FlexEvent;
+
+			import spark.components.Button;
+
+			protected function switch_changeHandler(event:Event):void
+			{
+				this.owner.dispatchEvent(new ToggleSwitchClickEvent("switchClick", false, false, data, toggleSwitch.selected));
+			}
+
+			protected function deleteBtn_clickHandler(event:MouseEvent):void
+			{
+				this.owner.dispatchEvent(new ToggleSwitchClickEvent("deleteBtnClick", false, false, data));
+			}
+
+			override public function set data(value:Object):void
+			{
+				if(value)
+				{
+					super.data = value;
+					if(data.state == "open")
+						toggleSwitch.selected = true;
+					else
+						toggleSwitch.selected = false;
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<s:SolidColorStroke id="ticks"
+							color="0x000000"
+							weight="1"/>
+	</fx:Declarations>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="selected"/>
+	</s:states>
+	<!-- FXG -->
+	<s:Group width="100%"
+			 height="44">
+		<!-- 背景颜色  -->
+		<s:Rect left="0"
+				right="0"
+				top="0"
+				bottom="0">
+			<s:fill>
+				<s:SolidColor color="0xE0E0E0"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect left="0"
+				right="0"
+				top="0"
+				bottom="1">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect left="0"
+				includeIn="selected"
+				right="0"
+				top="0"
+				bottom="1">
+			<s:fill>
+				<s:SolidColor color="0xE0E0E0"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group width="100%"
+			 height="100%">
+		<s:HGroup id="content"
+				  width="100%"
+				  height="100%"
+				  verticalAlign="middle"
+				  horizontalAlign="left"
+				  left="6">
+			<s:Label text="{data.name}"/>
+			<components:IconButton id="delBtn"
+								   includeIn="selected"
+								   click="deleteBtn_clickHandler(event)"
+								   height="24"
+								   width="24"
+								   up="@Embed('assets/layers/delete2.png')"
+								   down="@Embed('assets/layers/delete2.png')"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"/>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="100%"
+				  verticalAlign="middle"
+				  horizontalAlign="right"
+				  right="6">
+			<s:ToggleSwitch id="toggleSwitch"
+							accentColor="0x628c6d"
+							change="switch_changeHandler(event)"
+							selected="true"/>
+		</s:HGroup>
+	</s:Group>
+</s:ItemRenderer>

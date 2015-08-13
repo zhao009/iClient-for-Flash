@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="标绘"
+		xmlns:renderers="com.supermap.paint.renderers.*"
+		creationComplete="init(event)"
+		xmlns:components="com.supermap.components.*"
+		xmlns:mobile160="com.supermap.paint.skins.mobile160.*">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.paint.ass.OfflineFeatureStorage;
+			import com.supermap.paint.renderers.GeoListRenderer;
+			import com.supermap.paint.skins.infoWindow.InfoWindowContent;
+			import com.supermap.web.actions.*;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.styles.*;
+			import com.supermap.web.events.ActionEvent;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.events.ViewBoundsEvent;
+			import com.supermap.web.mapping.FeaturesLayer;
+			import com.supermap.web.mapping.Map;
+			
+			import flash.globalization.DateTimeFormatter;
+			
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			
+			import spark.components.Button;
+			import spark.components.TextArea;
+			import spark.components.TextInput;
+			import spark.components.ViewNavigator;
+			import spark.events.ViewNavigatorEvent;
+
+			public var map:Map;
+			private var drawFeaturesLayer:FeaturesLayer;
+			private var drawFeaPoint:DrawPoint;
+			private var drawFeaLine:DrawLine;
+			private var drawFreeLine:DrawFreeLine;
+			private var drawFeaPolygon:DrawPolygon;
+			private var drawFreePolygon:DrawFreePolygon;
+			private var drawPicture:DrawPoint;
+			private var editAction:Edit;
+			private var panAction:Pan;
+			private var content:InfoWindowContent;
+			private var currFeature:Feature;
+			private var offFeaStorage:OfflineFeatureStorage;
+			[Bindable]
+			private var features:Array = [];
+			[Bindable]
+			private var geoListProvider:ArrayCollection = new ArrayCollection(features);
+			[Bindable]
+			private var editedQueue:Array = [];
+			[Bindable]
+			private var editedQueueAC:ArrayCollection = new ArrayCollection(editedQueue);
+			[Bindable]
+			private var pointStyle:Array = [{name: "circle", id: "circle"}, {name: "star", id: "star"}, {name: "square", id: "square"}, {name: "diamond", id: "diamond"}, {name: "triangle", id: "triangle"}, {name: "x", id: "x"}, {name: "sector", id: "sector"},];
+			[Bindable]
+			private var lineStyle:Array = [{name: "solid", id: "solid"}, {name: "dash", id: "dash"}, {name: "dot", id: "dot"}];
+			[Bindable]
+			private var polygonStyle:Array = [{name: "polygonSolid", id: "polygonSolid"}, {name: "NULL", id: "NULL"}, {name: "horizontal", id: "horizontal"}, {name: "vertical", id: "vertical"}, {name: "cross", id: "cross"}, {name: "slash", id: "slash"}, {name: "backslash", id: "backslash"},];
+
+			protected function init(event:FlexEvent):void
+			{
+				if(!map)
+					map = ((this.owner as ViewNavigator).owner as PaintManager).map;
+				/* drawFeaturesLayer = new FeaturesLayer();
+				drawFeaturesLayer.isPanEnableOnFeature = false;
+				drawFeaturesLayer.id = "drawFeaturesLayer";
+				if(!this.map.getLayer("drawFeaturesLayer"))
+				{
+					this.map.addLayer(drawFeaturesLayer);
+				} */
+				this.map.addEventListener(ActionEvent.ACTION_CHANGED, mapActionChangeHandler);
+				if(!editAction)
+				{
+					editAction = new Edit(this.map, this.map.getLayer("drawFeaturesLayer") as FeaturesLayer);
+				}
+				if(!panAction)
+				{
+					panAction = new Pan(this.map);
+					this.map.action = this.panAction;
+				}
+				//　初始化InfoWindow的内容
+				if(!content)
+				{
+					content = new InfoWindowContent();
+					this.map.infoWindow.content = content;
+					this.map.infoWindow.hide();
+					this.map.infoWindow.content.addEventListener(FlexEvent.CREATION_COMPLETE, contentCreateCompleted);
+				}
+				// 从本地读feature并加到地图上
+				offFeaStorage = new OfflineFeatureStorage();
+				for each(var offFeature:Feature in this.offFeaStorage.features)
+				{
+					offFeature.addEventListener(MouseEvent.CLICK, feature_clickHandler);
+					(this.map.getLayer("drawFeaturesLayer") as FeaturesLayer).addFeature(offFeature);
+					features.push(offFeature);
+				}
+			}
+
+			protected function contentCreateCompleted(event:FlexEvent):void
+			{
+				content.save.addEventListener(MouseEvent.CLICK, save);
+				content.deleteSingle.addEventListener(MouseEvent.CLICK, deleteSingle);
+			}
+
+			/**
+			 * 将feature存储到本地。
+			 */
+			protected function save(event:MouseEvent):void
+			{
+				currFeature.attributes["name"] = content.title.text;
+				currFeature.attributes["descripte"] = content.description.text;
+				//　如果没有存到本地，就先保存
+				if(!offFeaStorage.updateFeature(currFeature))
+				{
+					offFeaStorage.putFeature(currFeature);
+				}
+				this.map.infoWindow.hide();
+			}
+
+			/**
+			 * 删除当前feature。
+			 */
+			protected function deleteSingle(event:MouseEvent):void
+			{
+				var id:String = currFeature.id;
+				// 从地图显示移除
+				(this.map.getLayer("drawFeaturesLayer") as FeaturesLayer).removeFeature(currFeature);
+				// 从列表中清除
+				geoListProvider.refresh();
+				geoListProvider.removeItemAt(this.geoListProvider.getItemIndex(this.currFeature));
+				// 从本地存储中删除
+				offFeaStorage.removeFeatureByID(id);
+				this.map.infoWindow.hide();
+			}
+
+			private function mapActionChangeHandler(event:ActionEvent):void
+			{
+				if(event.newAction is Pan)
+				{
+					//同步编辑后的数据
+					updateToLocal_clickHandler(null);
+				}
+			}
+
+			private function drawPointFeature(event:Event = null):void
+			{
+				map.infoWindow.hide();
+				if(!drawFeaPoint)
+				{
+					drawFeaPoint = new DrawPoint(this.map);
+					drawFeaPoint.addEventListener(DrawEvent.DRAW_END, drawFeaEndFun);
+				}
+				if(point.selected == false)
+					point.selected = true;
+				var markerStyle:PredefinedMarkerStyle = new PredefinedMarkerStyle(pointStyleType.selectedItem.name.toLowerCase(), pointSize.selectedItem, 4354775, 0.85);
+				var isBorderVisible:Boolean = pointBoderVisible.selected;
+				var pointBorderStyle:PredefinedLineStyle;
+				if(isBorderVisible == true)
+				{
+					pointBorderStyle = new PredefinedLineStyle("solid", 0xff00ff, 1, 2);
+					markerStyle.border = pointBorderStyle;
+				}
+				drawFeaPoint.style = markerStyle;
+				drawFeaPoint.style = markerStyle;
+				this.map.action = drawFeaPoint;
+			}
+
+			private function drawLineFeature(event:Event = null):void
+			{
+				var lineStyle:PredefinedLineStyle = new PredefinedLineStyle(lineStyleType.selectedItem.name.toLowerCase(), 5276389, 1.0, Number(lineThickness.selectedItem), "round");
+				line.selected = true;
+				if(!IsFreeLine.selected)
+				{
+					if(!drawFeaLine)
+					{
+						drawFeaLine = new DrawLine(this.map);
+						drawFeaLine.addEventListener(DrawEvent.DRAW_END, drawFeaEndFun);
+					}
+					drawFeaLine.style = lineStyle;
+					this.map.action = drawFeaLine;
+				}
+				else
+				{
+					if(!this.drawFreeLine)
+					{
+						drawFreeLine = new DrawFreeLine(this.map);
+						drawFreeLine.addEventListener(DrawEvent.DRAW_END, drawFeaEndFun);
+					}
+					drawFreeLine.style = lineStyle;
+					this.map.action = drawFreeLine;
+				}
+			}
+
+			private function drawPolygonFeature(event:Event = null):void
+			{
+				var polygonFillStyle:PredefinedFillStyle = new PredefinedFillStyle(fillType.selectedItem.name.toLowerCase());
+				if(this.hasBorder.selected == true)
+				{
+					var polygonBorderStyle:PredefinedLineStyle = new PredefinedLineStyle("SOLID", 5276389, 0.85, Number(polygonBorderWidth.selectedItem));
+					polygonFillStyle.border = polygonBorderStyle;
+				}
+				else
+				{
+					polygonFillStyle.border = null;
+				}
+				polygon.selected = true;
+				if(this.isFreePolygon.selected)
+				{
+					if(!this.drawFreePolygon)
+					{
+						drawFreePolygon = new DrawFreePolygon(this.map);
+						drawFreePolygon.addEventListener(DrawEvent.DRAW_END, drawFeaEndFun);
+					}
+					drawFreePolygon.style = polygonFillStyle;
+					this.map.action = drawFreePolygon;
+				}
+				else
+				{
+					if(!this.drawFeaPolygon)
+					{
+						drawFeaPolygon = new DrawPolygon(this.map);
+						drawFeaPolygon.addEventListener(DrawEvent.DRAW_END, drawFeaEndFun);
+					}
+					drawFeaPolygon.style = polygonFillStyle;
+					this.map.action = drawFeaPolygon;
+				}
+			}
+
+			/**
+			 * 要素绘制完毕执行的函数。
+			 */
+			private function drawFeaEndFun(event:DrawEvent):void
+			{
+				// 图层控制
+				 var fl:FeaturesLayer = this.map.getLayer("drawFeaturesLayer") as FeaturesLayer;
+				if(!fl)
+				{
+					drawFeaturesLayer = new FeaturesLayer();
+					drawFeaturesLayer.isPanEnableOnFeature = false;
+					drawFeaturesLayer.id = "drawFeaturesLayer";
+					this.map.addLayer(this.drawFeaturesLayer);
+				} 
+				// 将feature添加到地图上
+				var fea:Feature = event.feature;
+				(this.map.getLayer("drawFeaturesLayer") as FeaturesLayer).addFeature(fea);
+				fea.addEventListener(MouseEvent.CLICK, feature_clickHandler);
+				// 信息显示及处理符号
+				var geo:Geometry = fea.geometry;
+				if(!fea.attributes)
+				{
+					fea.attributes = new Object();
+				}
+				currFeature = fea;
+				features.push(fea);
+				if(this.map.infoWindow.content != content)
+				{
+					this.map.infoWindow.content = content;
+				}
+				this.map.infoWindow.show(new Point2D(geo.center.x, geo.center.y));
+				clearInfoWinContent();
+				this.map.action = this.panAction;
+			}
+
+			/**
+			 * 地图上的feature被点击时的响应函数。
+			 */
+			protected function feature_clickHandler(event:MouseEvent):void
+			{
+				var feature:Feature = event.currentTarget as Feature;
+				if(this.map.action is Pan)
+				{
+					showInfowindow(feature);
+					event.stopPropagation();
+				}
+				if(this.map.action is Edit)
+				{
+					editedQueue.push(feature);
+					editedQueueAC.refresh();
+				}
+			}
+
+			private function showInfowindow(f:Feature):void
+			{
+				if(this.map.infoWindow.content != content)
+				{
+					this.map.infoWindow.content = content;
+				}
+				var geo:Geometry = f.geometry;
+				currFeature = f;
+				this.map.infoWindow.show(new Point2D(geo.center.x, geo.center.y));
+				//　设置显示内容
+				content.title.text = (this.currFeature.attributes["name"] == null) ? "" : currFeature.attributes["name"];
+				content.description.text = (this.currFeature.attributes["descripte"] == null) ? "" : currFeature.attributes["descripte"];
+			}
+
+			private function clearInfoWinContent():void
+			{
+				if(content.title && content.description)
+				{
+					content.title.text = "";
+					content.description.text = "";
+				}
+			}
+
+			/**
+			 * 列表项被点击时的响应函数。
+			 */
+			protected function geoList_geoItemClickHandler(event:Event):void
+			{
+				var f:Feature = (event.target as GeoListRenderer).data as Feature;
+				currFeature = f;
+				var center:Point2D = new Point2D(f.geometry.center.x, f.geometry.center.y);
+				this.map.panTo(center);
+				//　这时候弹出infoWindow有隐患，暂时去掉
+				// showInfowindow(f);
+			}
+
+			/**
+			 * 编辑完成后同步到文件中。
+			 */
+			protected function updateToLocal_clickHandler(event:MouseEvent):void
+			{
+				for each(var feature:Feature in editedQueue)
+				{
+					offFeaStorage.updateFeature(feature);
+				}
+				editedQueueAC.removeAll();
+				editedQueueAC.refresh();
+			}
+
+			/**
+			 * 清除所有标绘feature。
+			 */
+			protected function removeAll_clickHandler(event:MouseEvent):void
+			{
+				features.length = 0;
+				geoListProvider.removeAll();
+				geoListProvider.refresh();
+				(this.map.getLayer("drawFeaturesLayer") as FeaturesLayer).clear();
+				offFeaStorage.clear();
+				if(map.action is Pan) return;
+				else map.action = new Pan(map);
+			}
+
+			protected function drawTypeChange(event:Event):void
+			{
+				var radioGroup:RadioButtonGroup = event.currentTarget as RadioButtonGroup;
+				drawPoint.visible = false;
+				drawLine.visible = false;
+				drawPolygon.visible = false;
+				switch(radioGroup.selection.id)
+				{
+					case "point":
+					{
+						drawPointFeature();
+						drawPoint.visible = true;
+					}
+						;
+						break;
+					case "line":
+					{
+						drawLineFeature();
+						drawLine.visible = true;
+					}
+						;
+						break;
+					case "polygon":
+					{
+						drawPolygonFeature();
+						drawPolygon.visible = true;
+					}
+						;
+						break;
+				}
+			}
+
+			protected function operateTypeChange(event:Event):void
+			{
+				var radioGroup:RadioButtonGroup = event.currentTarget as RadioButtonGroup;
+				if(radioGroup.selection.id == "editSetting")
+				{
+					currentState = "edit";
+					this.map.action = this.editAction;
+					this.map.infoWindow.hide();
+					geoListProvider.refresh();
+				}
+				if(radioGroup.selection.id == "drawSetting")
+				{
+					currentState = "draw";
+					this.map.action = this.panAction;
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:RadioButtonGroup id="drawType"
+							change="drawTypeChange(event)"/>
+		<s:RadioButtonGroup id="operateType"
+							change="operateTypeChange(event)"/>
+	</fx:Declarations>
+	<s:states>
+		<s:State name="draw"/>
+		<s:State name="edit"/>
+	</s:states>
+	<s:Group left="0"
+			 right="0"
+			 top="0"
+			 bottom="0"
+			 height="310"
+			 width="270">
+		<s:SkinnableContainer width="100%"
+							  height="100%"
+							  backgroundColor="0xDAE4D9"
+							  skinClass="spark.skins.mobile.SkinnableContainerSkin">
+			<components:StyledSkinnableContainer width="100%"
+												 top="40"
+												 bottom="10"
+												 left="10"
+												 right="10"
+												 borderColor="0xBBBBBB"
+												 bottomLeftRadius="5"
+												 bottomRightRadius="5"
+												 firstBackColor="0xFFFFFF"
+												 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin">
+				<!-- 编辑 -->
+				<s:Group id="editPart"
+						 includeIn="edit"
+						 width="100%"
+						 height="100%">
+					<components:StyledSkinnableContainer left="10"
+														 right="10"
+														 top="10"
+														 bottom="50"
+														 borderColor="0xBBBBBB"
+														 firstBackColor="0xFFFFFF"
+														 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin">
+						<renderers:GeoList id="geoList"
+										   left="1"
+										   right="1"
+										   top="1"
+										   bottom="1"
+										   dataProvider="{geoListProvider }"
+										   geoItemClick="geoList_geoItemClickHandler(event)"/>
+					</components:StyledSkinnableContainer>
+					<s:HGroup left="10"
+							  bottom="3"
+							  width="100%"
+							  horizontalAlign="center">
+						<s:Button id="saveForEdit"
+								  width="80"
+								  height="35"
+								  label="本地保存"
+								  color="0xFFFFFF"
+								  click="updateToLocal_clickHandler(event)"
+								  enabled="{editedQueueAC.length &gt; 0 }"
+								  skinClass="com.supermap.components.skins.CustomButtonSkin2"/>
+						<s:Button id="deleteBtn"
+								  width="80"
+								  height="35"
+								  label="全部删除"
+								  color="0xffffff"
+								  click="removeAll_clickHandler(event)"
+								  enabled="{geoListProvider.length &gt; 0}"
+								  skinClass="com.supermap.components.skins.CustomButtonSkin2">
+						</s:Button>
+					</s:HGroup>
+				</s:Group>
+				<!-- 绘制 -->
+				<s:Group id="drawPart"
+						 includeIn="draw"
+						 top="6"
+						 left="6"
+						 right="6"
+						 bottom="6">
+					<s:HGroup width="100%"
+							  height="40"
+							  gap="20"
+							  horizontalAlign="center"
+							  paddingLeft="15"
+							  paddingRight="15"
+							  paddingTop="5">
+						<s:RadioButton id="point"
+									   width="50"
+									   height="32"
+									   color="0xffffff"
+									   label="点"
+									   groupName="drawType"
+									   selected="true"
+									   skinClass="com.supermap.paint.skins.TabBarButtonSkin"/>
+						<s:RadioButton id="line"
+									   width="50"
+									   height="32"
+									   color="0xffffff"
+									   label="线"
+									   groupName="drawType"
+									   skinClass="com.supermap.paint.skins.TabBarButtonSkin"/>
+						<s:RadioButton id="polygon"
+									   width="50"
+									   height="32"
+									   color="0xffffff"
+									   label="面"
+									   groupName="drawType"
+									   skinClass="com.supermap.paint.skins.TabBarButtonSkin"/>
+					</s:HGroup>
+					<!--画点-->
+					<s:VGroup id="drawPoint"
+							  visible="true"
+							  left="0"
+							  right="0"
+							  top="50"
+							  bottom="0"
+							  gap="10"
+							  horizontalAlign="center">
+						<s:HGroup verticalAlign="middle">
+							<s:Label text="边 框"/>
+							<s:ToggleSwitch id="pointBoderVisible"
+											label="边框"
+											accentColor="0x628c6d"
+											change="drawPointFeature(event)"/>
+						</s:HGroup>
+						<s:Group width="100%"
+								 height="100%">
+							<mobile160:paint width="100%"
+											 height="100%"/>
+							<s:VGroup width="100%"
+									  height="100%"
+									  horizontalAlign="center"
+									  verticalAlign="middle">
+								<s:SpinnerListContainer width="175"
+														height="135">
+									<s:SpinnerList id="pointStyleType"
+												   width="50%"
+												   change="drawPointFeature(event)"
+												   itemRenderer="com.supermap.paint.renderers.PointStyleRenderer"
+												   mouseDown="drawPointFeature(event)"
+												   selectedIndex="1">
+										<s:dataProvider>
+											<s:ArrayCollection source="{pointStyle }"/>
+										</s:dataProvider>
+									</s:SpinnerList>
+									<s:SpinnerList id="pointSize"
+												   width="50%"
+												   change="drawPointFeature(event)"
+												   mouseDown="drawPointFeature(event)"
+												   selectedIndex="30">
+										<s:NumericDataProvider id="numProvider"
+															   maximum="50"
+															   minimum="1"
+															   stepSize="1"/>
+									</s:SpinnerList>
+								</s:SpinnerListContainer>
+							</s:VGroup>
+						</s:Group>
+					</s:VGroup>
+					<!-- 画线 -->
+					<s:VGroup id="drawLine"
+							  visible="false"
+							  left="0"
+							  right="0"
+							  top="50"
+							  bottom="0"
+							  gap="10"
+							  horizontalAlign="center">
+						<s:HGroup verticalAlign="middle">
+							<s:Label text="自由线"/>
+							<s:ToggleSwitch id="IsFreeLine"
+											accentColor="0x628c6d"
+											change="drawLineFeature(event)"/>
+						</s:HGroup>
+						<s:Group width="100%"
+								 height="100%">
+							<mobile160:paint width="100%"
+											 height="100%"/>
+							<s:VGroup width="100%"
+									  height="100%"
+									  horizontalAlign="center"
+									  verticalAlign="middle">
+								<s:SpinnerListContainer width="175"
+														height="135">
+									<s:SpinnerList id="lineStyleType"
+												   width="50%"
+												   change="drawLineFeature(event)"
+												   itemRenderer="com.supermap.paint.renderers.LineStyleRenderer"
+												   mouseDown="drawLineFeature(event)"
+												   selectedIndex="1">
+										<s:dataProvider>
+											<s:ArrayCollection source="{lineStyle }"/>
+										</s:dataProvider>
+									</s:SpinnerList>
+									<s:SpinnerList id="lineThickness"
+												   width="50%"
+												   change="drawLineFeature(event)"
+												   mouseDown="drawLineFeature(event)"
+												   selectedIndex="8">
+										<s:NumericDataProvider maximum="50"
+															   minimum="1"
+															   stepSize="1"/>
+									</s:SpinnerList>
+									<!-- 端点 ... -->
+								</s:SpinnerListContainer>
+							</s:VGroup>
+						</s:Group>
+					</s:VGroup>
+					<!-- 画面 -->
+					<s:VGroup id="drawPolygon"
+							  visible="false"
+							  left="0"
+							  right="0"
+							  top="50"
+							  bottom="0"
+							  gap="10"
+							  horizontalAlign="center">
+						<s:VGroup>
+							<s:HGroup verticalAlign="middle">
+								<s:Label text="自由面"/>
+								<s:ToggleSwitch id="isFreePolygon"
+												accentColor="0x628c6d"
+												change="drawPolygonFeature(event)"
+												selected="false"/>
+							</s:HGroup>
+							<s:HGroup verticalAlign="middle">
+								<s:Label text="边    框"/>
+								<s:ToggleSwitch id="hasBorder"
+												selected="true"
+												accentColor="0x628c6d"
+												change="drawPolygonFeature(event)"/>
+							</s:HGroup>
+						</s:VGroup>
+						<s:Group width="100%"
+								 height="100%">
+							<mobile160:paint width="100%"
+											 height="100%"/>
+							<s:VGroup width="100%"
+									  height="100%"
+									  horizontalAlign="center"
+									  verticalAlign="middle">
+								<s:SpinnerListContainer width="160"
+														height="120">
+									<s:SpinnerList id="fillType"
+												   width="50%"
+												   height="100%"
+												   change="drawPolygonFeature(event)"
+												   itemRenderer="com.supermap.paint.renderers.RegionTypeRenderer"
+												   mouseDown="drawPolygonFeature(event)"
+												   selectedIndex="0">
+										<s:dataProvider>
+											<s:ArrayList source="{polygonStyle }"/>
+										</s:dataProvider>
+									</s:SpinnerList>
+									<s:SpinnerList id="polygonBorderWidth"
+												   width="50%"
+												   height="100%"
+												   change="drawPolygonFeature(event)"
+												   mouseDown="drawPolygonFeature(event)"
+												   selectedIndex="2">
+										<s:NumericDataProvider maximum="50"
+															   minimum="1"
+															   stepSize="1"/>
+									</s:SpinnerList>
+								</s:SpinnerListContainer>
+							</s:VGroup>
+						</s:Group>
+					</s:VGroup>
+				</s:Group>
+			</components:StyledSkinnableContainer>
+			<s:HGroup height="30"
+					  top="11"
+					  left="10">
+				<s:RadioButton id="drawSetting"
+							   width="80"
+							   height="100%"
+							   label="绘制"
+							   groupName="operateType"
+							   selected="true"
+							   skinClass="com.supermap.components.TabBarButtonSkin"/>
+				<s:Spacer width="100%"/>
+				<s:RadioButton id="editSetting"
+							   width="80"
+							   height="100%"
+							   label="编辑"
+							   groupName="operateType"
+							   skinClass="com.supermap.components.TabBarButtonSkin"/>
+			</s:HGroup>
+		</s:SkinnableContainer>
+	</s:Group>
+</s:View>

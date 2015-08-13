@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:ic="http://www.supermap.com/iclient/2010"
+		 xmlns:is="http://www.supermap.com/iserverjava/2010"
+		 width="100%" height="100%"
+		 creationComplete="main()" fontFamily="宋体"  xmlns:uitl="uitl.*" 
+		 xmlns:clipUtil="com.supermap.web.samples.clipUtil.*" 
+		 xmlns:print="com.supermap.web.gears.print.*"
+		 >
+
+	<fx:Declarations>
+		<s:Resize id="expand" target="{_titleWindow}" widthTo="900"/>
+		<s:Button id="btn" cornerRadius="10" width="40" height="40" label="hi"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawCircle;
+			import com.supermap.web.actions.DrawFreeLine;
+			import com.supermap.web.actions.DrawFreePolygon;
+			import com.supermap.web.actions.DrawLine;
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.DrawRectangle;
+			import com.supermap.web.actions.DrawText;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.gears.components.Legend;
+			import com.supermap.web.samples.clipUtil.PreviewWindow;
+			import com.supermap.web.samples.printMap.PrintWindow;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Image;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.HTTPService;
+			
+			import utilEvent.ReadURLEvent;
+			private var drawPoint:DrawPoint;
+			private var drawLine:DrawLine;
+			private var drawPolygon:DrawPolygon;
+			private var drawFreeLine:DrawFreeLine;
+			private var drawFreePolygon:DrawFreePolygon;
+			private var drawRectangle:DrawRectangle;
+			private var drawText:DrawText;
+			private var drawCircle:DrawCircle;
+			private var viewConfig:ViewConfig;
+			private var legendPrint:Legend;
+			[Bindable]
+			private var restUrl:String;
+			[Bindable]
+			private var printBonds:Rectangle2D;
+			[Bindable]
+			private var hasLegend:Boolean;
+			[Bindable]
+			private var _titleWindow:PreviewWindow;
+			private var image:Image;
+			
+			//从大到小排列，对应的比例尺就是从小到大排列，与类库对应
+			[Bindable]
+			private var denoScales:Array = new Array(400000000, 200000000, 100000000, 50000000, 25000000, 12500000);
+			
+			//地图Map初始化完成后调用的函数，用于加载要素/元素
+			private function setLayer():void
+			{
+				//图片1
+				image = new Image();
+				image.width = 50;
+				image.height = 50;
+				image.source = "../assets/cloud/cloud.png"; 
+				el.addComponent(image, new Rectangle2D(-100, 38, -100, 38));
+				
+				//图片2
+				image = new Image();
+				image.width = 50;
+				image.height = 50;
+				image.source = "../assets/cloud/cloud3.png"; 
+				el.addComponent(image, new Rectangle2D(30, 30, 30, 30));
+				
+				//button元素
+				el.addComponent(btn, new Rectangle2D(-60, -5, -60, -5)); 
+				
+				//添加infoStyle要素
+				var feature1:Feature = new Feature();
+				feature1.geometry = new GeoPoint(116.3880386352539,39.906192779541016); 
+				infoSty1.containerStyleName = "infoStyleName";
+				feature1.style = infoSty1;
+				fl.addFeature(feature1); 
+			}
+
+			//初始化
+			private function main():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+				
+				var httpService:HTTPService = new HTTPService();
+				httpService.url = "clusterData.xml";
+				httpService.addEventListener(ResultEvent.RESULT,getClusterData);
+				httpService.send();
+			}
+			
+			private function getClusterData(event:ResultEvent):void
+			{
+				var clusterDataLength:int = (event.result.NODE.SMID as ArrayCollection).length;				
+				for(var i:int = 0; i < clusterDataLength; i++)
+				{
+					var featureX:String = event.result.NODE.SMX[i].toString();
+					var featureY:String = event.result.NODE.SMY[i].toString();
+					var geoPointStyle:PredefinedMarkerStyle=new PredefinedMarkerStyle("circle",10,0xff0000,1,0,0,40,new PredefinedLineStyle("solid",0xffff00));		
+					var x:Number = Number(featureX);
+					var y:Number = Number(featureY);
+					var feature:Feature=new Feature(new GeoPoint(x,y), geoPointStyle);
+					fl.addFeature(feature); 
+				}
+			}
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+			}
+			
+			//平移地图
+			private function panMap(event:MouseEvent):void
+			{
+				map.action = new Pan(this.map);
+			}
+
+			//打印地图
+			protected function printBtn_clickHandler(event:MouseEvent):void
+			{
+				var printWindow:PrintWindow = new PrintWindow;
+				printWindow.addEventListener("AddPreView",addPreViewHandler);
+				printWindow.map = this.map;
+				printWindow.printBonds =  new Rectangle2D(-180,-90,180,90);
+				printWindow.layerIds = ["worldMap"];
+				printWindow.top = 5;
+				printWindow.bottom = 5;
+				
+				_titleWindow = null;
+				_titleWindow = new PreviewWindow;
+				_titleWindow.x = 100;
+				_titleWindow.y = 100;
+				_titleWindow.maxWidth = 1000;
+				_titleWindow.width = 255;
+				_titleWindow.height = 500;
+				PopUpManager.addPopUp(_titleWindow, this, false);  
+				_titleWindow.vgp.addElement(printWindow);
+			}
+			
+			//_titleWindow展开动画
+			private function addPreViewHandler(event:Event):void
+			{
+				expand.end();
+				expand.play();
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!--样式1：加载图片和文本-->
+		<ic:InfoStyle id="infoSty1" containerStyleName="infoStyleName">
+			<ic:infoRenderer>
+				<fx:Component>
+					<s:HGroup gap="5">
+						<mx:Image width="100" height="75" source="../assets/tiananmen.jpg"/>
+						<mx:Text text="中国首都北京" 
+								 color="#255" width="30" height="100%"/>
+					</s:HGroup>
+				</fx:Component>
+			</ic:infoRenderer>
+		</ic:InfoStyle>
+	</fx:Declarations>
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%" panEasingFactor="0.4" zoomDuration="200"
+			scales="{this.denoScales}"
+			load="setLayer()">
+		<ic:TiledDynamicRESTLayer url="{restUrl}" id="worldMap"/>
+		<ic:FeaturesLayer id="fl"/>
+		<ic:ElementsLayer id="el" isViewportClip="false"/> 
+	</ic:Map>
+	<!--操作窗口-->
+	<s:HGroup right="5" top="5">
+		<s:Button skinClass="skins.printBtnSkin" click="printBtn_clickHandler(event)"/>
+		<s:Button skinClass="skins.panBtnSkin" click="panMap(event)"/>
+	</s:HGroup>
+</s:Application>

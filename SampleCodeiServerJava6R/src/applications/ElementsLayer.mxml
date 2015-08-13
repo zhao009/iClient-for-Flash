@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp(event)"
+			   >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Rectangle2D;
+			
+			import flash.utils.setTimeout;
+			import mx.containers.TitleWindow;
+			import mx.controls.Button;
+			import mx.controls.Image;
+			import mx.controls.Label;
+			import mx.controls.SWFLoader;
+			import mx.effects.Glow;
+			import mx.events.FlexEvent;
+		 
+			import spark.components.VideoDisplay;
+			import utilEvent.ReadURLEvent;
+
+			private var image:Image;
+			private var timer:Timer = new Timer(1000);
+			private var glow:Glow;
+			private var viewConfig:ViewConfig;
+			[Bindable]private var restUrl:String; 
+			
+			private function initApp(event:FlexEvent):void
+			{
+				viewConfig = new ViewConfig(this); 
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);  
+				this.initEffect();
+			}
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://192.168.11.11:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP; 
+			}
+			
+			//加载元素
+			private function setLayer():void
+			{
+				image = new Image();
+				image.width = 50;
+				image.height = 50;
+				image.source = "../assets/cloud/cloud.png"; 
+			   	el.addComponent(image, new Rectangle2D(-80, 38, -80, 38));
+			   
+				image = new Image();
+				image.width = 50;
+				image.height = 50;
+				image.source = "../assets/cloud/cloud3.png"; 
+				el.addComponent(image, new Rectangle2D(30, 30, 30, 30));
+		       
+				var video:VideoDisplay = new VideoDisplay();
+				video.source = "../assets/weather.flv";
+				video.width = 300;
+				video.height = 300;
+				el.addComponent(video, new Rectangle2D(95, 25, 115, 40));  
+				 
+				el.addComponent(button, new Rectangle2D(-50, -10, -50, -10)); 
+			}
+		        
+			//Button的发光效果
+			private function initEffect():void
+			{
+				glow = new Glow(button);
+				glow.color = 0x0000ff;
+				glow.blurXFrom = 0;
+				glow.blurXTo = 50;
+				glow.blurYFrom = 0;
+				glow.blurYTo = 50;
+				glow.duration = 1000;
+				glow.end();
+				glow.play();
+			}
+			 
+			private function main():void
+			{
+				this.setLayer();
+				timer.start();
+				timer.addEventListener(TimerEvent.TIMER, onTimer, false, 0, true);
+			}
+			
+			private function onTimer(event:TimerEvent):void
+			{
+				glow.play();
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		 <mx:Button id="button" cornerRadius="15" width="30" height="30"/>
+	</fx:Declarations>
+	
+	<!--加载地图-->
+	<ic:Map id="map" load="main()">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}" alpha="0.85"/>
+		<ic:ElementsLayer id="el"/> 
+	</ic:Map>
+</s:Application>  

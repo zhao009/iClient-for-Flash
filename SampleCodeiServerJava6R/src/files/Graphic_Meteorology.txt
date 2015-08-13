@@ -1,0 +1,2 @@
+﻿<font color="#0033FF">GraphicsLayer</font>
+动态展示全国清晨2点对晚上11点的温度变化情况。

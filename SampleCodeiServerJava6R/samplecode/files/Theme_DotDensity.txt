@@ -1,0 +1,11 @@
+<font color="#0033FF">点密度专题图（ThemeDotDensity）</font>
+<font color="#006633">1. 功能描述：</font>使用点的个数或密集程度来反映一个区域或范围内某一专题数据的值，因此只有面数据才能制作点密度专题图。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World MAP。
+<font color="#006633">3. 实现的关键步骤：</font>
+    1）定义点密度专题图 ThemeDotDensity：该参数不唯一，可设置多个 ThemeDotDensity，即针对多个字段制作点密度专题图。当然也可以定义不同类型的专题图对象，即制作复合专题图；
+    2）定义专题图参数 ThemeParameters；
+    3）制作专题图 ThemeService；
+    4）获取专题图，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 ThemeEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">4. 其它说明：</font>有关点密度专题图的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

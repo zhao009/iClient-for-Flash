@@ -1,0 +1,5 @@
+<font color="#0033FF">文本样式（TextStyle）</font>
+<font color="#006633">1. 功能描述：</font>展示 SuperMap iClient 6R for Flex 产品为您提供的所有文本样式。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层（World）。
+<font color="#006633">3. 操作指南：</font>左侧窗口——设置文本样式的各种参数，您将会观赏到地图中“北京欢迎您”的实时变化；
+<font color="#006633">4. 其它说明：</font>有关文本样式（TextStyle）的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

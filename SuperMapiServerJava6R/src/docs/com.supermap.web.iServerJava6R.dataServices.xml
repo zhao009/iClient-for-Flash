@@ -1,0 +1,348 @@
+<apiPackage id="com.supermap.web.iServerJava6R.dataServices"><apiName>com.supermap.web.iServerJava6R.dataServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsParameters"><apiName>GetFeaturesByIDsParameters</apiName><shortdesc>
+	 数据集 ID 查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集 ID 查询参数类. 
+	 <p>数据集 ID 查询就是在数据集集合中查找与指定 ID 号对应的矢量要素。该类用于设置数据集 ID 查询参数，包括要查询的数据集集合和 ID 号集合。</p>
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsParameters:GetFeaturesByIDsParameters"><apiName>GetFeaturesByIDsParameters</apiName><shortdesc>
+		 初始化 GetFeaturesByGeometryParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetFeaturesByGeometryParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsParameters:IDs:get"><apiName>IDs</apiName><shortdesc>
+		 要查询的矢量要素的 ID 号集合，必设参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 要查询的矢量要素的 ID 号集合，必设参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsParameters:fields:get"><apiName>fields</apiName><shortdesc>
+		 设置结果返回字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 设置结果返回字段.
+		 <p>当指定了返回结果字段后，则 GetFeaturesResult 中的 features 的属性字段只包含所指定的字段。不设置即返回全部字段。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#GetFeaturesResult/features"><linktext>GetFeaturesResult.features</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferParameters"><apiName>GetFeaturesByBufferParameters</apiName><shortdesc>
+	 数据集缓冲区查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集缓冲区查询参数类.
+	 <p>数据集缓冲区查询就是对指定的几何对象进行一定距离缓冲，从指定数据集集合中查询出与缓冲区区域相交的矢量要素。该类主要用于设置对数据集进行缓冲区查询时所需的参数，包括缓冲区对象、缓冲距离、要查询的数据集集合等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferParameters:GetFeaturesByBufferParameters"><apiName>GetFeaturesByBufferParameters</apiName><shortdesc>
+		 初始化 GetFeaturesByBufferParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetFeaturesByBufferParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferParameters:attributeFilter:get"><apiName>attributeFilter</apiName><shortdesc>
+		 缓冲区查询属性过滤条件，相当于 SQL 语句中的 WHERE 子句.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 缓冲区查询属性过滤条件，相当于 SQL 语句中的 WHERE 子句.
+		 <p>其格式为：WHERE &lt;条件表达式&gt;，attributeFilter 就是其中的“条件表达式”。该字段的用法为 attributeFilter = "过滤条件"。<br/>例如，要查询字段 fieldValue 小于100的记录，设置 attributeFilter = "fieldValue &lt; 100"；要查询字段 name 的值为“酒店”的记录，设置 attributeFilter = "name like '%酒店%'"，等等。<br/>用户在设置该字段时，仅需要输入“条件表达式”即可，如：fieldValue &lt; 100。<br/>若不设置该属性则返回与缓冲区相交的所有矢量要素。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferParameters:bufferDistance:get"><apiName>bufferDistance</apiName><shortdesc>
+		 缓冲半径，地图单位，必设参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 缓冲半径，地图单位，必设参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferParameters:fields:get"><apiName>fields</apiName><shortdesc>
+		 设置结果返回字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 设置结果返回字段.
+		 <p>当指定了返回结果字段后，则 GetFeaturesResult 中的 features 的属性字段只包含所指定的字段。不设置即返回全部字段。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferParameters:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 用于进行缓冲区查询的几何对象，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 用于进行缓冲区查询的几何对象，必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesService"><apiName>EditFeaturesService</apiName><shortdesc>
+	 数据集编辑服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集编辑服务类.
+	 <p>数据集编辑是指对数据集中的矢量要素进行编辑，包括对要素进行增加、删除、修改的三种操作。<br/>该类负责与服务端完成异步通信：将客户端指定的数据集编辑参数传递给服务端，并获取服务端返回的结果信息，从而实现矢量要素数据的增删改操作。<br/>用户获取服务端返回的数据集编辑结果信息有两种方式：一种是通过监听 EditFeaturesEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesService_com.supermap.web.iServerJava6R.serviceEvents.EditFeaturesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.EditFeaturesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesService:EditFeaturesService"><apiName>EditFeaturesService</apiName><shortdesc>
+		 使用数据服务资源地址初始化 EditFeaturesService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端数据服务资源地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用数据服务资源地址初始化 EditFeaturesService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据数据服务资源地址与服务端完成异步通讯，即发送编辑参数，并获取编辑结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.dataServices:EditFeaturesParameters</apiOperationClassifier><apiDesc>数据集编辑参数 EditFeaturesParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;  <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据数据服务资源地址与服务端完成异步通讯，即发送编辑参数，并获取编辑结果。.
+		 <p>当编辑成功时，将触发 EditFeaturesEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取编辑结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 EditFeaturesEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的数据集编辑结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的数据集编辑结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLParameters"><apiName>GetFeaturesBySQLParameters</apiName><shortdesc>
+	 数据集 SQL 查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集 SQL 查询参数类.
+	 <P>数据集 SQL 查询就是在数据集集合中查找符合 SQL 条件的矢量要素。该类用于设置数据集 SQL 查询参数，包括要查询的数据集集合和 SQL 过滤条件。</P> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLParameters:GetFeaturesBySQLParameters"><apiName>GetFeaturesBySQLParameters</apiName><shortdesc>
+		 初始化 GetFeaturesBySQLParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetFeaturesBySQLParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLParameters:filterParameter:get"><apiName>filterParameter</apiName><shortdesc>
+		 SQL 查询过滤条件，FilterParameter 对象。必设参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R:FilterParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 SQL 查询过滤条件，FilterParameter 对象。必设参数。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult"><apiName>GetFeaturesResult</apiName><shortdesc>
+	 数据集查询结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集查询结果类.
+	 <p>该类包含了从服务端返回的查询结果，包括查询到的要素的个数、要素信息和要素资源在服务器上的地址。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult:GetFeaturesResult"><apiName>GetFeaturesResult</apiName><shortdesc>
+		 初始化 GetFeaturesResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetFeaturesResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult:featureCount:get"><apiName>featureCount</apiName><shortdesc>
+		 查询到的要素总个数，即符合条件的所有要素数目。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 查询到的要素总个数，即符合条件的所有要素数目。.
+		 <p>注意：该属性值并不等于属性 features 的长度。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#GetFeaturesResult/features"><linktext>features</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult:features:get"><apiName>features</apiName><shortdesc>
+		 获取查询到的矢量要素（Feature）集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取查询到的矢量要素（Feature）集合.
+		 <p>从矢量要素的 geometry 字段可以得到该要素的几何信息，从 attribute 字段可以获得该矢量要素的属性信息（包括 ID、名称等）。<br/>注意：矢量要素的 style 属性为 null，若需在客户端显示用户需首先定义 syle。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryService"><apiName>GetFeaturesByGeometryService</apiName><shortdesc>
+	 数据集几何查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集几何查询服务类.
+	 <p>几何查询就是查询与指定几何对象符合一定空间关系的矢量要素。<br/>该类负责将客户端指定的数据集几何查询参数传递给服务端，并接收服务端返回的结果数据。<br/>用户获取服务端返回的数据查询结果信息有两种方式：一种是通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryService_com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryService:GetFeaturesByGeometryService"><apiName>GetFeaturesByGeometryService</apiName><shortdesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesByGeometryService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>数据查询结果资源地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesByGeometryService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryParameters</apiOperationClassifier><apiDesc>数据集 SQL 查询参数 GetFeaturesBySQLParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.
+		 <p>当查询成功时，将触发 GetFeaturesEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的数据几何查询结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的数据几何查询结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult"><apiName>EditFeaturesResult</apiName><shortdesc>
+	 数据集编辑结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集编辑结果类.
+	 <p>该类包含了编辑数据是否成功、编辑后的数据服务资源的地址。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult:EditFeaturesResult"><apiName>EditFeaturesResult</apiName><shortdesc>
+		 初始化 EditFeaturesResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 EditFeaturesResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult:IDs:get"><apiName>IDs</apiName><shortdesc>
+		 新增一个或多个地物的 SmID 数组。通过该字段可知道新增地物的 SmID。当删除或更新地物时，该字段为 null。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 新增一个或多个地物的 SmID 数组。通过该字段可知道新增地物的 SmID。当删除或更新地物时，该字段为 null。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult:newResourceLocation:get"><apiName>newResourceLocation</apiName><shortdesc>
+		 数据集编辑成功后新数据资源在服务器上的地址。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 数据集编辑成功后新数据资源在服务器上的地址。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult:succeed:get"><apiName>succeed</apiName><shortdesc>
+		 数据集编辑是否成功。true 表示编辑数据成功。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 数据集编辑是否成功。true 表示编辑数据成功。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsService"><apiName>GetFeaturesByIDsService</apiName><shortdesc>
+	 数据集 ID 查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集 ID 查询服务类.
+	 <p>数据集 ID 查询就是在数据集集合中查找指定 ID 号的要素。<br/>该类负责将客户端指定的数据集 ID 查询参数传递给服务端，并接收服务端返回的结果数据。<br/>用户获取服务端返回的数据查询结果信息有两种方式：一种是通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsService_com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsService:GetFeaturesByIDsService"><apiName>GetFeaturesByIDsService</apiName><shortdesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesByIDsService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>数据查询结果资源地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesByIDsService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsParameters</apiOperationClassifier><apiDesc>数据集 SQL 查询参数 GetFeaturesBySQLParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.
+		 <P>当查询成功时，将触发 GetFeaturesEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件获取。</P> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByIDsService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的数据集 ID 查询结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的数据集 ID 查询结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:EditType"><apiName>EditType</apiName><shortdesc>
+	 编辑操作类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 编辑操作类型枚举类.
+	 <p>编辑操作包括三种：增加、删除、修改。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditType:ADD"><apiName>ADD</apiName><shortdesc>
+		 增加操作。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>add</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 增加操作。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditType:DELETE"><apiName>DELETE</apiName><shortdesc>
+		 删除操作。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>delete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 删除操作。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditType:UPDATE"><apiName>UPDATE</apiName><shortdesc>
+		 修改操作。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>update</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 修改操作。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLService"><apiName>GetFeaturesBySQLService</apiName><shortdesc>
+	 数据集 SQL 查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集 SQL 查询服务类.
+	 <p>数据集 SQL 查询就是在数据集集合中查找符合 SQL 条件的矢量要素。<br/>该类负责将客户端指定的数据集 SQL 查询参数传递给服务端，并接收服务端返回的结果数据。<br/>用户获取服务端返回的数据查询结果信息有两种方式：一种是通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLService_com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLService:GetFeaturesBySQLService"><apiName>GetFeaturesBySQLService</apiName><shortdesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesBySQLService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>数据查询结果资源地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesBySQLService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLParameters</apiOperationClassifier><apiDesc>数据集 SQL 查询参数 GetFeaturesBySQLParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.
+		 <p>当查询成功时，将触发 GetFeaturesEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesBySQLService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的数据集 SQL 查询结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的数据集 SQL 查询结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryParameters"><apiName>GetFeaturesByGeometryParameters</apiName><shortdesc>
+	 数据集几何查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集几何查询参数类.
+	 <p>几何查询就是查询与指定几何对象符合一定空间关系的矢量要素。该类主要用于设置对数据集进行几何查询的参数，包括几何对象、空间关系、要查询的数据集集合等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryParameters:GetFeaturesByGeometryParameters"><apiName>GetFeaturesByGeometryParameters</apiName><shortdesc>
+		 初始化 GetFeaturesByGeometryParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetFeaturesByGeometryParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryParameters:attributeFilter:get"><apiName>attributeFilter</apiName><shortdesc>
+		 几何查询属性过滤条件，相当于 SQL 语句中的 WHERE 子句.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 几何查询属性过滤条件，相当于 SQL 语句中的 WHERE 子句.
+		 <p>其格式为：WHERE &lt;条件表达式&gt;，attributeFilter 就是其中的“条件表达式”。该字段的用法为 attributeFilter = "过滤条件"。<br/>例如，要查询字段 fieldValue 小于100的记录，设置 attributeFilter = "fieldValue &lt; 100"；要查询字段 name 的值为“酒店”的记录，设置 attributeFilter = "name like '%酒店%'"，等等。<br/>用户在设置该字段时，仅需要输入“条件表达式”即可，如：fieldValue &lt; 100。<br/>若不设置该属性则返回与指定几何对象符合某种空间关系的所有要素。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryParameters:fields:get"><apiName>fields</apiName><shortdesc>
+		 设置结果返回字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 设置结果返回字段.
+		 <p>当指定了返回结果字段后，则 GetFeaturesResult 中的 features 的属性字段只包含所指定的字段。不设置即返回全部字段。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#GetFeaturesResult/features"><linktext>GetFeaturesResult.features</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryParameters:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 用于几何查询的几何对象，必设参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 用于几何查询的几何对象，必设参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByGeometryParameters:spatialQueryMode:get"><apiName>spatialQueryMode</apiName><shortdesc>
+		 空间查询模式常量，必设参数。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 空间查询模式常量，必设参数。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#SpatialQueryMode"><linktext>com.supermap.web.iServerJava6R.queryServices.SpatialQueryMode</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesParameters"><apiName>EditFeaturesParameters</apiName><shortdesc>
+	 数据集编辑参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集编辑参数类.
+	 <p>数据集编辑是指对数据集中的矢量要素进行编辑，包括对要素进行增加、删除、修改的三种操作。通过字段 features 设置要增加或修改的矢量要素，对编辑的矢量要素还可以赋予几何信息和属性信息，服务器能将所编辑的矢量要素的几何信息和属性信息添加至或更新要素所在的数据集。如果要删除某些矢量要素，通过字段 IDs 直接指定要删除的要素的 ID 号即可。<br/>该类则用于设置进行数据集编辑时所需的参数，如：要添加或修改的矢量要素对象 Feature 集合；要删除的矢量要素 ID 集合等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesParameters:EditFeaturesParameters"><apiName>EditFeaturesParameters</apiName><shortdesc>
+		 初始化 EditFeaturesParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 EditFeaturesParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesParameters:IDs:get"><apiName>IDs</apiName><shortdesc>
+		 要删除或修改的矢量要素 ID 号集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 要删除或修改的矢量要素 ID 号集合.
+		 <p>即矢量要素 attributes 中的 SmID。<br/>当 editType 为删除时（EditType.DELETE），该属性为必设，features 属性无需设置。当 editType 为修改时（EditType.UPDATE），该属性中的 ID 值（存储在服务端的要被修改的要素 ID 号）与 features 中的矢量要素（编辑后的要素，存放在客户端，用来替换服务端对应的要素）是一一对应的，此时两者均为必设属性 。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesParameters:editType:get"><apiName>editType</apiName><shortdesc>
+		 对矢量要素进行编辑操作的类型，包括增加、删除和修改三个操作。默认为 EditType.ADD。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 对矢量要素进行编辑操作的类型，包括增加、删除和修改三个操作。默认为 EditType.ADD。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#EditType"><linktext>EditType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:EditFeaturesParameters:features:get"><apiName>features</apiName><shortdesc>
+		 要增加或修改的地物要素集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 要增加或修改的地物要素集合.
+		 <p>当新增矢量要素时该字段必设，而字段 IDs 无需设置。当修改矢量要素时该属性中的 ID 值（存储在服务端的要被修改的要素 ID 号）与 features 中的矢量要素（编辑后的要素，存放在客户端，用来替换服务端对应的要素）是一一对应的，此时两者均为必设属性 。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase"><apiName>GetFeaturesParametersBase</apiName><shortdesc>
+	 数据集查询参数基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集查询参数基类.
+	 <p>缓冲区查询、几何查询、ID 查询、SQL 查询参数类均继承于该类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase:GetFeaturesParametersBase"><apiName>GetFeaturesParametersBase</apiName><shortdesc>
+		 初始化 GetFeaturesParametersBase 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetFeaturesParametersBase 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase:datasetNames:get"><apiName>datasetNames</apiName><shortdesc>
+		 数据集名称数组，必设参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 数据集名称数组，必设参数.
+		 <p>数据集名称由数据源名和数据集名构成，例如 world 数据源下的 Ocean 数据集，这里的数据集名称就为 "world:Ocean"，注意不要漏掉双引号。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase:fromIndex:get"><apiName>fromIndex</apiName><shortdesc>
+		 获取或设置返回对象的起始索引值。默认值为 0，表示从第一个对象开始返回.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置返回对象的起始索引值。默认值为 0，表示从第一个对象开始返回.
+		 <p>例如有 10 个对象符合查询条件，若该属性值为 2，则返回索引值属于 [2, toIndex] 的对象。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#GetFeaturesParametersBase/toIndex"><linktext>toIndex</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesParametersBase:toIndex:get"><apiName>toIndex</apiName><shortdesc>
+		 获取或设置返回对象的终止索引值。默认值为 19，表示终止索引指向数组的第 20 个对象.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置返回对象的终止索引值。默认值为 19，表示终止索引指向数组的第 20 个对象.
+		 <p>例如有 10 个对象符合查询条件，若该属性值为 5，则返回索引值属于 [fromIndex, 5] 的对象。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#GetFeaturesParametersBase/fromIndex"><linktext>fromIndex</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferService"><apiName>GetFeaturesByBufferService</apiName><shortdesc>
+	 数据集缓冲区查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集缓冲区查询服务类.
+	 <p>缓冲区查询就是对指定的几何对象进行一定距离缓冲，从指定数据集集合中查询出与缓冲区区域相交的矢量数据。<br/>该类负责将客户端指定的数据集缓冲区查询参数传递给服务端，并接收服务端返回的结果数据。<br/>用户获取服务端返回的数据查询结果信息有两种方式：一种是通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferService_com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferService:GetFeaturesByBufferService"><apiName>GetFeaturesByBufferService</apiName><shortdesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesByBufferService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>数据查询结果资源地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用数据查询结果资源地址初始化 GetFeaturesByBufferService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferParameters</apiOperationClassifier><apiDesc>数据集 SQL 查询参数 GetFeaturesBySQLParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据数据查询结果资源地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.
+		 <p>当查询成功时，将触发 GetFeaturesEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GetFeaturesEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.dataServices:GetFeaturesByBufferService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的数据集缓冲区查询结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的数据集缓冲区查询结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

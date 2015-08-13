@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:mapping="com.supermap.web.samples.mapping.*" 
+			   width="100%" height="100%">
+	<!--BingMap 地图-->
+	<ic:Map id="map">		
+		<mapping:TiledBingMapsLayer id="bm" mapType="{mapType.selectedItem}"/>
+	</ic:Map>
+	<s:controlBarContent>
+		<s:HGroup gap="5">
+			<s:Label text="图层选择：" fontSize="18"/>
+			<s:DropDownList id="mapType" selectedIndex="0">
+				<s:ArrayList>
+					<fx:String>aerial</fx:String>
+					<fx:String>aerialWithLabels</fx:String>
+					<fx:String>road</fx:String>
+				</s:ArrayList>
+			</s:DropDownList>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

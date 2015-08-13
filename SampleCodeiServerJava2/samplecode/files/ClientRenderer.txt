@@ -1,0 +1,7 @@
+<font color="#0033FF">客户端渲染</font>
+<font color="#006633">1. 功能描述：</font>
+	1）范围分段渲染（RangeRenderer）：将矢量图层的某一属性信息分为多个范围段，使用不同的颜色或符号填充不同范围段，从而展现属性值在图层上的分布情况。
+	2）单值渲染（UniqueRenderer）：将矢量图层中某一属性值相同的所有要素渲染为同一种样式，可设置多个属性值；
+	3）统一渲染（UniformRenderer）：将图层中所有要素统一渲染为一种样式；
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的世界地图。
+<font color="#006633">3. 其它说明：</font>有关客户端渲染的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

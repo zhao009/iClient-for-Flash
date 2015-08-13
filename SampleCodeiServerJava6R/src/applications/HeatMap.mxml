@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()" accentColor="#C5E3BE">
+	
+	<!--添加热点图-->
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.mapping.HeatPoint;
+			import com.supermap.web.mapping.HeatStop;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var points:Array = [];
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				this.map.viewBounds = new Rectangle2D(-90, -60, 90, 60);
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				
+				//定义热点
+				for(var i:int=0; i<200; i++)
+				{
+					var x:Number = Math.round(Math.random() * 120 ) - 120/2;
+					var y:Number = Math.round(Math.random() * 90) - 90/2;
+					var heatPoint:HeatPoint = new HeatPoint(x, y, heatvalue.value);
+					points.push(heatPoint);
+				}
+				
+				//创建热点图
+				heatMap.heatPoints = points;
+			}
+			
+			protected function heatvalue_changeHandler(event:Event):void
+			{
+				for(var i:int=0; i<100; i++)
+				{
+					heatMap.heatPoints[i].value = heatvalue.value;
+				}
+				heatMap.refresh();
+			}
+
+			protected function checkbox1_changeHandler(event:Event):void
+			{
+				if(this.isGeoRadius.selected)
+				{
+					for(var j:int=0; j<heatMap.heatPoints.length; j++)
+					{
+						heatMap.heatPoints[j].geoRadius = 1*Math.random() + 3;
+					}
+				}
+				else
+				{
+					for(var n:int=0; n<heatMap.heatPoints.length; n++)
+					{
+						heatMap.heatPoints[n].geoRadius = null;
+					}
+				}
+				heatMap.refresh();
+			}
+
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+		<ic:HeatMapLayer id="heatMap"/>
+	</ic:Map>
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup verticalCenter="0" verticalAlign="middle" height="100%" horizontalCenter="0" top="10" bottom="10" gap="30">
+			<s:HGroup gap="2">
+				<s:Label text="热度：" fontSize="18" fontFamily="宋体"  fontWeight="bold"/>
+				<s:HSlider id="heatvalue" focusEnabled="false" value="170" minimum="50" maximum="256" snapInterval="0.1" change="heatvalue_changeHandler(event)"  height="21"/>
+			</s:HGroup>
+			<mx:VRule height="21" y="4"/>
+			<s:CheckBox verticalCenter="0" id="isGeoRadius" label="地理半径" fontSize="18" fontFamily="宋体"  fontWeight="bold" change="checkbox1_changeHandler(event)" textDecoration="none"/>
+		</s:HGroup>
+	</s:controlBarContent>	
+</s:Application>

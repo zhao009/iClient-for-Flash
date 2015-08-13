@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="IClientFlexLib6RClasses"/>
+    <classEntry path="com.supermap.web.actions.DrawAction"/>
+    <classEntry path="com.supermap.web.actions.DrawCircle"/>
+    <classEntry path="com.supermap.web.actions.DrawFreeLine"/>
+    <classEntry path="com.supermap.web.actions.DrawFreePolygon"/>
+    <classEntry path="com.supermap.web.actions.DrawLine"/>
+    <classEntry path="com.supermap.web.actions.DrawPoint"/>
+    <classEntry path="com.supermap.web.actions.DrawPolygon"/>
+    <classEntry path="com.supermap.web.actions.DrawRectangle"/>
+    <classEntry path="com.supermap.web.actions.DrawText"/>
+    <classEntry path="com.supermap.web.actions.Edit"/>
+    <classEntry path="com.supermap.web.actions.MapAction"/>
+    <classEntry path="com.supermap.web.actions.Pan"/>
+    <classEntry path="com.supermap.web.actions.Snap"/>
+    <classEntry path="com.supermap.web.actions.TouchAction"/>
+    <classEntry path="com.supermap.web.actions.ZoomAction"/>
+    <classEntry path="com.supermap.web.actions.ZoomIn"/>
+    <classEntry path="com.supermap.web.actions.ZoomOut"/>
+    <classEntry path="com.supermap.web.clustering.CellClusterStyle"/>
+    <classEntry path="com.supermap.web.clustering.CenterClusterer"/>
+    <classEntry path="com.supermap.web.clustering.Cluster"/>
+    <classEntry path="com.supermap.web.clustering.ClusterFeature"/>
+    <classEntry path="com.supermap.web.clustering.Clusterer"/>
+    <classEntry path="com.supermap.web.clustering.FieldValuesRule"/>
+    <classEntry path="com.supermap.web.clustering.RegionClusterer"/>
+    <classEntry path="com.supermap.web.clustering.SimpleClusterStyle"/>
+    <classEntry path="com.supermap.web.clustering.SparkClusterContainer"/>
+    <classEntry path="com.supermap.web.clustering.SparkClusterEasing"/>
+    <classEntry path="com.supermap.web.clustering.SparkClusterElement"/>
+    <classEntry path="com.supermap.web.clustering.SparkClusterStyle"/>
+    <classEntry path="com.supermap.web.clustering.SparkElementStyle"/>
+    <classEntry path="com.supermap.web.clustering.WeightClusterItem"/>
+    <classEntry path="com.supermap.web.clustering.WeightClusterStyle"/>
+    <classEntry path="com.supermap.web.clustering.WeightedClusterer"/>
+    <classEntry path="com.supermap.web.components.Compass"/>
+    <classEntry path="com.supermap.web.components.FeatureDataGrid"/>
+    <classEntry path="com.supermap.web.components.FeatureReference"/>
+    <classEntry path="com.supermap.web.components.GraphicDataGrid"/>
+    <classEntry path="com.supermap.web.components.IFeatureRenderer"/>
+    <classEntry path="com.supermap.web.components.IndexBox"/>
+    <classEntry path="com.supermap.web.components.LayerReference"/>
+    <classEntry path="com.supermap.web.components.Magnifier"/>
+    <classEntry path="com.supermap.web.components.MapHistoryManager"/>
+    <classEntry path="com.supermap.web.components.OverviewMap"/>
+    <classEntry path="com.supermap.web.components.ScaleBar"/>
+    <classEntry path="com.supermap.web.components.TimeData"/>
+    <classEntry path="com.supermap.web.components.TimeSlider"/>
+    <classEntry path="com.supermap.web.components.ZoomSlider"/>
+    <classEntry path="com.supermap.web.components.skins.CompassSkin"/>
+    <classEntry path="com.supermap.web.components.skins.MagnifierSkin"/>
+    <classEntry path="com.supermap.web.components.skins.OverviewerBorderSkin"/>
+    <classEntry path="com.supermap.web.components.skins.PanCenterButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.PanDownButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.PanLeftButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.PanRightButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.PanUpButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.PlayPauseButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.ScaleBarSkin"/>
+    <classEntry path="com.supermap.web.components.skins.TimeSliderNextButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.TimeSliderPreviousButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.TimeSliderSkin"/>
+    <classEntry path="com.supermap.web.components.skins.ZoomSliderSkin"/>
+    <classEntry path="com.supermap.web.components.skins.ZoomSliderThumbSkin"/>
+    <classEntry path="com.supermap.web.components.skins.ZoomSliderTrackSkin"/>
+    <classEntry path="com.supermap.web.components.skins.ZoomSliderZoomInButtonSkin"/>
+    <classEntry path="com.supermap.web.components.skins.ZoomSliderZoomOutButtonSkin"/>
+    <classEntry path="com.supermap.web.core.Credential"/>
+    <classEntry path="com.supermap.web.core.Element"/>
+    <classEntry path="com.supermap.web.core.Feature"/>
+    <classEntry path="com.supermap.web.core.Graphic"/>
+    <classEntry path="com.supermap.web.core.Point2D"/>
+    <classEntry path="com.supermap.web.core.PointWithMeasure"/>
+    <classEntry path="com.supermap.web.core.Rectangle2D"/>
+
+    <classEntry path="com.supermap.web.core.geometry.GeoLine"/>
+    <classEntry path="com.supermap.web.core.geometry.GeoPoint"/>
+    <classEntry path="com.supermap.web.core.geometry.GeoRegion"/>
+    <classEntry path="com.supermap.web.core.geometry.Geometry"/>
+    <classEntry path="com.supermap.web.core.geometry.Route"/>
+    <classEntry path="com.supermap.web.core.styles.CompositeStyle"/>
+    <classEntry path="com.supermap.web.core.styles.CompositeStyleComponent"/>
+    <classEntry path="com.supermap.web.core.styles.CustomPictureMarkerObject"/>
+    <classEntry path="com.supermap.web.core.styles.CustomSprite"/>
+    <classEntry path="com.supermap.web.core.styles.FillStyle"/>
+    <classEntry path="com.supermap.web.core.styles.GradientFillStyle"/>
+    <classEntry path="com.supermap.web.core.styles.InfoStyle"/>
+    <classEntry path="com.supermap.web.core.styles.LineStyle"/>
+    <classEntry path="com.supermap.web.core.styles.MarkerStyle"/>
+    <classEntry path="com.supermap.web.core.styles.NoopStyle"/>
+    <classEntry path="com.supermap.web.core.styles.PictureFillStyle"/>
+    <classEntry path="com.supermap.web.core.styles.PictureMarkerStyle"/>
+    <classEntry path="com.supermap.web.core.styles.PictureMarkerStyleCache"/>
+    <classEntry path="com.supermap.web.core.styles.PictureMarkerStyleEvent"/>
+    <classEntry path="com.supermap.web.core.styles.PredefinedFillStyle"/>
+    <classEntry path="com.supermap.web.core.styles.PredefinedLineStyle"/>
+    <classEntry path="com.supermap.web.core.styles.PredefinedMarkerStyle"/>
+    <classEntry path="com.supermap.web.core.styles.Style"/>
+    <classEntry path="com.supermap.web.core.styles.StylelFactory"/>
+    <classEntry path="com.supermap.web.core.styles.TextStyle"/>
+    <classEntry path="com.supermap.web.core.styles.graphicStyles.GraphicFillStyle"/>
+    <classEntry path="com.supermap.web.core.styles.graphicStyles.GraphicLineStyle"/>
+    <classEntry path="com.supermap.web.core.styles.graphicStyles.GraphicMarkerStyle"/>
+    <classEntry path="com.supermap.web.events.ActionEvent"/>
+    <classEntry path="com.supermap.web.events.CloudLayerEvent"/>
+    <classEntry path="com.supermap.web.events.DrawEvent"/>
+    <classEntry path="com.supermap.web.events.EditEvent"/>
+    <classEntry path="com.supermap.web.events.ElementsLayerEvent"/>
+    <classEntry path="com.supermap.web.events.FeatureDataGridEvent"/>
+    <classEntry path="com.supermap.web.events.FeatureLayerEvent"/>
+    <classEntry path="com.supermap.web.events.GraphicDataGridEvent"/>
+    <classEntry path="com.supermap.web.events.GraphicsLayerEvent"/>
+    <classEntry path="com.supermap.web.events.HeatGridLayerEvent"/>
+    <classEntry path="com.supermap.web.events.InfoPlacementEvent"/>
+    <classEntry path="com.supermap.web.events.LayerEvent"/>
+    <classEntry path="com.supermap.web.events.MapEvent"/>
+    <classEntry path="com.supermap.web.events.MapMouseEvent"/>
+    <classEntry path="com.supermap.web.events.PanEvent"/>
+    <classEntry path="com.supermap.web.events.SnapEvent"/>
+    <classEntry path="com.supermap.web.events.SparkClusterEvent"/>
+    <classEntry path="com.supermap.web.events.SparkClusterMouseEvent"/>
+    <classEntry path="com.supermap.web.events.TimeSliderEvent"/>
+    <classEntry path="com.supermap.web.events.ViewBoundsEvent"/>
+    <classEntry path="com.supermap.web.events.WFSCapabilitiesEvent"/>
+    <classEntry path="com.supermap.web.events.WFSEvent"/>
+    <classEntry path="com.supermap.web.events.WFSFeatureEvent"/>
+    <classEntry path="com.supermap.web.events.WFSFeatureTypeEvent"/>
+    <classEntry path="com.supermap.web.events.WFSTransactionEvent"/>
+    <classEntry path="com.supermap.web.events.WMTSResultEvent"/>
+    <classEntry path="com.supermap.web.events.ZoomEvent"/>
+    <classEntry path="com.supermap.web.mapping.CloudLayer"/>
+    <classEntry path="com.supermap.web.mapping.DynamicLayer"/>
+    <classEntry path="com.supermap.web.mapping.DynamicRESTLayer"/>
+    <classEntry path="com.supermap.web.mapping.DynamicWMSLayer"/>
+    <classEntry path="com.supermap.web.mapping.ElementsLayer"/>
+    <classEntry path="com.supermap.web.mapping.FeaturesLayer"/>
+    <classEntry path="com.supermap.web.mapping.GraphicsLayer"/>
+    <classEntry path="com.supermap.web.mapping.Hashtable"/>
+    <classEntry path="com.supermap.web.mapping.HeatGridLayer"/>
+    <classEntry path="com.supermap.web.mapping.HeatMapLayer"/>
+    <classEntry path="com.supermap.web.mapping.HeatPoint"/>
+    <classEntry path="com.supermap.web.mapping.HeatStop"/>
+    <classEntry path="com.supermap.web.mapping.HighlightLayer"/>
+    <classEntry path="com.supermap.web.mapping.ImageFormat"/>
+    <classEntry path="com.supermap.web.mapping.ImageLayer"/>
+    <classEntry path="com.supermap.web.mapping.ImageLoader"/>
+    <classEntry path="com.supermap.web.mapping.InfoPlacement"/>
+    <classEntry path="com.supermap.web.mapping.InfoWindow"/>
+    <classEntry path="com.supermap.web.mapping.Layer"/>
+    <classEntry path="com.supermap.web.mapping.LocalStorage"/>
+    <classEntry path="com.supermap.web.mapping.Map"/>
+    <classEntry path="com.supermap.web.mapping.OGCParams"/>
+    <classEntry path="com.supermap.web.mapping.TiledCachedLayer"/>
+    <classEntry path="com.supermap.web.mapping.TiledDynamicLayer"/>
+    <classEntry path="com.supermap.web.mapping.TiledDynamicRESTLayer"/>
+    <classEntry path="com.supermap.web.mapping.TiledLayer"/>
+    <classEntry path="com.supermap.web.mapping.TiledWMSLayer"/>
+    <classEntry path="com.supermap.web.mapping.TiledWMTSLayer"/>
+    <classEntry path="com.supermap.web.mapping.UTFGridLayer"/>
+    <classEntry path="com.supermap.web.mapping.UTFLoader"/>
+    <classEntry path="com.supermap.web.mapping.WMSParams"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.CandidateTileInfo"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.Coords"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.InfoBorder"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.InfoContainer"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.InfoStyleContainer"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.InfoWindowCloseButton"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.InfoWindowLabel"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.InfowindowCloseButtonSkin"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.LayerContainer"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.ResizeHandler"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.ScreenContainer"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.Tile"/>
+    <classEntry path="com.supermap.web.mapping.supportClasses.ZoomEffect"/>
+    <classEntry path="com.supermap.web.ogc.wfs.Arithmetic"/>
+    <classEntry path="com.supermap.web.ogc.wfs.ArithmeticType"/>
+    <classEntry path="com.supermap.web.ogc.wfs.Comparison"/>
+    <classEntry path="com.supermap.web.ogc.wfs.ComparisonType"/>
+    <classEntry path="com.supermap.web.ogc.wfs.DescribeWFSFeatureType"/>
+    <classEntry path="com.supermap.web.ogc.wfs.Filter"/>
+    <classEntry path="com.supermap.web.ogc.wfs.GetWFSCapabilities"/>
+    <classEntry path="com.supermap.web.ogc.wfs.GetWFSFeature"/>
+    <classEntry path="com.supermap.web.ogc.wfs.Logical"/>
+    <classEntry path="com.supermap.web.ogc.wfs.LogicalType"/>
+    <classEntry path="com.supermap.web.ogc.wfs.Spatial"/>
+    <classEntry path="com.supermap.web.ogc.wfs.SpatialGeometry"/>
+    <classEntry path="com.supermap.web.ogc.wfs.SpatialRect"/>
+    <classEntry path="com.supermap.web.ogc.wfs.SpatialType"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSCapabilitiesResult"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSFeatureDescription"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSFeatureResult"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSFeatureType"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSFeatureTypeResult"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSServiceBase"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSTBaseParam"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSTDeleteParam"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSTInsertParam"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSTUpdateParam"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSTransaction"/>
+    <classEntry path="com.supermap.web.ogc.wfs.WFSTransactionResult"/>
+    <classEntry path="com.supermap.web.ogc.wmts.GetWMTSCapabilities"/>
+    <classEntry path="com.supermap.web.ogc.wmts.RequestEncoding"/>
+    <classEntry path="com.supermap.web.ogc.wmts.TileMatrix"/>
+    <classEntry path="com.supermap.web.ogc.wmts.TileMatrixLimits"/>
+    <classEntry path="com.supermap.web.ogc.wmts.TileMatrixSetLink"/>
+    <classEntry path="com.supermap.web.ogc.wmts.WMTSCapabilitiesResult"/>
+    <classEntry path="com.supermap.web.ogc.wmts.WMTSLayerInfo"/>
+    <classEntry path="com.supermap.web.ogc.wmts.WMTSManager"/>
+    <classEntry path="com.supermap.web.ogc.wmts.WMTSManagerResult"/>
+    <classEntry path="com.supermap.web.ogc.wmts.WMTSTileMatrixSetInfo"/>
+    <classEntry path="com.supermap.web.rendering.RangeItem"/>
+    <classEntry path="com.supermap.web.rendering.RangeRenderer"/>
+    <classEntry path="com.supermap.web.rendering.Renderer"/>
+    <classEntry path="com.supermap.web.rendering.UniformRenderer"/>
+    <classEntry path="com.supermap.web.rendering.UniqueItem"/>
+    <classEntry path="com.supermap.web.rendering.UniqueRenderer"/>
+    <classEntry path="com.supermap.web.resources.SmError"/>
+    <classEntry path="com.supermap.web.resources.SmResource"/>
+    <classEntry path="com.supermap.web.serialization.json.JSON"/>
+    <classEntry path="com.supermap.web.serialization.json.JSONDecoder"/>
+    <classEntry path="com.supermap.web.serialization.json.JSONEncoder"/>
+    <classEntry path="com.supermap.web.serialization.json.JSONParseError"/>
+    <classEntry path="com.supermap.web.serialization.json.JSONToken"/>
+    <classEntry path="com.supermap.web.serialization.json.JSONTokenType"/>
+    <classEntry path="com.supermap.web.serialization.json.JSONTokenizer"/>
+    <classEntry path="com.supermap.web.service.ServiceBase"/>
+    <classEntry path="com.supermap.web.service.supportClasses.CoordSys"/>
+    <classEntry path="com.supermap.web.service.supportClasses.CoordSysType"/>
+    <classEntry path="com.supermap.web.service.supportClasses.Datum"/>
+    <classEntry path="com.supermap.web.service.supportClasses.DatumType"/>
+    <classEntry path="com.supermap.web.service.supportClasses.PrimeMeridian"/>
+    <classEntry path="com.supermap.web.service.supportClasses.PrjCoordSys"/>
+    <classEntry path="com.supermap.web.service.supportClasses.PrjParameter"/>
+    <classEntry path="com.supermap.web.service.supportClasses.Projection"/>
+    <classEntry path="com.supermap.web.service.supportClasses.ProjectionType"/>
+    <classEntry path="com.supermap.web.service.supportClasses.SmMapService"/>
+    <classEntry path="com.supermap.web.service.supportClasses.SmMapServiceInfo"/>
+    <classEntry path="com.supermap.web.service.supportClasses.Spheroid"/>
+    <classEntry path="com.supermap.web.service.supportClasses.SpheroidType"/>
+    <classEntry path="com.supermap.web.service.supportClasses.UserInfo"/>
+    <classEntry path="com.supermap.web.sm_internal"/>
+    <classEntry path="com.supermap.web.themes.RawTheme"/>
+    <classEntry path="com.supermap.web.themes.Theme"/>
+    <classEntry path="com.supermap.web.utils.GeoUtil"/>
+    <classEntry path="com.supermap.web.utils.Unit"/>
+    <classEntry path="com.supermap.web.utils.GraphicsUtil"/>
+    <classEntry path="com.supermap.web.utils.Hashtable"/>
+    <classEntry path="com.supermap.web.utils.JsonUtil"/>
+    <classEntry path="com.supermap.web.utils.MathUtil"/>
+    <classEntry path="com.supermap.web.utils.ScaleUtil"/>
+    <classEntry path="com.supermap.web.utils.StyleUtil"/>
+    <classEntry path="com.supermap.web.utils.TileUtil"/>
+    <classEntry path="com.supermap.web.utils.URL"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.ColorGradientType"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.FillGradientMode"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.MapColorMode"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.OverlapDisplayedOptions"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.ServerColor"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.ServerFeature"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.ServerGeometry"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.ServerGeometryType"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.ServerStyle"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.ServerTextStyle"/>
+    <classEntry path="com.supermap.web.utils.serverTypes.TextAlignment"/>
+	<classEntry path="com.supermap.web.utils.CoordinateReferenceSystem"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="docs/com.supermap.web.components.xml" sourcePath="docs/com.supermap.web.components.xml"/>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.core.xml" sourcePath="docs/com.supermap.web.core.xml"/>
+    <resourceEntry destPath="designIcon/OverviewMap.png" sourcePath="designIcon/OverviewMap.png"/>
+    <resourceEntry destPath="docs/com.supermap.web.mapping.xml" sourcePath="docs/com.supermap.web.mapping.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.clustering.xml" sourcePath="docs/com.supermap.web.clustering.xml"/>
+    <resourceEntry destPath="designIcon/Magnifier.png" sourcePath="designIcon/Magnifier.png"/>
+    <resourceEntry destPath="docs/com.supermap.web.actions.xml" sourcePath="docs/com.supermap.web.actions.xml"/>
+    <resourceEntry destPath="designIcon/Map.png" sourcePath="designIcon/Map.png"/>
+    <resourceEntry destPath="designIcon/FeaturesLayer.png" sourcePath="designIcon/FeaturesLayer.png"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="packageDescription.xml" sourcePath="packageDescription.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.resources.xml" sourcePath="docs/com.supermap.web.resources.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.rendering.xml" sourcePath="docs/com.supermap.web.rendering.xml"/>
+    <resourceEntry destPath="designIcon/HeatGridLayer.png" sourcePath="designIcon/HeatGridLayer.png"/>
+    <resourceEntry destPath="docs/com.supermap.web.components.skins.xml" sourcePath="docs/com.supermap.web.components.skins.xml"/>
+    <resourceEntry destPath="designIcon/DynamicWMSLayer.png" sourcePath="designIcon/DynamicWMSLayer.png"/>
+    <resourceEntry destPath="docs/com.supermap.web.core.geometry.xml" sourcePath="docs/com.supermap.web.core.geometry.xml"/>
+    <resourceEntry destPath="designIcon/ScaleBar.png" sourcePath="designIcon/ScaleBar.png"/>
+    <resourceEntry destPath="designIcon/FeatureDataGrid.png" sourcePath="designIcon/FeatureDataGrid.png"/>
+    <resourceEntry destPath="designIcon/GraphicDataGrid.png" sourcePath="designIcon/GraphicDataGrid.png"/>
+    <resourceEntry destPath="docs/com.supermap.web.events.xml" sourcePath="docs/com.supermap.web.events.xml"/>
+    <resourceEntry destPath="com/supermap/web/mapping/supportClasses/zoomIn.swf" sourcePath="com/supermap/web/mapping/supportClasses/zoomIn.swf"/>
+    <resourceEntry destPath="designIcon/ElementsLayer.png" sourcePath="designIcon/ElementsLayer.png"/>
+    <resourceEntry destPath="designIcon/Compass.png" sourcePath="designIcon/Compass.png"/>
+    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.utils.xml" sourcePath="docs/com.supermap.web.utils.xml"/>
+    <resourceEntry destPath="designIcon/ZoomSlider.png" sourcePath="designIcon/ZoomSlider.png"/>
+    <resourceEntry destPath="designIcon/TimeSlider.png" sourcePath="designIcon/TimeSlider.png"/>
+    <resourceEntry destPath="com/supermap/web/mapping/supportClasses/zoomOut.swf" sourcePath="com/supermap/web/mapping/supportClasses/zoomOut.swf"/>
+    <resourceEntry destPath="docs/com.supermap.web.core.styles.xml" sourcePath="docs/com.supermap.web.core.styles.xml"/>
+    <resourceEntry destPath="designIcon/GraphicsLayer.png" sourcePath="designIcon/GraphicsLayer.png"/>
+    <resourceEntry destPath="designIcon/TiledWMSLayer.png" sourcePath="designIcon/TiledWMSLayer.png"/>
+    <resourceEntry destPath="docs/packages.dita" sourcePath="docs/packages.dita"/>
+    <resourceEntry destPath="docs/com.supermap.web.themes.xml" sourcePath="docs/com.supermap.web.themes.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://www.supermap.com/iclient/2010"/>
+  </namespaceManifests>
+</flexLibProperties>

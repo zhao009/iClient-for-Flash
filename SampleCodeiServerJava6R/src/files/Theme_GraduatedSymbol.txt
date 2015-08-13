@@ -1,0 +1,11 @@
+<font color="#0033FF">等级符号专题图（ThemeGraduatedSymbol）</font>
+<font color="#006633">1. 功能描述：</font>采用不同的形状、颜色和大小的符号，表示各自独立的、以整体概念显示的各个物体的数量与质量特征。通常，以符号的形状、颜色和大小反映物体的特定属性；符号的形状与颜色表示质量特征，符号的大小表示数量特征。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 服务器产品提供的分块动态图层——China Map。
+<font color="#006633">3. 实现的关键步骤：</font>
+    1）定义等级符号专题图 ThemeGraduatedSymbol：该参数不唯一，可设置多个ThemeGraduatedSymbol，即针对多个字段制作等级符号专题图。当然也可以定义不同类型的专题图对象，即制作复合专题图；
+    2）定义专题图参数 ThemeParameters；
+    3）制作专题图 ThemeService；
+    4）获取专题图，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 ThemeEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">4. 其它说明：</font>有关点密度专题图的详细介绍请参见 "SuperMap iClient for Flash 帮助文档"。

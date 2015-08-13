@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	<!--常用操作-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.actions.ZoomIn;
+			import com.supermap.web.actions.ZoomOut;
+			
+			import utilEvent.ReadURLEvent;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+			}
+			
+			//平移
+			private function panMap(event:MouseEvent):void
+			{
+				map.action = new Pan(map);
+			}
+
+			//拉框放大
+			protected function zoomInMap(event:MouseEvent):void
+			{
+				map.action = new ZoomIn(map);
+			}
+
+			//拉框缩小
+			protected function zoomOutMap(event:MouseEvent):void
+			{
+				map.action = new ZoomOut(map);
+			}
+			
+			//全幅显示
+			protected function viewEntireMap(event:MouseEvent):void
+			{
+				map.viewEntire();
+			}
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+	</ic:Map>
+
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup gap="10" horizontalCenter="0" verticalCenter="0">
+			<s:Button id="pan" toolTip="平移" skinClass="skins.panBtnSkin" click="panMap(event)"/>
+			<s:Button id="zoonIn" toolTip="拉框放大" skinClass="skins.zoomInSkin" click="zoomInMap(event)"/>   
+			<s:Button id="zoomOut" toolTip="拉框缩小" skinClass="skins.zoomOutSkin" click="zoomOutMap(event)"/>
+			<s:Button id="entire" toolTip="全幅显示" skinClass="skins.viewEntireSkin" click="viewEntireMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

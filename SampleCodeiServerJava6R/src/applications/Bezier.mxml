@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"  
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--用贝塞尔曲线画箭头-->
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.styles.*;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			
+			//初始化
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+				
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、网络分析服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP1;			
+			}			
+			
+			//给出固定点计算贝塞尔曲线
+			private function drawBezier():void
+			{
+				var p1:Point2D = new Point2D(12,-2.75);
+				var p2:Point2D = new Point2D(5.5,7);
+				var p3:Point2D = new Point2D(0,11.75);
+				var p4:Point2D = new Point2D(-6,16.75);
+				var p5:Point2D = new Point2D(6.75,27);
+				var p6:Point2D = new Point2D(28,33);
+				var p7:Point2D = new Point2D(46.5,30.25);
+				var p8:Point2D = new Point2D(43.25,36.25);
+				var p9:Point2D = new Point2D(39,39.75);
+				var p10:Point2D = new Point2D(35.75,42.25);
+				var p11:Point2D = new Point2D(45.75,38.75);
+				var p12:Point2D = new Point2D(54,36.25);
+				var p13:Point2D = new Point2D(66.75,33.5);
+				var p14:Point2D = new Point2D(58.75,27.5);
+				var p15:Point2D = new Point2D(53.5,19.5);
+				var p16:Point2D = new Point2D(48.25,10.5);
+				var p17:Point2D = new Point2D(49,15);
+				var p18:Point2D = new Point2D(48.25,19.5);
+				var p19:Point2D = new Point2D(47.25,24);
+				var p20:Point2D = new Point2D(31.75,23);
+				var p21:Point2D = new Point2D(18.5,18);
+			    //将给定的点放入path数组
+				var path:Array = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p1];
+		        //传入path数组进行贝塞尔曲线计算
+				var mypath:GeoLine = GeoLine.createBezier(path,1,4);
+				//显示计算出的封闭曲线
+				drawArrow(mypath);
+			}
+			
+			//绘制面
+			private function drawArrow(points:GeoLine):void
+			{
+				this.fl.clear();
+				var styleBorder:PredefinedLineStyle = new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID,0xff2121,1,3);
+				var style:PredefinedFillStyle = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_SOLID,0xFFFF00,0.3,styleBorder);
+				var arrow:GeoRegion = new GeoRegion();
+				arrow.addPart(points.parts[0]);
+				var feature:Feature = new Feature();
+				feature.geometry = arrow;
+				feature.style = style;
+				this.fl.addFeature(feature);			
+			}
+			
+			
+			//清除要素图层
+			private function removeFeature(event:MouseEvent):void
+			{
+				this.fl.clear();
+			}
+			
+			//平移地图
+			private function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(map);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer  url="{this.restUrl}"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+	
+	<!--参数设置窗口-->
+	<s:Panel id="titlewin" right="5" width="185" height="74" backgroundAlpha="0.5"
+			 backgroundColor="#454343" fontFamily="宋体" fontSize="15" title="使用贝塞尔曲线绘制箭头">
+		<s:VGroup top="10" gap="10" horizontalCenter="0" bottom="5" right="5" left="5">
+			<s:HGroup width="173" height="27" gap="10" horizontalAlign="center">
+				<s:Button label="绘制箭头"
+						  fontFamily="宋体"
+						  id="drawbezier"
+						  click="drawBezier()"
+						  width="99"
+						  styleName="AboutVersion"
+						  color="0"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup horizontalAlign="center" gap="10" width="100%">
+			<s:Button skinClass="skins.clearBtnSkin"
+					  id="AreaAnalyst"
+					  click="removeFeature(event)"/>
+			<s:Button skinClass="skins.panBtnSkin"
+					  click="panMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>
+

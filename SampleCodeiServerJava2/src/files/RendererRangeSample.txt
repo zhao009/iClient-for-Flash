@@ -1,0 +1,5 @@
+<font color="#0033FF">范围分段渲染（RangeRenderer）</font>
+<font color="#006633">1. 功能描述：</font>将矢量图层的某一属性信息分为多个范围段，使用不同的颜色或符号填充不同范围段，从而展现属性值在图层上的分布情况。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层——World。
+<font color="#006633">3. 操作指南：</font>点击“范围渲染”；
+<font color="#006633">4. 其它说明：</font>有关范围分段渲染（RangeRenderer）的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

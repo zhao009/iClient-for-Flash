@@ -1,0 +1,13 @@
+﻿<font color="#0033FF">数据集缓冲查询</font>
+<font color="#006633">1. 功能描述：</font>对指定的几何对象进行一定距离缓冲，从指定数据集集合中查询出与缓冲区区域相交的矢量数据。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World Map。查询的基准数据集为：Capitals。
+<font color="#006633">3. 操作指南：</font>
+    1）设置缓冲距离，单位：度（与数据集单位一致）；
+    2) 点击要素标绘（点/线/面）按钮，在地图中绘制要素，双击结束绘制要素后即可显示查询结果。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义数据集缓冲查询所需参数 GetFeaturesByBufferParameters；
+    2）执行数据集缓冲查询 GetFeaturesByBufferService；
+    3）获取查询结果，有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 使用 GetFeaturesByBufferService 对象监听 GetFeaturesEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关数据集缓冲查询的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

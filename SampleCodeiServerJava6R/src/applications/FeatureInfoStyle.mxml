@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	<!--信息显示样式——InfoStyle-->
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace ic "http://www.supermap.com/iclient/2010";
+		@namespace is "http://www.supermap.com/iserverjava/2010";
+		.infoStyleName
+		{
+			backgroundColor:#44d6fa;
+		}
+	</fx:Style>
+	<fx:Declarations>
+		<!--加载视频-->
+		<ic:InfoStyle id="infoSty2">
+			<ic:infoRenderer>
+				<fx:Component>
+					<s:HGroup>
+
+						<fx:Script>
+							<![CDATA[
+								protected function styleZoomIn_clickHandler(event:MouseEvent):void
+								{
+									yayunFlash.width = 400;
+									yayunFlash.height = 300;
+								}
+								protected function styleZoomOut_clickHandler(event:MouseEvent):void
+								{
+									yayunFlash.width = 100;
+									yayunFlash.height = 80;									
+								}
+							]]>
+						</fx:Script>
+
+						<s:VideoDisplay  id="yayunFlash" width="100" height="80" pauseWhenHidden="true" autoPlay="true" source="../assets/welcome to beijing.flv"/>
+						<s:VGroup>
+							<s:HGroup paddingLeft="5">
+								<mx:Image id="styleZoomInBtn" source="../assets/btnIn.png" click="styleZoomIn_clickHandler(event)" />
+								<mx:Image id="styleZoomOutBtn" source="../assets/btnOut.png" click="styleZoomOut_clickHandler(event)" />
+							</s:HGroup>
+							<mx:Text text="广州亚运开幕式" color="#255" width="50"/>
+						</s:VGroup>
+					</s:HGroup>
+				</fx:Component>
+			</ic:infoRenderer>
+		</ic:InfoStyle>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.samples.infoStyle.SimpleInfoRenderer;
+			
+			import utilEvent.ReadURLEvent;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				map.viewBounds = new Rectangle2D(90,5,130,50);
+				
+				var infoStyle:InfoStyle = new InfoStyle;
+				infoStyle.infoRenderer = new SimpleInfoRenderer("../assets/pic3.jpg","千岛湖是世界上岛屿最多的湖。" +
+					"位于东经118°58′—119°17′，北纬29°31′—29°41′之间");
+				var feature1:Feature = new Feature();
+				feature1.geometry = new GeoPoint(119,29); 
+				infoStyle.containerStyleName = "infoStyleName";
+				feature1.style = infoStyle;
+				fl.addFeature(feature1); 
+				
+				var feature2:Feature = new Feature();
+				feature2.geometry = new GeoPoint(113,23); 
+				infoSty2.containerStyleName = "infoStyleName";
+				feature2.style = infoSty2;
+				fl.addFeature(feature2);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+</s:Application>

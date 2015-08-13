@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				width="100%" click="itemrenderer1_clickHandler(event)">
+	<s:layout>
+		<s:VerticalLayout gap="0"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			private var isChosed:Boolean = false;
+			protected function itemrenderer1_clickHandler(event:MouseEvent):void
+			{
+				if(this.selected)
+				{
+					if(isChosed)
+					{
+						isChosed = false;
+					}
+					else
+					{
+						isChosed = true;
+					}
+				}
+			}
+			
+			override protected function getCurrentRendererState():String
+			{
+				if(this.selected)
+				{
+					if(isChosed)
+					{
+						return "slectedHide";
+					}
+					else
+					{
+						return "selectedShow";
+					}
+				}
+				return "normalor";
+				
+			}
+			
+			override public function set selected(value:Boolean):void
+			{
+				if(selected == false)
+				{
+					isChosed = false;
+				}
+				super.selected = value;
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="normalor"/>
+		<s:State name="slectedHide"/>
+		<s:State name="selectedShow"/>
+	</s:states>
+	<s:Group width="100%" height="50">
+		<!-- 背景颜色 -->
+		<s:Rect left="0"
+				right="0"
+				top="0"
+				bottom="0">
+			<s:fill>
+				<s:SolidColor color="0x9aa69a"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect left="0"
+				right="0"
+				top="0"
+				bottom="1">
+			<s:fill>
+				<s:SolidColor color="0xb9ccb4"/>
+			</s:fill>
+		</s:Rect>
+		<s:Label left="50" text="{data.name }" verticalCenter="0"/>
+	</s:Group>
+	<!-- 子列表 -->
+	<s:List id="subList" includeIn="selectedShow" top="0" bottom="0" width="100%" height="100%"
+			dataProvider="{data.subCategorys }"
+			itemRenderer="com.supermap.query.renderers.SubCategoryItemRenderer"/>
+</s:ItemRenderer>

@@ -1,0 +1,608 @@
+<apiPackage id="com.supermap.web.iServerJava6R.layerServices"><apiName>com.supermap.web.iServerJava6R.layerServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoService"><apiName>GetLayersInfoService</apiName><shortdesc>
+	 图层信息获取服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层信息获取服务类.
+	 <p>该类负责根据客户端指定的地图服务地址获取地图中各子图层信息——图层名称、图层可见性。<br/>用户获取服务端返回的图层信息有两种方式：一种是通过监听 GetLayersInfoEvent.PROCESS_COMPLETE 事件；一种是始用 AsyncResponder 类。其中 GetLayersInfoEvent 类既存有从服务端获取的原始结果，也包括经客户端处理后的最终结果 GetLayersInfoResult；始用 AsyncResponder 类获取的结果为经客户端处理后的最终结果 GetLayersInfoResult。当用户只需要最终结果时，推荐使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoService_com.supermap.web.iServerJava6R.serviceEvents.GetLayersInfoEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GetLayersInfoEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoService:GetLayersInfoService"><apiName>GetLayersInfoService</apiName><shortdesc>
+		 使用地图服务地址实例化 GetLayersInfoService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的地图服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图服务地址实例化 GetLayersInfoService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据地图服务地址与服务端完成异步通讯，获取图层信息。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>由 AsyncResponder 类实现获取图层信息。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:GetLayersInfoResult, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据地图服务地址与服务端完成异步通讯，获取图层信息。.
+		 <p>当图层信息获取成功时，将触发 GetLayersInfoEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取图层信息：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GetLayersInfoEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoService:result:get"><apiName>result</apiName><shortdesc>
+		 获取服务端返回的图层信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.layerServices:GetLayersInfoResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的图层信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:UGCLayer"><apiName>UGCLayer</apiName><shortdesc>
+	 UGC 图层基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 UGC 图层基类.
+	 <p>SuperMap 客户端产品为您提供的 UGC 图层包括：UGC 栅格图层（UGCGridLayer）、UGC 影像图层（UGCImageLayer）、UGC 专题图层（UGCThemeLayer）、UGC 要素图层（UGCVectorLayer）四种，它们均继承于该类。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:UGCLayer:UGCLayer"><apiName>UGCLayer</apiName><shortdesc>
+		 初始化 UGCLayer 类的新实例。
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 UGCLayer 类的新实例。
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:UGCThemeLayer"><apiName>UGCThemeLayer</apiName><shortdesc>
+	 UGC 专题图图层类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.layerServices:UGCLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 UGC 专题图图层类 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:UGCThemeLayer:UGCThemeLayer"><apiName>UGCThemeLayer</apiName><shortdesc>
+		 初始化 UGCThemeLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 UGCThemeLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCThemeLayer:themeType:get"><apiName>themeType</apiName><shortdesc>
+		 获取或设置专题图类型，由 ThemeType 类定义。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置专题图类型，由 ThemeType 类定义。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.layerServices.xml#ThemeType"><linktext>ThemeType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCThemeLayer:theme:get"><apiName>theme</apiName><shortdesc>
+		 获取或设置专题图对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.themeServices:Theme</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置专题图对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:UGCVectorLayer"><apiName>UGCVectorLayer</apiName><shortdesc>
+	 UGC 要素图层类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.layerServices:UGCLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 UGC 要素图层类 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:UGCVectorLayer:UGCVectorLayer"><apiName>UGCVectorLayer</apiName><shortdesc>
+		 初始化 UGCVectorLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 UGCVectorLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCVectorLayer:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置要素图层的显示样式—— ServerStyle 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置要素图层的显示样式—— ServerStyle 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:DatasetType"><apiName>DatasetType</apiName><shortdesc>
+	 数据集类型枚举.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集类型枚举.
+	 <p>数据集一般为存储在一起的相关数据的集合；根据数据类型的不同，分为矢量数据集和栅格数据集，以及为了处理特定问题而设计的如拓扑数据集，网络数据集等。根据要素的空间特征的不同，矢量数据集又分为点数据集，线数据集，面数据集等；栅格数据集包括影像数据集和格网数据集。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:CAD"><apiName>CAD</apiName><shortdesc>
+		 CAD 复合数据集，指可以存储多种类型（如点、线、面等）几何对象的数据集。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CAD</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 CAD 复合数据集，指可以存储多种类型（如点、线、面等）几何对象的数据集。.
+		 <p>即用来存储点、线、面、文本等不同类型的对象的集合。CAD 数据集中各对象可以有不同的风格，CAD 数据集为每个对象存储风格。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:GRID"><apiName>GRID</apiName><shortdesc>
+		 栅格数据集。如高程数据集，其中每一个栅格存储的是表示地物的属性值（例如高程值）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>GRID</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 栅格数据集。如高程数据集，其中每一个栅格存储的是表示地物的属性值（例如高程值）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:IMAGE"><apiName>IMAGE</apiName><shortdesc>
+		 影像数据集。不具备属性信息，例如影像地图、多波段影像和实物地图等.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>IMAGE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 影像数据集。不具备属性信息，例如影像地图、多波段影像和实物地图等.
+		 <p>其中每一个栅格存储的是一个颜色值或颜色的索引值（RGB 值）。 如图所示为某海港区影像图。<br/><img src="../../../../../images/IMAGE.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:LINE3D"><apiName>LINE3D</apiName><shortdesc>
+		 三维线数据集。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LINE3D</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 三维线数据集。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:LINEM"><apiName>LINEM</apiName><shortdesc>
+		 路由数据集。在进行网络分析的时候，因为要标识事件发生的度量值（asure Value，非 X、Y 坐标），只能用路由数据集.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LINEM</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 路由数据集。在进行网络分析的时候，因为要标识事件发生的度量值（asure Value，非 X、Y 坐标），只能用路由数据集.
+		 <p><img src="../../../../../images/LINEM.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:LINE"><apiName>LINE</apiName><shortdesc>
+		 线数据集。用于存储线对象的数据集，例如河流、道路、国家边界线的分布.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LINE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 线数据集。用于存储线对象的数据集，例如河流、道路、国家边界线的分布.
+		 <p>如图所示为各个洲的边界线分布：<br/><img src="../../../../../images/LINE.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:LINKTABLE"><apiName>LINKTABLE</apiName><shortdesc>
+		 数据库表。即外挂属性表，不包含系统字段（以 SM 开头的字段）与一般的属性数据集一样使用，但该数据集只具有只读功能 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LINKTABLE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 数据库表。即外挂属性表，不包含系统字段（以 SM 开头的字段）与一般的属性数据集一样使用，但该数据集只具有只读功能 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:NETWORKPOINT"><apiName>NETWORKPOINT</apiName><shortdesc>
+		 网络数据集的子数据集。该数据集是网络数据集 DatasetType.NETWORK 的子数据集，包含的是网络节点对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NETWORKPOINT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 网络数据集的子数据集。该数据集是网络数据集 DatasetType.NETWORK 的子数据集，包含的是网络节点对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:NETWORK"><apiName>NETWORK</apiName><shortdesc>
+		 网络数据集。网络数据集是用于存储具有网络拓扑关系的数据集.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NETWORK</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 网络数据集。网络数据集是用于存储具有网络拓扑关系的数据集.
+		 <p>如道路交通网络等。网络数据集和点数据集、线数据集不同，它既包含了网络线对象，也包含了网络结点对象，还包含了两种对象之间的空间拓扑关系。基于网络数据集，可以进行路径分析、服务区分析、最近设施查找、资源分配、选址分区、公交换乘以及邻接点、通达点分析等多种网络分析。如图所示为北京市区交通网络分布。<br/><img src="../../../../../images/NETWORK.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:POINT3D"><apiName>POINT3D</apiName><shortdesc>
+		 三维点数据集。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>POINT3D</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 三维点数据集。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:POINT"><apiName>POINT</apiName><shortdesc>
+		 点数据集。用于存储点对象的数据集类.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>POINT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 点数据集。用于存储点对象的数据集类.
+		 <p>例如离散点的分布。如下图所示为各个国家首都的分布：<br/><img src="../../../../../images/POINT.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:REGION3D"><apiName>REGION3D</apiName><shortdesc>
+		 三维面数据集。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>REGION3D</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 三维面数据集。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:REGION"><apiName>REGION</apiName><shortdesc>
+		 多边形数据集。用于存储面对象的数据集.\
+		 例如表示房屋的分布、行政区域等。如图所示为各个国家的区域分布：<br/><img src="../../../../../images/REGION.png"/> 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>REGION</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 多边形数据集。用于存储面对象的数据集.\
+		 <p>例如表示房屋的分布、行政区域等。如图所示为各个国家的区域分布：<br/><img src="../../../../../images/REGION.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:TABULAR"><apiName>TABULAR</apiName><shortdesc>
+		 纯属性数据集。用于存储和管理纯属性数据，纯属性数据用来描述地形地物特征、形状等信息.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TABULAR</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 纯属性数据集。用于存储和管理纯属性数据，纯属性数据用来描述地形地物特征、形状等信息.
+		 <p>如河流的长度、宽度等。该数据集没有空间图形数据。即纯属性数据集不能作为图层被添加到地图窗口中显示：<br/><img src="../../../../../images/TABULAR.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:TEXT"><apiName>TEXT</apiName><shortdesc>
+		 文本数据集。用于存储文本对象的数据集，因此文本数据集中只能存储文本对象，而不能存储其他几何对象.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TEXT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 文本数据集。用于存储文本对象的数据集，因此文本数据集中只能存储文本对象，而不能存储其他几何对象.
+		 <p>例如表示注记的文本对象。如图所示为各个国家的首都名称：<br/><img src="../../../../../images/TEXT.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:UNDEFINED"><apiName>UNDEFINED</apiName><shortdesc>
+		 未定义类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>UNDEFINED</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 未定义类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:WCS"><apiName>WCS</apiName><shortdesc>
+		 WCS 数据集，是影像数据集的一种类型.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>WCS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 WCS 数据集，是影像数据集的一种类型.
+		 <p>WCS（ Web Coverage Service），即网络覆盖服务，面向空间影像数据，它将包含地理位置的地理空间数据作为 “Coverage” 数据在网上相互交换。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetType:WMS"><apiName>WMS</apiName><shortdesc>
+		 WMS（Web Coverage Service）数据集，是影像数据集的一种类型.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>WMS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 WMS（Web Coverage Service）数据集，是影像数据集的一种类型.
+		 <p>WMS（Web Map Service），即网络地图服务，利用具有地理空间位置信息的数据制作地图。Web 地图服务返回的是图层级的地图影像。其中将地图定义为地理数据可视的表现。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:ThemeType"><apiName>ThemeType</apiName><shortdesc>
+	 专题图类型枚举类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图类型枚举类 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.layerServices:ThemeType:DOTDENSITY"><apiName>DOTDENSITY</apiName><shortdesc>
+		 点密度专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>DOTDENSITY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 点密度专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ThemeType:GRADUATEDSYMBOL"><apiName>GRADUATEDSYMBOL</apiName><shortdesc>
+		 等级符号专题图。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>GRADUATEDSYMBOL</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 等级符号专题图。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ThemeType:GRAPH"><apiName>GRAPH</apiName><shortdesc>
+		 统计专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>GRAPH</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 统计专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ThemeType:LABEL"><apiName>LABEL</apiName><shortdesc>
+		 标签专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LABEL</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 标签专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ThemeType:RANGE"><apiName>RANGE</apiName><shortdesc>
+		 分段专题图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>RANGE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 分段专题图。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ThemeType:UNIQUE"><apiName>UNIQUE</apiName><shortdesc>
+		 単值专题图。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>UNIQUE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 単值专题图。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer"><apiName>UGCImageLayer</apiName><shortdesc>
+	 UGC 影像图层类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.layerServices:UGCLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 UGC 影像图层类.
+	 <p>影像图层中的各个栅格有且只具有颜色信息（如：遥感影像），不附有其它任何信息。<br/>例如在遥感领域中，根据传感器的类型，一幅遥感影像具有多个波段（如 QuickBird 影像，有红、绿、蓝、热红外四个波段），影像中的每个像素（栅格）值仅代表像素分别在各个波段的波段（颜色）值。每一波段又都有对应的影像（相当于 GIS 中地图的图层），影像中的像素（栅格）值仅代表像素在该波段的波段（颜色）值。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer:UGCImageLayer"><apiName>UGCImageLayer</apiName><shortdesc>
+		 初始化 UGCImageLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 UGCImageLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer:brightness:get"><apiName>brightness</apiName><shortdesc>
+		 获取或设置影像图层的亮度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置影像图层的亮度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer:colorSpaceType:get"><apiName>colorSpaceType</apiName><shortdesc>
+		 获取或设置影像图层的色彩显示模式，由 ColorSpaceType 类定义。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置影像图层的色彩显示模式，由 ColorSpaceType 类定义。  
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.layerServices.xml#ColorSpaceType"><linktext>ColorSpaceType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer:contrast:get"><apiName>contrast</apiName><shortdesc>
+		 获取或设置影像图层的对比度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置影像图层的对比度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer:displayBandIndexes:get"><apiName>displayBandIndexes</apiName><shortdesc>
+		 获取或设置当前影像图层代表的波段索引。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置当前影像图层代表的波段索引。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer:transparentColor:get"><apiName>transparentColor</apiName><shortdesc>
+		 获取或设置返回背景透明色。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置返回背景透明色。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCImageLayer:transparent:get"><apiName>transparent</apiName><shortdesc>
+		 获取或设置图层背景是否透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置图层背景是否透明。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:GridType"><apiName>GridType</apiName><shortdesc>
+	 地图背景格网类型枚举类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图背景格网类型枚举类 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.layerServices:GridType:CROSS"><apiName>CROSS</apiName><shortdesc>
+		 十字叉丝。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CROSS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 十字叉丝。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:GridType:GRID"><apiName>GRID</apiName><shortdesc>
+		 网格线。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>GRID</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 网格线。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:GridType:POINT"><apiName>POINT</apiName><shortdesc>
+		 点。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>POINT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 点。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleService"><apiName>SetLayerStyleService</apiName><shortdesc>
+	 子图层风格设置服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层风格设置服务类.
+	 <p>该类负责将子图层风格设置参数传递到服务端，并获取服务端返回的结果信息。其中结果以资源的形式存储于服务端，并有对应的资源地址。<br/>用户获取服务端返回的子图层风格设置结果信息有两种方式：一种是通过监听 SetLayerEvent.PROCESS_COMPLETE 事件；一种是始用 AsyncResponder 类实现异步处理。其中 SetLayerEvent 类既存有从服务端获取的原始结果，也包括经客户端处理后的最终结果 SetLayerResult；始用 AsyncResponder 类获取的结果为经客户端处理后的最终结果 SetLayerResult。当用户只需要最终结果时，推荐使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleService_com.supermap.web.iServerJava6R.serviceEvents.SetLayerEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.SetLayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleService:SetLayerStyleService"><apiName>SetLayerStyleService</apiName><shortdesc>
+		 使用地图服务地址初始化 SetLayerStyleService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>地图服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图服务地址初始化 SetLayerStyleService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据地图服务地址与服务端完成异步通讯，获取子图层风格设置结果信息。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.layerServices:SetLayerStyleParameters</apiOperationClassifier><apiDesc>子图层风格设置参数类 SetLayerStyleParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现异步处理，获取子图层风格。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:SetLayerResult, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据地图服务地址与服务端完成异步通讯，获取子图层风格设置结果信息。.
+		 <p>当子图层风格设置成功时，将触发 SetLayerEvent.PROCESS_COMPLETE 事件。用可以通过户两种方式获取图层信息：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 SetLayerEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的结果信息——SetLayerResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.layerServices:SetLayerResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的结果信息——SetLayerResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusService"><apiName>SetLayerStatusService</apiName><shortdesc>
+	 子图层显示控制服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层显示控制服务类.
+	 <p>该类负责将子图层显示控制参数传递到服务端，并获取服务端返回的图层显示状态。<br/>用户获取服务端返回的各子图层显示状态有两种方式：一种是通过监听 SetLayerEvent.PROCESS_COMPLETE 事件；一种是始用 AsyncResponder 类实现异步处理。其中 SetLayerEvent 类既存有从服务端获取的原始结果，也包括经客户端处理后的最终结果 SetLayerResult；始用 AsyncResponder 类获取的结果为经客户端处理后的最终结果 SetLayerResult。当用户只需要最终结果时，推荐使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusService_com.supermap.web.iServerJava6R.serviceEvents.SetLayerEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.SetLayerEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusService:SetLayerStatusService"><apiName>SetLayerStatusService</apiName><shortdesc>
+		 使用地图服务访问地址初始化 SetLayerStatusService 类的新实例。.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>	 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图服务访问地址初始化 SetLayerStatusService 类的新实例。.
+		 <p>地图服务访问地址。</p> 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据地图服务地址与服务端完成异步通讯，获取各子图层可视状态。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.layerServices:SetLayerStatusParameters</apiOperationClassifier><apiDesc>子图层显示控制参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现异步处理，获取子图层可视状态。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:SetLayerResult, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据地图服务地址与服务端完成异步通讯，获取各子图层可视状态。.
+		 <p>当子图层显示控制成功时，将触发 SetLayerEvent.PROCESS_COMPLETE 事件。用可以通过户两种方式获取图层信息：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 SetLayerEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取子图层可视状态。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.layerServices:SetLayerResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取子图层可视状态。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:ServerLayer"><apiName>ServerLayer</apiName><shortdesc>
+	 地图图层类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图图层类.
+	 <p>通过该类可以获取到图层的详细信息，包括标题、最大最小比例尺、可见性、是否可查等信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:ServerLayer"><apiName>ServerLayer</apiName><shortdesc>
+		 初始化 ServerLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 获取图层的地理范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取图层的地理范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:caption:get"><apiName>caption</apiName><shortdesc>
+		 获取图层的标题.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取图层的标题.
+		 <p>默认情况下图层的标题与图层的名称一致。在图例、图层控制列表中显示的图层名称就是该图层的标题值。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:datasetInfo:get"><apiName>datasetInfo</apiName><shortdesc>
+		 获取数据集信息—— DatasetInfo 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.layerServices:DatasetInfo</apiValueClassifier></apiValueDef><apiDesc>
+		 获取数据集信息—— DatasetInfo 对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:description:get"><apiName>description</apiName><shortdesc>
+		 获取图层的描述信息。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取图层的描述信息。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:displayFilter:get"><apiName>displayFilter</apiName><shortdesc>
+		 获取图层的显示过滤条件.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取图层的显示过滤条件.
+		 <p>根据过滤条件，将满足条件的对象显示在地图中，过滤条件是在数据库的属性数据上进行过滤，例如图层的属性数据库存在 smid 字段，过滤条件为 smid > 20，则几何属性 smid 的值大于20的几何对象将显示在地图窗口中，其余对象不显示。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:isCompleteLineSymbolDisplayed:get"><apiName>isCompleteLineSymbolDisplayed</apiName><shortdesc>
+		 获取是否显示完整线型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取是否显示完整线型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:isQueryable:get"><apiName>isQueryable</apiName><shortdesc>
+		 获取图层中的对象是否可以查询。true 表示该图层中的几何对象可以被查询到，false 表示该图层中的几何对象不能被查询到。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取图层中的对象是否可以查询。true 表示该图层中的几何对象可以被查询到，false 表示该图层中的几何对象不能被查询到。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:isSymbolScalable:get"><apiName>isSymbolScalable</apiName><shortdesc>
+		 获取是否允许图层的符号大小随图缩放。true 表示当图层被放大或缩小时，符号也随之放大或缩小；false 表示图层的符号大小不可随图缩放。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取是否允许图层的符号大小随图缩放。true 表示当图层被放大或缩小时，符号也随之放大或缩小；false 表示图层的符号大小不可随图缩放。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:isVisible:get"><apiName>isVisible</apiName><shortdesc>
+		 获取图层是否可视。true 表示此图层可见，false 表示图层不可见。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取图层是否可视。true 表示此图层可见，false 表示图层不可见。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:joinItmes:get"><apiName>joinItmes</apiName><shortdesc>
+		 获取连接信息列表。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取连接信息列表。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:maxScale:get"><apiName>maxScale</apiName><shortdesc>
+		 获取地图最大比例尺。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取地图最大比例尺。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:minScale:get"><apiName>minScale</apiName><shortdesc>
+		 获取地图最小比例尺。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取地图最小比例尺。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:minVisibleGeometrySize:get"><apiName>minVisibleGeometrySize</apiName><shortdesc>
+		 获取几何对象的最小可见大小，以像素为单位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取几何对象的最小可见大小，以像素为单位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:name:get"><apiName>name</apiName><shortdesc>
+		 获取图层的名称.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取图层的名称.
+		 <p>图层的名称在图层所在的地图中唯一标识此图层。该属性区分大小写。SuperMap 的图层名称 = “图层对应的数据集的名称@数据源的别名”。例如：图层对应的数据集的名称是“Dataset1”， 此数据集所在的数据源的别名是“DataSource”，则该图层名称为“Dataset1@DataSource”。 不能直接用数据集或数据源的别名来访问图层。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:opaqueRate:get"><apiName>opaqueRate</apiName><shortdesc>
+		 获取图层的不透明度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取图层的不透明度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:representationField:get"><apiName>representationField</apiName><shortdesc>
+		 获取存储制图表达信息的字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取存储制图表达信息的字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:symbolScale:get"><apiName>symbolScale</apiName><shortdesc>
+		 获取图层的符号缩放基准比例尺，即当符号随地图放大或缩小时（属性 isSymbolScalable 为 true），地图比例尺小于该属性值时，则不显示符号。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取图层的符号缩放基准比例尺，即当符号随地图放大或缩小时（属性 isSymbolScalable 为 true），地图比例尺小于该属性值时，则不显示符号。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava6R.layerServices.isSymbolScalable.xml"><linktext>isSymbolScalable</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:ugcLayerType:get"><apiName>ugcLayerType</apiName><shortdesc>
+		 获取 UGC 图层类型—— SuperMapLayerType 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取 UGC 图层类型—— SuperMapLayerType 对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ServerLayer:ugcLayer:get"><apiName>ugcLayer</apiName><shortdesc>
+		 获取 UGC 图层对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.layerServices:UGCLayer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取 UGC 图层对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:SetLayerResult"><apiName>SetLayerResult</apiName><shortdesc>
+	 子图层控制结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层控制结果类.
+	 <p>该类用于存储子图层显示控制（SetLayerStatusService）和子图层风格设置（SetLayerStyleService）服务结果。<br/>子图层控制服务完成后，服务端将自动生成一个资源地址，该地址中存有各子图层的可视状态，客户端只需将该资源地址赋予 TiledDynamicIServerLayer 或 DynamicIServerLayer 图层的 layersID 属性，即可在客户端显示当前的可见子图层。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:SetLayerResult:SetLayerResult"><apiName>SetLayerResult</apiName><shortdesc>
+		 初始化 SetLayerResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SetLayerResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerResult:isSucceed:get"><apiName>isSucceed</apiName><shortdesc>
+		 获取服务通迅是否成功。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取服务通迅是否成功。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerResult:newResourceID:get"><apiName>newResourceID</apiName><shortdesc>
+		 获取服务端生成资源地址，该地址中存有各子图层的可视状态。客户端只需将该资源地址赋予 TiledDynamicIServerLayer 或 DynamicIServerLayer 图层的 layersID 属性，即可在客户端显示当前的可见子图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取服务端生成资源地址，该地址中存有各子图层的可视状态。客户端只需将该资源地址赋予 TiledDynamicIServerLayer 或 DynamicIServerLayer 图层的 layersID 属性，即可在客户端显示当前的可见子图层。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusParameters"><apiName>SetLayerStatusParameters</apiName><shortdesc>
+	 子图层显示控制参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层显示控制参数类.
+	 <p>该类存储了各子图层是否可见的状态。子图层显示控制功能只针对 TiledDynamicIServerLayer 和 DynamicIServerLayer 图层。<br/>注意在 SuperMap iClient 系列产品中所说的图层与 SuperMap Deskpro 的地图对应，子图层与 SuperMap Deskpro 的图层对应。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusParameters:SetLayerStatusParameters"><apiName>SetLayerStatusParameters</apiName><shortdesc>
+		 初始化 SetLayerStatusParameter 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SetLayerStatusParameter 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusParameters:holdTime:get"><apiName>holdTime</apiName><shortdesc>
+		 获取或设置资源在服务端保存的时间。 默认为 15 分钟。 .</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置资源在服务端保存的时间。 默认为 15 分钟。 .
+		 <p>子图层可风状态设置成功后，结果将以资源的形式存储于服务端，该属性用于设置资源在服务端缓存的时间。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusParameters:layerStatusList:get"><apiName>layerStatusList</apiName><shortdesc>
+		 获取或设置图层可见状态（LayerStatus）集合，必设属性。集合中的每个 LayerStatus 对象代表一个子图层的可视状态。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置图层可见状态（LayerStatus）集合，必设属性。集合中的每个 LayerStatus 对象代表一个子图层的可视状态。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.layerServices.xml#LayerStatus"><linktext>LayerStatus</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStatusParameters:resourceID:get"><apiName>resourceID</apiName><shortdesc>
+		 获取或设置资源服务 ID .</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置资源服务 ID .
+		 <p>当对已存在的资源进行子图层控制操作，则需要设置此参数。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer"><apiName>UGCGridLayer</apiName><shortdesc>
+	 UGC 栅格图层类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.layerServices:UGCLayer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 UGC 栅格图层类.
+	 <p></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:UGCGridLayer"><apiName>UGCGridLayer</apiName><shortdesc>
+		 初始化 UGCGridLayer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 UGCGridLayer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:colors:get"><apiName>colors</apiName><shortdesc>
+		 获取或设置用于设置图层颜色的颜色数组。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置用于设置图层颜色的颜色数组。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:dashStyle:get"><apiName>dashStyle</apiName><shortdesc>
+		 获取或设置图层背景格网虚线的样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置图层背景格网虚线的样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:gridType:get"><apiName>gridType</apiName><shortdesc>
+		 获取或设置图层背景格网类型，由 GridType 类定义。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置图层背景格网类型，由 GridType 类定义。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.layerServices.xml#GridType"><linktext>GridType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:horizontalSpacing:get"><apiName>horizontalSpacing</apiName><shortdesc>
+		 获取或设置栅格水平间隔大小。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置栅格水平间隔大小。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:sizeFixed:get"><apiName>sizeFixed</apiName><shortdesc>
+		 获取或设置格网是否固定大小，如果不固定大小，则格网随着地图缩放。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置格网是否固定大小，如果不固定大小，则格网随着地图缩放。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:solidStyle:get"><apiName>solidStyle</apiName><shortdesc>
+		 获取或设置格网实线的样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置格网实线的样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:specialColor:get"><apiName>specialColor</apiName><shortdesc>
+		 获取或设置栅格图层中无值栅格的颜色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerColor</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置栅格图层中无值栅格的颜色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:specialValue:get"><apiName>specialValue</apiName><shortdesc>
+		 获取或设置图层的特殊值。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置图层的特殊值。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:UGCGridLayer:verticalSpacing:get"><apiName>verticalSpacing</apiName><shortdesc>
+		 获取或设置栅格垂直间隔大小。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置栅格垂直间隔大小。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:SuperMapLayerType"><apiName>SuperMapLayerType</apiName><shortdesc>
+	 SuperMap 图层类型枚举类
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SuperMap 图层类型枚举类
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.layerServices:SuperMapLayerType:GRID"><apiName>GRID</apiName><shortdesc>
+		 栅格图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>GRID</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 栅格图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SuperMapLayerType:IMAGE"><apiName>IMAGE</apiName><shortdesc>
+		 影像图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>IMAGE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 影像图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SuperMapLayerType:THEME"><apiName>THEME</apiName><shortdesc>
+		 专题图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>THEME</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 专题图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SuperMapLayerType:VECTOR"><apiName>VECTOR</apiName><shortdesc>
+		 要素图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>VECTOR</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 要素图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SuperMapLayerType:WFS"><apiName>WFS</apiName><shortdesc>
+		 WFS 图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>WFS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 WFS 图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SuperMapLayerType:WMS"><apiName>WMS</apiName><shortdesc>
+		 WMS 图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>WMS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 WMS 图层。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleParameters"><apiName>SetLayerStyleParameters</apiName><shortdesc>
+	 子图层风格设置参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层风格设置参数类.
+	 <p>该类用于设置某一指定子图层的显示风格。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleParameters:SetLayerStyleParameters"><apiName>SetLayerStyleParameters</apiName><shortdesc>
+		 初始化 SetLayerStyleParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SetLayerStyleParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleParameters:holdTime:get"><apiName>holdTime</apiName><shortdesc>
+		 获取或设置资源在服务端保存的时间。 默认为 15 分钟.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置资源在服务端保存的时间。 默认为 15 分钟.
+		 <p>子图层风格设置成功后，结果将以资源的形式存储于服务端，该属性用于设置资源在服务端缓存的时间。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleParameters:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置子图层名称，如：Ocean@World。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置子图层名称，如：Ocean@World。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleParameters:resourceID:get"><apiName>resourceID</apiName><shortdesc>
+		 获取或设置资源地址——ID。即子图层风格设置结果在服务端的存储地址。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置资源地址——ID。即子图层风格设置结果在服务端的存储地址。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:SetLayerStyleParameters:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置子图层风格—— ServerStyle 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置子图层风格—— ServerStyle 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoResult"><apiName>GetLayersInfoResult</apiName><shortdesc>
+	 图层信息获取结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层信息获取结果类.
+	 <p>该类用于存储服务端返回的图层信息获取结果，其中包括每个子图层的可视状态、名称、地理范围等信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoResult:GetLayersInfoResult"><apiName>GetLayersInfoResult</apiName><shortdesc>
+		 初始化 GetLayersInfoResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetLayersInfoResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:GetLayersInfoResult:layersInfo:get"><apiName>layersInfo</apiName><shortdesc>
+		 ServerLayer 集合。集合中的每个 ServerLayer 对象代表一个子图层的显示信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 ServerLayer 集合。集合中的每个 ServerLayer 对象代表一个子图层的显示信息。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava6R.mapServices.ServerLayer.xml"><linktext>com.supermap.web.iServerJava6R.mapServices.ServerLayer</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:LayerStatus"><apiName>LayerStatus</apiName><shortdesc>
+	 子图层显示参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层显示参数类.
+	 <p>该类存储了各个子图层的名字和是否可见的状态。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:LayerStatus:LayerStatus"><apiName>LayerStatus</apiName><shortdesc>
+		 初始化 LayerStatus 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 LayerStatus 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:LayerStatus:isVisible:get"><apiName>isVisible</apiName><shortdesc>
+		 获取或设置图层是否可见，true 表示可见。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置图层是否可见，true 表示可见。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:LayerStatus:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置图层名称。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置图层名称。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:DatasetInfo"><apiName>DatasetInfo</apiName><shortdesc>
+	 数据集信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集信息类.
+	 <p>数据集一般为存储在一起的相关数据的集合；根据数据类型的不同，分为矢量数据集和栅格数据集，以及为了处理特定问题而设计的数据集，如拓扑数据集，网络数据集等。<br/>数据集是 GIS 数据组织的最小单位。其中矢量数据集是由同种类型空间要素组成的集合，所以也可以称为要素集。根据要素的空间特征的不同，矢量数据集又分为点数据集，线数据集，面数据集等，各矢量数据集是空间特征和性质相同的数据组织起来的集合。而栅格数据集由像元阵列组成，在表现要素上比矢量数据集欠缺，但是可以很好的表现空间现象的位置关系。栅格数据集包括影像数据集和格网数据集。<br/>该类包含了用于描述数据集信息的各种属性，如数据集名称、类型、数据集所在的数据源名称等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.layerServices:DatasetInfo:DatasetInfo"><apiName>DatasetInfo</apiName><shortdesc>
+		 初始化 DatasetInfo 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DatasetInfo 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetInfo:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 获取数据集中包含所有对象的最小外接矩形.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取数据集中包含所有对象的最小外接矩形.
+		 <p>对于矢量数据集来说，bounds 为包含数据集中所有矢量对象的最小外接矩形；对于栅格，bounds 为当前格网或影像的地理范围。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetInfo:dataSourceName:get"><apiName>dataSourceName</apiName><shortdesc>
+		 获取数据源名称。即数据集所属的数据源名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取数据源名称。即数据集所属的数据源名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetInfo:name:get"><apiName>name</apiName><shortdesc>
+		 获取数据集名称。数据集的唯一标识，该标识不区分大小写（如：G = g）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取数据集名称。数据集的唯一标识，该标识不区分大小写（如：G = g）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:DatasetInfo:type:get"><apiName>type</apiName><shortdesc>
+		 获取数据集类型，由 DatasetType 类定义。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取数据集类型，由 DatasetType 类定义。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.layerServices.xml#DatasetType"><linktext>DatasetType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.layerServices:ColorSpaceType"><apiName>ColorSpaceType</apiName><shortdesc>
+	 色彩空间枚举.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 色彩空间枚举.
+	 <p>由于成色原理的不同，决定了显示器、投影仪这类靠色光直接合成颜色的颜色设备和打印机、印刷机这类靠使用颜料的印刷设备在生成颜色方式上的区别。<br/>针对上述不同成色方式，SuperMap 提供两种色彩空间，分别为 RGB 和 CMYK。RGB 主要用于显示系统中，CMYK 是一种依靠反光的色彩模式，主要用于印刷系统中。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.layerServices:ColorSpaceType:CMYK"><apiName>CMYK</apiName><shortdesc>
+		 该类型主要在印刷系统使用.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CMYK</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 该类型主要在印刷系统使用.
+		 <p>CMYK 分别为青色（C），洋红（M），黄（Y），黑（K，Black 的最后一个字母）。它通过调整青色、洋红、黄色三种基本色的浓度混合出各种颜色的颜料，利用黑色调节明度和纯度。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.layerServices:ColorSpaceType:RGB"><apiName>RGB</apiName><shortdesc>
+		 该类型主要在显示系统中使用.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>RGB</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 该类型主要在显示系统中使用.
+		 <p>RGB 是红色，绿色，蓝色的缩写。RGB 色彩模式使用 RGB 模型为图像中每一个像素的 RGB 分量分配一个0~255范围内的强度值。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

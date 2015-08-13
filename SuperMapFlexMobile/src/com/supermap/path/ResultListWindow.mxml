@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:path="com.supermap.path.*"
+		 xmlns:containers="com.supermap.topbar.containers.*"
+		 width.normal="300"
+		 height.normal="400"
+		 width.min="500"
+		 height.min="48"
+		 bottom="70"
+		 xmlns:components="com.supermap.components.*">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.views.MainView;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.Geometry;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+
+			import mx.collections.ArrayCollection;
+
+			import spark.components.supportClasses.ItemRenderer;
+			private var _oldHeight:Number = 0;
+			private var _oldY:Number = 0;
+			public var isNormal:Boolean = true;
+
+			private var _subDistance:String = "";
+			private var _pathResult:Array = new Array();
+			private var _features:Array;
+			private var categoryList:ArrayCollection;
+			private var arr:Array;
+			private var _mainView:MainView;
+			public var highFeature:Feature;
+			public var startPoint:Feature;
+			public var endPoint:Feature;
+			public var currentIndex:int;
+			[Bindable]
+			public var text:String = "";
+
+			public var highStyle:PredefinedLineStyle = new PredefinedLineStyle("solid", 0xd35cff, 1, 4);
+
+
+			public function get mainView():MainView
+			{
+				return _mainView;
+			}
+
+			public function set mainView(value:MainView):void
+			{
+				_mainView = value;
+			}
+
+			public function get features():Array
+			{
+				return _features;
+			}
+
+			public function set features(value:Array):void
+			{
+				_features = value;
+			}
+
+			public function get pathResult():Array
+			{
+				return _pathResult;
+			}
+
+			public function set pathResult(value:Array):void
+			{
+				_pathResult = value;
+			}
+
+			public function get subDistance():String
+			{
+				return _subDistance;
+			}
+
+			public function set subDistance(value:String):void
+			{
+				_subDistance = value;
+			}
+
+			protected function minBtn_clickHandler(event:MouseEvent):void
+			{
+				this.currentIndex = list.selectedIndex;
+				if(this.currentIndex == -1)
+				{
+					this.currentIndex = 0;
+				}
+				this.text = arr[currentIndex].title;
+
+				this.height = _oldHeight;
+				isNormal = false;
+				this.currentState = "min";
+
+
+			/* minBtn.hide();
+			if(this.currentIndex == 0)
+			{
+				backWardBtn.enabled = false;
+				backWardBtn.hide();
+				if(!forwardBtn.enabled)
+				{
+					forwardBtn.enabled = true;
+					forwardBtn.show();
+				}
+			}
+			else if(this.currentIndex == arr.length - 1)
+			{
+				forwardBtn.enabled = false;
+				forwardBtn.hide();
+				if(!backWardBtn.enabled)
+				{
+					backWardBtn.enabled = true;
+					backWardBtn.show();
+				}
+			}
+			else if(this.currentIndex > 0 && this.currentIndex < arr.length - 1)
+			{
+				forwardBtn.enabled = true;
+				forwardBtn.show();
+				backWardBtn.enabled = true;
+				backWardBtn.show();
+			}
+*/
+			}
+
+			protected function maxBtn_clickHandler(event:MouseEvent):void
+			{
+				_oldHeight = this.height;
+//				this.height = title.height;
+				isNormal = true;
+				this.currentState = "normal";
+//				minBtn.show();
+				this.list.selectedIndex = -1;
+				var index:int = this.mainView.featuresLayer.getFeatureIndex(highFeature);
+				if(index != -1)
+				{
+					this.mainView.featuresLayer.removeFeature(highFeature);
+				}
+			}
+
+			public function refresh():void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "normal";
+
+				this.distanceText.text = "全程 约" + this.subDistance + "公里";
+
+				var dis:Number = Number(this.subDistance);
+				var j:int;
+				if(dis > 1000)
+				{
+					dis = dis / 1000;
+					this.subDistance = dis.toString();
+					j = this.subDistance.indexOf(".");
+					if(j > 0)
+					{
+						this.subDistance = this.subDistance.slice(0, j + 2);
+					}
+					this.subDistance = this.subDistance + "公里";
+				}
+				else
+				{
+					j = this.subDistance.indexOf(".");
+					if(j > 0)
+					{
+						this.subDistance = this.subDistance.slice(0, j + 2);
+					}
+					this.subDistance = this.subDistance + "米";
+				}
+				this.distanceText.text = "全程 约" + this.subDistance;
+
+				var turn:String = "";
+				categoryList = new ArrayCollection();
+				arr = [];
+				for(var i:int = 0; i < pathResult.length; i++)
+				{
+					var n:int = pathResult[i].iDirToSwerve;
+					switch(n)
+					{
+						case 0:
+							turn = "直行";
+							break;
+						case 1:
+							turn = "左前转弯";
+							break;
+						case 2:
+							turn = "右前转弯";
+							break;
+						case 3:
+							turn = "左转弯";
+							break;
+						case 4:
+							turn = "右转弯";
+							break;
+						case 5:
+							turn = "左后转弯";
+							break;
+						case 6:
+							turn = "右后转弯";
+							break;
+						case 7:
+							turn = "调头";
+							break;
+						case 8:
+							turn = "右转弯绕行至左";
+							break;
+						case 9:
+							turn = "直角斜边右转弯";
+							break;
+						case 10:
+							turn = "环岛";
+							break;
+						case 11:
+							turn = "直角斜边左转弯";
+							break;
+					}
+
+					var pathStr:String = "";
+					var pathLen:Number = Number(pathResult[i].dRouteLength);
+					var k:int;
+					if(pathLen > 1000)
+					{
+						pathLen = pathLen / 1000;
+						pathStr = pathLen.toString();
+						k = pathStr.indexOf(".");
+						if(k > 0)
+						{
+							pathStr = pathStr.slice(0, k + 2);
+						}
+						pathStr = pathStr + " 公里";
+					}
+					else
+					{
+						pathStr = pathResult[i].dRouteLength;
+						k = pathStr.indexOf(".");
+						if(k > 0)
+						{
+							pathStr = pathStr.slice(0, k + 2);
+						}
+						pathStr = pathStr + " 米";
+					}
+
+					var listStr:String = "";
+					var nameStr:String = "";
+					var m:int = i + 1;
+					if(i < pathResult.length - 1)
+					{
+
+						nameStr = m + ".从" + pathResult[i].strRouteName + "到" + pathResult[i + 1].strRouteName;
+						listStr = "沿" + pathResult[i].strRouteName + "直行" + pathStr + ", " + turn + "进入" + pathResult[i + 1].strRouteName + ";";
+					}
+					else
+					{
+						nameStr = m + "." + pathResult[i].strRouteName;
+						listStr = "沿" + pathResult[i].strRouteName + "直行" + pathStr + ", " + "到达终点。";
+					}
+
+					var categ:ListDataCategory = new ListDataCategory();
+					categ.title = nameStr;
+					categ.detail = listStr;
+					categ.feature = this.features[i];
+					categoryList.addItem(categ);
+					arr.push(categ);
+
+				}
+				this.list.dataProvider = categoryList;
+
+				//起始点信息
+				startInfo.text = startPoint.attributes.name;
+				endInfo.text = endPoint.attributes.name;
+			}
+
+			protected function list_pathResultClickHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				var index:int = this.mainView.featuresLayer.getFeatureIndex(highFeature);
+				if(index != -1)
+				{
+					this.mainView.featuresLayer.removeFeature(highFeature);
+				}
+
+				var geoLine:Geometry = (ItemRenderer(event.target).data as ListDataCategory).feature.geometry;
+				highFeature = new Feature(geoLine, highStyle);
+
+				this.mainView.featuresLayer.addFeature(highFeature);
+				this.mainView.map.panTo(geoLine.center);
+				// 需要再改
+				if(forwardBtn && backWardBtn)
+				{
+					forwardBtn.enabled = true;
+					backWardBtn.enabled = true;
+				}
+			}
+
+			protected function startGroup_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var x:Number = (startPoint.geometry as GeoPoint).x;
+				var y:Number = (startPoint.geometry as GeoPoint).y;
+				var point2D:Point2D = new Point2D(x, y);
+				this.mainView.map.panTo(point2D);
+			}
+
+			protected function endGroup_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var x:Number = (endPoint.geometry as GeoPoint).x;
+				var y:Number = (endPoint.geometry as GeoPoint).y;
+				var point2D:Point2D = new Point2D(x, y);
+				this.mainView.map.panTo(point2D);
+			}
+
+			protected function forwardBtn_clickHandler(event:MouseEvent):void
+			{
+				this.currentIndex++;
+
+				this.backWardBtn.enabled = true;
+
+				if((currentIndex >=0) && (currentIndex <= arr.length - 1))
+				{
+					this.minInfo.text = arr[currentIndex].title;
+
+					var index:int = this.mainView.featuresLayer.getFeatureIndex(highFeature);
+					if(index != -1)
+					{
+						this.mainView.featuresLayer.removeFeature(highFeature);
+					}
+
+					var geoLine:Geometry = (arr[currentIndex] as ListDataCategory).feature.geometry;
+					highFeature = new Feature(geoLine, highStyle);
+
+					this.mainView.featuresLayer.addFeature(highFeature);
+					this.mainView.map.panTo(geoLine.center);
+				}
+				if(this.currentIndex >= arr.length - 1)
+				{
+					this.forwardBtn.enabled = false;
+				}
+			}
+
+			protected function backWardBtn_clickHandler(event:MouseEvent):void
+			{
+				this.currentIndex--;
+				this.forwardBtn.enabled = true;
+
+				if((currentIndex >=0) && (currentIndex <= arr.length - 1))
+				{
+					this.minInfo.text = arr[currentIndex].title;
+
+					var index:int = this.mainView.featuresLayer.getFeatureIndex(highFeature);
+					if(index != -1)
+					{
+						this.mainView.featuresLayer.removeFeature(highFeature);
+					}
+
+					var geoLine:Geometry = (arr[currentIndex] as ListDataCategory).feature.geometry;
+					highFeature = new Feature(geoLine, highStyle);
+
+					this.mainView.featuresLayer.addFeature(highFeature);
+					this.mainView.map.panTo(geoLine.center);
+				}
+				if(this.currentIndex <= 0)
+				{
+					this.backWardBtn.enabled = false;
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="min"/>
+	</s:states>
+
+	<s:Group width="100%"
+			 height="100%"
+			 includeIn="min">
+		<path:WindowBackground_min width="100%"
+								   height="100%"/>
+		<s:HGroup width="100%"
+				  height="100%"
+				  verticalAlign="middle"
+				  paddingLeft="5">
+			<components:IconButton id="maxBtn"
+								   click="maxBtn_clickHandler(event)"
+								   width="31"
+								   height="30"
+								   up="@Embed('assets/path/max.png')"
+								   down="@Embed('assets/path/max2.png')"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"/>
+			<s:Label id="minInfo"
+					 text="{text}"
+					 width="350"
+					 color="0xFFFFFF"/>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="100%"
+				  gap="-1"
+				  horizontalAlign="right"
+				  verticalAlign="middle"
+				  paddingRight="5">
+			<components:IconButton id="backWardBtn"
+								   width="52"
+								   height="30"
+								   click="backWardBtn_clickHandler(event)"
+								   up="@Embed('assets/path/last.png')"
+								   down="@Embed('assets/path/last2.png')"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"/>
+			<components:IconButton id="forwardBtn"
+								   click="forwardBtn_clickHandler(event)"
+								   width="52"
+								   height="30"
+								   up="@Embed('assets/path/next.png')"
+								   down="@Embed('assets/path/next2.png')"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"/>
+
+
+		</s:HGroup>
+
+	</s:Group>
+	<s:Group width="100%"
+			 height="100%"
+			 includeIn="normal">
+
+		<path:WindowBackground width="100%"
+							   height="100%"/>
+		<s:Group width="100%"
+				 height="35">
+			<components:IconButton top="5"
+								   left="5"
+								   up="@Embed('assets/path/min.png')"
+								   down="@Embed('assets/path/min2.png')"
+								   click="minBtn_clickHandler(event)"
+								   width="31"
+								   height="30"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"/>
+			<s:HGroup width="100%"
+					  height="100%"
+					  verticalAlign="middle"
+					  horizontalAlign="center">
+				<s:Label text="最佳路径"
+						 fontSize="18"
+						 fontWeight="bold"
+						 color="0xFFFFFF"/>
+			</s:HGroup>
+		</s:Group>
+		<components:StyledSkinnableContainer width="80%"
+											 height="100%"
+											 borderColor="0xBBBBBB"
+											 cornorRadius="5"
+											 firstBackColor="0xFFFFFF"
+											 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin"
+											 x.normal="19"
+											 y.normal="43"
+											 width.normal="262"
+											 height.normal="39">
+			<s:HGroup width="100%"
+					  height="100%"
+					  verticalAlign="middle"
+					  paddingLeft="10">
+				<s:Label id="distanceText"/>
+			</s:HGroup>
+		</components:StyledSkinnableContainer>
+		<components:StyledSkinnableContainer width="80%"
+											 height="100%"
+											 borderColor="0xBBBBBB"
+											 cornorRadius="5"
+											 firstBackColor="0xFFFFFF"
+											 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin"
+											 x.normal="19"
+											 y.normal="90"
+											 width.normal="262"
+											 height.normal="289">
+			<s:VGroup width="100%"
+					  height="100%"
+					  left="3"
+					  right="3"
+					  top="3"
+					  bottom="3">
+				<s:HGroup id="startGroup"
+						  click="startGroup_clickHandler(event)"
+						  width="100%"
+						  height="50%"
+						  verticalAlign="middle">
+					<s:Image source="assets/path/start.png"/>
+					<s:TextInput id="startInfo"
+								 width="140"
+								 height="30"
+								 fontSize="12"
+								 color="0xFFFFFF"
+								 borderVisible="false"
+								 contentBackgroundColor="#6688ee"
+								 editable="false"/>
+				</s:HGroup>
+				<path:PathList id="list"
+							   width="100%"
+							   height="200"
+							   pathResultClick="list_pathResultClickHandler(event)"/>
+				<s:HGroup id="endGroup"
+						  width="100%"
+						  height="50%"
+						  click="endGroup_clickHandler(event)"
+						  verticalAlign="middle">
+					<s:Image source="assets/path/end.png"/>
+					<s:TextInput id="endInfo"
+								 width="140"
+								 height="30"
+								 fontSize="12"
+								 color="0xFFFFFF"
+								 borderVisible="false"
+								 contentBackgroundColor="#6688ee"
+								 editable="false"/>
+				</s:HGroup>
+			</s:VGroup>
+		</components:StyledSkinnableContainer>
+	</s:Group>
+</s:Group>

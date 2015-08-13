@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fm="http://www.supermap.com/mobile/2010"
+		xmlns:ns="http://www.supermap.com/iserverjava/2010"
+		xmlns:query="com.supermap.query.*"
+		xmlns:map="com.supermap.*"
+		xmlns:topbar="com.supermap.topbar.*"
+		xmlns:paint="com.supermap.paint.*"
+		xmlns:containers="com.supermap.topbar.containers.*"
+		xmlns:components="com.supermap.components.*"
+		xmlns:maps="com.supermap.maps.*"
+		xmlns:path="com.supermap.path.*"
+		actionBarVisible="false"
+		destructionPolicy="never"
+		viewActivate="MainView_viewActivateHandler(event)"
+		viewDeactivate="MainView_viewDeactivateHandler(event)"
+		creationComplete="initApp(event)"
+		xmlns:supports="com.supermap.components.supports.*"
+		add="addHandler(event)" xmlns:ns1="http://www.supermap.com/iclient/2010">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.components.CoordinateSwitcher;
+			import com.supermap.components.MessageBox;
+			import com.supermap.components.MessageType;
+			import com.supermap.events.*;
+			import com.supermap.path.PopUpWindow;
+			import com.supermap.path.ResultListWindow;
+			import com.supermap.query.*;
+			import com.supermap.query.entity.Category;
+			import com.supermap.query.entity.SubCategory;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.*;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.events.CloudLayerEvent;
+			import com.supermap.web.events.PanEvent;
+			import com.supermap.web.mapping.OfflineStorage;
+			import com.supermap.web.mapping.supportClasses.InfoContainer;
+			import com.supermap.web.utils.CoordinateReferenceSystem;
+			import com.supermap.web.utils.TileUtil;
+			
+			import flash.sensors.Geolocation;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import spark.components.Callout;
+			import spark.components.VGroup;
+			import spark.events.PopUpEvent;
+			import spark.events.ViewNavigatorEvent;
+			import spark.transitions.CrossFadeViewTransition;
+			import spark.transitions.ViewTransitionBase;
+			private var painterAdded:Boolean = false;
+			[Bindable]
+			private var categoryList:ArrayCollection;
+			[Bindable]
+			private var _infoPhone:String = "";
+			[Bindable]
+			private var _infoName:String = "";
+			private var currentFeature:Feature;
+			private var _isInPan:Boolean = false;
+			private var geolocation:Geolocation;
+			private var locationX:Number;
+			private var locationY:Number;
+//			private var locationX:Number = 1.2968614706007993E7 + 870;
+//			private var locationY:Number = 4863365.860780725 + 600;
+			private var MacString:String;
+			private var jsonString:String;
+			private var element:Element;
+			private var elementAdded:Boolean = false;
+			[Bindable]
+			private var _mbtilepath:String = File.documentsDirectory.resolvePath('SuperMap/TestMap1.mbtiles').nativePath;
+
+			private var transit:CrossFadeViewTransition = new CrossFadeViewTransition();
+
+			protected function initApp(event:FlexEvent):void
+			{
+				NativeApplication.nativeApplication.addEventListener(Event.NETWORK_CHANGE, onNetworkChange);
+				
+				topBar.textInput.addEventListener(FocusEvent.FOCUS_IN, query_clickHandler);
+				//初始化查询数据
+				var configReader:ConfigReader = new ConfigReader(this);
+				this.addEventListener(ReadConfigEvent.READ_COMPLETE, initCategory);
+
+				map.addEventListener(MouseEvent.CLICK, mapClickHandler);
+				map.addEventListener(PanEvent.PAN_START, isInPanHandler);
+				map.addEventListener(PanEvent.PAN_END, panEnd_handler);
+				initMap();
+			}
+
+			protected function showInfoWindow(event:Event = null):void
+			{
+				var code:String = "";
+				var adress:String = "";
+				var pointX:Number;
+				var pointY:Number;
+				if(event is MouseEvent)
+				{
+					_infoPhone = (event.currentTarget as Feature).attributes["TELEPHONE"];
+					code = (event.currentTarget as Feature).attributes["ZIPCODE"];
+					adress = (event.currentTarget as Feature).attributes["ADDRESS"];
+					_infoName = (event.currentTarget as Feature).attributes["NAME"];
+					pointX = ((event.currentTarget as Feature).geometry as GeoPoint).x;
+					pointY = ((event.currentTarget as Feature).geometry as GeoPoint).y;
+				}
+				else
+				{
+					_infoPhone = currentFeature.attributes["TELEPHONE"];
+					_infoName = currentFeature.attributes["NAME"];
+					pointX = (currentFeature.geometry as GeoPoint).x;
+					pointY = (currentFeature.geometry as GeoPoint).y;
+				}
+				//第一次时候赋值，后面复用
+				if(map.infoWindow.content != infoWindowContent)
+				{
+					map.infoWindow.content = infoWindowContent;
+				}
+				map.infoWindow.setStyle("infoOffsetY", 37 / 2);
+				map.infoWindow.setStyle("shadowAlpha", 0);
+				//map to center
+				map.infoWindow.show(new Point2D(pointX, pointY));
+				map.panTo(new Point2D(pointX, pointY));
+				if(event != null)
+				{
+					event.stopPropagation();
+				}
+			}
+
+			protected function showResult_clickHandler(event:MouseEvent):void
+			{
+				data.src = "mainView";
+				this.navigator.pushView(DetailListView, data, null, transit);
+			}
+
+			protected function showSearch_clickHandler(event:MouseEvent):void
+			{
+				this.currentState = "query";
+				this.queryContainer.visible = true;
+			}
+
+			/**
+			 * 获取配置文件config.xml中的条目信息及显示。
+			 */
+			protected function initCategory(event:Event):void
+			{
+				categoryList = new ArrayCollection();
+				var categorys:XML = ConfigReader.categoryList;
+				var xmlList:XMLList = categorys.category;
+				for(var i:int = 0; i < xmlList.length(); i++)
+				{
+					var name:String = xmlList[i].@name;
+					var category:Category = new Category(name);
+					var items:XMLList = xmlList[i].item;
+					var subCates:ArrayCollection = new ArrayCollection();
+					for(var j:int = 0; j < items.length(); j++)
+					{
+						var subName:String = items[j].text();
+						var keyword:String = items[j].@keyword;
+						var subCate:SubCategory = new SubCategory(subName, keyword);
+						subCates.addItem(subCate);
+					}
+					category.subCategorys = subCates;
+					categoryList.addItem(category);
+				}
+			}
+
+			/**
+			 * 打开或关闭进入查询面板。
+			 */
+			protected function query_clickHandler(event:Event):void
+			{
+				map.action = new Pan(map);
+				queryContainer.visible = true;
+				queryContainer.category = categoryList;
+
+				if(layerManager.isOpen)
+					layerManager.close();
+				if(accordionDrawPanel.isOpen)
+					accordionDrawPanel.close();
+			}
+
+			protected function path_clickHandler(event:Event):void
+			{
+				this.currentState = "path";
+				if(pathNavi && pathNavi.queryed)
+				{
+					pathNavi.pathWindow.visible = true;
+				}
+
+				if(layerManager.isOpen)
+					layerManager.close();
+				if(accordionDrawPanel.isOpen)
+					accordionDrawPanel.close();
+				this.map.infoWindow.hide();
+			}
+
+			/**
+			 * 处理android返回键。
+			 */
+			protected function keyboardPress(event:KeyboardEvent):void
+			{
+				switch(event.keyCode)
+				{
+					case Keyboard.BACK:
+						event.preventDefault();
+						messageBox.x = this.width / 2 - 150;
+						messageBox.y = this.height / 2 - 80;
+						messageBox.messageType = MessageType.QUIT_WINDOW;
+						PopUpManager.addPopUp(messageBox, this, true);
+						this.alpha = 0.8;
+						break;
+					default:
+						break;
+				}
+			}
+
+			protected function isInPanHandler(event:PanEvent):void
+			{
+				_isInPan = true;
+			}
+
+			protected function panEnd_handler(event:PanEvent):void
+			{
+				_isInPan = false;
+			}
+
+			protected function mapClickHandler(event:MouseEvent):void
+			{
+				if(!_isInPan)
+				{
+					map.infoWindow.hide();
+					_isInPan = false;
+				}
+			}
+
+			protected function MainView_viewDeactivateHandler(event:ViewNavigatorEvent):void
+			{
+				NativeApplication.nativeApplication.removeEventListener(KeyboardEvent.KEY_DOWN, keyboardPress);
+			}
+
+			protected function MainView_viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+				NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN, keyboardPress);
+			}
+			
+			private function onNetworkChange(event:Event):void
+			{
+				var interfaces:Vector.<NetworkInterface> = NetworkInfo.networkInfo.findInterfaces();  
+				for (var i:int = 0; i < interfaces.length; i++)   
+				{  
+					if(interfaces[i].name.toLowerCase() == "wifi" && interfaces[i].active)
+					{  
+						trace("wifi");
+					}
+				}
+			}
+
+			private var osCloudLayer:OfflineStorage;
+			protected function initMap():void
+			{
+				var closet:Object = TileUtil.getClosestResolutionAndLevel(this.width, this.height, map.viewBounds.width, map.viewBounds.height, this.cloudLayer.resolutions);
+				var curMapResolution:Number = closet.resolution;
+				var curLevel:int = cloudLayer.resolutions.indexOf(curMapResolution);
+				
+				cloudLayer.bounds = new Rectangle2D(-2.0037508342789244E7,-2.003750834278914E7,2.0037508342789244E7,2.00375083427891E7);				
+				cloudLayer.origin = new Point2D(cloudLayer.bounds.left, cloudLayer.bounds.top);
+				cloudLayer.CRS = new CoordinateReferenceSystem(0, "meter");
+				cloudLayer.refresh();
+				
+				// 本地缓存设置
+				osCloudLayer = new OfflineStorage();
+				osCloudLayer.userRootDirectory = "osCloudLayer";
+				cloudLayer.offlineStorage = osCloudLayer;
+				// GPS 定位设置
+				element = new Element();
+				element.component = locationImg;
+				if(Geolocation.isSupported)
+				{
+					geolocation = new Geolocation();
+					geolocation.setRequestedUpdateInterval(2000);
+					geolocation.addEventListener(GeolocationEvent.UPDATE, updateGeolocationHandler);
+				}
+			}
+
+			/**
+			 * 更新位置信息。
+			 */
+			protected function updateGeolocationHandler(event:GeolocationEvent):void
+			{
+				var point:Point2D = CoordinateSwitcher.latLonToMeters(event.latitude, event.longitude);
+				locationX = point.x + 870;
+				locationY = point.y + 600;
+				element.bounds = new Rectangle2D(locationX, locationY, locationX, locationY);
+			}
+
+			/**
+			 * 定位到当前位置。
+			 */
+			protected function myPosition(event:MouseEvent):void
+			{
+				var flag:Boolean = false;
+				var vNetworkInterfaces:Vector.<NetworkInterface> = NetworkInfo.networkInfo.findInterfaces();
+				if(vNetworkInterfaces.length>0){
+					for each (var networkInterface:NetworkInterface in vNetworkInterfaces) {
+						//获取设备的mac地址
+						if(networkInterface.name == "WIFI" && networkInterface.active && networkInterface.hardwareAddress!=""){
+							MacString=networkInterface.hardwareAddress;
+							flag = true;
+							wifiLocation(MacString);
+						}
+					}
+				}
+				if(!flag){
+					if(locationX && locationY)
+					{
+						element.bounds = new Rectangle2D(locationX, locationY, locationX, locationY);
+						map.panTo(new Point2D(locationX, locationY));
+						if(!elementAdded)
+						{
+							el.addElement(element);
+							elementAdded = true;
+						}
+					}
+					else
+					{
+						tipBar.currentState = "noGPS";
+						tipBar.showTip();
+					}
+				}
+			}
+			
+			protected function wifiLocation(MacAddress:String):void{
+				//post请求体
+				jsonString = "{";
+				jsonString+='"version": "1.1.0",';
+				jsonString+='"request_address": true,';
+				jsonString+='"host": "maps.google.com",';
+				jsonString+='"address_language": "zh_CN",';
+				jsonString+='"wifi_towers": [{';
+				jsonString+='"mac_address": "';
+				jsonString+= MacAddress;
+				jsonString+='",';
+				jsonString+='"signal_strength":8,';
+				jsonString+='"age":0';
+				jsonString+='}]}';
+				
+				var loader:URLLoader = new URLLoader();
+				loader.addEventListener(Event.COMPLETE, completeHandler);
+				
+				var request:URLRequest = new URLRequest("http://74.125.71.147/loc/json");
+				request.method = URLRequestMethod.POST;
+				request.userAgent="AdobeAIR/3.1";
+				request.data = jsonString;
+				try {
+					loader.load(request);
+				} catch (error:Error) {
+					trace("Unable to load requested document.");
+				}
+			}		
+			
+			private function completeHandler(event:Event):void {
+				var loader:URLLoader = URLLoader(event.target);
+				var resultString:String = loader.data;
+				var jsonObj:Object = new Object();  
+				jsonObj = JSON.parse(resultString);
+				var lat:Number=jsonObj.location.latitude;
+				var lon:Number=jsonObj.location.longitude;
+				var point:Point2D = CoordinateSwitcher.latLonToMeters(lat, lon);
+				map.panTo(point);
+			}
+
+			protected function layerManagerBtn_clickHandler(event:MouseEvent):void
+			{
+				this.currentState = "main";
+				this.map.infoWindow.hide();
+				if(accordionDrawPanel.isOpen)
+					accordionDrawPanel.close();
+				if(layerManager.isOpen)
+					layerManager.close();
+				else
+					layerManager.open(layerManagerBtn, false);
+			}
+
+			/**
+			 * 打开或关闭绘制面板。
+			 */
+			protected function painterBtn_clickHandler(event:MouseEvent):void
+			{
+				this.currentState = "paint";
+				this.map.infoWindow.hide();
+				if(layerManager.isOpen)
+					layerManager.close();
+				if(accordionDrawPanel.isOpen)
+					accordionDrawPanel.close();
+				else
+					accordionDrawPanel.open(painterBtn, false);
+			}
+
+			protected function addHandler(event:FlexEvent):void
+			{
+				if(navigator.poppedViewReturnedObject)
+				{
+					queryLayer.clear();
+					data = navigator.poppedViewReturnedObject.object;
+					if(data.features && (data.features.length > 0))
+					{
+						for each(var f:Feature in data.features)
+						{
+							queryLayer.addFeature(f);
+							f.addEventListener(MouseEvent.CLICK, showInfoWindow);
+						}
+						if(data.currentFeature)
+						{
+							currentFeature = data.currentFeature;
+							showInfoWindow();
+						}
+					}
+					else
+					{
+						map.infoWindow.hide();
+						queryLayer.clear();
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="main"/>
+		<s:State name="path"/>
+		<s:State name="query"/>
+		<s:State name="paint"/>
+	</s:states>
+	<fx:Declarations>
+		<components:MessageBox id="messageBox"
+							   main="{this}"
+							   message="是否退出应用程序?"
+							   messageType="{MessageType.QUIT_WINDOW}"/>
+		<!-- 北京范围 -->
+		<fm:Rectangle2D id="mapViewBounds"
+						bbox="12908422.256113982,4828236.390689733,12995875.852504382,4881565.486651334"/>
+		<s:Image id="locationImg"
+				 x="0"
+				 y="0"
+				 height="92"
+				 width="92"
+				 source="@Embed('assets/position.png')"/>
+		<!-- 查询结果的 InfoWindow -->
+		<supports:ResultInfoWindow id="infoWindowContent"
+								   showResult_clickHandler="showResult_clickHandler"
+								   showSearch_clickHandler="showSearch_clickHandler"
+								   infoName="{_infoName}"
+								   infoPhone="{_infoPhone}"/>
+		<!-- 要素标绘面板 -->
+		<paint:PaintManager id="accordionDrawPanel"
+							map="{map}"/>
+		<!--图层管理面板 -->
+		<maps:LayerManager id="layerManager"
+						   width="310"
+						   height="370"
+						   map="{map}"/>
+		<!-- 离线包解决方案
+			<fm:MBTilesLayer mbtilesPath="{_mbtilepath}"/>
+		-->
+		<maps:TiledGoogleMapLayer/>
+	</fx:Declarations>
+	<!-- 地图容器  -->
+	<fm:Map id="map"
+			viewBounds="{mapViewBounds}"
+			panEasingFactor="1.0">
+
+		<fm:CloudLayer id="cloudLayer"					  
+					   />
+		
+		<fm:FeaturesLayer id="featuresLayer"
+						  includeIn="path"/>
+		<fm:FeaturesLayer id="queryLayer"
+						  includeIn="query"/>
+		<fm:FeaturesLayer id="drawFeaturesLayer"
+						  includeIn="paint"/>
+
+		<fm:ElementsLayer id="el"/>
+	</fm:Map>
+
+	<!-- 功能区域 -->
+	<s:Group width="100%"
+			 includeIn="main,query,paint">
+		<topbar:TopNavigatorBar id="topBar"/>
+		<s:HGroup horizontalAlign="right"
+				  verticalAlign="middle"
+				  width="100%"
+				  height="100%"
+				  gap="10"
+				  right="10">
+			<!-- 地物标绘 -->
+			<components:IconButton id="painterBtn"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"
+								   up="@Embed(source='assets/draws/draw.png')"
+								   down="@Embed(source='assets/draws/draw2.png')"
+								   click="painterBtn_clickHandler(event)"/>
+			<!-- 地图图层管理 -->
+			<components:IconButton id="layerManagerBtn"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"
+								   up="@Embed(source='assets/layers/layer.png')"
+								   down="@Embed(source='assets/layers/layer2.png')"
+								   click="layerManagerBtn_clickHandler(event)"/>
+			<!-- 最佳路径-->
+			<components:IconButton id="path"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"
+								   up="@Embed(source='assets/path/path.png')"
+								   down="@Embed(source='assets/path/path2.png')"
+								   click="path_clickHandler(event)"/>
+		</s:HGroup>
+	</s:Group>
+	<path:FindPath id="pathNavi"
+				   mainview="{this}"
+				   includeIn="path"
+				   width="100%"/>
+	<query:QueryContainer id="queryContainer"
+						  visible="false"
+						  mainview="{this}"
+						  width="100%"
+						  height="100%"/>
+	<!-- 状态提示 -->
+	<components:StateTip id="tipBar"
+						 visible="false"
+						 bottom="0"
+						 width="100%"
+						 height="40"/>
+	<!-- GPS定位 -->
+	<components:IconButton right="30"
+						   bottom="60"
+						   width="38"
+						   height="35"
+						   skinClass="com.supermap.components.skins.IconButtonSkin"
+						   up="@Embed(source='assets/location.png')"
+						   down="@Embed(source='assets/location2.png')"
+						   click="myPosition(event)"/>
+	<s:Image right="10"
+			 bottom="5"
+			 source="assets/logo.png"/>
+
+</s:View>

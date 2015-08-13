@@ -1,0 +1,7 @@
+<font color="#0033FF">常用控件</font>
+<font color="#006633">1. 功能描述：</font>本示例为您展示常用的地图控件：罗盘、缩放条、比例尺、鹰眼。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。
+<font color="#006633">3. 操作指南：</font>鼠标点击不同操作类型按钮，即可执行相应操作。
+<font color="#006633">4. 其它说明：</font>有关常用地图控件的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。
+
+ 

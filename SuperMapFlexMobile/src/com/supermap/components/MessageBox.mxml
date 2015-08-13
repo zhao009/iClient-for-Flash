@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mobile160="com.supermap.components.skins.mobile160.*">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.components.skins.CustomButtonSkin;
+			import com.supermap.components.skins.CustomButtonSkin2;
+			import com.supermap.views.MainView;
+
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			private var _message:String = "是否退出应用程序?";
+			private var _messageType:String;
+			public var main:MainView;
+
+			public function get messageType():String
+			{
+				return _messageType;
+			}
+
+			public function set messageType(value:String):void
+			{
+				_messageType = value;
+				this.setCurrentState(_messageType);
+			}
+
+			[Bindable]
+			public function get message():String
+			{
+				return _message;
+			}
+
+			public function set message(value:String):void
+			{
+				_message = value;
+			}
+
+			protected function cancel(event:MouseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+				main.alpha = 1.0;
+			}
+
+			protected function exitApp(event:MouseEvent):void
+			{
+				NativeApplication.nativeApplication.exit();
+			}
+
+			protected function closeWindow(event:MouseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="quitConfirm"/>
+		<s:State name="addLayerFail"/>
+	</s:states>
+	<mobile160:MsgBox_background/>
+
+	<s:Group width="100%"
+			 height="100%">
+		<s:layout>
+			<s:VerticalLayout gap="20"
+							  horizontalAlign="center"
+							  paddingBottom="0"
+							  paddingLeft="20"
+							  paddingRight="20"
+							  paddingTop="20"
+							  verticalAlign="middle"/>
+		</s:layout>
+		<s:Label fontFamily="微软雅黑"
+				 fontSize="20"
+				 text="{message}"
+				 alpha="0.6"
+				 color="0xffffff"
+				 textAlign="center"/>
+		<s:HGroup bottom="0"
+				  includeIn="quitConfirm">
+			<s:Button width="110"
+					  height="40"
+					  label="确   定"
+					  click="exitApp(event)"
+					  color="0xffffff"
+					  fontFamily="微软雅黑"
+					  fontSize="16"
+					  skinClass="{CustomButtonSkin2}"/>
+			<s:Button width="110"
+					  height="40"
+					  label="取   消"
+					  click="cancel(event)"
+					  color="0xffffff"
+					  fontFamily="微软雅黑"
+					  fontSize="16"
+					  skinClass="{CustomButtonSkin2}"/>
+		</s:HGroup>
+		<s:HGroup bottom="0"
+				  includeIn="addLayerFail">
+			<s:Button width="110"
+					  height="40"
+					  label="确   定"
+					  click="closeWindow(event)"
+					  color="0xffffff"
+					  fontFamily="微软雅黑"
+					  fontSize="16"
+					  skinClass="{CustomButtonSkin}"/>
+		</s:HGroup>
+	</s:Group>
+</s:Group>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010" 
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.iServerJava2.*;
+			import com.supermap.web.iServerJava2.mapServices.*;
+			import com.supermap.web.iServerJava2.networkAnalystServices.*;
+			import com.supermap.web.mapping.FeaturesLayer;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;
+			import mx.messaging.channels.StreamingAMFChannel;
+			import mx.rpc.AsyncResponder;
+			
+			private var DEFAULT_MAP_NAME:String = "Changchun";
+			private var fl:FeaturesLayer;
+			
+			private function palying():void
+			{
+				fl = new FeaturesLayer();
+				this.map.addLayer(fl);
+				titlewin.visible = true;
+				this.map.viewBounds = new Rectangle2D(-1740.7534752292868,-7668.24529207453,10748.00153953446,-77.42388466343982); 
+			}
+			
+			//服务区分析
+			private function excuteServiceAreaAnalyst():void 
+			{
+				var analystPoint:DrawPoint = new DrawPoint(map);
+				map.action = analystPoint;	
+				analystPoint.addEventListener(DrawEvent.DRAW_END, addFeature);
+			}
+			
+			//要素绘制完毕事件 DrawEvent.DRAW_END 的侦听函数
+			private function addFeature(event:DrawEvent):void
+			{
+				//获取分析点
+				var analystPoint:GeoPoint = new GeoPoint();
+				var point2D:Point2D;
+				if(event.feature.geometry is GeoPoint)
+				{
+					analystPoint = event.feature.geometry as GeoPoint;
+					point2D= new Point2D(analystPoint.x, analystPoint.y);
+				}
+				
+				//定义用于最近设施查找的弧段权值信息
+				var weightFieldInfo:WeightFieldInfo = new WeightFieldInfo();
+				weightFieldInfo.name = "LENGTH";
+				weightFieldInfo.fTWeightField = "SMLENGTH";
+				weightFieldInfo.tFWeightField = "SMLENGTH";
+				
+				//定义网络模型：定义数据集、数据源、弧段字段、结点字段、权值信息、障碍边、障碍点字段等
+				var networkModelSetting:NetworkModelSetting = new NetworkModelSetting();
+				networkModelSetting.networkDatasetName = "RoadNet";
+				networkModelSetting.networkDataSourceName = "changchun";
+				networkModelSetting.tolerance = 100;
+				networkModelSetting.nodeIDField = "SMNODEID";
+				networkModelSetting.edgeIDField = "SMID";
+				networkModelSetting.tNodeIDField = "SMTNODE";
+				networkModelSetting.fNodeIDField = "SMFNODE";
+				networkModelSetting.weightFieldInfos = [weightFieldInfo];				
+				
+				//定义网络分析参数：路径途经结点集合、返回结果类型、障碍边、障碍点等
+				var networkAnalystParam:NetworkAnalystParam = new NetworkAnalystParam();
+				networkAnalystParam.point2Ds = [point2D];
+				networkAnalystParam.isEdgesReturn = true;
+				networkAnalystParam.isNodesReturn = true;
+				networkAnalystParam.isPathGuidesReturn = true;
+				networkAnalystParam.isPathsReturn = true;
+				networkAnalystParam.isStopsReturn = true;
+				networkAnalystParam.weightName = "LENGTH";
+				
+				//定义服务区分析参数：网络分析参数、阻力字段值的集合
+				var serviceAreaParam:ServiceAreaParam = new ServiceAreaParam();
+				serviceAreaParam.networkAnalystParam = networkAnalystParam;
+				//阻力字段值的集合，与 networkModelSetting.weightFieldInfos 对应
+				serviceAreaParam.weights = [this.serviceAreaWeight.text];
+				serviceAreaParam.isFromCenter = this.isFromCenter.selected;
+				
+				//定义服务区分析参数集：地图名称、网络模型等
+				var serviceAreaParameters:ServiceAreaParameters = new ServiceAreaParameters();
+				serviceAreaParameters.mapName = "Changchun";
+				serviceAreaParameters.networkSetting = networkModelSetting;
+				serviceAreaParameters.serviceAreaParam = serviceAreaParam;
+				
+				//执行服务区分析，即将进行服务区分析所需的所有参数传送至服务端，并获取服务端返回的结果数据
+				var serviceAreaService:ServiceAreaService = new ServiceAreaService(viewConfig.webUrl);
+				serviceAreaService.execute(new AsyncResponder(this.displayAreaAnalystResult, excuteErros, null), serviceAreaParameters);
+			}
+			
+			//显示从服务端返回的分析结果
+			private function displayAreaAnalystResult(serviceAreaResult:ServiceAreaResult, mark:Object = null):void
+			{
+				if(serviceAreaResult.paths == null)
+				{
+					Alert.show("查询结果为空","抱歉",4,this);
+					return;
+				}
+				var paths:Array = serviceAreaResult.paths;
+				this.commonDisplayNetworkAnalystResult(paths);
+			}
+			
+			//服务区分析出错时调用此函数
+			private function excuteErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("服务区分析出错","抱歉",4,this);
+			}
+			
+			//将服务端几何对象转换为客户端几何对象
+			private function commonDisplayNetworkAnalystResult(paths:Array):void
+			{
+				if(paths.length > 0)
+				{
+					for(var i:int = 0; i < paths.length; i++)
+					{
+						var geo:ServerGeometry = paths[i] as ServerGeometry;
+						if(geo.feature == ServerFeatureType.LINE || geo.feature == ServerFeatureType.LINEM)
+						{
+							var geoLine:GeoLine = geo.toGeoLine();
+							var lineColor:Number = pathColor.selectedColor;
+							var lineStyle:PredefinedLineStyle = new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID, lineColor, 1, 2);
+							var feature:Feature = new Feature();
+							
+							feature.geometry = geoLine;
+							feature.style = lineStyle;
+							this.fl.addFeature(feature);
+						}
+					}
+				}
+			}
+			
+			//清除分析结果
+			private function removeFeature():void
+			{				
+				this.fl.clear();
+				this.map.action = new Pan(map);
+			}
+			
+			private function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(map);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<s:Panel fontFamily="宋体" title="请先点击“选点分析”，然后再选择分析点。" width="100%" height="100%" fontSize="18">
+		<ic:Map id="map" load="palying()">
+			<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}" 
+										   mapServiceAddress="{viewConfig.gisUrl}"
+										   mapServicePort="8600" 
+										   mapName="Changchun"/>
+		</ic:Map>
+	</s:Panel>
+	
+	<!--参数设置窗口-->
+	<s:Panel id="titlewin" title="服务区分析" fontSize="15" right="5" top="10" backgroundColor="#454343" backgroundAlpha="0.48">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">
+			<s:HGroup gap="10">
+				<mx:Spacer width="5"/>
+				<s:Label text="从服务站点分析"/>
+				<s:CheckBox id="isFromCenter" selected="true"/>
+			</s:HGroup>
+			
+			<s:HGroup gap="10">
+				<mx:Spacer width="5"/>
+				<s:Label text="容限："
+						  styleName="AboutVersion"
+						  color="0"/>
+				<s:TextInput id="serviceAreaWeight"
+							  styleName="AboutVersion"
+							  color="0" width="150"
+							  text="500"/>
+			</s:HGroup>
+			
+			<s:HGroup gap="10">
+				<mx:Spacer width="5"/>
+				<s:Label text="渲染颜色："/>
+				<mx:ColorPicker id="pathColor" selectedColor="0x000000"/>
+			</s:HGroup>
+			
+			<s:HGroup gap="10" horizontalAlign="center" width="100%">
+				<s:Button label="选点分析"
+						   click="excuteServiceAreaAnalyst()"
+						   horizontalCenter="center"
+						   id="submitServiceAreaAnalyst"
+						   width="86"/>
+			</s:HGroup>
+			
+			<s:HGroup horizontalAlign="center" gap="10" width="100%">
+				<s:Button skinClass="skins.clearBtnSkin"
+						  id="AreaAnalyst"
+						  click="removeFeature()"/>
+				<s:Button skinClass="skins.panBtnSkin"
+						  click="panMap(event)"/>
+				
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+</s:Application>

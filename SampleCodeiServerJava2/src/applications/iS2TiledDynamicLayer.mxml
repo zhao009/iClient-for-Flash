@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<ic:Map id="map" height="100%" width="100%" >
+		<is:TiledDynamicIServerLayer  url="{viewConfig.webUrl}"
+									  mapName="World"
+									  mapServiceAddress="{viewConfig.gisUrl}"
+									  mapServicePort="8600"/>
+	</ic:Map>
+</s:Application>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+${components_skins_ZoomSliderSkin_Title}.
+<p>${components_skins_ZoomSliderSkin_Description}</p>
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		/**
+		* ${components_skins_ZoomSliderSkin_attribute_HostComponent_D}
+		*/
+		[HostComponent("com.supermap.web.components.ZoomSlider")]
+	</fx:Metadata>
+	<fx:Declarations>
+		<!---
+		@private
+		-->
+		<mx:NumberFormatter id="numberFormatter" rounding="nearest"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[   
+			import com.supermap.web.resources.SmResource;
+			
+			import mx.resources.ResourceManager;
+			
+			import spark.filters.GlowFilter;
+			private var glow:GlowFilter = new GlowFilter(0x000000, 0.5, 10, 10);
+			
+			private function formatSliderDataTip(value:Number):String
+			{  
+				if(this.hostComponent.map.scales)
+				{
+					var scale:Number = this.hostComponent.map.scales[value]; 
+					return "1:" + numberFormatter.format(1 / scale);
+				}
+				if(this.hostComponent.map.resolutions)
+				{ 
+					return resourceManager.getString('SuperMapMessage', SmResource.ZOOM_LEVEL) +   ":" + value;
+				}
+				return null;
+			}
+		     
+			private function rollOverHandler(evt:MouseEvent):void
+			{
+				Button(evt.currentTarget).filters = [glow];
+			}
+			
+			private function rollOutHandler(evt:MouseEvent):void
+			{
+				Button(evt.currentTarget).filters = null;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+		<s:State name="normalWithSlider"/>
+		<s:State name="disabledWithSlider"/>
+	</s:states>  
+	
+	
+	
+	<s:Rect bottom="1"
+			left="3"
+			radiusX="6"
+			radiusY="6"
+			right="-1"
+			top="1" >
+		<s:fill>
+			<s:SolidColor alpha="0.7" color="0x000000"/>
+		</s:fill>
+		
+	</s:Rect>
+	
+	<s:Rect bottom="2"
+			left="4"
+			radiusX="6"
+			radiusY="6"
+			right="0"
+			top="2" >
+		<s:fill>
+			<s:SolidColor alpha="0.3" color="0xe0e0e0"/>
+		</s:fill>
+		
+	</s:Rect>  
+	<s:VGroup gap="2"  horizontalAlign="center"           
+			  minHeight="34"
+			  paddingBottom="8"
+			  paddingLeft="7"
+			  paddingRight="3"
+			  paddingTop="8">
+		
+		<!---
+		${components_skins_ZoomSliderSkin_attribute_zoomInButton_D}
+		-->
+		<s:Button id="zoomInButton"
+				  label="zoomInButton"
+				  enabled.disabled="false"
+				  enabled.disabledWithSlider="false"
+				  skinClass="{ZoomSliderZoomInButtonSkin}"
+				  rollOver="rollOverHandler(event)"
+				  rollOut="rollOutHandler(event)"
+				  toolTip="{resourceManager.getString('SuperMapMessage', SmResource.ZOOM_OUT)}"/>
+		
+		<!---
+		${components_skins_ZoomSliderSkin_attribute_slider_D}
+		-->
+		<mx:VSlider id="slider" 
+					dataTipFormatFunction="formatSliderDataTip"
+					dataTipPlacement="right"
+					enabled.disabled="false"
+					enabled.disabledWithSlider="false"
+					enabled.normalWithSlider="true"
+					
+					includeIn="normalWithSlider,disabledWithSlider"
+					liveDragging="false"
+					
+					value="{this.hostComponent.map.level}"
+					height="{(this.hostComponent.map.scales.length) * this.hostComponent.sliderHeightParam}"
+					maximum="{this.hostComponent.map.resolutions.length - 1}"
+					
+					showDataTip="true"
+					snapInterval="1"
+					tickColor="#000000"
+					tickInterval="1"  
+					tickThickness="2"
+					tickOffset="-2"
+					labelOffset="-50"
+					/>
+		
+		<!---  
+		${components_skins_ZoomSliderSkin_attribute_zoomOutButton_D}
+		-->
+		<s:Button id="zoomOutButton"
+				  label="zoomOutButton"
+				  enabled.disabled="false"
+				  enabled.disabledWithSlider="false"
+				  skinClass="{ZoomSliderZoomOutButtonSkin}"
+				  rollOver="rollOverHandler(event)"
+				  rollOut="rollOutHandler(event)"
+				  toolTip="{resourceManager.getString('SuperMapMessage', SmResource.ZOOM_IN)}"/>
+		
+	</s:VGroup>
+	
+</s:Skin>

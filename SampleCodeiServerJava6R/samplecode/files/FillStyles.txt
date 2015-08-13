@@ -1,0 +1,5 @@
+<font color="#0033FF">面样式</font>
+<font color="#006633">1. 功能描述：</font>展示 SuperMap iClient for Flash 产品为您提供的所有面填充样式。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。
+<font color="#006633">3. 操作指南：</font>左侧窗口——预定义面填充样式（PredefinedFillStyle）；右侧窗口——图片填充样式（PictureFillStyle）；
+<font color="#006633">4. 其它说明：</font>用户也可以继承 FillStyle 类自定义面要素样式。有关面样式的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

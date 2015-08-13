@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   width="100%" height="100%" creationComplete="initApp()" >
+	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>			
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.iServerJava2.ServerFeatureType;
+			import com.supermap.web.iServerJava2.queryServices.QueryBySqlParameters;
+			import com.supermap.web.iServerJava2.queryServices.QueryBySqlService;
+			import com.supermap.web.iServerJava2.queryServices.QueryLayerParam;
+			import com.supermap.web.iServerJava2.queryServices.QueryParam;
+			import com.supermap.web.iServerJava2.queryServices.RecordSet;
+			import com.supermap.web.iServerJava2.queryServices.ResultSet;
+			import com.supermap.web.iServerJava2.queryServices.ReturnResultSetInfo;
+			import com.supermap.web.iServerJava2.queryServices.SqlParam;
+			import com.supermap.web.rendering.RangeItem;
+			import com.supermap.web.rendering.RangeRenderer;
+			import com.supermap.web.rendering.UniformRenderer;
+			import com.supermap.web.rendering.UniqueItem;
+			import com.supermap.web.rendering.UniqueRenderer;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			
+			private var mapUrl:String;
+			private var features:Array;			
+			[Bindable]	
+			private var viewConfig:ViewConfig;
+			
+			private function initApp():void 
+			{
+				viewConfig = new ViewConfig(this);
+			}	 
+			
+			//显示查询结果
+			private function dispalyQueryRecords(resultSet:ResultSet, mark:Object = null):void
+			{	 
+				this.features = (resultSet.recordSets[0] as RecordSet).toFeatureSet(); 
+				if(!resultSet || !resultSet.recordSets || !features || features.length == 0)
+				{
+					Alert.show("查询结果为空，请检查参数！", "提示", 4, this);
+					return;
+				}
+				var fl:FeaturesLayer= new FeaturesLayer();
+				fl.addFeature(this.features[0]);
+				this.excuteRangeRender();
+				this.excuteUniformRender();
+				this.excuteUniqueRender();
+			}
+			
+			//范围分段渲染
+			private function excuteRangeRender():void
+			{
+				var items:Array= new Array();
+				var fillStyle1:PredefinedFillStyle = new PredefinedFillStyle();
+				fillStyle1.border = new PredefinedLineStyle("solid", 0);
+				var fillStyle2:PredefinedFillStyle = new PredefinedFillStyle("solid", 0xfbfe02, 1, new PredefinedLineStyle("solid", 0));
+				var fillStyle3:PredefinedFillStyle = new PredefinedFillStyle("solid", 0x44d6fa, 1, new PredefinedLineStyle("solid", 0));
+				var rangeItemMin:RangeItem = new RangeItem(fillStyle1, 0, 100);
+				var rangeItemMid:RangeItem = new RangeItem(fillStyle2, 101, 200);
+				var rangeItemMax:RangeItem = new RangeItem(fillStyle3, 201, 300);
+				
+				items.push(rangeItemMin, rangeItemMid, rangeItemMax);		
+				
+				var rangeRenderer:RangeRenderer = new RangeRenderer();
+				rangeRenderer.items = items;
+				rangeRenderer.attribute = "SMID";		
+				
+				this.rangeRenderLayer.features = this.features;
+				this.rangeRenderLayer.renderer = rangeRenderer;
+				
+			}
+			
+			//统一渲染
+			private function excuteUniformRender():void
+			{
+				var fillStyle:PredefinedFillStyle = new PredefinedFillStyle("solid", 0x9feaeb, 1, new PredefinedLineStyle("solid", 0));
+				var uniformRenderer:UniformRenderer = new UniformRenderer(fillStyle);
+				
+				var arr:Array = new Array();
+				for each(var fea:Feature in this.features)
+				{
+					var feature:Feature = new Feature(fea.geometry, null, fea.attributes);
+					arr.push(feature);
+				}
+				this.uniformRenderLayer.features = arr; 
+				this.uniformRenderLayer.renderer = uniformRenderer;   
+				
+			}
+			
+			//单值渲染
+			private function excuteUniqueRender():void
+			{
+				var rendererInfo:Array = new Array();
+				var fillStyle1:PredefinedFillStyle = new PredefinedFillStyle("solid", 0x782ff1, 1, new PredefinedLineStyle("solid", 0));
+				var fillStyle2:PredefinedFillStyle = new PredefinedFillStyle("solid", 0xb0f61a, 1, new PredefinedLineStyle("solid", 0));
+				var fillStyle3:PredefinedFillStyle = new PredefinedFillStyle();
+				var fillStyle4:PredefinedFillStyle = new PredefinedFillStyle("solid", 0x44d6fa, 1, new PredefinedLineStyle("solid", 0));					
+				var uniqueItem01:UniqueItem = new UniqueItem(fillStyle1, "1");	
+				var uniqueItem02:UniqueItem = new UniqueItem(fillStyle2, "2");	
+				var uniqueItem03:UniqueItem = new UniqueItem(fillStyle3, "3");	
+				var uniqueItem04:UniqueItem = new UniqueItem(fillStyle4, "4");	
+//	
+				rendererInfo.push(uniqueItem01, uniqueItem02, uniqueItem03, uniqueItem04);
+				
+				var uniqueRender:UniqueRenderer = new  UniqueRenderer("COLOR_MAP");				
+				uniqueRender.items = rendererInfo;
+				
+				var arr:Array = new Array();
+				for each(var fea:Feature in this.features)
+				{
+					var feature:Feature = new Feature(fea.geometry, null, fea.attributes);
+					arr.push(feature);
+				}
+				this.uniqueRenderLayer.features = arr;
+				this.uniqueRenderLayer.renderer = uniqueRender;
+			}
+		
+
+			protected function map_loadHandler(event:MapEvent):void
+			{
+				
+				var sqlParam:SqlParam = new SqlParam();
+				sqlParam.whereClause = "smid=133 or smid=101 or smid=84 or smid=109 or smid=239 or smid=62 or smid=204 or smid=180 or smid=166 or smid=242 or smid=186 or smid=246 or smid=149";
+				
+				var queryLayerParam:QueryLayerParam = new QueryLayerParam("World@World", sqlParam);
+				
+				var queryParam:QueryParam = new QueryParam();
+				queryParam.expectCount = 10;				
+				queryParam.returnResultSetInfo = ReturnResultSetInfo.RETURN_RESULT_ATTRIBUTEANDGEOMETRY;
+				queryParam.queryLayerParams = [queryLayerParam];
+				
+				var queryBySqlParameters:QueryBySqlParameters = new QueryBySqlParameters("World", queryParam);
+				
+				var sqlQuery:QueryBySqlService = new QueryBySqlService(viewConfig.webUrl);
+				sqlQuery.execute(new AsyncResponder(this.dispalyQueryRecords,
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("查询错误。");
+					}, null),queryBySqlParameters);
+			}
+
+		]]>
+	</fx:Script>
+	<!--添加地图-->
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}"  load="map_loadHandler(event)">
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}"
+									 mapName="World"
+									 mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600"/>
+		<ic:FeaturesLayer id="rangeRenderLayer" visible="{this.rangeRender.selected}"/>		 
+		<ic:FeaturesLayer id="uniqueRenderLayer" visible="{this.uniqueRender.selected}"/>	
+		<ic:FeaturesLayer id="uniformRenderLayer" visible="{this.uniformRender.selected}"/>		
+	</ic:Map>
+	
+	<mx:TitleWindow id="titlewin" title="客户端渲染" showCloseButton="false" fontSize="12" right="5" top="10" 
+					layout="absolute" backgroundColor="#454343" backgroundAlpha="0.48" fontFamily="宋体">
+		<s:VGroup width="100%" height="100%" gap="10" top="5" left="5" right="5" bottom="5">				
+			<s:RadioButton  label="范围分段渲染（按照 smid 所属范围）" groupName="radiogroup1" id="rangeRender"  />
+			<s:RadioButton  label="单值渲染（按照COLOR_MAP字段）" groupName="radiogroup1" id="uniqueRender"  />
+			<s:RadioButton  label="统一渲染" groupName="radiogroup1" id="uniformRender"  />			
+		</s:VGroup>
+	</mx:TitleWindow>
+</s:Application>

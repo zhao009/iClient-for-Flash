@@ -1,0 +1,115 @@
+<apiPackage id="com.supermap.web.symbol.clover"><apiName>com.supermap.web.symbol.clover</apiName><apiDetail/><apiClassifier id="com.supermap.web.symbol.clover:SectorItem"><apiName>SectorItem</apiName><shortdesc>
+	 三叶草样式符号子项.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 三叶草样式符号子项.
+	 <p>该类用于设置组成三叶草样式符号（CloverStyle）的扇形样式。三叶草样式符号专用于表示通迅行业基站。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.symbol.clover.xml#CloverStyle"><linktext>com.supermap.web.symbol.clover.CloverStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.symbol.clover:SectorItem:SectorItem"><apiName>SectorItem</apiName><shortdesc>
+		 初始化 SectorItem 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>sectorCenterLineAngle</apiItemName><apiType value="Number"/><apiDesc>扇形在三叶草样式符号中的显示角度，必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>sectorInnerAngle</apiItemName><apiType value="Number"/><apiData>60</apiData><apiDesc>扇形圆心角。
+		 </apiDesc></apiParam><apiParam><apiItemName>sectorRadius</apiItemName><apiType value="Number"/><apiData>30</apiData><apiDesc>扇形半径。
+		 </apiDesc></apiParam><apiParam><apiItemName>sectorColor</apiItemName><apiType value="uint"/><apiData>0xFF0000</apiData><apiDesc>扇形填充色。
+		 </apiDesc></apiParam><apiParam><apiItemName>sectotAlpha</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>扇形透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>isBorder</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>是否扇形添加边界。
+		 </apiDesc></apiParam><apiParam><apiItemName>borderColor</apiItemName><apiType value="uint"/><apiData>0x0000FF</apiData><apiDesc>边界颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>borderAlpha</apiItemName><apiType value="Number"/><apiData>0.8</apiData><apiDesc>边界透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>borderWeight</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>边界宽。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 SectorItem 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.symbol.clover:SectorItem:toString"><apiName>toString</apiName><shortdesc>
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiValue id="com.supermap.web.symbol.clover:SectorItem:borderAlpha:get"><apiName>borderAlpha</apiName><shortdesc>
+		 扇形边界透明度。默认为 0.8。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 扇形边界透明度。默认为 0.8。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:borderColor:get"><apiName>borderColor</apiName><shortdesc>
+		 扇形边界颜色。默认为黑色：0x0000FF。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 扇形边界颜色。默认为黑色：0x0000FF。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:borderWeight:get"><apiName>borderWeight</apiName><shortdesc>
+		 扇形边界宽。默认为 1，单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 扇形边界宽。默认为 1，单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:isBorder:get"><apiName>isBorder</apiName><shortdesc>
+		 是否添加边界。默认为 false，表示不添加。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否添加边界。默认为 false，表示不添加。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:sectorCenterLineAngle:get"><apiName>sectorCenterLineAngle</apiName><shortdesc>
+		 扇形在三叶草样式符号中的显示角度，必设属性。逆时针对正，顺时针为负。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 扇形在三叶草样式符号中的显示角度，必设属性。逆时针对正，顺时针为负。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:sectorColor:get"><apiName>sectorColor</apiName><shortdesc>
+		 扇形填充颜色。默认为红色：0xFF0000。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 扇形填充颜色。默认为红色：0xFF0000。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:sectorInnerAngle:get"><apiName>sectorInnerAngle</apiName><shortdesc>
+		 扇形圆心角。默认为 60 度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 扇形圆心角。默认为 60 度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:sectorRadius:get"><apiName>sectorRadius</apiName><shortdesc>
+		 扇形半径。默认为 30，单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 扇形半径。默认为 30，单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:SectorItem:sectotAlpha:get"><apiName>sectotAlpha</apiName><shortdesc>
+		 扇形填充透明度。默认为 1，表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 扇形填充透明度。默认为 1，表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.symbol.clover:CloverStyle"><apiName>CloverStyle</apiName><shortdesc>
+	 三叶草样式符号.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:MarkerStyle</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 三叶草样式符号.
+	 <p>该符号专用于表示通迅行业基站。三叶草符号如下图所示，组成三叶草的各扇形的颜色、大小、角度，以及扇形个数均可修改。<br/><img src="../../../../../images/clover.png"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.symbol.clover:CloverStyle:CloverStyle"><apiName>CloverStyle</apiName><shortdesc>
+		 初始化 CloverStyle 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>sectorItems</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>组成三叶草符号的扇形集合。
+		 </apiDesc></apiParam><apiParam><apiItemName>xOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>横轴偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>yOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>纵轴偏移量。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 CloverStyle 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.symbol.clover:CloverStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.symbol.clover:CloverStyle:clone"><apiName>clone</apiName><shortdesc>
+		 克隆 CloverStyle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆 CloverStyle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.symbol.clover:CloverStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.symbol.clover:CloverStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.symbol.clover:CloverStyle:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 静态变量。获取三叶草样式符号（CloverStyle）的默认样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 静态变量。获取三叶草样式符号（CloverStyle）的默认样式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:CloverStyle:numSector:get"><apiName>numSector</apiName><shortdesc>
+		 组成三叶草的扇形个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 组成三叶草的扇形个数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.symbol.clover:CloverStyle:sectorItems:get"><apiName>sectorItems</apiName><shortdesc>
+		 组成三叶草的扇形集合，集合中的每个对象为 SectorItem 类型。默认为：[new SectorItem(60),new SectorItem(180),new SectorItem(300)]。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 组成三叶草的扇形集合，集合中的每个对象为 SectorItem 类型。默认为：[new SectorItem(60),new SectorItem(180),new SectorItem(300)]。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.symbol.clover.xml#SectorItem"><linktext>com.supermap.web.symbol.clover.SectorItem</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.symbol.clover:CloverStyle:size:get"><apiName>size</apiName><shortdesc>
+		 获取符号外接圆半径，默认取组成三叶草符号的各扇形的最大半径。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取符号外接圆半径，默认取组成三叶草符号的各扇形的最大半径。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

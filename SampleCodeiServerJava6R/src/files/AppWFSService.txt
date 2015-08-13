@@ -1,0 +1,2 @@
+﻿<font color="#0033FF">WFS 服务</font>
+WFS 服务根据所包含功能的不同可分为三种，目前 SuperMap iClient for Flash 不仅支持最基本的 WFS 服务（Basic WFS），还支持事务操作，具体包括 GetCapabilities Operation（获取服务中的要素类及支持的操作）、DescribeFeatureType Operation（描述要素类的信息）、GetFeature Operation（获取要素）、Transaction Operation(事务操作：delete、update、insert)四个功能，相应的本产品提供 GetWFSCapabilities、DescribeWFSFeatureType、GetWFSFeature 、WFSTransaction 四个服务类（继承于 WFSServiceBase 类）来支持这四种功能。

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" version="3">
+  <includeClasses>
+    <classEntry path="com.supermap.web.symbol.clover.CloverStyle"/>
+    <classEntry path="com.supermap.web.symbol.clover.SectorItem"/>
+    <classEntry path="com.supermap.web.symbol.clover.SectorSprite"/>
+    <classEntry path="com.supermap.web.symbol.event.CloverEvent"/>
+    <classEntry path="com.supermap.web.symbol.event.GridEvent"/>
+    <classEntry path="com.supermap.web.symbol.grid.GridItem"/>
+    <classEntry path="com.supermap.web.symbol.grid.GridSprite"/>
+    <classEntry path="com.supermap.web.symbol.grid.GridStyle"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="docs/packages.dita" sourcePath="docs/packages.dita"/>
+    <resourceEntry destPath="docs/com.supermap.web.symbol.event.xml" sourcePath="docs/com.supermap.web.symbol.event.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.symbol.clover.xml" sourcePath="docs/com.supermap.web.symbol.clover.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://www.supermap.com/symbol/2010"/>
+  </namespaceManifests>
+</flexLibProperties>

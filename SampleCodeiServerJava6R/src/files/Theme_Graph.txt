@@ -1,0 +1,12 @@
+<font color="#0033FF">统计专题图（ThemeGraph）</font>
+<font color="#006633">1. 功能描述：</font>统计专题图可同时表示多个属性字段信息，在区域本身与各区域之间形成横向和纵向的对比。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World Map。
+<font color="#006633">3. 实现的关键步骤：</font>
+    1）定义统计专题图子项 ThemeGraphItem；
+    2）定义等级符号专题图 ThemeGraph：该参数不唯一，可设置多个 ThemeGraph，即针对多组专题子项 ThemeGraphItem 制作专题图。当然也可以定义不同类型的专题图对象，即制作复合专题图；
+    3）定义专题图参数 ThemeParameters；
+    4）制作专题图 ThemeService；
+    5）获取专题图，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 ThemeEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">4. 其它说明：</font>有关统计专题图的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"	
+			   creationComplete="initApp()">
+	<!--几何查询-->
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawLine;
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.components.FeatureDataGrid;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.events.FeatureDataGridEvent;
+			import com.supermap.web.iServerJava6R.FilterParameter;
+			import com.supermap.web.iServerJava6R.Recordset;
+			import com.supermap.web.iServerJava6R.queryServices.QueryByGeometryParameters;
+			import com.supermap.web.iServerJava6R.queryServices.QueryByGeometryService;
+			import com.supermap.web.iServerJava6R.queryServices.QueryResult;
+			import com.supermap.web.iServerJava6R.queryServices.SpatialQueryMode;
+			import com.supermap.web.utils.serverTypes.ServerGeometryType;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			import com.supermap.web.mapping.HighlightLayer;
+			import com.supermap.web.mapping.Map;
+			
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.ListEvent;
+			import mx.rpc.AsyncResponder;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			//当前查询图层
+			private var currentQueryLayer:String = "Countries@World";
+			//定义图层数组
+			[Bindable]
+			private var queryLayers:Array = ["Countries@World"];
+			//定义查询类型数组
+			[Bindable]
+			private var subGeometryQyeryTypes:Array = ["点选", "线选", "多边形选"];
+			//定义高亮图层
+			private var highlayer:HighlightLayer;				
+			private var recordGrid:FeatureDataGrid;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			
+			private var resultFeatures:Array = [];
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+				
+				highlayer = new HighlightLayer(mapUrl);
+			}
+			
+			//查询
+			private function onExcuteQueryClick(event:MouseEvent):void 
+			{
+				var subQueryTypeStr:String = subQueryType.selectedItem.toString();
+				if(subQueryTypeStr == "点选")
+				{
+					var pointQueryActoin:DrawPoint = new DrawPoint(map);
+					pointQueryActoin.addEventListener(DrawEvent.DRAW_END,queryExecute);
+					map.action = pointQueryActoin;
+				}
+				if(subQueryTypeStr == "线选")
+				{
+					var lineQueryActoin:DrawLine = new DrawLine(map);
+					lineQueryActoin.addEventListener(DrawEvent.DRAW_END,queryExecute);
+					map.action = lineQueryActoin;
+				}
+				else if(subQueryTypeStr == "多边形选")
+				{
+					var polygonQueryActoin:DrawPolygon = new DrawPolygon(map);
+					polygonQueryActoin.addEventListener(DrawEvent.DRAW_END,queryExecute);
+					map.action = polygonQueryActoin;
+				}
+			}
+			
+			private function queryExecute(event:DrawEvent):void
+			{
+				if (event.feature == null)
+					return;
+				
+				//定义过滤条件
+				var sqlParam:FilterParameter = new FilterParameter();
+				sqlParam.name = subQueryLayer.text;	
+				sqlParam.attributeFilter = this.txtSQLExpress.text;
+				
+				//定义几何查询参数
+				var queryParam:QueryByGeometryParameters = new QueryByGeometryParameters();
+				queryParam.networkType = ServerGeometryType.LINE;
+				queryParam.returnContent = this.ishighLightLayer.selectedIndex == 0;
+				queryParam.filterParameters = [sqlParam];				
+				queryParam.spatialQueryMode = SpatialQueryMode.INTERSECT;
+				if(event.feature.geometry is GeoPoint)
+					queryParam.geometry = event.feature.geometry as GeoPoint;
+				else if(event.feature.geometry is GeoLine)
+					queryParam.geometry = event.feature.geometry as GeoLine;
+				else if(event.feature.geometry is GeoRegion)
+					queryParam.geometry = event.feature.geometry as GeoRegion;
+				else
+					return;
+				
+				
+				//执行几何查询
+				var geometryQuery:QueryByGeometryService = new QueryByGeometryService(mapUrl);
+				geometryQuery.processAsync(queryParam,new AsyncResponder(this.displayQueryRecords,
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("与服务端交互失败", "抱歉", 4, this);
+					}, null));
+				
+				map.action = new Pan(map);
+			}
+			
+			private function displayQueryRecords(queryResult:QueryResult, mark:Object = null):void
+			{
+				//使用要素图层 FeatureLayer 显示查询结果
+				if(this.ishighLightLayer.selectedIndex == 0)
+				{			
+					if(!bQueryResultSaved.selected)
+					{
+						resultFeatures = [];
+						if(this.recordGrid)
+						{
+							this.recordGrid.clear();
+						}
+						this.featuresLayer.clear();
+					}
+					
+					if(queryResult.recordsets == null || queryResult.recordsets.length == 0)
+					{
+						Alert.show("查询结果为空", null, 4, this);
+						return;
+					}
+
+					var recordSets:Array = queryResult.recordsets;
+					if(recordSets.length != 0)
+					{
+						for each(var recordSet:Recordset in recordSets)
+						{
+							outerLoop:
+							for each (var feature:Feature in recordSet.features)
+							{
+								for each(var value:Feature in resultFeatures)
+								{
+									if(value.attributes.SMID == feature.attributes.SMID)
+									{
+										break outerLoop;
+									}
+								}
+								resultFeatures.push(feature);
+							}
+						}
+					}
+					this.highlayer.visible = false;
+					if(!this.recordGrid)
+					{
+						this.recordGrid = new FeatureDataGrid(this.featuresLayer, resultFeatures, this.result); 
+						this.recordGrid.left = 5;
+						this.recordGrid.right = 5;
+						this.recordGrid.bottom = 5;
+						this.recordGrid.top = 2;
+					}
+					else
+						this.recordGrid.features = resultFeatures;
+					this.result.removeAllChildren();
+					this.recordGrid.addEventListener(FeatureDataGridEvent.FEATURE_SELECTED, FDSeledHandler);
+					this.recordGrid.highLightStyle = new PredefinedFillStyle("solid",0xff0000);
+					this.result.addChild(this.recordGrid);  
+					this.result.visible = true; 
+				}
+				//使用高亮图层 HighlightLayer 显示查询结果
+				else
+				{				
+					if(this.recordGrid)
+					{
+						this.recordGrid.clear();
+					}
+					this.featuresLayer.clear();
+					this.result.visible = false;
+					if (queryResult.resourceInfo!= null)
+					{
+						highlayer.visible = true;
+						highlayer.queryResultID = queryResult.resourceInfo.newResourceID;	
+						var serverstyle:ServerStyle = new ServerStyle();
+						serverstyle.lineWidth = 0.5;
+						serverstyle.fillOpaqueRate = 80;
+						highlayer.style = serverstyle;
+						this.map.addLayer(highlayer);
+					}
+				}
+			}			
+			 
+			private function FDSeledHandler(event:FeatureDataGridEvent) : void
+			{
+				map.panTo(event.feature.geometry.bounds.center);
+			}
+				
+			//查询图层改变事件
+			private function onQueryLayerChange(event:ListEvent):void 
+			{ 
+				featuresLayer.clear(); 
+				var queryLayer:String = ComboBox(event.target).selectedItem.toString();
+				currentQueryLayer = queryLayer;
+			}
+			
+			//清除查询结果
+			private function clearFeature(event:MouseEvent):void
+			{
+				if(highlayer && highlayer.numChildren > 0)
+				{
+					this.map.removeLayer(highlayer);
+				}
+				map.action = new Pan(map);
+				resultFeatures = [];
+				if(this.recordGrid)
+				{
+					this.recordGrid.clear();
+				}
+				featuresLayer.clear(); 
+				this.result.visible = false;
+			}
+			
+			//平移
+			private function pan(event:MouseEvent):void
+			{
+				map.action = new Pan(map);;
+			}
+			
+			//查询结果窗口鼠标按下事件的回调函数
+			private function resultWin_mouseUp(event:MouseEvent):void
+			{
+				result.stopDrag();
+			}
+			
+			//查询结果窗口鼠标释放事件的回调函数
+			private function resultWin_mouseDown(event:MouseEvent):void
+			{
+				result.startDrag();
+			}
+			
+			//查询参数设置窗口关闭事件
+			private function titleWinClose(event:CloseEvent):void 
+			{ 
+				this.result.visible = false;
+			}
+			
+			protected function ishighLightLayer_changeHandler(event:IndexChangeEvent):void
+			{
+				if(this.ishighLightLayer.selectedIndex == 1)
+				{
+					this.bQueryResultSaved.enabled = false;
+					this.bQueryResultSaved.selected = false;
+				}
+				else
+					this.bQueryResultSaved.enabled = true;
+			}
+		]]>
+	</fx:Script>	
+
+	<!--添加地图-->
+	<s:Panel fontFamily="宋体" width="100%" height="100%" fontSize="18" title="操作指南：在完成参数设置后请先点击“查询”按钮，再绘制几何要素">
+		<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<ic:TiledDynamicRESTLayer url="{this.mapUrl}"/>
+			<ic:FeaturesLayer id="featuresLayer"/> 
+		</ic:Map>
+	</s:Panel>
+	
+	<!--查询结果显示窗口-->
+	<mx:TitleWindow id="result" right="50" left="50" height="150" title="查询结果：" visible="false" mouseDown="resultWin_mouseDown(event)" layout="absolute" showCloseButton="true" 
+					bottom="10" horizontalCenter="10" close="titleWinClose(event)" backgroundColor="#737171" backgroundAlpha="0.60" mouseUp="resultWin_mouseUp(event)">
+	</mx:TitleWindow>
+	
+	<!--查询参数设置窗口-->
+	<s:Panel id="titlewin" title="几何查询：" fontFamily="宋体" fontSize="12" right="5" top="30" backgroundColor="#454343" backgroundAlpha="0.48">
+		<s:VGroup gap="10" left="5" top="5" bottom="5" right="5">
+			<s:HGroup>
+				<mx:Label text="子查询类型：" id="lblTypeOrSql"/>
+				<mx:ComboBox id="subQueryType" dataProvider="{subGeometryQyeryTypes}" width="160"/>
+			</s:HGroup>
+			<s:HGroup>
+				<mx:Label text="查询图层："/>
+				<mx:Spacer width="6"/>
+				<mx:ComboBox id="subQueryLayer" dataProvider="{queryLayers}" change="onQueryLayerChange(event)" width="160"/>
+			</s:HGroup>
+			<s:HGroup gap="8">
+				<mx:Label text="SQL 语句："/>
+				<mx:Spacer width="3"/>
+				<mx:TextInput id="txtSQLExpress" text="smid &lt; 270"/>
+			</s:HGroup>
+			<s:HGroup gap="30" horizontalAlign="center" width="100%" height="100%">
+				<s:DropDownList id="ishighLightLayer"
+								horizontalCenter="0"
+								fontFamily="宋体"
+								selectedIndex="0" width="162" change="ishighLightLayer_changeHandler(event)">
+					<s:ArrayList>
+						<fx:String>使用要素图层显示结果</fx:String>
+						<fx:String>使用高亮图层显示结果</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+			</s:HGroup>
+			<s:HGroup gap="30" horizontalAlign="center" width="100%" height="100%">
+				<s:CheckBox id="bQueryResultSaved" label="保留查询结果" selected="false" />
+			</s:HGroup>
+			<s:HGroup gap="10" width="100%" height="100%" horizontalAlign="center">
+				<mx:Button label="查询" id="excuteQuery" click="onExcuteQueryClick(event)"/>
+				<mx:Button label="清除" id="clear" click="clearFeature(event)"/>
+				<mx:Button label="平移" id="panMap" click="pan(event)"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+</s:Application>

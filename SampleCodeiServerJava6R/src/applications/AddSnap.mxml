@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.Edit;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.actions.Snap;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.events.EditEvent;
+			import com.supermap.web.events.SnapEvent;
+			
+			import mx.controls.Alert;
+			import mx.events.DragEvent;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			private var snaptemp:Snap;
+			private var drawPoly:DrawPolygon;
+			private var editAction:Edit;
+			private var snaptmp:Snap;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.China_Map;	
+				
+				var len:Number = 5;
+				var index:Number = 0;
+				for(var i:int = 0;i<len;i++)
+				{
+					var x:Number = Math.random()*20037508.34*2 -20037508.34;
+					var y:Number = Math.random()*20037508.34*2 -20037508.34;
+					var fea:Feature;
+					var region:GeoRegion = new GeoRegion();
+					region.addPart([
+						new Point2D(x-2000000,y+2000000),
+						new Point2D(x+2000000,y+2000000),
+						new Point2D(x+2000000,y-2000000),
+						new Point2D(x-2000000,y-2000000),
+						new Point2D(x-2000000,y+2000000)
+					]);
+					fea = new Feature(region);
+					fl.addFeature(fea);
+				}
+				index++;
+				
+			}
+			
+			
+			
+			
+			//绘制面
+			private function drawRegion(event:MouseEvent):void
+			{
+				
+				if(!drawPoly) drawPoly = new DrawPolygon(this.map);
+				if(!snaptemp) snaptemp = new Snap([fl]);
+				//为绘制时添加捕捉 定义SnapEvent.SNAP_SUCCEED 事件的侦听器
+				snaptemp.addEventListener(SnapEvent.SNAP_SUCCEED,suc);
+				snaptemp.addEventListener(SnapEvent.SNAP_FAILED,fai);
+				drawPoly.snap = snaptemp;
+				this.map.action = drawPoly;
+				//为绘图操作 drawPoly 定义 DrawEvent.DRAW_END 事件的侦听器
+				drawPoly.addEventListener(DrawEvent.DRAW_END, onDrawGeometry);
+				drawPoly.addEventListener(DrawEvent.DRAW_UPDATE, moveDrawGeometry);		
+			}
+			//响应捕捉成功的侦听事件SnapEvent.SNAP_SUCCEED
+			private function suc(event:SnapEvent):void
+			{
+				fl2.clear();
+				var geo:GeoPoint = new GeoPoint(event.point.x,event.point.y);
+				fl2.addFeature(new Feature(geo));
+			}
+			//响应捕捉失败的侦听事件SnapEvent.SNAP_FAILED
+			private function fai(event:SnapEvent):void
+			{
+				fl2.clear();
+			}
+			//响应绘图操作的侦听事件 DrawEvent.DRAW_UPDATE
+			private function moveDrawGeometry(event:DrawEvent):void
+			{
+				var feature:Feature = event.feature;
+			}
+			//响应绘图操作的侦听事件 DrawEvent.DRAW_END
+			private function onDrawGeometry(event:DrawEvent):void
+			{
+				var feature:Feature = event.feature;
+				
+				fl.addFeature(feature);
+			}
+			//平移地图
+			protected function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(this.map);
+			}
+			//编辑面
+			private function featureActions(event:MouseEvent):void
+			{
+				if(!snaptmp) snaptmp = new Snap([fl]);
+				var button:Button = event.target as Button;
+				editAction = new Edit(map,fl);
+				editAction.snap = snaptmp;
+				map.action = editAction;			
+			}
+			//捕捉的开关
+			protected function issnapchange():void
+			{
+				if(!drawPoly) drawPoly = new DrawPolygon(this.map);
+				if(drawPoly.snap == null) {
+					snaptemp = new Snap([fl]);
+					drawPoly.snap = snaptemp;
+				}
+
+				if(!editAction) editAction = new Edit(map,fl);
+				if(editAction.snap == null) {
+					snaptmp = new Snap([fl]);
+					editAction.snap = snaptmp;
+				}	
+								
+				if( drawPoly.snap.isActivate){	
+					drawPoly.snap.isActivate = false;
+					editAction.snap.isActivate = false;
+				}
+				else{
+					drawPoly.snap.isActivate = true;
+					editAction.snap.isActivate = true;
+				}
+			}
+			//清除要素图层
+			protected function clearFeature(event:MouseEvent):void
+			{
+				fl.clear();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--分块动态 IServer 图层-->
+	<s:Panel fontFamily="宋体" width="100%" height="100%" title="捕捉默认关闭，单击捕捉按钮捕捉开启，再次点击捕捉按钮，捕捉关闭。" textAlign="center" fontSize="18">
+		<ic:Map id="map" >
+			<ic:TiledDynamicRESTLayer url="{restUrl}"/>
+			<ic:FeaturesLayer id="fl" />
+			<ic:FeaturesLayer id="fl2" />	
+		</ic:Map>
+	</s:Panel>	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup gap="10" horizontalCenter="0" verticalCenter="0">	
+			<s:Button skinClass="skins.drawPolygonBtn" toolTip="绘制面" id="drawPolygon" click="drawRegion(event)"/> 
+			<s:Button skinClass="skins.editEntityBtnSkin" toolTip="编辑面" id="edit" click="featureActions(event)"/>
+			<s:Button skinClass="skins.snapBtnSkin" toolTip="捕捉的开关" id="snap" click="issnapchange()"/>
+			<s:Button skinClass="skins.panBtnSkin" toolTip="平移" click="panMap(event)"/>
+			<s:Button skinClass="skins.clearBtnSkin" toolTip="清除" click="clearFeature(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

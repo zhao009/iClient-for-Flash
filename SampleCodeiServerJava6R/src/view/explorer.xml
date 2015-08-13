@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<compTree>
+ 
+ 	<node label="图片图层" none=""> 
+		<node label="分块动态图层" app="iS6TiledDynamicRESTLayer" none=""/> 
+		<node label="动态图层" app="iS6DynamicRESTLayer" none=""/>
+		<node label="WMTS 图层" app="is6TiledWMTSLayer" none=""/>
+		<node label="WMS 图层" app="is6TiledWMSLayer" none=""/>
+    	<node label="地图切换" app="MapSwitch" none=""/> 
+    	<node label="图层叠加" app="DynamicWMSandIServerLayer" none=""/>
+    	<node label="热点图" app="HeatMap" none=""/>  
+    	<node label="云服务图层" app="SuperMapCloudLayer" none=""/>    
+    </node>
+    <node label="要素图层" none="">
+    	<node label="点样式" app="MarkerStyles" none=""/> 
+    	<node label="线样式" app="LineStyles" none=""/> 	
+    	<node label="面样式" app="FillStyles" none=""/> 
+    	<node label="渐变填充" app="GradientFillStyleApp" none=""/> 
+    	<node label="文本样式" app="TextStyles" none=""/> 
+    	<node label="组合样式" app="CompositeStyles" none=""/> 	
+    	<node label="信息显示样式" app="FeatureInfoStyle" none=""
+    		src="../src/com/supermap/web/samples/infoStyle/SimpleInfoRenderer.as"/>
+    	<node label="聚散显示" app="FeatureCluster" none=""/>
+    	<node label="信息浮窗" app="MapInfoWindow" none=""/>
+    	<node label="客户端渲染" app="ClientRenderer" none=""/>
+    	<node label="WFS 服务" app="AppWFSService" none=""/>    
+    </node>
+        <node label="元素图层" none="">
+    	<node label="元素图层" app="ElementsLayer" none=""/>  
+    </node>
+    <node label="高性能矢量渲染图层" none="">
+    	<node label="查询交互" app="Graphic_Action" none=""/> 
+    	<node label="气象应用" app="Graphic_Meteorology" none=""/> 
+    	<node label="飞机监控" app="Graphic_Airplane" none="" src="../src/com/supermap/web/samples/graphicData/Plane.as"/>  
+    </node>
+    <node label="地图操作" none="">
+    	<node label="地图浏览" app="MapManager" none=""/>
+    	<node label="地图旋转" app="MapRotation" none=""/>
+    	<node label="要素标绘" app="AddFeature" none=""/>
+    	<node label="客户端地物编辑" app="ClientFeatureEdit" none=""/>
+    	<node label="客户端地物捕捉" app="AddSnap" none=""/>
+    </node>
+    <node label="地图控件" none=""> 
+    	<node label="常用控件" app="CommonComponents" none=""/>
+    	<node label="历史管理" app="MapHistory" none=""/>
+    	<node label="时间轴" app="MapTimeSlider" none=""/>
+    	<node label="放大镜" app="Map_Magnifier" none=""/> 
+    	<node label="图例控件" app="MapLegend" none=""/> 
+    </node>
+    <node label="量算" none=""> 
+    	<node label="面积+距离量算" app="Mesure" none=""/>
+    </node>
+    <node label="地图查询" none=""> 
+    	<node label="距离查询" app="QueryByDistance" none=""/>
+    	<node label="几何查询" app="QueryByGeometry" none=""/>
+    	<node label="SQL查询" app="QueryBySQL" none=""/>
+    </node>
+    <node label="数据集查询" none=""> 
+    	<node label="缓冲区查询" app="GetFeatureByBuffer" none=""/>
+    	<node label="几何查询" app="GetFeatureByGeometry" none=""/>
+    	<node label="SQL 查询" app="GetFeatureBySQL" none=""/>
+    	<node label="ID 查询" app="GetFeatureByIDs" none=""/>
+    </node>
+    <node label="网络分析" none=""> 
+    	<node label="最近设施查找" app="ClosestFacility" none=""/> 
+    	<node label="最佳路径分析" app="FindPath" none=""/> 
+    	<node label="旅行商分析" app="FindTspPath" none=""/> 
+    	<node label="多旅行商分析" app="FindMTSPPath" none=""/> 
+    	<node label="服务区分析" app="FindServiceArea" none=""/>
+    	<node label="选址分区分析" app="FindLocation" none=""/>  
+    </node>
+    <node label="交通换乘分析" none=""> 
+    	<node label="交通换乘分析" app="TrafficTransferAnalyst" none="" src="../src/com/supermap/web/samples/trafficTransfer/ResultPanel.mxml
+    																 &amp;../src/com/supermap/web/samples/trafficTransfer/TrafficGuideItem.mxml 
+    	                                                             &amp;../src/com/supermap/web/samples/trafficTransfer/TransferListRender.mxml 
+    	                                                             &amp;../src/com/supermap/web/samples/trafficTransfer/PathListRenderer.mxml
+    	                                                             &amp;../src/com/supermap/web/samples/trafficTransfer/PathList.as
+    	                                                             &amp;../src/com/supermap/web/samples/trafficTransfer/TransferTacticEvent.as
+    	                                                             &amp;../src/com/supermap/web/samples/trafficTransfer/TrafficGuideItemEvent.as"/> 
+    </node>
+    <node label="地物编辑" none="">
+   		<node label="地物编辑" app="EditFeature" none=""/>
+    </node>
+    <node label="专题图" none=""> 
+    	<node label="点密度专题图" app="Theme_DotDensity" none=""/>
+    	<node label="统计专题图" app="Theme_Graph" none=""/>   
+    	<node label="标签专题图" app="Theme_Label" none=""/>
+    	<node label="范围分段专题图" app="Theme_Range" none=""/>
+    	<node label="单值专题图" app="Theme_Unique" none=""/>
+    	<node label="栅格单值专题图" app="Theme_GridUnique" none=""/>
+    	<node label="栅格分段专题图" app="Theme_GridRange" none=""/>
+    	<node label="等级符号专题图" app="Theme_GraduatedSymbol" none=""/>
+    	<node label="复合专题图" app="Theme_Composite" none=""/>
+    </node>
+     <node label="空间分析" none=""> 
+    	<node label="缓冲区分析" app="SpatialAnalyst_Buffer" none=""/>
+    	<node label="叠加分析" app="SpatialAnalyst_OverLap" none=""/> 
+    	<node label="表面分析" app="SpatialAnalyst_Surface" none=""/>
+    	<node label="邻近分析" app="SpatialAnalyst_Thiessen" none=""/>
+    	<node label="动态分段" app="SpatialAnalyst_Generate" none=""/>
+    	<node label="里程定点" app="RouteLocatorPoint" none=""/>
+    	<node label="里程定线" app="RouteLocatorLine" none=""/>
+    	<node label="点定里程" app="RouteCalculateMeasure" none=""/>
+    	<node label="插值分析" app="InterpolationAnalyst" none=""/>
+    	
+    </node>
+    <node label="子图层控制" none=""> 
+    	<node label="可见性控制" app="LayerManager" none=""/>   
+    	<node label="风格控制" app="LayerStyleManager" none=""/>      	
+    	<node label="图层过滤" app="LayerFilter" none=""/>    
+    </node>
+    <node label="自定义扩展功能" none=""> 
+    	<node label="扩展服务" app="ServiceExtend" none=""
+    		src="../src/com/supermap/web/samples/serviceExtend/ExtendService.as  &amp;../src/com/supermap/web/samples/serviceExtend/ExtendServiceParameters.as"/>
+    	<node label="几何对象——圆" app="CircleStyle" none="" 
+    		src="../src/com/supermap/web/samples/geoCircle/GeoCircle.as"/>
+		<node label="自定义皮肤" app="CustomSkin" none="" 
+    		src="../src/skins/ZoomSliderCustomSkin.mxml &amp;../src/skins/ZoomSliderZoomInButtonSkin.mxml &amp;../src/skins/ZoomSliderZoomOutButtonSkin.mxml"/>  
+    </node>
+    <node label="高级示例" none=""> 
+    	<node label="客户端统计专题图" app="ClientGraphTheme" none="" 
+    	      src="../src/com/supermap/web/samples/clientTheme/ClientThemeGraph.as  &amp;../src/com/supermap/web/samples/clientTheme/ClientThemeGraphItem.as"/>
+    	<node label="Marker跟踪器" app="MarkerTrack" none="" 
+    		  src="../src/com/supermap/web/samples/markertracker/MarkerTracker.as"/>
+    	<node label="导航动画" app="TrackingAnimation" none="" />
+    	<node label="与JavaScript交互" app="ASInteractWithJS" none=""
+      	      src="../src/ASInteractWithJS/JSInteractWithAS.html"/>  
+    	<node label="书签" app="AppBookMark" none="" 
+    	      src="../src/com/supermap/web/samples/bookMark/Bookmark.as  &amp;../src/com/supermap/web/samples/bookMark/BookMarkItemRender.mxml"/>
+    	<node label="截屏" app="ClipMap" none=""
+      	      src="../src/com/supermap/web/samples/clipUtil/PreviewWindow.mxml"/> 
+  	    <node label="打印" app="PrintMap" none=""
+  	    	  src="../src/com\supermap\web\samples\printMap/PrintWindow.mxml  &amp;../src/com/supermap/web/samples/printMap/HorizontalRule.mxml &amp;../src/com/supermap/web/samples/printMap/VerticalRule.mxml"/> 
+      	<node label="GeoRSS" app="GeoRSS" none="" src=""/>        
+      	<node label="OpenStreetMap" app="OpenStreetMap" none=""
+      	      src="../src/com/supermap/web/samples/mapping/TiledOpenStreetMapLayer.as"/> 
+      	<node label="BingMaps" app="BingMaps" none=""
+      	      src="../src/com/supermap/web/samples/mapping/TiledBingMapsLayer.as"/>  
+      	<node label="天地图" app="TDTLayer" none=""
+      	      src="../src/com/supermap/web/samples/mapping/TiledTDTLayer.as"/>  
+	    <node label="百度地图" app="BaiduLayer" none=""
+      	      src="../src/com/supermap/web/samples/mapping/BaiduMapLayer.as"/>
+	    <node label="Google 地图" app="GoogleLayer" none=""
+      	      src="../src/com/supermap/web/samples/mapping/TiledGoogleMapLayer.as"/>
+		<node label="ArcGIS 地图" app="ArcGIS93Layer" none=""
+      	      src="../src/com/supermap/web/samples/mapping/ArcGIS93MapLayer.as"/>
+      	<node label="Bezier曲线" app="Bezier" none="" />
+      	<!--<node label="地图右键操作" app="ZoomByRightClick" none=""/>-->
+      	<node label="客户端坐标投影转换" app="ClientProjection" none=""/>  
+      	<node label="安全认证范例" app="TokenCredential" none=""/>  
+      	<node label="热点格网图" app="HeatGridLayer" none=""/>  
+      	<node label="UTFGrid图层" app="UTFGridLayer" none=""/> 
+		<node label="UTFGrid图层国旗版" app="UTFGridLayerFlags" none=""/> 
+      	<node label="麻点图" app="GOIsSample" none=""/> 
+    </node>
+    
+</compTree>

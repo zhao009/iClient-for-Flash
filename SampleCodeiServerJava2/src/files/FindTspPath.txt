@@ -1,0 +1,15 @@
+<font color="#0033FF">旅行商分析</font>
+<font color="#006633">1. 功能描述：</font>通过用户指定出发点（默认为用户指定的第一点）和终点（可以不指定，详见 TSPPathParam.isEndNodeAssigned 属性）以及所有需要经过的游历点，查找相对最佳的游历路线，保证每个游历点只经过一次的情况下，总耗费最小。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层 Changchun 的数据集 RoadNet。
+<font color="#006633">3. 操作指南：</font>
+    1）设置参数：是否指定终点。不指定终点，则按照代价最小的原则得到旅行的最佳路线。如果指定旅行终点，则指定路径最后一点为终点；
+    2）选择分析点（多选）；
+    3）执行“旅行商分析”；
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义用于最近设施查找的弧段权值信息 WeightFieldInfo；
+    2）定义网络模型 NetworkModelSetting；
+    3）定义网络分析参数 NetworkAnalystParam；
+    4）定义旅行商路径参数 TSPPathParam；
+    5）定义旅行商分析所需参数 FindTSPPathParameters；
+    6）执行放行商分析 FindTSPPathService。
+<font color="#006633">5. 其它说明：</font>有关旅行商分析的详细参数介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

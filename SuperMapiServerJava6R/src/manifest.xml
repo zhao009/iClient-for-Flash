@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+
+<!--
+
+	SUPERMAP ICLIENT FOR FLEX 6R
+	Copyright 2005-2010 SuperMap Software Co., Ltd
+	All Rights Reserved.
+
+-->
+
+<componentPackage>
+
+
+<!--resources -->
+	<component id="SmServerError" class="com.supermap.web.resources.SmServerError"/>
+	<component id="SmServerResource" class="com.supermap.web.resources.SmServerResource"/>
+ 
+<!-- components   
+	<component id="Legend" class="com.supermap.web.iServerJava6R.components.Legend"/>
+	<component id="LegendItemInfo" class="com.supermap.web.iServerJava6R.components.LegendItemInfo"/>
+	
+	<component id="LegendSkin" class="com.supermap.web.iServerJava6R.components.skins.LegendSkin"/>
+	--> 
+<!--mapping
+	<component id="DynamicRESTLayer" class="com.supermap.web.mapping.DynamicRESTLayer"/>
+	<component id="TiledDynamicRESTLayer" class="com.supermap.web.mapping.TiledDynamicRESTLayer"/>
+	<component id="HighlightLayer" class="com.supermap.web.mapping.HighlightLayer"/>
+	<component id="UTFGridLayer" class="com.supermap.web.mapping.UTFGridLayer"/>
+	--> 
+	<component id="GOIs" class="com.supermap.web.mapping.GOIs"/>
+<!--data -->
+	<component id="EditFeaturesParameters" class="com.supermap.web.iServerJava6R.dataServices.EditFeaturesParameters"/>
+	<component id="EditFeaturesResult" class="com.supermap.web.iServerJava6R.dataServices.EditFeaturesResult"/>
+	<component id="EditFeaturesService" class="com.supermap.web.iServerJava6R.dataServices.EditFeaturesService"/>
+	<component id="EditType" class="com.supermap.web.iServerJava6R.dataServices.EditType"/>
+	<component id="FieldStatisticResult" class="com.supermap.web.iServerJava6R.dataServices.FieldStatisticResult"/>
+	<component id="FieldStatisticService" class="com.supermap.web.iServerJava6R.dataServices.FieldStatisticService"/>	
+	<component id="GetFeaturesByBufferParameters" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesByBufferParameters"/>
+	<component id="GetFeaturesByBufferService" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesByBufferService"/>
+	<component id="GetFeaturesByGeometryParameters" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesByGeometryParameters"/>
+	<component id="GetFeaturesByGeometryService" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesByGeometryService"/>
+	<component id="GetFeaturesByIDsParameters" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesByIDsParameters"/>
+	<component id="GetFeaturesByIDsService" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesByIDsService"/>
+	<component id="GetFeaturesBySQLParameters" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesBySQLParameters"/>
+	<component id="GetFeaturesBySQLService" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesBySQLService"/>
+	<component id="GetFeaturesResult" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesResult"/>
+    <component id="GetFeaturesParametersBase" class="com.supermap.web.iServerJava6R.dataServices.GetFeaturesParametersBase"/>
+    <component id="GetFieldsResult" class="com.supermap.web.iServerJava6R.dataServices.GetFieldsResult"/>
+    <component id="GetFieldsService" class="com.supermap.web.iServerJava6R.dataServices.GetFieldsService"/>
+    <component id="StatisticMode" class="com.supermap.web.iServerJava6R.dataServices.StatisticMode"/>
+
+<!--measureService-->
+	<component id="MeasureParameters" class="com.supermap.web.iServerJava6R.measureServices.MeasureParameters"/>
+	<component id="MeasureResult" class="com.supermap.web.iServerJava6R.measureServices.MeasureResult"/>
+	<component id="MeasureService" class="com.supermap.web.iServerJava6R.measureServices.MeasureService"/>
+	
+<!--mapServices-->
+	<component id="GetMapStatusResult" class="com.supermap.web.iServerJava6R.mapServices.GetMapStatusResult"/>
+	<component id="GetMapStatusService" class="com.supermap.web.iServerJava6R.mapServices.GetMapStatusService"/>
+	<component id="ClearCacheService" class="com.supermap.web.iServerJava6R.mapServices.ClearCacheService"/>
+	
+<!--networkService-->
+	<component id="ClosestFacilityPath" class="com.supermap.web.iServerJava6R.networkAnalystServices.ClosestFacilityPath"/>
+    <component id="ComputeWeightMatrixParameters" class="com.supermap.web.iServerJava6R.networkAnalystServices.ComputeWeightMatrixParameters"/>
+    <component id="ComputeWeightMatrixResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.ComputeWeightMatrixResult"/>
+    <component id="ComputeWeightMatrixService" class="com.supermap.web.iServerJava6R.networkAnalystServices.ComputeWeightMatrixService"/>
+    <component id="DemandResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.DemandResult"/>
+    <component id="DirectionType" class="com.supermap.web.iServerJava6R.networkAnalystServices.DirectionType"/>
+    <component id="EdgeWeightResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.EdgeWeightResult"/>
+    <component id="FindClosestFacilitiesParameters" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindClosestFacilitiesParameters"/>
+    <component id="FindClosestFacilitiesResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindClosestFacilitiesResult"/>
+    <component id="FindClosestFacilitiesService" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindClosestFacilitiesService"/>
+    <component id="FindLocationParameters" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationParameters"/>
+    <component id="FindLocationResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationResult"/>
+    <component id="FindLocationService" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationService"/>
+    <component id="FindMTSPPathsParameters" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindMTSPPathsParameters"/>
+    <component id="FindMTSPPathsResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindMTSPPathsResult"/>
+    <component id="FindMTSPPathsService" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindMTSPPathsService"/>
+    <component id="FindPathParameters" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindPathParameters"/>
+    <component id="FindPathResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindPathResult"/>
+    <component id="FindPathService" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindPathService"/>
+    <component id="FindServiceAreasParameters" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasParameters"/>
+    <component id="FindServiceAreasResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasResult"/>
+    <component id="FindServiceAreasService" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasService"/>
+    <component id="FindTSPPathsParameters" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindTSPPathsParameters"/>
+    <component id="FindTSPPathsResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindTSPPathsResult"/>
+    <component id="FindTSPPathsService" class="com.supermap.web.iServerJava6R.networkAnalystServices.FindTSPPathsService"/>
+    <component id="UpdateEdgeWeightService" class="com.supermap.web.iServerJava6R.networkAnalystServices.UpdateEdgeWeightService"/>  
+    <component id="UpdateTurnNodeWeightService" class="com.supermap.web.iServerJava6R.networkAnalystServices.UpdateTurnNodeWeightService"/>
+    
+    <component id="EdgeWeightFieldType" class="com.supermap.web.iServerJava6R.networkAnalystServices.EdgeWeightFieldType"/>  
+    <component id="TurnNodeWeightFieldType" class="com.supermap.web.iServerJava6R.networkAnalystServices.TurnNodeWeightFieldType"/>
+    
+    <component id="MTSPPath" class="com.supermap.web.iServerJava6R.networkAnalystServices.MTSPPath"/>
+    <component id="NAResultMapImage" class="com.supermap.web.iServerJava6R.networkAnalystServices.NAResultMapImage"/>
+    <component id="NAResultMapParameter" class="com.supermap.web.iServerJava6R.networkAnalystServices.NAResultMapParameter"/>
+    <component id="OutputFormat" class="com.supermap.web.iServerJava6R.networkAnalystServices.OutputFormat"/>
+    <component id="Path" class="com.supermap.web.iServerJava6R.networkAnalystServices.Path"/>
+    <component id="PathGuideItem" class="com.supermap.web.iServerJava6R.networkAnalystServices.PathGuideItem"/>
+    <!-- <component id="PointWithMeasure" class="com.supermap.web.iServerJava6R.networkAnalystServices.PointWithMeasure"/>
+    <component id="Route" class="com.supermap.web.iServerJava6R.networkAnalystServices.Route"/> -->
+    <component id="ServiceArea" class="com.supermap.web.iServerJava6R.networkAnalystServices.ServiceArea"/>
+    <component id="SideType" class="com.supermap.web.iServerJava6R.networkAnalystServices.SideType"/>
+    <component id="SupplyCenter" class="com.supermap.web.iServerJava6R.networkAnalystServices.SupplyCenter"/>
+    <component id="SupplyCenterType" class="com.supermap.web.iServerJava6R.networkAnalystServices.SupplyCenterType"/>
+    <component id="SupplyResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.SupplyResult"/>
+    <component id="TransportationAnalystParameter" class="com.supermap.web.iServerJava6R.networkAnalystServices.TransportationAnalystParameter"/>
+    <component id="TransportationAnalystResultSetting" class="com.supermap.web.iServerJava6R.networkAnalystServices.TransportationAnalystResultSetting"/>
+    <component id="TSPPath" class="com.supermap.web.iServerJava6R.networkAnalystServices.TSPPath"/>
+    <component id="TurnNodeWeightResult" class="com.supermap.web.iServerJava6R.networkAnalystServices.TurnNodeWeightResult"/>
+    <component id="TurnType" class="com.supermap.web.iServerJava6R.networkAnalystServices.TurnType"/>
+    
+    
+<!--queryServices-->
+	 <component id="DatasourceConnectionInfo" class="com.supermap.web.iServerJava6R.queryServices.DatasourceConnectionInfo"/>
+	 <component id="EngineType" class="com.supermap.web.iServerJava6R.queryServices.EngineType"/>
+	 <component id="FieldType" class="com.supermap.web.iServerJava6R.queryServices.FieldType"/>
+	 <component id="JoinItem" class="com.supermap.web.iServerJava6R.queryServices.JoinItem"/>
+	 <component id="JoinType" class="com.supermap.web.iServerJava6R.queryServices.JoinType"/>
+	 <component id="LinkItem" class="com.supermap.web.iServerJava6R.queryServices.LinkItem"/>
+	 <component id="QueryByBoundsParameters" class="com.supermap.web.iServerJava6R.queryServices.QueryByBoundsParameters"/>
+	 <component id="QueryByBoundsService" class="com.supermap.web.iServerJava6R.queryServices.QueryByBoundsService"/>
+	 <component id="QueryByDistanceParameters" class="com.supermap.web.iServerJava6R.queryServices.QueryByDistanceParameters"/>
+	 <component id="QueryByDistanceService" class="com.supermap.web.iServerJava6R.queryServices.QueryByDistanceService"/>
+	 <component id="QueryByGeometryParameters" class="com.supermap.web.iServerJava6R.queryServices.QueryByGeometryParameters"/>
+	 <component id="QueryByGeometryService" class="com.supermap.web.iServerJava6R.queryServices.QueryByGeometryService"/>
+	 <component id="QueryBySQLParameters" class="com.supermap.web.iServerJava6R.queryServices.QueryBySQLParameters"/>
+	 <component id="QueryBySQLService" class="com.supermap.web.iServerJava6R.queryServices.QueryBySQLService"/>
+	 <component id="QueryOption" class="com.supermap.web.iServerJava6R.queryServices.QueryOption"/>
+	 <component id="QueryParameters" class="com.supermap.web.iServerJava6R.queryServices.QueryParameters"/>
+	 <component id="QueryResult" class="com.supermap.web.iServerJava6R.queryServices.QueryResult"/>
+	 <component id="QueryService" class="com.supermap.web.iServerJava6R.queryServices.QueryService"/>
+	 <component id="ResourceInfo" class="com.supermap.web.iServerJava6R.queryServices.ResourceInfo"/>
+	 <component id="SpatialQueryMode" class="com.supermap.web.iServerJava6R.queryServices.SpatialQueryMode"/>
+	 <component id="ChartQueryMode" class="com.supermap.web.iServerJava6R.queryServices.ChartQueryMode"/>
+	 <component id="ChartQueryFilterParameter" class="com.supermap.web.iServerJava6R.queryServices.ChartQueryFilterParameter"/>
+	 <component id="ChartQueryParameters" class="com.supermap.web.iServerJava6R.queryServices.ChartQueryParameters"/>
+	 <component id="ChartQueryService" class="com.supermap.web.iServerJava6R.queryServices.ChartQueryService"/>
+	 
+<!--serverTypes  
+	 <component id="FillGradientMode" class="com.supermap.web.iServerJava6R.serverTypes.FillGradientMode"/>
+	 <component id="MapColorMode" class="com.supermap.web.iServerJava6R.serverTypes.MapColorMode"/>
+	 <component id="ServerColor" class="com.supermap.web.iServerJava6R.serverTypes.ServerColor"/>
+	 <component id="ServerFeature" class="com.supermap.web.iServerJava6R.serverTypes.ServerFeature"/>
+	 <component id="ServerGeometry" class="com.supermap.web.iServerJava6R.serverTypes.ServerGeometry"/>
+	 <component id="ServerGeometryType" class="com.supermap.web.iServerJava6R.serverTypes.ServerGeometryType"/>
+	 <component id="ServerStyle" class="com.supermap.web.iServerJava6R.serverTypes.ServerStyle"/>
+	 <component id="ServerTextStyle" class="com.supermap.web.iServerJava6R.serverTypes.ServerTextStyle"/>
+	 <component id="TextAlignment" class="com.supermap.web.iServerJava6R.serverTypes.TextAlignment"/>
+	 <component id="OverlapDisplayedOptions" class="com.supermap.web.iServerJava6R.serverTypes.OverlapDisplayedOptions"/>
+	 -->	
+<!--serverEvent -->
+	<component id="ComputeWeightMatrixEvent" class="com.supermap.web.iServerJava6R.serviceEvents.ComputeWeightMatrixEvent"/>
+	<component id="DatasetBufferAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.DatasetBufferAnalystEvent"/>
+	<component id="DatasetOverlayAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.DatasetOverlayAnalystEvent"/>
+	<component id="EdgeWeightEvent" class="com.supermap.web.iServerJava6R.serviceEvents.EdgeWeightEvent"/>
+	<component id="EditFeaturesEvent" class="com.supermap.web.iServerJava6R.serviceEvents.EditFeaturesEvent"/>
+	<component id="FieldStatisticEvent" class="com.supermap.web.iServerJava6R.serviceEvents.FieldStatisticEvent"/>	
+	<component id="FindClosestFacilitiesEvent" class="com.supermap.web.iServerJava6R.serviceEvents.FindClosestFacilitiesEvent"/>
+	<component id="FindLocationEvent" class="com.supermap.web.iServerJava6R.serviceEvents.FindLocationEvent"/>
+	<component id="FindMTSPPathsEvent" class="com.supermap.web.iServerJava6R.serviceEvents.FindMTSPPathsEvent"/>
+	<component id="FindPathEvent" class="com.supermap.web.iServerJava6R.serviceEvents.FindPathEvent"/>
+	<component id="FindServiceAreasEvent" class="com.supermap.web.iServerJava6R.serviceEvents.FindServiceAreasEvent"/>
+	<component id="FindTSPPathsEvent" class="com.supermap.web.iServerJava6R.serviceEvents.FindTSPPathsEvent"/>
+	<component id="GeometryBufferAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GeometryBufferAnalystEvent"/>
+	<component id="GeometryOverlayAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GeometryOverlayAnalystEvent"/>
+	<component id="GetFeaturesEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GetFeaturesEvent"/>
+	<component id="GetFieldsEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GetFieldsEvent"/>
+	<component id="MeasureEvent" class="com.supermap.web.iServerJava6R.serviceEvents.MeasureEvent"/>
+	<component id="QueryEvent" class="com.supermap.web.iServerJava6R.serviceEvents.QueryEvent"/>
+	<component id="RemoveThemeEvent" class="com.supermap.web.iServerJava6R.serviceEvents.RemoveThemeEvent"/>
+	<component id="ServiceEvent" class="com.supermap.web.iServerJava6R.serviceEvents.ServiceEvent"/> 
+	<component id="SurfaceAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.SurfaceAnalystEvent"/>
+	<component id="ThemeEvent" class="com.supermap.web.iServerJava6R.serviceEvents.ThemeEvent"/>
+	<component id="TurnNodeWeightEvent" class="com.supermap.web.iServerJava6R.serviceEvents.TurnNodeWeightEvent"/>
+	<component id="GetMapStatusEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GetMapStatusEvent"/>
+	<!-- <component id="LegendEvent" class="com.supermap.web.iServerJava6R.serviceEvents.LegendEvent"/> -->
+	<component id="InterpolationAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.InterpolationAnalystEvent"/>
+ 	<component id="StopQueryEvent" class="com.supermap.web.iServerJava6R.serviceEvents.StopQueryEvent"/>
+	<component id="TransferSolutionEvent" class="com.supermap.web.iServerJava6R.serviceEvents.TransferSolutionEvent"/>
+	<component id="TransferPathEvent" class="com.supermap.web.iServerJava6R.serviceEvents.TransferPathEvent"/>
+	<component id="GenerateSpatialDataEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GenerateSpatialDataEvent"/>
+	<component id="GeoRelationAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GeoRelationAnalystEvent"/>
+	<component id="ThiessenAnalystEvent" class="com.supermap.web.iServerJava6R.serviceEvents.ThiessenAnalystEvent"/>
+	<component id="ChartFeatureInfoSpecsEvent" class="com.supermap.web.iServerJava6R.serviceEvents.ChartFeatureInfoSpecsEvent"/>
+    <component id="RouteCalculateMeasureEvent" class="com.supermap.web.iServerJava6R.serviceEvents.RouteCalculateMeasureEvent"/>
+    <component id="RouteLocatorEvent" class="com.supermap.web.iServerJava6R.serviceEvents.RouteLocatorEvent"/>	
+    <component id="GOIsEvent" class="com.supermap.web.iServerJava6R.serviceEvents.GOIsEvent"/>	
+<!--spatialAnalystServices -->	
+	<component id="BufferAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.BufferAnalystParameters"/>
+	<component id="BufferDistance" class="com.supermap.web.iServerJava6R.spatialAnalystServices.BufferDistance"/>
+	<component id="BufferEndType" class="com.supermap.web.iServerJava6R.spatialAnalystServices.BufferEndType"/>
+	<component id="BufferSetting" class="com.supermap.web.iServerJava6R.spatialAnalystServices.BufferSetting"/>
+	<component id="ClipParameter" class="com.supermap.web.iServerJava6R.spatialAnalystServices.ClipParameter"/>
+	<component id="DataReturnOption" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DataReturnOption"/>
+	<component id="DatasetBufferAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetBufferAnalystParameters"/>
+	<component id="DatasetBufferAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetBufferAnalystResult"/>
+	<component id="DatasetBufferAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetBufferAnalystService"/>
+	<component id="DatasetOverlayAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetOverlayAnalystParameters"/>
+	<component id="DatasetOverlayAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetOverlayAnalystResult"/>
+	<component id="DatasetOverlayAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetOverlayAnalystService"/>
+	<component id="DatasetSurfaceAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetSurfaceAnalystParameters"/>
+	<component id="GeometryBufferAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryBufferAnalystParameters"/>
+	<component id="GeometryBufferAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryBufferAnalystResult"/>
+	<component id="GeometryBufferAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryBufferAnalystService"/>
+	<component id="GeometryOverlayAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryOverlayAnalystParameters"/>
+	<component id="GeometryOverlayAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryOverlayAnalystResult"/>
+	<component id="GeometryOverlayAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryOverlayAnalystService"/>
+	<component id="GeometrySurfaceAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometrySurfaceAnalystParameters"/>
+	<component id="OverlayAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.OverlayAnalystParameters"/>
+	<component id="OverlayOperationType" class="com.supermap.web.iServerJava6R.spatialAnalystServices.OverlayOperationType"/>
+	<component id="SmoothMethod" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SmoothMethod"/>
+	<component id="SpatialAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SpatialAnalystResult"/>
+	<component id="SurfaceAnalystMethod" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SurfaceAnalystMethod"/>
+	<component id="SurfaceAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SurfaceAnalystParameters"/>
+	<component id="SurfaceAnalystParametersSetting" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SurfaceAnalystParametersSetting"/>
+	<component id="SurfaceAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SurfaceAnalystResult"/>
+	<component id="SurfaceAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SurfaceAnalystService"/>
+	<component id="InterpolationAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationAnalystParameters"/>
+	<component id="InterpolationAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationAnalystResult"/>
+	<component id="InterpolationAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationAnalystService"/>
+	<component id="InterpolationDensityAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationDensityAnalystParameters"/>
+	<component id="InterpolationIDWAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationIDWAnalystParameters"/>
+	<component id="InterpolationKrigingAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationKrigingAnalystParameters"/>
+	<component id="InterpolationRBFAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationRBFAnalystParameters"/>		
+	<component id="DataReturnMode" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DataReturnMode"/>
+	<component id="GenerateSpatialDataParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GenerateSpatialDataParameters"/>
+	<component id="GenerateSpatialDataResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GenerateSpatialDataResult"/>
+	<component id="GenerateSpatialDataService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GenerateSpatialDataService"/>
+	<component id="GeoRelationAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeoRelationAnalystParameters"/>
+	<component id="GeoRelationAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeoRelationAnalystResult"/>
+	<component id="GeoRelationAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeoRelationAnalystService"/>
+	<component id="GeoRelationResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeoRelationResult"/>
+	<component id="SpatialRelationType" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SpatialRelationType"/>
+	<component id="DatasetThiessenAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetThiessenAnalystParameters"/>
+	<component id="DatasetThiessenAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetThiessenAnalystService"/>
+	<component id="GeometryThiessenAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryThiessenAnalystParameters"/>
+	<component id="GeometryThiessenAnalystService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryThiessenAnalystService"/>
+	<component id="ThiessenAnalystParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.ThiessenAnalystParameters"/>
+	<component id="ThiessenAnalystResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.ThiessenAnalystResult"/>
+	<component id="Exponent" class="com.supermap.web.iServerJava6R.spatialAnalystServices.Exponent"/>
+	<component id="InterpolationAlgorithmType" class="com.supermap.web.iServerJava6R.spatialAnalystServices.InterpolationAlgorithmType"/>
+	<component id="PixelFormat" class="com.supermap.web.iServerJava6R.spatialAnalystServices.PixelFormat"/>
+	<component id="SearchMode" class="com.supermap.web.iServerJava6R.spatialAnalystServices.SearchMode"/>
+	<component id="VariogramMode" class="com.supermap.web.iServerJava6R.spatialAnalystServices.VariogramMode"/>
+	<component id="RouteCalculateMeasureParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.RouteCalculateMeasureParameters"/>
+	<component id="RouteCalculateMeasureResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.RouteCalculateMeasureResult"/>
+	<component id="RouteCalculateMeasureService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.RouteCalculateMeasureService"/>
+	<component id="RouteLocatorParameters" class="com.supermap.web.iServerJava6R.spatialAnalystServices.RouteLocatorParameters"/>
+	<component id="RouteLocatorResult" class="com.supermap.web.iServerJava6R.spatialAnalystServices.RouteLocatorResult"/>
+	<component id="RouteLocatorService" class="com.supermap.web.iServerJava6R.spatialAnalystServices.RouteLocatorService"/>
+	
+<!--themeServices -->		
+	<component id="AlongLineDirection" class="com.supermap.web.iServerJava6R.themeServices.AlongLineDirection"/>
+	<component id="GraduatedMode" class="com.supermap.web.iServerJava6R.themeServices.GraduatedMode"/>
+	<component id="LabelBackShape" class="com.supermap.web.iServerJava6R.themeServices.LabelBackShape"/>
+	<component id="LabelMixedTextStyle" class="com.supermap.web.iServerJava6R.themeServices.LabelMixedTextStyle"/>
+	<component id="LabelOverLengthMode" class="com.supermap.web.iServerJava6R.themeServices.LabelOverLengthMode"/>
+	<component id="RangeMode" class="com.supermap.web.iServerJava6R.themeServices.RangeMode"/>
+	<component id="RemoveThemeParameters" class="com.supermap.web.iServerJava6R.themeServices.RemoveThemeParameters"/>
+	<component id="RemoveThemeResult" class="com.supermap.web.iServerJava6R.themeServices.RemoveThemeResult"/>
+	<component id="RemoveThemeService" class="com.supermap.web.iServerJava6R.themeServices.RemoveThemeService"/>
+	<component id="Theme" class="com.supermap.web.iServerJava6R.themeServices.Theme"/>
+	<component id="ThemeDotDensity" class="com.supermap.web.iServerJava6R.themeServices.ThemeDotDensity"/>
+	<component id="ThemeGraduatedSymbol" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraduatedSymbol"/>
+	<component id="ThemeGraduatedSymbolStyle" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraduatedSymbolStyle"/>
+	<component id="ThemeGraph" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraph"/>
+	<component id="ThemeGraphAxes" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraphAxes"/>
+	<component id="ThemeGraphItem" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraphItem"/>
+	<component id="ThemeGraphSize" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraphSize"/>
+	<component id="ThemeGraphText" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraphText"/>
+	<component id="ThemeGraphTextFormat" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraphTextFormat"/>
+	<component id="ThemeGraphType" class="com.supermap.web.iServerJava6R.themeServices.ThemeGraphType"/>
+	<component id="ThemeLabel" class="com.supermap.web.iServerJava6R.themeServices.ThemeLabel"/>
+	<component id="ThemeLabelAlongLine" class="com.supermap.web.iServerJava6R.themeServices.ThemeLabelAlongLine"/>
+	<component id="ThemeLabelBackground" class="com.supermap.web.iServerJava6R.themeServices.ThemeLabelBackground"/>
+	<component id="ThemeLabelItem" class="com.supermap.web.iServerJava6R.themeServices.ThemeLabelItem"/>
+	<component id="ThemeLabelText" class="com.supermap.web.iServerJava6R.themeServices.ThemeLabelText"/>
+	<component id="ThemeOffset" class="com.supermap.web.iServerJava6R.themeServices.ThemeOffset"/>
+	<component id="ThemeParameters" class="com.supermap.web.iServerJava6R.themeServices.ThemeParameters"/>
+	<component id="ThemeRange" class="com.supermap.web.iServerJava6R.themeServices.ThemeRange"/>
+	<component id="ThemeRangeItem" class="com.supermap.web.iServerJava6R.themeServices.ThemeRangeItem"/>
+	<component id="ThemeResult" class="com.supermap.web.iServerJava6R.themeServices.ThemeResult"/>
+	<component id="ThemeService" class="com.supermap.web.iServerJava6R.themeServices.ThemeService"/>
+	<component id="ThemeUnique" class="com.supermap.web.iServerJava6R.themeServices.ThemeUnique"/>
+	<component id="ThemeUniqueItem" class="com.supermap.web.iServerJava6R.themeServices.ThemeUniqueItem"/>
+	<component id="LabelMatrixCell" class="com.supermap.web.iServerJava6R.themeServices.LabelMatrixCell"/>
+	<component id="LabelImageCell" class="com.supermap.web.iServerJava6R.themeServices.LabelImageCell"/>
+	<component id="LabelMatrixCellType" class="com.supermap.web.iServerJava6R.themeServices.LabelMatrixCellType"/>
+	<component id="LabelSymbolCell" class="com.supermap.web.iServerJava6R.themeServices.LabelSymbolCell"/>
+	<component id="LabelThemeCell" class="com.supermap.web.iServerJava6R.themeServices.LabelThemeCell"/>
+	
+	
+	<!--trafficTransferAnalystServices -->		
+	<component id="StopQueryParameters" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.StopQueryParameters"/>
+	<component id="StopQueryResult" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.StopQueryResult"/>
+	<component id="StopQueryService" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.StopQueryService"/>
+	<component id="TransferGuide" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferGuide"/>
+	<component id="TransferGuideItem" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferGuideItem"/>
+	<component id="TransferLine" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferLine"/>
+	<component id="TransferLines" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferLines"/>
+	<component id="TransferPathParameters" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferPathParameters"/>
+	<component id="TransferPathResult" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferPathResult"/>
+	<component id="TransferPathService" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferPathService"/>
+	<component id="TransferPreference" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferPreference"/>	
+	<component id="TransferSolution" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolution"/>	
+	<component id="TransferSolutionParameters" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolutionParameters"/>	
+	<component id="TransferSolutionResult" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolutionResult"/>	
+	<component id="TransferSolutionService" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolutionService"/>
+	<component id="TransferStopInfo" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferStopInfo"/>
+	<component id="TransferTactic" class="com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferTactic"/>
+	
+<!--layerServices -->		
+	<component id="SetLayerStatusService" class="com.supermap.web.iServerJava6R.layerServices.SetLayerStatusService"/>
+	<component id="SetLayerStyleService" class="com.supermap.web.iServerJava6R.layerServices.SetLayerStyleService"/>
+	<component id="GetLayersInfoService" class="com.supermap.web.iServerJava6R.layerServices.GetLayersInfoService"/>
+	
+   	<component id="ChartAttributeSpec" class="com.supermap.web.iServerJava6R.layerServices.ChartAttributeSpec"/>
+	<component id="ChartFeatureInfoSpec" class="com.supermap.web.iServerJava6R.layerServices.ChartFeatureInfoSpec"/>
+	<component id="ChartFeatureInfoSpecsResult" class="com.supermap.web.iServerJava6R.layerServices.ChartFeatureInfoSpecsResult"/>
+	<component id="ChartFeatureInfoSpecsService" class="com.supermap.web.iServerJava6R.layerServices.ChartFeatureInfoSpecsService"/>
+	
+ <component id="Recordset" class="com.supermap.web.iServerJava6R.Recordset"/>
+ <component id="FilterParameter" class="com.supermap.web.iServerJava6R.FilterParameter"/>
+</componentPackage>

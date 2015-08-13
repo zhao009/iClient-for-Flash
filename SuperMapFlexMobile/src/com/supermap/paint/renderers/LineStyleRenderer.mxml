@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+					xmlns:s="library://ns.adobe.com/flex/spark"
+					iconHeight="64" iconWidth="64" labelField=""
+					creationComplete="initRenderer(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function initRenderer(event:FlexEvent):void
+			{
+				if(data.name == "dot")
+				{
+					this.decorator = "assets/draws/dot.png";
+				}
+				if(data.name == "dash")
+				{
+					this.decorator = "assets/draws/dash.png";
+				}
+				if(data.name == "solid")
+				{
+					this.decorator = "assets/draws/solid.png";
+				}
+
+			}
+			
+		]]>
+	</fx:Script>
+</s:IconItemRenderer>

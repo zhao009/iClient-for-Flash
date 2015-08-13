@@ -1,0 +1,7 @@
+<font color="#0033FF">图例控件</font>
+<font color="#006633">1. 功能描述：</font>显示地图中各图层图例。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态world和world_day图层。 
+<font color="#006633">3. 实现的关键步骤：</font>
+    1）设置控件map属性；
+    2）设置控件宽高。
+   

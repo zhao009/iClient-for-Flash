@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="" >
+<testsuite  name="Default Test Suite" project="SuperMapiServerJava6R">
+<testsuite name="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationServiceTest" type="testsuiteclass"/>
+</testsuite>
+</testrun>

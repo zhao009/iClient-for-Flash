@@ -1,0 +1,480 @@
+<apiPackage id="com.supermap.web.core"><apiName>com.supermap.web.core</apiName><apiDetail/><apiClassifier id="com.supermap.web.core:Point2D"><apiName>Point2D</apiName><shortdesc>
+	 地理坐标系下点对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地理坐标系下点对象.
+	 <p>该类定义的坐标值为双精度浮点数的数据类型。点对象是各种几何对象的基础，如几何线对象实际就是一串 Point2D 的点串，而几何面则是一串起始点和结束点相同的点串。</p> 
+	 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core:Point2D:Point2D"><apiName>Point2D</apiName><shortdesc>
+		 初始化 Point2D 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>x</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>横轴坐标值。
+		 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>纵轴坐标值。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 Point2D 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core:Point2D:clone"><apiName>clone</apiName><shortdesc>
+		 拷贝当前 Point2D 对象.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回新生成的 Point2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 拷贝当前 Point2D 对象.
+		 clone 与 copy 的区别：clone要创建一个新的与原对象一样的对象；而 copy 则是将原对象中的值复制到现在的对象中，不需要重新创建一个对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Point2D:equals"><apiName>equals</apiName><shortdesc>
+		 判断指定的 Point2D 对象是与当前 Point2D 对象的坐标值是否相等。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若相等则返回 true；否则，返回 false。 
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>point2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的 point2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断指定的 Point2D 对象是与当前 Point2D 对象的坐标值是否相等。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Point2D:offset"><apiName>offset</apiName><shortdesc>
+		 根据指定偏移量移动 Rectangle2D 对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回移动后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>dx</apiItemName><apiType value="Number"/><apiDesc>横向偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>dy</apiItemName><apiType value="Number"/><apiDesc>纵向偏移量。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据指定偏移量移动 Rectangle2D 对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Point2D:toString"><apiName>toString</apiName><shortdesc>
+		 获取 Point2D 对象的字符串表达形式。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如：{'x':0,'y':2}。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 获取 Point2D 对象的字符串表达形式。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core:Point2D:x:get"><apiName>x</apiName><shortdesc>
+		 获取或设置点对象的 x 值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置点对象的 x 值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Point2D:y:get"><apiName>y</apiName><shortdesc>
+		 获取或设置点对象的 y 值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置点对象的 y 值。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core:Rectangle2D"><apiName>Rectangle2D</apiName><shortdesc>
+	 地理坐标系下矩形对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地理坐标系下矩形对象.
+	 <p>该类的对象通常用于确定范围，可用来表示几何对象的最小外接矩形、地图窗口的可视范围、数据集的范围等。<br/><img src="../../../../images/rectangle.png"/>。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core:Rectangle2D:Rectangle2D"><apiName>Rectangle2D</apiName><shortdesc>
+		 初始化（ Rectangle2D ）的新实例.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>left</apiItemName><apiType value="Number"/><apiData>0.0</apiData></apiParam><apiParam><apiItemName>bottom</apiItemName><apiType value="Number"/><apiData>0.0</apiData></apiParam><apiParam><apiItemName>right</apiItemName><apiType value="Number"/><apiData>0.0</apiData></apiParam><apiParam><apiItemName>top</apiItemName><apiType value="Number"/><apiData>0.0</apiData></apiParam></apiConstructorDef><apiDesc>
+		 初始化（ Rectangle2D ）的新实例.
+		 初始化该类需要四个参数，分别为：左边界（left）、下边界（bottom）、右边界（right）、上边界（top）。其中 right - left 、top - bottom 必须大于等 0，否则就会抛出异常。<br/><img src="../../../../images/rectangle.png"/>。
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core:Rectangle2D:centerAtPoint"><apiName>centerAtPoint</apiName><shortdesc>
+		 将 Rectangle2D 对象的中心移至指定的点。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回移动后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>pnt2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的坐标点。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将 Rectangle2D 对象的中心移至指定的点。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:centerAt"><apiName>centerAt</apiName><shortdesc>
+		 将 Rectangle2D 对象的中心移至指定的坐标。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回移动后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>x</apiItemName><apiType value="Number"/><apiDesc>指定的 x 坐标。
+		 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="Number"/><apiDesc>指定的 y 坐标。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将 Rectangle2D 对象的中心移至指定的坐标。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:clone"><apiName>clone</apiName><shortdesc>
+		 克隆矩形对象.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回克隆后产生的新的矩形对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆矩形对象.
+		 克隆与复制的区别在于，克隆要创建一个新的与原对象一样的对象；而复制则是将原对象中的值复制到现在的对象中，不需要重新创建一个对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:containsPoint"><apiName>containsPoint</apiName><shortdesc>
+		 判断指定的 Point2D 对象是否在当前 Rectangle2D 对象的边界范围内。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若指定的 Rectangle2D 对象在当前 Rectangle2D 对象的边界范围内，则返回 true；否则，返回false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>pnt2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的 Point2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断指定的 Point2D 对象是否在当前 Rectangle2D 对象的边界范围内。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:containsRect"><apiName>containsRect</apiName><shortdesc>
+		 判断指定的 Rectangle2D 对象是否在当前 Rectangle2D 对象的边界范围内。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若指定的 Rectangle2D 对象在当前 Rectangle2D 对象的边界范围内，则返回 true；否则，返回false。 
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>rect2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>指定的 Rectangle2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断指定的 Rectangle2D 对象是否在当前 Rectangle2D 对象的边界范围内。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:contains"><apiName>contains</apiName><shortdesc>
+		 此方法与 Rectangle2D.containsPoint() 方法类似，只不过它采用的是 Point2D 对象坐标值 x、y 作为参数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若由指定的 x、y 确定的点在 Rectangle2D 范围内（包括在边界上），则返回 true；否则返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>dx</apiItemName><apiType value="Number"/><apiDesc>横向坐标值。
+		 </apiDesc></apiParam><apiParam><apiItemName>dy</apiItemName><apiType value="Number"/><apiDesc>纵向坐标值。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 此方法与 Rectangle2D.containsPoint() 方法类似，只不过它采用的是 Point2D 对象坐标值 x、y 作为参数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:createFromXYWidthHeight"><apiName>createFromXYWidthHeight</apiName><shortdesc>
+		 根据指定的左下角点坐标、宽度、高度创建新的 Rectangle2D 对象。此方法为静态类型，可以由类名直接调用。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回新创建的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>x</apiItemName><apiType value="Number"/><apiDesc>左下角点的横坐标。
+		 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="Number"/><apiDesc>左正角点的纵坐标。
+		 </apiDesc></apiParam><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiDesc>指定的宽度。
+		 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiDesc>指定的高度。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据指定的左下角点坐标、宽度、高度创建新的 Rectangle2D 对象。此方法为静态类型，可以由类名直接调用。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:equals"><apiName>equals</apiName><shortdesc>
+		 判断指定的 Rectangle2D 类型矩形对象是否与当前矩形对象具有相同坐标值。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若相等则返回 true，否则，返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>rect2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>当前指定的矩形对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断指定的 Rectangle2D 类型矩形对象是否与当前矩形对象具有相同坐标值。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:expand"><apiName>expand</apiName><shortdesc>
+		 根据增大因子增加 Rectangle2D 对象的大小。即保持 Rectangle2D 对象的中心点不变， 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回拉伸后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>factor</apiItemName><apiType value="Number"/><apiDesc>增大因子。以下等式用于将增大因子
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据增大因子增加 Rectangle2D 对象的大小。即保持 Rectangle2D 对象的中心点不变， 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:inflatePoint"><apiName>inflatePoint</apiName><shortdesc>
+		 增加 Rectangle2D 对象的大小。此方法与 Rectangle2D.inflate() 方法类似，只不过它采用（ Point2D ）对象作为参数。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回大小改变后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>pnt2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的坐标点。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 增加 Rectangle2D 对象的大小。此方法与 Rectangle2D.inflate() 方法类似，只不过它采用（ Point2D ）对象作为参数。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:inflate"><apiName>inflate</apiName><shortdesc>
+		 按指定量增加 Rectangle2D 对象的大小。即保持 Rectangle2D 对象的中心点不变，使用 dx 值横向增加它的大小，使用 dy 值纵向增加它的大小。    
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回大小改变后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>dx</apiItemName><apiType value="Number"/><apiDesc>横向增加量。
+		 </apiDesc></apiParam><apiParam><apiItemName>dy</apiItemName><apiType value="Number"/><apiDesc>纵向增加量。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 按指定量增加 Rectangle2D 对象的大小。即保持 Rectangle2D 对象的中心点不变，使用 dx 值横向增加它的大小，使用 dy 值纵向增加它的大小。    
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:intersection"><apiName>intersection</apiName><shortdesc>
+		 获取指定的 Rectangle2D 对象与当前 Rectangle2D 对象的交集.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回两个对象的交集（ Rectangle2D 类型）。intersection.png
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>rect2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>指定的 Rectangle2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定的 Rectangle2D 对象与当前 Rectangle2D 对象的交集.
+		 <img src="../../../../images/intersection.png"/> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:intersects"><apiName>intersects</apiName><shortdesc>
+		 判断指定的 Rectangle2D 对象与当前 Rectangle2D 对象是否有交集。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若有交集则返回 true；否则，返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>rect2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>指定的 Rectangle2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断指定的 Rectangle2D 对象与当前 Rectangle2D 对象是否有交集。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:isEmpty"><apiName>isEmpty</apiName><shortdesc>
+		 判断矩形对象是否为空。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回克隆后产生的新的矩形对象。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 判断矩形对象是否为空。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:offsetPoint"><apiName>offsetPoint</apiName><shortdesc>
+		 根据坐标点移动 Rectangle2D 对象。 即以点的坐标值为偏移量。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回移动后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>pnt2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的坐标点。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据坐标点移动 Rectangle2D 对象。 即以点的坐标值为偏移量。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:offset"><apiName>offset</apiName><shortdesc>
+		 根据指定偏移量移动 Rectangle2D 对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回移动后的 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>dx</apiItemName><apiType value="Number"/><apiDesc>横向偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>dy</apiItemName><apiType value="Number"/><apiDesc>纵向偏移量。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据指定偏移量移动 Rectangle2D 对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:toString"><apiName>toString</apiName><shortdesc>
+		 将 Rectangle2D 对象转化成规定字符串表示形式。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>以字符串的形式返回 Rectangle2D 对象，格式为：（左，下，右，上）。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 将 Rectangle2D 对象转化成规定字符串表示形式。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:unionPoint"><apiName>unionPoint</apiName><shortdesc>
+		 根据指定的 Point2D 对象与当前的 Rectangle2D 对象创建新的矩形对象.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回新创建的矩形对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>pnt2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>指定的 Point2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据指定的 Point2D 对象与当前的 Rectangle2D 对象创建新的矩形对象.
+		 <p><img src="../../../../images/unionXY.png"/>  <img src="../../../../images/unionXY1.png"/>  <img src="../../../../images/unionXY2.png"/></p>
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:unionXY"><apiName>unionXY</apiName><shortdesc>
+		 此方法与 Rectangle2D.unionPoint() 方法类似，只不过它采用的是 Point2D 对象坐标值 x、y 作为参数.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回新创建的矩形对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>x</apiItemName><apiType value="Number"/><apiDesc>横向坐标值。
+		 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="Number"/><apiDesc>纵向坐标值。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 此方法与 Rectangle2D.unionPoint() 方法类似，只不过它采用的是 Point2D 对象坐标值 x、y 作为参数.
+		 <p><img src="../../../../images/unionXY3.png"/>  <img src="../../../../images/unionXY5.png"/>  <img src="../../../../images/unionXY4.png"/></p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:union"><apiName>union</apiName><shortdesc>
+		 获取指定的 Rectangle2D 对象与当前 Rectangle2D 对象在相交条件下的最小外接矩形.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若两个对象有交集则返回两者的最小外接矩形，否则，返回当前 Rectangle2D 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier></apiReturn><apiParam><apiItemName>rect2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>指定的 Rectangle2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定的 Rectangle2D 对象与当前 Rectangle2D 对象在相交条件下的最小外接矩形.
+		  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:update"><apiName>update</apiName><shortdesc>
+		 更新矩形对象。即重新设置矩形的边界范围。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>left</apiItemName><apiType value="Number"/><apiDesc>左边界。
+		 </apiDesc></apiParam><apiParam><apiItemName>bottom</apiItemName><apiType value="Number"/><apiDesc>下边界。
+		 </apiDesc></apiParam><apiParam><apiItemName>right</apiItemName><apiType value="Number"/><apiDesc>右边界。
+		 </apiDesc></apiParam><apiParam><apiItemName>top</apiItemName><apiType value="Number"/><apiDesc>上边界。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 更新矩形对象。即重新设置矩形的边界范围。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:Rectangle2D:within"><apiName>within</apiName><shortdesc>
+		 判断当前 Rectangle2D 对象是否在指定的 Rectangle2D 对象的边界范围内。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若当前 Rectangle2D 对象在指定的 Rectangle2D 对象的边界范围内，则返回 true；否则，返回false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>rect2D</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>指定的 Rectangle2D 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断当前 Rectangle2D 对象是否在指定的 Rectangle2D 对象的边界范围内。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core:Rectangle2D:bbox:get"><apiName>bbox</apiName><shortdesc>
+		 获取或设置矩形对象的地理范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置矩形对象的地理范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:bottomLeft:get"><apiName>bottomLeft</apiName><shortdesc>
+		 获取矩形对象的左下角点坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取矩形对象的左下角点坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:bottom:get"><apiName>bottom</apiName><shortdesc>
+		 获取矩形对象的下边界值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取矩形对象的下边界值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:center:get"><apiName>center</apiName><shortdesc>
+		 获取矩形对象的中心点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取矩形对象的中心点。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:height:get"><apiName>height</apiName><shortdesc>
+		 获取矩形对象的高度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取矩形对象的高度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:left:get"><apiName>left</apiName><shortdesc>
+		 获取矩形对象的左边界值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取矩形对象的左边界值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:right:get"><apiName>right</apiName><shortdesc>
+		 获取矩形对象的右边界值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取矩形对象的右边界值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:topRight:get"><apiName>topRight</apiName><shortdesc>
+		 获取矩形对象的右上角点坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取矩形对象的右上角点坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:top:get"><apiName>top</apiName><shortdesc>
+		 获取矩形对象的上边界值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取矩形对象的上边界值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Rectangle2D:width:get"><apiName>width</apiName><shortdesc>
+		 获取矩形对象的宽度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取矩形对象的宽度。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core:CoordinateReferenceSystem"><apiName>CoordinateReferenceSystem</apiName><shortdesc>
+	 坐标参考系类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 坐标参考系类.
+	 <p>坐标参考系可以是用经纬度表示的地理坐标系统，也可以是投影坐标系统。<br/>投影坐标系统由地图投影方式、投影参数、坐标单位和地理坐标系组成，它定义在二维平面上。不同于用经纬度定位地面点的地理坐标系，投影坐标系是用 X、Y 坐标来定位，每一个投影坐标系都基于一个地理坐标系。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core:CoordinateReferenceSystem:CoordinateReferenceSystem"><apiName>CoordinateReferenceSystem</apiName><shortdesc>
+		 初始化 CoordinateReferenceSystem 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>wkid</apiItemName><apiType value="int"/><apiData>0</apiData><apiDesc>EPSG 发布的代表特定椭球体、单位、地理坐标系或投影坐标系的 Well Konwn ID 值（简称 WKID）。默认值为 0。
+		 </apiDesc></apiParam><apiParam><apiItemName>unit</apiItemName><apiType value="String"/><apiData>Undefined</apiData><apiDesc>坐标单位。默认为 Undefined。
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 CoordinateReferenceSystem 类的新实例。 
+		 </apiDesc></apiConstructorDetail><related-links><link href="com.supermap.web.core.xml#Unit"><linktext>Unit</linktext></link></related-links></apiConstructor><apiOperation id="com.supermap.web.core:CoordinateReferenceSystem:clone"><apiName>clone</apiName><shortdesc>
+		 克隆当前 CoordinateReferenceSystem 对象。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.supermap.web.core:CoordinateReferenceSystem</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆当前 CoordinateReferenceSystem 对象。.
+		 clone 与 copy 的区别：clone要创建一个新的与原对象一样的对象；而 copy 则是将原对象中的值复制到现在的对象中，不需要重新创建一个对象。
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:CoordinateReferenceSystem:equals"><apiName>equals</apiName><shortdesc>
+		 判断指定的 CoordinateReferenceSystem 对象是否与当前 CoordinateReferenceSystem 对象是否相等。这里仅判断 wkid 属性相等。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若相等，则返回 true；否则，返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>other</apiItemName><apiOperationClassifier>com.supermap.web.core:CoordinateReferenceSystem</apiOperationClassifier><apiDesc>指定的 CoordinateReferenceSystem 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断指定的 CoordinateReferenceSystem 对象是否与当前 CoordinateReferenceSystem 对象是否相等。这里仅判断 wkid 属性相等。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:CoordinateReferenceSystem:equals"><apiName>equals</apiName><shortdesc>
+		 静态函数，判断两个 CoordinateReferenceSystem 对象是否相等，可以由类名直接调用。此方法的功能和公有函数 equals() 相似， 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>若相等，则返回 true；否则，返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>crs1</apiItemName><apiOperationClassifier>com.supermap.web.core:CoordinateReferenceSystem</apiOperationClassifier><apiDesc>指定是否忽略 CoordinateReferenceSystem 为 null 时的情况。true 表示忽略，false 表示不忽略。例如，若该参数值为 true，当两个 CoordinateReferenceSystem 对象任何一个为 null 时，则认为这两个对象相等，即认为一个值为 null 的坐标参考系可以认为是任何坐标参考系。否则，若任何一个为 null 时，则认为这两个对象不相等。
+		 </apiDesc></apiParam><apiParam><apiItemName>crs2</apiItemName><apiOperationClassifier>com.supermap.web.core:CoordinateReferenceSystem</apiOperationClassifier></apiParam><apiParam><apiItemName>ignoreNull</apiItemName><apiType value="Boolean"/></apiParam></apiOperationDef><apiDesc>
+		 静态函数，判断两个 CoordinateReferenceSystem 对象是否相等，可以由类名直接调用。此方法的功能和公有函数 equals() 相似， 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core:CoordinateReferenceSystem:toString"><apiName>toString</apiName><shortdesc>
+		 获取坐标参考系的字符串类型描述。如：（wkid:4392, unit:meter)。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>坐标参专系的字符串表示形式。
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 获取坐标参考系的字符串类型描述。如：（wkid:4392, unit:meter)。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core:CoordinateReferenceSystem:unit:get"><apiName>unit</apiName><shortdesc>
+		 获取或设置坐标参考系的单位。默认值为 Undefined （ Unit.UNDEFINED ）。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置坐标参考系的单位。默认值为 Undefined （ Unit.UNDEFINED ）。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:CoordinateReferenceSystem:wkid:get"><apiName>wkid</apiName><shortdesc>
+		 获取或设置 EPSG 发布的代表特定椭球体、单位、地理坐标系或投影坐标系的 Well Konwn ID 值（简称 WKID）。默认值为 0。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置 EPSG 发布的代表特定椭球体、单位、地理坐标系或投影坐标系的 Well Konwn ID 值（简称 WKID）。默认值为 0。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core:Element"><apiName>Element</apiName><shortdesc>
+	 Flex 元素类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>mx.core:UIComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Flex 元素类.
+	 <p>用来定义一个可视组件元素，以元素图层 ElementLayer 为平台进行显示。该类由可视组件 UIComponent 以及 UIComponent 在元素图层 ElementLayer 中的显示区域两部分组成。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core:Element:Element"><apiName>Element</apiName><shortdesc>
+		 初始化 Element 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>component</apiItemName><apiType value="mx.core:UIComponent"/><apiDesc>可视组件。
+		 </apiDesc></apiParam><apiParam><apiItemName>bounds</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiDesc>可视组件在元素图层 ElementLayer 中的显示区域。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 Element 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.core:Element:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 获取或设置可视组件在元素图层 ElementLayer 中的显示区域，Rectangle2D 类型.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置可视组件在元素图层 ElementLayer 中的显示区域，Rectangle2D 类型.
+		 <p>若该显示区域表示一个点，如：Rectangle2D(30,20,20,30)表示点（20，30），则以组件中心点为中心，按组件原大小将其显示于该点上；若该显示区域表示一条线，如：Rectangle2D(30,20,40,30)表示点（30，20）和点（40，30）之间的连线，则取该线段的中点作为组件的显示位置；若该显示区域表示一个区域范围，则组件将拉伸显示于该区域内。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Element:component:get"><apiName>component</apiName><shortdesc>
+		 获取或设置可视组件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.core:UIComponent"/></apiValueDef><apiDesc>
+		 获取或设置可视组件。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core:Unit"><apiName>Unit</apiName><shortdesc>
+	 单位枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiFinal/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 单位枚举类.
+	 <p>该类列举了一些基本的单位类型。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiOperation id="com.supermap.web.core:Unit:getMetersPerUnit"><apiName>getMetersPerUnit</apiName><shortdesc>
+		 将指定单位换算为米。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回换算成以米为单位的值
+		 
+		 </apiDesc><apiType value="Number"/></apiReturn><apiParam><apiItemName>unit</apiItemName><apiType value="String"/><apiDesc>需要换算的单位。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将指定单位换算为米。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core:Unit:CENTIMETER"><apiName>CENTIMETER</apiName><shortdesc>
+		 厘米 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>centimeter</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 厘米 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:DECIMAL_DEGREE"><apiName>DECIMAL_DEGREE</apiName><shortdesc>
+		 十进制度 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>decimal_degree</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 十进制度 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:DECIMETER"><apiName>DECIMETER</apiName><shortdesc>
+		 分米 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>decimeter</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 分米 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:DEGREE"><apiName>DEGREE</apiName><shortdesc>
+		 度 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>degree</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 度 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:FOOT"><apiName>FOOT</apiName><shortdesc>
+		 英尺 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>foot</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 英尺 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:INCH"><apiName>INCH</apiName><shortdesc>
+		 英寸
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>inch</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 英寸
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:KILOMETER"><apiName>KILOMETER</apiName><shortdesc>
+		 千米 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>kilometer</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 千米 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:METER"><apiName>METER</apiName><shortdesc>
+		 米 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>meter</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 米 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:MILE"><apiName>MILE</apiName><shortdesc>
+		 英里 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>mile</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 英里 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:MILLIMETER"><apiName>MILLIMETER</apiName><shortdesc>
+		 毫米 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>millimeter</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 毫米 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:MINUTE"><apiName>MINUTE</apiName><shortdesc>
+		 分  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>minute</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 分  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:RADIAN"><apiName>RADIAN</apiName><shortdesc>
+		 弧度 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>radian</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 弧度 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:SECOND"><apiName>SECOND</apiName><shortdesc>
+		 秒 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>second</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 秒 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:UNDEFINED"><apiName>UNDEFINED</apiName><shortdesc>
+		 未定义 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>Undefined</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 未定义 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Unit:YARD"><apiName>YARD</apiName><shortdesc>
+		 码 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiData>yard</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 码 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core:Feature"><apiName>Feature</apiName><shortdesc>
+	 地理要素类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>mx.core:UIComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地理要素类.
+	 <p>用来定义一个描述空间实体对象的地理要素。它包括地理要素的描述信息、空间几何信息(点、线、面、文本等)、属性信息和要素风格。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core:Feature:Feature"><apiName>Feature</apiName><shortdesc>
+		 初始化 Feature 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiData>null</apiData><apiDesc>要素的空间几何信息。默认为 null。
+		 </apiDesc></apiParam><apiParam><apiItemName>style</apiItemName><apiOperationClassifier>com.supermap.web.core.styles:Style</apiOperationClassifier><apiData>null</apiData><apiDesc>要素风格。默认为 null。
+		 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiData>null</apiData><apiDesc>要素的属性信息。默认为 null。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 Feature 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core:Feature:refresh"><apiName>refresh</apiName><shortdesc>
+		 刷新 Feature 对象。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 刷新 Feature 对象。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core:Feature:attributes:get"><apiName>attributes</apiName><shortdesc>
+		 获取或设置矢量要素的属性信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置矢量要素的属性信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:autoMoveToTop:get"><apiName>autoMoveToTop</apiName><shortdesc>
+		 获取或设置是否将当前矢量要素自动放置于顶端点。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否将当前矢量要素自动放置于顶端点。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:checkForMouseListenersEnabled:get"><apiName>checkForMouseListenersEnabled</apiName><shortdesc>
+		 获取或设置在 Feature 对象已监听了鼠标事件的条件下，由 Feature 对象触发的鼠标事件 Map 是否触发.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置在 Feature 对象已监听了鼠标事件的条件下，由 Feature 对象触发的鼠标事件 Map 是否触发.
+		 <p>默认值为 true。如：双击 Map 表示放大地图，当双击事件的目标为 Feature 对象时，则 true 表示 Map 不响应双击事件，即地图不放大；false 表示 Map 响应双击事件，即地图放大。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:featuresLayer:get"><apiName>featuresLayer</apiName><shortdesc>
+		 获取与当前矢量要素关联的要素图层。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.mapping:FeaturesLayer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取与当前矢量要素关联的要素图层。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 获取或设置 Featrue 对象的几何属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置 Featrue 对象的几何属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:infoWindowRenderer:get"><apiName>infoWindowRenderer</apiName><shortdesc>
+		 IFactory 类，使用该属性可以生成 Feature类 的多个实例（每个实例具有相同的属性）。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.core:IFactory"/></apiValueDef><apiDesc>
+		 IFactory 类，使用该属性可以生成 Feature类 的多个实例（每个实例具有相同的属性）。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:isInResolutionRange:get"><apiName>isInResolutionRange</apiName><shortdesc>
+		 获取当前 Map 的分辨率是否在 Feature 的最大最小分辨率范围内。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取当前 Map 的分辨率是否在 Feature 的最大最小分辨率范围内。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:isRealtimeRefresh:get"><apiName>isRealtimeRefresh</apiName><shortdesc>
+		 是否实时刷新要素。默认为 false，表示不实时刷新。若该属性为 true，则当 Feature 的属性发生变化时，系统内部会自动对 Feature 进行刷新。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否实时刷新要素。默认为 false，表示不实时刷新。若该属性为 true，则当 Feature 的属性发生变化时，系统内部会自动对 Feature 进行刷新。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:maxVisibleResolution:get"><apiName>maxVisibleResolution</apiName><shortdesc>
+		 获取或设置 Feature 的最大可视分辨率。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 Feature 的最大可视分辨率。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:minVisibleResolution:get"><apiName>minVisibleResolution</apiName><shortdesc>
+		 获取或设置 Feature 的最小可视分辨率。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 Feature 的最小可视分辨率。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core:Feature:sparkElementStyle:get"><apiName>sparkElementStyle</apiName><shortdesc>
+		 获取或设置要素的发散显示样式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.clustering:SparkElementStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置要素的发散显示样式.
+		 <p>当该要素被聚合于一个显示样式为 SparkClusterStyle 的聚合点（Clusterer）时，发散显示后，要素将以离散点的形式发散显示于聚合点周围，该属性则用于设置与要素对应的离散点显示样式。<br/>该属性为 object 类型，设置方法如： Feature.clusterElementStyle = {属性名:属性值,属性名:属性值,……}。系统内部提供了六种属性用于设置与要素对应的离散显示样式，包括：borderColor（边界颜色）、backgroundColor（背景颜色）、borderThickness（边界宽度）、borderAlpha（边界透明度）、backgroundAlpha（背景透明度）、radius（半径）。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.clustering.xml#Clusterer"><linktext>com.supermap.web.clustering.Clusterer</linktext></link><link href="com.supermap.web.clustering.xml#SparkClusterStyle"><linktext>com.supermap.web.clustering.SparkClusterStyle</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core:Feature:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置 Featrue 对象的显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置 Featrue 对象的显示风格。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

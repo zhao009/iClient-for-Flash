@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.ZoomIn;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.actions.ZoomOut;
+			
+			private function main():void
+			{
+				borderContainer.visible = true;
+				map.action = null;
+			}
+			
+			private function panMap(event:MouseEvent):void
+			{
+				map.action = new Pan(map);
+			}
+
+			protected function zoomInMap(event:MouseEvent):void
+			{
+				map.action = new ZoomIn(map);
+			}
+
+
+			protected function zoomOutMap(event:MouseEvent):void
+			{
+				map.action = new ZoomOut(map);
+			}
+			
+			protected function viewEntireMap(event:MouseEvent):void
+			{
+				map.viewEntire();
+			}
+
+		]]>
+	</fx:Script>
+	
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}" load="main()">
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}"
+									 mapName="World"
+									 mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600"/>
+		<ic:FeaturesLayer id="featuresLayer" />		
+		<ic:FeaturesLayer id="featuresLayerUp" />
+	</ic:Map>
+
+	<s:BorderContainer id="borderContainer"  height="50" backgroundColor="#686767" 
+					   backgroundAlpha="0.63" cornerRadius="5" dropShadowVisible="true" horizontalCenter="0">
+		<s:HGroup gap="10" top="5" right="5" bottom="5" left="5" horizontalCenter="0">
+			<s:Button id="pan" toolTip="平移" skinClass="skins.panBtnSkin" click="panMap(event)"/>
+			<s:Button id="zoonIn" toolTip="拉框放大" skinClass="skins.zoomInSkin" click="zoomInMap(event)"/>   
+			<s:Button id="zoomOut" toolTip="拉框缩小" skinClass="skins.zoomOutSkin" click="zoomOutMap(event)"/>
+			<s:Button id="entire" toolTip="全幅显示" skinClass="skins.viewEntireSkin" click="viewEntireMap(event)"/>
+		</s:HGroup>
+	</s:BorderContainer>
+</s:Application>

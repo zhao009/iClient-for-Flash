@@ -1,0 +1,5 @@
+<font color="#0033FF">放大镜控件（Magnifier）</font>
+<font color="#006633">1. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层。
+<font color="#006633">2. 操作指南：</font>平移放大镜控件至要放大的区域，即可查看放大效果。
+<font color="#006633">2. 注意：</font>放大镜控件可以放大当前地图图层，也可以在当前图层上显示放大其他指定图层。
+<font color="#006633">4. 其它说明：</font>有关聚散显示 （Magnifier）的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

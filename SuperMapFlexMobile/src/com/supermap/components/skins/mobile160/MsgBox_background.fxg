@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="131.334" viewWidth="280.166" xmlns="http://ns.adobe.com/fxg/2008">
+  <Library/>
+  <Group x="-6" y="-6" d:type="layer" d:userLabel="图层 1" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+    <Group x="6" y="6" blendMode="multiply">
+      <filters>
+        <DropShadowFilter alpha="0.75" angle="0" distance="0" quality="3"/>
+      </filters>
+      <Path winding="nonZero" data="M269.166 131.334L11 131.334C4.93457 131.334 0 126.398 0 120.334L0 11C0 4.93457 4.93457 0 11 0L269.166 0C275.231 0 280.166 4.93457 280.166 11L280.166 120.334C280.166 126.398 275.231 131.334 269.166 131.334L269.166 131.334ZM11 2C6.0376 2
+ 2 6.0376 2 11L2 120.334C2 125.296 6.0376 129.334 11 129.334L269.166 129.334C274.128 129.334 278.166 125.296 278.166 120.334L278.166 11C278.166 6.0376 274.128 2 269.166 2L11 2 11 2Z" >
+        <fill>
+          <SolidColor color="#ffffff"/>
+        </fill>
+      </Path>
+    </Group>
+    <Group x="7" y="7" alpha="0.8">
+      <Group>
+        <Path data="M10 0L268.166 0C273.689 0 278.166 4.47705 278.166 10L278.166 119.334C278.166 124.855 273.689 129.334 268.166 129.334L10 129.334C4.47656 129.334 0 124.855 0 119.334L0 10C0 4.47705 4.47656 0 10 0Z" >
+          <fill>
+            <SolidColor/>
+          </fill>
+        </Path>
+      </Group>
+    </Group>
+    <Group x="7" y="7">
+      <Path winding="nonZero" data="M268.166 0L10 0C4.47656 0 0 4.47705 0 10L0 19.6665C0 19.6665 17.1299 29.6665 139.083 29.6665 262.5 29.6665 278.166 19.6665 278.166 19.6665L278.166 10C278.166 4.47705 273.689 0 268.166 0Z" >
+        <fill>
+          <LinearGradient x="139.083" scaleX="30.1251" rotation="90">
+            <GradientEntry color="#ffffff" alpha="0.6" ratio="0"/>
+            <GradientEntry color="#ffffff" alpha="0.02" ratio="1"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+    </Group>
+    <Group x="6" y="6">
+      <Path winding="nonZero" data="M269.166 131.334L11 131.334C4.93457 131.334 0 126.398 0 120.334L0 11C0 4.93457 4.93457 0 11 0L269.166 0C275.231 0 280.166 4.93457 280.166 11L280.166 120.334C280.166 126.398 275.231 131.334 269.166 131.334L269.166 131.334ZM11 2C6.0376 2
+ 2 6.0376 2 11L2 120.334C2 125.296 6.0376 129.334 11 129.334L269.166 129.334C274.128 129.334 278.166 125.296 278.166 120.334L278.166 11C278.166 6.0376 274.128 2 269.166 2L11 2 11 2Z" >
+        <fill>
+          <LinearGradient x="140.083" scaleX="131.334" rotation="90">
+            <GradientEntry color="#ffffff" ratio="0"/>
+            <GradientEntry color="#dfe0e0" ratio="0.00353218"/>
+            <GradientEntry color="#a6a6a6" ratio="0.0164835"/>
+            <GradientEntry color="#afb0b0" ratio="0.262363"/>
+            <GradientEntry color="#808080" ratio="1"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+</Graphic>

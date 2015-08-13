@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" xmlns:view="view.*">
+ 
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.viewsource.ViewSource;
+			
+			import mx.events.IndexChangedEvent;
+			[Bindable]
+			private var readXML:XML;
+			public var currentChild:SourceExtends;
+			public function loadSourceCode(appUrl:String, srcUrl:String):void//加载mxml的核心函数
+			{
+				// delete all previously loaded source
+				tn.removeAllChildren(); 
+				var tabs:Array = new Array();
+				if (appUrl != null && appUrl != "")
+				{
+					var files:Array = new Array();
+			 
+					files[0] =   "../src/applications/" + appUrl + ".mxml";
+					
+					if (srcUrl != null && srcUrl != "")
+					{
+						// other source files are shown in the subsequence tabs 
+						var otherSrc:Array = srcUrl.split("&");
+						files = files.concat(otherSrc);
+					}
+					for (var i:int ; i < files.length ; i++)
+					{
+						tabs[i] = new SourceExtends(); 
+						tabs[i].source = files[i]; 
+						tn.addChild(tabs[i]);
+						tn.label = (tabs[i] as SourceExtends).label;
+					} 
+					this.currentChild = tn.getChildAt(0) as SourceExtends;
+				}
+			}
+			 
+			/* public function loadSourceTxt(appUrl:String):void//加载txt的核心函数
+			{ 
+				tn.removeAllChildren();
+				var tabs:Array = new Array();
+				if (appUrl != null && appUrl != "")
+				{
+					var files:Array = new Array();
+			 
+					files[0] = "files/" + appUrl + ".txt";
+ 
+					for (var i:int ; i < files.length ; i++)
+					{
+						tabs[i] = new SourceExtends(); 
+						tabs[i].source = files[i]; 
+						tn.addChild(tabs[i]);
+						tn.label = (tabs[i] as SourceExtends).label;
+					}  
+				}
+			}   *///zyn 1009
+			
+			private function loaderCompleteHandler(event:Event):void
+			{
+				readXML = new XML(event.target.data);
+			}
+
+			public function copy(event:MouseEvent):void
+			{ 
+				System.setClipboard(this.currentChild.ta.text); 
+			}
+			
+			public function change(event:IndexChangedEvent):void
+			{
+				this.currentChild = this.tn.getChildAt(event.newIndex) as SourceExtends;
+			} 
+		]]>
+	</fx:Script> 
+	<mx:TabNavigator id="tn" change="change(event)" width="100%" height="100%" paddingTop="0"/>
+</s:VGroup>

@@ -1,0 +1,641 @@
+<apiPackage id="com.supermap.web.clustering"><apiName>com.supermap.web.clustering</apiName><apiDetail/><apiClassifier id="com.supermap.web.clustering:CenterClusterer"><apiName>CenterClusterer</apiName><shortdesc>
+	 中心聚散显示类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.clustering:Clusterer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 中心聚散显示类.
+	 <p>聚散显示是指将一定范围内的点要素聚合显示至一个点（聚合点，地图单位。其中包括聚散中心坐标、权重、离散点集合等，离散点即为被聚合的点），详细应用请参见 SuperMap iClient for Flex SampleCode。<br/>该类是 Clusterer 的一个子类，首先将点要素所在的图层按照 size 属性的大小划分为若干个栅格，然后将每一栅格内的所有离散点聚合至栅格的中心点。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:CenterClusterer:CenterClusterer"><apiName>CenterClusterer</apiName><shortdesc>
+		 初始化 CenterClusterer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 CenterClusterer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:CenterClusterer:clusterFeatures"><apiName>clusterFeatures</apiName><shortdesc>
+		 
+		 获取符合聚散显示条件的要素集合。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>符合聚散显示条件的要素集合。
+		 
+		 </apiDesc><apiType value="Array"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>被聚散显示的要素所在的要素图层。
+		 </apiDesc></apiParam><apiParam><apiItemName>featureCollection</apiItemName><apiType value="mx.collections:ArrayCollection"/><apiDesc>离散点集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 获取符合聚散显示条件的要素集合。.
+		 <p>被聚散显示的离散点的几何属性必须能被转换为具有地图坐标的 GeoPoint 对象。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:CenterClusterer:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁 Clusterer。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>与 Clusterer 关联的要素图层。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁 Clusterer。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.clustering:FieldValuesRule"><apiName>FieldValuesRule</apiName><shortdesc>
+	 权重计算规则.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 权重计算规则.
+	 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据离散点的权重按某一规则所计算的值所属的范围来设置。默认规则为求和（FieldValuesRule.SUM）。该规则也可由用户通过 SparkClusterStyle.fieldValueFun 属性自定义。离散点的权重字段由 SparkClusterStyle.fieldValue 设置。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:FieldValuesRule:FieldValuesRule"><apiName>FieldValuesRule</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.clustering:FieldValuesRule:MAX"><apiName>MAX</apiName><shortdesc>
+		 取最大值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>max</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 取最大值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:FieldValuesRule:MIN"><apiName>MIN</apiName><shortdesc>
+		 取最小值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>min</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 取最小值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:FieldValuesRule:SUM"><apiName>SUM</apiName><shortdesc>
+		 求和。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sum</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 求和。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:WeightedClusterer"><apiName>WeightedClusterer</apiName><shortdesc>
+	 权重聚散显示类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.clustering:Clusterer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 权重聚散显示类.
+	 <p>聚散显示是指将一定范围内的点要素聚合显示至一个点（聚合点，地图单位。其中包括聚散中心坐标、权重、离散点集合等，离散点即为被聚合的点），详细应用请参见 SuperMap iClient for Flex SampleCode。<br/>该类是 Clusterer 的一个子类，首先根据 featureWeightFunction 属性计算每个离散点的权重值，并将离散点所在的图层按照 size 属性划分为若干个栅格；然后依次遍历每个栅格，在同一栅格内根据相邻离散点的权重比例确定聚合中心点，如此返复循环直到栅格内所有点均被聚合。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:WeightedClusterer:WeightedClusterer"><apiName>WeightedClusterer</apiName><shortdesc>
+		 初始化 WeightedClusterer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 WeightedClusterer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:WeightedClusterer:clusterFeatures"><apiName>clusterFeatures</apiName><shortdesc>
+		 
+		 获取符合聚散显示条件的要素集合。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="Array"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>featureCollection</apiItemName><apiType value="mx.collections:ArrayCollection"/><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 获取符合聚散显示条件的要素集合。.
+		 <p>被聚散显示的离散点的几何属性必须能被转换为具有地图坐标的 GeoPoint 对象。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:WeightedClusterer:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁 Clusterer。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁 Clusterer。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:WeightedClusterer:aryClusterDictionaryMerge:get"><apiName>aryClusterDictionaryMerge</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightedClusterer:aryClusterDictionary:get"><apiName>aryClusterDictionary</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightedClusterer:featureWeightFunction:get"><apiName>featureWeightFunction</apiName><shortdesc>
+		 获取或设置计算离散点（被聚合点）权重的方法，默认每个离散点的权重均为 1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 获取或设置计算离散点（被聚合点）权重的方法，默认每个离散点的权重均为 1。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:WeightClusterItem"><apiName>WeightClusterItem</apiName><shortdesc>
+	 发散显示权重子项.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 发散显示权重子项.
+	 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据离散点的权重之和所属的范围来设置。该类就是用于定义权重范围 [minWeight, maxWeight)，以及离散点权重之和属于该范围内的聚合点样式。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.clustering.xml#WeightClusterStyle"><linktext>WeightClusterStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.clustering:WeightClusterItem:WeightClusterItem"><apiName>WeightClusterItem</apiName><shortdesc>
+		 初始化 WeightClusterItem 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>minWeight</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>权重范围的最小边界值。
+		 </apiDesc></apiParam><apiParam><apiItemName>maxWeight</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>权重范围的最大边界值。
+		 </apiDesc></apiParam><apiParam><apiItemName>weightClusterStyle</apiItemName><apiOperationClassifier>com.supermap.web.clustering:WeightClusterStyle</apiOperationClassifier><apiData>null</apiData><apiDesc>聚合点样式。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 WeightClusterItem 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:WeightClusterItem:clone"><apiName>clone</apiName><shortdesc>
+		 克隆 WeightClusterItem 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.clustering:WeightClusterItem</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆 WeightClusterItem 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:WeightClusterItem:defaultWeightClusterStyle:get"><apiName>defaultWeightClusterStyle</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.clustering:WeightClusterStyle</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightClusterItem:maxWeight:get"><apiName>maxWeight</apiName><shortdesc>
+		 权重范围的最大边界值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 权重范围的最大边界值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightClusterItem:minWeight:get"><apiName>minWeight</apiName><shortdesc>
+		 权重范围的最小边界值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 权重范围的最小边界值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightClusterItem:weightClusterStyle:get"><apiName>weightClusterStyle</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.clustering:WeightClusterStyle</apiValueClassifier></apiValueDef></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:Clusterer"><apiName>Clusterer</apiName><shortdesc>
+	 聚散显示父类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 聚散显示父类. 
+	 <p>聚散显示是指将一定范围内的点要素聚合显示至一个点（聚合点，地图单位。其中包括聚散中心坐标、权重、离散点集合等，离散点即为被聚合的点），详细应用请参见 SuperMap iClient 6R for Flex SampleCode。该类是 GridClusterer、RegionClusterer、WeightedClusterer 类的基类，用户也可继承该类自定义聚散显示类型。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:Clusterer:Clusterer"><apiName>Clusterer</apiName><shortdesc>
+		 初始化 Clusterer 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Clusterer 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:Clusterer:protected:calculateClusterWeights"><apiName>calculateClusterWeights</apiName><shortdesc>
+		 根据聚合点的属性计算聚合点的权重。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>clusters</apiItemName><apiType value="flash.utils:Dictionary"/><apiDesc>聚合点集合。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据聚合点的属性计算聚合点的权重。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:Clusterer:clusterFeatures"><apiName>clusterFeatures</apiName><shortdesc>
+		 获取符合聚散显示条件的要素集合。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>符合聚散显示条件的要素集合。
+		 
+		 </apiDesc><apiType value="Array"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>被聚散显示的要素所在的要素图层。
+		 </apiDesc></apiParam><apiParam><apiItemName>featureCollection</apiItemName><apiType value="mx.collections:ArrayCollection"/><apiDesc>离散点集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取符合聚散显示条件的要素集合。.
+		 <p>被聚散显示的离散点的几何属性必须能被转换为具有地图坐标的 GeoPoint 对象。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:Clusterer:protected:createClusterFeature"><apiName>createClusterFeature</apiName><shortdesc>
+		 根据聚合点生成离散点要素集合。 
+		 若聚合点所包含的离散点个数小于等于 minFeatureCount，则生成 Feature 对象的集合。若大于，则生成 ClusterFeature 对象集合。 ClusterFeature 类继承于 Feature 类，其中除了包括 Feature 对象所具有的属性外，还包括其所在的聚合点信息。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>cluster</apiItemName><apiType value="com.supermap.web.clustering.supportClasses:Cluster"/><apiDesc>聚合点，其中包括聚散中心坐标、权重、被聚合点集合等。
+		 </apiDesc></apiParam><apiParam><apiItemName>arr</apiItemName><apiType value="Array"/><apiDesc>存储离散点的集合
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据聚合点生成离散点要素集合。 
+		 <p>若聚合点所包含的离散点个数小于等于 minFeatureCount，则生成 Feature 对象的集合。若大于，则生成 ClusterFeature 对象集合。 ClusterFeature 类继承于 Feature 类，其中除了包括 Feature 对象所具有的属性外，还包括其所在的聚合点信息。</p>
+		 </apiDesc></apiOperationDetail><related-links><link href="com.supermap.web.clustering.xml#Clusterer/minFeatureCount"><linktext>minFeatureCount</linktext></link><link href="com.supermap.web.core.xml#Feature"><linktext>com.supermap.web.core.Feature</linktext></link></related-links></apiOperation><apiOperation id="com.supermap.web.clustering:Clusterer:destroy"><apiName>destroy</apiName><shortdesc>
+		 销毁 Clusterer。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>与 Clusterer 关联的要素图层。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 销毁 Clusterer。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:Clusterer:protected:dispatchEventChange"><apiName>dispatchEventChange</apiName><shortdesc>
+		 派发 flash.events.Event.CHANGE 事件。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 派发 flash.events.Event.CHANGE 事件。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:Clusterer:initialize"><apiName>initialize</apiName><shortdesc>
+		 初始化 Clusterer。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>与 Clusterer 关联的要素图层。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 初始化 Clusterer。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:Clusterer:clusterWeightFunction:get"><apiName>clusterWeightFunction</apiName><shortdesc>
+		 获取或设置 Clusterer 的权重计算方法，用于定义每个聚合点的权重大小，默认为：cluster.weight = cluster.features.length，即该聚合点所包含的离散点个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 获取或设置 Clusterer 的权重计算方法，用于定义每个聚合点的权重大小，默认为：cluster.weight = cluster.features.length，即该聚合点所包含的离散点个数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:featureToGeoPointFunction:get"><apiName>featureToGeoPointFunction</apiName><shortdesc>
+		 获取或设置将被聚合点要素 Feature（即被聚合的离散点）的几何属性转换 geometry 为 GeoPoint 对象的方法。默认方法为 feature.geometry as GeoPoint 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 获取或设置将被聚合点要素 Feature（即被聚合的离散点）的几何属性转换 geometry 为 GeoPoint 对象的方法。默认方法为 feature.geometry as GeoPoint 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:levels:get"><apiName>levels</apiName><shortdesc>
+		 获取或设置一个图层中聚合点显示大小的最大分级数目，该属性可设置的最大值为 10.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>5
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置一个图层中聚合点显示大小的最大分级数目，该属性可设置的最大值为 10. 
+		 <p>每个聚合点可以根据权重显示为不同的大小。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:maxCount:get"><apiName>maxCount</apiName><shortdesc>
+		 获取 Clusterer 的最大聚合点数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取 Clusterer 的最大聚合点数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:maxWeight:get"><apiName>maxWeight</apiName><shortdesc>
+		 获取 Clusterer 的最小权重值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取 Clusterer 的最小权重值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:minCount:get"><apiName>minCount</apiName><shortdesc>
+		 获取 Clusterer 的最小聚合点数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取 Clusterer 的最小聚合点数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:minFeatureCount:get"><apiName>minFeatureCount</apiName><shortdesc>
+		 获取或设置 Clusterer 的最小聚合个数，即一个聚合点最少包含的离散点个数。当小于该值时则不聚合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 Clusterer 的最小聚合个数，即一个聚合点最少包含的离散点个数。当小于该值时则不聚合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:minWeight:get"><apiName>minWeight</apiName><shortdesc>
+		 获取 Clusterer 的最小权重值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取 Clusterer 的最小权重值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:size:get"><apiName>size</apiName><shortdesc>
+		 获取或设置聚合区域（栅格类型）的大小。该属性只针对 CenterClusterer 和 WeightedClusterer，单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置聚合区域（栅格类型）的大小。该属性只针对 CenterClusterer 和 WeightedClusterer，单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:Clusterer:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置聚合点显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier><apiDefaultValue>SimpleClusterStyle
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置聚合点显示风格。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.clustering.xml#SimpleClusterStyle"><linktext>SimpleClusterStyle</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:SparkElementStyle"><apiName>SparkElementStyle</apiName><shortdesc>
+	 离散点显示样式类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 离散点显示样式类.
+	 <p>该类用于设置发散显示时，离散点的显示样式。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:SparkElementStyle:SparkElementStyle"><apiName>SparkElementStyle</apiName><shortdesc>
+		 初始化 SparkElementStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SparkElementStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.clustering:SparkElementStyle:backgroundAlpha:get"><apiName>backgroundAlpha</apiName><shortdesc>
+		 获取或设置离散点的填充透明度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置离散点的填充透明度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkElementStyle:backgroundColor:get"><apiName>backgroundColor</apiName><shortdesc>
+		 获取或设置离散点的填充颜色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 获取或设置离散点的填充颜色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkElementStyle:borderAlpha:get"><apiName>borderAlpha</apiName><shortdesc>
+		 获取或设置离散点的边界透明度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置离散点的边界透明度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkElementStyle:borderColor:get"><apiName>borderColor</apiName><shortdesc>
+		 获取或设置离散点的边界颜色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 获取或设置离散点的边界颜色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkElementStyle:borderThickness:get"><apiName>borderThickness</apiName><shortdesc>
+		 获取或设置离散点的边界宽度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置离散点的边界宽度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkElementStyle:radius:get"><apiName>radius</apiName><shortdesc>
+		 获取或设置离散点的半径。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置离散点的半径。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:SparkClusterStyle"><apiName>SparkClusterStyle</apiName><shortdesc>
+	 聚散显示发散风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 聚散显示发散风格类. 
+	 <p>该类是聚散显示中聚合点显示风格的一种。SparkClusterStyle 与 SimpleClusterStyle、CellClusterStyle 的主要不同点在于：<br/>1）当鼠标移动至聚合点上时，将动态发散显示离散点——触发 SparkClusterEvent.SPARK_OUT_START/SPARK_OUT_COMPLETE 事件；<br/>2）当鼠标离开时，又会动态聚合离散点————触发 SparkClusterEvent.SPARK_IN_START/SPARK_IN_COMPLETE 事件；<br/>3）可以监听离散点的点击、悬停事件，具体请参见 SparkClusterMouseEvent 类。如下图所示：<br/><img src="../../../../images/spark4.png"/></p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.events.xml#SparkClusterEvent"><linktext>com.supermap.web.events.SparkClusterEvent</linktext></link><link href="com.supermap.web.events.xml#SparkClusterMouseEvent"><linktext>com.supermap.web.events.SparkClusterMouseEvent</linktext></link></related-links><apiConstructor id="com.supermap.web.clustering:SparkClusterStyle:SparkClusterStyle"><apiName>SparkClusterStyle</apiName><shortdesc>
+		 初始化 SparkClusterStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SparkClusterStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:SparkClusterStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SparkClusterStyle:createSwatch"><apiName>createSwatch</apiName><shortdesc>
+		 
+		 创建样式的样例。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="mx.core:UIComponent"/></apiReturn><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 创建样式的样例。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SparkClusterStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SparkClusterStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SparkClusterStyle:initialize"><apiName>initialize</apiName><shortdesc>
+		 
+		 初始化 style。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>显示列表构造块,可用于显示图形并且也可包含子项的显示列表节点。
+		 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>点要素几何信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>点要素属性信息。
+		 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>用于装载点要素的地图。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 初始化 style。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:SparkClusterStyle:WeightClusterItems:get"><apiName>WeightClusterItems</apiName><shortdesc>
+		 发散显示权重子项（WeightClusterItem）集合，当属性 isWeightClusterStyle 为 true 时，该属性为必设.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 发散显示权重子项（WeightClusterItem）集合，当属性 isWeightClusterStyle 为 true 时，该属性为必设.
+		 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据离散点的权重之和所属的范围来设置。<br/>该属性用于设置权重范围，以及每个权重范围所对应的聚合点样式。详情请参见 WeightClusterItem 类。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.clustering.xml#WeightClusterItem"><linktext>WeightClusterItem</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:backgroundAlpha:get"><apiName>backgroundAlpha</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 背景透明度，0 表示完全透明，1 表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 背景透明度，0 表示完全透明，1 表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:backgroundColor:get"><apiName>backgroundColor</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 背景颜色，默认为绿色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>7786752
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 背景颜色，默认为绿色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:borderAlpha:get"><apiName>borderAlpha</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 的边界透明度，0 表示完全透明，1 表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 的边界透明度，0 表示完全透明，1 表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:borderColor:get"><apiName>borderColor</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 的边界颜色，默认为黑色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 的边界颜色，默认为黑色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:borderThickness:get"><apiName>borderThickness</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 边界宽度，单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 边界宽度，单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:fieldValueFun:get"><apiName>fieldValueFun</apiName><shortdesc>
+		 用户自定义权重计算规则。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 用户自定义权重计算规则。.
+		 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据离散点的权重按某一规则所计算的值所属的范围来设置。该规则既可使用 fieldValueMode 属性指定系统提供的规则，也可通过该属性自定义规则，如下面示例表示对各离散点的权重进行求积：<br/>var sparkClusterStyle.fieldValueFun = newFun;<br/>//arr 中存储各离散点权重<br/>private function newFun(arr:Array):Number<br/>{<br/>var product:Number = 0;<br/>for (var i:int;i &lt; array.length; i++) <br/>{<br/>product = product*array[i];<br/>}<br/> return product;<br/>}</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.clustering.xml#FieldValuesRule"><linktext>FieldValuesRule</linktext></link><link href="com.supermap.web.clustering.xml#SparkClusterStyle/fieldValue"><linktext>fieldValue</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:fieldValueMode:get"><apiName>fieldValueMode</apiName><shortdesc>
+		 权重计算规则。默认为对聚合点内的所有离散点的权重值求和——FieldValuesRule.SUM。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 权重计算规则。默认为对聚合点内的所有离散点的权重值求和——FieldValuesRule.SUM。.
+		 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据离散点的权重按某一规则所计算的值所属的范围来设置。默认规则为求和（FieldValuesRule.SUM），该规则也可由用户通过 fieldValueFun 属性自定义。离散点的权重字段由 fieldValue 设置。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.clustering.xml#FieldValuesRule"><linktext>FieldValuesRule</linktext></link><link href="com.supermap.web.clustering.xml#SparkClusterStyle/fieldValue"><linktext>fieldValue</linktext></link><link href="com.supermap.web.clustering.xml#SparkClusterStyle/fieldValueFun"><linktext>fieldValueFun</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:fieldValue:get"><apiName>fieldValue</apiName><shortdesc>
+		 发散显示的权重字段，当属性 isWeightClusterStyle 为 true 时，该属性为必设.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 发散显示的权重字段，当属性 isWeightClusterStyle 为 true 时，该属性为必设.
+		 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据被聚合要素的权重之和所属的范围来设置。该属性用于指定以要素的哪个字段作为权重值。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.clustering.xml#WeightClusterItem"><linktext>WeightClusterItem</linktext></link><link href="com.supermap.web.clustering.xml#SparkClusterStyle/WeightClusterItems"><linktext>WeightClusterItems</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:isSizeWithWeightFactor:get"><apiName>isSizeWithWeightFactor</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 的大小是否随聚合点的权重大小改变。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 的大小是否随聚合点的权重大小改变。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:isWeightClusterStyle:get"><apiName>isWeightClusterStyle</apiName><shortdesc>
+		 是否根据离散点的权重定义聚合点的样式。默认为 flase.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否根据离散点的权重定义聚合点的样式。默认为 flase.
+		 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据离散点的权重按某一规则所计算的值所属的范围来设置。默认为对离散点的权重求和。离散点的权重字段由 fieldValue 设置。<br/>当该属性值为 true 时，表示使用 WeightClusterItems 属性来设置聚合点的样式；false 表示使用 SparkClusterStyle 类中自带的样式属性设置聚合点样式，如：backgroundAlpha、backgroundColor、borderAlpha、borderColor 等。 </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:maxCountPerRing:get"><apiName>maxCountPerRing</apiName><shortdesc>
+		 获取或设置发散显示离散点时每个发散圆上显示离散点的最大数目。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>6
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置发散显示离散点时每个发散圆上显示离散点的最大数目。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:ringAngleStart:get"><apiName>ringAngleStart</apiName><shortdesc>
+		 获取或设置发散显示的初始始角度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>5
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置发散显示的初始始角度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:ringAngleStep:get"><apiName>ringAngleStep</apiName><shortdesc>
+		 获取或设置相邻离散点之间的弧度距离。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>15 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置相邻离散点之间的弧度距离。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:ringDistanceInc:get"><apiName>ringDistanceInc</apiName><shortdesc>
+		 获取或设置相邻发散圆间离散点的距离。单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>20
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置相邻发散圆间离散点的距离。单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:ringDistanceStart:get"><apiName>ringDistanceStart</apiName><shortdesc>
+		 获取或设置发散圆的最小半径。单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>30
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置发散圆的最小半径。单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:size:get"><apiName>size</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 的大小。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 的大小。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:sparkMaxCount:get"><apiName>sparkMaxCount</apiName><shortdesc>
+		 获取或设置发散显示离散点的个数上限.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置发散显示离散点的个数上限.
+		 <p>当聚合点所包含的离散点个数大于该属性值时，则不发散显示该聚合点。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:sparkSizeOnRollOver:get"><apiName>sparkSizeOnRollOver</apiName><shortdesc>
+		 获取或设置当鼠标移动至离散点时，离散点的显示大小。单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置当鼠标移动至离散点时，离散点的显示大小。单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:sparkSize:get"><apiName>sparkSize</apiName><shortdesc>
+		 获取或设置发散点的大小。单位：像素。   
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>5
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置发散点的大小。单位：像素。   
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SparkClusterStyle:textFormat:get"><apiName>textFormat</apiName><shortdesc>
+		 获取或设置 SparkClusterStyle 的文本格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="flash.text:TextFormat"/></apiValueDef><apiDesc>
+		 获取或设置 SparkClusterStyle 的文本格式。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:RegionClusterer"><apiName>RegionClusterer</apiName><shortdesc>
+	 区域聚散显示类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.clustering:Clusterer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 区域聚散显示类.
+	 <p>区域聚散显示是指将一定范围内的点要素聚合显示至一个点（聚合点，地图单位。其中包括聚散中心坐标、权重、离散点集合等，离散点即为被聚合的点，每个离散点仅能被一个区域聚合），该范围由用户绘制的区域（面要素）确定。用户体验请参见 SuperMap iClient 6R for Flex SampleCode。<br/>该类是 Clusterer 的一个子类，首先根据 featureWeightFunction 属性计算每个离散点的权重值；然后，根据用户指定区域（多边形）内每个相邻离散点的权重比例确定聚合中心点，如此返复循环直到区域内所有点被聚合。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:RegionClusterer:RegionClusterer"><apiName>RegionClusterer</apiName><shortdesc>
+		 使用区域内包含的离散点初始化 RegionClusterer 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>regionFeatures</apiItemName><apiType value="Object"/><apiDesc>离散点集合。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用区域内包含的离散点初始化 RegionClusterer 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:RegionClusterer:clusterFeatures"><apiName>clusterFeatures</apiName><shortdesc>
+		 
+		 获取符合聚散显示条件的要素集合。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="Array"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>featureCollection</apiItemName><apiType value="mx.collections:ArrayCollection"/><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 获取符合聚散显示条件的要素集合。.
+		 <p>被聚散显示的离散点的几何属性必须能被转换为具有地图坐标的 GeoPoint 对象。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:RegionClusterer:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁 Clusterer。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁 Clusterer。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:RegionClusterer:featureWeightFunction:get"><apiName>featureWeightFunction</apiName><shortdesc>
+		 获取或设置计算离散点（被聚合点）权重的方法。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 获取或设置计算离散点（被聚合点）权重的方法。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:RegionClusterer:regionFeatures:get"><apiName>regionFeatures</apiName><shortdesc>
+		 获取或设置区域内所包含的离散点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置区域内所包含的离散点。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:CellClusterStyle"><apiName>CellClusterStyle</apiName><shortdesc>
+	 聚散显示单元风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 聚散显示单元风格类.
+	 <p>该类是聚散显示中聚合点显示风格的一种。以一种圆角、中心显示聚合点数的四方形显示聚合点。默认样式如下图：<br/><img src="../../../../images/cellClusterStyle.png"/></p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:CellClusterStyle:CellClusterStyle"><apiName>CellClusterStyle</apiName><shortdesc>
+		 初始化 CellClusterStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 CellClusterStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:CellClusterStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:CellClusterStyle:createSwatch"><apiName>createSwatch</apiName><shortdesc>
+		 
+		 创建样式的样例。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="mx.core:UIComponent"/></apiReturn><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 创建样式的样例。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:CellClusterStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:CellClusterStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:CellClusterStyle:initialize"><apiName>initialize</apiName><shortdesc>
+		 
+		 初始化 style。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 初始化 style。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:CellClusterStyle:backgroundAlpha:get"><apiName>backgroundAlpha</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 背景透明度，0 表示完全透明，1 表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 背景透明度，0 表示完全透明，1 表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:backgroundColor:get"><apiName>backgroundColor</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 背景颜色，默认为绿色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>7786752
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 背景颜色，默认为绿色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:borderAlpha:get"><apiName>borderAlpha</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的边界透明度，0 表示完全透明，1 表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的边界透明度，0 表示完全透明，1 表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:borderColor:get"><apiName>borderColor</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的边界颜色，默认为黑色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的边界颜色，默认为黑色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:borderThickness:get"><apiName>borderThickness</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 边界宽度，单位：像素。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>1 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 边界宽度，单位：像素。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:cornerRadius:get"><apiName>cornerRadius</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的圆角半径，单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>5
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的圆角半径，单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:isSizeWithWeightFactor:get"><apiName>isSizeWithWeightFactor</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的大小是否随聚合点的权重大小改变。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的大小是否随聚合点的权重大小改变。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:paddingBottom:get"><apiName>paddingBottom</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的下边距。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的下边距。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:paddingLeft:get"><apiName>paddingLeft</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的左边距。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的左边距。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:paddingRight:get"><apiName>paddingRight</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的右边距。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的右边距。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:paddingTop:get"><apiName>paddingTop</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的上边距。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的上边距。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:size:get"><apiName>size</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的大小。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的大小。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:CellClusterStyle:textFormat:get"><apiName>textFormat</apiName><shortdesc>
+		 获取或设置 CellClusterStyle 的文本格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="flash.text:TextFormat"/></apiValueDef><apiDesc>
+		 获取或设置 CellClusterStyle 的文本格式。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:SimpleClusterStyle"><apiName>SimpleClusterStyle</apiName><shortdesc>
+	 聚散显示简单风格类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.styles:Style</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 聚散显示简单风格类.
+	 <p>该类是聚散显示中各聚合点显示风格的一种。默认样式如下图：<br/><img src="../../../../images/simpleClusterStyle.png"/></p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:SimpleClusterStyle:SimpleClusterStyle"><apiName>SimpleClusterStyle</apiName><shortdesc>
+		 初始化 SimpleClusterStyle 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SimpleClusterStyle 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:SimpleClusterStyle:clear"><apiName>clear</apiName><shortdesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 清除显示列表构造块 Sprite.graphics 中装载的所有矢量元素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SimpleClusterStyle:createSwatch"><apiName>createSwatch</apiName><shortdesc>
+		 
+		 创建样式的样例。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="mx.core:UIComponent"/></apiReturn><apiParam><apiItemName>width</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>height</apiItemName><apiType value="Number"/><apiData>50</apiData><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 创建样式的样例。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SimpleClusterStyle:destroy"><apiName>destroy</apiName><shortdesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 销毁显示列表构造块 Sprite。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SimpleClusterStyle:draw"><apiName>draw</apiName><shortdesc>
+		 
+		 绘制要素。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 绘制要素。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.clustering:SimpleClusterStyle:initialize"><apiName>initialize</apiName><shortdesc>
+		 
+		 初始化 style。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>sprite</apiItemName><apiType value="flash.display:Sprite"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>attributes</apiItemName><apiType value="Object"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 初始化 style。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:alpha:get"><apiName>alpha</apiName><shortdesc>
+		 获取或设置 SimpleClusterStyle 的透明度，0 表示完全透明，1 表示不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0.75
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置 SimpleClusterStyle 的透明度，0 表示完全透明，1 表示不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:borderAlpha:get"><apiName>borderAlpha</apiName><shortdesc>
+		 获取或设置聚合点的边界透明度。默认为 0.8。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置聚合点的边界透明度。默认为 0.8。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:borderColor:get"><apiName>borderColor</apiName><shortdesc>
+		 获取或设置聚合点的边界颜色。默认为白色 0xffffff。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置聚合点的边界颜色。默认为白色 0xffffff。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:borderThickness:get"><apiName>borderThickness</apiName><shortdesc>
+		 获取或设置聚合点的边界宽度。默认为 2 个像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置聚合点的边界宽度。默认为 2 个像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:color:get"><apiName>color</apiName><shortdesc>
+		 获取或设置聚合点的颜色，默认为红色。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>7786752 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置聚合点的颜色，默认为红色。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:isSizeWithWeightFactor:get"><apiName>isSizeWithWeightFactor</apiName><shortdesc>
+		 获取或设置聚合点的大小是否随聚合点的权重大小改变。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>true
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置聚合点的大小是否随聚合点的权重大小改变。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:size:get"><apiName>size</apiName><shortdesc>
+		 获取或设置聚合点的大小。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置聚合点的大小。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:SimpleClusterStyle:textFormat:get"><apiName>textFormat</apiName><shortdesc>
+		 获取或设置聚合点中的文本格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="flash.text:TextFormat"/></apiValueDef><apiDesc>
+		 获取或设置聚合点中的文本格式。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.clustering:WeightClusterStyle"><apiName>WeightClusterStyle</apiName><shortdesc>
+	 权重子项样式.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 权重子项样式.
+	 <p>当聚散显示样式为发散显示（SparkClusterStyle）时，聚合点的样式可根据离散点的权重之和所属的范围来设置。该类就是用于定义离散点权重之和属于某一范围内的聚合点样式。包括填充颜色、填充透明度、边界颜色/宽度/透明度。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.clustering:WeightClusterStyle:WeightClusterStyle"><apiName>WeightClusterStyle</apiName><shortdesc>
+		 初始化 WeightClusterStyle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>weightBackgroundColor</apiItemName><apiType value="uint"/><apiData>0x0000ff</apiData><apiDesc>背景填充颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>weightBackgroundAlpha</apiItemName><apiType value="Number"/><apiData>0.8</apiData><apiDesc>背景透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>weightBorderColor</apiItemName><apiType value="uint"/><apiData>0xffffff</apiData><apiDesc>边界颜色。
+		 </apiDesc></apiParam><apiParam><apiItemName>weightBorderAlpha</apiItemName><apiType value="Number"/><apiData>0.8</apiData><apiDesc>边界透明度。
+		 </apiDesc></apiParam><apiParam><apiItemName>weightBorderThickness</apiItemName><apiType value="Number"/><apiData>2</apiData><apiDesc>边界宽度。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 WeightClusterStyle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.clustering:WeightClusterStyle:clone"><apiName>clone</apiName><shortdesc>
+		 克隆 WeightClusterStyle 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.clustering:WeightClusterStyle</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆 WeightClusterStyle 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.clustering:WeightClusterStyle:weightBackgroundAlpha:get"><apiName>weightBackgroundAlpha</apiName><shortdesc>
+		 聚合点背景透明度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 聚合点背景透明度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightClusterStyle:weightBackgroundColor:get"><apiName>weightBackgroundColor</apiName><shortdesc>
+		 聚合点背景填充颜色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 聚合点背景填充颜色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightClusterStyle:weightBorderAlpha:get"><apiName>weightBorderAlpha</apiName><shortdesc>
+		 聚合点边界透明度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 聚合点边界透明度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightClusterStyle:weightBorderColor:get"><apiName>weightBorderColor</apiName><shortdesc>
+		  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.clustering:WeightClusterStyle:weightBorderThickness:get"><apiName>weightBorderThickness</apiName><shortdesc>
+		 聚合点边界宽度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 聚合点边界宽度。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

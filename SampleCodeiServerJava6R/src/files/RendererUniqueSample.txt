@@ -1,0 +1,5 @@
+<font color="#0033FF">单值渲染（UniqueRenderer）</font>
+<font color="#006633">1. 功能描述：</font>将要素图层中某一属性值相同的所有要素渲染为同一种样式，可设置多个属性值；
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World Map。
+<font color="#006633">3. 操作指南：</font>点击“单值渲染”；
+<font color="#006633">4. 其它说明：</font>有关单值渲染（UniqueRenderer）的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

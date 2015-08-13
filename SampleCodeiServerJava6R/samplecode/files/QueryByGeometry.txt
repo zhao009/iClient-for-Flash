@@ -1,0 +1,15 @@
+<font color="#0033FF">几何查询</font>
+<font color="#006633">1. 功能描述：</font>查询距离几何对象一定范围内符合指定条件的地物。对于点几何对象，则查询以该点为圆心，距离为半径的圆内地物；对于线和面几何对象，则查询距离对像边界上一定范围内的地物。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map。查询的基准数据集为：Countries 和 Capitals。
+<font color="#006633">3. 操作指南：</font>
+    1）在右侧窗口设置中心点查询所需参数（可选步骤）：其中“高亮图层”选项是指查询结果是否使用高亮图层（HighLightLayer）显示。若该选项为 true，则表示直接在服务端高亮生成查询结果图片，客户端仅需将图片在服务端的资源 ID 赋值于 HighLightLayer 就可在客户端显示查询结果，即以图片的形式显示在客户端；若该选项为 false，则表示从服务端直接返回要素对象，经客户端处理，将其加载至要素图层（FeatureLayer）中，从而显示查询结果。 
+    2）点击“查询”按钮；
+    3）在地图上绘制查询几何对象，当几何对像绘制完成后将显示查询结果窗口。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义查询过滤参数 FilterParameter：其中包括所要查询的图层等属性。该参数不唯一，可设置多个 FilterParameter；
+    2）定义几何查询所需参数 QueryByGeometryParameters；
+    3）执行几何查询 QueryByGeometryService；
+    4）获取查询结果，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 QueryEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关几何查询的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

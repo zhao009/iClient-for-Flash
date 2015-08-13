@@ -1,0 +1,11 @@
+<font color="#0033FF">书签——本示例属于高级示例，为您展示如何实现书签组件。<img src="../assets/BookMark.png"  align="center"/></font>
+<br>
+<br>
+<br>
+<br>
+<br><font color="#006633">1. 功能描述：</font>书签组件用于存储地图的浏览状态，这些状态分别记录在每一个书签中，当点击某个书签时便能回复到该书签记忆的地图浏览状态。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map。
+<font color="#006633">3. 操作指南：</font>
+    1）输入书签名——唯一标识当前地图浏览状态，点击：<br><img src="../assets/BookMark(+).png" vspace="1" hspace="1"/>添加书签；
+    2）在书签列表框选中书签，点击：<br><img src="../assets/BookMark(-).png" vspace="1" hspace="1"/>删除标签。
+

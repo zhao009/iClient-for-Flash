@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="100%" height="100%">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			public function loadSourceTxt(appUrl:String):void
+			{
+				htmltxt.htmlText = "";
+				
+				if (appUrl != null && appUrl != "")
+				{
+					var file:String = "files/" + appUrl + ".txt";
+					var urlRequest:URLRequest = new URLRequest(file);
+					var urlLoader:URLLoader = new URLLoader(urlRequest);
+					urlLoader.addEventListener(Event.COMPLETE, readComplete);
+				}
+			}
+			
+			private function readComplete(event:Event):void
+			{
+				htmltxt.htmlText = new String(event.target.data);
+			}
+		]]>
+	</fx:Script>
+	<mx:TextArea verticalScrollPolicy="on" fontSize="15" id="htmltxt" width="100%" height="100%" editable="false" leading="1">
+	</mx:TextArea>
+</s:Group>

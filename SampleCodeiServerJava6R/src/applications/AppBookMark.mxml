@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   creationComplete="initBook_mark()"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.samples.bookMark.Bookmark;
+			
+			import mx.collections.ArrayCollection;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private var _rectifyMarkIndex:int = -1;
+			private var _removeMarkIndex:int = -1;
+			private var _myBookMark:Bookmark;
+			//初始化书签控件，将书签与map关联起来
+			
+			private function initBook_mark():void
+			{           
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+				this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyDown);
+				this._myBookMark = new Bookmark();
+				this._myBookMark.map = this.map;
+				this._myBookMark._marks;
+				if(this._myBookMark._marks && this._myBookMark._marks.length)
+					markList.dataProvider = this._myBookMark.marks;
+			}           
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+			}
+			
+			//在控件中添加书签，书签中存储添加书签时的地图浏览状态
+			//包括地图显示的分辨率、中心点坐标等
+			private function onAddMarkClick():void
+			{
+				var mark:String = mapStateMark.text;
+				
+				if(this._rectifyMarkIndex >= 0)
+				{
+					this._myBookMark.renameMarkAt(mark, this._rectifyMarkIndex);
+					this._rectifyMarkIndex = -1;
+				}
+				else
+				{
+					this._myBookMark.addMark(mark);
+				}
+				markList.dataProvider = this._myBookMark.marks;
+				this.mapStateMark.text = "";
+				this.mapStateMark.setFocus();
+			}
+			
+			//删除书签
+			private function onRemoveMarkClick():void
+			{
+				this._myBookMark.removeMarkAt(this._removeMarkIndex);
+				if(this._myBookMark.marks.length)
+				{
+					if(this._myBookMark.marks.length > this._removeMarkIndex)
+					{
+						var mark:Object = this._myBookMark.marks.getItemAt(this._removeMarkIndex);
+					}
+					else
+					{
+						mark = this._myBookMark.marks.getItemAt(0);
+					}
+					this.map.zoomToResolution(mark.resolution, mark.center);
+				}
+				markList.dataProvider = this._myBookMark.marks;
+				this.mapStateMark.text = "";
+				this.mapStateMark.setFocus();
+			}
+			
+			//单击书签，显示地图浏览状态
+			private function onMarkItemClick(event:IndexChangeEvent):void
+			{
+				var mapResolution:Number  = List(event.target).selectedItem.resolution;
+				var mapCenter:Point2D = List(event.target).selectedItem.center;
+				this.map.zoomToResolution(mapResolution, mapCenter);
+				this._removeMarkIndex = List(event.target).selectedIndex;
+			}
+			
+			//双击书签，编辑书签名称
+			private function onMarkItemDoubleClick(event:MouseEvent):void
+			{
+				this.mapStateMark.text = List(event.currentTarget).selectedItem.name;
+				this.mapStateMark.setFocus();
+				this._rectifyMarkIndex = List(event.currentTarget).selectedIndex;
+			}
+			
+			//键盘回车确定添加或修改书签内容
+			private function enterKeyDown(event:KeyboardEvent):void
+			{
+				if(event.keyCode == 13)
+					onAddMarkClick();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%" 
+			scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+	</ic:Map>
+	
+	<!--操作窗口-->
+	<mx:Panel title="书签" width="200" height="200" horizontalScrollPolicy="off"
+			  verticalScrollPolicy="off" right="10" horizontalAlign="center" top="10" fontSize="12">
+		<s:VGroup>
+			<s:HGroup>
+				<s:TextInput id="mapStateMark" width="100"/>
+				<s:Button id="addMark" label="+" click="onAddMarkClick()" width="35"/>
+				<s:Button id="removeMark" label="-" click="onRemoveMarkClick()" width="35"/>
+			</s:HGroup>
+			<s:List id="markList" width="100%" height="120"  focusEnabled="true" itemRenderer="com.supermap.web.samples.bookMark.BookMarkItemRender" doubleClickEnabled="true" doubleClick="onMarkItemDoubleClick(event)" change="onMarkItemClick(event)">
+			</s:List>
+		</s:VGroup>
+	</mx:Panel> 
+</s:Application>

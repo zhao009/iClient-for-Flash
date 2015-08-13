@@ -1,0 +1,12 @@
+<font color="#0033FF">客户端坐标投影转换</font>
+<font color="#006633">实现步骤：</font>
+    1.引入第三方库openscales-proj4as.swc，或者openscales的整个库（有API文档和源码），获取地址：http://www.openscales.org；
+    2.使用方法： 
+      1）对于openscales支持的投影，可直接使用实现客户端的投影转换，如本范例中所示；
+      2）对于用户自定义的投影，定义方法如下所示：
+      var projLcc:ProjProjection;
+      if(!ProjProjection.getProjProjection("10010"))
+      {
+          ProjProjection.defs["10010"]    = "+title=Beijing1954 +proj=lcc +towgs84=0.0000,0.0000,0.0000 +a=6378245.0000 +rf=298.3 +lat_0=0.00000000 +lon_0=104.000000000 +lat_1=24.000000000 +lat_2=40.000000000 +x_0=0.000 +y_0=0.000 +units=m +no_defs";
+      }
+      projLcc = ProjProjection.getProjProjection("10010");

@@ -1,0 +1,10 @@
+<font color="#0033FF">添加捕捉</font>
+<font color="#006633">1. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——China Map。
+<font color="#006633">2. 操作指南：</font>
+   1）捕捉默认关闭，单击捕捉按钮，捕捉开启，再次点击捕捉按钮，捕捉关闭。
+   2）点击绘制面按钮，开始绘制。
+   3）点击编辑按钮，开始编辑。
+<font color="#006633">3. 实现方法：</font>
+    1）引用捕捉操作所在的命名空间，则需添加代码： import com.supermap.web.actions.Snap；
+    2）在绘制和编辑面时实现捕捉，如绘制时，drawPoly.snap = snaptemp；
+    3）捕捉的开关通过捕捉的isActivate属性控制；

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark"  
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 title="交通换乘路线"  fontSize="15" minWidth="350" minHeight="250" 
+		 close="titleWinClose(event)"
+		 creationComplete="titlewindow1_creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import applications.TrafficTransferAnalyst;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferGuide;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferGuideItem;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferLine;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferLines;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolution;
+			import com.supermap.web.mapping.FeaturesLayer;
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import spark.events.IndexChangeEvent;
+			
+			[Bindable]
+			public var transferSolutions:ArrayCollection;
+			[Bindable]
+			public var transferGuide:TransferGuide;
+			
+			private static var _gridInstance:ResultPanel;
+			
+			public static function getInstance():ResultPanel
+			{ 
+				if(_gridInstance == null)
+					_gridInstance = new ResultPanel();
+				else
+				{
+					PopUpManager.removePopUp(_gridInstance);
+					_gridInstance = new ResultPanel();
+				}
+				return _gridInstance;
+			} 
+			
+			private function titleWinClose(event:CloseEvent):void 
+			{ 
+				PopUpManager.removePopUp(this);
+				
+				//关闭弹出对话框时，如果图层上有高亮显示的线路要素，就全部删除
+				var fl:FeaturesLayer = (this.parentApplication as TrafficTransferAnalyst).fl;
+				if(fl.numFeatures)
+					fl.clear();
+			} 
+			
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				var tempLinesName:String = "";
+				var tgic:TrafficGuideItemComponent = null;
+				
+				//解析并显示交通换乘分析后默认的导引信息
+				tgic = new TrafficGuideItemComponent();
+				tgic.currentState = "selectedShow";
+				tgic.isShowedTransferLines = true;
+				tgic.pathListData = new ArrayCollection(transferGuide.items);
+				for(var m:int = 0; m < transferGuide.items.length; m++)
+				{
+					var tgi:TransferGuideItem = transferGuide.items[m];
+					if(!tgi.isWalking && tgi.lineName)
+					{
+						if(tempLinesName)
+							tempLinesName += "——";
+						
+						tempLinesName += tgi.lineName;
+					}
+				}
+				tgic.transferLineName = tempLinesName;
+				
+				showResult.addElement(tgic);
+				
+				//根据获取的换乘方案，显示其名称，当单击时再进行方案查询
+				for(var k:int = 1; k < transferSolutions.length; k++)
+				{
+					//一个换乘方案的大标题名称，即每条乘车路线名称组合
+					tempLinesName = "";
+					
+					tgic = new TrafficGuideItemComponent();
+					var transferLinesArray:Array = [];
+					var ts:TransferSolution = transferSolutions[k] as TransferSolution;
+					var linesItems:Array = ts.linesItems;
+					// 一个换乘方案包含多个换乘分段，但是，分段可能是并列的 即transferCount=0,也可能是串行的，需要换乘，即transferCount>0
+					for(var i:int = 0; i < linesItems.length; i++)
+					{
+						var transferLines:TransferLines = linesItems[i];
+						
+						//目前，只选择换乘分段内可乘车路线集合的第一条路线
+						transferLinesArray.push(transferLines.lineItems[0]);
+						
+						if(ts.transferCount > 0 &&　tempLinesName)
+						{
+							//换乘，换乘方案的大标题包含换乘符号
+							tempLinesName += "——";
+						}
+						else if(tempLinesName)
+						{
+							//不换乘，换乘方案的大标题包含  “/”符号
+							tempLinesName += "/";
+						}
+						
+						if(transferLinesArray.length)
+						{
+							tempLinesName += (transferLinesArray[i] as TransferLine).lineName;
+						}
+					}
+					
+					tgic.transferLinesForPath = transferLinesArray;
+					tgic.currentState = "selectedHide";
+					tgic.transferLineName = tempLinesName;
+					showResult.addElement(tgic);
+				}
+			}
+			
+			//换乘策略更改后，将新策略通过事件传到主应用程序，重新执行交通换乘分析
+			private function trafficTacticChangehandler(event:IndexChangeEvent):void
+			{
+				var trafficTactic:String =  ButtonBar(event.target).selectedItem;
+				this.parentApplication.dispatchEvent(new TransferTacticEvent(TransferTacticEvent.TRANSFER_TACTIC_CHANGE,trafficTactic));
+			}
+			
+		]]>
+	</fx:Script>
+	<s:VGroup verticalAlign="middle" horizontalAlign="center" width="100%" height="100%" gap="2" top="10">
+		<s:HGroup gap="1" horizontalAlign="center" verticalCenter="0" width="100%">
+			<s:ButtonBar change="trafficTacticChangehandler(event)" fontSize="15">
+				<s:dataProvider>
+					<s:ArrayCollection source="['少时间', '少换乘', '少步行', '少距离']" />
+				</s:dataProvider>
+			</s:ButtonBar>
+		</s:HGroup>
+		<s:VGroup id="showResult" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%" maxHeight="800"/>
+	</s:VGroup>
+	
+</s:TitleWindow>

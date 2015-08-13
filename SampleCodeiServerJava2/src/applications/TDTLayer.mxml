@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600" 
+			   xmlns:supermap="http://www.supermap.com/iclient/2010" 
+			   xmlns:mapping="com.supermap.web.samples.mapping.*"
+			   >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent;
+			[Bindable]
+			private var layerType:String = "vector";
+			
+			protected function mapType_changeHandler(event:IndexChangeEvent):void
+			{
+				if(this.mapType.selectedItem == "影像")
+					this.layerType = "aerial";
+				else
+					this.layerType = "vector";
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<supermap:Map>
+		<!--地理底图-->
+		<mapping:TiledTDTLayer mapType="{this.layerType}"/>
+		<!--标签图-->
+		<mapping:TiledTDTLayer mapType="{this.layerType}" isLabel="true"/>
+	</supermap:Map>
+	
+	<!--图层选择-->
+	<s:controlBarContent>
+		<s:HGroup gap="5" verticalAlign="middle">
+			<s:Label text="地图切换：" fontSize="18"/>
+			<s:DropDownList id="mapType" width="80" selectedIndex="1" change="mapType_changeHandler(event)" fontSize="18">
+				<s:ArrayList>
+					<fx:String>影像</fx:String>
+					<fx:String>矢量</fx:String>
+				</s:ArrayList>
+			</s:DropDownList>
+		</s:HGroup>
+		
+	</s:controlBarContent>
+</s:Application>

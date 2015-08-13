@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:isj6="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%" creationComplete="initApp()">
+	<!--等级符号专题图-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.iServerJava6R.themeServices.*;
+			import com.supermap.web.mapping.TiledDynamicRESTLayer;
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			
+			import mx.rpc.*;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var isTheme:Boolean = false;//判断是否已制作专题图		
+			private var layerid:String;
+			private var themeLayer:TiledDynamicRESTLayer;	
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.China_Map;
+				//mapUrl = "http://localhost:8090/iserver/services/map-china400/rest/maps/China";
+			}
+			private function submitHandler():void
+			{
+				if(this.isTheme == true)
+					return;
+				//定义等级符号专题图
+				var positiveStyle:ServerStyle= new ServerStyle();
+				positiveStyle.markerSymbolID = 0;//点状符号在符号库中的 ID 值
+				positiveStyle.markerSize = 50;//点状符号的大小
+				positiveStyle.lineColor = new ServerColor(0, 0, 255);
+				var graduateSymStyle:ThemeGraduatedSymbolStyle = new ThemeGraduatedSymbolStyle();		
+				graduateSymStyle.positiveStyle =positiveStyle;
+				var theme:ThemeGraduatedSymbol = new ThemeGraduatedSymbol();
+				theme.expression = "SMAREA";
+				theme.baseValue = 3000000000000;//等级符号专题图的基准值
+				theme.graduatedMode = GraduatedMode.CONSTANT;//等级符号专题图分级模式为常量分级模式
+				theme.style = graduateSymStyle;
+			    
+				
+				//定义获取专题图所需参数
+				var themeParam:ThemeParameters = new ThemeParameters();
+				themeParam.themes = [theme];
+				themeParam.dataSourceNames = ["China400"];
+				themeParam.datasetNames =["China_Province_R"]; 				
+				var themeservice:ThemeService = new ThemeService(this.mapUrl);
+				themeservice.processAsync(themeParam,new AsyncResponder(this.displayTheme, excuteThemeErros, null)); 
+			}
+			//与服务端交互失败时调用 的处理函数
+			private function excuteThemeErros(event:FaultEvent, mark:Object = null):void
+			{
+			}
+			
+			//专题图获取成功时调用的处理函数
+			private function displayTheme(themeresult:ThemeResult, mark:Object = null):void
+			{
+				this.isTheme = true;
+				themeLayer = new TiledDynamicRESTLayer();
+				themeLayer.url = this.mapUrl; 
+				themeLayer.transparent = true;
+				themeLayer.enableServerCaching = false;
+				themeLayer.layersID = themeresult.resourceInfo.newResourceID;	
+				layerid = themeresult.resourceInfo.newResourceID;
+				this.map.addLayer(themeLayer);
+			}
+			
+			//删除专题图
+			private function deleteHandler():void
+			{
+				var themeRemove:RemoveThemeService = new RemoveThemeService(this.mapUrl);	 
+				var themeRemoveParam:RemoveThemeParameters = new RemoveThemeParameters();
+				themeRemoveParam.id = layerid; 
+				themeRemove.processAsync(themeRemoveParam,new AsyncResponder(this.delTheme, excuteThemeErros, null));
+			}
+			
+			//专题图删除成功时调用的处理函数
+			private function delTheme(themeResult:RemoveThemeResult,mark:Object = null):void
+			{
+				this.isTheme = false;
+				if(themeResult.succeed = "true" && themeLayer)
+				{
+					this.map.removeLayer(themeLayer);
+				}
+			}	
+		]]>
+	</fx:Script>	
+		<ic:Map id="map" viewBounds="{new Rectangle2D(7754440.5411,1816976.7392,15605544.8421,7247678.6297)}"
+				doubleClickZoomEnabled="false"
+				resolutions="{[78271.5, 39135.8, 19567.9,12000.94, 6500, 2445.98, 1222.99,  611.496, 305.748, 152.874, 76.437, 
+				38.2185, 19.1093, 9.55463, 4.77731,2.38866, 1.19433]}">
+			<ic:TiledDynamicRESTLayer url="{this.mapUrl}" />
+		</ic:Map> 
+
+	<!--操作窗口-->
+	<s:Panel id="titlewin" title="等级符号专题图" fontFamily="宋体" fontSize="12" right="5" top="10" backgroundColor="#454343" 
+			 backgroundAlpha="0.48" height="108">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">  
+			<mx:Text text="对中国图层各省面积字段制作等级符号专题图"/>
+			<s:HGroup horizontalAlign="center" width="100%">
+				<s:Button id="addButton" label="生成专题图" click="submitHandler()"/>
+				<mx:Spacer width="10"/>
+				<s:Button id="deleteButton" label="移除专题图" click="deleteHandler()" x="100"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel> 
+</s:Application>

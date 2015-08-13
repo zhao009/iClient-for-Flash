@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="955"
+			   minHeight="600"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   creationComplete="initApp()">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Graphic;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.graphicStyles.GraphicLineStyle;
+			import com.supermap.web.core.styles.graphicStyles.GraphicMarkerStyle;
+			import com.supermap.web.iServerJava6R.FilterParameter;
+			import com.supermap.web.iServerJava6R.Recordset;
+			import com.supermap.web.iServerJava6R.queryServices.QueryBySQLParameters;
+			import com.supermap.web.iServerJava6R.queryServices.QueryBySQLService;
+			import com.supermap.web.iServerJava6R.queryServices.QueryResult;
+			import com.supermap.web.samples.graphicData.Plane;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			[Embed(source = "assets/planeImg.png")]
+			private static var Icon:Class;
+			private var graphicsArr:Array = [];
+			private var airPlanesArr:Array = [];
+			private var rate:Number = 0.002;
+			private var frame:int = 30;
+			private var times:int = 1 / rate;
+			private var timer:Timer;
+			private var features:Array = [];
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+				query();
+			}
+
+			private function query():void
+			{
+				var queryBySQLParam:QueryBySQLParameters = new QueryBySQLParameters();
+				var filter:FilterParameter = new FilterParameter();
+				filter.name = "Capitals@World#1";
+				filter.attributeFilter = "smid<1000";
+				queryBySQLParam.filterParameters = [filter];
+
+				var queryBySqlService:QueryBySQLService = new QueryBySQLService(mapUrl);
+				queryBySqlService.processAsync(queryBySQLParam, new AsyncResponder(this.dispalyQueryRecords, function(object:Object, mark:Object = null):void
+				{
+					Alert.show("与服务端交互失败", "抱歉", 4, this);
+				}, null));
+			}
+
+			private var planesArr:Array = [];
+
+			private function dispalyQueryRecords(queryResult:QueryResult, mark:Object = null):void
+			{
+				graphicsArr = [];
+				if (queryResult.recordsets == null || queryResult.recordsets.length == 0)
+				{
+					Alert.show("查询结果为空", null, 4, this);
+					return;
+				}
+				var recordSets:Array = queryResult.recordsets;
+				if (recordSets.length != 0)
+				{
+					for each (var recordSet:Recordset in recordSets)
+					{
+						if (!recordSet.features || recordSet.features.length == 0)
+						{
+							Alert.show("当前图层查询结果为空", null, 4, null);
+							return;
+						}
+						var graphic:Graphic;
+						features = recordSet.features;
+						shiftData();
+
+					}
+					initPlane();
+				}
+			}
+
+			private function shiftData():void
+			{
+				planesArr = [];
+				var startGraphic:Graphic;
+				var n:int = 6;
+				for (var i:int = 0; i < features.length - (n + 1); i += n)
+				{
+					var feature:Feature = features[i];
+					var desPoint:GeoPoint;
+					for (var j:int = features.length - i - 1; j > features.length - i - (n + 1); j--)
+					{
+						var geo:GeoPoint = feature.geometry as GeoPoint;
+						startGraphic = new Graphic(new GeoPoint(geo.x, geo.y), null, feature.attributes);
+						var f:Feature = features[j];
+						desPoint = new GeoPoint((f.geometry as GeoPoint).x, (f.geometry as GeoPoint).y);
+						planesArr.push({param1: startGraphic, param2: desPoint});
+					}
+				}
+			}
+
+			private function initPlane():void
+			{
+				airPlanesArr = [];
+				var icon:Bitmap = new Icon as Bitmap;
+				var plane:Plane;
+				Plane.map = map;
+				var graphic:Graphic;
+				var geo:GeoPoint;
+				var graphics:Array = [];
+				var lines:Array = [];
+				var points:Array = [];
+				for each (var obj:Object in planesArr)
+				{
+					graphic = obj.param1 as Graphic;
+					geo = obj.param2 as GeoPoint;
+					plane = new Plane(graphic, geo);
+					graphic.style = new GraphicMarkerStyle("icon", 12, 4354775, 1.0, 0, 0, plane.angle, null, icon);
+					airPlanesArr.push(plane);
+					graphics.push(graphic);
+					//line
+					plane.line.style = new GraphicLineStyle(GraphicLineStyle.SYMBOL_SOLID, 5276389, 0.3);
+					lines.push(plane.line);
+				}
+				//points
+				var point:Graphic;
+				for each (var feature:Feature in features)
+				{
+					point = new Graphic(feature.geometry, null, feature.attributes);
+					point.style = new GraphicMarkerStyle("circle", 4, 0xff0000, 0.6);
+					points.push(point);
+				}
+
+				this.graphicsLayer.add(graphics);
+				updateBtn.enabled = true;
+
+				graphicsLayerBack.add(lines);
+				graphicsLayerBack.add(points);
+			}
+
+			private function excuteReset(event:Event):void
+			{
+				this.graphicsLayer.removeAll();
+				this.graphicsLayerBack.removeAll();
+				shiftData();
+				initPlane();
+			}
+
+			private function excuteUpdate(event:Event):void
+			{
+				updateBtn.enabled = false;
+				resetBtn.enabled = false;
+				timer = new Timer(frame, times);
+				timer.addEventListener(TimerEvent.TIMER, run);
+				timer.addEventListener(TimerEvent.TIMER_COMPLETE, runComplete);
+				timer.start();
+			}
+
+			private function run(event:Event):void
+			{
+				for (var i:int = 0; i < airPlanesArr.length; i++)
+				{
+					var plane:Plane = airPlanesArr[i];
+					((plane.graphic as Graphic).geometry as GeoPoint).x += plane.lenX * rate;
+					((plane.graphic as Graphic).geometry as GeoPoint).y += plane.k * (plane.lenX * rate);
+				}
+				this.graphicsLayer.refresh();
+			}
+
+			private function runComplete(event:Event):void
+			{
+				updateBtn.enabled = false;
+				resetBtn.enabled = true;
+				timer.removeEventListener(TimerEvent.TIMER, run);
+				timer.removeEventListener(TimerEvent.TIMER_COMPLETE, runComplete);
+				timer.stop();
+			}
+
+		]]>
+	</fx:Script>
+	<ic:Map id="map">
+		<ic:TiledDynamicRESTLayer id="worldMap"
+								  url="{mapUrl}"/>
+		<ic:GraphicsLayer id="graphicsLayerBack"/>
+		<ic:GraphicsLayer id="graphicsLayer"/>
+	</ic:Map>
+	<s:BorderContainer backgroundColor="0" backgroundAlpha="0" right="5" top="0" width="130" height="40" cornerRadius="5" borderColor="#ADABAB" dropShadowVisible="true">
+		<s:HGroup gap="0" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" right="5" left="5">
+			<s:Button id="updateBtn" label="更 新" skinClass="skins.GraphicBtnSkin" alpha="1" click="excuteUpdate(event)" width="55" height="25" fontFamily="宋体"/>
+			<s:Button id="resetBtn" label="复 位"
+					  click="excuteReset(event)" width="58" height="25" fontFamily="宋体" skinClass="skins.GraphicBtnSkin"/>
+		</s:HGroup>
+	</s:BorderContainer>
+</s:Application>

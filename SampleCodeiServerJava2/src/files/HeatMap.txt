@@ -1,0 +1,4 @@
+<font color="#0033FF">热点图</font>
+<font color="#006633">1. 功能描述：</font>表示地图中事件发生频率或事物分布密度，亮色一般代表事件发生频率较高或事物分布密度较大，暗色反之。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层（World）。
+<font color="#006633">3. 其它说明：</font>有关热点图（HeatMapLayer）的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

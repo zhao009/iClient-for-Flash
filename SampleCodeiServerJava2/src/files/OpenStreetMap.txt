@@ -1,0 +1,3 @@
+<font color="#0033FF">OpenStreetMap 地图</font>
+<font color="#006633">1. 地图数据：</font>维基世界地图——OpenStreetMap；
+<font color="#006633">2. 其它说明：</font>有关 Map/Layer 的详细介绍，请参见 Flex 帮助文档。

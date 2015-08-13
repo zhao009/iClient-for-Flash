@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--子图层控制-->
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.iServerJava6R.layerServices.GetLayersInfoResult;
+			import com.supermap.web.iServerJava6R.layerServices.GetLayersInfoService;
+			import com.supermap.web.iServerJava6R.layerServices.LayerStatus;
+			import com.supermap.web.iServerJava6R.layerServices.ServerLayer;
+			import com.supermap.web.iServerJava6R.layerServices.SetLayerResult;
+			import com.supermap.web.iServerJava6R.layerServices.SetLayerStatusParameters;
+			import com.supermap.web.iServerJava6R.layerServices.SetLayerStatusService;
+			import com.supermap.web.iServerJava6R.layerServices.UGCVectorLayer;
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			
+			import mx.controls.Alert;
+			import mx.controls.CheckBox;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var checkBoxes:Array = new Array();
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private var sourceID:String;
+			
+			private var defaultStyle:ServerStyle;
+			private var defaultFillForeColor:ServerColor;
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				this.getLayersInfo();
+			}
+			
+			//获取图层信息
+			private function getLayersInfo():void
+			{
+				var getLayersInfoService:GetLayersInfoService = new GetLayersInfoService(this.mapUrl);
+				getLayersInfoService.processAsync(new AsyncResponder(this.getLayerInfoComplete, this.excuteErros_Get, "getLayerInfo"));
+			}
+			
+			//获取图层信息
+			private function getLayerInfoComplete(result:GetLayersInfoResult, object:Object = null):void
+			{
+				if(result.layersInfo.length == 0)
+				{
+					Alert.show("查询结果为空！", null, 4, this);
+					return;
+				}
+				
+				this.subLayerBox.removeAllElements();
+				for each(var layer:ServerLayer in result.layersInfo)
+				{
+					var checkBox:CheckBox = new CheckBox();
+					checkBox.label = layer.name;
+					checkBox.selected = layer.isVisible;
+					checkBox.addEventListener(Event.CHANGE,onCheckChange);
+					this.checkBoxes.push(checkBox);
+					subLayerBox.addElement(checkBox);
+				}
+				
+				this.subLayerContainer.visible = true;
+			}
+			    
+			//checkBox 的 change 事件
+			public function onCheckChange(event:Event):void
+			{
+//			   可见性控制，第一种方式:
+//	 			 var changeIndex:int = this.checkBoxes.indexOf(event.target);
+//				(this.checkBoxes[changeIndex] as CheckBox).selected = event.target.selected;
+//				var layerList:Array = new Array();
+//				for each(var checkBox:CheckBox in this.checkBoxes)
+//				{
+//					var layerStatus:LayerStatus = new LayerStatus();
+//					layerStatus.isVisible = checkBox.selected;
+//					layerStatus.layerName = checkBox.label;
+//					layerList.push(layerStatus);
+//				}
+//				
+//				//子图层控制参数设置
+//				var setLayerStatusParameters:SetLayerStatusParameters = new SetLayerStatusParameters();
+//				setLayerStatusParameters.layerStatusList = layerList;
+//				setLayerStatusParameters.resourceID = this.sourceID;
+//				setLayerStatusParameters.holdTime = 100;
+//				var setLayerStatusService:SetLayerStatusService = new SetLayerStatusService(this.mapUrl);
+//				setLayerStatusService.processAsync(setLayerStatusParameters, 
+//					new AsyncResponder(this.processCompleted, this.excuteErros_Get, "setStatus"));
+				
+			
+//				可见性控制，第二种方式（推荐使用）:
+				
+				var subLayerList:String="[0:";	
+				for(var i:int= 0;i<this.checkBoxes.length;i++)
+				{
+					if((this.checkBoxes[i] as CheckBox).selected)
+					{						
+						subLayerList+=i.toString();
+						if(i<this.checkBoxes.length-1)
+							subLayerList+=",";
+					}
+				}				
+				subLayerList+="]";							
+				if(subLayerList.length<5)
+				{
+					subLayerList = "[]";
+				}
+				restLayer.layersID=subLayerList;
+				restLayer.refresh();	
+
+			}
+			
+			//分析成功时调用的处理函数
+			private function processCompleted(result:SetLayerResult, mark:Object):void
+			{
+				if(result.newResourceID)
+				{
+					this.restLayer.layersID = result.newResourceID;
+					this.sourceID = result.newResourceID;
+					this.restLayer.refresh();
+				}
+			} 
+			
+			//分析失败时调用的处理函数
+			private function excuteErros_Get(object:Object, mark:Object):void
+			{
+				if(mark == "setStatus")
+					Alert.show("子图层显示控制失败", null, 4, this);
+				else if(mark == "getLayerInfo")
+					Alert.show("图层信息获取失败！", null, 4, this);
+			}
+			
+			//全幅
+			private function viewEntireMap(event:MouseEvent):void
+			{
+				map.viewEntire();
+			}
+			
+			//平移
+			private function panMap():void
+			{
+				this.map.action = new Pan(this.map);
+			} 
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer id="restLayer" url="{this.mapUrl}" />
+	</ic:Map> 
+	
+	<!--获取图层信息结果窗口-->
+	<s:BorderContainer id="subLayerContainer" visible="false" backgroundColor="#DDDCDC" backgroundAlpha="0.59" cornerRadius="11" left="0">
+		<s:VGroup id="subLayerBox" gap="10" width="100%" horizontalAlign="left" x="0" top="5" bottom="5"
+				  right="5" left="5">
+		</s:VGroup>
+	</s:BorderContainer>
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		
+		
+		<s:HGroup height="100%" verticalAlign="middle" right="10">
+			<mx:VRule height="40"/>
+			<s:Button skinClass="skins.panBtnSkin"
+					  click="panMap()"/>
+			<s:Button id="entire" toolTip="全幅显示" 
+					  skinClass="skins.viewEntireSkin" click="viewEntireMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

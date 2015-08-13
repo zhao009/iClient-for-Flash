@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%" creationComplete="initApp()">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawAction;
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.components.FeatureDataGrid;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.Route;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.iServerJava6R.FilterParameter;
+			import com.supermap.web.iServerJava6R.Recordset;
+			import com.supermap.web.iServerJava6R.queryServices.QueryBySQLParameters;
+			import com.supermap.web.iServerJava6R.queryServices.QueryBySQLService;
+			import com.supermap.web.iServerJava6R.queryServices.QueryResult;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.RouteLocatorParameters;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.RouteLocatorResult;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.RouteLocatorService;
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var dataSetUrl:String;
+
+			private var routeObj:Route;
+			private var routeLP:RouteLocatorParameters=new RouteLocatorParameters();
+			private var routeLS:RouteLocatorService;
+
+			private function initApp():void
+			{
+				viewConfig=new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			}
+
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl=viewConfig.webUrl + ViewConfig.ChangChun_MAP;
+				dataSetUrl=viewConfig.webUrl + ViewConfig.SpatialAnylyat_Changchun;
+			}
+
+			protected function createRouteObjBtn_clickHandler(event:MouseEvent):void
+			{
+				//定义 SQL 查询参数,
+				var queryBySQLParam:QueryBySQLParameters=new QueryBySQLParameters();
+				var filter:FilterParameter=new FilterParameter();
+				filter.name="RouteDT_road@Changchun";
+				filter.attributeFilter="RouteID=1690";
+				queryBySQLParam.filterParameters=[filter];
+
+				/* 执行 SQL查询 */
+				var queryByRouteIDService:QueryBySQLService=new QueryBySQLService(mapUrl);
+				queryByRouteIDService.processAsync(queryBySQLParam, new AsyncResponder(this.queryCompleted, function(object:Object, mark:Object=null):void
+					{
+						Alert.show("与服务端交互失败", "抱歉", 4, this);
+					}, null));
+			}
+
+			private function queryCompleted(queryResult:QueryResult, mark:Object=null):void
+			{
+				var Routegeometry:Route=queryResult.recordsets[0].features[0].geometry;
+				var Linefeature:Feature=new Feature();
+				Linefeature.geometry=Routegeometry;
+				Linefeature.style=new PredefinedLineStyle("solid", 0x00CC00, 1, 10);
+				this.featuresLayer.addFeature(Linefeature);
+				routeObj=Routegeometry;
+				Alert.show("查询路由对象成功！", "查询成功", 4, this);
+			}
+
+			protected function routeLocatorPointBtn_clickHandler(event:MouseEvent):void
+			{
+				if (!routeObj)
+				{
+					Alert.show("请通过查询获取路由对象！", "抱歉", 4, this);
+					return;
+				}
+				routeLP.sourceRoute=routeObj;
+				routeLP.type="LINE";
+				routeLP.startMeasure=(Number)(this.startMeasureValue.text);
+				routeLP.endMeasure=(Number)(this.endMeasureValue.text);
+				routeLP.isIgnoreGap=false;
+				routeLS=new RouteLocatorService(dataSetUrl);
+
+				routeLS.processAsync(routeLP, new AsyncResponder(this.locatorCompleted, function(object:Object, mark:Object=null):void
+					{
+						Alert.show("里程定位线失败", "抱歉", 4, this);
+					}, null));
+			}
+
+			private function locatorCompleted(locatorResult:RouteLocatorResult, mark:Object=null):void
+			{
+				this.lineFeaturesLayer.clear();
+				if (locatorResult)
+				{
+					var feature:Feature=new Feature(locatorResult.resultGeometry);
+					feature.style=new PredefinedLineStyle("solid", 0xFF0000, 1, 5);
+					lineFeaturesLayer.addFeature(feature);
+					Alert.show("里程定位线成功！", "定位成功", 4, this);
+				}
+				else
+				{
+					Alert.show("里程定位线失败，请检查参数设置！", "定位失败", 4, this);
+				}
+			}
+
+			protected function removeBtn_clickHandler(event:MouseEvent):void
+			{
+				this.featuresLayer.clear();
+				this.lineFeaturesLayer.clear();
+				map.action=new Pan(map);
+				routeObj=null;
+			}			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" width="100%" height="100%">
+		<ic:TiledDynamicRESTLayer enableServerCaching="false" url="{this.mapUrl}"/>
+		<ic:FeaturesLayer id="featuresLayer"/>		
+		<ic:FeaturesLayer id="lineFeaturesLayer"/>		
+	</ic:Map> 
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup left="10" height="100%" fontFamily="宋体" fontSize="15" fontWeight="bold"
+				  verticalAlign="middle">
+			<s:Label text="起始里程点:" fontSize="15" fontWeight="bold" height="26" top="100" verticalAlign="middle" fontFamily="宋体"/>
+			<s:TextInput id="startMeasureValue" text="100" fontSize="15" fontWeight="bold" width="45"/>
+			<s:Label text="终止里程点:" fontSize="15" fontWeight="bold" height="26" top="100" verticalAlign="middle" fontFamily="宋体"/>
+			<s:TextInput id="endMeasureValue" text="800" fontSize="15" fontWeight="bold" width="45"/>
+			<s:Button id="createRouteObjBtn" height="26" label="查询路由对象"
+					  click="createRouteObjBtn_clickHandler(event)"/>
+			<s:Button id="routeLocatorPointBtn" height="26" label="定位线"
+					  click="routeLocatorPointBtn_clickHandler(event)"/>
+			<s:Button id="removeBtn" height="26" label="清除" click="removeBtn_clickHandler(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

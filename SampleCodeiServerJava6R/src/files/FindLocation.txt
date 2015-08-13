@@ -1,0 +1,7 @@
+<font color="#0033FF">选址分区分析</font>
+<font color="#006633">1. 功能描述：</font>对给定的供给点和期望返回的供给点个数进行选址分区分析。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层 Changchun 的数据集 RoadNet。
+<font color="#006633">3. 操作指南：</font>
+    1）设置期望返回的供给点个数，点击开始分析按钮；
+    2）红色点为分析出的需求点；
+<font color="#006633">4. 其它说明：</font>有关最佳路径分析的详细参数介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

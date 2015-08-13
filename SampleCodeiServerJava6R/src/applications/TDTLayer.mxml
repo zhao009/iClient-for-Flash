@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600" 
+			   xmlns:supermap="http://www.supermap.com/iclient/2010" 
+			   xmlns:mapping="com.supermap.web.samples.mapping.*"
+			   >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.mapping.TiledDynamicRESTLayer;
+			import com.supermap.web.utils.GeoUtil;
+			
+			import spark.events.IndexChangeEvent;
+			[Bindable]
+			private var layerType:String = "vec";
+			private var projId:String = "4326";
+			private var level:int = 3;
+			protected function mapType_changeHandler(event:IndexChangeEvent):void
+			{
+				if(this.mapType.selectedItem == "矢量"){
+					this.layerType = "vec";
+					level = 3;
+				}
+				else if(this.mapType.selectedItem == "影像"){
+					this.layerType = "img";
+					level = 2;
+				}
+				else if(this.mapType.selectedItem == "地形"){
+					this.layerType = "ter";
+					level = 3;
+				}
+				changeMap();
+			}
+			
+			protected function projType_changeHandler(event:IndexChangeEvent):void
+			{
+				if(this.projType.selectedItem == "经纬度"){
+					this.projId = "4326";
+				}
+				else if(this.projType.selectedItem == "墨卡托"){
+					this.projId = "900913";
+				}
+				changeMap();
+			}
+			
+			protected function changeMap():void{
+				mymap.removeAllLayers();
+				var layer1:TiledTDTLayer = new TiledTDTLayer();
+				layer1.projection = this.projId;
+				layer1.layerType = this.layerType;
+				
+				var layer2:TiledTDTLayer = new TiledTDTLayer();
+				layer2.projection = this.projId;
+				layer2.layerType = this.layerType;
+				layer2.isLabel = true;
+				
+				mymap.addLayer(layer1);
+				mymap.addLayer(layer2);
+				
+				var pos:Point2D;
+				if(this.projId == "900913"){
+					pos = GeoUtil.lonLatToMercator(108.07567641634,36.855795258955);
+				}
+				else{
+					pos = new Point2D(108.07567641634,36.855795258955);
+				}
+				
+				mymap.zoomToLevel(level,pos);
+				
+			}
+			
+			protected function textLabel_clickHandler(event:MouseEvent):void
+			{
+				var urlReq:URLRequest = new URLRequest("http://www.tianditu.cn");
+				navigateToURL(urlReq, "_blank");
+			}
+			
+			private function main():void
+			{
+				var pos:Point2D = GeoUtil.lonLatToMercator(108.07567641634,36.855795258955);
+				
+				mymap.zoomToLevel(3,pos);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<supermap:Map id="mymap" load="main()">
+		<mapping:TiledTDTLayer projection="900913" layerType="vec"/>
+		<mapping:TiledTDTLayer isLabel="true" projection="900913" layerType="vec"/>
+	</supermap:Map>
+	
+	<!--s:Panel  id="mypanel" fontFamily="宋体" width="100%" height="100%" fontSize="18"-->
+		<!--supermap:Map id="mymap" load="main()" width="500" height="400">
+			<mapping:TiledTDTLayer projection="4326" layerType="vec"/>
+			
+		</supermap:Map-->
+		
+		<s:Label paddingRight="5" paddingBottom="5" click="textLabel_clickHandler(event)" 
+				 text="Data by 天地图" right="30" bottom="0" buttonMode="true"  
+				 color="blue" textDecoration="underline" />
+		
+		<!--图层选择-->
+		<s:controlBarLayout>
+			<s:BasicLayout/>
+		</s:controlBarLayout>
+		<s:controlBarContent>
+			<s:HGroup gap="5" paddingRight="5" paddingTop="5" paddingBottom="5" right="0" fontFamily="宋体">
+				<s:Label text="地图切换：" fontSize="15" height="22" verticalAlign="middle"/>
+				<s:DropDownList id="mapType" width="80" selectedIndex="0" change="mapType_changeHandler(event)" fontSize="15">
+					<s:ArrayList>
+						<fx:String>矢量</fx:String>
+						<fx:String>影像</fx:String>
+						<fx:String>地形</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+				<s:Label text="投影切换：" fontSize="15" height="22" verticalAlign="middle"/>
+				<s:DropDownList id="projType" width="120" selectedIndex="1" change="projType_changeHandler(event)" fontSize="15">
+					<s:ArrayList>
+						<fx:String>经纬度</fx:String>
+						<fx:String>墨卡托</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+			</s:HGroup>
+		</s:controlBarContent>
+	<!--/s:Panel-->
+</s:Application>

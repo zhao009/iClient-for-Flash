@@ -1,0 +1,99 @@
+<apiPackage id="com.supermap.web.iServerJava2"><apiName>com.supermap.web.iServerJava2</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava2:ServerGeometry"><apiName>ServerGeometry</apiName><shortdesc>
+	 服务端几何对象类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端几何对象类. 
+	  该类用于描述几何对象（矢量）的特征数据（坐标点对、 几何对象的类型等）以及相关的处理方法。几何对象通常可用于空间分析、空间关系运算、缓冲区查询分析等。该类所表达的几何对象仅包含空间信息、形状信息等，并不包括属性信息。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2:ServerGeometry:ServerGeometry"><apiName>ServerGeometry</apiName><shortdesc>
+		 初始化 ServerGeometry 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ServerGeometry 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2:ServerGeometry:fromGeometry"><apiName>fromGeometry</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiOperationClassifier>com.supermap.web.iServerJava2:ServerGeometry</apiOperationClassifier></apiReturn><apiParam><apiItemName>geo</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.iServerJava2:ServerGeometry:toGeoLine"><apiName>toGeoLine</apiName><shortdesc>
+		 将服务端线对象转化为客户端的线对象 GeoLine。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.supermap.web.core.geometry:GeoLine</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 将服务端线对象转化为客户端的线对象 GeoLine。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.iServerJava2:ServerGeometry:toGeoPoint"><apiName>toGeoPoint</apiName><shortdesc>
+		 将服务端点对象转化为客户端的点对象 GeoPoint。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.supermap.web.core.geometry:GeoPoint</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 将服务端点对象转化为客户端的点对象 GeoPoint。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.iServerJava2:ServerGeometry:toGeoRegion"><apiName>toGeoRegion</apiName><shortdesc>
+		 将服务端面对象转化为客户端的面对象 GeoRegion。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.supermap.web.core.geometry:GeoRegion</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 将服务端面对象转化为客户端的面对象 GeoRegion。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.iServerJava2:ServerGeometry:toGeometry"><apiName>toGeometry</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier></apiReturn><apiParam><apiItemName>serverGeometry</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2:ServerGeometry</apiOperationClassifier></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2:ServerGeometry:feature:get"><apiName>feature</apiName><shortdesc>
+		 获取或设置服务端几何对象的类型。包括点、线、多边形、文本等常量。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置服务端几何对象的类型。包括点、线、多边形、文本等常量。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerGeometry:id:get"><apiName>id</apiName><shortdesc>
+		 获取或设置服务端几何对象唯一标识符。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置服务端几何对象唯一标识符。  
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerGeometry:parts:get"><apiName>parts</apiName><shortdesc>
+		  获取或设置描述几何对象中各个子对象所包含的节点数量的数组。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		  获取或设置描述几何对象中各个子对象所包含的节点数量的数组。.
+		  <p>1.几何对象从结构上可以分为简单几何对象和复杂几何对象。简单几何对象与复杂几何对象的区别：<br/>简单几何对象一般为单一对象，而复杂几何对象由多个简单对象组成或经过一定的空间运算之后产生，如：矩形为简单的区域对象，而中间为空的矩形为复杂的区域对象。<br/>2.通常情况，一个简单几何对象的子对象就是它本身，因此对于简单对象来说该字段为长度为 1 的整型数组，该字段的值就是这个简单对象节点的个数。如果一个几何对象是由几个简单对象组合而成的，例如，一个岛状几何对象由 3 个简单的多边形组成而成，那么这个岛状的几何对象的 Parts 字段值就是一个长度为3的整型数组，数组中每个成员的值分别代表这三个多边形所包含的节点个数。</p> 
+		  
+		  </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerGeometry:point2Ds:get"><apiName>point2Ds</apiName><shortdesc>
+		 获取或设置组成几何对象的节点的坐标对数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置组成几何对象的节点的坐标对数组.
+		 <p>1.几何对象从结构上可以分为简单几何对象和复杂几何对象。简单几何对象与复杂几何对象的区别：简单的几何对象一般为单一对象，而复杂几何对象由多个简单对象组成或经过一定的空间运算之后产生，如：矩形为简单的区域对象，而中空的矩形为复杂的区域对象。<br/> </p> 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2:ServerFeatureType"><apiName>ServerFeatureType</apiName><shortdesc>
+	 服务端几何对象枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务端几何对象枚举类.
+	 <P>该类列举了常用的地物形态，包括点、线、面、多边形、文本等。</P> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2:ServerFeatureType:LINEM"><apiName>LINEM</apiName><shortdesc>
+		 {iServer2_ServerFeatureType_attribute_lineM_D} 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>35</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 {iServer2_ServerFeatureType_attribute_lineM_D} 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerFeatureType:LINE"><apiName>LINE</apiName><shortdesc>
+		 线要素类型，对应值为3。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 线要素类型，对应值为3。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerFeatureType:POINT"><apiName>POINT</apiName><shortdesc>
+		 点要素类型，对应值为1。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 点要素类型，对应值为1。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerFeatureType:POLYGON"><apiName>POLYGON</apiName><shortdesc>
+		 面要素类型，对应值为5。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 面要素类型，对应值为5。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerFeatureType:TEXT"><apiName>TEXT</apiName><shortdesc>
+		 文本要素类型，对应值为7。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>7</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 文本要素类型，对应值为7。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2:ServerFeatureType:UNKNOWN"><apiName>UNKNOWN</apiName><shortdesc>
+	     未知类型，对应值为-1。 
+	     </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>-1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+	     未知类型，对应值为-1。 
+	     </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2:ParametersBase"><apiName>ParametersBase</apiName><shortdesc>
+	 参数基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 参数基类. 
+	  SuperMap.Web.iServer2 命名空间的参数基类，iServer2 提供的数据服务，如查询、分析、专题图等所用参数类都继承该基类。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2:ParametersBase:ParametersBase"><apiName>ParametersBase</apiName><shortdesc>
+		 使用地图名称初始化 ParamertersBase 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称初始化 ParamertersBase 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2:ParametersBase:mapName:get"><apiName>mapName</apiName><shortdesc>
+		 获取或设置提供服务的地图名称，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置提供服务的地图名称，必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

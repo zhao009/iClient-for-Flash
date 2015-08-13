@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:isj6="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--地图右键操作-->
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.actions.ZoomIn;
+			import com.supermap.web.actions.ZoomOut;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var zoomInMenu:ContextMenuItem  = new ContextMenuItem("拉框放大");  
+			private var zoomOutMenu:ContextMenuItem = new ContextMenuItem("拉框缩小"); 
+			private var panMenu:ContextMenuItem = new ContextMenuItem("平移");
+			[Bindable]private var mapUrl:String; 
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				this.mapUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				
+				zoomInMenu.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,mouseRightClickHandler); 
+				zoomOutMenu.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,mouseRightClickHandler); 
+				panMenu.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,mouseRightClickHandler); 	
+				
+				var myMenu:ContextMenu = new ContextMenu(); 
+				myMenu.hideBuiltInItems(); 
+				myMenu.customItems.push(zoomInMenu, zoomOutMenu, panMenu);   
+				this.contextMenu = myMenu;  
+			}
+			
+			//右键操作
+			private function mouseRightClickHandler(e:ContextMenuEvent):void 
+			{
+				//拉框放大
+				if (e.target == zoomInMenu) 
+				{  
+					map.action = new ZoomIn(map);  
+				}
+				//拉框缩小 
+				else if (e.target == zoomOutMenu) 
+				{ 
+					map.action = new ZoomOut(map);   
+				}
+				//平移
+				else if (e.target == panMenu) 
+				{ 
+					map.action = new Pan(this.map);   
+				}
+			}  
+		]]>
+	</fx:Script>
+	<!--加载地图-->
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.mapUrl}"/>
+	</ic:Map>
+</s:Application>

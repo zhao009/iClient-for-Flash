@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--渐变填充样式-->
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import org.osmf.events.TimeEvent;
+			import mx.core.INavigatorContent;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.GradientFillStyle;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.TextStyle;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.mapping.FeaturesLayer;
+			import flash.events.TimerEvent;
+			import flash.text.*;
+			import mx.events.SliderEvent;
+		 
+			//单色
+			private var timeer:Timer = new Timer(0.003);
+			//双色
+			private var timeerer:Timer = new Timer(0.3);
+			//放射
+			private var timeererer:Timer = new Timer(0.3);
+			
+			private var colors:Array = [0x000000, 0x000000];
+			private var alphas:Array = [0.2,1];
+			private var ratios:Array = [0,255];
+			private var style4:GradientFillStyle;
+			private var style6:GradientFillStyle;
+			private var style5:GradientFillStyle;
+			private var alp:Number = 0;
+			private var fea3:Feature;
+			private var fl:FeaturesLayer = new FeaturesLayer();
+			private var k:int = 20;
+			private var j:int = 20;
+			private var i:int = 20;
+			
+			//添加渐变填充面要素
+			protected function map_loadHandler(event:MapEvent):void
+			{
+				this.map.addLayer(fl);
+				
+				//要素1
+				var geo6:GeoRegion = new GeoRegion();				
+				geo6.addPart(new Array(new Point2D(-50,50),new Point2D(-20,50),new Point2D(-20,-50),new Point2D(-50,-50)));		
+				style6 = new GradientFillStyle(GradientType.LINEAR,[0x03530a, 0x03530a], alphas, ratios);
+				var fea6:Feature = new Feature(geo6,style6);
+				fl.addFeature(fea6);
+				fea6.addEventListener(MouseEvent.MOUSE_OVER,danse);
+				fea6.addEventListener(MouseEvent.MOUSE_OUT,removedanse);
+				
+				//要素2
+				var geo4:GeoRegion = new GeoRegion();
+				geo4.addPart(new Array(new Point2D(0,50),new Point2D(30,50),new Point2D(30,-50),new Point2D(0,-50)));
+				style4 = new GradientFillStyle(GradientType.LINEAR,[0x18ab2d, 0x9f11b9], alphas, ratios);
+				var fea4:Feature = new Feature(geo4,style4);
+				fl.addFeature(fea4);
+				fea4.addEventListener(MouseEvent.MOUSE_OVER,shuangse);
+				fea4.addEventListener(MouseEvent.MOUSE_OUT,removeshuangse);
+				
+				//要素3
+				var geo5:GeoRegion = new GeoRegion();
+				geo5.addPart(new Array(new Point2D(50,50),new Point2D(80,50),new Point2D(80,-50),new Point2D(50,-50)));				
+				style5 = new GradientFillStyle(GradientType.RADIAL,[0xd2d919, 0x1d33a2], alphas, ratios);//[0.8,0.8]
+				var fea5:Feature = new Feature(geo5,style5);
+				fl.addFeature(fea5);
+				fea5.addEventListener(MouseEvent.MOUSE_OVER,fangsese);
+				fea5.addEventListener(MouseEvent.MOUSE_OUT,removefangsese);
+			}
+			
+			private function onTimer(event:TimerEvent):void
+			{
+				k++;
+				setStyles(k);
+				if(k>250)
+				{					
+					timeer.stop();
+				}
+				
+			}
+
+			private function onTimer02(event:TimerEvent):void
+			{
+				k--;
+				setStyles(k);
+				if(k < 20)
+				{					
+					timeer.stop();
+				}
+			}
+			
+			private function onTimer03(event:TimerEvent):void
+			{
+				j++;
+				setStyless(j);
+				if(j>250)
+				{					
+					timeerer.stop();
+				}
+			}
+			
+			private function onTimer04(event:TimerEvent):void
+			{
+				j--;
+				setStyless(j);
+				if(j < 20)
+				{					
+					timeerer.stop();
+				}
+			}
+			
+			private function onTimer05(event:TimerEvent):void
+			{				
+				i ++;
+				this.setStylesss(i);
+				if(i>250)
+				{					
+					timeererer.stop();
+				}
+			}		
+			
+			private function onTimer06(event:TimerEvent):void
+			{
+				i --;
+				this.setStylesss(i);
+				if(i < 20)
+				{					
+					timeererer.stop();
+				}
+			}
+			
+			private function setStylesss(i:int):void
+			{
+				style5.alphas = [i/255,(255 - i)/255];
+			}
+			private function setStyless(i:int):void
+			{
+				style4.alphas = [i/255,(255 - i)/255];
+			}
+			private function setStyles(i:int):void
+			{
+				style6.alphas = [i/255,(255 - i)/255];
+			}
+						
+			//单色渐变 play
+			private function danse(event:MouseEvent):void
+			{
+				timeer.removeEventListener(TimerEvent.TIMER, onTimer02);
+				timeer.addEventListener(TimerEvent.TIMER, onTimer);
+				timeer.start();
+			}
+			//单色渐变 back
+			private function removedanse(event:MouseEvent):void
+			{
+				timeer.removeEventListener(TimerEvent.TIMER, onTimer);			
+				timeer.addEventListener(TimerEvent.TIMER, onTimer02);
+				timeer.start();
+			}
+			
+			//双色渐变 play
+			private function shuangse(event:MouseEvent):void
+			{
+				timeerer.removeEventListener(TimerEvent.TIMER, onTimer04);
+				timeerer.addEventListener(TimerEvent.TIMER, onTimer03);
+				timeerer.start();
+			}
+			//双色渐变 back
+			private function removeshuangse(event:MouseEvent):void
+			{
+				timeerer.removeEventListener(TimerEvent.TIMER, onTimer03);
+				timeerer.addEventListener(TimerEvent.TIMER, onTimer04);
+				timeerer.start();
+			}	
+			
+			// 放射渐变 Play
+			private function fangsese(event:MouseEvent):void
+			{
+				timeererer.removeEventListener(TimerEvent.TIMER, onTimer06);
+				timeererer.addEventListener(TimerEvent.TIMER, onTimer05);
+				timeererer.start();
+			}
+			// 放射渐变 back
+			private function removefangsese(event:MouseEvent):void
+			{
+				timeererer.removeEventListener(TimerEvent.TIMER, onTimer05);
+				timeererer.addEventListener(TimerEvent.TIMER, onTimer06);
+				timeererer.start();
+			}			
+			
+
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<s:Panel width="100%" height="100%" title="鼠标移动至面要素，开始渐变动画" fontFamily="宋体" fontSize="18" fontWeight="bold">	
+		<ic:Map id="map" height="100%" width="100%" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<is:TiledDynamicIServerLayer  url="{viewConfig.webUrl}"
+										  mapName="World"
+										  mapServiceAddress="{viewConfig.gisUrl}"
+										  mapServicePort="8600"/>
+		</ic:Map>
+	</s:Panel>
+</s:Application>

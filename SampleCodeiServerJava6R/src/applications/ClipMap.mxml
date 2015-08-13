@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--地图裁剪-->
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center"
+						  paddingBottom="20"
+						  paddingLeft="20"
+						  paddingRight="20"
+						  paddingTop="20"/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[		
+			import com.supermap.web.actions.DrawRectangle;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.events.PanEvent;
+			import com.supermap.web.events.ViewBoundsEvent;
+			import com.supermap.web.mapping.ElementsLayer;
+			import com.supermap.web.samples.clipUtil.PreviewWindow;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.Image;
+			import mx.core.IToolTip;
+			import mx.core.UIComponent;
+			import mx.graphics.ImageSnapshot;
+			import mx.graphics.codec.IImageEncoder;
+			import mx.graphics.codec.JPEGEncoder;
+			import mx.graphics.codec.PNGEncoder;
+			import mx.managers.PopUpManager;
+			import mx.managers.ToolTipManager;
+			import mx.printing.FlexPrintJob;
+			import mx.printing.FlexPrintJobScaleType;
+			
+			import spark.components.Group;
+			import spark.components.TitleWindow;
+			import spark.components.VGroup;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var _curClipFeature:Feature;
+			private var _toolTip:IToolTip;
+			private var _toolTipText:String;
+			private var _operationPanel:HGroup;
+			private var _titleWindow:TitleWindow;
+			private var _nameIndexForSave:int = 1;
+			
+			[Embed(source="/../assets/clipMap.png")]
+			private var _clipCursor:Class;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+			}
+			
+			//绘制截屏范围（矩形）
+			private function doClip():void
+			{
+				var drawRectangle:DrawRectangle = new DrawRectangle(map);
+				drawRectangle.setCursor(_clipCursor, -7, -7);
+				drawRectangle.style = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_NULL, 0x0000ff, 0.2,new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID));
+				drawRectangle.addEventListener(DrawEvent.DRAW_END, drawCompleteHandler);
+				drawRectangle.addEventListener(DrawEvent.DRAW_START, drawStartHandler);
+				this.map.action = drawRectangle;
+			}
+			
+			//绘制截屏范围操作开始时的回调函数
+			private function drawStartHandler(event:DrawEvent):void
+			{
+				if(this._curClipFeature)
+				{
+					this.featureLayer.removeFeature(this._curClipFeature);
+					this._operationPanel.visible = false;
+				}	
+				this._curClipFeature = event.feature;
+				this.map.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			}
+			
+			//绘制截屏范围过程中 MouseEvent.MOUSE_MOVE 事件的侦听函数
+			private function mouseMoveHandler(event:MouseEvent):void
+			{
+				var clipDataWidth:Number = Math.round(this._curClipFeature.width);
+				var clipDataHeight:Number = Math.round(Math.abs(this._curClipFeature.height)); 
+				this._toolTipText = clipDataWidth + " X " + clipDataHeight;
+				if(!this._toolTip)
+					this._toolTip = ToolTipManager.createToolTip(this._toolTipText, event.stageX + 10, event.stageY - 10);
+				else
+				{
+					this._toolTip.text = this._toolTipText;
+					this._toolTip.x = event.stageX + 10;
+					this._toolTip.y = event.stageY - 10;
+				}
+			}
+			
+			//绘制截屏范围操作结束时的回调函数：创建截屏窗口，包括预览、保存、打印、取消
+			private function drawCompleteHandler(event:DrawEvent):void
+			{
+				this.map.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+				if(this._toolTip)
+				{
+					ToolTipManager.destroyToolTip(this._toolTip);
+					this._toolTip = null;
+				}
+				this._curClipFeature = event.feature;
+				featureLayer.addFeature(this._curClipFeature);
+				if(this._curClipFeature.width && this._curClipFeature.height)
+				{
+					if(!this._operationPanel)
+					{
+						this._operationPanel = new HGroup();
+						var previewButton:Button = new Button();
+						var saveButton:Button = new Button();
+						var printButton:Button = new Button();
+						var cancekButton:Button = new Button();
+						previewButton.addEventListener(MouseEvent.CLICK, previewClipDataHandker);
+						previewButton.label = "预览";
+						previewButton.width = 50; 
+						saveButton.addEventListener(MouseEvent.CLICK, saveClipDataHandler);
+						saveButton.label = "保存";
+						saveButton.width = 50;
+						printButton.addEventListener(MouseEvent.CLICK, printClipDataHandler);
+						printButton.label = "打印";
+						printButton.width = 50;
+						cancekButton.addEventListener(MouseEvent.CLICK, cancelHandler);
+						cancekButton.label = "取消";
+						cancekButton.width = 50; 
+						this._operationPanel.addElement(previewButton);
+						this._operationPanel.addElement(saveButton);
+						this._operationPanel.addElement(printButton);
+						this._operationPanel.addElement(cancekButton);
+						this._operationPanel.width = 1;
+						this._operationPanel.height = 1;
+				 
+						this.map.screenContainer.addElement(this._operationPanel);
+						this.map.addEventListener(ViewBoundsEvent.VIEW_BOUNDS_CHANGE, onViewBoundsChange);
+						this.map.addEventListener(PanEvent.PAN_UPDATE, onViewBoundsChange);
+					}	      
+					this.locatePosition();
+				}
+			}
+			    
+			private function locatePosition():void
+			{
+				var operatePanelPosition:Point = this.map.mapToScreen(this._curClipFeature.geometry.bounds.bottomLeft);
+				this._operationPanel.x = operatePanelPosition.x;
+				this._operationPanel.y = operatePanelPosition.y + 5;
+				this._operationPanel.visible = true;
+			}
+			
+			private function onViewBoundsChange(event:Event):void
+			{ 
+				if(null == _curClipFeature)
+				{
+					return;
+				}
+				this.locatePosition();
+			}
+			
+			//预览
+			private function previewClipDataHandker(event:MouseEvent):void
+			{
+				var newData:BitmapData = getClipData();
+				var bitmap:Bitmap = new Bitmap(newData);
+				var image:Image = new Image();
+				image.source = bitmap;
+				image.x = 10;
+				image.y = 10;
+				var _titleWindow:PreviewWindow = PreviewWindow.getInstance();
+				_titleWindow.width = newData.width + 20;
+				_titleWindow.height = newData.height + 60;
+				_titleWindow.x = (map.width - map.width / 2) / 2;
+				_titleWindow.y = (map.height - map.height / 2) / 2;  
+				_titleWindow.addElement(image);
+				PopUpManager.addPopUp(_titleWindow, this, false);  
+			}
+			
+			//保存
+			private function saveClipDataHandler(event:MouseEvent):void
+			{
+				this.featureLayer.removeFeature(this._curClipFeature);
+				this._operationPanel.visible = false;
+				saveBitmap(this.getClipData(), 0, getLayerName());
+				this._curClipFeature = null;
+			}
+			
+			//保存在截屏范围内的地图图片
+			private function saveBitmap(bitmapData:BitmapData, dpi:Number = 0, defaultFileName:String = "image" , defaultFileFormat:String = "png"):void
+			{
+				var imageCoder:IImageEncoder;
+				var fileExt:String = ".";
+				switch(defaultFileFormat)
+				{
+					case "png":
+					{
+						imageCoder = new PNGEncoder();
+						fileExt += "png";
+						break;
+					}
+					case "jpeg":
+					{
+						imageCoder = new JPEGEncoder();
+						fileExt += "jpeg";
+						break;
+					}
+					default:
+					{
+						imageCoder = new PNGEncoder();
+						fileExt += "png";
+						break;
+					}
+				}
+				try
+				{
+					var imageSnapshot:ImageSnapshot = ImageSnapshot.captureImage(new Bitmap(bitmapData), dpi, imageCoder);
+				}
+				catch (error:SecurityError)
+				{
+					bitmapData = null;
+					throw error;
+				}
+				catch (error:Error)
+				{
+					bitmapData = null;
+					throw error;
+				}
+				if(imageSnapshot)
+				{
+					var file:FileReference = new FileReference();
+					file.save(imageSnapshot.data, defaultFileName + fileExt);
+					file.addEventListener(Event.COMPLETE, saveComplete);
+				}		
+			}
+			                                                                                
+			//确认保存图片
+			private function saveComplete(event:Event):void
+			{
+				this._nameIndexForSave++;
+			}
+			
+			//获取保存的图层名称
+			private function getLayerName():String
+			{
+				var layerUrl:String = ((this.map.layers as ArrayCollection).getItemAt(0) as TiledDynamicRESTLayer).url;
+				if(layerUrl.lastIndexOf("/") == layerUrl.length - 1)
+					layerUrl = layerUrl.substring(0, layerUrl.length - 1);
+				var index:int = layerUrl.lastIndexOf("/");
+				var layerName:String = layerUrl.substring(index + 1) + "_" + this._nameIndexForSave;
+				return layerName;
+			}
+			
+			//打印
+			private function printClipDataHandler(event:MouseEvent):void
+			{
+				this.featureLayer.removeFeature(this._curClipFeature);
+				this._operationPanel.visible = false;
+				var newData:BitmapData = getClipData();
+				this._curClipFeature = null;
+				var bitmap:Bitmap = new Bitmap(newData);
+				var image:Image = new Image();
+				image.source = bitmap;
+				var vg:VGroup = new VGroup();
+				vg.addElement(image);
+				this.addElement(vg);
+				var printObj:FlexPrintJob = new FlexPrintJob();
+				//按位图或者矢量格式进行打印
+				printObj.printAsBitmap = true;
+				if (printObj.start())
+				{
+					try
+					{				
+						vg.width = printObj.pageWidth;
+						vg.height = printObj.pageHeight;
+						printObj.addObject(vg,FlexPrintJobScaleType.NONE);
+					}
+					catch (error:Error)
+					{
+						Alert.show(error.toString());
+					}
+					printObj.send(); 
+				}
+				this.removeElement(vg);
+			}
+			
+			//取消
+			private function cancelHandler(event:MouseEvent):void
+			{
+				this.featureLayer.removeFeature(this._curClipFeature);
+				this._operationPanel.visible = false;
+				this._curClipFeature = null;
+			}
+			
+			//将具有地图坐标的矩形 Rectangle2D 转换为具有像素坐标的矩形 Rectangle
+			private function rect2DToRect(rect2D:Rectangle2D):Rectangle
+			{
+				var bottomLeft:Point = this.map.mapToScreen(rect2D.bottomLeft);
+				var topRight:Point = this.map.mapToScreen(rect2D.topRight);
+				var rectWidth:Number = topRight.x - bottomLeft.x;
+				var rectHeight:Number = bottomLeft.y - topRight.y;
+				return new Rectangle(bottomLeft.x, topRight.y, rectWidth, rectHeight);
+				
+			}
+			
+			//获取在截屏范围内的地图，以图片的形式返回
+			private function getClipData():BitmapData
+			{
+				var clipExtend:Rectangle = this.rect2DToRect(this._curClipFeature.geometry.bounds);
+				clipExtend.left += 1;
+				clipExtend.top += 1;
+				var bitmapData:BitmapData = captureBitmapData(map, clipExtend);
+				if(bitmapData)
+				{
+					var newData:BitmapData = new BitmapData(clipExtend.width, clipExtend.height,false);
+					newData.copyPixels(bitmapData, clipExtend, new Point(0, 0));
+				}
+				return newData;
+			}
+			
+			private function captureBitmapData(component:UIComponent, clipRect:Rectangle = null):BitmapData
+			{	
+				return ImageSnapshot.captureBitmapData(component, null, null, null, clipRect);
+			}
+
+		]]>
+	</fx:Script>
+
+	<!--添加地图-->
+	<ic:Map id="map" width="100%" height="100%" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}" />
+		<ic:FeaturesLayer id="featureLayer"/>
+	</ic:Map>
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup horizontalCenter="0" top="5" bottom="5" height="100%" verticalAlign="middle">
+			<s:Button click="doClip()" height="26" label="截屏" fontFamily="宋体" fontSize="15" fontWeight="bold"/>
+		</s:HGroup>
+	</s:controlBarContent>
+	
+</s:Application>

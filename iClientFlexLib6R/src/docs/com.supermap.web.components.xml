@@ -1,0 +1,414 @@
+<apiPackage id="com.supermap.web.components"><apiName>com.supermap.web.components</apiName><apiDetail/><apiClassifier id="com.supermap.web.components:Magnifier"><apiName>Magnifier</apiName><shortdesc>
+	 放大镜控件.</shortdesc><prolog><asMetadata><DefaultProperty name="mxmlContentFactory"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>spark.components:SkinnableContainer</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 放大镜控件.
+	 <p>放大镜控件可以放大当前地图图层，也可以在当前图层上显示放大其他指定图层。<br/><img src="../../../../images/manifier.png"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.components:Magnifier:Magnifier"><apiName>Magnifier</apiName><shortdesc>
+		 初始化 Magnifier 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Magnifier 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.components:Magnifier:protected:updateDisplayList"><apiName>updateDisplayList</apiName><shortdesc>
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>unscaledWidth</apiItemName><apiType value="Number"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>unscaledHeight</apiItemName><apiType value="Number"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiValue id="com.supermap.web.components:Magnifier:disableMouseWheel:get"><apiName>disableMouseWheel</apiName><shortdesc>
+		 获取或设置鼠标滚轮是否可控制放大镜的缩放级别。false 表示可以控制。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置鼠标滚轮是否可控制放大镜的缩放级别。false 表示可以控制。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:layer:get"><apiName>layer</apiName><shortdesc>
+		 获取或设置放大镜关联的图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Layer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置放大镜关联的图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置放大镜关联的地图控件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置放大镜关联的地图控件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:zoomFactor:get"><apiName>zoomFactor</apiName><shortdesc>
+		 获取或设置放大镜的缩放因子。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置放大镜的缩放因子。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:height:set"><apiName>height</apiName><shortdesc>
+		 设置放大镜高度。单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 设置放大镜高度。单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:radius:set"><apiName>radius</apiName><shortdesc>
+		 获取或设置放大镜的半径.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置放大镜的半径.
+		 <p>若放大镜的宽和高不相等，表示放大镜为非圆，则该属性返回 -1。</p> 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:skinClass:set"><apiName>skinClass</apiName><shortdesc>
+		 设置放大镜的外观。此外观需由皮肤类来定义，有关使用皮肤如何定义控件外观，请参见专题文档“地图控件”。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="Class"/></apiValueDef><apiDesc>
+		 设置放大镜的外观。此外观需由皮肤类来定义，有关使用皮肤如何定义控件外观，请参见专题文档“地图控件”。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:stageX:set"><apiName>stageX</apiName><shortdesc>
+		 获取或设置放大镜在屏幕上横轴的位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置放大镜在屏幕上横轴的位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:stageY:set"><apiName>stageY</apiName><shortdesc>
+		 获取或设置放大镜在屏幕上纵轴的位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置放大镜在屏幕上纵轴的位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:Magnifier:width:set"><apiName>width</apiName><shortdesc>
+		 设置放大镜宽度。单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 设置放大镜宽度。单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:TimeSlider"><apiName>TimeSlider</apiName><shortdesc>
+	 时间轴控件.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>spark.components.supportClasses:SkinnableComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 时间轴控件.
+	 <p>该控件能够动画播放要素在不同时间的不同显示状态。如洪水淹没模型，就可使用该控件来动态显示在未来不同时间段洪水的淹没状态。其中被播放的要素数据封装于 TimeData 类。TimeSlider 的默认外观如下：<br/><img src="../../../../images/timeSlider.png"/></p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.components.xml#TimeData"><linktext>TimeData</linktext></link></related-links><adobeApiEvent id="com.supermap.web.components:TimeSlider_com.supermap.web.events.TimeSliderEvent_timeChange"><apiName>timeChange</apiName><shortdesc>
+	 当时间轴的播放时间发生改变时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.events.TimeSliderEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当时间轴的播放时间发生改变时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.components:TimeSlider:TimeSlider"><apiName>TimeSlider</apiName><shortdesc>
+		 初始化 TimeSlider 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TimeSlider 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.components:TimeSlider:createTimeStopsByCount"><apiName>createTimeStopsByCount</apiName><shortdesc>
+		 根据播放数据及指定的动画个数创建动画侦。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Array"/></apiReturn><apiParam><apiItemName>startDate</apiItemName><apiType value="Date"/><apiDesc>附有时间信息的要素数据。
+		 </apiDesc></apiParam><apiParam><apiItemName>endDate</apiItemName><apiType value="Date"/><apiDesc>动画个数。
+		 
+		 </apiDesc></apiParam><apiParam><apiItemName>count</apiItemName><apiType value="int"/><apiData>10</apiData></apiParam></apiOperationDef><apiDesc>
+		 根据播放数据及指定的动画个数创建动画侦。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.components:TimeSlider:next"><apiName>next</apiName><shortdesc>
+		 后一帧。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 后一帧。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.components:TimeSlider:pause"><apiName>pause</apiName><shortdesc>
+		 暂停。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 暂停。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.components:TimeSlider:play"><apiName>play</apiName><shortdesc>
+		 播放。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 播放。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.components:TimeSlider:previous"><apiName>previous</apiName><shortdesc>
+		 前一帧。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 前一帧。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.components:TimeSlider:isAccumulatedDisplay:get"><apiName>isAccumulatedDisplay</apiName><shortdesc>
+		 获取或设置是否叠加显示播放内容（即要素）。默认为 false 表示不叠加显示。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否叠加显示播放内容（即要素）。默认为 false 表示不叠加显示。.
+		 <p>叠加显示是指上一帧播放的要素与下一帧要素叠加显示；不叠加显示表示仅显示当前帧播放的要素。当该属性设为 true 时，表示不叠加显示。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:nextButton:get"><apiName>nextButton</apiName><shortdesc>
+		 获取或设置时间轴的下一帧播放按钮。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="spark.components.supportClasses:ButtonBase"/></apiValueDef><apiDesc>
+		 获取或设置时间轴的下一帧播放按钮。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:playPauseButton:get"><apiName>playPauseButton</apiName><shortdesc>
+		 获取或设置时间轴的停止播放按钮。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="spark.components.supportClasses:ToggleButtonBase"/></apiValueDef><apiDesc>
+		 获取或设置时间轴的停止播放按钮。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:previousButton:get"><apiName>previousButton</apiName><shortdesc>
+		 获取或设置时间轴的上一帧播放按钮。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="spark.components.supportClasses:ButtonBase"/></apiValueDef><apiDesc>
+		 获取或设置时间轴的上一帧播放按钮。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:slider:get"><apiName>slider</apiName><shortdesc>
+		 获取或设置时间轴的滑动条。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.controls.sliderClasses:Slider"/></apiValueDef><apiDesc>
+		 获取或设置时间轴的滑动条。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:timeData:get"><apiName>timeData</apiName><shortdesc>
+		 获取或设置用于播放的附有时间信息的要素数据——TimeData 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.components:TimeData</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置用于播放的附有时间信息的要素数据——TimeData 对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:timeDelay:get"><apiName>timeDelay</apiName><shortdesc>
+		 获取或设置上一帧与下一帧播放的时间间隔，默认为 1000 毫秒。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置上一帧与下一帧播放的时间间隔，默认为 1000 毫秒。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:timeStops:get"><apiName>timeStops</apiName><shortdesc>
+		 TimeSlider 播放过程中，每一帧对应的要素时间信息—— Date 类型。每个被播放的要素均具有一个时间信息，用于控制播放的先与后。详情请参见 TimeData。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 TimeSlider 播放过程中，每一帧对应的要素时间信息—— Date 类型。每个被播放的要素均具有一个时间信息，用于控制播放的先与后。详情请参见 TimeData。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeSlider:featuresLayer:set"><apiName>featuresLayer</apiName><shortdesc>
+		 设置与时间轴关联的要素图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="write"/><apiValueClassifier>com.supermap.web.mapping:FeaturesLayer</apiValueClassifier></apiValueDef><apiDesc>
+		 设置与时间轴关联的要素图层。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:Compass"><apiName>Compass</apiName><shortdesc>
+	 罗盘控件.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>spark.components.supportClasses:SkinnableComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 罗盘控件.
+	 <p>罗盘控件可以向东南西北四个方向任意平移地图，并可全幅显示地图。<br/><img src="../../../../images/compass.png"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.components:Compass:Compass"><apiName>Compass</apiName><shortdesc>
+		 初始化 Compass 新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Compass 新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.components:Compass:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置与罗盘控件绑定的地图。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与罗盘控件绑定的地图。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:OverviewMap"><apiName>OverviewMap</apiName><shortdesc>
+	 鹰眼控件.</shortdesc><prolog><asMetadata><DefaultProperty name="layers"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.mapping:Map</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 鹰眼控件. 
+	 <p>鹰眼控件与地图控件联动，以全局的方式显示了当前地图浏览位置。鹰眼控件继承了 Map 类，通过 layer 属性可设置鹰眼地图。<br/><img src="../../../../images/overView.png"/></p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.components:OverviewMap:OverviewMap"><apiName>OverviewMap</apiName><shortdesc>
+		 初始化 OverviewMap 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 OverviewMap 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.components:OverviewMap:protected:commitProperties"><apiName>commitProperties</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.components:OverviewMap:borderAlpha:get"><apiName>borderAlpha</apiName><shortdesc>
+		 设置鹰眼的边框的透明度
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 设置鹰眼的边框的透明度
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:borderColor:get"><apiName>borderColor</apiName><shortdesc>
+		 获取或设置鹰眼窗口边界颜色。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 获取或设置鹰眼窗口边界颜色。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:borderWidth:get"><apiName>borderWidth</apiName><shortdesc>
+		 设置鹰眼的边框宽度
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 设置鹰眼的边框宽度
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:iconSource:get"><apiName>iconSource</apiName><shortdesc>
+		 获取或设置鹰眼的控制按钮，当属性 isOverviewVisible 为 true 时，该属性值有效。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取或设置鹰眼的控制按钮，当属性 isOverviewVisible 为 true 时，该属性值有效。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.components.xml#OverviewMap/isOverviewVisible"><linktext>isOverviewVisible</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.components:OverviewMap:indexBoxAlpha:get"><apiName>indexBoxAlpha</apiName><shortdesc>
+		 索引框透明度，默认为 0.2。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 索引框透明度，默认为 0.2。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:indexBoxBorderColor:get"><apiName>indexBoxBorderColor</apiName><shortdesc>
+		 获取或设置鹰眼索引框的边界颜色.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="uint"/></apiValueDef><apiDesc>
+		 获取或设置鹰眼索引框的边界颜色.
+		 <p>索引框是指在鹰眼中显示当前地图浏览位置的矩形框。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:indexBoxSizeFactor:get"><apiName>indexBoxSizeFactor</apiName><shortdesc>
+		 鹰眼索引框大小因子。取值在 0.2~0.02 之间，默认为 0.15，该值越大，索引框越小。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 鹰眼索引框大小因子。取值在 0.2~0.02 之间，默认为 0.15，该值越大，索引框越小。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:isDisableOverviewMapZoom:get"><apiName>isDisableOverviewMapZoom</apiName><shortdesc>
+		 获取或设置鹰眼控件中的地图是否可以随关联地图无级缩放，false 表示可以缩放。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置鹰眼控件中的地图是否可以随关联地图无级缩放，false 表示可以缩放。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:isOverviewVisible:get"><apiName>isOverviewVisible</apiName><shortdesc>
+		 获取或设置是否可控制鹰眼可见。false 表示不可控制。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否可控制鹰眼可见。false 表示不可控制。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:isViewEntirePan:get"><apiName>isViewEntirePan</apiName><shortdesc>
+		 当地图全幅显示时，鹰眼中的地图是否会随地图的平移而平移。默认为 true。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 当地图全幅显示时，鹰眼中的地图是否会随地图的平移而平移。默认为 true。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:layer:get"><apiName>layer</apiName><shortdesc>
+		 获取或设置与鹰眼控件关联的图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Layer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与鹰眼控件关联的图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置与鹰眼控件关联的地图控件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与鹰眼控件关联的地图控件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:overviewMode:get"><apiName>overviewMode</apiName><shortdesc>
+		 鹰眼控件的显示模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 鹰眼控件的显示模式.
+		 <p>目前鹰眼控件包括两种显示模式：矩形模式(rectangle)和椭圆模式(ellipse)。默认为矩形模式。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:OverviewMap:zoomMode:get"><apiName>zoomMode</apiName><shortdesc>
+		 鹰眼索引框模式，分 normal 和 indexBoxSizeCanChange 两种，normal 表示索引框大小随地图缩放而改变；indexBoxSizeCanChange 表示索引框大小不会随地图缩放而改变。默认为：normal。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 鹰眼索引框模式，分 normal 和 indexBoxSizeCanChange 两种，normal 表示索引框大小随地图缩放而改变；indexBoxSizeCanChange 表示索引框大小不会随地图缩放而改变。默认为：normal。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:ScaleBar"><apiName>ScaleBar</apiName><shortdesc>
+	 比例尺控件 .</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>spark.components.supportClasses:SkinnableComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 比例尺控件 .
+	 <p>该控件实时显示当前地图比例尺，可同时展现两种单位：千米、英里。<br/>比例尺控件示例图片：<img src="../../../../images/ScaleBar.png"/></p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.components:ScaleBar:ScaleBar"><apiName>ScaleBar</apiName><shortdesc>
+		 初始化 ScaleBar 的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ScaleBar 的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.components:ScaleBar:lengthKilo:get"><apiName>lengthKilo</apiName><shortdesc>
+		 获取当前以千米为单位的比例尺长度，单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取当前以千米为单位的比例尺长度，单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:ScaleBar:lengthMile:get"><apiName>lengthMile</apiName><shortdesc>
+		 获取当前以英里为单位的比例尺长度，单位：像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取当前以英里为单位的比例尺长度，单位：像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:ScaleBar:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置与 ScaleBar 绑定的地图控件 map。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与 ScaleBar 绑定的地图控件 map。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.components.Map.xml"><linktext>Class</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.components:ScaleBar:textKilo:get"><apiName>textKilo</apiName><shortdesc>
+		 获取 lengthKilo 属性值所代表的实际距离。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取 lengthKilo 属性值所代表的实际距离。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.components.xml#ScaleBar/lengthKilo"><linktext>lengthKilo</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.components:ScaleBar:textMile:get"><apiName>textMile</apiName><shortdesc>
+		 获取 lengthMile 属性值所代表的实际距离。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取 lengthMile 属性值所代表的实际距离。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.components.xml#ScaleBar/lengthMile"><linktext>lengthMile</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:FeatureDataGrid"><apiName>FeatureDataGrid</apiName><shortdesc>
+	 矢量数据绑定列表控件.</shortdesc><prolog><asMetadata><DefaultProperty name="dataProvider"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>mx.controls:DataGrid</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 矢量数据绑定列表控件. 
+	 <p>该控件实现将地图中的矢量要素与属性表关联，实现属性数据和矢量要素的互查询：当点击列表中的属性记录时则在地图中高亮显示对应的矢量要素，当点击地图中的矢量要素时则在列表中选中对应的属性记录。<br/>该控件能够自动根据用户传入 featuresLayer 和 features，将矢量要素绘制于要素图层中。 </p>
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.components:FeatureDataGrid_com.supermap.web.events.FeatureDataGridEvent_featureDelete"><apiName>featureDelete</apiName><shortdesc>
+	 当删除 FeatureDataGrid 列表中的某条记录时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.events.FeatureDataGridEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当删除 FeatureDataGrid 列表中的某条记录时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.components:FeatureDataGrid_com.supermap.web.events.FeatureDataGridEvent_featureClick"><apiName>featureClick</apiName><shortdesc>
+	 当在地图中单击与 FeatureDataGrid 列表中的记录对应的要素时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.events.FeatureDataGridEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当在地图中单击与 FeatureDataGrid 列表中的记录对应的要素时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.components:FeatureDataGrid_com.supermap.web.events.FeatureDataGridEvent_featureSelected"><apiName>featureSelected</apiName><shortdesc>
+	 当选中 FeatureDataGrid 列表中的某条记录时触发该事件。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.events.FeatureDataGridEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当选中 FeatureDataGrid 列表中的某条记录时触发该事件。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.components:FeatureDataGrid:FeatureDataGrid"><apiName>FeatureDataGrid</apiName><shortdesc>
+		 初始化 FeatureDataGrid 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>featuresLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiData>null</apiData><apiDesc>与 FeatureDataGrid 关联的要素图层。
+		 </apiDesc></apiParam><apiParam><apiItemName>features</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>FeatureDataGrid 中所有属性记录对应的矢量要素集合。 
+		 </apiDesc></apiParam><apiParam><apiItemName>parentContainer</apiItemName><apiType value="flash.display:DisplayObject"/><apiData>null</apiData><apiDesc>FeatureDataGrid 所在的父容器。 
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FeatureDataGrid 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.components:FeatureDataGrid:clear"><apiName>clear</apiName><shortdesc>
+		 清空 FeatureDataGrid 列表，以及与其关联的要素图层 FeatureLayer 上的所有要素。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 清空 FeatureDataGrid 列表，以及与其关联的要素图层 FeatureLayer 上的所有要素。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.components:FeatureDataGrid:protected:commitProperties"><apiName>commitProperties</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.components:FeatureDataGrid:captions:get"><apiName>captions</apiName><shortdesc>
+		 属性字段别名集合。设置了该属性表示使用字段别名显示对象属性。例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”，则“面积”即为该字段的别名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 属性字段别名集合。设置了该属性表示使用字段别名显示对象属性。例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”，则“面积”即为该字段的别名。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:FeatureDataGrid:featuresLayer:get"><apiName>featuresLayer</apiName><shortdesc>
+		 获取或设置与矢量数据绑定列表控件绑定的要素图层 FeaturesLayer。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:FeaturesLayer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与矢量数据绑定列表控件绑定的要素图层 FeaturesLayer。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:FeatureDataGrid:features:get"><apiName>features</apiName><shortdesc>
+		 获取或设置 FeatureDataGrid 中所有属性记录对应的矢量要素（Feature）集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置 FeatureDataGrid 中所有属性记录对应的矢量要素（Feature）集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:FeatureDataGrid:highLightStyle:get"><apiName>highLightStyle</apiName><shortdesc>
+		 获取或设置当点击 FeatureDataGrid 中的某一属性记录条时，该记录对应的矢量要素的高亮显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置当点击 FeatureDataGrid 中的某一属性记录条时，该记录对应的矢量要素的高亮显示风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:FeatureDataGrid:isHighLight:get"><apiName>isHighLight</apiName><shortdesc>
+		 获取或设置是否屏蔽 FeatureDataGrid 列表中的属性记录与矢量要素的互查询功能。默认为 true 表示不屏蔽。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否屏蔽 FeatureDataGrid 列表中的属性记录与矢量要素的互查询功能。默认为 true 表示不屏蔽。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:FeatureDataGrid:parentContainer:get"><apiName>parentContainer</apiName><shortdesc>
+		 获取或设置 FeatureDataGrid 所在的父容器。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="flash.display:DisplayObject"/></apiValueDef><apiDesc>
+		 获取或设置 FeatureDataGrid 所在的父容器。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:TimeData"><apiName>TimeData</apiName><shortdesc>
+	 时间数据类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 时间数据类.
+	 <p>该类用于为 TimeSlider 控件提供附有时间信息的要素数据，即 TimeSlider 的播放内容。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.components.xml#TimeSlider"><linktext>TimeSlider</linktext></link></related-links><apiConstructor id="com.supermap.web.components:TimeData:TimeData"><apiName>TimeData</apiName><shortdesc>
+		 初始化 TimeData 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TimeData 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.components:TimeData:endTime:get"><apiName>endTime</apiName><shortdesc>
+		 获取或设置播放终止时间，与 features 中要素的时间属性类型一致。当该属性值不等于 features 集合任何要素的属性值时，则在时间属性值小于 endTime 的要素处停止播放。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Date"/></apiValueDef><apiDesc>
+		 获取或设置播放终止时间，与 features 中要素的时间属性类型一致。当该属性值不等于 features 集合任何要素的属性值时，则在时间属性值小于 endTime 的要素处停止播放。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeData:features:get"><apiName>features</apiName><shortdesc>
+		 获取或设置要素数据集。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.collections:ArrayCollection"/></apiValueDef><apiDesc>
+		 获取或设置要素数据集。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeData:startTime:get"><apiName>startTime</apiName><shortdesc>
+		 获取或设置播放起始时间，与 features 中要素的时间属性类型一致。当该属性值不等于 features 集合任何要素的属性值时，则从时间属性值大于 startTime 的要素开始播放。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Date"/></apiValueDef><apiDesc>
+		 获取或设置播放起始时间，与 features 中要素的时间属性类型一致。当该属性值不等于 features 集合任何要素的属性值时，则从时间属性值大于 startTime 的要素开始播放。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeData:timeField:get"><apiName>timeField</apiName><shortdesc>
+		 获取或设置用于标识要素时间信息的字段名称。默认为 timeIndex，如 Feature.attributd.timeIndex = new Date(2004, 11, 26).</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置用于标识要素时间信息的字段名称。默认为 timeIndex，如 Feature.attributd.timeIndex = new Date(2004, 11, 26).
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:TimeData:timeStops:get"><apiName>timeStops</apiName><shortdesc>
+		 TimeSlider 播放过程中，每一帧对应的要素时间信息—— Date 类型。每个被播放的要素均具有一个时间信息，用于控制播放的先与后。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 TimeSlider 播放过程中，每一帧对应的要素时间信息—— Date 类型。每个被播放的要素均具有一个时间信息，用于控制播放的先与后。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:ZoomSlider"><apiName>ZoomSlider</apiName><shortdesc>
+	 地图缩放条控件.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>spark.components.supportClasses:SkinnableComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图缩放条控件.
+	 <p>地图缩放控件可控制地图的缩放级别。其缩放级别个数与地图比例尺数组 scales 或分辨率数组 resolutions 对应。若未设置比例尺数组或分辨率数组则为无限缩放，此时 ZoomSlider 将不显示滑动条 Slider。默认的 ZoomSlider 外观如下图所示：<br/><img src="../../../../images/zoomSlider.png"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.components:ZoomSlider:ZoomSlider"><apiName>ZoomSlider</apiName><shortdesc>
+		 初始化 ZoomSlider 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ZoomSlider 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.components:ZoomSlider:refresh"><apiName>refresh</apiName><shortdesc>
+		 刷新 ZoomSlider。当地图分辨率、可视范围等发生变动时均会调用该函数。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 刷新 ZoomSlider。当地图分辨率、可视范围等发生变动时均会调用该函数。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.components:ZoomSlider:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置与 ZoomSlider 关联的地图控件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与 ZoomSlider 关联的地图控件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:ZoomSlider:sliderHeightParam:get"><apiName>sliderHeightParam</apiName><shortdesc>
+		 获取或设置滑动条中刻度线之间的距离间隔，单位：像素。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>10 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置滑动条中刻度线之间的距离间隔，单位：像素。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:ZoomSlider:slider:get"><apiName>slider</apiName><shortdesc>
+		 获取或设置 ZoomSlider 的滑动条 Slider。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="mx.controls.sliderClasses:Slider"/></apiValueDef><apiDesc>
+		 获取或设置 ZoomSlider 的滑动条 Slider。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:ZoomSlider:zoomInButton:get"><apiName>zoomInButton</apiName><shortdesc>
+		 获取或设置 ZoomSlider 的放大按钮。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="spark.components.supportClasses:ButtonBase"/></apiValueDef><apiDesc>
+		 获取或设置 ZoomSlider 的放大按钮。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:ZoomSlider:zoomOutButton:get"><apiName>zoomOutButton</apiName><shortdesc>
+		 获取或设置 ZoomSlider 的缩小按钮。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="spark.components.supportClasses:ButtonBase"/></apiValueDef><apiDesc>
+		 获取或设置 ZoomSlider 的缩小按钮。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.components:MapHistoryManager"><apiName>MapHistoryManager</apiName><shortdesc>
+	 前后视图控件.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 前后视图控件.
+	 <p>前后视图控件用于记录地图可视边界的变化过程。当地图可视边界变化一次，控件中则记录一个可视边界变化后的地图浏览状态，这些状态按时间进行排序。该控件包括向后、向前浏览历史视图两个功能，向后浏览视图是指浏览记录时间较早的地图显示状态，向前浏览是指浏览记录时间较晚的地图显示状态。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.components:MapHistoryManager:MapHistoryManager"><apiName>MapHistoryManager</apiName><shortdesc>
+		 初始化 MapHistoryManager 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 MapHistoryManager 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.components:MapHistoryManager:viewNextViewBounds"><apiName>viewNextViewBounds</apiName><shortdesc>
+		 向后浏览历史操作记录。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 向后浏览历史操作记录。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.components:MapHistoryManager:viewPreViewBounds"><apiName>viewPreViewBounds</apiName><shortdesc>
+		 向前浏览历史操作记录。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 向前浏览历史操作记录。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.components:MapHistoryManager:isFirstViewBounds:get"><apiName>isFirstViewBounds</apiName><shortdesc>
+		 获取当向后浏览视图时，当前地图可视范围是否是记录的第一个。true 表示：是；flase 表示：否。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取当向后浏览视图时，当前地图可视范围是否是记录的第一个。true 表示：是；flase 表示：否。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:MapHistoryManager:isLastViewBounds:get"><apiName>isLastViewBounds</apiName><shortdesc>
+		 获取当向前浏览视图时，当前地图可视范围是否是记录的最后一个。true 表示：是；flase 表示：否。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取当向前浏览视图时，当前地图可视范围是否是记录的最后一个。true 表示：是；flase 表示：否。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.components:MapHistoryManager:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置与前后视图控件绑定的地图控件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与前后视图控件绑定的地图控件。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.components.Map.xml"><linktext>Class</linktext></link></related-links></apiValue></apiClassifier></apiPackage>

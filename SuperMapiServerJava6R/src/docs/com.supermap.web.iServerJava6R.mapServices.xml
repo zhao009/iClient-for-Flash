@@ -1,0 +1,170 @@
+<apiPackage id="com.supermap.web.iServerJava6R.mapServices"><apiName>com.supermap.web.iServerJava6R.mapServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusService"><apiName>GetMapStatusService</apiName><shortdesc>
+	 地图信息获取服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图信息获取服务类.
+	 <p>该类负责从客户端指定的地图服务地址上获取该服务提供的地图信息。<br/>用户获取服务端返回的地图信息有两种方式：一种是通过监听 GetMapStatusEvent.PROCESS_COMPLETE 事件；一种是始用 AsyncResponder 类。其中 GetMapStatusEvent 类既存有从服务端获取的原始结果，也包括经客户端处理后的最终结果 GetMapStatusResult；始用 AsyncResponder 类获取的结果为经客户端处理后的最终结果 GetMapStatusResult。当用户只需要最终结果时，推荐使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusService_com.supermap.web.iServerJava6R.serviceEvents.GetMapStatusEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GetMapStatusEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusService:GetMapStatusService"><apiName>GetMapStatusService</apiName><shortdesc>
+		 使用地图服务地址实例化 GetMapStatusService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的地图服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图服务地址实例化 GetMapStatusService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据地图服务地址与服务端完成异步通讯，获取地图信息。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现获取地图信息。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:GetMapStatusResult, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据地图服务地址与服务端完成异步通讯，获取地图信息。.
+		 <p>当地图信息获取成功时，将触发 GetMapStatusEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取图层信息：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GetMapStatusEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的地图信息获取结果—— GetMapStatusResult 对象，其中包括指定地图中所有图层的信息、地图可视范围、坐标信息等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的地图信息获取结果—— GetMapStatusResult 对象，其中包括指定地图中所有图层的信息、地图可视范围、坐标信息等。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult"><apiName>GetMapStatusResult</apiName><shortdesc>
+	 地图信息获取结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图信息获取结果类.
+	 <p>该类用于存储从服务端获取的地图信息，包含了地图名称、地图中所有图层的信息、地图可视范围、坐标信息等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:GetMapStatusResult"><apiName>GetMapStatusResult</apiName><shortdesc>
+		 初始化 GetMapStatusResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GetMapStatusResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:angle:get"><apiName>angle</apiName><shortdesc>
+		 当前地图的旋转角度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 当前地图的旋转角度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:antialias:get"><apiName>antialias</apiName><shortdesc>
+		 是否反走样地图.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否反走样地图.
+		 <p>反走样——在光栅图形显示器上绘制非水平且非垂直的直线或多边形边界时，或多或少会呈现锯齿状或台阶状外观。这是因为直线、多边形、色彩边界等是连续的，而光栅则是由离散的点组成，在光栅显示设备上表现直线、多边形等，必须在离散位置采样。由于采样不充分重建后造成的信息失真，就叫走样(aliasing)。而用于减少或消除这种效果的技术，就称为反走样(antialiasing)。 </p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:backgroundStyle:get"><apiName>backgroundStyle</apiName><shortdesc>
+		 地图的背景风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 地图的背景风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 当前地图的全幅地理范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 当前地图的全幅地理范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:center:get"><apiName>center</apiName><shortdesc>
+		 地图显示的中心点（地图坐标）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 地图显示的中心点（地图坐标）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:clipRegion:get"><apiName>clipRegion</apiName><shortdesc>
+		 地图显示裁剪的区域。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.serverTypes:ServerGeometry</apiValueClassifier></apiValueDef><apiDesc>
+		 地图显示裁剪的区域。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:colorMode:get"><apiName>colorMode</apiName><shortdesc>
+		 地图的配色模式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 地图的配色模式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:coordUnit:get"><apiName>coordUnit</apiName><shortdesc>
+		 地图的坐标单位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 地图的坐标单位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:customEntireBounds:get"><apiName>customEntireBounds</apiName><shortdesc>
+		 自定义的地图全幅显示范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 自定义的地图全幅显示范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:customParams:get"><apiName>customParams</apiName><shortdesc>
+		 用户自定义参数。可以是任何形式组织的字符串。用户可以通过地图的该属性传入自定义的参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 用户自定义参数。可以是任何形式组织的字符串。用户可以通过地图的该属性传入自定义的参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:description:get"><apiName>description</apiName><shortdesc>
+		 当前地图的描述信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 当前地图的描述信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:distanceUnit:get"><apiName>distanceUnit</apiName><shortdesc>
+		 地图的距离量度单位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 地图的距离量度单位。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isCacheEnabled:get"><apiName>isCacheEnabled</apiName><shortdesc>
+		 是否使用缓存。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否使用缓存。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isClipRegionEnabled:get"><apiName>isClipRegionEnabled</apiName><shortdesc>
+		 地图显示裁剪的区域是否有效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 地图显示裁剪的区域是否有效。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isCustomEntireBoundsEnabled:get"><apiName>isCustomEntireBoundsEnabled</apiName><shortdesc>
+		 自定义的地图全幅显示范围是否有效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 自定义的地图全幅显示范围是否有效。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isDynamicProjection:get"><apiName>isDynamicProjection</apiName><shortdesc>
+		 是否允许地图动态投影显示。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否允许地图动态投影显示。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isMarkerAngleFixed:get"><apiName>isMarkerAngleFixed</apiName><shortdesc>
+		 点状符号的角度是否固定。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 点状符号的角度是否固定。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isOverlapDisplayed:get"><apiName>isOverlapDisplayed</apiName><shortdesc>
+		 重叠时是否显示对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 重叠时是否显示对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isPaintBackground:get"><apiName>isPaintBackground</apiName><shortdesc>
+		 是否绘制地图背景。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否绘制地图背景。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isTextAngleFixed:get"><apiName>isTextAngleFixed</apiName><shortdesc>
+		 文本角度是否固定。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 文本角度是否固定。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:isTextOrientationFixed:get"><apiName>isTextOrientationFixed</apiName><shortdesc>
+		 地图中文本朝向是否固定。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 地图中文本朝向是否固定。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:maxScale:get"><apiName>maxScale</apiName><shortdesc>
+		 地图的最大显示比例尺。该值为0时，表示没有比例尺显示限制。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 地图的最大显示比例尺。该值为0时，表示没有比例尺显示限制。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:maxVisibleTextSize:get"><apiName>maxVisibleTextSize</apiName><shortdesc>
+		 文本的最大可见尺寸，单位为像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 文本的最大可见尺寸，单位为像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:maxVisibleVertex:get"><apiName>maxVisibleVertex</apiName><shortdesc>
+		 最大几何对象可见节点数。如果几何对象的节点数超过指定的个数，则超过的那部分节点不显示。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 最大几何对象可见节点数。如果几何对象的节点数超过指定的个数，则超过的那部分节点不显示。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:minScale:get"><apiName>minScale</apiName><shortdesc>
+		 地图的最小显示比例尺。该值为0时，表示没有比例尺显示限制。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 地图的最小显示比例尺。该值为0时，表示没有比例尺显示限制。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:minVisibleTextSize:get"><apiName>minVisibleTextSize</apiName><shortdesc>
+		 文本的最小可见尺寸，单位为像素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 文本的最小可见尺寸，单位为像素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:name:get"><apiName>name</apiName><shortdesc>
+		 当前地图的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 当前地图的名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:prjCoordSys:get"><apiName>prjCoordSys</apiName><shortdesc>
+		 地图坐标系统（投影系统）。在地理信息系统中，地图投影是一个很重要的概念，是地理数据表达基础。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="com.supermap.web.iServerJava6R.supportClasses:PrjCoordSys"/></apiValueDef><apiDesc>
+		 地图坐标系统（投影系统）。在地理信息系统中，地图投影是一个很重要的概念，是地理数据表达基础。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:scale:get"><apiName>scale</apiName><shortdesc>
+		 地图当前的显示比例尺。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 地图当前的显示比例尺。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:userToken:get"><apiName>userToken</apiName><shortdesc>
+		 用户信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="com.supermap.web.iServerJava6R.supportClasses:UserInfo"/></apiValueDef><apiDesc>
+		 用户信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:viewBounds:get"><apiName>viewBounds</apiName><shortdesc>
+		 当前地图在电脑屏幕中的可视范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 当前地图在电脑屏幕中的可视范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult:viewer:get"><apiName>viewer</apiName><shortdesc>
+		 用户显示视窗，即产生的图片的大小。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="flash.geom:Rectangle"/></apiValueDef><apiDesc>
+		 用户显示视窗，即产生的图片的大小。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

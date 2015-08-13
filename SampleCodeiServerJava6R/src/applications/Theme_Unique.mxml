@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="100%" height="100%"
+			   xmlns:ic="http://www.supermap.com/iclient/2010" 
+			   xmlns:isj6="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()">
+	<!--单值专题图-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			import com.supermap.web.iServerJava6R.themeServices.*;
+			
+			import mx.rpc.*;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var isTheme:Boolean = false;//判断是否已制作专题图
+			private var _themeList:Array = new Array();			
+			private var layerid:String;
+			private var themeLayer:TiledDynamicRESTLayer;		
+			import com.supermap.web.core.Rectangle2D;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				this.map.viewBounds = new Rectangle2D(115, 38.5, 119, 41);
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.JingJin_MAP;
+			}
+		     
+			//定义单值专题图子项
+			private function setItems():Array
+			{
+				var items:Array = new Array(); 
+	
+				//子项1
+				var itemCity:ThemeUniqueItem = new ThemeUniqueItem();
+				itemCity.unique = "城市";
+				itemCity.visible = true;
+				var style:ServerStyle = new ServerStyle();
+				style.fillForeColor = new ServerColor(157, 127, 255);
+				style.lineWidth = 0.05;
+				itemCity.style = style;
+				items.push(itemCity);
+				
+				//子项2
+				var itemEarth:ThemeUniqueItem = new ThemeUniqueItem();
+				itemEarth.unique = "旱地"; 
+				itemEarth.visible = true; 
+				var styleEarth:ServerStyle = new ServerStyle();
+				styleEarth.fillForeColor = new ServerColor(250, 237, 195);
+				styleEarth.lineWidth = 0.05;
+				itemEarth.style = styleEarth; 
+				items.push(itemEarth);
+				
+				//子项3
+				var itemWater:ThemeUniqueItem = new ThemeUniqueItem();
+				itemWater.unique = "水浇地"; 
+				itemWater.visible = true; 
+				var styleWater:ServerStyle = new ServerStyle(); 
+				styleWater.fillForeColor = new ServerColor(59, 188, 230);
+				styleWater.lineWidth = 0.05;
+				itemWater.style = styleWater; 
+				items.push(itemWater);
+				
+				//子项4
+				var itemRiver:ThemeUniqueItem = new ThemeUniqueItem();
+				itemRiver.unique = "湖泊水库"; 
+				itemRiver.visible = true; 
+				var styleRiver:ServerStyle = new ServerStyle();
+				styleRiver.fillForeColor = new ServerColor(1, 128, 171);
+				styleRiver.lineWidth = 0.05;
+				itemRiver.style = styleRiver;
+				items.push(itemRiver);
+				
+				//子项5
+				var itemFarmland:ThemeUniqueItem = new ThemeUniqueItem();
+				itemFarmland.unique = "水田"; 
+				itemFarmland.visible = true; 
+				var styleFarmLand:ServerStyle = new ServerStyle();
+				styleFarmLand.fillForeColor = new ServerColor(167, 219, 232);
+				styleFarmLand.lineWidth = 0.05;
+				itemFarmland.style = styleFarmLand; 
+				items.push(itemFarmland);
+				
+				//子项6
+				var itemGrassLand:ThemeUniqueItem = new ThemeUniqueItem();
+				itemGrassLand.unique = "草地"; 
+				itemGrassLand.visible = true;   
+				var styleGrass:ServerStyle = new ServerStyle();
+				styleGrass.fillForeColor = new ServerColor(192, 214, 54);
+				styleGrass.lineWidth = 0.05;
+				itemGrassLand.style = styleGrass; 
+				items.push(itemGrassLand);
+				
+				return items;
+			}
+		 
+			private function submitHandler():void
+			{  
+				if(this.isTheme == true)
+					return;
+				//定义单值专题图
+				var theme:ThemeUnique = new ThemeUnique();  
+				theme.items = this.setItems();
+				theme.uniqueExpression = "LandType";
+				var style:ServerStyle = new ServerStyle(); 
+				style.fillOpaqueRate = 100;
+				style.fillForeColor = new ServerColor(80, 130, 255);
+				style.fillBackOpaque = true; 
+				style.lineWidth = 0.05;
+				theme.defaultStyle = style;
+				
+				//定义获取专题图时所需参数
+				var themeUniqueParam:ThemeParameters = new ThemeParameters();
+				themeUniqueParam.themes = [theme];				
+				themeUniqueParam.dataSourceNames = ["Jingjin"];
+				themeUniqueParam.datasetNames =["Landuse_R"];
+				
+				//获取专题图
+				var themeservice:ThemeService = new ThemeService(this.mapUrl);
+				themeservice.processAsync(themeUniqueParam,new AsyncResponder(this.displayTheme, excuteThemeErros, null));
+			}			
+			
+			//与服务端交互失败时调用 的处理函数
+			private function excuteThemeErros(event:FaultEvent, mark:Object = null):void
+			{
+			}
+			
+			//专题图获取成功时调用的处理函数
+			private function displayTheme(themeresult:ThemeResult, mark:Object = null):void
+			{
+				this.isTheme = true;
+				themeLayer = new TiledDynamicRESTLayer();
+				themeLayer.enableServerCaching = false;
+				themeLayer.url = this.mapUrl;
+				themeLayer.transparent = true;
+				themeLayer.layersID = themeresult.resourceInfo.newResourceID;	
+				layerid = themeresult.resourceInfo.newResourceID;
+				this.map.addLayer(themeLayer);
+			}
+			
+			//删除专题图
+			private function deleteHandler():void
+			{
+				var themeRemove:RemoveThemeService = new RemoveThemeService(this.mapUrl); 
+				var themeRemoveParam:RemoveThemeParameters = new RemoveThemeParameters();
+				themeRemoveParam.id = layerid; 
+				themeRemove.processAsync(themeRemoveParam,new AsyncResponder(this.delTheme, excuteThemeErros, null));
+			}
+			
+			//专题图删除成功时调用的处理函数
+			private function delTheme(themeResult:RemoveThemeResult,mark:Object = null):void
+			{
+				this.isTheme = false;
+				if(themeResult.succeed = "true" && themeLayer)
+				{
+					this.map.removeLayer(themeLayer);
+				}
+			} 
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<s:Group width="100%" height="100%" >	
+		<ic:Map id="map" x="0" y="0"  height="100%" width="100%">
+			<ic:TiledDynamicRESTLayer url="{this.mapUrl}" enableServerCaching="false" />
+		</ic:Map> 
+	</s:Group> 
+	
+	<!--操作窗口-->
+	<s:Panel id="titlewin" title="单值专题图" fontFamily="宋体" fontSize="12" right="5" top="10" 
+			 backgroundColor="#454343" backgroundAlpha="0.48" height="108">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">  
+			<mx:Text text="对土地利用现状图层 LandType字段制作单值专题图"/>
+			<s:HGroup horizontalAlign="center" width="100%">
+				<s:Button id="addButton" label="生成专题图" click="submitHandler()" width="80" color="0"/> 
+				<mx:Spacer width="10"/>
+				<s:Button id="deleteButton" label="移除专题图" click="deleteHandler()" width="80" color="0"/> 
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel> 
+</s:Application>

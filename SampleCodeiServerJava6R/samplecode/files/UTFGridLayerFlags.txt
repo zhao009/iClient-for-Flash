@@ -1,0 +1,2 @@
+<font color="#0033FF">UTFGrid图层国旗版</font>
+该示例提供UTFGridLayer范例，通过UTFGridLayer展示世界各个国家和地区的旗帜。

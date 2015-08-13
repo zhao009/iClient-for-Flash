@@ -1,0 +1,432 @@
+<apiPackage id="com.supermap.web.actions"><apiName>com.supermap.web.actions</apiName><apiDetail/><apiClassifier id="com.supermap.web.actions:DrawCircle"><apiName>DrawCircle</apiName><shortdesc>
+	 绘圆操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘圆操作. 
+	 <p>该类用于实现通过鼠标在地图中绘制圆的操作。用户可以使用系统提供的预定义风格 PredefinedFillStyle 填充圆的风格；同时也可以继承 FillStyle 类自定义圆的填充风格。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:DrawCircle:DrawCircle"><apiName>DrawCircle</apiName><shortdesc>
+		 初始化 DrawCircle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawCircle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawCircle:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawCircle:protected:onMouseMove"><apiName>onMouseMove</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawCircle:protected:onMouseUp"><apiName>onMouseUp</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawLine"><apiName>DrawLine</apiName><shortdesc>
+	 绘制线段操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘制线段操作.
+	 <p>该类用于实现通过鼠标在地图中绘制线段的操作。用户可以使用系统提供的预定义风格 PredefinedLineStyle 设置线要素风格；同时也可以继承 LineStyle 类自定义线要素风格。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层中。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:DrawLine:DrawLine"><apiName>DrawLine</apiName><shortdesc>
+		 初始化 DrawLine 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawLine 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawLine:protected:onMouseDoubleClick"><apiName>onMouseDoubleClick</apiName><shortdesc>
+		 
+		 MouseEvent.DOUBLE_CLICK 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.DOUBLE_CLICK 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawLine:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawLine:protected:onMouseMove"><apiName>onMouseMove</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.actions:Edit"><apiName>Edit</apiName><shortdesc>
+	 编辑操作类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 编辑操作类.
+	 <p>该类通过鼠标对 FeaturesLayer 中的矢量要素几何形状进行编辑。当地物呈编辑状态时，系统会显示选中地物的结点，通过增加、移动或删除结点来编辑地物形状。鼠标操作如下：<br/>1.鼠标左键选中地物开始编辑；<br/>2.鼠标左键单击地物边界，增加结点；<br/>3.鼠标左键双击结点,移除结点；<br/>4.鼠标左键选中结点并拖动鼠标，移动结点；<br/>5.在地物内部或外部双击鼠标或点击 ESC 键，结束编辑;<br/>6.当在不同的编辑对象之间切换时，单击其它对象，当前的编辑操作即可结束。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:Edit:Edit"><apiName>Edit</apiName><shortdesc>
+		 初始化 Edit 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与编辑操作关联的地图控件。 
+		 </apiDesc></apiParam><apiParam><apiItemName>featureLayer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:FeaturesLayer</apiOperationClassifier><apiDesc>要编辑的要素图层。 
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 Edit 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:Edit:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.actions:Edit:hoverLineStyle:get"><apiName>hoverLineStyle</apiName><shortdesc>
+		 获取或设置要素呈现编辑状态时的边界样式。默认宽度为 2px。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:PredefinedLineStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置要素呈现编辑状态时的边界样式。默认宽度为 2px。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.actions:Edit:snapStyle:get"><apiName>snapStyle</apiName><shortdesc>
+		 获取或设置添加结点时的提示标记样式。默认为大小 10px。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:PredefinedMarkerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置添加结点时的提示标记样式。默认为大小 10px。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.actions:Edit:vertexStyle:get"><apiName>vertexStyle</apiName><shortdesc>
+		 获取或设置要素呈现编辑状态时的结点样式。默认大小为 10px。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:PredefinedMarkerStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置要素呈现编辑状态时的结点样式。默认大小为 10px。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.actions:ZoomOut"><apiName>ZoomOut</apiName><shortdesc>
+	 地图拉框缩小操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions.supportClasses:ZoomAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图拉框缩小操作. 
+	 <p>通过鼠标完成拉框缩小地图的操作。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:ZoomOut:ZoomOut"><apiName>ZoomOut</apiName><shortdesc>
+		 使用地图控件初始化 ZoomOut 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与缩小操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图控件初始化 ZoomOut 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawRectangle"><apiName>DrawRectangle</apiName><shortdesc>
+	 绘制矩形操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘制矩形操作.
+	 <p>该类用于实现通过鼠标在地图中绘制矩形的操作。矩形是面要素的一个实例。因此和绘制面要素一样，用户可以使用系统提供的预定义风格 PredefinedFillStyle  填充面要素风格；同时也可以继承 FillStyle 类自定义面要素风格。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层中。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.core.styles.xml#PredefinedFillStyle"><linktext>com.supermap.web.core.styles.PredefinedFillStyle</linktext></link><link href="com.supermap.web.core.styles.xml#FillStyle"><linktext>com.supermap.web.core.styles.FillStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.actions:DrawRectangle:DrawRectangle"><apiName>DrawRectangle</apiName><shortdesc>
+		 初始化 DrawRectangle 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawRectangle 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawRectangle:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawRectangle:protected:onMouseMove"><apiName>onMouseMove</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawRectangle:protected:onMouseUp"><apiName>onMouseUp</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawFreePolygon"><apiName>DrawFreePolygon</apiName><shortdesc>
+	 绘制自由面操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘制自由面操作.
+	 <p>该类用于实现通过鼠标在地图中绘制任意形状面要素的操作。用户可以使用系统提供的预定义风格 PredefinedFillStyle 设置面要素风格；同时也可以继承 FillStyle 类自定义线要素风格。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层中。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.core.styles.xml#PredefinedFillStyle"><linktext>com.supermap.web.core.styles.PredefinedFillStyle</linktext></link><link href="com.supermap.web.core.styles.xml#FillStyle"><linktext>com.supermap.web.core.styles.FillStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.actions:DrawFreePolygon:DrawFreePolygon"><apiName>DrawFreePolygon</apiName><shortdesc>
+		 初始化 DrawFreePolygon 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawFreePolygon 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawFreePolygon:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawFreePolygon:protected:onMouseMove"><apiName>onMouseMove</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawFreePolygon:protected:onMouseUp"><apiName>onMouseUp</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.actions:ZoomIn"><apiName>ZoomIn</apiName><shortdesc>
+	 地图拉框放大操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions.supportClasses:ZoomAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图拉框放大操作.
+	 <p>通过鼠标完成拉框放大地图的操作。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:ZoomIn:ZoomIn"><apiName>ZoomIn</apiName><shortdesc>
+		 使用地图控件初始化 ZoomIn 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与放大操作绑定的地图。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图控件初始化 ZoomIn 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawPoint"><apiName>DrawPoint</apiName><shortdesc>
+	 绘制点操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘制点操作.
+	 <p>该类用于实现通过鼠标在地图中绘制点要素的操作。用户若想设置所绘制的点要素样式，既可以使用系统提供的预定义风格 PredefinedMarkerStyle 来设置 markerStyle 属性；也可以继承 MarkerStyle 类自定义点要素风格进行设置。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层中。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:DrawPoint:DrawPoint"><apiName>DrawPoint</apiName><shortdesc>
+		 初始化 DrawPoint 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawPoint 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawPoint:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawPoint:protected:onMouseUp"><apiName>onMouseUp</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawFreeLine"><apiName>DrawFreeLine</apiName><shortdesc>
+	 绘制自由线操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘制自由线操作.
+	 <p>该类用于实现通过鼠标在地图中绘制任意形状线段的操作。用户可以使用系统提供的预定义风格 PredefinedLineStyle 设置线要素风格；同时也可以继承 LineStyle 类自定义线要素风格。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层中。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.core.styles.xml#PredefinedLineStyle"><linktext>com.supermap.web.core.styles.PredefinedLineStyle</linktext></link><link href="com.supermap.web.core.styles.xml#LineStyle"><linktext>com.supermap.web.core.styles.LineStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.actions:DrawFreeLine:DrawFreeLine"><apiName>DrawFreeLine</apiName><shortdesc>
+		 初始化 DrawFreeLine 类的新实例。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawFreeLine 类的新实例。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawFreeLine:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawFreeLine:protected:onMouseMove"><apiName>onMouseMove</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawFreeLine:protected:onMouseUp"><apiName>onMouseUp</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.actions:Pan"><apiName>Pan</apiName><shortdesc>
+	 地图平移操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:MapAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图平移操作.
+	 <p>通过鼠标完成平移地图的操作。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:Pan:Pan"><apiName>Pan</apiName><shortdesc>
+		 初始化 Pan 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与平移操作绑定的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 Pan 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:Pan:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:Pan:protected:onMouseOut"><apiName>onMouseOut</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_OUT 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_OUT 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:Pan:protected:onMouseOver"><apiName>onMouseOver</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_OVER 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_OVER 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawAction"><apiName>DrawAction</apiName><shortdesc>
+	 绘图操作的的父类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:MapAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘图操作的的父类.
+	 <p>该类是 DrawPoint、DrawLine、DrawPolygon 等与绘图操作相关的基类。用户可以继承该类自定义子类，实现特定的绘图功能。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层中。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:DrawAction:DrawAction"><apiName>DrawAction</apiName><shortdesc>
+		 初始化 DrawAction 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与平移操作绑定的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawAction 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawAction:protected:endDraw"><apiName>endDraw</apiName><shortdesc>
+		 矢量要素绘制完成时调用该函数。在此函数中系统会派发 DrawEvent.DRAW_END 事件，用户若要获取绘制的要素 Feature 对象，通过 DrawAction 对象监听 DrawEvent.DRAW_END 事件即可。
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 矢量要素绘制完成时调用该函数。在此函数中系统会派发 DrawEvent.DRAW_END 事件，用户若要获取绘制的要素 Feature 对象，通过 DrawAction 对象监听 DrawEvent.DRAW_END 事件即可。
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawAction:protected:startDraw"><apiName>startDraw</apiName><shortdesc>
+		 矢量要素绘制开始时调用该函数。在此函数中会派发 DrawEvent.DRAW_START 事件。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 矢量要素绘制开始时调用该函数。在此函数中会派发 DrawEvent.DRAW_START 事件。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawAction:protected:switchActionHandle"><apiName>switchActionHandle</apiName><shortdesc>
+		 转变矢量要素绘制类型时调用该函数。 
+		 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 转变矢量要素绘制类型时调用该函数。 
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.actions:DrawAction:protected:actionStarted"><apiName>actionStarted</apiName><shortdesc>
+		 标识绘图操作是否已开始。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiData>false</apiData><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 标识绘图操作是否已开始。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.actions:DrawAction:protected:drawFeature"><apiName>drawFeature</apiName><shortdesc>
+		 最终用于显示的要素。与 tempFeature 相同，通过监听 DrawEvent.DrawEnd 事件获取。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiData>null</apiData><apiValueClassifier>com.supermap.web.core:Feature</apiValueClassifier></apiValueDef><apiDesc>
+		 最终用于显示的要素。与 tempFeature 相同，通过监听 DrawEvent.DrawEnd 事件获取。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.actions:DrawAction:protected:tempFeature"><apiName>tempFeature</apiName><shortdesc>
+		 用户绘制的要素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiData>null</apiData><apiValueClassifier>com.supermap.web.core:Feature</apiValueClassifier></apiValueDef><apiDesc>
+		 用户绘制的要素。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.actions:DrawAction:protected:tempLayer"><apiName>tempLayer</apiName><shortdesc>
+		 临时图层，用于存储用户绘制过的要素 tempFeature。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiValueClassifier>com.supermap.web.mapping:FeaturesLayer</apiValueClassifier></apiValueDef><apiDesc>
+		 临时图层，用于存储用户绘制过的要素 tempFeature。.
+		 <p>当完成绘制操作时系统内部会自动清除此图层，并将绘制的要素传递至 DrawEvent.DRAW_END 事件中。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.actions:DrawAction:style:get"><apiName>style</apiName><shortdesc>
+		 获取或设置绘制的要素样式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置绘制的要素样式。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawText"><apiName>DrawText</apiName><shortdesc>
+	 绘制文本操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘制文本操作.
+	 <p>该类用于实现通过鼠标在地图中绘制文本的操作。文本作为一个 Feature 实际上是一个 Geometry 为 GeoPoint，Style 为 TextStyle 的要素点。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层 FeatureLayer 中。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.core.styles.xml#TextStyle"><linktext>com.supermap.web.core.styles.TextStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.actions:DrawText:DrawText"><apiName>DrawText</apiName><shortdesc>
+		 初始化 DrawText 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawText 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawText:protected:onMouseClick"><apiName>onMouseClick</apiName><shortdesc>
+		 
+		 MouseEvent.CLICK 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.CLICK 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.actions:DrawText:textStyle:get"><apiName>textStyle</apiName><shortdesc>
+		 获取或设置文本要素风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.styles:TextStyle</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置文本要素风格。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.actions:MapAction"><apiName>MapAction</apiName><shortdesc>
+	 地图操作的的父类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图操作的的父类.
+	 <p>该类是 Pan、ZoomIn、ZoomOut、DrawAction等与地图进行交互操作类的基类。所有子类都是完成通过鼠标与地图进行交互的操作，如 Pan 是用来描述通过鼠标平移地图的类。<br/>用户也可以自定义子类，继承该基类，实现特定的与地图交互操作的功能。MapAction 扩展的示例代码请参见：地图交互操作-->扩展 MapAction。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:MapAction:MapAction"><apiName>MapAction</apiName><shortdesc>
+		 初始化 MapAction 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与交互操作绑定的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 MapAction 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:MapAction:protected:onMouseClick"><apiName>onMouseClick</apiName><shortdesc>
+		 MouseEvent.CLICK 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 MouseEvent.CLICK 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:MapAction:protected:onMouseDoubleClick"><apiName>onMouseDoubleClick</apiName><shortdesc>
+		 MouseEvent.DOUBLE_CLICK 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 MouseEvent.DOUBLE_CLICK 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:MapAction:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:MapAction:protected:onMouseMove"><apiName>onMouseMove</apiName><shortdesc>
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:MapAction:protected:onMouseOut"><apiName>onMouseOut</apiName><shortdesc>
+		 MouseEvent.MOUSE_OUT 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 MouseEvent.MOUSE_OUT 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:MapAction:protected:onMouseOver"><apiName>onMouseOver</apiName><shortdesc>
+		 MouseEvent.MOUSE_OVER 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 MouseEvent.MOUSE_OVER 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:MapAction:protected:onMouseUp"><apiName>onMouseUp</apiName><shortdesc>
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 MouseEvent.MOUSE_UP 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:MapAction:setCursor"><apiName>setCursor</apiName><shortdesc>
+		 定义鼠标样式的类对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>value</apiItemName><apiType value="Class"/><apiDesc>定义鼠标样式的类对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>xOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>水平方向偏移量。
+		 </apiDesc></apiParam><apiParam><apiItemName>yOffset</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>垂直方向偏移量。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 定义鼠标样式的类对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.actions:MapAction:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置与交互操作绑定的地图控件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与交互操作绑定的地图控件。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.actions:DrawPolygon"><apiName>DrawPolygon</apiName><shortdesc>
+	 绘制多边形操作.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.actions:DrawAction</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘制多边形操作.
+	 <p>该类用于实现通过鼠标在地图中绘制面要素的操作。用户可以使用系统提供的预定义风格 PredefinedFillStyle  填充面要素风格；同时也可以继承 FillStyle 类自定义面要素风格。<br/>绘制操作原理：系统内部定义了临时的要素图层 tempLayer 用于加载用户绘制的要素 tempFeature，当要素绘制完成时系统内部会自动清空此图层，并根据用户绘制的要素 tempFeature 使用 new 方法重新克隆一个新的要素对象 drawFeature（与 tempFeature 的属性完全相同），最终通过派发 DrawEvent.DrawEnd 事件将 drawFeature 存储于 DrawEvent 中。因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听 DrawEvent.DrawEnd 事件，从而获取要素并将其添加至客户端要素图层中。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.actions:DrawPolygon:DrawPolygon"><apiName>DrawPolygon</apiName><shortdesc>
+		 初始化 DrawPolygon 类的新实例。.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与绘图操作关联的地图控件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawPolygon 类的新实例。.
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.actions:DrawPolygon:protected:onMouseDoubleClick"><apiName>onMouseDoubleClick</apiName><shortdesc>
+		 
+		 MouseEvent.DOUBLE_CLICK 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.DOUBLE_CLICK 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawPolygon:protected:onMouseDown"><apiName>onMouseDown</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_DOWN 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.actions:DrawPolygon:protected:onMouseMove"><apiName>onMouseMove</apiName><shortdesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:MouseEvent"/><apiDesc>	 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 MouseEvent.MOUSE_MOVE 事件的侦听函数。 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier></apiPackage>

@@ -1,0 +1,10 @@
+<font color="#0033FF">量算</font>
+<font color="#006633">1. 功能描述：</font>包括面积和距离量算。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层（World）。
+<font color="#006633">3. 操作指南：</font>
+    1）点击“面积”或“距离”量算按钮；
+    2）绘制面/线要素，当要素绘制完成时，量算结果将显示于地图正下方。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义量算参数 MeasureParameters；
+    2）执行量算 MeasureService；
+<font color="#006633">5. 其它说明：</font>有关量算的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

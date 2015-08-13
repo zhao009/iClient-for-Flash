@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()"
+			   width="100%" height="100%" xmlns:utils="com.supermap.web.utils.*">
+	<!--分块动态 WMS 图层与分块动态 REST 图层叠加-->
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.SliderEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			[Bindable]
+			private var wmsUrl:String;
+			[Bindable]
+			private var wmslayers:ArrayCollection = new ArrayCollection();
+			
+			private var layerDic:Dictionary;
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;//REST图层地址
+				wmsUrl = viewConfig.webUrl + ViewConfig.WMS_MAP;//WMS图层地址
+				
+				this.alphaSlider.value = iServerWmsLayer.alpha;
+				
+				layerDic = new Dictionary();
+				var index:int = 0;
+				var layerCheck:CheckBox;
+				while(index < wmsLayerOption.numElements)
+				{
+					if(wmsLayerOption.getElementAt(index) is CheckBox)
+					{
+						layerCheck = wmsLayerOption.getElementAt(index) as CheckBox;
+						layerDic[layerCheck.label] = layerCheck.toolTip;
+					}
+					index++;
+				}
+				this.wmslayers.addItemAt("Countries@World", findInsertPos("Countries@World"));
+			}
+			
+			//设置 WMS 图层的子图层集合
+			private function setWMSLayerVisible(isSelected:Boolean, index:int, label:String):void
+			{
+				if(isSelected)
+				{
+					this.wmslayers.addItemAt(label, findInsertPos(label));
+				}
+				else
+				{
+					var k:int = this.wmslayers.getItemIndex(label);
+					this.wmslayers.removeItemAt(k);
+				}
+			}
+			
+			private function findInsertPos(label:String):int
+			{
+				var count:int = this.wmslayers.length;
+				var pos:int = 0;
+				while(pos < count)
+				{
+					if(layerDic[label] <= layerDic[this.wmslayers.getItemAt(pos)])
+					{
+						break;
+					}
+					pos++
+				}
+				return pos;
+			}
+			
+			//更改 WMS 图层的子图层集合
+			private function layerVisible_clickHandler(event:Event):void
+			{
+				var box:CheckBox = event.target as CheckBox;
+				this.setWMSLayerVisible(box.selected, int(box.toolTip), box.label);
+			}
+
+			//设置 WMS 图层的透明度
+			protected function slider_changeHandler():void
+			{
+				iServerWmsLayer.alpha = alphaSlider.value;
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加动态分块 REST 图层和动态分块 WMS 图层-->
+	<s:Panel title="分块动态 REST 图层与分块动态 WMS 图层叠加" width="100%" height="100%" fontSize="18" fontFamily="宋体" textAlign="center">
+		<ic:Map id="map" x="0" y="0" height="100%" width="100%">
+			<ic:TiledDynamicRESTLayer url="{restUrl}" visible="true" />
+			<ic:TiledWMSLayer  id="iServerWmsLayer" alpha="0.5" url="{wmsUrl}"
+							     layers="{this.wmslayers}"
+							     version="1.3.0">
+				<ic:bounds>
+					<ic:Rectangle2D bbox="-180,-90,180,90"/>
+				</ic:bounds>
+				<ic:CRS>
+					<utils:CoordinateReferenceSystem wkid="4326"/>
+				</ic:CRS>
+			</ic:TiledWMSLayer>
+		</ic:Map>
+
+		<!--图层透明度设置窗口-->
+		<s:BorderContainer top="10" right="10" alpha="0.8" borderVisible="true" dropShadowVisible="false" borderColor="#696969" 
+						   cornerRadius="5" backgroundAlpha="0.8" backgroundColor="#CCCCCC" borderWeight="1">
+			<s:VGroup top="5">
+				<s:VGroup horizontalAlign="center" width="100%">
+					<s:Label text="WMS图层透明度：" fontSize="15" fontFamily="宋体" fontWeight="bold" height="20" verticalAlign="middle"/>
+					<s:HSlider id="alphaSlider" minimum="0" width="150" liveDragging="true" maximum="1" stepSize="0.1" 
+							   focusEnabled="false" change="slider_changeHandler()" height="17"/>
+				</s:VGroup>
+				<mx:HRule width="198"/>
+				<s:VGroup id="wmsLayerOption" paddingLeft="10" paddingTop="5" paddingBottom="5">
+					<s:Label text="WMS 子图层:" fontSize="15" fontFamily="宋体" fontWeight="bold" top="5" width="100%" horizontalCenter="0" 
+							 height="20" verticalAlign="middle"/>
+					<s:CheckBox toolTip="0" selected="false" change="layerVisible_clickHandler(event)">
+						<fx:String>OceanLabel@World</fx:String>
+					</s:CheckBox>
+					<s:CheckBox toolTip="1" selected="true" change="layerVisible_clickHandler(event)">
+						<fx:String>Countries@World</fx:String>
+					</s:CheckBox>
+					<s:CheckBox toolTip="2" selected="false" change="layerVisible_clickHandler(event)">
+						<fx:String>Capitals@World</fx:String>
+					</s:CheckBox>
+					<s:CheckBox toolTip="3" selected="false" change="layerVisible_clickHandler(event)">
+						<fx:String>CountryLabel@World</fx:String>
+					</s:CheckBox>
+				</s:VGroup>
+			</s:VGroup>
+		</s:BorderContainer>
+	</s:Panel>
+</s:Application>

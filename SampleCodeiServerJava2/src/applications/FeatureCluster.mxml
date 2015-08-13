@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="com.supermap.web.mapping.*"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	
+	<fx:Declarations> 
+		<mx:Dissolve id="dissolveIn" duration="1500" alphaFrom="0.0" alphaTo="1.0"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.clustering.*;
+			import com.supermap.web.clustering.SparkElementStyle;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.styles.*;
+			import com.supermap.web.events.*;
+			import com.supermap.web.mapping.*;
+			
+			import flashx.textLayout.formats.BackgroundColor;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Text;
+			import mx.controls.TextArea;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.HTTPService;
+		 
+			import spark.components.HGroup;
+			import spark.components.Label;
+			import spark.components.VGroup;
+			
+			private var clusterStyle:SparkClusterStyle = new SparkClusterStyle();  
+			private var textArea:Text;
+			private var regionClusterLayer:FeaturesLayer;
+			private var regionClusterer:RegionClusterer;
+			
+			[Bindable]
+			private var restUrl:String;
+			private function main():void
+			{				
+				var httpService:HTTPService = new HTTPService();
+				httpService.url = "clusterData.xml";
+				httpService.addEventListener(ResultEvent.RESULT,getClusterData);
+				httpService.send();
+
+				//定义聚散显示风格，以 SparkClusterStyle 为例
+				clusterStyle.ringDistanceInc = 40;
+				clusterStyle.ringDistanceStart = 50;
+				clusterStyle.sparkMaxCount = 100;
+				clusterStyle.sparkSizeOnRollOver = 3;
+				clusterStyle.size = 30; 
+				
+				clusterStyle.isWeightClusterStyle = false;
+				clusterStyle.fieldValue = "SMID";
+				
+				var ary:Array = new Array();
+				var item01:WeightClusterItem = new WeightClusterItem(0,300,new WeightClusterStyle(0x8a3bd3,0.6,0xff0000,1,1));				
+				ary.push(item01);		
+				var item02:WeightClusterItem = new WeightClusterItem(300,800,new WeightClusterStyle(0xFF0000,0.8,0xffff00,1,1));				
+				ary.push(item02);
+				var item03:WeightClusterItem = new WeightClusterItem(800,1500,new WeightClusterStyle(0x75c014,0.7,0x000000,1,1));				
+				ary.push(item03);
+					
+				clusterStyle.WeightClusterItems = ary;				
+				
+				map.addEventListener(SparkClusterMouseEvent.SPARK_CLICK, sparkClickHandler);
+				map.addEventListener(SparkClusterEvent.SPARK_IN_START, sparkInStartHandler);
+				
+				textArea = new Text();
+				map.infoWindow.content = textArea;
+				map.infoWindow.closeButtonVisible = true;
+				map.infoWindow.isDisplayedOnCluster = true;
+			}			
+		
+			private function getClusterData(event:ResultEvent):void
+			{
+				var clusterDataLength:int = (event.result.NODE.SMID as ArrayCollection).length;				
+				for(var i:int = 0; i < clusterDataLength; i++)
+				{
+					var featureX:String = event.result.NODE.SMX[i].toString();
+					var featureY:String = event.result.NODE.SMY[i].toString();
+					
+					var CAPITAL:String;
+					var COUNTRY:String;
+					var SMID:String;
+				    var SMAREA:Number;
+					
+					if(event.result.NODE.SMID[i])
+						SMID = event.result.NODE.SMID[i].toString();
+					else
+						SMID = "";
+					
+					if(event.result.NODE.CAPITAL[i])
+						CAPITAL = event.result.NODE.CAPITAL[i].toString();
+					else
+						CAPITAL = "";
+					
+					if(event.result.NODE.COUNTRY[i])
+						COUNTRY = event.result.NODE.COUNTRY[i].toString();
+					else
+						COUNTRY = "";	
+					
+					var geoPointStyle:PredefinedMarkerStyle=new PredefinedMarkerStyle("circle",10,0x0099ff,1,0,0,40);					
+					var x:Number = Number(featureX);
+					var y:Number = Number(featureY);
+					var feature:Feature=new Feature(new GeoPoint(x,y), geoPointStyle);
+					feature.id = CAPITAL ;
+					var obj:Object = 
+						{
+							SMID:SMID,
+							经度:featureX,
+							纬度:featureY,
+							国家:COUNTRY,
+							首都:CAPITAL
+						}
+						feature.attributes = obj;
+					clusterLayer.addFeature(feature);					
+				}				
+			}
+			
+			//取出Feature并修改样式
+			protected function btn_clickHandler(event:MouseEvent):void
+			{
+				var sparkColors:Array = new Array(0xeeed70, 0x38e63c, 0xe60ae3, 0x1feaec);
+				for (var i:int = 0; i< clusterLayer.features.length; i++)
+				{
+					var feature:Feature = clusterLayer.features[i] as Feature;
+					var smid:Number = Number(feature.attributes.SMID);
+					var sparkElementStyle:SparkElementStyle = new SparkElementStyle();
+					trace(smid);
+					if(smid<10 || (smid>=100 && smid<130) || smid>=230)
+					{
+						sparkElementStyle.backgroundColor = sparkColors[1];
+						sparkElementStyle.borderColor = sparkColors[2];
+					}
+					else if((smid>=10 && smid<30) || (smid>=130 && smid<160))
+					{
+						sparkElementStyle.backgroundColor = sparkColors[2];
+						sparkElementStyle.borderColor = sparkColors[3];
+					}
+					else if((smid>=30 && smid<80) || (smid>=160 && smid<200))
+					{
+						sparkElementStyle.backgroundColor = sparkColors[3];
+						sparkElementStyle.borderColor = sparkColors[0];
+					}
+					else if((smid>=80 && smid<100) || (smid>=200 && smid<230))
+					{
+						sparkElementStyle.backgroundColor = sparkColors[0];
+						sparkElementStyle.borderColor = sparkColors[1];
+					}
+					feature.sparkElementStyle = sparkElementStyle;
+				}
+
+			}
+			//SparkClusterEvent.SPARK_IN_START  事件的侦听函数
+			private function sparkInStartHandler(event:SparkClusterEvent):void
+			{
+				map.infoWindow.hide();
+			
+			}
+			
+			//SparkClusterMouseEvent.SPARK_CLICK  事件的侦听函数
+			private function sparkClickHandler(event:SparkClusterMouseEvent):void
+			{
+				map.action = new Pan(map);
+				showInfowindow(event.feature, event.stageX, event.stageY);
+			}
+			
+			//显示指示点坐标的信息窗口
+			private function showInfowindow(fe:Feature, stagex:Number, stagey:Number):void
+			{
+				textArea.htmlText= "<b>SMID:</b>" + fe.attributes.SMID + "\n"
+					+"<b>经度:</b>" + fe.attributes.经度 + "\n" 
+					+ "<b>纬度:</b>" + fe.attributes.纬度 + "\n"
+					+ "<b>首都:</b>" + fe.attributes.首都 + "\n"
+					+ "<b>国家:</b>" + fe.attributes.国家 + "\n";
+					
+				map.infoWindow.label = "要素属性";
+				map.infoWindow.closeButtonVisible = false;
+				map.infoWindow.show(map.stageToMap(new Point(stagex, stagey)));
+			}
+			
+			//权重聚散
+			private function weightedClusterShow():void
+			{
+				this.map.action = new Pan(map);
+				if(regionClusterLayer)
+				{
+					regionClusterLayer.clear();	
+				}
+				var clusterer:WeightedClusterer = new WeightedClusterer();
+				clusterer.style = clusterStyle;	
+				clusterLayer.clusterer = clusterer;
+			}
+			
+			//区域聚散
+			private function regionClusterShow():void
+			{
+				clusterLayer.clusterer = null;
+				if(regionClusterLayer)
+				{
+					regionClusterLayer.clear();	
+				}
+				else
+				{
+					regionClusterLayer = new FeaturesLayer();
+					map.addLayer(regionClusterLayer,1);
+				}
+				regionClusterer = new RegionClusterer(regionClusterLayer.features);
+				regionClusterer.style = clusterStyle;								
+				regionClusterer.levels = 8;		
+				
+				
+				var drawPolygon:DrawPolygon = new DrawPolygon(map);
+				this.map.action = drawPolygon;
+				drawPolygon.addEventListener(DrawEvent.DRAW_END,addFeature);
+			}
+			
+			//聚合区域绘制完成事件 DrawEvent.DRAWEND 的侦听函数
+			private function addFeature(event:DrawEvent):void
+			{
+				regionClusterLayer.addFeature(event.feature);
+				clusterLayer.clusterer = regionClusterer;
+				
+			}
+			
+			//中心聚散
+			private function centerClusterShow():void
+			{
+				this.map.action = new Pan(map);
+				if(regionClusterLayer)
+				{
+					regionClusterLayer.clear();	
+				}
+				var clusterer:CenterClusterer = new CenterClusterer();
+				clusterer.style = clusterStyle;	
+				clusterLayer.clusterer = clusterer;
+				
+			}
+			
+			//平移地图
+			private function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(map);
+				
+			}
+			
+			//全幅
+			private function viewEntireMap(event:MouseEvent):void
+			{
+				map.viewEntire();
+			}
+
+			protected function clusterStyle_changeHandler(event:Event):void
+			{
+				if(event.target.selected == true)
+					this.clusterStyle.isWeightClusterStyle = true;
+				else
+					this.clusterStyle.isWeightClusterStyle = false;
+			}
+
+
+			protected function sparkStyle_changeHandler(event:Event):void
+			{
+				var sparkColors:Array = new Array(0x65db41, 0x8f41ee, 0x28e7cc, 0xf7f943);
+				for (var i:int = 0; i< clusterLayer.features.length; i++)
+				{
+					var feature:Feature = clusterLayer.features[i] as Feature;
+					var sparkElementStyle:SparkElementStyle = new SparkElementStyle();
+					if(event.target.selected == true)
+					{
+						var smid:Number = Number(feature.attributes.SMID);
+						if(smid<10 || (smid>=100 && smid<130) || smid>=230)
+						{
+							sparkElementStyle.backgroundColor = sparkColors[1];
+							sparkElementStyle.borderColor = sparkColors[2];
+						}
+						else if((smid>=10 && smid<30) || (smid>=130 && smid<160))
+						{
+							sparkElementStyle.backgroundColor = sparkColors[2];
+							sparkElementStyle.borderColor = sparkColors[3];
+						}
+						else if((smid>=30 && smid<80) || (smid>=160 && smid<200))
+						{
+							sparkElementStyle.backgroundColor = sparkColors[3];
+							sparkElementStyle.borderColor = sparkColors[0];
+						}
+						else if((smid>=80 && smid<100) || (smid>=200 && smid<230))
+						{
+							sparkElementStyle.backgroundColor = sparkColors[0];
+							sparkElementStyle.borderColor = sparkColors[1];
+						}
+					}
+					feature.sparkElementStyle = sparkElementStyle;
+				}
+			}
+
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" load="main()" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}" 
+									 mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600" 
+									 mapName="World"/>
+		<ic:FeaturesLayer id="clusterLayer"/>
+	</ic:Map>
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:Label left="5" text="  聚合后将鼠标移动至聚合点上，并点击发散后的离散点，您可获取更多信息。" textAlign="left" fontSize="15" height="40" 
+				 width="274" verticalAlign="middle" fontWeight="bold" fontFamily="宋体"/>
+		<mx:VRule height="40" x="284" verticalCenter="0"/>
+		<s:HGroup gap="10" horizontalCenter="0" verticalCenter="0">	
+			<s:Button id="weightedClustererBtn" toolTip="权重聚散显示" skinClass="skins.weightedClustererSkin" click="weightedClusterShow()"/>
+			<s:Button id="regionClustererBtn" toolTip="区域聚散显示，点击按钮后请绘制要聚合的区域" skinClass="skins.regionClustererSkin" click="regionClusterShow()"/>
+			<s:Button id="centerClustererBtn" toolTip="中心聚散显示" skinClass="skins.centerClustererSkin" click="centerClusterShow()"/>
+		</s:HGroup>
+		<s:VGroup right="110" verticalCenter="0" fontFamily="宋体" fontSize="15" gap="0" fontWeight="bold">
+			<s:CheckBox id="clustererStyle" label="动态修改聚合点样式" selected="false" change="clusterStyle_changeHandler(event)"/>
+			<s:CheckBox id="sparkStyle" label="动态修改离散点样式" selected="false" change="sparkStyle_changeHandler(event)"/>
+		</s:VGroup>
+		<s:HGroup right="5" verticalCenter="0">
+			<mx:VRule height="40"/>
+			<s:Button id="entire" toolTip="全幅显示" skinClass="skins.viewEntireSkin" click="viewEntireMap(event)"/>
+			<s:Button skinClass="skins.panBtnSkin" toolTip="平移" click="panMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

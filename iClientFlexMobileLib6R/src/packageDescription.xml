@@ -1,0 +1,160 @@
+<overviews>  
+	<packages>  		
+		<package name="com.supermap.web.mapping">  
+			<shortDescription>  
+				<![CDATA[  
+					${mapping_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${mapping_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.actions">  
+			<shortDescription>  
+				<![CDATA[  
+					${actions_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${actions_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.components">  
+			<shortDescription>  
+				<![CDATA[  
+					${components_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${components_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.components.skins">  
+			<shortDescription>  
+				<![CDATA[  
+					${components_skins_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${components_skins_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.core">  
+			<shortDescription>  
+				<![CDATA[  
+					${core_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${core_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.core.geometry">  
+			<shortDescription>  
+				<![CDATA[  
+					${core_geometry_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${core_geometry_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.core.styles">  
+			<shortDescription>  
+				<![CDATA[  
+					${core_styles_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${core_styles_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.events">  
+			<shortDescription>  
+				<![CDATA[  
+					${events_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${events_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.resources">  
+			<shortDescription>  
+				<![CDATA[  
+					${resources_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${resources_Description}
+				]]>  
+			</description>  
+		</package>
+		<package name="com.supermap.web.utils">  
+			<shortDescription>  
+				<![CDATA[  
+					${utils_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${utils_Description}
+				]]>  
+			</description>  
+		</package>		
+		<package name="com.supermap.web.themes">  
+			<shortDescription>  
+				<![CDATA[  
+					${themes_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${themes_Description}
+				]]>  
+			</description>  
+		</package>		
+		<package name="com.supermap.web.ogc.wmts">  
+			<shortDescription>  
+				<![CDATA[  
+					${ogc_wmts_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${ogc_wmts_Description}
+				]]>  
+			</description>  
+		</package>		
+		<package name="com.supermap.web.core.styles.graphicStyles">  
+			<shortDescription>  
+				<![CDATA[  
+					${core_styles_graphicStyles_NameSpace}
+				]]>  
+			</shortDescription>  
+			<description>  
+				<![CDATA[  
+					${core_styles_graphicStyles_Description}
+				]]>  
+			</description>  
+		</package>
+	</packages>  
+</overviews>

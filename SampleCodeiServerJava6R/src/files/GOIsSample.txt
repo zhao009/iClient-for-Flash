@@ -1,0 +1,9 @@
+<font color="#0033FF">麻点图</font>
+<font color="#006633">1. 功能描述：</font>高效率渲染大数据量点。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图China。麻点图渲染China_Town_P@China400图层。
+<font color="#006633">3. 操作说明：</font>用鼠标点击地图中的点。
+<font color="#006633">3. 使用说明：</font>
+1.使用麻点图首先需要创建一个麻点图对象、注意构造函数必须传入url、和datasetName。
+2.在麻点图初始化完成后（GOIsEvent.INITIALIZED）需要使用其getLayers（）方法获取个麻点图的layers数组。
+3.使用map的addLayer（）方法，将layers数组中的图层逐个添加到map中，麻点图渲染工作便完成了。
+4.麻点图内部使用了UTFGridLayers，所以可以快速访问麻点图中的数据，只需要在麻点图的实例上注册相关事件（GOIsEvent），便能快速获取鼠标位置处的数据，如范例中的GOIsEvent.CLICK。

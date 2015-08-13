@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mobile160="com.supermap.components.skins.mobile160.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("spark.components.RadioButton")]
+	</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"
+				 stateGroups="overStates"/>
+		<s:State name="down"
+				 stateGroups="downStates"/>
+		<s:State name="disabled"
+				 stateGroups="disabledStates"/>
+		<s:State name="upAndSelected"
+				 stateGroups="selectedStates"/>
+		<s:State name="overAndSelected"
+				 stateGroups="overStates, selectedStates"/>
+		<s:State name="downAndSelected"
+				 stateGroups="downStates, selectedStates"/>
+		<s:State name="disabledAndSelected"
+				 stateGroups="disabledStates, selectedStates"/>
+	</s:states>
+
+	<mobile160:Button_up_content includeIn="up"
+							   height="100%"
+							   width="100%"/>
+	<mobile160:Button_down_content includeIn="over,down,disabled,upAndSelected,downAndSelected,disabledAndSelected"
+								 height="100%"
+								 width="100%"/>
+
+	<!-- Label -->
+	<s:Label id="labelDisplay"
+			 right="1"
+			 left="1"
+			 top="1"
+			 bottom="1"
+			 color="0xFFFFFF"
+			 maxDisplayedLines="1"
+			 text="点"
+			 textAlign="center"
+			 verticalAlign="middle"/>
+</s:Skin>

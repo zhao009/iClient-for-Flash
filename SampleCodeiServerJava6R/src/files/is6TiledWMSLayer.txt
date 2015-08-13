@@ -1,0 +1,2 @@
+<font color="#0033FF">SuperMap iServer Java 分块动态WMS图层（TiledWMSLayer）</font>
+<font color="#006633">1. 说明:</font>加载此类图层有两个必设参数:Url（服务器地址）、layers（子图层名称）。

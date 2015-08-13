@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+					xmlns:s="library://ns.adobe.com/flex/spark"
+					creationComplete="initRenderer(event)" iconHeight="64" iconWidth="64"
+					labelField="">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function initRenderer(event:FlexEvent):void
+			{
+				if(data.name == "polygonSolid")
+					this.decorator = "assets/draws/polygonSolid.png";
+				if(data.name == "NULL")
+					this.decorator = "assets/draws/null.png";
+				if(data.name == "horizontal")
+					this.decorator = "assets/draws/horizontal.png";
+				if(data.name == "vertical")
+					this.decorator = "assets/draws/vertical.png";
+				if(data.name == "cross")
+					this.decorator = "assets/draws/cross.png";
+				if(data.name == "slash")
+					this.decorator = "assets/draws/slash.png";
+				if(data.name == "backslash")
+					this.decorator = "assets/draws/backslash.png";
+			}
+			
+		]]>
+	</fx:Script>
+</s:IconItemRenderer>

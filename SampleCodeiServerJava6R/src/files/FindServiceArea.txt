@@ -1,0 +1,15 @@
+<font color="#0033FF">服务区分析</font>
+<font color="#006633">1. 功能描述：</font>以指定服务站点为中心，在一定服务范围内查找网络上服务站点能够提供服务的区域范围。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层 Changchun。
+<font color="#006633">3. 操作指南：</font>
+    1）参数设置（可选步骤）；
+    2）选择分析点（单选）。当点绘制完成后直接进行服务区分析；
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义交通网络分析结果参数 TransportationAnalystResultSetting；
+    2）定义交通网络分析通用参数 TransportationAnalystParameter；
+    3）定义服务区分析参数 FindServiceAreasParameters；
+    4）执定服务区分析 FindServiceAreasService；
+    5）获取分析的最终结果。有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 FindServiceAreasEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关服务区分析的详细参数介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

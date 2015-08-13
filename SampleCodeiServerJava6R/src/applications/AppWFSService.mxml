@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%" creationComplete="initApp()">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.events.*;
+			import com.supermap.web.ogc.wfs.Comparison;
+			import com.supermap.web.ogc.wfs.ComparisonType;
+			import com.supermap.web.ogc.wfs.DescribeWFSFeatureType;
+			import com.supermap.web.ogc.wfs.GetWFSCapabilities;
+			import com.supermap.web.ogc.wfs.GetWFSFeature;
+			import com.supermap.web.ogc.wfs.WFSCapabilitiesResult;
+			import com.supermap.web.ogc.wfs.WFSFeatureDescription;
+			import com.supermap.web.ogc.wfs.WFSFeatureResult;
+			import com.supermap.web.ogc.wfs.WFSFeatureType;
+			import com.supermap.web.ogc.wfs.WFSFeatureTypeResult;
+			
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var isDel:Boolean = true;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private var wfsURL:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+				wfsURL = viewConfig.webUrl + ViewConfig.WFSUrl;
+			}
+			
+			//发送GetCapabilities请求
+			private function WFSBtnClickHandler(event:MouseEvent):void
+			{
+				if(isDel == false)
+					return;
+				
+				var gc:GetWFSCapabilities = new GetWFSCapabilities(wfsURL);
+				gc.processAsync();
+				gc.addEventListener(WFSCapabilitiesEvent.PROCESS_COMPLETE, capabilitiesCompleteHandler);
+				
+			}
+			
+			//解析FeatureType对象，获得typeName，发送DescribeFeatureType请求
+			private function capabilitiesCompleteHandler(event:WFSCapabilitiesEvent):void
+			{
+				var gcp:WFSCapabilitiesResult = event.wfsCapabilitiesResult;
+				
+				var gdft:DescribeWFSFeatureType = new DescribeWFSFeatureType(wfsURL);
+				gdft.typeNames = ["World:Capitals"];
+				gdft.processAsync();
+				gdft.addEventListener(WFSFeatureTypeEvent.PROCESS_COMPLETE, getFeatureTypeCompleteHandler);
+				
+			}
+			
+			//根据命名空间解析获取LayerType对象，发送GetFeature请求
+			private function getFeatureTypeCompleteHandler(event:WFSFeatureTypeEvent):void
+			{
+				var dftr:WFSFeatureTypeResult = event.wfsDescribeFeatureTypeResult;
+				var lts:Array = dftr.featureDescriptions[dftr.descriptionNamespaces[0]];
+				var lt:WFSFeatureDescription = lts[0];
+				
+				//添加过滤信息
+				var cop:Comparison = new Comparison();
+				cop.type = ComparisonType.LESS_THAN;
+				cop.value = "10";
+				cop.propertyNames = ["SMID"];
+				
+				var gf:GetWFSFeature = new GetWFSFeature(wfsURL);
+//				gf.maxFeatures = 50;
+				gf.filters = [cop];
+				gf.featureDescriptions = [lt];
+				gf.processAsync();
+				gf.addEventListener(WFSFeatureEvent.PROCESS_COMPLETE, getFeatureCompleteHandler);
+				
+			}
+			
+			//根据typeName获取feature数组，显示在FeaturesLayer图层上
+			private function getFeatureCompleteHandler(event:WFSFeatureEvent):void
+			{
+				var fr:WFSFeatureResult = event.wfsFeatureResult;
+				var fs:Array = fr.features["World:Capitals"];
+				fl.features = fs;
+				isDel = false;
+			}
+			
+			//清除要素
+			private function delClickHandler(event:MouseEvent):void
+			{
+				this.fl.clear();
+				isDel = true;
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%" panEasingFactor="0.4" zoomDuration="200"
+			scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{restUrl}"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup height="100%" width="100%" gap="10" verticalAlign="middle" horizontalCenter="0" horizontalAlign="center" paddingTop="5" paddingBottom="5">
+			<s:Button  click="WFSBtnClickHandler(event)" label="WFS 要素" fontSize="15" fontWeight="bold" height="26" fontFamily="宋体"/>
+			<s:Button  click="delClickHandler(event)" label="清 除" fontSize="15" fontWeight="bold" height="26" fontFamily="宋体"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

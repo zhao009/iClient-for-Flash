@@ -1,0 +1,5 @@
+<font color="#0033FF">自定义缩放条皮肤</font>
+<font color="#006633">1. 功能描述：</font>自定义缩放条皮肤
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 服务器产品提供的地图——World Map。
+<font color="#006633">3. 操作指南：</font>
+    点击圆形按钮切换至“默认”皮肤，或“自定义”皮肤。

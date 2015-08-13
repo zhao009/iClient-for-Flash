@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+${components_skins_MagnifierSkin_Title}.
+<p>${components_skins_MagnifierSkin_Description}</p>
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:mx1="library://ns.adobe.com/flex/halo" 
+		
+		>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout> 
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace mx1 "library://ns.adobe.com/flex/halo";
+		
+		/* mx|ToolTip{
+		fontSize: 15;
+		background-alpha: 0.4;
+		background-color: 0;			
+		} */
+	</fx:Style>
+	
+	<fx:Metadata> 
+		/**
+		* ${components_skins_MagnifierSkin_attribute_HostComponent_D}.
+		* ${components_skins_MagnifierSkin_attribute_HostComponent_remarks}
+		*/
+		[HostComponent("spark.components.supportClasses.SkinnableComponent")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>  
+	</s:states> 
+	<!--第一层-->
+	<s:Ellipse bottom="5" width="500" height="500"
+			   left="5"  
+			   right="5"
+			   top="5">
+		<s:fill>  
+			<s:RadialGradient>
+				<s:entries> 
+					<mx:GradientEntry color="0xffffff" ratio="0.00" alpha="0.00"/>
+					<mx:GradientEntry color="0xffffff" ratio="0.79" alpha="0.01"/>
+					<mx:GradientEntry color="0x808080" ratio="0.89" alpha="0.10"/>
+					<mx:GradientEntry color="0x888888" ratio="0.99" alpha="0.95"/> 
+				</s:entries>
+			</s:RadialGradient>
+		</s:fill>  
+	</s:Ellipse>
+	<!--第二层-->
+	<s:Ellipse bottom="-5" width="500" height="500"
+			   left="-5"  
+			   right="-5"
+			   top="-5">
+		<s:fill>  
+			<s:RadialGradient>
+				<s:entries> 
+					<mx:GradientEntry color="0xffffff" ratio="0.00" alpha="0.00"/>
+					<mx:GradientEntry color="0xaaaaaa" ratio="0.79" alpha="0.02"/>
+					
+					<mx:GradientEntry color="0x666666" ratio="0.85" alpha="0.25"/>
+					<mx:GradientEntry color="0x000000" ratio="0.99" alpha="0.75"/> 
+				</s:entries>
+			</s:RadialGradient>
+		</s:fill>  
+	</s:Ellipse>
+	
+</s:Skin>
+

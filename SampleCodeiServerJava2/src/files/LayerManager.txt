@@ -1,0 +1,4 @@
+<font color="#0033FF">图层管理</font>
+<font color="#006633">1. 功能描述：</font>控制地图中各图层的可见性。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层——World。
+<font color="#006633">3. 操作指南：</font>点击右侧窗口中的复选框，实时更新对应图层的可见性。

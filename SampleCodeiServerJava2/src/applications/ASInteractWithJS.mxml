@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:sample="com.supermap.web.samples.mapping.*" 
+			   width="100%" height="100%"
+			   creationComplete="creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.events.ViewBoundsEvent;
+			import mx.events.FlexEvent;
+			import skins.addEntityBtnSkin;
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				ExternalInterface.addCallback('zoomIn', zoomIn);
+				ExternalInterface.addCallback('zoomOut', zoomOut);
+				ExternalInterface.addCallback('removeAsBtn', removeAsBtn);
+			}
+			
+			public function zoomIn() : void
+			{
+				map.zoomIn();
+			}
+			
+			public function zoomOut() : void
+			{
+				map.zoomOut();
+			}
+			
+			public function removeAsBtn() : void
+			{
+				openJS.visible = false;
+			}
+			
+			public function onViewBoundsChange(event:ViewBoundsEvent) : void
+			{
+				ExternalInterface.call("showResolution", map.resolution);
+			}
+
+
+			protected function openHTML(event:MouseEvent):void
+			{
+				try
+				{
+					navigateToURL(new URLRequest("ASInteractWithJS/JSInteractWithAS.html"), "_blank");
+				}
+				catch(e:Error)
+				{
+					return;
+				}
+				
+			}
+			
+
+		]]>
+	</fx:Script>
+	<s:Button left="5" id="openJS" label="HTML" y="10" width="80" height="80" depth="5" click="openHTML(event)"  cornerRadius="50" fontSize="21" fontWeight="bold" textDecoration="underline" fontFamily="Courier New"/>
+	<ic:Map id="map" viewBoundsChange="onViewBoundsChange(event)">
+		<sample:TiledBingMapsLayer id="bingMap" />
+	</ic:Map>
+</s:Application>

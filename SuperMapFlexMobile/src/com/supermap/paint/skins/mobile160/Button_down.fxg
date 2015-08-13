@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="1.0" viewHeight="56.0005" viewWidth="88.0005" xmlns="http://ns.adobe.com/fxg/2008">
+  <Library/>
+  <Group d:type="layer" d:userLabel="图层 1" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+    <Group y="0.5">
+      <Path winding="nonZero" data="M6.5 55.0005C2.91602 55.0005 0 52.0845 0 48.5005L0 6.5C0 2.91602 2.91602 0 6.5 0L80.5005 0C84.0845 0 87.0005 2.91602 87.0005 6.5L87.0005 48.5005C87.0005 52.0845 84.0845 55.0005 80.5005 55.0005L6.5 55.0005Z" >
+        <fill>
+          <LinearGradient x="43.5" scaleX="55.001" rotation="90">
+            <GradientEntry color="#759ae9" ratio="0"/>
+            <GradientEntry color="#376fe0" ratio="0.521978"/>
+            <GradientEntry color="#2361de" ratio="0.521978"/>
+            <GradientEntry color="#2463de" ratio="1"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+    </Group>
+    <Group>
+      <Path winding="nonZero" data="M81.0005 1C84.313 1 87.0005 3.6875 87.0005 7L87.0005 49.0005C87.0005 52.313 84.313 55.0005 81.0005 55.0005L7 55.0005C3.6875 55.0005 1 52.313 1 49.0005L1 7C1 3.6875 3.6875 1 7 1L81.0005 1M81.0005 0L7 0C3.14014 0 0 3.14014 0 7L0 49.0005C0
+ 52.8599 3.14014 56.0005 7 56.0005L81.0005 56.0005C84.8599 56.0005 88.0005 52.8599 88.0005 49.0005L88.0005 7C88.0005 3.14014 84.8599 0 81.0005 0L81.0005 0Z" >
+        <fill>
+          <SolidColor color="#1b49b4"/>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+</Graphic>

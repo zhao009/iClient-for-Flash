@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" xmlns:supermap="http://www.supermap.com/iclient/2010">
+	
+	<!--key为必设参数；mapName与url不必设置，默认值即可-->
+	<supermap:Map>
+		<supermap:CloudLayer/>
+	</supermap:Map>
+	
+</s:Application>

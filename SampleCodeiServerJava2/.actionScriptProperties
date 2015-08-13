@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="view/samplecode.mxml" projectUUID="79cbc7c9-b11c-48e9-a974-322ddea15a23" version="10">
+  <compiler additionalCompilerArguments="-locale=zh_CN" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/core.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="1" path="/SuperMapiServerJava2/bin/SuperMapiServerJava2.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/iClientFlexLib6R/bin/iClientFlexLib6R.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="applications/FillStyles.mxml"/>
+    <application path="applications/MapInfoWindow.mxml"/>
+    <application path="applications/MapRotation.mxml"/>
+    <application path="applications/MapSwitch.mxml"/>
+    <application path="applications/Theme_DotDensity.mxml"/>
+    <application path="applications/AddFeature.mxml"/>
+    <application path="applications/BingMap.mxml"/>
+    <application path="applications/CompositeStyles.mxml"/>
+    <application path="applications/QueryBySQL.mxml"/>
+    <application path="applications/FindPath.mxml"/>
+    <application path="applications/GradientFillStyleApp.mxml"/>
+    <application path="applications/FeatureCluster.mxml"/>
+    <application path="applications/LayerManager.mxml"/>
+    <application path="applications/FeatureInfoStyle.mxml"/>
+    <application path="applications/MarkerTrack.mxml"/>
+    <application path="applications/ClientFeatureEdit.mxml"/>
+    <application path="applications/LineStyles.mxml"/>
+    <application path="applications/ASInteractWithJS.mxml"/>
+    <application path="applications/AppBookMark.mxml"/>
+    <application path="applications/iS2TiledCachedLayer.mxml"/>
+    <application path="applications/CustomSkin.mxml"/>
+    <application path="applications/iS2TiledDynamicLayer.mxml"/>
+    <application path="applications/OpenStreetMap.mxml"/>
+    <application path="applications/Legend.mxml"/>
+    <application path="applications/MapTimeSlider.mxml"/>
+    <application path="applications/QueryByCenter.mxml"/>
+    <application path="applications/AppArrow.mxml"/>
+    <application path="applications/ClosestFacility.mxml"/>
+    <application path="applications/HeatMap.mxml"/>
+    <application path="applications/DynamicWMSandIServerLayer.mxml"/>
+    <application path="applications/TDTLayer.mxml"/>
+    <application path="applications/FindTspPath.mxml"/>
+    <application path="applications/Mesure.mxml"/>
+    <application path="applications/TextStyles.mxml"/>
+    <application path="applications/iS2DynamicLayer.mxml"/>
+    <application path="applications/CircleStyle.mxml"/>
+    <application path="applications/QueryByGeometry.mxml"/>
+    <application path="applications/MapManager.mxml"/>
+    <application path="applications/ZoomByRightClick.mxml"/>
+    <application path="applications/MarkerStyles.mxml"/>
+    <application path="applications/ElementsLayer.mxml"/>
+    <application path="applications/ServiceExtend.mxml"/>
+    <application path="applications/AppRollerScreen.mxml"/>
+    <application path="applications/ServiceArea.mxml"/>
+    <application path="applications/EditFeature.mxml"/>
+    <application path="applications/Map_Magnifier.mxml"/>
+    <application path="applications/Theme_Graph.mxml"/>
+    <application path="applications/ClipMap.mxml"/>
+    <application path="applications/Theme_Unique.mxml"/>
+    <application path="applications/TrackingAnimation.mxml"/>
+    <application path="view/samplecode.mxml"/>
+    <application path="applications/Theme_Label.mxml"/>
+    <application path="applications/CommonComponents.mxml"/>
+    <application path="applications/ClientRenderer.mxml"/>
+    <application path="applications/SuperMapCloudLayer.mxml"/>
+    <application path="applications/MapHistory.mxml"/>
+    <application path="applications/Theme_Range.mxml"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+</actionScriptProperties>
+

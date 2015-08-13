@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%" 
+			   pageTitle="专题图示例" creationComplete="appInit(event)">
+	<fx:Script>
+		<![CDATA[			
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.iServerJava6R.FilterParameter;
+			import com.supermap.web.iServerJava6R.Recordset;
+			import com.supermap.web.iServerJava6R.queryServices.*;
+			import com.supermap.web.samples.clientTheme.ClientThemeGraph;
+			import com.supermap.web.samples.clientTheme.ClientThemeGraphItem;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			import mx.events.SliderEvent;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private var item:Array=[];
+			private var bounds:Array = [];
+			private var allTG:Array=[];
+			[Bindable]private var subThemeTypes:ArrayCollection=new ArrayCollection([
+				{label:"饼图",data:"pie"},{label:"柱状图",data:"column"},
+				{label:"点图",data:"plot"},{label:"线图",data:"line"},{label:"面图",data:"area"}]);
+			
+			protected function map_loadHandler(event:MapEvent):void
+			{
+				this.excuteQuery();
+			}
+			//查询
+			public function excuteQuery():void 
+			{
+				//定义 SQL 查询参数
+				var queryBySQLParam:QueryBySQLParameters = new QueryBySQLParameters();
+				var filter:FilterParameter = new FilterParameter();
+				filter.name = "BaseMap_R@Jingjin";
+				queryBySQLParam.filterParameters = [filter];
+				
+				/* 执行 SQL 查询 */
+				var queryBySQLService:QueryBySQLService = new QueryBySQLService(this.restUrl);
+				queryBySQLService.processAsync(queryBySQLParam, new AsyncResponder(this.dispalyQueryRecords, 
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("与服务端交互失败", "抱歉", 4, this);
+					}, null));
+				
+			}
+			//显示查询结果
+			private function dispalyQueryRecords(queryResult:QueryResult, mark:Object = null):void
+			{
+				if(queryResult.recordsets == null || queryResult.recordsets.length == 0)
+				{
+					Alert.show("查询结果为空", null, 4, this);
+					return;
+				}
+				var recordSets:Array = queryResult.recordsets;
+				if(recordSets.length != 0)
+				{
+					for each(var recordSet:Recordset in recordSets)
+					{
+						var i:Number;
+						var j:Number;
+						var itemD:Array = [];
+						if(!recordSet.features || recordSet.features.length == 0)
+						{
+							Alert.show("当前图层查询结果为空", null, 4, this);
+							return;
+						}
+						for each (var feature:Feature in recordSet.features)
+						{
+							i=feature.geometry.center.x;
+							j=feature.geometry.center.y;
+							bounds.push(new Rectangle2D(i,j,i,j));
+							itemD.push(new ClientThemeGraphItem("城乡人口",(Number)(feature.attributes["URBANRURAL"])));
+							itemD.push(new ClientThemeGraphItem("城市人口",(Number)(feature.attributes["URBAN"])));
+							itemD.push(new ClientThemeGraphItem("农村人口",(Number)(feature.attributes["RURAL"])));
+							item.push(itemD);
+							itemD=[];
+						}
+					}
+				}
+				this.getTheme();
+			}
+			//生成客户端专题图
+			protected function getTheme():void
+			{
+				allTG =[];
+				for(var i:int = 0;i < bounds.length; i++)
+				{
+					var tg:ClientThemeGraph = new ClientThemeGraph(item[i], ClientThemeGraph.PIE,bounds[i]);
+					el.addElement(tg);
+					allTG.push(tg);
+				}
+			}
+			
+			public function changeData():void{
+				for(var i:Number=0;i<allTG.length;i++){
+					var clientTheme:ClientThemeGraph=allTG[i] as ClientThemeGraph;
+					
+					var oneParam:Number=Math.floor(Math.random()*100);
+					var twoParam:Number=Math.floor(Math.random()*100);
+					var threeParam:Number=Math.floor(Math.random()*100);
+					var newItems:Array=[new ClientThemeGraphItem("城乡人口",oneParam),
+						new ClientThemeGraphItem("确诊",twoParam),new ClientThemeGraphItem("死亡",threeParam)];
+					
+					clientTheme.dataProvider=newItems;
+				}
+			}
+			
+			protected function pie_clickHandler():void
+			{
+				el.clear();
+				allTG =[];
+				for(var i:int = 0;i < bounds.length; i++)
+				{
+					var tg:ClientThemeGraph = new ClientThemeGraph(item[i], ClientThemeGraph.PIE,bounds[i]);
+					el.addElement(tg);
+					allTG.push(tg);
+				}
+			}
+			
+			protected function column_clickHandler():void
+			{
+				el.clear();
+				allTG =[];
+				for(var i:int = 0;i < bounds.length;i++)
+				{
+					var tg:ClientThemeGraph = new ClientThemeGraph(item[i], ClientThemeGraph.COLUMN,bounds[i]);
+					el.addElement(tg);
+					allTG.push(tg);
+				}
+			}
+			
+			protected function plot_clickHandler():void
+			{
+				el.clear();
+				allTG =[];
+				for(var i:int = 0;i < bounds.length; i++)
+				{
+					var tg:ClientThemeGraph = new ClientThemeGraph(item[i], ClientThemeGraph.PLOT,bounds[i]);
+					el.addElement(tg);
+					allTG.push(tg);
+				}
+			}
+			
+			protected function line_clickHandler():void
+			{
+				el.clear();
+				allTG =[];
+				for(var i:int = 0;i < bounds.length; i++)
+				{
+					var tg:ClientThemeGraph = new ClientThemeGraph(item[i], ClientThemeGraph.LINE,bounds[i]);
+					el.addElement(tg);
+					allTG.push(tg);
+				}
+			}
+			
+			protected function area_clickHandler():void
+			{
+				el.clear();
+				allTG =[];
+				for(var i:int = 0;i < bounds.length; i++)
+				{
+					var tg:ClientThemeGraph = new ClientThemeGraph(item[i], ClientThemeGraph.AREA,bounds[i]);
+					el.addElement(tg);
+					allTG.push(tg);
+				}
+			}
+
+
+			protected function themeType_changeHandler(event:ListEvent):void
+			{
+				var type:Object=(themeType.selectedItem as Object).data;
+				switch(type){
+					case "pie" :pie_clickHandler();reback();break;
+					case "column":column_clickHandler();reback();break;
+					case "plot":plot_clickHandler();reback();break;
+					case "line":line_clickHandler();reback();break;
+					case "area":area_clickHandler();reback();break;
+				}
+			}
+
+			private function reback():void{
+				hSlider.value=100;wSlider.value=100;
+				fsSlider.value=10;aSlider.value=1.0;
+				
+			}
+			protected function hSlider_changeHandler(event:SliderEvent):void
+			{
+				for(var i:Number=0;i<allTG.length;i++){
+					var clientTheme:ClientThemeGraph=allTG[i] as ClientThemeGraph;
+					clientTheme.height=hSlider.value;
+				}
+			}
+
+			protected function wSlider_changeHandler(event:SliderEvent):void
+			{
+				for(var i:Number=0;i<allTG.length;i++){
+					var clientTheme:ClientThemeGraph=allTG[i] as ClientThemeGraph;
+					clientTheme.width=wSlider.value;
+				}
+			}
+
+			protected function fsSlider_changeHandler(event:SliderEvent):void
+			{
+				for(var i:Number=0;i<allTG.length;i++){
+					var clientTheme:ClientThemeGraph=allTG[i] as ClientThemeGraph;
+					clientTheme.fontSize=fsSlider.value;
+				}
+			}
+
+			protected function aSlider_changeHandler(event:SliderEvent):void
+			{
+				for(var i:Number=0;i<allTG.length;i++){
+					var clientTheme:ClientThemeGraph=allTG[i] as ClientThemeGraph;
+					clientTheme.alpha=aSlider.value;
+				}
+			}
+
+
+			protected function appInit(event:FlexEvent):void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			}
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.JingJin_MAP;
+			}
+
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<ic:Map id="map" load="map_loadHandler(event)"  borderAlpha="0.0" contentBackgroundAlpha="0.0" >
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+		<ic:ElementsLayer id="el"/>
+	</ic:Map>
+	
+	<!--选项设置窗口-->
+	<s:Panel id="titlewin" title="选项设置：" fontFamily="宋体" fontSize="12" right="5" top="30" backgroundColor="#454343" backgroundAlpha="0.48" height="263">
+		<s:VGroup gap="10" left="5" top="20" bottom="10" right="5">
+			<s:HGroup gap="3">
+				<mx:Label text="专题图："/>
+				<mx:ComboBox id="themeType" dataProvider="{subThemeTypes}" width="160" change="themeType_changeHandler(event)"/>
+			</s:HGroup>
+			<s:HGroup gap="3" height="24">
+				<mx:Label text="高    度：" top="20"/>
+				<mx:HSlider id="hSlider" minimum="100" maximum="200" value="100" dataTipPlacement="right" tickColor="0x323232"
+							snapInterval="1" allowTrackClick="true" 
+							liveDragging="true"  height="10" change="hSlider_changeHandler(event)" width="163"/>
+			</s:HGroup>
+			<s:HGroup gap="3" height="27" width="232">
+				<mx:Label text="宽    度：" top="20"/>
+				<mx:HSlider id="wSlider" minimum="100" maximum="200" value="100" dataTipPlacement="right" tickColor="0x323232"
+							snapInterval="1" allowTrackClick="true" 
+							liveDragging="true"  height="13" change="wSlider_changeHandler(event)" width="164"/>
+			</s:HGroup>
+			<s:HGroup gap="3" height="28" width="232">
+				<mx:Label text="字体大小：" top="20"/>
+				<mx:HSlider id="fsSlider" minimum="10" maximum="20" value="10" dataTipPlacement="right" tickColor="0x323232"
+							snapInterval="1" allowTrackClick="true" 
+							liveDragging="true"  height="13" change="fsSlider_changeHandler(event)" width="163"/>
+			</s:HGroup>
+			<s:HGroup gap="3" height="28" width="232">
+				<mx:Label text="透 明 度：" top="20"/>
+				<mx:HSlider id="aSlider" minimum="0.1" maximum="1.0" value="1.0" dataTipPlacement="right" tickColor="0x323232"
+							snapInterval="0.1" allowTrackClick="true" 
+							liveDragging="true"  height="16" change="aSlider_changeHandler(event)" width="163"/>
+			</s:HGroup>
+			<s:HGroup gap="3" height="21" width="232">
+				<s:Button  label="切换数据" click="changeData()"/>
+			</s:HGroup >
+		</s:VGroup>
+	</s:Panel>
+</s:Application>

@@ -1,0 +1,16 @@
+<font color="#0033FF">多旅行商分析</font>
+<font color="#006633">1. 功能描述：</font>多旅行商分析也称为物流配送，是指在网络数据集中，给定 M 个配送中心点和 N 个配送目的地（M，N 为大于零的整数），查找经济有效的配送路径，并给出相应的行走路线。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层 Changchun。
+<font color="#006633">3. 操作指南：</font>
+	1）参数设置（可选步骤）；
+    2）选择分析点（多选）；
+    3）执行“多旅行商分析”；
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义交通网络分析结果参数 TransportationAnalystResultSetting；
+    2）定义交通网络分析通用参数 TransportationAnalystParameter；
+    3）定义多旅行商分析参数 FindMTSPPathsParameters；
+    4）执定多旅行商分析 FindMTSPPathsService；
+    5）获取分析的最终结果。有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 FindMTSPPathEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关旅行商分析的详细参数介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

@@ -1,0 +1,3 @@
+<font color="#0033FF">地图旋转</font>
+<font color="#006633">1. 功能描述：</font>分别在 x、y、z 三个方向对地图进行旋转 。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。

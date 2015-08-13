@@ -1,0 +1,4 @@
+<font color="#0033FF">渐变填充</font>
+<font color="#006633">1. 功能描述：</font>该类为您展示渐变填充，并提供了三种渐变动画：单色、双色、辐射渐变。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map。
+<font color="#006633">3. 操作指南：</font>鼠标移动至面要素，开始渐变动画。

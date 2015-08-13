@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%" creationComplete="initApp()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.geometry.Geometry;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.iServerJava6R.FilterParameter;
+			import com.supermap.web.iServerJava6R.Recordset;
+			import com.supermap.web.iServerJava6R.queryServices.*;
+			import com.supermap.web.utils.serverTypes.*;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.*;
+			import com.supermap.web.iServerJava6R.themeServices.*;
+			import com.supermap.web.mapping.Map;
+			import com.supermap.web.mapping.TiledDynamicRESTLayer;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.Fault;
+			import mx.rpc.events.FaultEvent;
+			import mx.utils.object_proxy;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var dataSetUrl:String;
+			private var themeLayer:TiledDynamicRESTLayer;
+			private var points:Array=new Array();
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.Temperature_MAP;
+				dataSetUrl = viewConfig.webUrl + ViewConfig.SpatialAnylyat_DataSet;
+
+			}
+			//Density插值分析		
+			private function interpolationDensity_clickHandler(event:MouseEvent):void			
+			{
+				clear();
+				var interpolationParams:InterpolationDensityAnalystParameters = new InterpolationDensityAnalystParameters();
+				//对数据集进行插值分析时,数据源中数据集的名称
+				interpolationParams.dataset = "SamplesP@Interpolation";
+				//结果栅格数据集的范围
+				interpolationParams.bounds= new Rectangle2D(-2640403.6321084504, 1873792.1034850003, 3247669.390292245, 5921501.395578556);
+				//插值分析结果数据集的名称
+				interpolationParams.outputDatasetName = "Density_Result";
+				//存储用于进行插值分析的字段名称
+				interpolationParams.zValueFieldName = "AVG_TMP";
+				//结果栅格数据集存储的像素格式
+				interpolationParams.pixelFormat=PixelFormat.DOUBLE;
+				var interpolationService:InterpolationAnalystService= new InterpolationAnalystService(dataSetUrl);
+				interpolationService.processAsync(interpolationParams, new AsyncResponder(processCompleted, excuteErros, null));
+			}	
+			
+		
+			//IDW插值分析
+ 	    	private function interpolationIDW_clickHandler(event:MouseEvent):void	
+			{
+				clear();
+				var interpolationParams:InterpolationIDWAnalystParameters = new InterpolationIDWAnalystParameters();
+				//对数据集进行插值分析时,数据源中数据集的名称
+				interpolationParams.dataset = "SamplesP@Interpolation";
+				//结果栅格数据集的范围
+				interpolationParams.bounds= new Rectangle2D(-2640403.6321084504, 1873792.1034850003, 3247669.390292245, 5921501.395578556);
+				//插值分析结果数据集的名称
+				interpolationParams.outputDatasetName = "IDW_result";
+				//插值结果栅格数据集的分辨率
+				interpolationParams.resolution=7923.84989108;
+				//结果栅格数据集存储的像素格式
+				interpolationParams.pixelFormat=PixelFormat.DOUBLE;
+				//插值运算时，查找参与运算点的方式，固定点数查找方式下，待查找的点数默认为12
+				interpolationParams.searchMode=SearchMode.KDTREE_FIXED_COUNT;
+				//存储用于进行插值分析的字段名称
+				interpolationParams.zValueFieldName = "AVG_TMP";
+				
+				var interpolationService:InterpolationAnalystService= new InterpolationAnalystService(dataSetUrl);
+				interpolationService.processAsync(interpolationParams, new AsyncResponder(processCompleted, excuteErros, null));
+			}	
+			
+		
+	        //样条（径向基函数）插值分析
+			private function interpolationRBF_clickHandler(event:MouseEvent):void	
+			{
+				clear();
+				var interpolationParams:InterpolationRBFAnalystParameters = new InterpolationRBFAnalystParameters();
+				//对数据集进行插值分析时,数据源中数据集的名称
+				interpolationParams.dataset = "SamplesP@Interpolation";
+				//插值分析结果数据集的名称
+				interpolationParams.outputDatasetName = "RBF_Result";
+				//结果栅格数据集的范围
+				interpolationParams.bounds= new Rectangle2D(-2640403.6321084504, 1873792.1034850003, 3247669.390292245, 5921501.395578556);
+				//结果栅格数据集存储的像素格式
+				interpolationParams.pixelFormat=PixelFormat.DOUBLE;
+				//插值运算时，查找参与运算点的方式，固定点数查找方式下，待查找的点数默认为12
+				interpolationParams.searchMode=SearchMode.KDTREE_FIXED_COUNT;
+				//存储用于进行插值分析的字段名称
+				interpolationParams.zValueFieldName = "AVG_TMP";
+				var interpolationService:InterpolationAnalystService= new InterpolationAnalystService(dataSetUrl);
+				interpolationService.processAsync(interpolationParams, new AsyncResponder(processCompleted, excuteErros, null));
+			}
+			
+			//简单克吕金插值分析
+			private function interpolationSimpleKriging_clickHandler(event:MouseEvent):void	
+			{
+				clear();
+				var interpolationParams:InterpolationKrigingAnalystParameters = new InterpolationKrigingAnalystParameters();
+				//对数据集进行插值分析时,数据源中数据集的名称
+				interpolationParams.dataset = "SamplesP@Interpolation";
+				interpolationParams.outputDatasetName = "Result_SimpleKriging";
+				interpolationParams.bounds= new Rectangle2D(-2640403.6321084504, 1873792.1034850003, 3247669.390292245, 5921501.395578556);
+				//克吕金插值的类型
+				interpolationParams.type = InterpolationAlgorithmType.SimpleKriging;
+				interpolationParams.searchMode = SearchMode.KDTREE_FIXED_COUNT;			
+				interpolationParams.pixelFormat = PixelFormat.DOUBLE;
+				//简单克吕金类型下,插值字段的平均值。 
+				interpolationParams.mean=11.6005;
+				interpolationParams.zValueFieldName = "AVG_TMP";
+						
+				var interpolationService:InterpolationAnalystService= new InterpolationAnalystService(dataSetUrl);
+				interpolationService.processAsync(interpolationParams, new AsyncResponder(processCompleted, excuteErros, null));
+			}	
+			
+		    //克吕金插值分析
+			private function interpolationKriging_clickHandler(event:MouseEvent):void	
+			{
+				clear();
+				var interpolationParams:InterpolationKrigingAnalystParameters = new InterpolationKrigingAnalystParameters();
+				//对数据集进行插值分析时,数据源中数据集的名称
+				interpolationParams.dataset = "SamplesP@Interpolation";
+				interpolationParams.outputDatasetName = "Kriging_Result";
+				interpolationParams.bounds= new Rectangle2D(-2640403.6321084504, 1873792.1034850003, 3247669.390292245, 5921501.395578556);
+				//克吕金插值的类型
+				interpolationParams.type = InterpolationAlgorithmType.KRIGING;
+				interpolationParams.searchMode = SearchMode.KDTREE_FIXED_COUNT;
+				interpolationParams.pixelFormat = PixelFormat.DOUBLE;
+				interpolationParams.zValueFieldName = "AVG_TMP";
+				
+				var interpolationService:InterpolationAnalystService= new InterpolationAnalystService(dataSetUrl);
+				interpolationService.processAsync(interpolationParams, new AsyncResponder(processCompleted, excuteErros, null));
+			}	
+			
+			//泛吕金插值分析
+			private function interpolationUniversalKriging_clickHandler(event:MouseEvent):void	
+			{
+				clear();
+				var interpolationParams:InterpolationKrigingAnalystParameters = new InterpolationKrigingAnalystParameters();
+				//对数据集进行插值分析时,数据源中数据集的名称
+				interpolationParams.dataset = "SamplesP@Interpolation";
+				interpolationParams.outputDatasetName = "UniversalKriging_Result";
+				interpolationParams.bounds= new Rectangle2D(-2640403.6321084504, 1873792.1034850003, 3247669.390292245, 5921501.395578556);
+				//克吕金插值的类型
+				interpolationParams.type = InterpolationAlgorithmType.UniversalKriging;
+				interpolationParams.searchMode = SearchMode.KDTREE_FIXED_COUNT;
+				interpolationParams.pixelFormat = PixelFormat.DOUBLE;
+				//固定点数查找方式下，设置待查找的点数，默认为12；
+				interpolationParams.expectedCount=12;
+				//泛克吕金类型下，用于插值的样点数据中趋势面方程的阶数，可选值为exp1、exp2，默认为exp1。 
+				interpolationParams.exponent=Exponent.EXP1;
+				//克吕金插值时的半变函数类型，包括指数型（EXPONENTIAL）、球型（SPHERICAL）、高斯型（GAUSSIAN），默认为球型（SPHERICAL）。 
+				interpolationParams.variogramMode=VariogramMode.SPHERICAL;
+				//克吕金算法中块金效应值
+				interpolationParams.nugget=0;
+				//克吕金算法中旋转角度值
+				interpolationParams.angle=0;
+				//克吕金算法中自相关阈值，单位与原数据集单位相同
+				interpolationParams.range=0;
+				//克吕金算法中基台值,默认值为0。
+				interpolationParams.sill=0;
+				//存储用于进行插值分析的字段名称
+				interpolationParams.zValueFieldName = "AVG_TMP";
+				
+				var interpolationService:InterpolationAnalystService= new InterpolationAnalystService(dataSetUrl);
+				interpolationService.processAsync(interpolationParams, new AsyncResponder(processCompleted, excuteErros, null));
+			}
+			
+			//分析成功,利用生成的插值数据制作范围分段专题图
+			private function processCompleted(result:InterpolationAnalystResult, mark:Object = null):void
+			{
+				var items:Array = new Array();
+				var themeGridRangeItem1:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem1.start = -5.0;
+				themeGridRangeItem1.end = -3.4;
+				themeGridRangeItem1.color = new ServerColor(170,240,233);
+				items.push(themeGridRangeItem1);
+				
+				var themeGridRangeItem2:ThemeGridRangeItem = new ThemeGridRangeItem(); 
+					themeGridRangeItem2.start = -3.4;
+					themeGridRangeItem2.end =-1.8,
+					themeGridRangeItem2.color = new ServerColor(176,243,196);
+					items.push(themeGridRangeItem2);
+				
+					var themeGridRangeItem3:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem3.start =-1.8;
+				themeGridRangeItem3.end =-0.2;
+				themeGridRangeItem3.color = new ServerColor(198,249,178);
+				items.push(themeGridRangeItem3);
+				
+				var themeGridRangeItem4:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem4.start = -0.2;
+				themeGridRangeItem4.end = 1.4;
+				themeGridRangeItem4.color = new ServerColor(235,249,174);
+				items.push(themeGridRangeItem4);
+				
+				var themeGridRangeItem5:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem5.start = 1.4;
+				themeGridRangeItem5.end = 3;
+				themeGridRangeItem5.color = new ServerColor(188,224,123);
+				items.push(themeGridRangeItem5);
+				
+				var themeGridRangeItem6:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem6.start = 3;
+				themeGridRangeItem6.end = 4.6;
+				themeGridRangeItem6.color = new ServerColor(88,185,63);
+				items.push(themeGridRangeItem6);
+				
+				var themeGridRangeItem7:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem7.start = 4.6;
+				themeGridRangeItem7.end = 6.2;
+				themeGridRangeItem7.color = new ServerColor(25,147,52);
+				items.push(themeGridRangeItem7);
+				
+				
+				var themeGridRangeItem8:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem8.start =6.2,
+				themeGridRangeItem8.end =7.8,
+				themeGridRangeItem8.color =new ServerColor(54,138,58)
+				items.push(themeGridRangeItem8);
+				
+				var themeGridRangeItem9:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem9.start =7.8;
+				themeGridRangeItem9.end = 9.4;
+				themeGridRangeItem9.color = new ServerColor(131,158,47)
+				items.push(themeGridRangeItem9);
+				
+				var themeGridRangeItem10:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem10.start = 9.4;
+				themeGridRangeItem10.end = 11;
+				themeGridRangeItem10.color = new ServerColor(201,174,28);
+				items.push(themeGridRangeItem10);
+				
+				var themeGridRangeItem11:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem11.start = 11;
+				themeGridRangeItem11.end = 12.6;
+				themeGridRangeItem11.color = new ServerColor(232,154,7);
+				items.push(themeGridRangeItem11);
+				
+				var themeGridRangeItem12:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem12.start = 12.6;
+				themeGridRangeItem12.end =14.2;
+				themeGridRangeItem12.color = new ServerColor(204,91,2);
+				items.push(themeGridRangeItem12);
+				
+				var themeGridRangeItem13:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem13.start = 14.2;
+				themeGridRangeItem13.end = 15.8;
+				themeGridRangeItem13.color = new ServerColor(174,54,1);
+				items.push(themeGridRangeItem13);
+				
+				var themeGridRangeItem14:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem14.start = 15.8;
+				themeGridRangeItem14.end = 17.4;
+				themeGridRangeItem14.color = new ServerColor(127,13,1);
+				items.push(themeGridRangeItem14);
+				
+				var themeGridRangeItem15:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem15.start =  17.4;
+				themeGridRangeItem15.end = 19;
+				themeGridRangeItem15.color = new ServerColor(115,23,6);
+				items.push(themeGridRangeItem15);
+				
+				var themeGridRangeItem16:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem16.start =  19;
+				themeGridRangeItem16.end = 20.6;
+				themeGridRangeItem16.color = new ServerColor(111,36,8);
+				items.push(themeGridRangeItem16);
+				
+				var themeGridRangeItem17:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem17.start =  20.6;
+				themeGridRangeItem17.end = 22.2;
+				themeGridRangeItem17.color = new ServerColor(107,47,14);
+				items.push(themeGridRangeItem17);
+				
+				var themeGridRangeItem18:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem18.start =  22.2;
+				themeGridRangeItem18.end = 23.8;
+				themeGridRangeItem18.color = new ServerColor(125,75,44);
+				items.push(themeGridRangeItem18);
+				
+				var themeGridRangeItem19:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem19.start =  23.8;
+				themeGridRangeItem19.end = 25.4;
+				themeGridRangeItem19.color = new ServerColor(146,110,88);
+				items.push(themeGridRangeItem19);
+				
+				var themeGridRangeItem20:ThemeGridRangeItem = new ThemeGridRangeItem();
+				themeGridRangeItem20.start =  25.4;
+				themeGridRangeItem20.end = 27;
+				themeGridRangeItem20.color = new ServerColor(166,153,146);
+				items.push(themeGridRangeItem20);
+				
+				
+				var themeGridRange:ThemeGridRange= new ThemeGridRange();
+				//分段专题图的分段方式
+				themeGridRange.rangeMode = RangeMode.EQUALINTERVAL;
+				//是否对分段专题图中分段的颜色风格进行反序显示
+				themeGridRange.reverseColor = false;
+				//栅格分段专题图子项数组
+				themeGridRange.items = items;
+			
+				
+				//专题图参数
+				var themeParams:ThemeParameters = new ThemeParameters();
+				themeParams.themes = new Array(themeGridRange);
+				//用于制作专题图的数据集名称集合
+				themeParams.datasetNames = [result.dataset.split("@")[0]];
+				themeParams.dataSourceNames = ["Interpolation"];
+				
+				var themeService:ThemeService = new ThemeService(mapUrl);
+				themeService.processAsync(themeParams, new AsyncResponder(themeServie_ProcessCompleted, themeServie_Failed, null));
+			
+			}
+			
+			private function themeServie_ProcessCompleted(themeresult:ThemeResult, mark:Object = null):void
+			{
+				 themeLayer = new TiledDynamicRESTLayer();
+				 themeLayer.url=mapUrl;
+				 themeLayer.layersID=themeresult.resourceInfo.newResourceID;
+				 themeLayer.transparent=true;
+				 themeLayer.enableServerCaching=false;
+				 map.addLayer(themeLayer);
+			}
+			
+			
+			private static function themeServie_Failed(object:Object, mark:Object = null):void
+			{
+				Alert.show("生成专题图失败");
+				
+			}
+			private function excuteErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("插值分析失败！" )
+			}
+			private function clear():void	
+			{
+				map.removeLayer(themeLayer);
+			}
+			
+			
+			private function click_clickHandler(event:MouseEvent):void
+			{
+				clear();
+				
+			}
+			//离散点插值分析
+			private function cretePointsAnalyst_clickHandler(event:MouseEvent):void
+			{
+				clear();
+				//查询，以得到用于插值分析的geometry
+				var queryBySQLParameters :QueryBySQLParameters = new QueryBySQLParameters()
+				var filter:FilterParameter = new FilterParameter();
+				filter.name = "SamplesP@Interpolation";
+				filter.attributeFilter ="SMID>0";
+				queryBySQLParameters.filterParameters = [filter];
+				queryBySQLParameters.returnContent =true;
+				
+				/* 执行 SQL 查询 */
+				var queryBySQLService:QueryBySQLService = new QueryBySQLService(mapUrl);
+				queryBySQLService.processAsync(queryBySQLParameters, new AsyncResponder(sqlService_ProcessCompleted, excuteErros, null));
+			}
+			private function sqlService_ProcessCompleted(queryResult:QueryResult, mark:Object = null):void
+			{
+				var zMin:int=(Number)(this.zMinValue.text);
+				var zMax:int=(Number)(this.zMaxValue.text);
+				
+				var recordSets:Array = queryResult.recordsets;
+				for each (var feature:Feature in recordSets[0].features)
+				{
+					if(feature.geometry is GeoPoint)
+					{
+						var gp:GeoPoint=feature.geometry as GeoPoint;
+						//每个插值点在插值过程中的权重值
+						var z:int=Math.random()*(zMax-zMin)+zMin;
+						var point:Point2D=new Point2D(gp.x,gp.y);
+						point.tag=z;
+						points.push(point);
+					}
+				}   //IDW插值法
+				    var interpolationParams:InterpolationIDWAnalystParameters = new InterpolationIDWAnalystParameters();
+					//结果栅格数据集的范围
+					interpolationParams.bounds= new Rectangle2D(-2640403.6321084504, 1873792.1034850003, 3247669.390292245, 5921501.395578556);
+					//插值分析结果数据集的名称
+					interpolationParams.outputDatasetName = "IDWcretePoints_result";
+					//插值分析结果数据源的名称
+					interpolationParams.outputDatasourceName = "Interpolation";
+					//插值运算时，查找参与运算点的方式，定长查找方式下，查找半径默认值为12，与点数据单位相同。
+					interpolationParams.searchMode=SearchMode.KDTREE_FIXED_RADIUS;
+					//插值分析类型
+					interpolationParams.InterpolationAnalystType="geometry";
+					//用于 Geometry 插值分析的离散点数组
+					interpolationParams.inputPoints=points;
+					//结果栅格数据集存储的像素格式
+					interpolationParams.pixelFormat = PixelFormat.DOUBLE;
+					var interpolationService:InterpolationAnalystService= new InterpolationAnalystService(dataSetUrl);
+					interpolationService.processAsync(interpolationParams, new AsyncResponder(processCompleted, excuteErros, null));
+				}
+								
+			protected function panel1_mouseUpHandler(event:MouseEvent):void
+			{
+				panel1.stopDrag();
+				
+			}
+			
+			protected function panel1_mouseDownHandler(event:MouseEvent):void
+			{
+				panel1.startDrag();
+				
+			}
+			
+			protected function panel2_mouseDownHandler(event:MouseEvent):void
+			{
+				panel2.startDrag();
+				
+			}
+			
+			protected function panel2_mouseUpHandler(event:MouseEvent):void
+			{
+				panel2.stopDrag();
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<ic:Map id="map" x="0" y="-14" width="100%" height="100%">
+		<ic:TiledDynamicRESTLayer layersID="[0,1,2]" url="{this.mapUrl}"/>		
+	</ic:Map> 
+	<s:Panel id="panel2" y="-14" right="0" width="324" height="118" backgroundAlpha="0.8"
+			 backgroundColor="#C8CBCD" borderAlpha="1" borderVisible="false"
+			 dropShadowVisible="true" fontFamily="宋体" fontSize="13" fontWeight="bold"
+			 mouseDown="panel2_mouseDownHandler(event)" mouseUp="panel2_mouseUpHandler(event)"
+			 title="离散点插值分析">
+		<s:Button x="1" y="47" width="113" height="26" label="离散点插值分析"
+				  click="cretePointsAnalyst_clickHandler(event)" fontFamily="宋体" fontSize="13"
+				  fontWeight="normal"/>
+		<s:Label x="9" y="16" width="55" height="23" fontWeight="normal" text="Z值范围"/>
+		<mx:VRule x="64" y="10" width="0" height="29"/>
+		<s:Label x="72" y="16" fontWeight="normal" text="最小值："/>
+		<s:Label x="201" y="16" fontWeight="normal" text="最大值："/>
+		<s:TextInput id="zMinValue" x="130" y="10.299999" width="57" height="27" text="-5"/>
+		<s:TextInput id="zMaxValue" x="261" y="10" width="57" height="27" text="28"/>
+		<s:Button x="133" y="47" height="26" label="清除" click="click_clickHandler(event)"
+				  fontWeight="normal"/>
+	</s:Panel>
+	<s:Panel id="panel1" y="-14" left="0" width="671" height="78" backgroundAlpha="0.8"
+			 backgroundColor="#C8CBCD" borderAlpha="1" borderVisible="false" color="#010101"
+			 contentBackgroundColor="#F7F0F0" dropShadowVisible="true" fontFamily="宋体" fontSize="13"
+			 fontWeight="bold" mouseDown="panel1_mouseDownHandler(event)"
+			 mouseUp="panel1_mouseUpHandler(event)" title="数据集插值分析">
+		<s:Button x="10" y="10" width="86" height="26" label="反距离加权"
+				  click="interpolationIDW_clickHandler(event)" fontFamily="宋体" fontSize="13"
+				  fontWeight="normal"/>
+		<s:Button x="104" y="10" width="86" height="26" label="径向基函数"
+				  click="interpolationRBF_clickHandler(event)" fontFamily="宋体" fontSize="13"
+				  fontWeight="normal"/>
+		<s:Button x="386" y="10" width="86" height="26" label="普通克吕金"
+				  click="interpolationKriging_clickHandler(event)" fontFamily="宋体" fontSize="13"
+				  fontWeight="normal"/>
+		<s:Button x="480" y="10" width="86" height="26" label="泛克吕金"
+				  click="interpolationUniversalKriging_clickHandler(event)" fontFamily="宋体"
+				  fontSize="13" fontWeight="normal"/>
+		<s:Button x="198" y="10" width="86" height="26" label="点密度"
+				  click="interpolationDensity_clickHandler(event)" fontWeight="normal"/>
+		<s:Button x="574" y="10" width="86" height="26" label="清除" click="click_clickHandler(event)"
+				  fontFamily="宋体" fontSize="13" fontWeight="normal"/>
+		<s:Button x="292" y="11" width="86" height="26" label="简单克吕金"
+				  click="interpolationSimpleKriging_clickHandler(event)" fontFamily="宋体"
+				  fontSize="13" fontWeight="normal"/>
+	</s:Panel>
+	
+	<s:controlBarContent>
+	</s:controlBarContent>
+</s:Application>

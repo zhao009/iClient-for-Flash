@@ -1,0 +1,7 @@
+<font color="#0033FF">多边形聚散显示（RegionClusterer）</font>
+<font color="#006633">1. 功能描述：</font>指将一定多边形范围内的点要素聚合显示至一个点。该多边形由用户绘制的面要素确定。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层——World 的 World 和 Capital 图层。
+<font color="#006633">3. 操作指南：</font>
+    1）点击“绘制多边形”，可绘制多个；
+    2）点击“聚合”；
+<font color="#006633">4. 其它说明：</font>有关多边形聚散显示（RegionClusterer）的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

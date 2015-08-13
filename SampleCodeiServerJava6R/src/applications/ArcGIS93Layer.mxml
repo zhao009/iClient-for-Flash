@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   width="100%" height="100%"
+			   xmlns:mapping="com.supermap.web.samples.mapping.*">
+	
+	<!--添加 ArcGis 地图-->
+	<ic:Map id="map" horizontalCenter="0" bottom="0" top="0">
+		<mapping:ArcGIS93MapLayer tileServer="http://www.arcgisonline.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/export"
+								  projection= "3857"
+								  resolutions="[156543, 78271.5, 39135.8, 19567.9, 
+								  9783.94, 4891.97, 2445.98, 1222.99,
+								  611.496,  305.748, 152.874, 76.437,
+								  38.2185, 19.1093, 9.55463,  4.77731,  
+								  2.38866, 1.19433, 0.597164]"/> 
+	</ic:Map>
+	
+	<s:Label paddingRight="5" paddingBottom="5" click="textLabel_clickHandler(event)" 
+			 text="Data by ArcGis" right="30" bottom="0" buttonMode="true"  
+			 color="blue" textDecoration="underline" />
+	
+	<fx:Script>
+		<![CDATA[	
+			
+			protected function textLabel_clickHandler(event:MouseEvent):void
+			{
+				var urlReq:URLRequest = new URLRequest("http://www.arcgisonline.cn/portal/home/webmap/viewer.html?useExisting=1");				
+				navigateToURL(urlReq, "_blank");
+			}
+			
+		]]>
+	</fx:Script>
+	
+</s:Application>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="55.5464" viewWidth="127.755" ai:appVersion="15.0.0.399" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group ai:seqID="1" d:layerType="page" d:pageHeight="55.546" d:pageWidth="127.755" d:type="layer" d:userLabel="画板 1">
+    <Group ai:seqID="2" d:type="layer" d:userLabel="图层 1">
+      <Group ai:seqID="3">
+        <Path x="1.85156" y="1.7915" winding="nonZero" ai:seqID="4" data="M124.053 43.1211C124.053 47.0146 120.72 50.1709 116.612 50.1709L22.3267 50.1709C18.4849 50.1709 0 27.0645 0 25.5259 0 23.9297 17.8979 0 22.3267 0L116.612 0C120.72 0 124.053 3.15723 124.053 7.05029L124.053 43.1211Z">
+          <fill>
+            <LinearGradient x="62.0269" y="50.1709" scaleX="50.1704" rotation="270">
+              <GradientEntry ratio="0" color="#4E6155"/>
+              <GradientEntry ratio="0.47" color="#51735F"/>
+              <GradientEntry ratio="0.47" color="#66806D"/>
+              <GradientEntry ratio="1" color="#AABFA3"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+        <Group ai:seqID="5" flm:knockout="false">
+          <Group ai:seqID="6" flm:knockout="false">
+            <Path winding="nonZero" ai:seqID="7" data="M118.461 1.7915C122.57 1.7915 125.903 4.94873 125.903 8.8418L125.903 44.9126C125.903 48.8062 122.57 51.9624 118.461 51.9624L24.1782 51.9624C20.3345 51.9624 1.85156 28.856 1.85156 27.3174 1.85156 25.7212 19.4419 1.7915 24.8413 1.7915L118.461 1.7915
+M118.461 0 24.9956 0C17.7446 0 0 25.4385 0 27.3174 0 29.2759 17.5894 53.7544 24.1782 53.7544L118.461 53.7544C123.585 53.7544 127.755 49.7876 127.755 44.9126L127.755 8.8418C127.755 3.9668 123.585 0 118.461 0L118.461 0Z">
+              <fill>
+                <SolidColor color="#47594F"/>
+              </fill>
+            </Path>
+          </Group>
+        </Group>
+        <Path y="28.2031" alpha="0.4" winding="nonZero" ai:seqID="8" data="M119.967 25.4058C119.481 25.5005 118.976 25.5513 118.461 25.5513L24.1782 25.5513C23.1489 25.5513 20.7407 25.5513 10.147 13.1558 7.43408 9.98193 1.53223 2.90576 0.258301 0 0.0957031 0.374023 0 0.685059 0 0.905762 0 2.86475 7.09619 11.3774 10.147
+ 14.9478 20.7407 27.3433 23.1489 27.3433 24.1782 27.3433L118.461 27.3433C123.585 27.3433 127.755 23.3765 127.755 18.5015L127.755 16.7095C127.755 21.0933 124.374 24.7153 119.967 25.4058Z">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

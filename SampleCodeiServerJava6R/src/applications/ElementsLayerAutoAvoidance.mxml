@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<s:Application xmlns:fx = "http://ns.adobe.com/mxml/2009"
+			   xmlns:s = "library://ns.adobe.com/flex/spark"
+			   xmlns:mx = "library://ns.adobe.com/flex/mx"
+			   minWidth = "955"
+			   minHeight = "600"
+			   xmlns:ic = "http://www.supermap.com/iclient/2010"
+			   xmlns:is = "http://www.supermap.com/iserverjava/2010"
+			   creationComplete = "initApp(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Element;
+			import com.supermap.web.core.Graphic;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.events.LayerEvent;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var restUrl:String;
+			private var timer:Timer = new Timer(1000);
+			
+			private var elementsArr:Array = new Array();
+			
+			private function initApp(event:FlexEvent):void
+			{
+				restUrl = 'http://localhost:8090/iserver/services/map-world/rest/maps/World Map';
+				this.map.viewBounds = new Rectangle2D(116, 39, 117, 40);
+				el.addEventListener(LayerEvent.UPDATE_END, onUpdateEnd);
+				for (var i:int = 0; i < 100; i++)
+				{
+					var geometry:GeoPoint = new GeoPoint(116+(Math.random()), 39+(Math.random()));
+					var textField:TextField = new TextField();
+					textField.text = "北京超图" + i;
+					textField.border = true;
+					textField.autoSize = TextFieldAutoSize.LEFT;
+					var element:Element = new Element(textField, new Rectangle2D(geometry.x, geometry.y, geometry.x, geometry.y));
+					elementsArr.push(element);
+					el.addElement(element);
+				}
+			}
+			
+			protected function onUpdateEnd(event:Event):void
+			{
+				graphicsLayer.removeAll();
+				for each (var eleme:Element in elementsArr) 
+				{
+					if(eleme.component.visible)
+					{
+						var geometry:GeoPoint = new GeoPoint(eleme.originalBounds.right, eleme.originalBounds.bottom);
+						var grafPoint:Graphic = new Graphic(geometry);
+						graphicsLayer.add([grafPoint]);
+						
+						var geoLine:GeoLine = new GeoLine();
+						geoLine.addPart([new Point2D(eleme.bounds.left,eleme.bounds.bottom),new Point2D((eleme.originalBounds.left+eleme.originalBounds.right)/2,eleme.originalBounds.bottom)]);
+						var graphLine:Graphic = new Graphic(geoLine);
+						graphicsLayer.add([graphLine]);
+					}
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<!--加载地图-->
+	<ic:Map id = "map"
+			x = "0"
+			y = "0"
+			height = "100%"
+			width = "100%">
+		<ic:TiledDynamicRESTLayer url = "{this.restUrl}"/>
+		<ic:GraphicsLayer id="graphicsLayer"/>
+		<ic:ElementsLayer id = "el"
+						  isAutoAvoidance = "true"
+						  referenceWidth="20"
+						  referenceHeight="5"
+						  referenceR="15"
+						  isAvoidByPixel="true"
+						  isPanEnableOnElement = "true"/>
+	</ic:Map>
+</s:Application>

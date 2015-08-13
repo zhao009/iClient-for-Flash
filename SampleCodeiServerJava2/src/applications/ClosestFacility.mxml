@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010" 
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()" width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.events.*;
+			import com.supermap.web.events.MapMouseEvent;
+			import com.supermap.web.iServerJava2.*;
+			import com.supermap.web.iServerJava2.mapServices.*;
+			import com.supermap.web.iServerJava2.networkAnalystServices.*;
+			import com.supermap.web.mapping.FeaturesLayer;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;
+			import mx.messaging.channels.StreamingAMFChannel;
+			import mx.rpc.AsyncResponder;
+			
+			private var fl:FeaturesLayer;
+			private var _facilityPoints:Array;
+			private var _eventPoint:Point2D;
+			
+			private function palying():void
+			{
+				_facilityPoints = new Array();
+				_eventPoint = new Point2D();
+				_eventPoint = null;
+				fl = new FeaturesLayer();
+				this.map.addLayer(fl);
+				titlewin.visible = true;
+				this.map.viewBounds = new Rectangle2D(-1740.7534752292868,-7668.24529207453,10748.00153953446,-77.42388466343982); 
+			}
+			
+			//添加事件点
+			private function excuteChooseEventPoint(event:MouseEvent):void 
+			{	
+				var markerStyle:PredefinedMarkerStyle = new PredefinedMarkerStyle(PredefinedMarkerStyle.SYMBOL_STAR,20,0x097616);
+				var chooseEventActoin:DrawPoint = new DrawPoint(map);
+				chooseEventActoin.style = markerStyle;
+				map.action = chooseEventActoin;
+				chooseEventActoin.addEventListener(DrawEvent.DRAW_END,addEventPointFeature);
+			}
+			
+			//添加设施点
+			private function excuteChooseFacilityPoint(event:MouseEvent):void 
+			{
+				var chooseFacilityActoin:DrawPoint = new DrawPoint(map);
+				map.action = chooseFacilityActoin;
+				chooseFacilityActoin.addEventListener(DrawEvent.DRAW_END,addEventChooseFacilityFeature);	
+			}
+			
+			private function addEventPointFeature(event:DrawEvent):void
+			{
+				if(_eventPoint != null)
+				{
+					Alert.show("事件点个数不能大于1！","抱歉",4,this);
+					return;
+				}
+				
+				if(event.feature.geometry is GeoPoint)
+				{
+					var point:GeoPoint = event.feature.geometry as GeoPoint;
+					_eventPoint = new Point2D(point.x, point.y);
+				}
+				
+				fl.addFeature(event.feature);
+			}
+			
+			private function addEventChooseFacilityFeature(event:DrawEvent):void
+			{
+				var point1:GeoPoint = new GeoPoint();
+				if(event.feature.geometry is GeoPoint)
+					point1 = event.feature.geometry as GeoPoint; 
+				var point2D:Point2D = new Point2D(point1.x, point1.y);
+				_facilityPoints.push(point2D);
+				
+				fl.addFeature(event.feature);
+			}
+			
+			//最近设施查找
+			private function excuteClosestFacilityAnalyst():void 
+			{
+				this.map.action = new Pan(map);
+				
+				if(!this._eventPoint)
+				{
+					Alert.show("请输入事件点！","抱歉",4,this);
+					return;
+				}
+				
+				if(this._facilityPoints.length < 1)
+				{
+					Alert.show("请输入至少一个设施点！","抱歉",4,this);
+					return;
+				}
+				
+				//定义用于最近设施查找的弧段权值信息，包括正向权值字段和负向权值字段
+				var weightFieldInfo:WeightFieldInfo = new WeightFieldInfo();
+				//WeightFieldInfo 对象的名称，由用户自己定义
+				weightFieldInfo.name = "LENGTH";
+				//正向权值字段
+				weightFieldInfo.fTWeightField = "SMLENGTH";
+				//负向权值字段
+				weightFieldInfo.tFWeightField = "SMLENGTH";
+				
+				//定义网络模型
+				var networkModelSetting:NetworkModelSetting = new NetworkModelSetting();
+				//数据源名称
+				networkModelSetting.networkDataSourceName = "changchun";
+				//数据集名称
+				networkModelSetting.networkDatasetName = "RoadNet";
+				//容限，详情请查看帮助文档
+				networkModelSetting.tolerance = 100;
+				//结点 ID 字段
+				networkModelSetting.nodeIDField = "SMNODEID";
+				//弧段 ID 字段
+				networkModelSetting.edgeIDField = "SMID";
+				//弧段终止结点字段
+				networkModelSetting.tNodeIDField = "SMTNODE";
+				//弧段起始结点字段
+				networkModelSetting.fNodeIDField = "SMFNODE";
+				//弧段权值信息集合
+				networkModelSetting.weightFieldInfos = [weightFieldInfo];				
+				
+				//定义网络分析参数
+				var networkAnalystParam:NetworkAnalystParam = new NetworkAnalystParam();
+				networkAnalystParam.point2Ds = this._facilityPoints;//设施点
+				networkAnalystParam.isEdgesReturn = true;
+				networkAnalystParam.isNodesReturn = true;
+				networkAnalystParam.isPathGuidesReturn = false;
+				networkAnalystParam.isPathsReturn = true;
+				networkAnalystParam.isStopsReturn = true;
+				
+				//定义最近设施参数
+				var proximityParam:ProximityParam = new ProximityParam();
+				proximityParam.networkAnalystParam = networkAnalystParam;
+				proximityParam.isFromEvent = this.isFromEventPoint.selected;
+				proximityParam.facilityCount = parseInt(this.closestFacilityCount.text);				
+				proximityParam.maxImpedance =  parseInt(this.closestFacilityRadius.text);				
+				
+				//定义最近设施查找参数
+				var closestFacilityParameters:ClosestFacilityParameters = new ClosestFacilityParameters();
+				closestFacilityParameters.mapName = "Changchun";
+				closestFacilityParameters.networkSetting = networkModelSetting;
+				closestFacilityParameters.proximityParam = proximityParam;
+				closestFacilityParameters.eventPoint = this._eventPoint;//事件点	
+				
+				//执行最近设施查找，即将进行最近设施查找所需的所有参数传送至服务端，并获取服务端返回的结果数据
+				var closestFacilityService:ClosestFacilityService = new ClosestFacilityService(viewConfig.webUrl);
+				closestFacilityService.execute(new AsyncResponder(this.displayNetworkAnalystResult, excuteErros, null), closestFacilityParameters);
+			}
+			
+			private function excuteErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("最近设施点查找失败！","抱歉",4,this);
+				return;
+			}
+			
+			//显示最近设施查找结果
+			private function displayNetworkAnalystResult(networkAnalystResult:NetworkAnalystResult, mark:Object = null):void
+			{
+				if(networkAnalystResult.paths == null)
+				{
+					Alert.show("查询结果为空","抱歉",4,this);
+					return;
+				}
+				
+				this._eventPoint = null;//清空事件点
+				this._facilityPoints.splice(0);
+				var paths:Array = networkAnalystResult.paths;
+				this.commonDisplayNetworkAnalystResult(paths);							
+			}
+			
+			//将服务端几何对象转换为客户端几何对象
+			private function commonDisplayNetworkAnalystResult(paths:Array):void
+			{
+				if(paths.length > 0)
+				{
+					for(var i:int = 0; i < paths.length; i++)
+					{
+						var geo:ServerGeometry = paths[i] as ServerGeometry;
+						if(geo.feature == ServerFeatureType.LINE || geo.feature == ServerFeatureType.LINEM)
+						{
+							var geoLine:GeoLine = geo.toGeoLine();
+							var lineStyle:PredefinedLineStyle = new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID, 0x2749f5, 1, 2);
+							var feature:Feature = new Feature();
+							feature.geometry = geoLine;
+							feature.style = lineStyle;
+							fl.addFeature(feature);
+						}
+					}
+				}
+			}
+			
+			//移除查询结果
+			private function removeFeature():void
+			{
+				this._eventPoint = null;//清空事件点
+				this._facilityPoints.splice(0);//清空设施点
+				this.fl.clear();
+				this.map.action = new Pan(map);
+			}
+			
+			private function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(map);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<s:Panel fontFamily="宋体" fontWeight="bold" title=" 请首先选择事件点及设施点，然后再点击查询。" width="100%" height="100%" fontSize="18">
+		<ic:Map id="map" width="100%" height="100%" load="palying()">
+			<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}" 
+										   mapServiceAddress="{viewConfig.gisUrl}"
+										   mapServicePort="8600" 
+										   mapName="Changchun"/>
+		</ic:Map>
+	</s:Panel>
+	
+	<!--参数设置窗口-->
+	<s:Panel id="titlewin" title="最近设施查找" fontSize="15" right="5" top="10" backgroundColor="#454343" backgroundAlpha="0.48">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">
+			<!--查找半径设置-->
+			<s:HGroup width="320"
+					 horizontalAlign="left">
+				<mx:Spacer width="12"/>
+				<s:Label text="查找半径："
+						  styleName="AboutVersion"
+						  color="0"/>
+				<mx:Spacer width="23"/>
+				<s:TextInput id="closestFacilityRadius"
+							  styleName="AboutVersion"
+							  color="0" width="142"
+							  text="1000"/>
+			</s:HGroup>
+			
+			<!--返回最近设施点个数设置-->
+			<s:HGroup width="320"
+					 horizontalAlign="left">
+				<mx:Spacer width="12"/>
+				<s:Label text="返回路径个数："
+						  styleName="AboutVersion"
+						  color="0"/>
+				<mx:Spacer width="12"/>
+				<s:TextInput id="closestFacilityCount"
+							  styleName="AboutVersion"
+							  color="0" width="142"
+							  text="1"/>
+			</s:HGroup>
+			
+			<!--设置查询方向及返回结果类型-->
+			<s:HGroup width="320"
+					 horizontalAlign="left">
+				<mx:Spacer width="12"/>
+				<s:Label text="从事件点开始："
+						  styleName="AboutVersion"
+						  color="0"/>
+				<mx:Spacer width="5"/>
+				<s:CheckBox id="isFromEventPoint" selected="true"/>
+			</s:HGroup>
+			
+			<!--选择设施点及事件点按钮-->
+			<s:HGroup horizontalAlign="center" width="320">
+				<mx:Spacer width="10"/>
+				<s:Button label="选择设施点"
+						   id="chooseFacilityPoint"
+						   click="excuteChooseFacilityPoint(event)"
+						   width="100"
+						   styleName="AboutVersion"
+						   color="0"/>
+				<s:Button label="选择事件点"
+						   id="chooseEventPoint"
+						   click="excuteChooseEventPoint(event)"
+						   width="100"
+						   styleName="AboutVersion"
+						   color="0"/>	
+				<s:Button label="查询"
+						   id="submitClosestFacilityAnalyst"
+						   click="excuteClosestFacilityAnalyst()"
+						   width="80"
+						   styleName="AboutVersion"
+						   color="0"/>
+			</s:HGroup>
+			<!--最近设施删除-->
+			<s:HGroup gap="10" width="100%" horizontalAlign="center">
+				<s:Button skinClass="skins.clearBtnSkin"
+						  id="AreaAnalyst"
+						  click="removeFeature()"/>
+				<s:Button skinClass="skins.panBtnSkin"
+						  click="panMap(event)"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+	<!--<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:Label left="4" text=" 请首先选择事件点及设施点，然后再点击查询。" textAlign="left" fontSize="15" height="40" 
+				 width="330" verticalAlign="middle" fontWeight="bold" fontFamily="宋体"/>
+	</s:controlBarContent>-->
+</s:Application>

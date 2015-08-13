@@ -1,0 +1,109 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<s:Application xmlns:fx = "http://ns.adobe.com/mxml/2009"
+			   xmlns:s = "library://ns.adobe.com/flex/spark"
+			   xmlns:mx = "library://ns.adobe.com/flex/mx"
+			   xmlns:ic = "http://www.supermap.com/iclient/2010"
+			   xmlns:is = "http://www.supermap.com/iserverjava/2010"
+			   width = "100%"
+			   height = "100%"
+			   creationComplete="initApp()"
+			   xmlns:mapping = "com.supermap.web.samples.mapping.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var length:String;
+			[Bindable]
+			private var smid:String;
+			[Bindable]
+			private var roadName:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+			}
+			protected function moveHandler(data:Object, x:Number, y:Number):void
+			{
+				//XY为相对当前Flash画布坐标
+				this.showInfoWindow(data, x, y);
+			}
+			
+			//根据返回数据形式创建信息框
+			private function showInfoWindow(data:Object, x:Number, y:Number):void
+			{
+				if (data)
+				{
+					if (data.COUNTRY)
+					{
+						this.roadName = data.COUNTRY;
+						map.infoWindow.label = this.roadName;
+					}
+					var point:Point = new Point(x, y);
+					var point2d:Point2D = this.map.screenToMap(point);
+					
+					map.infoWindow.content = content;
+					map.infoWindow.show(new Point2D(point2d.x, point2d.y));
+					
+					map.infoWindow.infoWindowLabel.setStyle('color', 0x000000);
+					map.infoWindow.infoWindowLabel.setStyle('fontSize', "14");
+					map.infoWindow.infoWindowLabel.setStyle('paddingBottom', "15");
+					map.infoWindow.infoWindowLabel.setStyle('fontFamily', "微软雅黑");
+					map.infoWindow.infoWindowLabel.setStyle("lineBreak", "toFit");
+					map.infoWindow.infoWindowLabel.maxDisplayedLines = -1;
+					
+					map.infoWindow.infoWindowLabel.showTruncationTip = true;
+				}
+				else
+				{
+					if (this.map.infoWindow)
+					{
+						this.map.infoWindow.hide();
+					}
+					else
+					{
+						return;
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 定义InfoWindow内容 -->
+		<s:VGroup id = "content"
+				  horizontalCenter = "0"
+				  paddingLeft = "8"
+				  paddingRight = "8"
+				  paddingTop = "2">
+		</s:VGroup>
+	</fx:Declarations>
+	<!--添加 OpenStreetMap 地图-->
+	<ic:Map id = "map"
+			horizontalCenter = "0"
+			bottom = "0"
+			top = "0">
+		<ic:TiledDynamicRESTLayer url = "{this.mapUrl}"
+								  tileSize = "256"/>
+		<ic:UTFGridLayer url = "{this.mapUrl}"
+						 layerName = "Countries@World"
+						 tileSize = "256"
+						 UTFGridMouseMoveHandler = "moveHandler"
+						 />
+	</ic:Map>
+</s:Application>

@@ -1,0 +1,639 @@
+<apiPackage id="com.supermap.web.iServerJava6R.spatialAnalystServices"><apiName>com.supermap.web.iServerJava6R.spatialAnalystServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystResult"><apiName>GeometryBufferAnalystResult</apiName><shortdesc>
+	 几何对象缓冲区分析服务结果数据类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象缓冲区分析服务结果数据类.
+	 <p>该类中包含了缓冲区分析的结果几何对象。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystResult:GeometryBufferAnalystResult"><apiName>GeometryBufferAnalystResult</apiName><shortdesc>
+		 初始化 GeometryBufAnalystResult  类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GeometryBufAnalystResult  类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystResult:resultGeometry:get"><apiName>resultGeometry</apiName><shortdesc>
+		 缓冲区分析的结果几何对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 缓冲区分析的结果几何对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferEndType"><apiName>BufferEndType</apiName><shortdesc>
+	 缓冲区端点枚举类型.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 缓冲区端点枚举类型.
+	 <p>线对象缓冲区分析时的端点类型，分为圆头缓冲和平头缓冲。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferEndType:FLAT"><apiName>FLAT</apiName><shortdesc>
+		 平头缓冲。平头缓冲区是在生成缓冲区时，在线段的端点处做线段的垂线.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>FLAT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 平头缓冲。平头缓冲区是在生成缓冲区时，在线段的端点处做线段的垂线.
+		 <p><img src="../../../../../images/Flat.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferEndType:ROUND"><apiName>ROUND</apiName><shortdesc>
+		 圆头缓冲。圆头缓冲区是在生成缓冲区时，在线段的端点处做半圆弧处理.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ROUND</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 圆头缓冲。圆头缓冲区是在生成缓冲区时，在线段的端点处做半圆弧处理.
+		 <p><img src="../../../../../images/roundBuffer.bmp"/></p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystResult"><apiName>DatasetOverlayAnalystResult</apiName><shortdesc>
+	 数据集叠加分析服务结果数据类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集叠加分析服务结果数据类.
+	 <p>该类中包含了数据集叠加分析的结果记录集。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystResult:DatasetOverlayAnalystResult"><apiName>DatasetOverlayAnalystResult</apiName><shortdesc>
+		 初始化 DatasetsOverlayAnalystResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DatasetsOverlayAnalystResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystResult:recordset:get"><apiName>recordset</apiName><shortdesc>
+		 获取数据集叠加分析的结果记录集。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R:Recordset</apiValueClassifier></apiValueDef><apiDesc>
+		 获取数据集叠加分析的结果记录集。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayAnalystParameters"><apiName>OverlayAnalystParameters</apiName><shortdesc>
+	 叠加分析参数基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 叠加分析参数基类.
+	 <p>叠加分析是 GIS 中的一项非常重要的空间分析功能。是指在统一空间参考系统下，通过对两个数据集或两个几何对象进行的一系列集合运算，产生新数据集或几何对象的过程。叠加分析广泛应用于资源管理、城市建设评估、国土管理、农林牧业、统计等领域。因此，通过此叠加分析类可实现对空间数据的加工和分析，提取用户需要的新的空间几何信息，并且对数据的属性信息进行处理。<br/>可以对数据集或某个几何对象进行叠加分析，这两类叠加分析功能的参数类（DatasetsOverlayAnalystParameters 和 GeometryOverlayAnalystParameters）均继承了该基类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayAnalystParameters:OverlayAnalystParameters"><apiName>OverlayAnalystParameters</apiName><shortdesc>
+		 初始化 OverlayAnalystParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 OverlayAnalystParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayAnalystParameters:operation:get"><apiName>operation</apiName><shortdesc>
+		 叠加操作类型，由 OverlayOperationType 类定义.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 叠加操作类型，由 OverlayOperationType 类定义.
+		 <p>叠加操作有：裁剪（Clip）、擦除（Erase）、合并（Union）、相交（Intersect）、同一（Identity）、对称差（Symmetrical difference）和更新（Update）。默认为 OverlayOperationType.UNION。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#OverlayOperationType"><linktext>OverlayOperationType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystParameters"><apiName>GeometryBufferAnalystParameters</apiName><shortdesc>
+	 几何对象缓冲区分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:BufferAnalystParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象缓冲区分析参数类.
+	 <p>几何对象缓冲区分析是指对指定的某个几何对象做缓冲区分析。通过该类可以指定要做缓冲区分析的几何对象、缓冲区参数等。<br/>缓冲区分析是 GIS 中基本的空间分析，缓冲区实际上是在基本空间要素周围建立的具有一定宽度的邻近区域。缓冲区分析可以有以下应用，比如确定街道拓宽的范围，确定放射源影响的范围等等。<br/>对于面对象而言，在做缓冲区分析前最好先经过拓扑检查，排除面内相交的情况，所谓面内相交，指的是面对象自身相交，如图所示，图中数字代表面对象的节点顺序。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystParameters:GeometryBufferAnalystParameters"><apiName>GeometryBufferAnalystParameters</apiName><shortdesc>
+		 初始化 GeometryBufferAnalystParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GeometryBufferAnalystParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystParameters:sourceGeometry:get"><apiName>sourceGeometry</apiName><shortdesc>
+		 要做缓冲区分析的几何对象。必设字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 要做缓冲区分析的几何对象。必设字段。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystService"><apiName>DatasetOverlayAnalystService</apiName><shortdesc>
+	 数据集叠加分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集叠加分析服务类.
+	 <p>该类负责将客户端设置的数据集叠加分析参数传递给服务端，并接收服务端返回的叠加分析结果数据。<br/>用户获取服务端返回的数据集叠加分析信息有两种方式：一种是通过监听 DatasetOverlayAnalystEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。<br/>叠加分析是 GIS 中的一项非常重要的空间分析功能。是指在统一空间参考系统下，通过对两个数据集或两个几何对象进行的一系列集合运算，产生新数据集或几何对象的过程。叠加分析广泛应用于资源管理、城市建设评估、国土管理、农林牧业、统计等领域。因此，通过此叠加分析类可实现对空间数据的加工和分析，提取用户需要的新的空间几何信息，并且对数据的属性信息进行处理。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystService_com.supermap.web.iServerJava6R.serviceEvents.DatasetOverlayAnalystEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.DatasetOverlayAnalystEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystService:DatasetOverlayAnalystService"><apiName>DatasetOverlayAnalystService</apiName><shortdesc>
+		 初始化 DatasetOverlayAnalystService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>使用数据集叠加分析服务地址初始化 DatasetOverlayAnalystService  类的新实例。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DatasetOverlayAnalystService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据数据集叠加分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters</apiOperationClassifier><apiDesc>叠加分析参数 DatasetOverlayAnalystParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;<br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据数据集叠加分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果.
+		 <p>当分析成功时，将触发 DatasetOverlayAnalystEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取编辑结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 DatasetOverlayAnalystEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的数据集叠加分析结果—— DatasetOverlayAnalystResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的数据集叠加分析结果—— DatasetOverlayAnalystResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetSurfaceAnalystParameters"><apiName>DatasetSurfaceAnalystParameters</apiName><shortdesc>
+	 数据集表面分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集表面分析参数类.
+	 <p>该类对数据集等值线/面提取的表面分析所用到的参数进行设置。*等值面提取暂不支持*<br/>从点数据集中提取等值面的实现原理是先对点数据集进行插值分析，得到栅格数据集（方法实现的中间结果），接着从栅格数据集中提取等值线，最终由等值线构成等值面。 </p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetSurfaceAnalystParameters:DatasetSurfaceAnalystParameters"><apiName>DatasetSurfaceAnalystParameters</apiName><shortdesc>
+		 初始化 DatasetSurfaceAnalystParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DatasetSurfaceAnalystParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetSurfaceAnalystParameters:dataset:get"><apiName>dataset</apiName><shortdesc>
+		 获取或设置数据集的标识。该标识形如"数据集名称@数据源别名"，例如：Country@World。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置数据集的标识。该标识形如"数据集名称@数据源别名"，例如：Country@World。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetSurfaceAnalystParameters:filterQueryParameter:get"><apiName>filterQueryParameter</apiName><shortdesc>
+		 获取或设置对待插值点进行筛选的过滤参数——FilterParameter 对象.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R:FilterParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置对待插值点进行筛选的过滤参数——FilterParameter 对象.
+		 <p>只有满足条件的点才能进行插值，最终用于等值线/面提取。若该参数未设置，则默认对所有点进行插值。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetSurfaceAnalystParameters:resultSetting:get"><apiName>resultSetting</apiName><shortdesc>
+		 返回结果参数—— DataReturnOption 对象，用于定义返回的最大记录数等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DataReturnOption</apiValueClassifier></apiValueDef><apiDesc>
+		 返回结果参数—— DataReturnOption 对象，用于定义返回的最大记录数等。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetSurfaceAnalystParameters:surfaceAnalystParametersSetting:get"><apiName>surfaceAnalystParametersSetting</apiName><shortdesc>
+		 获取或设置表面分析所需要的参数——SurfaceAnalystParametersSetting 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置表面分析所需要的参数——SurfaceAnalystParametersSetting 对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetSurfaceAnalystParameters:zValueFieldName:get"><apiName>zValueFieldName</apiName><shortdesc>
+		 获取或设置用于提取等值线/面的字段名称.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置用于提取等值线/面的字段名称.
+		 <p>提取等值线时，将使用该字段中的值，对点记录集中的点数据进行插值分析，得到栅格数据集（中间结果），接着从栅格数据集提取等值线。必设属性</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferSetting"><apiName>BufferSetting</apiName><shortdesc>
+	 缓冲区分析通用参数设置类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 缓冲区分析通用参数设置类.
+	 <p>通过该类可以设置缓冲区分析的左缓冲距离、右缓冲距离、端点类型、圆头缓冲圆弧处线段的个数。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferSetting:BufferSetting"><apiName>BufferSetting</apiName><shortdesc>
+		 初始化 BufferSetting 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 BufferSetting 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferSetting:endType:get"><apiName>endType</apiName><shortdesc>
+		 缓冲区分析的端点类型，由 BufferEndType 类定义.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/><apiDefaultValue>BufferEndType.FLAT
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 缓冲区分析的端点类型，由 BufferEndType 类定义.
+		 <p>用于设置线对象缓冲区分析结果的端点是圆头还是平头。默认为圆头缓冲 BufferEndType.ROUND。对于面和点对象的缓冲区分析，该字段值必需为 BufferEndType.ROUND 类型。 </p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#BufferEndType"><linktext>BufferEndType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferSetting:leftDistance:get"><apiName>leftDistance</apiName><shortdesc>
+		 左侧缓冲距离。由 BufferDistance 类定义.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:BufferDistance</apiValueClassifier></apiValueDef><apiDesc>
+		 左侧缓冲距离。由 BufferDistance 类定义.
+		 <p>在 BufferDistance 类中，提供数值型和字符串两种类型定义该参数：<br/>1.当该参数为数值型时（默认为 100 地图单位）：<br/>对于对点数据和面数据进行缓冲区分析时，该参数代表缓冲区的距离；<br/>对于对线数据进行缓冲区分析时，该参数代表线对象的左缓冲距离。<br/>2.当该参数为字符串类型时（只对数据缓冲区分析 DatasetBufferAnalystService 有效）：<br/>对于对点数据集和面数据集进行缓冲区分析时，该参数代表缓冲距离的字段表达式；<br/>对于对线数据集进行缓冲区分析时，该参数代表线对象的左缓冲距离的字段表达式。<br/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferSetting:rightDistance:get"><apiName>rightDistance</apiName><shortdesc>
+		 右侧缓冲距离。由 BufferDistance 类定义.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:BufferDistance</apiValueClassifier></apiValueDef><apiDesc>
+		 右侧缓冲距离。由 BufferDistance 类定义.
+		 <p>在 BufferDistance 类中，提供数值型和字符串两种类型定义该参数：<br/>1.当该参数为数值型时（默认为 100 地图单位）：<br/>对于对点数据和面数据进行缓冲区分析时，该参数无效；<br/>对于对线数据进行缓冲区分析时，该参数代表线对象的右缓冲距离。<br/>2.当该参数为字符串类型时（只对数据集缓冲区分析 DatasetBufferAnalystService 有效）：<br/>对于对点数据和面数据进行缓冲区分析时，该参数无效；<br/>对于对线数据集进行缓冲区分析时，该参数代表线对象的右缓冲距离的字段表达式。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferSetting:semicircleLineSegment:get"><apiName>semicircleLineSegment</apiName><shortdesc>
+		 圆头缓冲圆弧处线段的个数，即用多少个线段来模拟一个半圆，默认值为4。当属性 endType 值为 BufferEndType.ROUND 时有效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 圆头缓冲圆弧处线段的个数，即用多少个线段来模拟一个半圆，默认值为4。当属性 endType 值为 BufferEndType.ROUND 时有效。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystService"><apiName>GeometryOverlayAnalystService</apiName><shortdesc>
+	 几何对象叠加分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象叠加分析服务类.
+	 <p>该类负责将客户设置的几何对象叠加分析参数传递给服务端，并接收服务端返回的叠加分析结果数据。<br/>用户获取服务端返回的数据集叠加分析信息有两种方式：一种是通过监听 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。<br/>叠加分析是 GIS 中的一项非常重要的空间分析功能。是指在统一空间参考系统下，通过对两个数据集或两个几何对象进行的一系列集合运算，产生新数据集或几何对象的过程。叠加分析广泛应用于资源管理、城市建设评估、国土管理、农林牧业、统计等领域。因此，通过此叠加分析类可实现对空间数据的加工和分析，提取用户需要的新的空间几何信息，并且对数据的属性信息进行处理。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystService_com.supermap.web.iServerJava6R.serviceEvents.GeometryOverlayAnalystEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GeometryOverlayAnalystEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystService:GeometryOverlayAnalystService"><apiName>GeometryOverlayAnalystService</apiName><shortdesc>
+		 初始化 GeometryOverlayAnalystService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>几何对象叠加分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GeometryOverlayAnalystService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据几何对象叠加分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果。 
+		 当分析成功时，将触发 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取编辑结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件获取。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystParameters</apiOperationClassifier><apiDesc>几何对象叠加分析参数 GeometryOverlayAnalystParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据几何对象叠加分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果。 
+		 <p>当分析成功时，将触发 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取编辑结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件获取。</p>
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的几何对象叠加分析结果—— GeometryOverlayAnalystResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的几何对象叠加分析结果—— GeometryOverlayAnalystResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystService"><apiName>GeometryBufferAnalystService</apiName><shortdesc>
+	 几何对象缓冲区分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象缓冲区分析服务类.
+	 <p>几何对象缓冲区分析是指对指定的某个几何对象做缓冲区分析。该类负责将客户设置的几何对象缓冲区分析参数传递给服务端，并接收服务端返回的几何对象缓冲区分析结果数据。<br/>用户获取服务端返回的几何对象缓冲区分析信息有两种方式：一种是通过监听 GeometryBufferAnalystEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。<br/>缓冲区分析是 GIS 中基本的空间分析，缓冲区实际上是在基本空间要素周围建立的具有一定宽度的邻近区域。缓冲区分析可以有以下应用，比如确定街道拓宽的范围，确定放射源影响的范围等等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystService_com.supermap.web.iServerJava6R.serviceEvents.GeometryBufferAnalystEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.GeometryBufferAnalystEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystService:GeometryBufferAnalystService"><apiName>GeometryBufferAnalystService</apiName><shortdesc>
+		 使用几何对象缓冲区分析服务地址初始化 GeometryBufferAnalystService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的服务器 URL。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用几何对象缓冲区分析服务地址初始化 GeometryBufferAnalystService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据几何对象缓冲区分析析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。 
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystParameters</apiOperationClassifier><apiDesc>几何对象缓冲区分析参数 GeometryBufferAnalystParameters
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据几何对象缓冲区分析析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果.
+		 <p>当分析成功时，将触发 GeometryBufferAnalystEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取编辑结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 GeometryBufferAnalystEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的几何对象缓冲区分析结果—— GeometryBufferAnalystResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的几何对象缓冲区分析结果—— GeometryBufferAnalystResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType"><apiName>OverlayOperationType</apiName><shortdesc>
+	 叠加操作枚举类型.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 叠加操作枚举类型.
+	 <p>该类提供了叠加分析的运作方式。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType:CLIP"><apiName>CLIP</apiName><shortdesc>
+		 操作对象裁剪被操作对象.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CLIP</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 操作对象裁剪被操作对象.
+		 <p>1. 输出结果对象为：被操作几何对象落在操作几何对象内的那部分几何对象；<br/>2. Clip 与 Intersect 在空间处理上是一致的，不同在于对结果几何对象属性的处理，Clip 分析只是用来做裁剪，结果几何对象只保留被操作几何对象的非系统字段，而 Intersect 求交分析的结果则可以根据字段设置情况来保留两个几何对象的字段。<br/>3. 该操作适合的几何对象类型： 操作几何对象：面； 被操作几何对象：线、面。<br/><img src="../../../../../images/clip.png"/></p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#OverlayOperationType/INTERSECT"><linktext>INTERSECT</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType:ERASE"><apiName>ERASE</apiName><shortdesc>
+		 在被操作对象上擦除掉与操作对象相重合的部分.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ERASE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 在被操作对象上擦除掉与操作对象相重合的部分.
+		 <p>1. 如果对象全部被擦除了，则返回 Null；<br/>2. 操作几何对象定义了擦除区域，凡是落在操作几何对象区域内的被操作几何对象部分都将被去除，而落在区域外的特征要素都将被输出为结果几何对象，与 Clip 运算相反；<br/>3. 该操作适合的几何对象类型： 操作几何对象：面； 被操作几何对象：点、线、面。<br/><img src="../../../../../images/erase.png"/></p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#OverlayOperationType/INTERSECT"><linktext>INTERSECT</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType:IDENTITY"><apiName>IDENTITY</apiName><shortdesc>
+		 对被操作对象进行同一操作，即操作执行后，被操作几何对象包含来自操作几何对象的几何形状.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>IDENTITY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 对被操作对象进行同一操作，即操作执行后，被操作几何对象包含来自操作几何对象的几何形状.
+		 <p>1. 同一运算就是操作几何对象与被操作几何对象先求交，然后求交结果再与被操作几何对象求并的运算。<br/>2. 如果被操作几何对象为点类型，则结果几何对象为被操作几何对象；<br/>3. 如果被操作几何对象为线类型，则结果几何对象为被操作几何对象，但是操作几何对象相交的部分将被打断；<br/>4. 如果被操作几何对象为面类型，则结果几何对象保留以被操作几何对象为控制边界之内的所有多边形，并且把与操作几何对象相交的地方分割成多个对象。<br/>5. 该操作适合的几何对象类型：操作几何对象：面；被操作几何对象：点、线、面。<br/><img src="../../../../../images/identity.png"/><br/>6. Identiy运算与Union运算有相似之处，所不同之处在于Union运算保留了两个数据集的所有部分，而Identity运算是把第一个数据集中与第二个数据集不相交的部分进行保留。Identity运算的结果属性表来自于两个数据集的属性表。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava6R.spatialAnalystServices.UNION.xml"><linktext>UNION</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType:INTERSECT"><apiName>INTERSECT</apiName><shortdesc>
+		 对两个几何对象求交，返回两个几何对象的交集.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>INTERSECT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 对两个几何对象求交，返回两个几何对象的交集.
+		 <p>1. 求交运算与裁剪运算得到的结果几何对象的空间几何信息相同的，但是裁剪运算不对属性表做任何处理，而求交运算可以让用户选择需要保留的属性字段；<br/>2. 进行求交运算的两个几何对象必须是同类型的，目前版本只支持面类型的求交；<br/>3. 该操作适合的几何对象类型： 操作几何对象：面； 被操作几何对象：面。<br/><img src="../../../../../images/INTERSECT.png"/></p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#OverlayOperationType/CLIP"><linktext>CLIP</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType:UNION"><apiName>UNION</apiName><shortdesc>
+		 对两个对象进行合并操作，进行合并后，两个面对象在相交处被多边形分割.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>UNION</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 对两个对象进行合并操作，进行合并后，两个面对象在相交处被多边形分割.
+		 <p>1. 进行求并运算的两个几何对象必须是同类型的，目前版本只支持面类型的合并；<br/>2. 该操作适合的几何对象类型： 操作几何对象：面； 被操作几何对象：面。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#OverlayOperationType/IDENTITY"><linktext>IDENTITY</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType:UPDATE"><apiName>UPDATE</apiName><shortdesc>
+		 更新操作.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>UPDATE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 更新操作.
+		 <p>更新运算是对两个面数据进行的操作，即使用操作数据中的内容去更新被操作数据中相应位置的内容。<br/><img src="../../../../../images/update.png"/><br/>注意 UPDATE 与 UNION 的区别。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#OverlayOperationType/UNION"><linktext>UNION</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayOperationType:XOR"><apiName>XOR</apiName><shortdesc>
+		 对两个对象进行对称差操作，即对于每一个被操作几何对象，去掉其与操作几何对象相交的部分，而保留剩下的部分.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>XOR</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 对两个对象进行对称差操作，即对于每一个被操作几何对象，去掉其与操作几何对象相交的部分，而保留剩下的部分.
+		 <p>1. 对称差运算的结果几何对象的属性表包含两个输入几何对象的非系统属性字段；<br/>2. 该操作适合的几何对象类型：a)操作几何对象：面；b)被操作几何对象：面。<br/><img src="../../../../../images/XOR.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystService"><apiName>DatasetBufferAnalystService</apiName><shortdesc>
+	 数据集缓冲区分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集缓冲区分析服务类.
+	 <p>数据集缓冲区分析是指对数据集中符合条件的要素做缓冲区分析。该类负责将客户设置的数据集缓冲区分析参数传递给服务端，并接收服务端返回的数据集缓冲区分析结果数据。<br/>用户获取服务端返回的数据集缓冲区分析结果信息有两种方式：一种是通过监听 DatasetBufferAnalystEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。<br/>缓冲区分析是 GIS 中基本的空间分析，缓冲区实际上是在基本空间要素周围建立的具有一定宽度的邻近区域。缓冲区分析可以有以下应用，比如确定街道拓宽的范围，确定放射源影响的范围等等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystService_com.supermap.web.iServerJava6R.serviceEvents.DatasetBufferAnalystEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.DatasetBufferAnalystEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystService:DatasetBufferAnalystService"><apiName>DatasetBufferAnalystService</apiName><shortdesc>
+		 初始化 DatasetBufferAnalystService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的数据集缓冲区分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DatasetBufferAnalystService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据数据集缓冲区分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters</apiOperationClassifier><apiDesc>数据集缓冲区分析参数 DatasetBufferAnalystParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据数据集缓冲区分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果.
+		 <p>当分析成功时，将触发 DatasetBufferAnalystEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取编辑结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 DatasetBufferAnalystEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的数据集缓冲区分析结果——DatasetBufferAnalystResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的数据集缓冲区分析结果——DatasetBufferAnalystResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystService"><apiName>SurfaceAnalystService</apiName><shortdesc>
+	 表面分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 表面分析服务类.
+	 <p>表面分析是指通过对数据集或几何对象进行分析，从中挖掘原始数据所包含的隐藏信息——等值线、等值面，*目前等值面提取暂不支持*。<br/>等值线是将相邻的具有相同值的点（诸如高程、温度、降水、污染或大气压力）连接起来的线。分布反映了表面上值的变化，等值线分布越密集的地方，表示表面值的变化比较剧烈，例如，如果为等高线，则越密集，坡度越陡峭，反之坡度越平缓。通过提取等值线，可以找到高程、温度、降水等的值相同的位置，同时等值线的分布状况也可以显示出变化的陡峭和平缓区。下图为从点数据中提取等值线：<br/><img src="../../../../../images/dotdata.png"/><img src="../../../../../images/extractLine.png"/><br/>等值面是由相邻的等值线封闭组成的面。等值面的变化可以很直观的表示出相邻等值线之间的变化，诸如高程、温度、降水、污染或大气压力等用等值面来表示是非常直观、有效的。等值面分布的效果与等值线的分布相同，也是反映了表面上的变化，等值面分布越密集的地方，表示表面值有较大的变化，反之则表示表面值变化较少；等值面越窄的地方，表示表面值有较大的变化，反之则表示表面值变化较少。下图为从点数据中提取等值面：<br/><img src="../../../../../images/dotData2.png"/><img src="../../../../../images/extractRegion.png"/><br/>该类负责将客户设置的等值线/面提取服务参数传递给服务端，并接收服务端返回的等值线/面提取服务分析结果数据。<br/>用户获取服务端返回的表面分析结果信息有两种方式：一种是通过监听 SurfaceAnalystEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。<br/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystService_com.supermap.web.iServerJava6R.serviceEvents.SurfaceAnalystEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.SurfaceAnalystEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystService:SurfaceAnalystService"><apiName>SurfaceAnalystService</apiName><shortdesc>
+		 使用表面分析服务地址初始化 SurfaceAnalystService 类的新实例。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的表面分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用表面分析服务地址初始化 SurfaceAnalystService 类的新实例。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据表面分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParameters</apiOperationClassifier><apiDesc>表面分析参数 SurfaceAnalystParameters
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据表面分析服务地址与服务端完成异步通讯，即发送分析参数，并获取分析结果。.
+		 <p>当分析成功时，将触发 SurfaceAnalystEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取编辑结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 SurfaceAnalystEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的表面分析结果——SurfaceAnalystResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的表面分析结果——SurfaceAnalystResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystResult"><apiName>DatasetBufferAnalystResult</apiName><shortdesc>
+	 数据集缓冲区分析服务结果数据类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集缓冲区分析服务结果数据类.
+	 <p>该类中包含了缓冲区分析的结果记录集。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystResult:DatasetBufferAnalystResult"><apiName>DatasetBufferAnalystResult</apiName><shortdesc>
+		 初始化 DatasetBufferAnalystResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DatasetBufferAnalystResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystResult:recordset:get"><apiName>recordset</apiName><shortdesc>
+		 数据集缓冲区分析的结果记录集—— Recordset 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R:Recordset</apiValueClassifier></apiValueDef><apiDesc>
+		 数据集缓冲区分析的结果记录集—— Recordset 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters"><apiName>DatasetBufferAnalystParameters</apiName><shortdesc>
+	 数据集缓冲区分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:BufferAnalystParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集缓冲区分析参数类.
+	 <p>对数据集中满足条件的要素做缓冲区分析。通过该类可以指定要做缓冲区分析的数据集、过滤条件等参数。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters:DatasetBufferAnalystParameters"><apiName>DatasetBufferAnalystParameters</apiName><shortdesc>
+		 初始化 DatasetsBufAnalystParms 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DatasetsBufAnalystParms 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters:dataset:get"><apiName>dataset</apiName><shortdesc>
+		 获取或设置数据集的标识。该标识形如"数据集名称@数据源别名"，例如：Country@World。必设字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置数据集的标识。该标识形如"数据集名称@数据源别名"，例如：Country@World。必设字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters:filterQueryParameter:get"><apiName>filterQueryParameter</apiName><shortdesc>
+		 设置数据集中几何对象的过滤条件，由 FilterParameter 类定义，只有满足此条件的几何对象才参与缓冲区分析.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R:FilterParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 设置数据集中几何对象的过滤条件，由 FilterParameter 类定义，只有满足此条件的几何对象才参与缓冲区分析.
+		 <p>若该参数为空，则表示对数据集中的所有对象进行缓冲区分析。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters:isAttributeRetained:get"><apiName>isAttributeRetained</apiName><shortdesc>
+		 是否保留进行缓冲区分析的对象的字段属性，默认为 true，表示保留.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否保留进行缓冲区分析的对象的字段属性，默认为 true，表示保留.
+		 <p>当 isUnion 字段为 false 时，即合并缓冲区及缓冲对象时，该字段有效。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#DatasetBufferAnalystParameters/isUnion"><linktext>isUnion</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters:isUnion:get"><apiName>isUnion</apiName><shortdesc>
+		 是否将缓冲区与源记录集中的缓冲对象合并后返回。对于面对象而言，要求源数据集中的面对象不相交。默认为 false，表示不合并。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否将缓冲区与源记录集中的缓冲对象合并后返回。对于面对象而言，要求源数据集中的面对象不相交。默认为 false，表示不合并。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystParameters:maxReturnRecordCount:get"><apiName>maxReturnRecordCount</apiName><shortdesc>
+		 最大返回记录数。默认为1000条记录。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 最大返回记录数。默认为1000条记录。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystResult"><apiName>SurfaceAnalystResult</apiName><shortdesc>
+	 表面分析服务结果数据类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 表面分析服务结果数据类.
+	 <p>该类中包含了等值线/面提取的结果记录集。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystResult:SurfaceAnalystResult"><apiName>SurfaceAnalystResult</apiName><shortdesc>
+		 初始化 SurfaceAnalystResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SurfaceAnalystResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystResult:recordset:get"><apiName>recordset</apiName><shortdesc>
+		 等值线/面提取分析的结果记录集——Recordset。*目前等值面提取暂不支持* 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R:Recordset</apiValueClassifier></apiValueDef><apiDesc>
+		 等值线/面提取分析的结果记录集——Recordset。*目前等值面提取暂不支持* 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystMethod"><apiName>SurfaceAnalystMethod</apiName><shortdesc>
+	 表面分析类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 表面分析类型枚举类.
+	 <p>包括等值线、等值面提取两种，*目前等值面提取暂不支持*。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystMethod:ISOLINE"><apiName>ISOLINE</apiName><shortdesc>
+		 等值线提取。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ISOLINE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 等值线提取。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystMethod:ISOREGION"><apiName>ISOREGION</apiName><shortdesc>
+		 等值面提取。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ISOREGION</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 等值面提取。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferAnalystParameters"><apiName>BufferAnalystParameters</apiName><shortdesc>
+	 缓冲区分析参数基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 缓冲区分析参数基类.
+	 <p>缓冲区分析是 GIS 中基本的空间分析，缓冲区实际上是在基本空间要素周围建立的具有一定宽度的邻近区域。缓冲区分析可以有以下应用：确定街道拓宽的范围，确定放射源影响的范围等等。<br/>对于面对象而言，在做缓冲区分析前最好先经过拓扑检查，排除面内相交的情况，所谓面内相交，指的是面对象自身相交，如图所示，图中数字代表面对象的节点顺序。<br/><img src="../../../../../images/BufferAnalyst.bmp"/><br/>可以对数据集或某个几何对象做缓冲区分析，这两类缓冲区分析功能的参数类（DatasetsBufferAnalystParameters 和 GeometryBufferAnalystParameters）继承了该基类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferAnalystParameters:BufferAnalystParameters"><apiName>BufferAnalystParameters</apiName><shortdesc>
+		 初始化 BufferAnalystParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 BufferAnalystParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferAnalystParameters:bufferSetting:get"><apiName>bufferSetting</apiName><shortdesc>
+		 获取或设置缓冲区分析通用参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:BufferSetting</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置缓冲区分析通用参数.
+		 <p>为缓冲区分析提供必要的参数信息，包括左缓冲距离、右缓冲距离、端点类型、圆头缓冲圆弧处线段的个数信息。<br/>对线进行缓冲区分析时左右缓冲距离必须相等。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferDistance"><apiName>BufferDistance</apiName><shortdesc>
+	 缓冲区分析的缓冲距离类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 缓冲区分析的缓冲距离类.
+	 <p>通过该类可以设置缓冲区分析的缓冲距离，距离可以是数值也可以是数值型的字段表达式。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferDistance:BufferDistance"><apiName>BufferDistance</apiName><shortdesc>
+		 初始化 BufferDistance 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 BufferDistance 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferDistance:expression:get"><apiName>expression</apiName><shortdesc>
+		 以数值型的字段表达式作为缓冲区分析的距离值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 以数值型的字段表达式作为缓冲区分析的距离值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:BufferDistance:value:get"><apiName>value</apiName><shortdesc>
+		 以数值作为缓冲区分析的距离值。默认为100地图单位。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 以数值作为缓冲区分析的距离值。默认为100地图单位。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystResult"><apiName>GeometryOverlayAnalystResult</apiName><shortdesc>
+	 几何对象叠加分析服务结果数据类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象叠加分析服务结果数据类.
+	 <p>该类中包含了叠加分析的结果几何对象。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystResult:GeometryOverlayAnalystResult"><apiName>GeometryOverlayAnalystResult</apiName><shortdesc>
+		 初始化 GeometryOverlayAnalystResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GeometryOverlayAnalystResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystResult:resultGeometry:get"><apiName>resultGeometry</apiName><shortdesc>
+		 叠加分析的结果几何对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 叠加分析的结果几何对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DataReturnOption"><apiName>DataReturnOption</apiName><shortdesc>
+	 返回结果参数设置类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 返回结果参数设置类.
+	 <p>通过该类可以设置返回的最大记录。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DataReturnOption:DataReturnOption"><apiName>DataReturnOption</apiName><shortdesc>
+		 初始化 DataReturnOption 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DataReturnOption 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DataReturnOption:maxRecordCount:get"><apiName>maxRecordCount</apiName><shortdesc>
+		 获取或设置返回的最大记录数，小于或者等于0时表示返回所有记录集。默认值为 0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置返回的最大记录数，小于或者等于0时表示返回所有记录集。默认值为 0。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometrySurfaceAnalystParameters"><apiName>GeometrySurfaceAnalystParameters</apiName><shortdesc>
+	 几何对象表面分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象表面分析参数类.
+	 <p>通过该类可以设置表面分析方法的参数。如用于等值线或面提取的点集合、第三维数据，及其它参数。<br/>从一个点集合中提取等值线的实现原理是先利用点集合中存储的第三维信息（高程或者温度等）， 也就是除了点的坐标信息的数据，对点数据进行插值分析，得到栅格数据集（中间结果数据集），接着从栅格数据集中提取等值线。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometrySurfaceAnalystParameters:GeometrySurfaceAnalystParameters"><apiName>GeometrySurfaceAnalystParameters</apiName><shortdesc>
+		 初始化 GeometrySurfaceAnalystParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GeometrySurfaceAnalystParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometrySurfaceAnalystParameters:extractParamsSetting:get"><apiName>extractParamsSetting</apiName><shortdesc>
+		 获取或设置表面分析所需要的参数—— SurfaceAnalystParametersSetting 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置表面分析所需要的参数—— SurfaceAnalystParametersSetting 对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometrySurfaceAnalystParameters:points:get"><apiName>points</apiName><shortdesc>
+		 获取或设置用于提取等值线/面的点（Point2D 类型）集合。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置用于提取等值线/面的点（Point2D 类型）集合。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometrySurfaceAnalystParameters:resultSetting:get"><apiName>resultSetting</apiName><shortdesc>
+		 返回结果参数 —— DataReturnOption 对象，用于定义返回的最大记录数等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DataReturnOption</apiValueClassifier></apiValueDef><apiDesc>
+		 返回结果参数 —— DataReturnOption 对象，用于定义返回的最大记录数等。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometrySurfaceAnalystParameters:zValues:get"><apiName>zValues</apiName><shortdesc>
+		 获取或设置第三维数据值集合，该集合中的数值与点集合 Points 中的点对象一一对应，代表点对象的第三维数据，如：高程、温度等。必设属性。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置第三维数据值集合，该集合中的数值与点集合 Points 中的点对象一一对应，代表点对象的第三维数据，如：高程、温度等。必设属性。.
+		 <p>在提取等值线/面时，将使用字段中的值对 Points 中的点对象进行插值分析，得到栅格数据集（中间结果），接着从栅格数据集提取等值线/面。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters"><apiName>DatasetOverlayAnalystParameters</apiName><shortdesc>
+	 数据集叠加分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayAnalystParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集叠加分析参数类.
+	 <p>该类主要提供进行叠加分析时，输出结果数据集的字段选择。在矢量叠加分析中至少涉及到三个数据集，其中一个数据集被称作源数据集，即被操作的数据集（在 SuperMap GIS 中称作第一数据集）；另一个数据集被称作叠加数据集，即操作数据集（在 SuperMap GIS 中称作第二数据集）；还有一个数据集就是叠加结果数据集，包含叠加后数据的几何信息和属性信息。叠加结果数据集中的属性信息来自于第一数据集和第二数据集的属性表，在进行叠加分析的时候，用户可以根据自己的需要在这两个数据集的属性表中选择需要保留的属性字段。<br/>叠加分析是 GIS 中的一项非常重要的空间分析功能。是指在统一空间参考系统下，通过对两个数据集或两个几何对象进行的一系列集合运算，产生新数据集或几何对象的过程。叠加分析广泛应用于资源管理、城市建设评估、国土管理、农林牧业、统计等领域。因此，通过此叠加分析类可实现对空间数据的加工和分析，提取用户需要的新的空间几何信息，并且对数据的属性信息进行处理。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:DatasetOverlayAnalystParameters"><apiName>DatasetOverlayAnalystParameters</apiName><shortdesc>
+		 初始化 DatasetsOverlayAnalystParms 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DatasetsOverlayAnalystParms 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:maxReturnRecordCount:get"><apiName>maxReturnRecordCount</apiName><shortdesc>
+		 最大返回结果记录条数。默认为 1000 条记录。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 最大返回结果记录条数。默认为 1000 条记录。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:operateDatasetFields:get"><apiName>operateDatasetFields</apiName><shortdesc>
+		 叠加分析中操作数据集保留在结果数据集中的字段名列表。当该参数为空时，默认返回所有字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 叠加分析中操作数据集保留在结果数据集中的字段名列表。当该参数为空时，默认返回所有字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:operateDatasetFilter:get"><apiName>operateDatasetFilter</apiName><shortdesc>
+		 设置操作数据集中空间对象的过滤条件——FilterParameter 对象.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R:FilterParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 设置操作数据集中空间对象的过滤条件——FilterParameter 对象.
+		 <p>设置完过滤条件后，操作数据集中仅有满足条件的对象才参与叠加分析。若该参数为空，则表示操作数据集中的所有对象均参与叠加分析。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:operateDataset:get"><apiName>operateDataset</apiName><shortdesc>
+		 叠加分析中操作数据集的名称。必设字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 叠加分析中操作数据集的名称。必设字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:operateRegions:get"><apiName>operateRegions</apiName><shortdesc>
+		 操作区域。设置了操作区域后，仅对该区域内的对象进行分析。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 操作区域。设置了操作区域后，仅对该区域内的对象进行分析。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:sourceDatasetFields:get"><apiName>sourceDatasetFields</apiName><shortdesc>
+		 叠加分析中源数据集保留在结果数据集中的字段名列表。当该参数为空时，默认返回所有字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 叠加分析中源数据集保留在结果数据集中的字段名列表。当该参数为空时，默认返回所有字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:sourceDatasetFilter:get"><apiName>sourceDatasetFilter</apiName><shortdesc>
+		 设置源数据集中空间对象过滤条件——FilterParameter 对象.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R:FilterParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 设置源数据集中空间对象过滤条件——FilterParameter 对象.
+		 <p>设置完过滤条件后，源数据集中仅有满足条件的对象才参与叠加分析。若该参数为空，则表示操作数据集中的所有对象均参与叠加分析。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystParameters:sourceDataset:get"><apiName>sourceDataset</apiName><shortdesc>
+		 叠加分析中源数据集（即被操作数据集）的名称。必设字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 叠加分析中源数据集（即被操作数据集）的名称。必设字段。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParameters"><apiName>SurfaceAnalystParameters</apiName><shortdesc>
+	 表面分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 表面分析参数类.
+	 <p>表面分析是指通过对数据集或几何对象进行分析，从中挖掘原始数据所包含的隐藏信息——等值线、等值面，*目前等值面提取暂不支持*。 <br/>通过该类可以设置提取等值线/面的提取方法及中间结果的分辨率 ，DatasetSurfaceAnalystParameters、GeometrySurfaceAnalystParameters 继承自该类 。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParameters:SurfaceAnalystParameters"><apiName>SurfaceAnalystParameters</apiName><shortdesc>
+		 初始化 SurfaceAnalystParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SurfaceAnalystParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParameters:resolution:get"><apiName>resolution</apiName><shortdesc>
+		 获取或设置指定中间结果（栅格数据集）的分辨率。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>3000
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置指定中间结果（栅格数据集）的分辨率。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParameters:surfaceAnalystMethod:get"><apiName>surfaceAnalystMethod</apiName><shortdesc>
+		 获取或设置表面分析类型，包括等值线、等值面提取两种。*目前等值面提取暂不支持*。默认值为 SurfaceAnalystMethod.ISOLINE 等值线提取。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置表面分析类型，包括等值线、等值面提取两种。*目前等值面提取暂不支持*。默认值为 SurfaceAnalystMethod.ISOLINE 等值线提取。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult"><apiName>SpatialAnalystResult</apiName><shortdesc>
+	 空间分析服务结果数据基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 空间分析服务结果数据基类.
+	 <p>所有的空间分析都拥有自己的结果数据类，如数据集缓冲区分析的结果数据类为 DatasetsBufAnalystResult。这些结果数据类继承了该基类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult:SpatialAnalystResult"><apiName>SpatialAnalystResult</apiName><shortdesc>
+		 初始化 SpatialAnalystResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SpatialAnalystResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SpatialAnalystResult:succeed:get"><apiName>succeed</apiName><shortdesc>
+		 是否成功返回结果。true 表示成功返回结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否成功返回结果。true 表示成功返回结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:SmoothMethod"><apiName>SmoothMethod</apiName><shortdesc>
+	 光滑方法枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 光滑方法枚举类.
+	 <p>该类提供了表面分析中等值线/面的光滑方法。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SmoothMethod:BSPLINE"><apiName>BSPLINE</apiName><shortdesc>
+		 B 样条法。等值线会以每四个控制点为单位进行光滑，经过第一个和第四个控制点，在第二和第三个控制点附近拟合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BSPLINE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 B 样条法。等值线会以每四个控制点为单位进行光滑，经过第一个和第四个控制点，在第二和第三个控制点附近拟合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SmoothMethod:POLISH"><apiName>POLISH</apiName><shortdesc>
+		 磨角法。等值线会经过每一个控制点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>POLISH</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 磨角法。等值线会经过每一个控制点。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting"><apiName>SurfaceAnalystParametersSetting</apiName><shortdesc>
+	 表面分析参数设置类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 表面分析参数设置类.
+	 <p>表面分析是指通过对数据集或几何对象进行分析，从中挖掘原始数据所包含的隐藏信息——等值线、等值面，*目前等值面提取暂不支持*。<br/>通过该类可以设置表面分析的一些参数，包括提取等值线/面的基准值、等值距、光滑度、光滑方法等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:SurfaceAnalystParametersSetting"><apiName>SurfaceAnalystParametersSetting</apiName><shortdesc>
+		 初始化 SurfaceAnalystParametersSetting 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SurfaceAnalystParametersSetting 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:clipRegion:get"><apiName>clipRegion</apiName><shortdesc>
+		 获取或设置裁剪面对象，如果不需要对操作结果进行裁剪，可以使用 null 值取代该参数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:GeoRegion</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置裁剪面对象，如果不需要对操作结果进行裁剪，可以使用 null 值取代该参数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:datumValue:get"><apiName>datumValue</apiName><shortdesc>
+		 获取或设置等值线/面的基准值，默认值为 0.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置等值线/面的基准值，默认值为 0.
+		 <p>基准值是作为一个生成等值线/面的初始起算值，并不一定是最小等值线的值。设置基准值时，要参照用于提取操作的字段的最大和最小值，不可以超过最大值。 例如，高程范围为 220 ~1550 的 DEM 栅格数据，如果设基准值为 0， 等值距为 50，则提取等值线时，以基准值 0 为起点，等值距 50 为间隔提取等值线， 因为给定高程的最小值是 220，所以，在给定范围内提取等值线的最小高程是 250。提取等值线的结果是：最小等值线值为250，最大等值线值为 1550。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:expectedZValues:get"><apiName>expectedZValues</apiName><shortdesc>
+		 获取或设置期望分析结果的 Z 值列表.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置期望分析结果的 Z 值列表.
+		 <p>Z 值列表中存储了一系列数值，该数值为待提取等值线/面的值。 例如：提取高程线，expectedZValues = [50,80,120,500]，则仅高程值为 50/80/120/500的高程线才会被提取。若该字段为空，则默认提取所有值的等值线/面。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:interval:get"><apiName>interval</apiName><shortdesc>
+		 获取或设置等值距.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置等值距.
+		 <p>等值距是两条等值线之间的间隔值。设置等值距时，要参照用于提取操作的字段的最大和最小值，不可以超过两者之差。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:resampleTolerance:get"><apiName>resampleTolerance</apiName><shortdesc>
+		 获取或设置重采样容限，默认值为 0.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置重采样容限，默认值为 0.
+		 <p>容限值越大，采样结果数据越简化。当分析结果出现交叉时，可通过调整重采样容限为较小的值来处理。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:smoothMethod:get"><apiName>smoothMethod</apiName><shortdesc>
+		 获取或设置光滑处理所使用的方法，由 SmoothMethod 类定义。默认为 SmoothMethod.BSPLINE B 样条法。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置光滑处理所使用的方法，由 SmoothMethod 类定义。默认为 SmoothMethod.BSPLINE B 样条法。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#SmoothMethod"><linktext>SmoothMethod</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystParametersSetting:smoothness:get"><apiName>smoothness</apiName><shortdesc>
+		 获取或设置等值线或等值面的边界线的光滑度.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置等值线或等值面的边界线的光滑度.
+		 <p>以0-5为例，光滑度为 0 表示不进行光滑操作，值越大表示光滑度越高。随着光滑度的增加，提取的等值线越光滑。当然光滑度越大，计算所需的时间和占用的内存也就越大。而且，当等值距较小时， 光滑度太高会出现等值线相交的问题。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystParameters"><apiName>GeometryOverlayAnalystParameters</apiName><shortdesc>
+	 几何对象叠加分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:OverlayAnalystParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象叠加分析参数类. 
+	 <p>几何对象叠加分析是指对指定的某两个几何对象做叠加分析。通过该类可以指定要做叠加分析的几何对象、叠加操作类型（继承于 OverlayAnalystParameters 类）。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystParameters:GeometryOverlayAnalystParameters"><apiName>GeometryOverlayAnalystParameters</apiName><shortdesc>
+		 初始化 GeometryOverlayAnalystParms 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 GeometryOverlayAnalystParms 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystParameters:operateGeometry:get"><apiName>operateGeometry</apiName><shortdesc>
+		 叠加分析的操作几何对象。必设字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 叠加分析的操作几何对象。必设字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystParameters:sourceGeometry:get"><apiName>sourceGeometry</apiName><shortdesc>
+		 叠加分析的源（被操作）几何对象。必设字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 叠加分析的源（被操作）几何对象。必设字段。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   width="100%" height="100%"
+			   xmlns:mapping="com.supermap.web.samples.mapping.*">
+	
+	<!--添加 OpenStreetMap 地图-->
+	<ic:Map id="map" horizontalCenter="0" bottom="0" top="0">
+		<mapping:TiledOpenStreetMapLayer/>
+	</ic:Map>
+	
+	<s:Label paddingRight="5" paddingBottom="5" click="textLabel_clickHandler(event)" 
+			 text="Data by OpenStreetMap" right="30" bottom="0" buttonMode="true"  
+			 color="blue" textDecoration="underline" />
+	
+	<fx:Script>
+		<![CDATA[	
+			
+			protected function textLabel_clickHandler(event:MouseEvent):void
+			{
+				var urlReq:URLRequest = new URLRequest("http://www.openstreetmap.org/");				
+				navigateToURL(urlReq, "_blank");
+			}
+			
+		]]>
+	</fx:Script>
+</s:Application>

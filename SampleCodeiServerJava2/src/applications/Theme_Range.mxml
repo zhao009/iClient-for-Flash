@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="100%" height="100%"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.iServerJava2.themeServices.*;			
+			import com.supermap.web.mapping.Layer;
+			import com.supermap.web.mapping.TiledDynamicIServerLayer;
+			import com.supermap.web.rendering.RangeItem;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;
+			import mx.rpc.AsyncResponder;
+			
+			private var _themeList:Array = new Array();
+			private var _seletedThemeType:String;			
+			
+			private var _color:int = ColorGradientType.RAIN_BOW;
+			private var _rangeMode:int = RangeMode.EQUAL_INTERVAL;
+			
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);				
+			} 
+			
+			private function setItems():Array
+			{
+				var items:Array = new Array(); 
+				var item:ThemeRangeItem;
+				
+				//子项1
+				item = new ThemeRangeItem(); 
+				item.start = 0.0;
+				item.end = 2818547.35;
+				item.visible = true;
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(197, 247, 235);
+				item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项2
+				item = new ThemeRangeItem();
+				item.start = 2818547.35,
+				item.end = 5637094.28,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(199, 215, 245);
+				item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项3
+				item = new ThemeRangeItem();
+				item.start = 5637094.28,
+				item.end = 8455641.21,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(222, 201, 247);
+				item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项4
+				item = new ThemeRangeItem();
+				item.start = 8455641.21,
+				item.end = 11274188.14,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(241, 202, 227);
+				item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项5
+				item = new ThemeRangeItem();
+				item.start = 11274188.14,
+				item.end = 14092735.07,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(247, 213, 197);
+				item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				//子项6
+				item = new ThemeRangeItem();
+				item.start = 14092735.07,
+				item.end = 16911283,
+				item.visible = true ,
+				item.style = new ServerStyle();
+				item.style.fillForeColor = new ServerColor(247, 231, 197);
+				item.style.fillBackColor = new ServerColor(255,255,255);
+				item.style.lineWidth = 0.1;
+				item.style.lineColor = new ServerColor(128,128,128);
+				items.push(item);
+				
+				return items;
+			}
+			private function onSubmitRangeTheme():void
+			{				
+				var themeRangeParam:ThemeRangeParam = new ThemeRangeParam();
+				themeRangeParam.layerName = "World@World";
+				themeRangeParam.colorGradientType = this._color;
+				themeRangeParam.rangeMode = this._rangeMode;
+				themeRangeParam.rangeParameter = 6;
+				
+				var theme:ThemeRange = new ThemeRange();
+				theme.items = this.setItems();
+				theme.rangeExpression = "SQKM";
+				theme.makeDefaultParam = themeRangeParam;
+				
+				var themeParam:ThemeParameters = new ThemeParameters("World");
+				themeParam.layerName = "World@World";
+				themeParam.theme = theme;
+				
+				var themeService:ThemeService = new ThemeService(viewConfig.webUrl);
+				themeService.execute(new AsyncResponder(this.displayTheme, excuteThemeErros, null), themeParam);
+			}
+			
+			private function excuteThemeErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("专题图操作失败","抱歉",4,this);
+			}
+			
+			private function displayTheme(theme:ThemeResult, mark:Object = null):void
+			{
+				var themeLayer:TiledDynamicIServerLayer = new TiledDynamicIServerLayer();
+				themeLayer.layersKey = theme.key;
+				themeLayer.name = theme.name;
+				themeLayer.url = viewConfig.webUrl;
+				themeLayer.mapName = "World";
+				
+				themeLayer.mapServicePort = "8600";
+				themeLayer.mapServiceAddress= viewConfig.gisUrl;
+				
+				this._themeList.unshift(theme.name);			
+				this.map.addLayer(themeLayer);
+			}			
+			
+			private function onChangeTheme(event:ListEvent):void
+			{
+				var currentTheme:String = event.target.selectedItem.toString();
+				var layers:ArrayCollection = map.layers as ArrayCollection;
+				var layer:TiledDynamicIServerLayer;
+				for (var index:int = 0; index < layers.length; index++)
+				{
+					if (layers[index] is TiledDynamicIServerLayer)
+					{
+						layer = layers[index];
+						if(layer.name == currentTheme)
+						{
+							this.map.removeLayer(layer);
+							break;
+						}
+					}
+				}
+				this.map.addLayer(layer);
+			}
+			
+			private function onRemoveRangeTheme():void
+			{
+				var rangeThemeStr:String = this._themeList[0];
+				
+				if(rangeThemeStr)
+				{
+					this.commonRemoveTheme(rangeThemeStr);
+					commonServerRemoveTheme(rangeThemeStr);
+				}
+			}
+			
+			private function commonRemoveTheme(themeStr:String):void
+			{
+				var layers:ArrayCollection = map.layers as ArrayCollection;
+				for (var index:int = 0; index < layers.length; index++)
+				{
+					if (layers[index] is TiledDynamicIServerLayer)
+					{
+						var layer:TiledDynamicIServerLayer = layers[index];
+						if(layer.name == themeStr)
+							this.map.removeLayer(layer);
+					}
+				}
+			}
+			
+			private function commonServerRemoveTheme(themeStr:String):void
+			{
+				var removeThemeParam:RemoveThemesParameters = new RemoveThemesParameters("World");
+				removeThemeParam.layerNames = [themeStr];
+				
+				var removeThemeService:RemoveThemesService = new RemoveThemesService(viewConfig.webUrl);
+				
+				removeThemeService.execute(new AsyncResponder(this.removeThemeSuccess, excuteThemeErros, null), removeThemeParam);
+			}
+			
+			private function removeThemeSuccess(removeResult:RemoveThemesResult,  mark:Object = null):void
+			{
+				return;
+			}
+			
+			private function submitHandler():void
+			{
+				onSubmitRangeTheme();
+			}
+			
+			private function deleteHandler():void
+			{
+				onRemoveRangeTheme();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<s:Panel fontFamily="宋体" width="100%" height="100%" fontSize="18" title="请在完成此功能的演示后删除专题图，否则服务端会缓存此专题图，将影响下一专题图功能的演示">
+		<ic:Map id="map"  scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}"
+										   mapName="World"
+										   mapServiceAddress="{viewConfig.gisUrl}"
+										   mapServicePort="8600"/>
+		</ic:Map> 
+	</s:Panel>
+	<s:Panel id="titlewin" title="范围分段专题图" fontSize="12" right="5" top="10" backgroundColor="#454343" backgroundAlpha="0.48" height="108">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">  
+			<mx:Text text="对世界图层1994年人口字段制作范围分段专题图"/>
+			<s:HGroup horizontalAlign="center" width="100%">
+				<s:Button id="addButton" label="生成专题图" click="submitHandler()"/>
+				<mx:Spacer width="10"/>
+				<s:Button id="deleteButton" label="移除专题图" click="deleteHandler()" x="100"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel> 
+</s:Application>

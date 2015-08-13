@@ -1,0 +1,12 @@
+<font color="#0033FF">标签专题图（ThemeLabel ）</font>
+<font color="#006633">1. 功能描述：</font>用文本的形式在图层中显示点、线、面等对象的属性信息，一般将文本型或数值型字段标注于图层中。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World Map。
+<font color="#006633">3. 实现的关键步骤：</font>
+    1）定义标签专题图子项 ThemeLabelItem（可选）；
+    2）定义标签专题图 ThemeLabel：该参数不唯一，可设置多个 ThemeLabel，即针对多个字段制作专题图。当然也可以定义不同类型的专题图对象，即制作复合专题图；
+    3）定义专题图参数 ThemeParameters；
+    4）制作专题图 ThemeService；
+    5）获取专题图，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 ThemeEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">4. 其它说明：</font>有关标签专题图的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"  
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+
+	<!--服务区分析-->
+	<fx:Declarations>
+		<s:VGroup id="vgroup" top="100" left="100" width="108">
+			<s:HGroup top="5" paddingTop="5" paddingLeft="5" paddingRight="5">
+				<s:TextInput id="txt" width="80" text="200"/>
+				<s:Label text="米" verticalAlign="middle" height="28"/>
+			</s:HGroup>
+			<s:HGroup width="100%" height="100%" horizontalCenter="0" horizontalAlign="center">
+				<s:Button label="确定" click="button1_clickHandler(event)"/>
+			</s:HGroup>
+		</s:VGroup>
+	</fx:Declarations>
+	
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.PictureMarkerStyle;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasParameters;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasResult;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasService;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.ServiceArea;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.TransportationAnalystParameter;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.TransportationAnalystResultSetting;
+			import com.supermap.web.mapping.FeaturesLayer;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private var netWorkAnalystUrl:String;
+			private var facilityPoints:Array = [];		
+			private var pointWeights:Array = [];
+			//初始化
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+				this.map.infoWindow.content = this.vgroup;
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、网络分析服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.ChangChun_MAP;
+				netWorkAnalystUrl = viewConfig.webUrl + ViewConfig.NetWorkAnalyst_Layer;
+			}
+			
+			//绘制设施点
+			private function excuteChooseFacilityPoint(event:MouseEvent):void 
+			{
+				this.map.infoWindow.hide();
+				var chooseFacilityActoin:DrawPoint = new DrawPoint(map);
+				var markerStyle:PictureMarkerStyle = new PictureMarkerStyle("../assets/selectNode.png");
+				markerStyle.yOffset = 23;
+				markerStyle.xOffset = 1;  
+				chooseFacilityActoin.style = markerStyle;
+				map.action = chooseFacilityActoin;
+				chooseFacilityActoin.addEventListener(DrawEvent.DRAW_END,addEventChooseFacilityFeature);	
+			}
+			
+			//设施点绘制完成事件 DrawEvent.DRAW_END 的侦听函数
+			private function addEventChooseFacilityFeature(event:DrawEvent):void
+			{
+				if(event.feature.geometry is GeoPoint)
+				{
+					var point:GeoPoint = event.feature.geometry as GeoPoint; 
+					facilityPoints.push(new Point2D(point.x, point.y));
+					
+					map.infoWindow.infoWindowLabel.setStyle('fontFamily', "宋体");
+					map.infoWindow.infoWindowLabel.setStyle('fontSize', "15");
+					this.map.infoWindow.setStyle('backgroundColor', 0xcecdcd);
+					this.map.infoWindow.label = "服务半径";
+					this.map.infoWindow.show(new Point2D(point.x, point.y))
+					this.pointWeights.push(200);
+				}
+				fl.addFeature(event.feature);
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				this.titlewin.enabled=true;
+				this.pointWeights.splice(-1);
+				this.pointWeights.push(Math.abs(Number(this.txt.text)));
+				this.txt.text = "200";
+				this.map.infoWindow.hide();
+			}
+			
+			//最佳路径分析
+			private function excuteFindPathService():void 
+			{
+				this.map.infoWindow.hide();
+				this.map.action = new Pan(map);
+				if(this.facilityPoints.length < 1)
+				{
+					Alert.show("请输入至少一个设施点！","抱歉",4,this);
+					return;
+				}
+				
+				//定义交通网络分析结果参数，这些参数用于指定返回的结果内容
+				var resultSetting:TransportationAnalystResultSetting = new TransportationAnalystResultSetting();
+				resultSetting.returnEdgeFeatures = true;
+				resultSetting.returnEdgeGeometry = true;
+				
+				//定义交通网络分析通用参数
+				var pathParameter:TransportationAnalystParameter = new TransportationAnalystParameter(); 
+				pathParameter.resultSetting = resultSetting;
+				pathParameter.turnWeightField = "TurnCost";
+				pathParameter.weightFieldName = "length";
+				
+				//定义服务区分析参数
+				var parameters:FindServiceAreasParameters = new FindServiceAreasParameters(); 
+				parameters.isFromCenter = true;
+				parameters.isCenterMutuallyExclusive = true;
+				parameters.parameter = pathParameter;
+				parameters.centers = this.facilityPoints;
+				parameters.weights = this.pointWeights;
+				parameters.isAnalyzeById = false;
+				
+				//执行服务区分析
+				var service:FindServiceAreasService = new FindServiceAreasService(this.netWorkAnalystUrl);
+				service.processAsync(parameters, new AsyncResponder(this.displayNetworkAnalystResult, excuteErros, "FindServiceArea"));
+			}
+			
+			//服务区分析成功时调用的处理函数
+			public function excuteErros(object:Object, mark:Object = null):void
+			{
+				if(mark == "FindServiceArea")
+					Alert.show("最近设施点查找失败！","抱歉",4,this);
+				if(mark == "WeightNames")
+					Alert.show("权重字段获取失败！","抱歉",4,this);
+				if(mark == "TurnNodeWeightNames")
+					Alert.show("转向字段获取失败！","抱歉",4,this);
+			}
+			
+			//服务区分析成功时调用的处理函数
+			private function displayNetworkAnalystResult(result:FindServiceAreasResult, mark:Object = null):void
+			{
+				var pathList:Array = result.serviceAreaList;
+				if(pathList.length == 0)
+				{
+					Alert.show("查询结果为空", "抱歉", 4, this);
+					return;
+				}
+				
+				this.pointWeights = [];//清空事件点
+				this.facilityPoints.splice(0);//清空设施点
+				var style:PredefinedLineStyle = new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID, 0, 1, 2); 
+				for(var i:int = 0; i < pathList.length; i++)
+				{
+					var serviceArea:ServiceArea = pathList[i] as ServiceArea;
+					var feature:Feature = new Feature(serviceArea.serviceRegion, new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_SOLID,
+						0xa4ecf9, 0.5, new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID, 999999))); 
+					this.fl.addFeature(feature);
+				}
+			}
+			
+			//移除查询结果
+			private function removeFeature():void
+			{
+				this.pointWeights = [];//清空事件点
+				this.facilityPoints.splice(0);//清空设施点
+				this.fl.clear();
+				this.map.action = new Pan(map);
+				this.map.infoWindow.hide();
+			}
+			
+			//f地图平移
+			private function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(map);
+			}
+			
+		]]>
+	</fx:Script>
+	<!--加载地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer  url="{this.restUrl}"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+	
+	<!--参数设置窗口-->
+	<s:Panel id="titlewin" title="服务区分析" fontSize="15" right="5" backgroundAlpha="0.5" backgroundColor="#454343" height="74">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="5" right="5" left="5">
+			<!--选择设施点及事件点按钮-->
+			<s:HGroup horizontalAlign="center" gap="10" width="220" height="100%" verticalCenter="0" paddingTop="5">
+				<s:Button label="选择服务点"
+						   id="chooseFacilityPoint"
+						   click="excuteChooseFacilityPoint(event)"
+						   width="100"
+						   color="0" fontSize="15"/>
+				<s:Button label="分析"
+						   id="submitClosestFacilityAnalyst"
+						   click="excuteFindPathService()"
+						   width="100"
+						   styleName="AboutVersion"
+						   color="0"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:Label left="5" text="请首先选择服务点，然后再点击分析" textAlign="left" fontSize="15" height="40" 
+				 width="274" verticalAlign="middle" fontWeight="bold" fontFamily="宋体"/>
+		<s:HGroup horizontalAlign="center" gap="10" width="100%">
+			<s:Button skinClass="skins.clearBtnSkin"
+					  id="clearBtn"
+					  click="removeFeature()"/>
+			<s:Button skinClass="skins.panBtnSkin"
+					  click="panMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

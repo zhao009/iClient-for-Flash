@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:ic="http://www.supermap.com/iclient/2010"
+		 xmlns:is="http://www.supermap.com/iserverjava/2010"
+		 width="100%" height="100%"
+		 creationComplete="main()">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawCircle;
+			import com.supermap.web.actions.DrawFreeLine;
+			import com.supermap.web.actions.DrawFreePolygon;
+			import com.supermap.web.actions.DrawLine;
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.DrawRectangle;
+			import com.supermap.web.actions.DrawText;
+			import com.supermap.web.actions.MapAction;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.core.styles.TextStyle;
+			import com.supermap.web.events.DrawEvent;
+			
+			import skins.drawFreeLineSkin;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var drawPoint:DrawPoint;
+			private var drawLine:DrawLine;
+			private var drawPolygon:DrawPolygon;
+			private var drawFreeLine:DrawFreeLine;
+			private var drawFreePolygon:DrawFreePolygon;
+			private var drawRectangle:DrawRectangle;
+			private var drawText:DrawText;
+			private var drawCircle:DrawCircle;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			
+			//初始化
+			private function main():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+				
+				//监听各种绘制操作
+				drawPoint = new DrawPoint(map);
+				drawPoint.addEventListener(DrawEvent.DRAW_END,addFeature);
+				
+				drawLine = new DrawLine(map);
+				drawLine.addEventListener(DrawEvent.DRAW_END,addFeature);
+				
+				drawPolygon = new DrawPolygon(map);
+				drawPolygon.addEventListener(DrawEvent.DRAW_END,addFeature);
+				
+				drawFreeLine = new DrawFreeLine(map);
+				drawFreeLine.addEventListener(DrawEvent.DRAW_END,addFeature);
+				
+				drawFreePolygon = new DrawFreePolygon(map);
+				drawFreePolygon.addEventListener(DrawEvent.DRAW_END,addFeature);
+				
+				drawRectangle = new DrawRectangle(map);
+				drawRectangle.addEventListener(DrawEvent.DRAW_END,addFeature);
+				
+				drawText = new DrawText(map);
+				drawText.addEventListener(DrawEvent.DRAW_END,addFeature);
+				
+				drawCircle = new DrawCircle(map);
+				drawCircle.addEventListener(DrawEvent.DRAW_END,addFeature);
+			}
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+			}
+			
+			//矢量要素绘制完毕事件 DrawEvent.DRAW_END 的侦听函数
+			private function addFeature(event:DrawEvent):void
+			{
+				fl.addFeature(event.feature);
+			}
+			
+			//添加点
+			private function addPoint(event:IndexChangeEvent):void
+			{
+				var markerStyle:PredefinedMarkerStyle = new PredefinedMarkerStyle(pointType.selectedItem.id.toLowerCase());
+				drawPoint.style = markerStyle;
+				map.action = drawPoint; 
+			}
+			
+			//按钮点击事件
+			private function addPointClick(event:MouseEvent):void
+			{
+				map.action = drawPoint;
+			}
+			
+			//绘制线
+			private function addLine(event:IndexChangeEvent):void
+			{
+				var lineStyle:PredefinedLineStyle = new PredefinedLineStyle(lineType.selectedItem.id.toLowerCase());
+				drawLine.style = lineStyle; 
+				map.action = drawLine;				
+			}
+			
+			protected function addLineClick(event:MouseEvent):void
+			{
+				map.action = drawLine;
+			}
+			
+			//绘制面
+			private function addPolygon(event:IndexChangeEvent):void
+			{ 
+				var polygonStyle:PredefinedFillStyle = new PredefinedFillStyle(polygonType.selectedItem.id.toLowerCase());
+				drawPolygon.style = polygonStyle;
+				map.action = drawPolygon;
+			}
+			
+			private function addPolygonClick(event:MouseEvent):void
+			{
+				map.action = drawPolygon;
+			}
+			
+			//绘制自由线
+			private function addFreeLine(event:MouseEvent):void
+			{
+				//自由线的样式设定和普通线类似，见：addLine()
+				var lineStyle:PredefinedLineStyle = new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID);
+				drawFreeLine.style = lineStyle;
+				map.action = drawFreeLine;
+			}
+			
+			//绘制自由面
+			private function addFreePolygon(event:MouseEvent):void
+			{
+				//自由面的样式设定和普通面相同，见：addPolygon() 
+				var polygonStyle:PredefinedFillStyle = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_CROSS);
+				drawFreePolygon.style = polygonStyle;
+				map.action = drawFreePolygon;
+			}
+			
+			//绘制矩形
+			private function addRectangle(event:MouseEvent):void
+			{ 
+				var polygonStyle:PredefinedFillStyle = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_CROSS);
+				drawRectangle.style = polygonStyle;
+				map.action = drawRectangle;
+			}
+			
+			//绘制文本
+			private function addText(event:MouseEvent):void
+			{
+				var txtStyle:TextStyle = new TextStyle("SuperMap",0,true);
+				txtStyle.alpha = 0;
+				drawText.textStyle = txtStyle;
+				map.action = drawText;
+			}  
+			
+			//绘制圆
+			private function addCircle(event:MouseEvent):void
+			{
+				//圆样式设置和面样式设置相同 
+				var polygonStyle:PredefinedFillStyle = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_CROSS);
+				drawCircle.style = polygonStyle;
+				map.action = drawCircle;
+			}
+			
+			//清除要素图层
+			private function clearAll(event:MouseEvent):void
+			{
+				var mapAction:MapAction = this.map.action;
+				fl.clear();
+				map.action = null;
+				map.action = mapAction;
+			}
+			
+			//平移地图
+			private function panMap(event:MouseEvent):void
+			{
+				map.action = new Pan(this.map);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%" panEasingFactor="0.4" zoomDuration="200"
+			scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{restUrl}"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup horizontalCenter="0" verticalCenter="0">
+			<s:DropDownList id="pointType" toolTip="绘制点" x="69" y="8" selectedIndex="0" 
+							change="addPoint(event)" 
+							click="addPointClick(event)" 
+							prompt="  点" 
+							textAlign="center" 
+							fontSize="20" 
+							fontWeight="normal"
+							itemRenderer="spark.skins.spark.DefaultComplexItemRenderer" 
+							skinClass="skins.CustomDropDownListSkin">
+				<s:dataProvider>
+					<s:ArrayList>
+						<s:BitmapImage source="@Embed('../assets/circle.png')" id="circle"/>
+						<s:BitmapImage source="@Embed('../assets/star.png')" id="star"/>
+						<s:BitmapImage source="@Embed('../assets/square.png')" id="square"/>
+						<s:BitmapImage source="@Embed('../assets/diamond.png')" id="diamond"/>
+						<s:BitmapImage source="@Embed('../assets/triangle.png')" id="triangle"/>
+						<s:BitmapImage source="@Embed('../assets/x.png')" id="X"/>
+						<s:BitmapImage source="@Embed('../assets/sector.png')" id="sector"/>
+					</s:ArrayList>
+				</s:dataProvider>
+			</s:DropDownList>
+			
+			<s:DropDownList id="lineType" toolTip="绘制线" x="69" y="8" 
+							change="addLine(event)" 
+							click="addLineClick(event)"
+						    selectedIndex="0"
+							itemRenderer="spark.skins.spark.DefaultComplexItemRenderer" 
+							skinClass="skins.CustomDropDownListSkin"
+							textAlign="center" fontSize="20" fontWeight="normal">
+				<s:dataProvider>
+					<s:ArrayList>
+						<s:BitmapImage source="@Embed('../assets/solid.png')" id="solid"/>
+						<s:BitmapImage source="@Embed('../assets/dash.png')" id="dash"/>
+						<s:BitmapImage source="@Embed('../assets/dot.png')" id="dot"/>
+						<s:BitmapImage source="@Embed('../assets/dashdot.png')" id="dashdot"/>
+						<s:BitmapImage source="@Embed('../assets/dashdotdot.png')" id="dashdotdot"/>
+					</s:ArrayList>
+				</s:dataProvider>
+			</s:DropDownList>
+			
+			<s:DropDownList id="polygonType" toolTip="绘制面" 
+							x="69" y="8" change="addPolygon(event)" click="addPolygonClick(event)"
+							itemRenderer="spark.skins.spark.DefaultComplexItemRenderer" 
+							skinClass="skins.CustomDropDownListSkin" selectedIndex="0"
+							textAlign="center" fontSize="20" fontWeight="normal">
+				<s:dataProvider>
+					<s:ArrayList>
+						<s:BitmapImage source="@Embed('../assets/polygonSolid.png')" id="Solid"/>
+						<s:BitmapImage source="@Embed('../assets/null.png')" id="Null"/>
+						<s:BitmapImage source="@Embed('../assets/horizontal.png')" id="horizontal"/>
+						<s:BitmapImage source="@Embed('../assets/vertical.png')" id="vertical"/>
+						<s:BitmapImage source="@Embed('../assets/cross.png')" id="cross"/>
+						<s:BitmapImage source="@Embed('../assets/slash.png')" id="slash"/>
+						<s:BitmapImage source="@Embed('../assets/backslash.png')" id="backslash"/>
+					</s:ArrayList>
+				</s:dataProvider>
+			</s:DropDownList>
+			
+			<s:Button id="freeLine" skinClass="skins.drawFreeLineSkin" toolTip="自由线" click="addFreeLine(event)"/>
+			<s:Button id="freePolygon" skinClass="skins.drawFreePolygonSkin" toolTip="自由面" click="addFreePolygon(event)"/>
+			<s:Button id="rectangle" skinClass="skins.drawRectangleSkin" toolTip="矩形" fontSize="18" click="addRectangle(event)"/>
+			<s:Button id="circlebtn" skinClass="skins.drawCircleSkin" toolTip="圆" fontSize="20" click="addCircle(event)"/>
+			<s:Button id="text" skinClass="skins.drawTextSkin" toolTip="文本" click="addText(event)"/>
+			<s:Button id="clear" skinClass="skins.clearBtnSkin" toolTip="清除" click="clearAll(event)"/>
+			<s:Button id="pan" skinClass="skins.panBtnSkin" toolTip="平移" click="panMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

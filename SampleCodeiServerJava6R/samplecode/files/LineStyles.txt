@@ -1,0 +1,5 @@
+<font color="#0033FF">线样式</font>
+<font color="#006633">1. 功能描述：</font>展示 SuperMap iClient  for Flash 产品为您提供的所有线样式。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。
+<font color="#006633">3. 操作指南：</font>左侧窗口——设置系统预定义线要素样式（PredefinedLineStyle）；
+<font color="#006633">4. 其它说明：</font>用户也可以继承 LineStyle 类自定义线要素样式。有关线样式的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:skins="com.supermap.paint.skins.*"
+		creationComplete="initView(event)"
+		destructionPolicy="never"
+		title="图层管理"
+		xmlns:skins1="com.supermap.components.skins.*"
+		xmlns:components="com.supermap.components.*">
+
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.events.ToggleSwitchClickEvent;
+			import com.supermap.maps.LayerManager;
+			import com.supermap.web.mapping.Map;
+
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+
+			import spark.components.ViewNavigator;
+			private var map:Map
+			[Bindable]
+			private var layersSource:Array = [];
+//			private var layersSource:Array = [{id: "cloudLayer", name: "云地图服务", state:"open"}, {id: "openStreetMap", name: "OpenStreetMap", state:"close"}];
+			[Bindable]
+			private var layers:ArrayCollection = new ArrayCollection(layersSource);
+
+			protected function mapListBtn_clickHandler(event:MouseEvent):void
+			{
+				var data:Object = new Object();
+				data.layers = layers;
+				this.navigator.pushView(AddLayerView, data);
+			}
+
+			protected function initView(event:FlexEvent):void
+			{
+				mapList.addEventListener("switchClick", switchClickHandler);
+				mapList.addEventListener(ToggleSwitchClickEvent.DELETEBTN_CLICK, deleteHanlder);
+
+				this.parentDocument.parentDocument.addEventListener(MouseEvent.CLICK, otherObjectClick);
+			}
+
+			protected function switchClickHandler(event:ToggleSwitchClickEvent):void
+			{
+				for each(var object:Object in layers)
+				{
+					if(object.id == event.data.id)
+					{
+						object.state = event.selected ? "open" : "close";
+					}
+				}
+				layers.refresh();
+				if(!map)
+					map = ((this.owner as ViewNavigator).owner as LayerManager).map;
+				if(event.selected)
+				{
+					map.getLayer(event.data.id).visible = true;
+				}
+				else
+					map.getLayer(event.data.id).visible = false;
+			}
+
+			protected function switch_changeHandler(event:Event):void
+			{
+				if(!map)
+					map = ((this.owner as ViewNavigator).owner as LayerManager).map;
+				var toggleSwitch:ToggleSwitch = event.currentTarget as ToggleSwitch;
+				if(toggleSwitch.selected)
+				{
+					map.getLayer(toggleSwitch.id).visible = true;
+				}
+				else
+				{
+					map.getLayer(toggleSwitch.id).visible = false;
+				}
+
+			}
+
+			protected function deleteHanlder(event:ToggleSwitchClickEvent):void
+			{
+				if(!map)
+					map = ((this.owner as ViewNavigator).owner as LayerManager).map;
+				map.removeLayer(map.getLayer(event.data.id));
+				for(var i:int = 0; i < layers.length; i++)
+				{
+					if(layers.getItemAt(i).id == event.data.id)
+					{
+						layers.removeItemAt(i);
+						break;
+					}
+				}
+			}
+
+			private function otherObjectClick(event:Event):void
+			{
+				mapList.selectedIndex = -1;
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+
+	</fx:Declarations>
+	<s:actionContent>
+		<s:Button id="mapListBtn"
+				  label="添加"
+				  fontSize="14"
+				  click="mapListBtn_clickHandler(event)"
+				  color="0xffffff"
+				  skinClass="com.supermap.maps.skins.EnterIntoButtonSkin"/>
+	</s:actionContent>
+	<s:SkinnableContainer left="0"
+						  right="0"
+						  top="0"
+						  bottom="0"
+						  backgroundColor="0xDAE4D9">
+		<s:Group left="10"
+				 right="10"
+				 top="10"
+				 width="275">
+			<components:StyledSkinnableContainer width="100%"
+												 height="100%"
+												 cornorRadius="5"
+												 firstBackColor="0xFFFFFF"
+												 borderColor="0xBBBBBB"
+												 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin">
+				<s:VGroup top="0"
+						  bottom="0"
+						  left="0"
+						  right="0">
+					<s:Group width="100%">
+						<s:HGroup width="100%"
+								  top="5"
+								  left="10"
+								  verticalAlign="middle"
+								  height="100%">
+							<s:Label text="云服务图层"/>
+						</s:HGroup>
+						<s:HGroup width="100%"
+								  verticalAlign="middle"
+								  horizontalAlign="right"
+								  right="10"
+								  left="10"
+								  top="5">
+							<s:ToggleSwitch id="cloudLayer"
+											accentColor="0x628c6d"
+											change="switch_changeHandler(event)"
+											selected="true"/>
+						</s:HGroup>
+					</s:Group>
+					<s:Line xFrom="-5"
+							xTo="274"
+							yFrom="0"
+							yTo="0">
+						<s:stroke>
+							<s:SolidColorStroke color="0xE0E0E0"/>
+						</s:stroke>
+					</s:Line>
+					<s:Group width="100%">
+						<s:HGroup width="100%"
+								  verticalAlign="middle"
+								  height="100%"
+								  left="6"
+								  bottom="5">
+							<s:Label text="OpenStreetMap"/>
+						</s:HGroup>
+						<s:HGroup width="100%"
+								  verticalAlign="middle"
+								  horizontalAlign="right"
+								  right="10"
+								  bottom="5">
+							<s:ToggleSwitch id="openStreetMap"
+											accentColor="0x628c6d"
+											change="switch_changeHandler(event)"
+											selected="false"/>
+						</s:HGroup>
+					</s:Group>
+				</s:VGroup>
+			</components:StyledSkinnableContainer>
+
+		</s:Group>
+		<components:StyledSkinnableContainer left="10"
+											 right="10"
+											 top="100"
+											 bottom="10"
+											 borderColor="0xBBBBBB"
+											 cornorRadius="5"
+											 firstBackColor="0xffffff"
+											 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin">
+			<s:Group left="1"
+					 right="1"
+					 top="1"
+					 bottom="5"
+					 width="220"
+					 height="220">
+				<s:List id="mapList"
+						width="100%"
+						height="100%"
+						dataProvider="{layers}"
+						itemRenderer="com.supermap.maps.MapListRenderer"/>
+			</s:Group>
+			<s:Label text="暂无图层"
+					 left="10"
+					 right="10"
+					 top="10"
+					 bottom="10"
+					 visible="{layers.length>0?false:true}"/>
+		</components:StyledSkinnableContainer>
+	</s:SkinnableContainer>
+</s:View>

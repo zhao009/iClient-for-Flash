@@ -1,0 +1,13 @@
+﻿<font color="#0033FF">数据集 SQL 查询</font>
+<font color="#006633">1. 功能描述：</font>在数据集集合中查找符合 SQL 条件的矢量要素。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World Map。查询的基准数据集为：Countries。
+<font color="#006633">3. 操作指南：</font>
+    1）输入查询条件（WHERE 语句），如：3&lt;smid&lt;8，表示查询ID号属于(3,8)范围内的要素；
+    2) 点击“查询”按钮，显示查询结果。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义数据集SQL查询所需参数 GetFeaturesBySQLParameters；
+    2）执行数据集SQL查询 GetFeaturesBySQLService；
+    3）获取查询结果，有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 使用 GetFeaturesBySQLService 对象监听 GetFeaturesEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关数据集SQL查询的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

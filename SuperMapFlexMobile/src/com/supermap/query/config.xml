@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<categorys>
+	<category name="餐饮服务">
+		<item keyword="快餐">快餐店</item>
+		<item keyword="日本料理">异国风味</item>
+		<item keyword="酒吧">酒吧</item>
+		<item keyword="茶楼">茶楼，咖啡店</item>
+		<item keyword="地方风味">地方风味与名店</item>
+	</category>
+	<category name="零售业">
+		<item keyword="便利店">便利店</item>
+		<item keyword="超市">超市</item>
+		<item keyword="百货">百货商城、百货商店</item>
+		<item keyword="电器">电器商场</item>
+		<item keyword="体育用品">体育用品店</item>
+		<item keyword="茶">茶叶、茶具专卖店</item>
+		<item keyword="花卉">花卉专卖店</item>
+		<item keyword="文化用品">文化用品店</item>
+		<item keyword="药店">药店</item>
+		<item keyword="农贸市场">农贸市场</item>
+		<item keyword="钟表">钟表，照相机专卖店</item>
+		<item keyword="礼品">工艺礼品店</item>
+		<item keyword="建材">家居店、建材市场</item>
+		<item keyword="音像">音像店</item>
+		<item keyword="电脑">电脑专卖</item>
+	</category>
+	
+	<category name="汽车服务">
+		<item keyword="加油站">加油站</item>
+		<item keyword="停车场">停车场</item>
+		<item keyword="汽车租赁">汽车租赁</item>
+		<item keyword="汽车">汽车销售、汽车服务</item>
+		<item keyword="机动车检测场">机动车检测场</item>
+		<item keyword="汽车用品">汽车用品、汽车养护</item>
+	</category>
+	<category name="生活服务">
+		<item keyword="售票处">售票处</item>
+		<item keyword="美容美发">美容美发</item>
+		<item keyword="洗浴">洗浴推拿</item>
+		<item keyword="邮局">邮局</item>
+		<item keyword="维修">维修站点</item>
+		<item keyword="电讯营业">电讯营业厅</item>
+		<item keyword="水电营业厅">水电营业厅</item>
+		<item keyword="旅行社">旅行社</item>
+		<item keyword="摄影冲印">摄影冲印店</item>
+		<item keyword="洗衣店">洗衣店</item>
+		<item keyword="中介">中介机构</item>
+		<item keyword="彩票">彩票彩卷</item>
+		<item keyword="人才市场">人才市场</item>
+	</category>
+	<category name="住宿服务">
+		<item keyword="宾馆">星级宾馆</item>
+		<item keyword="旅馆">旅馆招待所</item>
+		<item keyword="渡假村">非星级渡假村、疗养院</item>
+	</category>
+	<category name="休闲服务">
+		<item keyword="动物园">动物园、植物园</item>
+		<item keyword="水族馆">水族馆</item>
+		<item keyword="保龄球馆">保龄球馆</item>
+		<item keyword="游乐园">游乐园</item>
+		<item keyword="赛马场">赛马场</item>
+		<item keyword="电影院">电影院</item>
+		<item keyword="体育场">体育场馆</item>
+		<item keyword="农家乐">农家乐/民俗游</item>
+		<item keyword="溜冰场">溜冰场</item>
+		<item keyword="夜总会">夜总会、歌舞厅、迪厅</item>
+		<item keyword="健身房">健身房、康乐宫、舍宾</item>
+		<item keyword="垂钓">垂钓</item>
+	</category>
+	<category name="公共设施">
+		<item keyword="政府机关">政府机关</item>
+		<item keyword="公安机关">公安机关</item>
+		<item keyword="医院">医院</item>
+		<item keyword="社区医疗">社区医疗</item>
+		<item keyword="公园">公园</item>
+		<item keyword="会议中心">会议中心、展览中心</item>
+		<item keyword="防疫站">防疫站</item>
+		<item keyword="人才市场">人才市场</item>
+		<item keyword="敬老院">福利院、敬老院</item>
+		<item keyword="火葬场">火葬场、殡仪馆</item>
+		<item keyword="街心公园">街心公园</item>
+		<item keyword="洗手间">洗手间</item>
+	</category>
+	<category name="交通服务">
+		<item keyword="车站">车站</item>
+		<item keyword="机场">机场</item>
+		<item keyword="高速服务">高速服务</item>
+		<item keyword="收费站">收费站</item>
+	</category>
+	<category name="文化、媒体">
+		<item keyword="名胜古迹">名胜古迹</item>
+		<item keyword="寺庙">寺庙、道观</item>
+		<item keyword="教堂">教堂</item>
+		<item keyword="美术馆">美术馆</item>
+		<item keyword="资料馆">资料馆、档案馆</item>
+		<item keyword="科技馆">科技馆</item>
+		<item keyword="报社">报社、出版社、杂志社</item>
+		<item keyword="电台">电台、电视台、电影制片厂</item>
+		<item keyword="陵园">陵园、公墓</item>
+	</category>
+	<category name="其他服务">
+		<item keyword="美容院">美容院、理发店、按摩</item>
+		<item keyword="银行">银行</item>
+		<item keyword="协会">协会</item>
+		<item keyword="电力营业厅">电力营业厅</item>
+		<item keyword="邮局">邮局</item>
+		<item keyword="物流">物流、快运</item>
+		<item keyword="影楼">照相、影楼、彩扩</item>
+		<item keyword="教育">教育</item>
+		<item keyword="科研机构">科研机构</item>
+		<item keyword="公司">公司企业</item>
+		<item keyword="保险">保险</item>
+		<item keyword="电信">电信</item>
+		<item keyword="大厦">大厦</item>
+		<item keyword="商业设施">商业设施</item>
+		<item keyword="夜生活">夜生活</item>
+		<item keyword="古迹">古迹</item>
+		<item keyword="商场">商场</item>
+		<item keyword="汽车服务">汽车服务与维修</item>
+		<item keyword="公园">公园\娱乐场所</item>
+		<item keyword="社会团体">社会团体</item>
+		<item keyword="游览胜地">游览胜地</item>
+		<item keyword="高等教育">高等教育</item>
+		<item keyword="学校">学校</item>
+		<item keyword="图书馆">图书馆</item>
+		<item keyword="博物馆">博物馆</item>
+		<item keyword="商业服务">商业服务</item>
+		<item keyword="美容美发">美容美发</item>
+	</category>
+</categorys>

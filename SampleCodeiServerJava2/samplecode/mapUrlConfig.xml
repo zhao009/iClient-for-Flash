@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<node>
+	<url name="url" value="http://localhost:7080/demo"/>
+	<url name="mapServiceAddress" value="localhost"/>
+	<url name="cacheUrl" value="http://localhost:7080/output/cache"/>
+	<url name="extendServiceUrl" value="http://localhost:7080/samplecode"/>
+</node>

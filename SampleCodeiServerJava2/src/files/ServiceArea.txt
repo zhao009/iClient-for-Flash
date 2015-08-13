@@ -1,0 +1,14 @@
+<font color="#0033FF">服务区分析</font>
+<font color="#006633">1. 功能描述：</font>以指定服务站点为中心，在一定服务范围内查找网络上服务站点能够提供服务的区域范围。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层 Changchun 的数据集 RoadNet。
+<font color="#006633">3. 操作指南：</font>
+    1）设置参数：是否从服务站点分析（ServiceAreaParam.isFromCenter）、重叠服务区是否互斥（ServiceAreaParam.isCenterMutuallyExclusive）、容限（ServiceAreaParam.weights）；
+    2）选择分析点（单选）。当点绘制完成后直接进行服务区分析；
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义用于最近设施查找的弧段权值信息 WeightFieldInfo；
+    2）定义网络模型 NetworkModelSetting；
+    3）定义网络分析参数 NetworkAnalystParam；
+    4）定义服务区分析参数 ServiceAreaParam；
+    5）定义服务区分析参数集 ServiceAreaParameters；
+    6）执行服务区分析 ServiceAreaService。
+<font color="#006633">5. 其它说明：</font>有关服务区分析的详细参数介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

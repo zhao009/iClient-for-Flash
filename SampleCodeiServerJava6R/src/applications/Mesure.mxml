@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--距离、面积量算-->
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawLine;
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.iServerJava6R.measureServices.*;
+			import com.supermap.web.iServerJava6R.serviceEvents.MeasureEvent;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+			}
+			
+			//绘制线操作
+			private function measureByLine(event:MouseEvent):void
+			{
+				var drawline:DrawLine = new DrawLine(this.map);
+				this.map.action = drawline;
+				//为绘图操作 drawline 定义 DrawEvent.DRAW_END 事件的侦听器
+				drawline.addEventListener(DrawEvent.DRAW_END, onDrawGeometry);
+			}
+			
+			//绘制面操作
+			private function measureByPolygon(event:MouseEvent):void
+			{
+				var drawPolygon:DrawPolygon = new DrawPolygon(this.map);
+				this.map.action = drawPolygon;
+				//为绘图操作 drawPolygon 定义 DrawEvent.DRAW_END 事件的侦听器
+				drawPolygon.addEventListener(DrawEvent.DRAW_END, onDrawGeometry);
+			}
+			
+			//响应绘图操作的侦听事件 DrawEvent.DRAW_END
+			private function onDrawGeometry(event:DrawEvent):void
+			{
+				var feature:Feature = event.feature;
+				fl.addFeature(feature);
+				var meatureType:String;
+				if(feature.geometry is GeoRegion)
+					meatureType = "area";
+				else
+					meatureType= "distance";
+				
+				var measureParam:MeasureParameters = new MeasureParameters(feature.geometry);
+				var measureService:MeasureService = new MeasureService(restUrl);
+				measureService.processAsync(measureParam, new AsyncResponder(this.displayMeasureRecords, this.MeasureError, meatureType));
+			}
+			
+			//显示查询结果
+			private function displayMeasureRecords(measureResult:MeasureResult, mark:Object = null):void
+			{
+				var info:String;
+				var temp:Number
+				if (mark == "distance")
+				{
+					temp = Number(measureResult.distance);
+					temp /= 1000;
+					info = temp.toFixed(2);
+					info += " 千米";
+				}
+				else
+				{
+					temp = Number(measureResult.area);
+					temp /= 1000 * 1000;
+					info = temp.toFixed(2);
+					info += " 平方千米";
+				}
+				
+				measureResultOutput.text = "量算结果：" + info;
+			}
+			
+			//量算出错
+			private function MeasureError(object:Object, mark:Object = null):void
+			{
+				Alert.show("量算出错，请检查您的参数设置","抱歉",4,this);
+			}
+			
+		    //清除要素图层
+			protected function clearFeature(event:MouseEvent):void
+			{
+				fl.clear();
+				measureResultOutput.text = "量算结果：" ;
+			}
+			
+			//平移地图
+			protected function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(this.map);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--分块动态 IServer 图层-->
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{restUrl}"/>
+		<ic:FeaturesLayer id="fl" />
+	</ic:Map> 
+
+	<s:HGroup bottom="25" width="100%" horizontalAlign="center">
+		<s:Label  text="量算结果：" fontSize="15" paddingRight="10" id="measureResultOutput"/>
+	</s:HGroup>
+	 
+	<!--量算控制按钮-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup gap="10" horizontalCenter="0" verticalCenter="0">	
+			<s:Button skinClass="skins.distanceBtnSkin" toolTip="距离量算" id="drawLine" click="measureByLine(event)"/>
+			<s:Button skinClass="skins.areaBtnSkin" toolTip="面积量算" id="drawPolygon" click="measureByPolygon(event)"/> 
+			<s:Button skinClass="skins.clearBtnSkin" toolTip="清除" click="clearFeature(event)"/>
+			<s:Button skinClass="skins.panBtnSkin" toolTip="平移" click="panMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>
+

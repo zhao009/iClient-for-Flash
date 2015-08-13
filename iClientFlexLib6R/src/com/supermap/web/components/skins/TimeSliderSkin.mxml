@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+${components_skins_TimeSliderSkin_Title}.
+<p>${components_skins_TimeSliderSkin_Description}</p>
+@see com.supermap.web.components.TimeSlider
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+             xmlns:s="library://ns.adobe.com/flex/spark"
+             xmlns:mx="library://ns.adobe.com/flex/mx"  
+			 >  
+    <fx:Metadata> 
+		/**
+		* ${components_skins_ScaleBarSkin_attribute_HostComponent_D}
+		*/
+        [HostComponent("com.supermap.web.components.TimeSlider")]
+    </fx:Metadata>
+
+    <s:states>
+        <s:State name="normal"/>
+        <s:State name="disabled"/>
+    </s:states>
+
+    <s:layout>
+        <s:HorizontalLayout verticalAlign="middle"/>
+    </s:layout>
+
+    <fx:Declarations> 
+		<!---
+		@private
+		-->
+        <mx:DateFormatter id="dateFormatter" formatString="MMMM DD, YYYY at L:NN A"/>
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[  
+			import mx.events.FlexEvent;
+			[Bindable]	private var singleThumbAsTimeInstant:Boolean;  
+		 
+			private function dataTipFormatter(value:Number):String
+			{     
+				return dateFormatter.format(hostComponent.timeStops[value]);   
+			}
+  
+        ]]>
+    </fx:Script>  
+	<!---
+	${components_skins_TimeSliderSkin_attribute_playPauseButton_D}
+	-->
+    <s:ToggleButton id="playPauseButton"
+                    enabled.disabled="false"
+                    skinClass="com.supermap.web.components.skins.PlayPauseButtonSkin"/>
+
+	<!---
+	${components_skins_TimeSliderSkin_attribute_slider_D}
+	-->
+    <mx:HSlider id="slider"
+				dataTipFormatFunction="dataTipFormatter"
+                enabled.disabled="false"
+                showDataTip="true"
+                showTrackHighlight="true"
+                tickInterval="1"  
+				maximum="{this.hostComponent.timeStops.length - 1}"
+                width="100%"/> 
+	
+	<!---
+	${components_skins_TimeSliderSkin_attribute_previousButton_D}
+	-->
+    <s:Button id="previousButton"
+              enabled.disabled="false"
+              skinClass="com.supermap.web.components.skins.TimeSliderPreviousButtonSkin"/>
+ 
+	<!---
+	${components_skins_TimeSliderSkin_attribute_nextButton_D}
+	-->
+    <s:Button id="nextButton"
+              enabled.disabled="false"
+              skinClass="com.supermap.web.components.skins.TimeSliderNextButtonSkin"/>
+
+</s:SparkSkin>

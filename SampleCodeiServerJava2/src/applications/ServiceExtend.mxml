@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.iServerJava2.themeServices.RemoveThemesParameters;
+			import com.supermap.web.iServerJava2.themeServices.RemoveThemesService;
+			import com.supermap.web.mapping.Layer;
+			import com.supermap.web.samples.serviceExtend.ExtendService;
+			import com.supermap.web.samples.serviceExtend.ExtendServiceParameters;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			[Bindable]	private var viewConfig:ViewConfig;
+			private var themeName:String = "";
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+			
+			protected function btn_clickHandler(event:MouseEvent):void
+			{				
+				var serverParam:ExtendServiceParameters = new ExtendServiceParameters();
+				serverParam.mapName = "map4ThemeGraph";
+				serverParam.method = "addthemegraph";
+				serverParam.params = new URLVariables();
+				serverParam.params.datasetName = "Park@changchun";
+				serverParam.params.graphType = 6;
+				serverParam.params.items = "SmID,FF0000,SmID,FFFF00";
+				
+				var service:ExtendService = new ExtendService(viewConfig.extendServiceUrl);
+				service.execute(serverParam,new AsyncResponder(this.result, this.error, null));
+
+			}
+			
+			private function  error(object:Object, mark:Object = null):void
+			{
+				Alert.show("专题图添加失败","抱歉",4,this);
+			}			
+			
+			private function result(object:Object, mark:Object = null):void
+			{
+				var themeResult:Array = object.toString().split(",");
+				var themeLayer:TiledDynamicIServerLayer = new TiledDynamicIServerLayer();
+				themeLayer.layersKey = themeResult[1];
+				themeLayer.name = themeResult[0];
+				themeLayer.url = viewConfig.extendServiceUrl;
+				themeLayer.mapName ="map4ThemeGraph";
+			
+				themeLayer.mapServicePort = "8600";
+				themeLayer.mapServiceAddress = viewConfig.gisUrl;
+				
+				this.map.addLayer(themeLayer);
+				this.themeName = themeLayer.name;
+			}
+			
+			private function deleteThemeHandler():void
+			{
+				var RemoveThemeID:String = this.themeName;
+				if(RemoveThemeID)
+				{
+					this.RemoveTheme(RemoveThemeID);
+					RemoveServerTheme(RemoveThemeID);
+				}
+			}
+			
+			//移除客户端专题图层
+			private function RemoveTheme(themeStr:String):void
+			{
+				var layers:ArrayCollection = map.layers as ArrayCollection;
+				var layer:Layer;
+				for (var index:int = 0; index < layers.length; index++)
+				{
+					layer = layers.getItemAt(index) as Layer;
+					if (layer is TiledDynamicIServerLayer)
+					{						
+						layer = layer as TiledDynamicIServerLayer;
+						if(layer.name == themeStr)
+							this.map.removeLayer(layer);
+					}
+				}
+			}
+			
+			//移除服务器端专题图层
+			private function RemoveServerTheme(themeStr:String):void
+			{
+				var serverParam:ExtendServiceParameters = new ExtendServiceParameters();
+				serverParam.mapName = "map4ThemeGraph";
+				serverParam.method = "deletethemegraph";
+				serverParam.params = new URLVariables();
+				serverParam.params.layerName = this.themeName;
+				
+				var service:ExtendService = new ExtendService(viewConfig.extendServiceUrl);
+				service.execute(serverParam,new AsyncResponder(this.removeThemeSuccess, this.excuteThemeErros, null));
+			}
+			
+			//删除成功返回一个数值
+			private function removeThemeSuccess(removeResult:Object,  mark:Object = null):void
+			{
+			}	
+			
+			private function  excuteThemeErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("专题图移除失败","抱歉",4,this);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%">
+		<is:TiledDynamicIServerLayer  url="{viewConfig.webUrl}"
+									  mapName="Changchun"
+									  mapServiceAddress="{viewConfig.gisUrl}"
+									  mapServicePort="8600"/>
+	</ic:Map>
+	
+	<s:Panel id="titlewin" title="扩展服务端功能示例(统计图)" fontFamily="宋体" fontSize="12" right="5" top="10" 
+			 backgroundColor="#454343" backgroundAlpha="0.48" height="108">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">  
+			<mx:Text text="对长春地图里的Park图层里的SmID字段制作统计专题图"/>
+			<s:HGroup horizontalAlign="center" width="100%">
+				<s:Button id="addButton" label="生成专题图" click="btn_clickHandler(event)"/>
+				<mx:Spacer width="10"/>
+				<s:Button id="deleteButton" label="移除专题图" click="deleteThemeHandler()" x="100"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel> 
+
+</s:Application>

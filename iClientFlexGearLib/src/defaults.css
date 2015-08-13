@@ -1,0 +1,14 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace ic "http://www.supermap.com/iclient/2010";
+@namespace is "http://www.supermap.com/iserverjava/2010";
+@namespace legend "com.supermap.web.gears.legend.*";
+@namespace components "com.supermap.web.gears.components.*";
+
+components|Legend
+{
+	skinClass: ClassReference("com.supermap.web.gears.components.skins.LegendSkin");  
+}   
+ 
+ 

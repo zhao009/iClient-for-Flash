@@ -1,0 +1,6 @@
+<font color="#0033FF">要素跟踪</font>
+<font color="#006633">1. 功能描述：</font>当跟踪的要素不在地图可示范围内时，用于指示要素所在的方向。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。
+<font color="#006633">3. 操作指南：</font>执行平移或缩放操作，当地图上的五角星不在地图可视范围内时，您将看到跟踪指示（如下图），点击图上的五角星则地图将自动平移至五角星所在的地图位置。<img src="../assets/MarkerTrack.png"/>
+<br>
+<br><font color="#006633">4. 其它说明：</font>有关要素跟踪的相关接口的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

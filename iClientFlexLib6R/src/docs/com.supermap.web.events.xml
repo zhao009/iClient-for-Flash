@@ -1,0 +1,469 @@
+<apiPackage id="com.supermap.web.events"><apiName>com.supermap.web.events</apiName><apiDetail/><apiClassifier id="com.supermap.web.events:SparkClusterMouseEvent"><apiName>SparkClusterMouseEvent</apiName><shortdesc>
+	 发散聚散显示鼠标事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:MouseEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 发散聚散显示鼠标事件类.
+	 <p>该类是显示类型为 SparkClusterStyle 的聚散显示中离散点事件类，目前提供了三种事件类型：鼠标点击离散点、鼠标悬停于离散点的聚焦范围内、鼠标离开离散点聚焦范围。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.clustering.xml#Clusterer"><linktext>com.supermap.web.clustering.Clusterer</linktext></link><link href="com.supermap.web.clustering.xml#SparkClusterStyle"><linktext>com.supermap.web.clustering.SparkClusterStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.events:SparkClusterMouseEvent:SparkClusterMouseEvent"><apiName>SparkClusterMouseEvent</apiName><shortdesc>
+		 初始化 SparkClusterMouseEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>cluster</apiItemName><apiType value="com.supermap.web.clustering.supportClasses:Cluster"/><apiDesc>与该事件关联的聚合点对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiDesc>离散点要素。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 SparkClusterMouseEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:SparkClusterMouseEvent:SPARK_CLICK"><apiName>SPARK_CLICK</apiName><shortdesc>
+		 鼠标点击离散点事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sparkClick</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 鼠标点击离散点事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterMouseEvent:SPARK_OUT"><apiName>SPARK_OUT</apiName><shortdesc>
+		 鼠标离开离散点聚焦范围事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sparkOut</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 鼠标离开离散点聚焦范围事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterMouseEvent:SPARK_OVER"><apiName>SPARK_OVER</apiName><shortdesc>
+		 鼠标离开离散点聚焦范围事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sparkOver</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 鼠标离开离散点聚焦范围事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterMouseEvent:cluster:get"><apiName>cluster</apiName><shortdesc>
+		 获取与 SparkClusterMouseEvent 事件关联的聚合点对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="com.supermap.web.clustering.supportClasses:Cluster"/></apiValueDef><apiDesc>
+		 获取与 SparkClusterMouseEvent 事件关联的聚合点对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterMouseEvent:feature:get"><apiName>feature</apiName><shortdesc>
+		 获取或设置事件的作用对象——离散点要素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Feature</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置事件的作用对象——离散点要素。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:PanEvent"><apiName>PanEvent</apiName><shortdesc>
+	 地图平移事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图平移事件类.
+	 该类定义了与地图平移操作相关的事件。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.events:PanEvent:PanEvent"><apiName>PanEvent</apiName><shortdesc>
+		 初始化 PanEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>viewBounds</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiData>null</apiData><apiDesc>地图平移开始或结束时的可视范围。当定义PanEvent.PAN_START 或 PanEvent.PAN_END 事件时应设置该属性。
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiType value="flash.geom:Point"/><apiData>null</apiData><apiDesc>地图平移开始或结束时的鼠标位置。当定义PanEvent.PAN_START 或 PanEvent.PAN_END 事件时应设置该属性。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 PanEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:PanEvent:PAN_END"><apiName>PAN_END</apiName><shortdesc>
+		 定义 panEnd 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>panEnd</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 panEnd 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:PanEvent:PAN_START"><apiName>PAN_START</apiName><shortdesc>
+		 定义 panStart 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>panStart</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 panStart 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:PanEvent:PAN_UPDATE"><apiName>PAN_UPDATE</apiName><shortdesc>
+		 定义 panUpdate 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>panUpdate</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 panUpdate 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:PanEvent:point:get"><apiName>point</apiName><shortdesc>
+		 获取地图平移开始或结束时的鼠标位置。
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="flash.geom:Point"/></apiValueDef><apiDesc>
+		 获取地图平移开始或结束时的鼠标位置。
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:PanEvent:viewBounds:get"><apiName>viewBounds</apiName><shortdesc>
+		 地图平移开始或结束时的鼠标位置。当定义PanEvent.PAN_START 或 PanEvent.PAN_END 事件时应设置该属性。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 地图平移开始或结束时的鼠标位置。当定义PanEvent.PAN_START 或 PanEvent.PAN_END 事件时应设置该属性。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:MapMouseEvent"><apiName>MapMouseEvent</apiName><shortdesc>
+	 地图控件 Map 的鼠标事件类 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:MouseEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图控件 Map 的鼠标事件类 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.mapping.xml#Map"><linktext>com.supermap.web.mapping.Map</linktext></link></related-links><apiConstructor id="com.supermap.web.events:MapMouseEvent:MapMouseEvent"><apiName>MapMouseEvent</apiName><shortdesc>
+		 初始化 MapMouseEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiDesc>与事件关联的 Map。必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>mapPoint</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>鼠标点击位置对应的地图坐标。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 MapMouseEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:MapMouseEvent:MAP_CLICK"><apiName>MAP_CLICK</apiName><shortdesc>
+		 定义 mapClick 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>map_click</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 mapClick 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapMouseEvent:mapPoint:get"><apiName>mapPoint</apiName><shortdesc>
+		 获取鼠标点击位置对应的地图坐标。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取鼠标点击位置对应的地图坐标。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapMouseEvent:map:get"><apiName>map</apiName><shortdesc>
+		 获取与事件关联的地图控件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取与事件关联的地图控件。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:ZoomEvent"><apiName>ZoomEvent</apiName><shortdesc>
+	 地图缩放事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图缩放事件类.
+	 该类定义了三种与地图缩放相关的事件类型，即zoomStart、zoomUpdate、zoomEnd。<br/>以上三种类型的事件由 Map 类声明，其它类不可对其进行监听或派发。  
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.events:ZoomEvent:ZoomEvent"><apiName>ZoomEvent</apiName><shortdesc>
+		 初始化 ZoomEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。必设属性。
+		 </apiDesc></apiParam><apiParam><apiItemName>viewBounds</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiData>null</apiData><apiDesc>地图可视范围。
+		 </apiDesc></apiParam><apiParam><apiItemName>zoomFactor</apiItemName><apiType value="Number"/><apiData>1</apiData><apiDesc>地图缩放因子。如：1 表示保持原状，2表示放大一倍，0.5表示缩小一倍。
+		 </apiDesc></apiParam><apiParam><apiItemName>level</apiItemName><apiType value="Number"/><apiData>-1</apiData><apiDesc>地图显示级别。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 ZoomEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:ZoomEvent:ZOOM_END"><apiName>ZOOM_END</apiName><shortdesc>
+		 定义 zoomEnd 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>zoomEnd</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 zoomEnd 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ZoomEvent:ZOOM_START"><apiName>ZOOM_START</apiName><shortdesc>
+		 定义 zoomStart 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>zoomStart</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 zoomStart 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ZoomEvent:ZOOM_UPDATE"><apiName>ZOOM_UPDATE</apiName><shortdesc>
+		 定义 zoomUpdate 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>zoomUpdate</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 zoomUpdate 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ZoomEvent:level:get"><apiName>level</apiName><shortdesc>
+		 获取或设置地图的缩放级别。默认值为 -1。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图的缩放级别。默认值为 -1。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ZoomEvent:viewBounds:get"><apiName>viewBounds</apiName><shortdesc>
+		 获取或设置地图可视范围。默认值为 null。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置地图可视范围。默认值为 null。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ZoomEvent:zoomFactor:get"><apiName>zoomFactor</apiName><shortdesc>
+		 获取或设置地图缩放因子。默认值为 1。如：1 表示保持原状，2表示放大一倍，0.5表示缩小一倍。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置地图缩放因子。默认值为 1。如：1 表示保持原状，2表示放大一倍，0.5表示缩小一倍。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:TimeSliderEvent"><apiName>TimeSliderEvent</apiName><shortdesc>
+	 TimeSlider 事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 TimeSlider 事件类.
+	 <p>该类仅提供了一种事件类型： TimeSliderEvent.TIME_CHANGE，当时间轴的播放时间发生变化时触发该事件。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.events:TimeSliderEvent:TimeSliderEvent"><apiName>TimeSliderEvent</apiName><shortdesc>
+		 初始化 TimeSliderEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>startTime</apiItemName><apiType value="Date"/><apiDesc>TimeSlider 播放的起始时间。
+		 </apiDesc></apiParam><apiParam><apiItemName>endTime</apiItemName><apiType value="Date"/><apiDesc>TimeSlider 播放的终止时间。
+		 </apiDesc></apiParam><apiParam><apiItemName>timeStop</apiItemName><apiType value="Date"/><apiDesc>改变后的时间。
+		 </apiDesc></apiParam><apiParam><apiItemName>timeStops</apiItemName><apiType value="Array"/><apiDesc>TimeSlider 每一帧对应的时间（Date 类型）集合。该集合中的每个对象与被播放要素的时间信息一一对应。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 TimeSliderEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:TimeSliderEvent:TIME_CHANGE"><apiName>TIME_CHANGE</apiName><shortdesc>
+		 定义 TimeSliderEvent.TIME_CHANGE 事件的 type 属性值。当时间轴的播放时间发生变化时触发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>timeChange</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 TimeSliderEvent.TIME_CHANGE 事件的 type 属性值。当时间轴的播放时间发生变化时触发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:TimeSliderEvent:endTime:get"><apiName>endTime</apiName><shortdesc>
+		 获取 TimeSlider 播放的终止时间。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Date"/></apiValueDef><apiDesc>
+		 获取 TimeSlider 播放的终止时间。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:TimeSliderEvent:startTime:get"><apiName>startTime</apiName><shortdesc>
+		 获取 TimeSlider 播放的起始时间。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Date"/></apiValueDef><apiDesc>
+		 获取 TimeSlider 播放的起始时间。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:TimeSliderEvent:timeStop:get"><apiName>timeStop</apiName><shortdesc>
+		 获取改变后的时间。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Date"/></apiValueDef><apiDesc>
+		 获取改变后的时间。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:TimeSliderEvent:timeStops:get"><apiName>timeStops</apiName><shortdesc>
+		 获取 TimeSlider 每一帧对应的时间（Date 类型）集合。该集合中的每个对象与被播放要素的时间信息一一对应。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取 TimeSlider 每一帧对应的时间（Date 类型）集合。该集合中的每个对象与被播放要素的时间信息一一对应。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:FeatureDataGridEvent"><apiName>FeatureDataGridEvent</apiName><shortdesc>
+	 FeatureDataGrid 事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>mx.events:DataGridEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 FeatureDataGrid 事件类.
+	 <p>该类提供了三种事件类型： 当选中 FeatureDataGrid 列表中某条记录时触发 FeatureDataGridEvent.FEATURE_SELECTED 事件；当单击地图中的要素 Feature 时，触发 FeatureDataGridEvent.FEATURE_CLICK 事件；当删除 FeatureDataGrid 列表中某条记录时触发 FeatureDataGridEvent.FEATURE_DELETE。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.components.xml#FeatureDataGrid"><linktext>com.supermap.web.components.FeatureDataGrid</linktext></link></related-links><apiConstructor id="com.supermap.web.events:FeatureDataGridEvent:FeatureDataGridEvent"><apiName>FeatureDataGridEvent</apiName><shortdesc>
+		 初始化 FeatureDataGridEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiData>null</apiData><apiDesc>鼠标单击的记录对应的 Feature 对象。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FeatureDataGridEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:FeatureDataGridEvent:FEATURE_CLICK"><apiName>FEATURE_CLICK</apiName><shortdesc>
+		 定义 FeatureDataGridEvent.FEATURE_CLICK 事件的 type 属性值。当点击地图中的要素时触发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>featureClick</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FeatureDataGridEvent.FEATURE_CLICK 事件的 type 属性值。当点击地图中的要素时触发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:FeatureDataGridEvent:FEATURE_DELETE"><apiName>FEATURE_DELETE</apiName><shortdesc>
+		 定义 FeatureDataGridEvent.FEATURE_DELETE 事件的 type 属性值。当删除 FeatureDataGrid 列表中某条记录时触发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>featureDelete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FeatureDataGridEvent.FEATURE_DELETE 事件的 type 属性值。当删除 FeatureDataGrid 列表中某条记录时触发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:FeatureDataGridEvent:FEATURE_SELECTED"><apiName>FEATURE_SELECTED</apiName><shortdesc>
+		 定义 FeatureDataGridEvent.FEATURE_SELECTED 事件的 type 属性值。当选中 FeatureDataGrid 列表中的要素记录时触发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>featureSelected</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FeatureDataGridEvent.FEATURE_SELECTED 事件的 type 属性值。当选中 FeatureDataGrid 列表中的要素记录时触发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:FeatureDataGridEvent:feature:get"><apiName>feature</apiName><shortdesc>
+		 选中的记录对应的 Feature 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Feature</apiValueClassifier></apiValueDef><apiDesc>
+		 选中的记录对应的 Feature 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:ViewBoundsEvent"><apiName>ViewBoundsEvent</apiName><shortdesc>
+	 地图可视范围事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图可视范围事件类.
+	 该类定义了一种与地图可视范围相关的事件类型，即地图可视范围改变事件 viewBoundsChange。当地图可视范围发生变化时，则触发该事件。<br/>此类型的事件由 Map 类声明，其它类不可对其进行监听或派发。  
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.events:ViewBoundsEvent:ViewBoundsEvent"><apiName>ViewBoundsEvent</apiName><shortdesc>
+		 初始化 ViewBoundsEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。必设属性。
+		 </apiDesc></apiParam><apiParam><apiItemName>viewBounds</apiItemName><apiOperationClassifier>com.supermap.web.core:Rectangle2D</apiOperationClassifier><apiData>null</apiData><apiDesc>发生变化后的地图可视范围。
+		 </apiDesc></apiParam><apiParam><apiItemName>levelChange</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>表示地图显示级别是否发生变化。
+		 </apiDesc></apiParam><apiParam><apiItemName>resolution</apiItemName><apiType value="Number"/><apiData>unknown</apiData><apiDesc>可视范围发生变化后的地图分辨率。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 ViewBoundsEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:ViewBoundsEvent:VIEW_BOUNDS_CHANGE"><apiName>VIEW_BOUNDS_CHANGE</apiName><shortdesc>
+		 定义 VIEW_BOUNDS_CHANGE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>viewBoundsChange</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 VIEW_BOUNDS_CHANGE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ViewBoundsEvent:VIEW_BOUNDS_UPDATE"><apiName>VIEW_BOUNDS_UPDATE</apiName><shortdesc>
+		 定义 VIEW_BOUNDS_UPDATE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>viewBoundsUpdate</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 VIEW_BOUNDS_UPDATE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ViewBoundsEvent:levelChange:get"><apiName>levelChange</apiName><shortdesc>
+		 判断地图显示级别是否已发生变化。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 判断地图显示级别是否已发生变化。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ViewBoundsEvent:resolution:get"><apiName>resolution</apiName><shortdesc>
+		 获取可视范围发生变化后的地图分辨率。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取可视范围发生变化后的地图分辨率。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ViewBoundsEvent:viewBounds:get"><apiName>viewBounds</apiName><shortdesc>
+		 获取发生变化后的地图可视范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取发生变化后的地图可视范围。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:LayerEvent"><apiName>LayerEvent</apiName><shortdesc>
+	 图层（ Layer ）事件类 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层（ Layer ）事件类 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.mapping.xml#Layer"><linktext>com.supermap.web.mapping.Layer</linktext></link></related-links><apiConstructor id="com.supermap.web.events:LayerEvent:LayerEvent"><apiName>LayerEvent</apiName><shortdesc>
+		 初始化 LayerEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>layer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Layer</apiOperationClassifier><apiDesc>与事件关联的图层。必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>fault</apiItemName><apiType value="mx.rpc:Fault"/><apiData>null</apiData><apiDesc>表示远程过程调用 (RPC) 服务调用中存在错误（详情请参见 Flash 帮助文档）。当定义图层加载错误事件（ LayerEvent.LOAD_ERROR ）时应设置此参数。默认值为 null。
+		 </apiDesc></apiParam><apiParam><apiItemName>updateSuccess</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>表示图层是否更新成功。当定义图层更新完成事件（ LayerEvent.UPDATE_END ）时应设置此参数。默认值为 false。
+		 </apiDesc></apiParam><apiParam><apiItemName>isInResolutionRange</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>表示 Map 控件的当前分辨率是否在 Layer 的最大、最小分辨率范围内。当定义 Layer.IsInResolutionRange 属性改变事件（ LayerEvent.IS_IN_RESOLUTION_RANGE_CHANGE ）时应设置此参数，默认值为 false。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 LayerEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:LayerEvent:IS_IN_RESOLUTION_RANGE_CHANGE"><apiName>IS_IN_RESOLUTION_RANGE_CHANGE</apiName><shortdesc>
+		 定义 Layer.IsInResolutionRange 属性改变事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>isInResolutionRangeChange</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 Layer.IsInResolutionRange 属性改变事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:LOAD_ERROR"><apiName>LOAD_ERROR</apiName><shortdesc>
+		 定义图层加载错误事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>loadError</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义图层加载错误事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:LOAD"><apiName>LOAD</apiName><shortdesc>
+		 定义图层加载事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>load</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义图层加载事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:UPDATE_END"><apiName>UPDATE_END</apiName><shortdesc>
+		 定义图层更新完成事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>updateEnd</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义图层更新完成事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:UPDATE_START"><apiName>UPDATE_START</apiName><shortdesc>
+		 定义图层更新开始事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>updateStart</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义图层更新开始事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:fault:get"><apiName>fault</apiName><shortdesc>
+		 获取或设置远程过程调用 (RPC) 服务调用中存在错误。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="mx.rpc:Fault"/></apiValueDef><apiDesc>
+		 获取或设置远程过程调用 (RPC) 服务调用中存在错误。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:isInResolutionRange:get"><apiName>isInResolutionRange</apiName><shortdesc>
+		 获取 Map 控件的当前分辨率是否在当前 Layer 的最大、最小分辨率范围内，即 Layer 的 isInResolutionRange 属性值。在此，默认值为 false。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取 Map 控件的当前分辨率是否在当前 Layer 的最大、最小分辨率范围内，即 Layer 的 isInResolutionRange 属性值。在此，默认值为 false。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:layer:get"><apiName>layer</apiName><shortdesc>
+		 获取与事件关联的图层。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.mapping:Layer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取与事件关联的图层。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:LayerEvent:updateSuccess:get"><apiName>updateSuccess</apiName><shortdesc>
+		 获取或设置图层是否已更新完成。默认值为 false。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置图层是否已更新完成。默认值为 false。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:ActionEvent"><apiName>ActionEvent</apiName><shortdesc>
+	 地图操作事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图操作事件类.
+	 <p>该类可以获取对地图控件的前一次和最新一次操作。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.events:ActionEvent:ActionEvent"><apiName>ActionEvent</apiName><shortdesc>
+		 初始化 ActionEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>oldAction</apiItemName><apiOperationClassifier>com.supermap.web.actions:MapAction</apiOperationClassifier><apiDesc>对地图控件的前一次操作。
+		 </apiDesc></apiParam><apiParam><apiItemName>newAction</apiItemName><apiOperationClassifier>com.supermap.web.actions:MapAction</apiOperationClassifier><apiDesc>对地图控件的最新一次操作。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 ActionEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:ActionEvent:ACTION_CHANGED"><apiName>ACTION_CHANGED</apiName><shortdesc>
+		 定义操作改变事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>actionChanged</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义操作改变事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ActionEvent:newAction:get"><apiName>newAction</apiName><shortdesc>
+		 获取对地图控件的最新一次操作。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.actions:MapAction</apiValueClassifier></apiValueDef><apiDesc>
+		 获取对地图控件的最新一次操作。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:ActionEvent:oldAction:get"><apiName>oldAction</apiName><shortdesc>
+		 获取对地图控件的前一次操作。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.actions:MapAction</apiValueClassifier></apiValueDef><apiDesc>
+		 获取对地图控件的前一次操作。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:DrawEvent"><apiName>DrawEvent</apiName><shortdesc>
+	 绘图操作事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 绘图操作事件类. 
+	 <p>该类目前提供了绘图开始、绘图结束两种事件类型。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.events:DrawEvent:DrawEvent"><apiName>DrawEvent</apiName><shortdesc>
+		 初始化 DrawEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiData>null</apiData><apiDesc>与当前事件关联的矢量要素 Feature。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DrawEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:DrawEvent:DRAW_CANCEL"><apiName>DRAW_CANCEL</apiName><shortdesc>
+		 定义绘制取消事件的 type 属性值，当在绘制过程中切换地图 action 时，当前绘制操作会自动取消，并派发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>drawCancel</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义绘制取消事件的 type 属性值，当在绘制过程中切换地图 action 时，当前绘制操作会自动取消，并派发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:DrawEvent:DRAW_END"><apiName>DRAW_END</apiName><shortdesc>
+		 定义绘制结束事件的 type 属性值，当双击结束时触发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>drawEnd</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义绘制结束事件的 type 属性值，当双击结束时触发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:DrawEvent:DRAW_START"><apiName>DRAW_START</apiName><shortdesc>
+		 定义绘制开始事件的 type 属性值，当鼠标第一次按下时触发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>drawStart</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义绘制开始事件的 type 属性值，当鼠标第一次按下时触发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:DrawEvent:DRAW_UPDATE"><apiName>DRAW_UPDATE</apiName><shortdesc>
+		 定义绘制刷新事件的 type 属性值，对于绘制自由线或自由面操作，当鼠标移动时触发发该事件；对于其它普通的绘制操作，当鼠标按下时触发该事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>drawUpdate</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义绘制刷新事件的 type 属性值，对于绘制自由线或自由面操作，当鼠标移动时触发发该事件；对于其它普通的绘制操作，当鼠标按下时触发该事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:DrawEvent:feature:get"><apiName>feature</apiName><shortdesc>
+		 设置与当前事件关联的矢量要素 Feature。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Feature</apiValueClassifier></apiValueDef><apiDesc>
+		 设置与当前事件关联的矢量要素 Feature。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:MapEvent"><apiName>MapEvent</apiName><shortdesc>
+	 地图控件 Map 事件类 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图控件 Map 事件类 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.mapping.xml#Map"><linktext>com.supermap.web.mapping.Map</linktext></link></related-links><apiConstructor id="com.supermap.web.events:MapEvent:MapEvent"><apiName>MapEvent</apiName><shortdesc>
+		 初始化 MapEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>map</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Map</apiOperationClassifier><apiData>null</apiData><apiDesc>与事件关联的 Map。
+		 </apiDesc></apiParam><apiParam><apiItemName>layer</apiItemName><apiOperationClassifier>com.supermap.web.mapping:Layer</apiOperationClassifier><apiData>null</apiData><apiDesc>Map 中新加入的或被重新移动位置的图层。当定义 MapEvent.LAYER_ADD 或 MapEvent.LAYER_REORDER 事件时需要设置此参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiData>-1</apiData><apiDesc>Map 中新加入的或被重新移动位置的图层在 Map 中的位置。当定义 MapEvent.LAYER_ADD 或 MapEvent.LAYER_REORDER 事件时需要设置此参数。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 MapEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:MapEvent:LAYER_ADD"><apiName>LAYER_ADD</apiName><shortdesc>
+		 定义 layerAdd 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>layerAdd</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 layerAdd 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapEvent:LAYER_MOVE"><apiName>LAYER_MOVE</apiName><shortdesc>
+		 定义 layerReorder 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>layerMove</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 layerReorder 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapEvent:LAYER_REMOVE_ALL"><apiName>LAYER_REMOVE_ALL</apiName><shortdesc>
+		 定义 layerRemoveAll 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>layerRemoveAll</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 layerRemoveAll 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapEvent:LAYER_REMOVE"><apiName>LAYER_REMOVE</apiName><shortdesc>
+		 定义 layerRemove 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>layerRemove</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 layerRemove 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapEvent:LOAD"><apiName>LOAD</apiName><shortdesc>
+		 定义 load 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>load</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 load 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapEvent:index:get"><apiName>index</apiName><shortdesc>
+		 获取 Map 中新加入的或被重新移动位置的图层在 Map 中的位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取 Map 中新加入的或被重新移动位置的图层在 Map 中的位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapEvent:layer:get"><apiName>layer</apiName><shortdesc>
+		 获取 Map 中新加入的或被重新移动位置的图层。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.mapping:Layer</apiValueClassifier></apiValueDef><apiDesc>
+		 获取 Map 中新加入的或被重新移动位置的图层。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:MapEvent:map:get"><apiName>map</apiName><shortdesc>
+		 获取与当前事件关联的 Map 。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取与当前事件关联的 Map 。  
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:FeatureLayerEvent"><apiName>FeatureLayerEvent</apiName><shortdesc>
+	 要素图层 FeatureLayer 事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 要素图层 FeatureLayer 事件类.
+	 <p>该类目前提供了三种与要素图层相关的事件类型：添加要素、删除要素、删除所有要素。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.mapping.xml#FeaturesLayer"><linktext>com.supermap.web.mapping.FeaturesLayer</linktext></link></related-links><apiConstructor id="com.supermap.web.events:FeatureLayerEvent:FeatureLayerEvent"><apiName>FeatureLayerEvent</apiName><shortdesc>
+		 初始化 FeatureLayerEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。必设参数。
+		 </apiDesc></apiParam><apiParam><apiItemName>feature</apiItemName><apiOperationClassifier>com.supermap.web.core:Feature</apiOperationClassifier><apiData>null</apiData><apiDesc>与事件关联的矢量要素。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FeatureLayerEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:FeatureLayerEvent:FEATURE_ADD"><apiName>FEATURE_ADD</apiName><shortdesc>
+		 添要要素事件。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>featureAdd</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 添要要素事件。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:FeatureLayerEvent:FEATURE_REMOVE_ALL"><apiName>FEATURE_REMOVE_ALL</apiName><shortdesc>
+		 删除所有要素事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>featureRemoveAll</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 删除所有要素事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:FeatureLayerEvent:FEATURE_REMOVE"><apiName>FEATURE_REMOVE</apiName><shortdesc>
+		 移除要素事件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>featureRemove</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 移除要素事件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:FeatureLayerEvent:feature:get"><apiName>feature</apiName><shortdesc>
+		 获取或设置与事件关联的矢量要素。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Feature</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与事件关联的矢量要素。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.events:SparkClusterEvent"><apiName>SparkClusterEvent</apiName><shortdesc>
+	 发散聚散显示事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 发散聚散显示事件类.
+	 <p>该类是显示类型为 SparkClusterStyle 的聚合点(Cluster)事件类，目前提供了四种事件类型：离散点动态聚合开始、离散点动态聚合结束、离散点动态发散开始、离散点动态发散结束。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.clustering.xml#Clusterer"><linktext>com.supermap.web.clustering.Clusterer</linktext></link><link href="com.supermap.web.clustering.xml#SparkClusterStyle"><linktext>com.supermap.web.clustering.SparkClusterStyle</linktext></link></related-links><apiConstructor id="com.supermap.web.events:SparkClusterEvent:SparkClusterEvent"><apiName>SparkClusterEvent</apiName><shortdesc>
+		 初始化 SparkClusterEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>cluster</apiItemName><apiType value="com.supermap.web.clustering.supportClasses:Cluster"/><apiDesc>与该事件关联的聚合点对象。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 SparkClusterEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.events:SparkClusterEvent:SPARK_IN_COMPLETE"><apiName>SPARK_IN_COMPLETE</apiName><shortdesc>
+		 离散点动态聚合结束事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sparkInComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 离散点动态聚合结束事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterEvent:SPARK_IN_START"><apiName>SPARK_IN_START</apiName><shortdesc>
+		 离散点动态聚合开始事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sparkInStart</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 离散点动态聚合开始事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterEvent:SPARK_OUT_COMPLETE"><apiName>SPARK_OUT_COMPLETE</apiName><shortdesc>
+		 离散点动态发散结束事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sparkOutComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 离散点动态发散结束事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterEvent:SPARK_OUT_START"><apiName>SPARK_OUT_START</apiName><shortdesc>
+		 离散点动态聚合开始事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>sparkOutStart</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 离散点动态聚合开始事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.events:SparkClusterEvent:cluster:get"><apiName>cluster</apiName><shortdesc>
+		 获取与 SparkClusterEvent 事件关联的聚合点对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="com.supermap.web.clustering.supportClasses:Cluster"/></apiValueDef><apiDesc>
+		 获取与 SparkClusterEvent 事件关联的聚合点对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

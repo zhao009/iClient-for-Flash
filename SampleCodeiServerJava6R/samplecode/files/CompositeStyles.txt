@@ -1,0 +1,5 @@
+<font color="#0033FF">组合样式</font>
+<font color="#006633">1. 功能描述：</font>用于统一定义点、线、面的组合显示风格。如，面要素的显示由三部分组成：结点、弧段、区域填充，线要素由结点+弧段组成，点要素由单独的点对象组成，若将这三个要素的样式均设值为同一个组合样式 CompositeStyle，则对应的组成部分将以同一风格显示。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。
+<font color="#006633">3. 操作指南：</font>左上窗口——设置面要素的区域填充样式；左中窗口——设置线要素样式；右上窗口——设置点要素样式。
+<font color="#006633">4. 其它说明：</font>有关组合样式 CompositeStyle 的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

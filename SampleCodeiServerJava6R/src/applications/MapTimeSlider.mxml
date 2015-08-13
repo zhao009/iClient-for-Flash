@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()"
+			   height="100%" width="100%">
+	<!--时间轴组件-->
+	  
+	<fx:Declarations>
+		<mx:DateFormatter id="dateFormatter" formatString="YYYY年MM月DD日HH时"/>
+		<s:GlowFilter id="myGF" color="0xff0000" alpha="1" />
+		<s:AnimateFilter id="myFilter"  
+						 target="{this.fl}"
+						 repeatCount="0"
+						 duration="1000"
+						 repeatBehavior="loop"
+						 bitmapFilter="{this.myGF}">
+			<s:SimpleMotionPath property="blurX" valueFrom="0" valueTo="20"/>
+			<s:SimpleMotionPath property="blurY" valueFrom="0" valueTo="20"/>
+		</s:AnimateFilter>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[  
+			import com.supermap.web.components.TimeData;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Graphic;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.core.styles.graphicStyles.GraphicFillStyle;
+			import com.supermap.web.samples.geoCircle.GeoCircle;
+			
+			import mx.controls.Text;
+			
+			import utilEvent.ReadURLEvent;
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				this.map.viewBounds = new Rectangle2D(73, -27, 160, 34);
+				this.timeSlider.timeData = this.initFeatures();
+			}
+ 
+			protected function timeSlider_timeChangeHandler(event:Event):void
+			{    
+				this.timeLabel.text = dateFormatter.format(this.timeSlider.timeStops[this.timeSlider.slider.value]);
+			} 
+			
+			//生成附有时间属性的数据，封装于 TimeData 中
+			public function initFeatures():TimeData
+			{   
+				var timeData:TimeData = new TimeData();
+				
+				var markerSize:int = 0;
+				var markerAlpha:Number = 1;
+				var timeStops:Array = new Array();
+				for(var i:int = 0; i < 5; i++)
+				{
+					markerSize ++;
+					
+					var geoCircle:GeoCircle = new GeoCircle();
+					geoCircle.radius = markerSize;
+					geoCircle.circleCenter = new Point2D(122.18, 1.41);
+					var geoCircleStyle:PredefinedFillStyle = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_SOLID, this.getColor(i), markerAlpha-i*0.1);
+					var tempFeature:Feature = new Feature(geoCircle, geoCircleStyle); 
+					tempFeature.attributes = new Object();
+					var date:Date =  new Date(2004, 11, 26, i+21);
+										tempFeature.attributes["timeIndex"] = date;
+										timeStops.push(date);
+										timeData.features.addItem(tempFeature); 
+ 
+				}
+			           	
+				var startTime:Date = new Date(2004, 11, 26, 21); 
+				timeData.timeStops = timeStops;
+				var endTime:Date = new Date(2004, 11, 26, 26);
+				timeData.startTime = startTime;
+				timeData.endTime = endTime; 
+				return timeData;	
+			} 
+			
+			//过渡颜色
+			private function getColor(i:int):Number
+			{
+				var j:Number = 0;
+				var k:Number = 0;
+				j = i*10;
+				k = j+30;
+				if(k>=100)
+					k = 90;
+				var str:String = new String();
+				var str1:String = j.toString();
+				var str2:String = k.toString();
+				if(str1 == "0")
+					str1 += "0";
+				if(str2 == "0")
+					str2 += "0";
+				
+				var markerColor:Number = Number("0x" + str1 + str2 + "ff");
+				return markerColor;
+			} 
+		]]>
+	</fx:Script> 
+	     
+	<!--加载地图-->
+	<ic:Map id="map" width="100%" height="100%" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+		<ic:FeaturesLayer id="fl2" isFront="false" isFeatureMouseOver="false"/>
+		<ic:FeaturesLayer id="fl" addedEffect="{this.myFilter.end(), this.myFilter.play()}">
+			<ic:Feature id="fea" toolTip="印尼海啸">
+				<ic:style>
+					<ic:PredefinedMarkerStyle size="10" symbol="SYMBOL_CIRCLE"/>
+				</ic:style>
+				<ic:geometry>
+					<ic:GeoPoint x="122.18" y="1.41" />
+				</ic:geometry>		
+			</ic:Feature>
+		</ic:FeaturesLayer>
+	</ic:Map>
+	<!--时间轴-->
+	<ic:TimeSlider id="timeSlider" timeDelay="1000" bottom="20" horizontalCenter="0" layer="{fl2}"  isAccumulatedDisplay="false" timeChange="timeSlider_timeChangeHandler(event)" />
+	<s:Label id="timeLabel" fontSize="14" fontWeight="bold" text="" horizontalCenter="-20" bottom="5"/>
+</s:Application>

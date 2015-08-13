@@ -1,0 +1,315 @@
+<apiPackage id="com.supermap.web.iServerJava2.mapServices"><apiName>com.supermap.web.iServerJava2.mapServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusService"><apiName>SetLayerStatusService</apiName><shortdesc>
+	 子图层显示控制服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层显示控制服务类.
+	 <p>该类负责将客户端创建的 SetLayerStatusParameters 对象中所指定图层显示控制参数传递到服务端，并获取服务端返回的图层显示状态，将结果保存于 SetLayerStatusResult 对象中。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusService:SetLayerStatusService"><apiName>SetLayerStatusService</apiName><shortdesc>
+		 使用地图 web 服务地址 url 初始化 SetLayerStatusService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图 web 服务地址。 
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图 web 服务地址 url 初始化 SetLayerStatusService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusService:execute"><apiName>execute</apiName><shortdesc>
+		 执行操作。将客户端指定的参数 SetLayerStatusParameters 传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>与服务端完成异步通讯时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>layerStatusParameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.mapServices:SetLayerStatusParameters</apiOperationClassifier><apiDesc>控制子图层显示状态的参数。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行操作。将客户端指定的参数 SetLayerStatusParameters 传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的地图显示状态信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.mapServices:SetLayerStatusResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的地图显示状态信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusResult"><apiName>SetLayerStatusResult</apiName><shortdesc>
+	 子图层控制结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层控制结果类.
+	 <p>服务端用字符串描述当前图层的状态，并将其保存在 LayersKey 中返回客户端。分块动态 IServer 图层和动态 IServer 图层都有 LayersKey 属性，将服务端返回的 LayersKey 赋予分块动态 IServer 图层或动态 IServer 图层的 LayersKey，就能在客户端显示当前的可见子图层。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusResult:layerKey:get"><apiName>layerKey</apiName><shortdesc>
+		 获取服务端返回的当前图层的状态，该状态用字符串描述，记录了地图中各个子图层的可见性状态。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取服务端返回的当前图层的状态，该状态用字符串描述，记录了地图中各个子图层的可见性状态。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType"><apiName>ServerLayerSettingType</apiName><shortdesc>
+	 图层类型枚举类类 .</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层类型枚举类类 .
+	 <p>该类用于设置与其关联的地图图层的显示风格。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:COLLECTION"><apiName>COLLECTION</apiName><shortdesc>
+		 Collection 类型的图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>11</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 Collection 类型的图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:GEO_RSS"><apiName>GEO_RSS</apiName><shortdesc>
+		 GeoRSS 类型的图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>8</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 GeoRSS 类型的图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:GOOGLE_MAP"><apiName>GOOGLE_MAP</apiName><shortdesc>
+		 GoogleMap 类型的图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 GoogleMap 类型的图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:KML"><apiName>KML</apiName><shortdesc>
+		 KML 类型的图层。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 KML 类型的图层。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:SUPER_MAP_COLLECTION"><apiName>SUPER_MAP_COLLECTION</apiName><shortdesc>
+		 SuperMap 类型的图层集合。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>12</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 SuperMap 类型的图层集合。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:SUPER_MAP"><apiName>SUPER_MAP</apiName><shortdesc>
+		 SuperMap 类型的图层。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 SuperMap 类型的图层。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:UNDEFINED"><apiName>UNDEFINED</apiName><shortdesc>
+		 未知类型。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>-1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 未知类型。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:VIRTUAL_EARTH_MAP"><apiName>VIRTUAL_EARTH_MAP</apiName><shortdesc>
+		 VirtualEarthMap 类型的图层。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>7</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 VirtualEarthMap 类型的图层。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:WFS"><apiName>WFS</apiName><shortdesc>
+		 WFS 类型的图层。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 WFS 类型的图层。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:WMS"><apiName>WMS</apiName><shortdesc>
+		 WMS 类型的图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 WMS 类型的图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSettingType:YAHOO_MAP"><apiName>YAHOO_MAP</apiName><shortdesc>
+		 YahooMap 类型的图层。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>6</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 YahooMap 类型的图层。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:ServerLayer"><apiName>ServerLayer</apiName><shortdesc>
+	 图层信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层信息类.
+	 <p>该类用于存储从服务端获取的当前客户端地图中每个图层的详细信息（ServerLayer 与图层是一对一的关系），包括标题、最大最小比例尺、可见性、是否可查等信息。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:caption:get"><apiName>caption</apiName><shortdesc>
+		 获取图层标题。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取图层标题。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:description:get"><apiName>description</apiName><shortdesc>
+		 获取图层的描述信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取图层的描述信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:displayFilter:get"><apiName>displayFilter</apiName><shortdesc>
+		 图层显示过滤参数。例如：displayFilter="SMID>20" 。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 图层显示过滤参数。例如：displayFilter="SMID>20" 。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:isSymbolScalable:get"><apiName>isSymbolScalable</apiName><shortdesc>
+		 指定图层的符号大小是否随图缩放.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 指定图层的符号大小是否随图缩放.
+		 1. 默认为False。True 表示随着图层的缩放而缩放，在图层放大的同时，符号同时也放大。<br/>2. 一般在设置符号随图缩放之前，需要通过接口 symbolScale 对符号显示的比例进行设置，来定义与当前地图窗口的显示比例之间的关系。<br/>3. 对于含有子图层的数据集，如网络数据集，只需要设置网络图层的符号随图缩放即可，其节点图层的符号缩放功能会自动生效。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:maxScale:get"><apiName>maxScale</apiName><shortdesc>
+		 获取图层的最大比例尺。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取图层的最大比例尺。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:minScale:get"><apiName>minScale</apiName><shortdesc>
+		 获取图层的最小比例尺.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取图层的最小比例尺.
+		 系统默认值为0，可以无限缩小；如果设置此属性为非 0 值，那么当地图显示比例小于该值时，地图便无法继续缩小。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:minVisibleGeometrySize:get"><apiName>minVisibleGeometrySize</apiName><shortdesc>
+		 几何对象的最小显示大小，单位为0.1mm，默认值为0.4mm.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 几何对象的最小显示大小，单位为0.1mm，默认值为0.4mm.
+		 当设置此属性后，如果对象的显示尺寸小于此值时将不显示。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:name:get"><apiName>name</apiName><shortdesc>
+		 获取图层名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取图层名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:opaqueRate:get"><apiName>opaqueRate</apiName><shortdesc>
+		 获取图层透明度。取值在 0~100 之间，0 表示完全透明，100 表示完全不透明。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取图层透明度。取值在 0~100 之间，0 表示完全透明，100 表示完全不透明。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:queryable:get"><apiName>queryable</apiName><shortdesc>
+		 确定图层是否可查询。True 表示该图层处于可查询状态，False 表示该图层不可查询。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 确定图层是否可查询。True 表示该图层处于可查询状态，False 表示该图层不可查询。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:serverLayerSetting:get"><apiName>serverLayerSetting</apiName><shortdesc>
+		 图层显示风格。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.mapServices:ServerLayerSetting</apiValueClassifier></apiValueDef><apiDesc>
+		 图层显示风格。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:serverSubLayers:get"><apiName>serverSubLayers</apiName><shortdesc>
+		 子图层集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 子图层集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayer:visible:get"><apiName>visible</apiName><shortdesc>
+		 确定图层是否可见。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 确定图层是否可见。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusParameters"><apiName>SetLayerStatusParameters</apiName><shortdesc>
+	 子图层显示控制参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层显示控制参数类.
+	 <p>该类存储了地图中各图层是否可见的状态。只有 TiledDynamicIServerLayer 和 DynamicIServerLayer 能够实现子图层控制。<br/>注意在 SuperMap iClient 系列产品中所说的图层与 SuperMap Deskpro 的地图对应，子图层与 SuperMap Deskpro 的图层对应。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusParameters:SetLayerStatusParameters"><apiName>SetLayerStatusParameters</apiName><shortdesc>
+		 使用地图名称初始化 SetLayerStatusParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称。 
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称初始化 SetLayerStatusParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.mapServices:SetLayerStatusParameters:layerStatusList:get"><apiName>layerStatusList</apiName><shortdesc>
+		 获取或设置图层可见状态列表，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置图层可见状态列表，必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:GetMapStatusService"><apiName>GetMapStatusService</apiName><shortdesc>
+	 地图信息服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图信息服务类.
+	 <p>该类负责根据客户端创建的 GetMapStatusParameters 对象中所指定的服务器上获取该服务器提供的地图信息，并将结果保存在 GetMapStatusResult 对象中。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava2.mapServices.xml#GetMapStatusParameters"><linktext>GetMapStatusParameters</linktext></link><link href="com.supermap.web.iServerJava2.mapServices.xml#GetMapStatusResult"><linktext>GetMapStatusResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava2.mapServices:GetMapStatusService:GetMapStatusService"><apiName>GetMapStatusService</apiName><shortdesc>
+		 使用地图 web 服务地址初始化 GetMapStatusService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData/><apiDesc>地图 web 服务地址。 
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图 web 服务地址初始化 GetMapStatusService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.mapServices:GetMapStatusService:execute"><apiName>execute</apiName><shortdesc>
+		 执行操作。将客户端指定的参数 GetMapStatusParameters 传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>与服务端完成异步通讯时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>mapStatusParameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.mapServices:GetMapStatusParameters</apiOperationClassifier><apiDesc>获取地图信息时所需的参数。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行操作。将客户端指定的参数 GetMapStatusParameters 传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的地图信息，包括指定地图中所有图层的信息、地图可视范围、坐标信息等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.mapServices:GetMapStatusResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的地图信息，包括指定地图中所有图层的信息、地图可视范围、坐标信息等。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:ServerLayerSetting"><apiName>ServerLayerSetting</apiName><shortdesc>
+	 图层显示风格的设置基类 .</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层显示风格的设置基类 .
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.mapServices:ServerLayerSetting:serverLayerSettingType:get"><apiName>serverLayerSettingType</apiName><shortdesc>
+		 获取图层显示风格设置对应的图层类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取图层显示风格设置对应的图层类型。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.mapServices.xml#ServerLayerSettingType"><linktext>ServerLayerSettingType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:GetMapStatusParameters"><apiName>GetMapStatusParameters</apiName><shortdesc>
+	 获取地图信息参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取地图信息参数类.
+	 <p>该类用于设置从服务器端获取地图信息时所需的参数。从服务器返回的地图信息包括：指定地图中所有图层的信息、地图可视范围、坐标信息等。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.mapServices:GetMapStatusParameters:GetMapStatusParameters"><apiName>GetMapStatusParameters</apiName><shortdesc>
+		 初始化 GetMapStatusParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称。 
+		 </apiDesc></apiParam><apiParam><apiItemName>mapServicesAddress</apiItemName><apiType value="String"/><apiData>localhost</apiData><apiDesc>地图 GIS 服务地址。默认为本机 IP 地址。
+		 </apiDesc></apiParam><apiParam><apiItemName>mapServicesPort</apiItemName><apiType value="String"/><apiData>8600</apiData><apiDesc>地图 GIS 服务端口号。默认为 8600。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GetMapStatusParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusParameters:mapName:get"><apiName>mapName</apiName><shortdesc conref="com.supermap.web.mapping.DynamicIServerLayer#mapName">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="com.supermap.web.mapping.DynamicIServerLayer#mapName">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusParameters:mapServicesAddress:get"><apiName>mapServicesAddress</apiName><shortdesc conref="com.supermap.web.mapping.DynamicIServerLayer#mapServiceAddress">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="com.supermap.web.mapping.DynamicIServerLayer#mapServiceAddress">
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusParameters:mapServicesPort:get"><apiName>mapServicesPort</apiName><shortdesc conref="com.supermap.web.mapping.DynamicIServerLayer#mapServicePort">
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc conref="com.supermap.web.mapping.DynamicIServerLayer#mapServicePort">
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult"><apiName>GetMapStatusResult</apiName><shortdesc>
+	 地图信息结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图信息结果类.
+	 <p>该类用于存储获取地图信息的结果。包含了所请求的地图名称、地图中所有图层的信息、地图坐标信息、坐标信息等。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:DPI:get"><apiName>DPI</apiName><shortdesc>
+		 服务器端平面分辨率。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 服务器端平面分辨率。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:coordsSys:get"><apiName>coordsSys</apiName><shortdesc>
+		 地图坐标系。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:CoordinateReferenceSystem</apiValueClassifier></apiValueDef><apiDesc>
+		 地图坐标系。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:mapBounds:get"><apiName>mapBounds</apiName><shortdesc>
+		 地图地理范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 地图地理范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:mapName:get"><apiName>mapName</apiName><shortdesc>
+		 地图名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 地图名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:referScale:get"><apiName>referScale</apiName><shortdesc>
+		 地图比例尺。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 地图比例尺。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:referViewBounds:get"><apiName>referViewBounds</apiName><shortdesc>
+		 地图可视范围。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 地图可视范围。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:referViewer:get"><apiName>referViewer</apiName><shortdesc>
+		 地图初始化时默认的地图图片的尺寸。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="flash.geom:Rectangle"/></apiValueDef><apiDesc>
+		 地图初始化时默认的地图图片的尺寸。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:GetMapStatusResult:serverLayers:get"><apiName>serverLayers</apiName><shortdesc>
+		 地图中所有图层数组。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 地图中所有图层数组。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:SuperMapCollectionLayerSetting"><apiName>SuperMapCollectionLayerSetting</apiName><shortdesc>
+	 SuperMap 图层集合的设置类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.mapServices:ServerLayerSetting</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SuperMap 图层集合的设置类.
+	 SuperMap图层集合可以以图层的身份与其他非 SuperMap 类型的图层数据进行叠加显示。该类主要用于描述 SuperMapCollection 类型的图层设置参数。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.mapServices:SuperMapCollectionLayerSetting:SuperMapCollectionLayerSetting"><apiName>SuperMapCollectionLayerSetting</apiName><shortdesc>
+		 初始化 SuperMapCollectionLayerSetting 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SuperMapCollectionLayerSetting 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapCollectionLayerSetting:mapName:get"><apiName>mapName</apiName><shortdesc>
+		 获取 SuperMapCollection 类型的图层所在的地图的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取 SuperMapCollection 类型的图层所在的地图的名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapCollectionLayerSetting:serviceAddress:get"><apiName>serviceAddress</apiName><shortdesc>
+		 获取服务器地址。SuperMapCollection 中的图层来源。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取服务器地址。SuperMapCollection 中的图层来源。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapCollectionLayerSetting:servicePort:get"><apiName>servicePort</apiName><shortdesc>
+		 获取服务器的端口。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取服务器的端口。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:SuperMapLayerType"><apiName>SuperMapLayerType</apiName><shortdesc>
+	 SuperMap 图层类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SuperMap 图层类型枚举类.
+	 <p>SuperMapLayer 是指 SuperMap 结构中支持的图层，如点图层，线图层、面图层、文本图层等等。这些 SuperMap 支持的图层根据数据类型还可以分为矢量图层（VECTOR）、影像图层（IMAGE）、格网图层（GRID）、WMS 图层和 WFS 图层等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapLayerType:GRID"><apiName>GRID</apiName><shortdesc>
+		 GRID 类型图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 GRID 类型图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapLayerType:IMAGE"><apiName>IMAGE</apiName><shortdesc>
+		 IMAGE 类型图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 IMAGE 类型图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapLayerType:VECTOR"><apiName>VECTOR</apiName><shortdesc>
+		 VECTOR 类型图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 VECTOR 类型图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapLayerType:WFS"><apiName>WFS</apiName><shortdesc>
+		 WFS 类型图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 WFS 类型图层。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:SuperMapLayerType:WMS"><apiName>WMS</apiName><shortdesc>
+		 WMS 类型图层。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 WMS 类型图层。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.mapServices:LayerStatus"><apiName>LayerStatus</apiName><shortdesc>
+	 子图层显示参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层显示参数类.
+	 <p>子图层显示参数类</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.mapServices:LayerStatus:LayerStatus"><apiName>LayerStatus</apiName><shortdesc>
+		 初始化 LayerStatus 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 LayerStatus 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.mapServices:LayerStatus:isVisible:get"><apiName>isVisible</apiName><shortdesc>
+		 获取或设置子图层的可见性，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置子图层的可见性，必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.mapServices:LayerStatus:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取或设置子图层名称，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置子图层名称，必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

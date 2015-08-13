@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<compTree>
+ 
+ 	<node label="图片图层" none=""> 
+		<node label="分块动态图层" app="iS2TiledDynamicLayer" none=""/>
+		<node label="分块缓存图层" app="iS2TiledCachedLayer" none=""/>  
+		<node label="动态图层" app="iS2DynamicLayer" none=""/>
+    	<node label="图层叠加" app="DynamicWMSandIServerLayer" none=""/>
+    	<node label="地图切换" app="MapSwitch" none=""/>  
+    	<node label="热点图" app="HeatMap" none=""/>  
+    	<node label="云服务图层" app="SuperMapCloudLayer" none=""/>    
+    </node>
+    <node label="要素图层" none="">
+    	<node label="点样式" app="MarkerStyles" none=""/> 
+    	<node label="线样式" app="LineStyles" none=""/> 	
+    	<node label="面样式" app="FillStyles" none=""/>
+    	<node label="文本样式" app="TextStyles" none=""/> 
+    	<node label="组合样式" app="CompositeStyles" none=""/> 	
+    	<node label="信息显示样式" app="FeatureInfoStyle" none=""/>
+    	<node label="聚散显示" app="FeatureCluster" none=""/> 
+    	<node label="信息浮窗" app="MapInfoWindow" none=""/>
+    	<node label="客户端渲染" app="ClientRenderer" none=""/>
+    </node>
+    <node label="元素图层" none="">
+    	<node label="元素图层" app="ElementsLayer" none=""/>  
+    </node>   
+    <node label="地图操作" none="">
+    	<node label="地图浏览" app="MapManager" none=""/>
+    	<node label="地图旋转" app="MapRotation" none=""/>
+    	<node label="要素标绘" app="AddFeature" none=""/>   	
+    </node>
+    
+    <node label="地图控件" none=""> 
+    	<node label="常用控件" app="CommonComponents" none=""/>
+    	<node label="历史管理" app="MapHistory" none=""/>
+    	<node label="时间轴" app="MapTimeSlider" none=""/>
+    	<node label="放大镜" app="Map_Magnifier" none=""/> 
+    	<node label="图例控件"   app="Legend" none=""/>
+    </node>
+    
+    <node label="量算" none=""> 
+    	<node label="面积+距离量算" app="Mesure" none=""/>
+    </node>
+    
+    <node label="查询" none=""> 
+    	<node label="中心点查询" app="QueryByCenter"   none=""/>
+    	<node label="几何查询"   app="QueryByGeometry" none=""/>
+    	<node label="SQL 查询"   app="QueryBySQL"      none=""/>
+    </node>
+    
+    <node label="网络分析" none=""> 
+    	<node label="最近设施查找" app="ClosestFacility" none=""/> 
+    	<node label="最佳路径分析" app="FindPath" none=""/> 
+    	<node label="旅行商分析" app="FindTspPath" none=""/> 
+    	<node label="服务区分析" app="ServiceArea" none=""/> 
+    </node>
+    
+    <node label="地物编辑" none="">
+   		<node label="地物编辑" app="EditFeature" none=""/>
+    </node>
+    
+    <node label="专题图" none=""> 
+    	<node label="点密度专题图" app="Theme_DotDensity" none=""/>
+    	<node label="统计专题图" app="Theme_Graph" none=""/> 
+    	<node label="标签专题图" app="Theme_Label" none=""/>
+    	<node label="范围分段专题图" app="Theme_Range" none=""/>
+    	<node label="单值专题图" app="Theme_Unique" none=""/>
+    </node>
+    
+    <node label="子图层控制" none=""> 
+    	<node label="子图层控制" app="LayerManager" none=""/>
+    </node>
+    
+    <node label="自定义扩展功能" none=""> 
+    <node label="扩展服务" app="ServiceExtend" none="" 
+    		src="../src/com/supermap/web/samples/serviceExtend/ExtendService.as &amp;../src/com/supermap/web/samples/serviceExtend/ExtendServiceParameters.as &amp;../src/com/supermap/web/samples/serviceExtend/ExtendServiceResult.as &amp;../src/com/supermap/web/samples/serviceExtend/RemoveExtendService.as &amp;../src/com/supermap/web/samples/serviceExtend/RemoveExtendServiceParameters.as &amp;../src/com/supermap/web/samples/serviceExtend/RemoveExtendServiceResult.as"/>
+    	<node label="几何对象——圆" app="CircleStyle" none="" 
+    		src="../src/com/supermap/web/samples/geoCircle/GeoCircle.as"/>
+		<node label="自定义皮肤" app="CustomSkin" none="" 
+    		src="../src/skins/ZoomSliderCustomSkin.mxml &amp;../src/skins/ZoomSliderZoomInButtonSkin.mxml &amp;../src/skins/ZoomSliderZoomOutButtonSkin.mxml"/> 
+    </node>
+    
+    <node label="高级示例" none=""> 
+    	<node label="Marker跟踪器" app="MarkerTrack" none="" 
+    		  src="../src/com/supermap/web/samples/markertracker/MarkerTracker.as"/>
+    	<node label="导航动画" app="TrackingAnimation" none="" />
+    	<node label="与JavaScript交互" app="ASInteractWithJS" none=""
+      	      src="../src/ASInteractWithJS/JSInteractWithAS.html"/>  
+     	<node label="书签" app="AppBookMark" none="" 
+    	      src="../src/com/supermap/web/samples/bookMark/Bookmark.as  &amp;../src/com/supermap/web/samples/bookMark/BookMarkItemRender.mxml"/>
+    	<node label="截屏" app="ClipMap" none=""
+      	      src="../src/com/supermap/web/samples/clipUtil/PreviewWindow.mxml"/>  
+      	<node label="OpenStreetMap" app="OpenStreetMap" none=""
+      	      src="../src/com/supermap/web/samples/mapping/TiledOpenStreetMapLayer.as"/> 
+      	<node label="BingMap" app="BingMap" none=""
+      	      src="../src/com/supermap/web/samples/mapping/TiledBingMapsLayer.as"/>  
+      	<node label="天地图" app="TDTLayer" none=""
+      	      src="../src/com/supermap/web/samples/mapping/TiledTDTLayer.as"/>  
+    </node>
+</compTree>

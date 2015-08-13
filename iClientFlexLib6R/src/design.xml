@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<design version="2">
+    <namespaces>
+        <namespace prefix="supermap" uri="http://www.supermap.com/iclient/2010"/>
+    </namespaces>
+    <categories>
+        <category id="supermapID" label="SuperMap" defaultExpand="true"/>
+    </categories>
+    <components>
+        <component name="com.supermap.web.mapping.Map" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.mapping.FeaturesLayer" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.mapping.DynamicWMSLayer" namespace="supermap" category="supermapID">
+        	<mxmlProperties category="iclient">
+                <textfield id="url" name="URL:"/>
+                <textfield id="layers" name="Layers:"/>
+            </mxmlProperties>
+        </component>
+        <component name="com.supermap.web.mapping.TiledWMSLayer" namespace="supermap" category="supermapID">
+       		<mxmlProperties category="iclient">
+                <textfield id="tiledwmsurl" name="URL:"/>
+                <textfield id="tiledwmslayers" name="Layers:"/>
+            </mxmlProperties>
+        </component>
+        <component name="com.supermap.web.mapping.TiledOpenStreetMapLayer" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.components.Compass" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.components.FeatureDataGrid" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.components.Magnifier" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.components.OverviewMap" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.components.ScaleBar" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.components.TimeSlider" namespace="supermap" category="supermapID"/>
+        <component name="com.supermap.web.components.ZoomSlider" namespace="supermap" category="supermapID"/>
+    </components>
+</design>

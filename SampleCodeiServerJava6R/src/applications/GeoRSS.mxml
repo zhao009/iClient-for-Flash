@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   xmlns:samples="com.supermap.web.samples.ogc.*"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	
+	<s:layout>
+		<s:VerticalLayout gap="10"
+						  horizontalAlign="center"
+						  paddingBottom="20"
+						  paddingLeft="20"
+						  paddingRight="20"
+						  paddingTop="20"/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.Geometry;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.controls.Image;
+			import mx.controls.TextArea;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.StringUtil;
+			
+			import utilEvent.ReadURLEvent;
+			
+			
+
+			
+			private static const ATOM:Namespace = new Namespace("http://www.w3.org/2005/Atom");
+			private static const GEORSS:Namespace = new Namespace("http://www.georss.org/georss");
+			private static const GEOWGS:Namespace = new Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#");
+			private static const GEO:Namespace = new Namespace("http://www.w3.org/2003/01/geo/");
+			private static const GML:Namespace = new Namespace("http://www.opengis.net/gml");
+			
+			private static const RE:RegExp = /M[ ](?P<mag>[^,]+),\.*/;
+			
+			[Bindable]
+			private var geoRSSUrl:String =  "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.atom";
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			
+			[Bindable]
+			public var result:ArrayCollection = new ArrayCollection();
+			
+			//初始化
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+			}
+			
+			private function load_clickHandler():void
+			{
+				geoRSS.url = tl.text;
+				geoRSS.send();
+			}
+			
+			private function completeHandler(event:ResultEvent):void
+			{
+				result.removeAll();
+				if (event.result is XML)
+				{
+					var xml:XML = XML(event.result);
+					if (xml.name() == "rss" && Number(xml.@version) <= 2)
+					{
+						parseRSS(xml);
+					}
+					else if (xml.namespace().uri.toLowerCase() == "http://www.w3.org/2005/atom")
+					{
+						parseAtom(xml);
+					}
+					else
+					{
+						dispatchEvent(new ErrorEvent(ErrorEvent.ERROR, false, false, "Unable to determine feed type"));
+					}
+				}
+				else
+				{
+					dispatchEvent(new ErrorEvent(ErrorEvent.ERROR, false, false, "HTTP response is not XML"));
+				}
+			}
+			
+			private function faultHandler(event:FaultEvent):void
+			{
+				Alert.show(event.fault.message.toString(), "GeoRSSProvider Error");
+			}
+			
+			private function parseAtom(x:XML):void
+			{
+				for each (var entryXML:XML in x.ATOM::entry)
+				{
+					parseItem(entryXML);
+				}
+
+			}
+			
+			private function parseRSS(x:XML):void
+			{
+				for each (var itemXML:XML in x.channel.item)
+				{
+					parseItem(itemXML);
+				}
+			}
+			
+			private function parseItem(x:XML):void
+			{				
+				var geometry:Geometry = this.toGeometry(x);
+				var attributes:Object = {};
+				var title:String = x.ATOM::title;
+				
+				var arr:Array = RE.exec(title);
+				var style:PredefinedMarkerStyle = markerStyle;
+				var feature:Feature = new Feature(geometry, style, attributes);
+				feature.toolTip = title;
+				result.addItem(feature);
+			}
+			
+			private function toGeometry(x:XML):Geometry
+			{
+				var  geoLat:String = String(x.GEOWGS::lat);
+				var geoLon:String = String(x.GEOWGS::long);
+				if (geoLat && geoLon)
+				{
+					return new GeoPoint(Number(geoLon), Number(geoLat));
+				}
+				
+				var georssPoint:String = String(x.GEORSS::point);
+				if (georssPoint)
+				{
+					return parseGeoRSSPoint(georssPoint);
+				}
+				
+				var pointList:XMLList = x.GEO::point;
+				if (pointList && pointList.length() > 0)
+				{
+					var geoPoint:XML = pointList[0];
+					var lat:Number = Number(geoPoint.GEO::lat);
+					var long:Number = Number(geoPoint.GEO::long);
+					return new GeoPoint(lat, long);
+				}
+				
+				return null;
+			}
+			
+			
+			private function parseGeoRSSPoint(text:String):Geometry
+			{
+				var pntStr:Array = StringUtil.trim(text).split(" ");
+				var lat:Number = Number(pntStr[0]);
+				var lon:Number = Number(pntStr[1]);
+				return new GeoPoint(lon, lat);
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:HTTPService id="geoRSS" resultFormat="e4x" showBusyCursor="true" requestTimeout="30"
+					   result="completeHandler(event)" fault="faultHandler(event)"/>
+		<ic:PredefinedMarkerStyle id="markerStyle"
+								  alpha="0.7"
+								  color="0xcc3300"
+								  size="20"
+								  border="{this.lineStyle}"/>
+		<ic:PredefinedLineStyle id="lineStyle"
+								 color="0xffff00"/>
+	</fx:Declarations>
+	
+	<!--加载地图-->
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%"
+			scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{restUrl}"/>
+		<ic:FeaturesLayer  features="{result}" style="{markerStyle}"/>
+	</ic:Map>
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup gap="10" verticalCenter="0" horizontalCenter="0" top="5" bottom="5">
+			<s:TextInput id="tl"
+						 width="580"
+						 text="{geoRSSUrl}"/>
+			<s:Button click="load_clickHandler()" fontSize="15" fontFamily="宋体" 
+					  fontWeight="bold" label="请求服务"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>
+

@@ -1,0 +1,73 @@
+<apiPackage id="com.supermap.web.iServerJava6R"><apiName>com.supermap.web.iServerJava6R</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R:FilterParameter"><apiName>FilterParameter</apiName><shortdesc>
+	 过滤条件参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 过滤条件参数类.
+	 <p>该类用于设置查询服务（queryServices）或空间分析服务（spatialAnalystServices）中所使用到的过滤参数。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R:FilterParameter:FilterParameter"><apiName>FilterParameter</apiName><shortdesc>
+		 初始化 FilterParameter 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FilterParameter 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:attributeFilter:get"><apiName>attributeFilter</apiName><shortdesc>
+		 获取或设置属性过滤条件。相当于 SQL 语句中的 WHERE 子句.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置属性过滤条件。相当于 SQL 语句中的 WHERE 子句.
+		 <p>其格式为：WHERE &lt;条件表达式&gt;，attributeFilter 就是其中的“条件表达式”。该字段的用法为 attributeFilter = "过滤条件"。<br/>例如，要查询字段 fieldValue 小于100的记录，设置 attributeFilter = "fieldValue &lt; 100"；要查询字段 name 的值为“酒店”的记录，设置 attributeFilter = "name like '%酒店%'"，等等。<br/>用户在设置该字段时，仅需要输入“条件表达式”即可，如：fieldValue &lt; 100。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:fields:get"><apiName>fields</apiName><shortdesc>
+		 获取或设置查询结果的字段数组，如果不设置则使用系统返回的所有字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置查询结果的字段数组，如果不设置则使用系统返回的所有字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:groupBy:get"><apiName>groupBy</apiName><shortdesc>
+		 获取或设置分组条件查询语句。相当于 SQL 语句中的 GROUP BY 子句.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置分组条件查询语句。相当于 SQL 语句中的 GROUP BY 子句.
+		 <p>其格式为：GROUP BY &lt;列名&gt;，列名即属性表中每一列的名称，列又可称为属性，在 SuperMap 中又称为字段。对单个字段分组时，该字段的用法为 groupBy = "字段名"；对多个字段分组时，字段之间以英文逗号进行分割，用法为 groupBy = "字段名1, 字段名2"。<br/>例如，现有一个全球城市数据集，该数据集有两个字段分别为"Continent"和"Country"，分别表示某个城市所属的洲和国家，如果要按照国家对全球的城市进行分组，可以设置 groupBy = "Country"；如果以洲和国家对城市进行分组，设置 groupBy = "Continent, Country"。<br/>用户在设置该字段时，仅需要输入"列名"即可。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:ids:get"><apiName>ids</apiName><shortdesc>
+		 获取或设置查询 id 数组，即属性表中的 SmID 值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置查询 id 数组，即属性表中的 SmID 值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:joinItems:get"><apiName>joinItems</apiName><shortdesc>
+		 获取或设置与外部表的连接信息（JoinItem）数组。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置与外部表的连接信息（JoinItem）数组。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:linkItems:get"><apiName>linkItems</apiName><shortdesc>
+		 获取或设置与外部表的关联信息（LinkItem）数组。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置与外部表的关联信息（LinkItem）数组。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:name:get"><apiName>name</apiName><shortdesc>
+		 获取或设置过滤条件的作用对象——数据集/子图层名称，必设属性.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置过滤条件的作用对象——数据集/子图层名称，必设属性.
+		 <p>一般情况下该字段为数据集名称，但在进行与地图相关功能的操作时，需要设置为图层名称。其格式为：数据集名称@数据源名称，如：Capitals@World。因为一个地图的图层可能是来自于不同数据源的数据集，而不同的数据源中可能存在同名的数据集，使用数据集名称不能唯一的确定数据集，所以该值需要使用“@”区分数据集与数据源。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:FilterParameter:orderBy:get"><apiName>orderBy</apiName><shortdesc>
+		 获取或设置排序查询语句。相当于 SQL 语句中的 ORDER BY 子句.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置排序查询语句。相当于 SQL 语句中的 ORDER BY 子句.
+		 <p>其格式为：ORDER BY &lt;列名&gt;，列名即属性表中每一列的名称，列又可称为属性，在 SuperMap 中又称为字段。对单个字段排序时，该字段的用法为 orderBy = "字段名"；对多个字段排序时，字段之间以英文逗号进行分割，用法为 orderBy = "字段名1, 字段名2"。<br/>例如，现有一个国家数据集，它有两个字段分别为“SmArea”和“pop_1994”，分别表示国家的面积和1994年的各国人口数量， 如果要按照各国人口数量对记录进行排序，则 orderBy = "pop_1994"；如果要以面积和人口进行排序，则 orderBy = "SmArea, pop_1994"。<br/>用户在设置该字段时，仅需要输入“列名”即可。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R:Recordset"><apiName>Recordset</apiName><shortdesc>
+	 查询结果记录集.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询结果记录集.
+	 <p>将查询出来的地物按照图层进行划分，一个查询记录集存放一个图层的查询结果，即查询出的所有地物要素。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R:Recordset:Recordset"><apiName>Recordset</apiName><shortdesc>
+		 查询结果记录集.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 查询结果记录集.
+		 <p>将查询出来的地物按照图层进行划分，一个查询记录集存放一个图层的查询结果，即查询出的所有地物要素。</p> 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R:Recordset:datasetName:get"><apiName>datasetName</apiName><shortdesc>
+		 获取被查找的数据集或图层的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取被查找的数据集或图层的名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:Recordset:features:get"><apiName>features</apiName><shortdesc>
+		 获取记录集中所有地物要素（Feature 类型）。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取记录集中所有地物要素（Feature 类型）。.
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.xml#Feature"><linktext>com.supermap.web.core.Feature</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R:Recordset:fieldCaptions:get"><apiName>fieldCaptions</apiName><shortdesc>
+		 获取记录集中所有字段的别名.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取记录集中所有字段的别名.
+		 <p>例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”，则“面积”即为该字段的别名。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:Recordset:fieldTypes:get"><apiName>fieldTypes</apiName><shortdesc>
+		 获取记录集中所有字段类型（FieldType 常量）数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取记录集中所有字段类型（FieldType 常量）数组.
+		 <p>数组中每个元素与字段一一对应，代表着该字段的类型</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R:Recordset:fields:get"><apiName>fields</apiName><shortdesc>
+		 获取记录集中所有字段的名称.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取记录集中所有字段的名称.
+		 <p>例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”，则 Area 即为该字段的名称。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

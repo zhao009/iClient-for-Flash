@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="main()">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.StopQueryParameters;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.StopQueryResult;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.StopQueryService;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolutionParameters;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolutionResult;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferSolutionService;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferStopInfo;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferTactic;
+			import com.supermap.web.samples.trafficTransfer.ResultPanel;
+			import com.supermap.web.samples.trafficTransfer.TrafficGuideItemComponent;
+			import com.supermap.web.samples.trafficTransfer.TransferTacticEvent;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			import mx.rpc.AsyncResponder;
+			
+			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			[Bindable]
+			private var restUrl:String;
+			[Bindable]
+			private var trafficTransferUrl:String;
+			private var viewConfig:ViewConfig;
+			private var startStopQueryFlag:Boolean = true;
+			private var endStopQueryFlag:Boolean = true;
+			
+			//初始化
+			private function main():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(TransferTacticEvent.TRANSFER_TACTIC_CHANGE, transferTacticChangeHandler);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			}
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.ChangChun_MAP;
+				trafficTransferUrl = viewConfig.webUrl + ViewConfig.TrafficTransferUrl;
+			}
+			
+			//根据输入的关键字查询对应的公交站点
+			protected function startTextinput_changeHandler(event:TextOperationEvent):void
+			{
+				var stopKeyword:String = TextInput(event.target).text;
+				if(stopKeyword)
+					this.queryStop(stopKeyword, true);
+			}
+			
+			protected function endTextinput_changeHandler(event:TextOperationEvent):void
+			{
+				var stopKeyword:String = TextInput(event.target).text;
+				if(stopKeyword)
+					this.queryStop(stopKeyword, false);
+			}
+			
+			private function queryStop(keyword:String, isStartStop:Boolean):void
+			{
+				var sqs:StopQueryService = new StopQueryService(trafficTransferUrl);
+				var sqp:StopQueryParameters = new StopQueryParameters();
+				sqp.keyword = keyword;
+				sqp.returnPosition = true;
+				
+				sqs.processAsync(sqp, new AsyncResponder(this.stopQueryHandler, 
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("公交站点查询失败！");
+					}, isStartStop));
+				
+			}
+			
+			//将查询的站点信息在下拉列表中显示
+			private function stopQueryHandler(queryResult:StopQueryResult, mark:Object = null):void
+			{
+				var tsis:Array = queryResult.transferStopInfos;
+				if(tsis && tsis.length)
+				{
+					if(mark)
+					{
+						this.puaStartStop.displayPopUp = true;
+						startStopList.dataProvider = new ArrayCollection(tsis);
+						this.startStopQueryFlag = true;
+					}
+					else
+					{
+						this.puaEndStop.displayPopUp = true;
+						endStopList.dataProvider = new ArrayCollection(tsis);
+						this.endStopQueryFlag = true;
+					}
+				}
+				else
+				{
+					if(mark)
+					{
+						this.startStopQueryFlag = false;
+						this.puaStartStop.displayPopUp = false;
+					}
+					else
+					{
+						this.endStopQueryFlag = false;
+						this.puaEndStop.displayPopUp = false;
+					}
+				}
+			}
+			
+			// 在列表中选择起点，并记录其ID
+			private var selectedStartStopID:int = 45;
+			protected function startStopListChangeHandler(event:IndexChangeEvent):void
+			{
+				var stopList:ArrayCollection = List(event.target).dataProvider as ArrayCollection;
+				var selectedIndex:int = List(event.target).selectedIndex;
+				var stopInfo:TransferStopInfo = stopList[selectedIndex];
+				
+				selectedStartStopID = stopInfo.stopID;
+				txtStartStopName.text = stopInfo.name;
+				
+				this.puaStartStop.displayPopUp = false;
+			}
+			
+			// 在列表中选择终点，并记录其ID
+			private var selectedEndStopID:int = 148;
+			protected function endStopListChangeHandler(event:IndexChangeEvent):void
+			{
+				var stopList:ArrayCollection = List(event.target).dataProvider as ArrayCollection;
+				var selectedIndex:int = List(event.target).selectedIndex;
+				var stopInfo:TransferStopInfo = stopList[selectedIndex];
+				
+				selectedEndStopID = stopInfo.stopID;
+				txtEndStopName.text = stopInfo.name;
+				
+				this.puaEndStop.displayPopUp = false;
+			}
+			
+			//单击查询按钮，执行公交换乘分析
+			protected function trafficTransferExcuteHandler(event:MouseEvent):void
+			{
+				if(this.startStopQueryFlag && this.endStopQueryFlag)
+				{
+					this.excuteTransferSolutionService();
+					return;
+				}
+					
+				if(!this.startStopQueryFlag)
+					Alert.show("输入的起点有误！");
+				
+				if(!this.endStopQueryFlag)
+					Alert.show("输入的终点有误！");
+			}
+			
+			// 切换公交换乘策略后，根据新策略，重新执行交通换乘分析服务
+			private function transferTacticChangeHandler(event:TransferTacticEvent):void
+			{
+				var transferTactic:String;
+				if(event.tacticInfo == "少时间")
+					transferTactic = TransferTactic.LESS_TIME;
+				else if(event.tacticInfo == "少换乘")
+					transferTactic = TransferTactic.LESS_TRANSFER;
+				else if(event.tacticInfo == "少步行")
+					transferTactic = TransferTactic.LESS_WALK;
+				else 
+					transferTactic = TransferTactic.MIN_DISTANCE;
+				
+				this.excuteTransferSolutionService(transferTactic);
+			}
+			
+			//根据选择的起点和终点ID，执行公交换乘分析服务
+			private function excuteTransferSolutionService(transferTactic:String = null):void
+			{
+				//每次执行新的换乘分析前，移除图层上高亮的换乘路线
+				if(fl.numFeatures)
+					this.fl.clear();
+				
+				if(selectedStartStopID &&　selectedEndStopID)
+				{
+					var transferSolutionService:TransferSolutionService = new TransferSolutionService(trafficTransferUrl);
+					var transferSolutionParameters:TransferSolutionParameters = new TransferSolutionParameters();
+					transferSolutionParameters.solutionCount = 3;
+					
+					transferSolutionParameters.points = [selectedStartStopID, selectedEndStopID];
+					if(transferTactic)
+						transferSolutionParameters.transferTactic = transferTactic;
+					
+					transferSolutionService.processAsync(transferSolutionParameters, new AsyncResponder(this.displayAnalystResult, 
+						function (object:Object, mark:Object = null):void
+						{
+							Alert.show("公交换乘分析失败！");
+						}, null));
+				}
+			}
+			
+			// 弹出titleWindow面板，显示公交换乘分析的结果
+			private function displayAnalystResult(queryResult:TransferSolutionResult, mark:Object = null):void
+			{
+				var titleWindow:ResultPanel = ResultPanel.getInstance();
+				titleWindow.x = 10;
+				titleWindow.y = 50;  
+				titleWindow.transferSolutions = new ArrayCollection(queryResult.solutionItems);
+				titleWindow.transferGuide = queryResult.transferGuide;
+				
+				// 为TrafficGuideItemComponent对象传递参数，用于交通换乘路径分析
+				TrafficGuideItemComponent.startStopName = txtStartStopName.text;
+				TrafficGuideItemComponent.endStopName = txtEndStopName.text;
+				TrafficGuideItemComponent.selectedStartStopID = selectedStartStopID;
+				TrafficGuideItemComponent.selectedEndStopID = selectedEndStopID;
+				TrafficGuideItemComponent.trafficTransferUrl = trafficTransferUrl;
+				TrafficGuideItemComponent.map = map;
+				TrafficGuideItemComponent.featuresLayer = fl;
+				
+				PopUpManager.addPopUp(titleWindow, this, false);  
+			}
+			
+			protected function txtStartStopName_focusInHandler(event:FocusEvent):void
+			{
+				TextInput(event.currentTarget).text = "";
+				this.startStopQueryFlag = false;
+			}
+			
+			protected function txtEndStopName_focusInHandler(event:FocusEvent):void
+			{
+				TextInput(event.currentTarget).text = "";
+				this.endStopQueryFlag = false;
+			}
+			
+			protected function txtStartStopName_focusOutHandler(event:FocusEvent):void
+			{
+				this.puaStartStop.displayPopUp = false;
+			}
+			
+			protected function txtEndStopName_focusOutHandler(event:FocusEvent):void
+			{
+				this.puaEndStop.displayPopUp = false;
+			}			
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup height="40" horizontalCenter="0" verticalAlign="middle">
+			<s:VGroup gap="0" verticalAlign="middle" height="100%" width="100%">
+				<s:TextInput  id="txtStartStopName" text="四中" change="startTextinput_changeHandler(event)" width="230" height="30" fontSize="15" 
+							  focusIn="txtStartStopName_focusInHandler(event)" focusOut="txtStartStopName_focusOutHandler(event)">
+				</s:TextInput>
+				<s:PopUpAnchor id="puaStartStop">
+					<s:List id="startStopList"  width="230" itemRenderer="com.supermap.web.samples.trafficTransfer.TransferListRender" 
+							change="startStopListChangeHandler(event)">
+					</s:List>
+				</s:PopUpAnchor>
+			</s:VGroup>
+			
+			<mx:Spacer width="30"/>
+			
+			<s:VGroup gap="0" verticalAlign="middle" height="100%" width="100%">
+				<s:TextInput  id="txtEndStopName" text="宽平大路" change="endTextinput_changeHandler(event)" width="230" height="30" fontSize="15" 
+							  focusIn="txtEndStopName_focusInHandler(event)" focusOut="txtEndStopName_focusOutHandler(event)">
+				</s:TextInput>
+				<s:PopUpAnchor id="puaEndStop">
+					<s:List id="endStopList" width="230" itemRenderer="com.supermap.web.samples.trafficTransfer.TransferListRender" 
+							change="endStopListChangeHandler(event)">
+					</s:List>
+				</s:PopUpAnchor>
+			</s:VGroup>
+			
+			<mx:Spacer width="30"/>
+			<s:Button label="查询" click="trafficTransferExcuteHandler(event)" height="30"/>
+		</s:HGroup>
+	</s:controlBarContent>
+	
+</s:Application>

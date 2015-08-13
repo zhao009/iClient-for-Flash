@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices"><apiName>com.supermap.web.iServerJava6R.trafficTransferAnalystServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryResult"><apiName>StopQueryResult</apiName><shortdesc>
+	 站点查询结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 站点查询结果类.
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryResult:StopQueryResult"><apiName>StopQueryResult</apiName><shortdesc>
+		 初始化 StopQueryResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 StopQueryResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryResult:transferStopInfos:get"><apiName>transferStopInfos</apiName><shortdesc>
+		 公交站点信息，包括所属的数据集、SmID、ID、名称以及别名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 公交站点信息，包括所属的数据集、SmID、ID、名称以及别名。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathParameters"><apiName>TransferPathParameters</apiName><shortdesc>
+	 交通换乘线路查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘线路查询参数类. 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathParameters:TransferPathParameters"><apiName>TransferPathParameters</apiName><shortdesc>
+		 初始化 TransferPathParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferPathParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathParameters:points:get"><apiName>points</apiName><shortdesc>
+		 两种查询方式： 1.  按照公交站点的起止ID进行查询，则points参数的类型为int[]，形如：[起点ID、终点ID]， 公交站点的ID对应服务提供者配置中的站点ID字段； 2.  按照起止点的坐标进行查询，则points参数的类型为Point2D[]，形如：[{“x”:44,”y”:39},{“x”:45,”y”:40}]。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 两种查询方式： 1.  按照公交站点的起止ID进行查询，则points参数的类型为int[]，形如：[起点ID、终点ID]， 公交站点的ID对应服务提供者配置中的站点ID字段； 2.  按照起止点的坐标进行查询，则points参数的类型为Point2D[]，形如：[{“x”:44,”y”:39},{“x”:45,”y”:40}]。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathParameters:transferLines:get"><apiName>transferLines</apiName><shortdesc>
+		 本换乘分段内可乘车的路线集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 本换乘分段内可乘车的路线集合。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPreference"><apiName>TransferPreference</apiName><shortdesc>
+	 交通换乘时乘车偏好枚举.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘时乘车偏好枚举. 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPreference:BUS"><apiName>BUS</apiName><shortdesc>
+		 公交汽车优先。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BUS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 公交汽车优先。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPreference:NONE"><apiName>NONE</apiName><shortdesc>
+		 无乘车偏好。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NONE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无乘车偏好。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPreference:NO_SUBWAY"><apiName>NO_SUBWAY</apiName><shortdesc>
+		 不乘地铁。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NO_SUBWAY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 不乘地铁。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPreference:SUBWAY"><apiName>SUBWAY</apiName><shortdesc>
+		 地铁优先。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SUBWAY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 地铁优先。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine"><apiName>TransferLine</apiName><shortdesc>
+	 换乘路线信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 换乘路线信息类.
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine:TransferLine"><apiName>TransferLine</apiName><shortdesc>
+		 初始化 TransferLine 类新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferLine 类新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine:endStopIndex:get"><apiName>endStopIndex</apiName><shortdesc>
+		 下车站点在本公交路线中的索引。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 下车站点在本公交路线中的索引。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine:endStopName:get"><apiName>endStopName</apiName><shortdesc>
+		 下车站点名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 下车站点名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine:lineID:get"><apiName>lineID</apiName><shortdesc>
+		 乘车路线ID。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 乘车路线ID。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine:lineName:get"><apiName>lineName</apiName><shortdesc>
+		 乘车路线名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 乘车路线名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine:startStopIndex:get"><apiName>startStopIndex</apiName><shortdesc>
+		 上车站点在本公交路线中的索引。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 上车站点在本公交路线中的索引。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLine:startStopName:get"><apiName>startStopName</apiName><shortdesc>
+		 上车站点名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 上车站点名称。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathService"><apiName>TransferPathService</apiName><shortdesc>
+	 交通换乘线路查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘线路查询服务类.
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathService_com.supermap.web.iServerJava6R.serviceEvents.TransferPathEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.TransferPathEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathService:TransferPathService"><apiName>TransferPathService</apiName><shortdesc>
+		 初始化 TransferPathService 类的新实例。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的交通换乘线路查询服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 TransferPathService 类的新实例。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据交通换乘线路查询服务地址与服务端完成异步通讯，即发送分析参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathParameters</apiOperationClassifier><apiDesc>交通换乘线路查询参数 TransferPathParameters
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据交通换乘线路查询服务地址与服务端完成异步通讯，即发送分析参数，并获取查询结果。.
+		 <p>当分析成功时，将触发 TransferPathEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取分析结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 TransferPathEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的站点查询结果——TransferPathResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的站点查询结果——TransferPathResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryParameters"><apiName>StopQueryParameters</apiName><shortdesc>
+	 站点查询参数.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 站点查询参数.
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryParameters:StopQueryParameters"><apiName>StopQueryParameters</apiName><shortdesc>
+		 初始化 StopQueryParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 StopQueryParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryParameters:keyword:get"><apiName>keyword</apiName><shortdesc>
+		 站点名称关键字 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 站点名称关键字 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryParameters:returnPosition:get"><apiName>returnPosition</apiName><shortdesc>
+		 是否返回站点坐标信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否返回站点坐标信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide"><apiName>TransferGuide</apiName><shortdesc>
+	 交通换乘导引类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘导引类.
+	 <p>交通换乘导引记录了从换乘分析起始站点到终止站点的交通换乘导引方案。 交通换乘导引由交通换乘导引子项（TransferGuideItem 类型对象）构成，每一个导引子项可以表示一段换乘或者步行线路。 通过本类型可以返回交通换乘导引对象中子项的个数，根据序返回交通换乘导引的子项对象，导引总距离以及总花费等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide:TransferGuide"><apiName>TransferGuide</apiName><shortdesc>
+		 初始化 TransferGuide 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferGuide 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide:count:get"><apiName>count</apiName><shortdesc>
+		 返回交通换乘导引对象中子项的个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 返回交通换乘导引对象中子项的个数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide:items:get"><apiName>items</apiName><shortdesc>
+		 根据指定的序号返回交通换乘导引中的子项对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 根据指定的序号返回交通换乘导引中的子项对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide:totalDistance:get"><apiName>totalDistance</apiName><shortdesc>
+		 返回交通换乘导引的总距离，即当前换乘方案的总距离。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 返回交通换乘导引的总距离，即当前换乘方案的总距离。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide:transferCount:get"><apiName>transferCount</apiName><shortdesc>
+		 返回交通换乘次数，因为中途可能有步行的子项，所以交通换乘次数不能根据 TransferGuide.getCount() 来简单计算。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 返回交通换乘次数，因为中途可能有步行的子项，所以交通换乘次数不能根据 TransferGuide.getCount() 来简单计算。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferStopInfo"><apiName>TransferStopInfo</apiName><shortdesc>
+	 公交站点信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 公交站点信息类.
+	 <p>该类用于描述公交站点的信息，包括所属的数据集、SmID、ID、名称以及别名。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferStopInfo:TransferStopInfo"><apiName>TransferStopInfo</apiName><shortdesc>
+		 初始化 TransferStopInfo 类新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferStopInfo 类新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferStopInfo:alias:get"><apiName>alias</apiName><shortdesc>
+		 公交站点别名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 公交站点别名。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferStopInfo:id:get"><apiName>id</apiName><shortdesc>
+		 公交站点的 SMID。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 公交站点的 SMID。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferStopInfo:name:get"><apiName>name</apiName><shortdesc>
+		 公交站点名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 公交站点名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferStopInfo:position:get"><apiName>position</apiName><shortdesc>
+		 公交站点坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 公交站点坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferStopInfo:stopID:get"><apiName>stopID</apiName><shortdesc>
+		 公交站点ID。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 公交站点ID。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLines"><apiName>TransferLines</apiName><shortdesc>
+	 交通换乘分段类，记录了本分段中可乘坐的路线信息。.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘分段类，记录了本分段中可乘坐的路线信息。. 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLines:TransferLines"><apiName>TransferLines</apiName><shortdesc>
+		 初始化 TransferLines 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferLines 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferLines:lineItems:get"><apiName>lineItems</apiName><shortdesc>
+		 本换乘分段内可乘车的路线集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 本换乘分段内可乘车的路线集合。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionService"><apiName>TransferSolutionService</apiName><shortdesc>
+	 交通换乘方案查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘方案查询服务类.
+	 <p>该类负责将客户设置的交通换乘方案查询服务参数传递给服务端，并接收服务端返回的交通换乘分析结果数据。<br>用户获取服务端返回的交通换乘方案查询结果有两种方式：一种是通过监听 TransferSolutionEvent.PROCESS_COMPLETE 事件；一种是使用 AsyncResponder 类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionService_com.supermap.web.iServerJava6R.serviceEvents.TransferSolutionEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.TransferSolutionEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionService:TransferSolutionService"><apiName>TransferSolutionService</apiName><shortdesc>
+		 初始化 TransferSolutionService 类的新实例。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的交通换乘方案查询服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 TransferSolutionService 类的新实例。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据交通换乘方案查询服务地址与服务端完成异步通讯，即发送分析参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters</apiOperationClassifier><apiDesc>交通换乘方案查询参数 TransferSolutionParameters
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据交通换乘方案查询服务地址与服务端完成异步通讯，即发送分析参数，并获取查询结果。.
+		 <p>当分析成功时，将触发 TransferSolutionEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取分析结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 TransferSolutionEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的站点查询结果——TransferSolutionResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的站点查询结果——TransferSolutionResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters"><apiName>TransferSolutionParameters</apiName><shortdesc>
+	 站点查询参数.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 站点查询参数.
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters:TransferSolutionParameters"><apiName>TransferSolutionParameters</apiName><shortdesc>
+		 初始化 TransferSolutionParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferSolutionParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters:points:get"><apiName>points</apiName><shortdesc>
+		 两种查询方式： 1.  按照公交站点的起止ID进行查询，则points参数的类型为int[]，形如：[起点ID、终点ID]， 公交站点的ID对应服务提供者配置中的站点ID字段； 2.  按照起止点的坐标进行查询，则points参数的类型为Point2D[]，形如：[{“x”:44,”y”:39},{“x”:45,”y”:40}]。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 两种查询方式： 1.  按照公交站点的起止ID进行查询，则points参数的类型为int[]，形如：[起点ID、终点ID]， 公交站点的ID对应服务提供者配置中的站点ID字段； 2.  按照起止点的坐标进行查询，则points参数的类型为Point2D[]，形如：[{“x”:44,”y”:39},{“x”:45,”y”:40}]。.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters:solutionCount:get"><apiName>solutionCount</apiName><shortdesc>
+		 乘车方案的数量。默认为6。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 乘车方案的数量。默认为6。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters:transferPreference:get"><apiName>transferPreference</apiName><shortdesc>
+		 乘车偏好枚举。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 乘车偏好枚举。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters:transferTactic:get"><apiName>transferTactic</apiName><shortdesc>
+		 交通换乘策略类型，包括时间最短、距离最短、最少换乘、 最少步行四种选择。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 交通换乘策略类型，包括时间最短、距离最短、最少换乘、 最少步行四种选择。.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionParameters:walkingRatio:get"><apiName>walkingRatio</apiName><shortdesc>
+		 步行与公交的权重比，默认值为 10。此值越大，则步行因素对于方案选择的影响越大。<br/>.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>10
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 步行与公交的权重比，默认值为 10。此值越大，则步行因素对于方案选择的影响越大。<br/>.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferTactic"><apiName>TransferTactic</apiName><shortdesc>
+	 交通换乘策略枚举 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘策略枚举 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferTactic:LESS_TIME"><apiName>LESS_TIME</apiName><shortdesc>
+		 时间短。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LESS_TIME</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 时间短。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferTactic:LESS_TRANSFER"><apiName>LESS_TRANSFER</apiName><shortdesc>
+		 少换乘。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LESS_TRANSFER</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 少换乘。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferTactic:LESS_WALK"><apiName>LESS_WALK</apiName><shortdesc>
+		 少步行。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LESS_WALK</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 少步行。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferTactic:MIN_DISTANCE"><apiName>MIN_DISTANCE</apiName><shortdesc>
+		 距离最短。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>MIN_DISTANCE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 距离最短。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionResult"><apiName>TransferSolutionResult</apiName><shortdesc>
+	 交通换乘方案查询结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘方案查询结果类.
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionResult:TransferSolutionResult"><apiName>TransferSolutionResult</apiName><shortdesc>
+		 初始化 TransferSolutionResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferSolutionResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionResult:solutionItems:get"><apiName>solutionItems</apiName><shortdesc>
+		 返回的乘车方案集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 返回的乘车方案集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolutionResult:transferGuide:get"><apiName>transferGuide</apiName><shortdesc>
+		 默认的乘车方案及相关信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide</apiValueClassifier></apiValueDef><apiDesc>
+		 默认的乘车方案及相关信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem"><apiName>TransferGuideItem</apiName><shortdesc>
+		 交通换乘导引子项类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+		 交通换乘导引子项类.
+		 <p>交通换乘导引记录了从换乘分析起始站点到终止站点需要换乘或者步行的线路，其中每一换乘或步行线路就是一个交通换乘导引子项。利用该类可以返回交通换乘导引对象的子项信息，诸如交通换乘导引子项的起始站点信息、终止站点信息、公交线路信息等。</p> 
+		 
+		 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:TransferGuideItem"><apiName>TransferGuideItem</apiName><shortdesc>
+		 初始化 TransferGuideItem 类新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferGuideItem 类新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:distance:get"><apiName>distance</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘或者步行线路的距离。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘或者步行线路的距离。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:endIndex:get"><apiName>endIndex</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的终止站点在其完整的公交线路中处在第几个站点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的终止站点在其完整的公交线路中处在第几个站点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:endPosition:get"><apiName>endPosition</apiName><shortdesc>
+		 该 TransferGuideItem 对象所表示的一段换乘或者步行线路的终止站点位置坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 该 TransferGuideItem 对象所表示的一段换乘或者步行线路的终止站点位置坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:endStopName:get"><apiName>endStopName</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的终点站点的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的终点站点的名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:isWalking:get"><apiName>isWalking</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示是步行线路还是乘车线路。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示是步行线路还是乘车线路。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:lineName:get"><apiName>lineName</apiName><shortdesc>
+		 该 TransferGuideItem 对象所表示的一段换乘线路名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 该 TransferGuideItem 对象所表示的一段换乘线路名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:lineType:get"><apiName>lineType</apiName><shortdesc>
+		 线路类型,0代表公交车，1代表地铁，2代表轻轨。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 线路类型,0代表公交车，1代表地铁，2代表轻轨。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:passStopCount:get"><apiName>passStopCount</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路所经过的站点个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路所经过的站点个数。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:route:get"><apiName>route</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.geometry:GeoLine</apiValueClassifier></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:startIndex:get"><apiName>startIndex</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的起始站点在其完整的公交线路中处在第几个站点位置。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的起始站点在其完整的公交线路中处在第几个站点位置。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:startPosition:get"><apiName>startPosition</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘或者步行线路的起始站点的位置坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘或者步行线路的起始站点的位置坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuideItem:startStopName:get"><apiName>startStopName</apiName><shortdesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的起始站点的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 返回该 TransferGuideItem 对象所表示的一段换乘线路的起始站点的名称。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathResult"><apiName>TransferPathResult</apiName><shortdesc>
+	 交通换乘结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘结果类. 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathResult:TransferPathResult"><apiName>TransferPathResult</apiName><shortdesc>
+		 初始化 TransferPathResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferPathResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferPathResult:transferGuide:get"><apiName>transferGuide</apiName><shortdesc>
+		 交通换乘导引对象，记录了从换乘分析起始站点到终止站点的交通换乘导引方案，通过 此对象可以获取交通换乘导引对象中子项的个数，根据序号获取交通换乘导引的子项对象，导引总距离以及总花费等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferGuide</apiValueClassifier></apiValueDef><apiDesc>
+		 交通换乘导引对象，记录了从换乘分析起始站点到终止站点的交通换乘导引方案，通过 此对象可以获取交通换乘导引对象中子项的个数，根据序号获取交通换乘导引的子项对象，导引总距离以及总花费等。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryService"><apiName>StopQueryService</apiName><shortdesc>
+	 站点查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 站点查询服务类.
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryService_com.supermap.web.iServerJava6R.serviceEvents.StopQueryEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.StopQueryEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryService:StopQueryService"><apiName>StopQueryService</apiName><shortdesc>
+		 初始化 StopQueryService 类的新实例。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的站点查询服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 StopQueryService 类的新实例。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据站点查询服务地址与服务端完成异步通讯，即发送分析参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryParameters</apiOperationClassifier><apiDesc>站点查询参数 StopQueryParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “Adobe Flex 4.1 API 在线帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据站点查询服务地址与服务端完成异步通讯，即发送分析参数，并获取查询结果。.
+		 <p>当查询成功时，将触发 StopQueryEvent.PROCESS_COMPLETE 事件。用户可以通过两种方式获取分析结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 StopQueryEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的站点查询结果——StopQueryResult 对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.trafficTransferAnalystServices:StopQueryResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的站点查询结果——StopQueryResult 对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolution"><apiName>TransferSolution</apiName><shortdesc>
+	 交通换乘方案类。在一个换乘方案内的所有乘车路线中换乘次数是相同的。.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通换乘方案类。在一个换乘方案内的所有乘车路线中换乘次数是相同的。. 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolution:TransferSolution"><apiName>TransferSolution</apiName><shortdesc>
+		 初始化 TransferSolution 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransferSolution 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolution:linesItems:get"><apiName>linesItems</apiName><shortdesc>
+		 换乘分段数组。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 换乘分段数组。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.trafficTransferAnalystServices:TransferSolution:transferCount:get"><apiName>transferCount</apiName><shortdesc>
+		 换乘方案对应的换乘次数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 换乘方案对应的换乘次数。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

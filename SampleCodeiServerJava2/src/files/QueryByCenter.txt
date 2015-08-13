@@ -1,0 +1,14 @@
+<font color="#0033FF">中心点查询</font>
+<font color="#006633">1. 功能描述：</font>以指定点为中心，以容限值为半径的区域内，在指定一个或多个图层中查找满足条件的地物。本示例以单个图层为例。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层——World 的 World 和 Capital 图层。
+<font color="#006633">3. 操作指南：</font>
+    1）在右侧窗口设置中心点查询所需参数；
+    2）点击“查询”按钮；
+    3）在地图上绘制查询中心点，当中心点绘制完成后将显示查询结果窗口。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义所要查询的图层参数 QueryLayerParam；
+    2）定义查询参数 QueryParam；
+    2）定义中心点查询参数 QueryByCenterParameters；
+    2）执行中心点查询 QueryByCenterService；
+<font color="#006633">5. 注意：</font>从服务端获取的地物的几何属性为 ServerGeometry 类型，必须首先将其转换为客户端对象 Geometry（使用 RecordSet.toFeatureSet() ），然后将其转换为 Feature，才能在客户端显示；
+<font color="#006633">6. 其它说明：</font>有关中心点查询的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

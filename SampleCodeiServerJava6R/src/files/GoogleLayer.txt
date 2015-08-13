@@ -1,0 +1,3 @@
+﻿<font color="#0033FF">GoogleLayer 地图</font>
+<font color="#006633">1. 地图数据：</font>本示例所使用的数据为谷歌公司提供的分块动态地图，用户可通过设置 mapStyle 属性更改地图显示类型；
+<font color="#006633">2. 其它说明：</font>有关 GoogleLayer 参数的详细介绍，请参见 Flash 帮助文档。

@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+ ${controls_OverviewMap_Title}.
+ <p>${controls_OverviewMap_Description}</p>
+-->
+<s:SkinnableContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					  xmlns:s="library://ns.adobe.com/flex/spark" 
+					  xmlns:mx="library://ns.adobe.com/flex/mx"
+					  xmlns:supermap="http://www.supermap.com/iclient/2010"
+					  width="300" height="250" 
+					  width.origin="17" height.origin="17"
+					  initialize="init()"
+					  skinClass="com.supermap.web.components.skins.OverviewerBorderSkin"
+					  >
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<!---
+			@private
+		-->
+		<mx:Image id="_iconImage" width="16" height="16" rotation="180"
+				  source="{iconSource}" click="_iconImage_clickHandler(event)"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.events.ViewBoundsEvent;
+			import com.supermap.web.mapping.Map;
+			import com.supermap.web.sm_internal;
+			
+			import mx.core.IVisualElement;
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			import mx.events.StateChangeEvent;
+			
+			import spark.components.HGroup;
+			use namespace sm_internal;
+			
+			/**
+			 * ${controls_OverviewMap_attribute_ZOOM_NORMAL_D}.
+			 * <p>${controls_OverviewMap_attribute_ZOOM_NORMAL_remarks}</p>
+			 * 
+			 * */
+			public static const ZOOM_NORMAL:String = "normal";
+			/**
+			 * ${controls_OverviewMap_attribute_ZOOM_INDEXBOX_CAN_CHANGE_D}.
+			 * <p>${controls_OverviewMap_attribute_ZOOM_INDEXBOX_CAN_CHANGE_remarks}</p>
+			 * 
+			 * */
+			public static const ZOOM_INDEXBOX_CAN_CHANGE:String = "indexBoxSizeCanChange";
+			
+			/**
+			 * ${controls_OverviewMap_attribute_RECT_D}
+			 * 
+			 * */
+			public static const RECT:String = "rect"; 
+			/**
+			 * ${controls_OverviewMap_attribute_ELLIPSE_D}
+			 * 
+			 * */
+			public static const ELLIPSE:String = "ellipse";
+			
+			
+			[Embed(source="/../assets/images/component/overview_button.png")]
+			private var _iconClass:Class; 
+			
+			private var _iconSource:Object = _iconClass;
+			
+			private var _iconPosition:String = "bottomleft";
+			
+			private var _indexbox:IndexBox = new IndexBox;
+			
+			private var _icon:HGroup = new HGroup;
+			
+			private var overviewMap:Map = new Map;
+			
+			private var minSize:Number = 5;
+			
+			//鹰眼相对于map的缩放比例
+			private var _zoomFactor:Number = 0.05;
+			
+			private var _startX:Number = 0;
+			private var _startY:Number = 0;
+			
+			private var _zoomModel:String = ZOOM_NORMAL;
+			
+			//是否出图,收缩起来的时候不出图
+			private var _overviewEnabled:Boolean = true;
+			
+			//记录用户出图控制标记
+			private var _customOverviewEnabled:Boolean = true;
+			
+			private var _mapViewboundsChange:Boolean = false;
+			
+			//主图
+			private var _map:Map = null;
+			
+			//是否出图
+			[Inspectable(category = "iClient", enumeration = "normal,indexBoxSizeCanChange")] 
+			/**
+			 * ${controls_OverviewMap_attribute_zoomMode_D}.
+			 * <p>${controls_OverviewMap_attribute_zoomMode_remarks}</p>
+			 **/
+			public function get zoomMode():String
+			{
+				return _zoomModel;
+			}
+
+			public function set zoomMode(value:String):void
+			{
+				_zoomModel = value;
+			}
+			
+			//鹰眼的currentState
+			[Inspectable(category = "iClient", enumeration = "expand,origin")] 
+			/**
+			 * ${controls_OverviewMap_attribute_currentState_D}.
+			 **/
+			override public function get currentState():String
+			{
+				return super.currentState;
+			}
+			
+			override public function set currentState(value:String):void
+			{
+				super.currentState = value;
+				
+			}
+
+			/**
+			 * ${controls_OverviewMap_attribute_overviewZoomFactor_D}.
+			 * <p>${controls_OverviewMap_attribute_overviewZoomFactor_remarks}</p>
+			 * @see #zoomMode
+			 **/
+			public function get overviewZoomFactor():Number
+			{
+				return _zoomFactor;
+			}
+
+			public function set overviewZoomFactor(value:Number):void
+			{
+				if(value > 0.1)
+				{
+					value = 0.1;
+				}
+				else if(value < 0.01)
+				{
+					value = 0.01;
+				}
+				_zoomFactor = value;
+			}
+
+			[Inspectable(category = "iClient", enumeration = "rect,ellipse")] 
+			/**
+			 * ${controls_OverviewMap_attribute_overviewMode_D}.
+			 * <p>${controls_OverviewMap_attribute_overviewMode_remarks}</p> 
+			 **/
+			public function get overviewMode():String
+			{
+				return _indexbox.model
+			}
+			
+			public function set overviewMode(value:String):void
+			{
+				_indexbox.model = value;
+			}
+			
+			//设置索引框的显示属性
+			/**
+			 * ${controls_OverviewMap_attribute_indexBoxColor_D} 
+			 **/
+			public function get indexBoxColor():uint
+			{
+				return _indexbox.fillColor;
+			}
+			
+			public function set indexBoxColor(value:uint):void
+			{
+				_indexbox.fillColor = value;
+			}
+			
+			/**
+			 * ${controls_OverviewMap_attribute_indexBoxAlpha_D} 
+			 **/
+			public function get indexBoxAlpha():Number
+			{
+				return _indexbox.fillAlpha;
+			}
+			
+			public function set indexBoxAlpha(value:Number):void
+			{
+				_indexbox.fillAlpha = value;
+			}
+			
+			/**
+			 * ${controls_OverviewMap_attribute_indexBoxBorderAlpha_D} 
+			 **/
+			public function get indexBoxBorderAlpha():Number
+			{
+				return _indexbox.borderAlpha;
+			}
+			
+			public function set indexBoxBorderAlpha(value:Number):void
+			{
+				_indexbox.borderAlpha = value;
+			}
+			
+			/**
+			 * ${controls_OverviewMap_attribute_indexBoxBorderWeight_D} 
+			 **/
+			public function get indexBoxBorderWeight():int
+			{
+				return _indexbox.borderWeidth;
+			}
+			
+			public function set indexBoxBorderWeight(value:int):void
+			{
+				_indexbox.borderWeidth = value;
+			}
+			
+			//设置icon位置
+			[Inspectable(category = "iClient", enumeration = "topleft,bottomleft,topright,bottomright")]
+			/**
+			 * ${controls_OverviewMap_attribute_iconPosition_D}
+			 **/
+			public function set iconPosition(value:String):void
+			{
+				_iconPosition = value;
+				setIcon();
+			}
+			
+			private function setIcon():void
+			{
+				_icon.left = undefined;
+				_icon.bottom = undefined;
+				_icon.right = undefined;
+				_icon.top = undefined;
+				_icon.width = undefined;
+				_icon.height = undefined;
+				if(null != _icon)
+				{
+					if(_iconPosition == "topleft")
+					{
+						_icon.left = 0;
+						_icon.top = 0;
+					}
+					else if(_iconPosition == "bottomleft")
+					{
+						_icon.left = 0;
+						_icon.bottom = 0;
+					}
+					else if(_iconPosition == "topright")
+					{
+						_icon.right = 0;
+						_icon.top = 0;
+					}
+					else if(_iconPosition == "bottomright")
+					{
+						_icon.bottom = 0;
+						_icon.right = 0;
+					}
+				}
+			}
+			
+			[Bindable]
+			/**
+			 * ${controls_OverviewMap_attribute_iconSource_D}
+			 **/
+			public function get iconSource():Object
+			{
+				return _iconSource;
+			}
+			
+			public function set iconSource(value:Object):void
+			{
+				_iconSource = value;
+			}
+			
+			//初始化方法
+			private function init():void
+			{
+				//设置鹰眼地图不可操作
+				this.addElement(overviewMap);
+				overviewMap.width = this.width;
+				overviewMap.height = this.height;
+				overviewMap.scrollWheelZoomEnabled = false;
+				overviewMap.doubleClickZoomEnabled = false;
+				overviewMap.keyboardNavigationEnabled = false;
+				overviewMap.zoomEffectEnabled = false;
+				overviewMap.action = null;
+				overviewMap.addEventListener(MapEvent.LOAD, overviewMap_loadHandler);
+				//添加索引狂和鹰眼按钮
+				this.addElement(_indexbox);
+				_indexbox.addEventListener(MouseEvent.MOUSE_DOWN, indexboxDragstart);
+				_icon.addElement(_iconImage);
+				this.addElement(_icon);
+				setIcon();
+			}
+			
+			private function indexboxDragstart(event:MouseEvent):void
+			{
+				_startX = this.mouseX;
+				_startY = this.mouseY;
+				this.addEventListener(MouseEvent.MOUSE_MOVE, indexboxDraging);
+				this.stage.addEventListener(MouseEvent.MOUSE_UP, indexboxDragend);
+			}
+			
+			private function indexboxDraging(event:MouseEvent):void
+			{
+				var newX:Number = this.mouseX - _startX + _indexbox.x;
+				var newY:Number = this.mouseY - _startY + _indexbox.y;
+				//计算最终的位置，考虑边界不出线
+				var lastLocal:Point = calculateLocation(new Point(newX, newY));
+				//鹰眼框位置修改，不能出界
+				_startX = this.mouseX + lastLocal.x - newX ;
+				_startY = this.mouseY + lastLocal.y - newY;
+				_indexbox.x = lastLocal.x;
+				_indexbox.y = lastLocal.y;
+				//normal模式下边界位置时候图层会自动扩展,实现动画代码暂且保留
+//				if(ZOOM_NORMAL == _zoomModel)
+//				{
+//					if(newX <= 2 || newY <= 2 || (newX + _indexbox.width) >= (this.width - 2) || (newY + _indexbox.height) >= (this.height - 2))
+//					{
+//						
+//						if(!this.hasEventListener(Event.ENTER_FRAME))
+//							this.addEventListener(Event.ENTER_FRAME, enterframeHandler);
+//					}
+//					else
+//					{
+//						this.removeEventListener(Event.ENTER_FRAME, enterframeHandler);
+//					}
+//				}
+			}
+			
+			private function indexboxDragend(event:MouseEvent):void
+			{
+				//监听事件清除
+//				if(this.hasEventListener(Event.ENTER_FRAME))
+//					this.removeEventListener(Event.ENTER_FRAME, enterframeHandler);
+				this.removeEventListener(MouseEvent.MOUSE_MOVE, indexboxDraging);
+				this.stage.removeEventListener(MouseEvent.MOUSE_UP, indexboxDragend);
+				//indexbox出界修正
+				var newX:Number = this.mouseX - _startX + _indexbox.x;
+				var newY:Number = this.mouseY - _startY + _indexbox.y;
+				var lastLocal:Point = calculateLocation(new Point(newX, newY));
+				//设置box的宽高并刷新map
+				_indexbox.x = lastLocal.x;
+				_indexbox.y = lastLocal.y;
+				var pt:Point2D = overviewMap.screenToMap(
+					new Point(_indexbox.x + _indexbox.width/2 - map.x,
+						_indexbox.y + _indexbox.height/2 - map.y));
+				map.panTo(pt);
+			}
+			
+			//计算移动边界位置
+			private function calculateLocation(point:Point):Point
+			{
+				if(point.x < 0)
+					point.x = 0;
+				if(point.y < 0)
+					point.y = 0;
+				if(point.x + _indexbox.width > this.width)
+					point.x = this.width - _indexbox.width;
+				if(point.y + _indexbox.height > this.height)
+					point.y = this.height - _indexbox.height;
+				return point;
+			}
+			
+			//map扩展动画
+			private function enterframeHandler(event:Event):void
+			{
+				//定义map扩展动画
+				var newViewerCenter:Point2D = overviewMap.center;
+				if(_indexbox.x <= 3)
+					newViewerCenter.x -= 5;
+				if(_indexbox.y <= 3)
+					newViewerCenter.y += 5;
+				if(_indexbox.x + _indexbox.width >= this.width - 3)
+					newViewerCenter.x += 5;
+				if(_indexbox.y + _indexbox.height >= this.height - 3)
+					newViewerCenter.y -= 5;
+				overviewMap.panTo(newViewerCenter);
+			}
+			
+			//初始化
+			/**
+			 * @private
+			 **/
+			protected function overviewMap_loadHandler(event:MapEvent):void
+			{
+				if( this._map && this.overviewMap.viewBounds)
+				{
+					_mapViewboundsChange = true;
+					refreshOverviewMap();
+					refreshIndexbox();
+				}
+			}
+			
+			private function refreshOverviewMap():void
+			{
+				if(null != map && null != map.viewBounds && _overviewEnabled && _mapViewboundsChange)
+				{
+					_mapViewboundsChange = false;
+					if(ZOOM_NORMAL == _zoomModel)
+					{
+						//计算当期的viewBounds
+						var center:Point2D = map.viewBounds.center;
+						var geoHeight:Number = overviewMap.height * (map.resolution / _zoomFactor);
+						var geoWidth:Number = overviewMap.width * (map.resolution / _zoomFactor);
+//						var geoHeight:Number = map.viewBounds.height/_zoomFactor;
+//						var geoWidth:Number = map.viewBounds.width / _zoomFactor;
+						if(geoWidth > map.bounds.width && geoHeight > map.bounds.height)
+						{
+							geoHeight = map.bounds.height;
+							geoWidth = map.bounds.width;
+						}
+						if(map.bounds.width < map.viewBounds.width || map.bounds.height < map.viewBounds.height)
+						{
+							geoHeight = map.viewBounds.height;
+							geoWidth = map.viewBounds.width;
+							_indexbox.visible = false;
+						}
+						else
+						{
+							_indexbox.visible = true;
+						}
+						var newViewbounds:Rectangle2D =  new Rectangle2D(center.x - geoWidth/2,
+							center.y - geoHeight/2, center.x + geoWidth/2, center.y + geoHeight/2);
+						
+						//刷新地图显示
+						overviewMap.viewBounds = newViewbounds;
+					}
+					else
+					{
+						overviewMap.viewBounds = map.bounds;
+					}
+				}
+			}
+
+			//刷新indexbox的大小和位置
+			/**
+			 * @private
+			 **/
+			protected function refreshIndexbox():void
+			{
+				if(null != map && null !=  map.viewBounds && _overviewEnabled && _indexbox.visible)
+				{
+					//计算indexbox大小
+					var boxWidth:Number = map.viewBounds.width/overviewMap.viewBounds.width * overviewMap.width;
+					var boxHeight:Number = map.viewBounds.height/overviewMap.viewBounds.height * overviewMap.height;
+
+					var preWidth:Number = _indexbox.width;
+					var preHeight:Number = _indexbox.height;
+					if(boxWidth < minSize)
+					{
+						_indexbox.width = minSize;
+						_indexbox.height = boxHeight/boxWidth*minSize;
+					}
+					else
+					{
+						_indexbox.width = boxWidth;
+						_indexbox.height = boxHeight;
+					}
+					//如果有大小缩放，为了显示效果去掉移动动画
+					if(Math.abs(preWidth - _indexbox.width) > 2 || Math.abs(preHeight - _indexbox.height) > 2)
+					{
+						_indexbox.moveEffectEnable = false;
+					}
+					else
+					{
+						_indexbox.moveEffectEnable = true;
+					}
+					//修改indexbox位置
+					var newCenter:Point = overviewMap.mapToScreen(map.viewBounds.center);
+					//设置中心点，indexbox根据自身的宽，高计算具体的坐标
+					_indexbox.setCenter(newCenter.x, newCenter.y);
+				}
+			}
+			
+			/**
+			 * ${controls_OverviewMap_attribute_map_D}
+			 **/
+			public function get map():Map
+			{
+				return _map;
+			}
+
+			public function set map(value:Map):void
+			{
+				if(null != value && _map != value)
+				{
+					if(null != map)
+					{
+						//清理
+						_map.removeEventListener(ViewBoundsEvent.VIEW_BOUNDS_CHANGE, mapViewboundsChangeHandler);
+					}
+					_map = value;
+					//为了简单管理，只添加viewboundschange事件,要求不管什么情况导致主图viewbounds变化都必须触发change事件
+					_map.addEventListener(ViewBoundsEvent.VIEW_BOUNDS_CHANGE, mapViewboundsChangeHandler);
+				}
+			}
+			
+			//刷新鹰眼和indexbox的显示
+			private function mapViewboundsChangeHandler(event:ViewBoundsEvent):void
+			{
+				_mapViewboundsChange = true;
+				refreshOverviewMap();
+				refreshIndexbox();
+			}
+			
+			//处理icon点击，收缩或者展示整个鹰眼
+			/**
+			 * @private
+			 **/
+			protected function _iconImage_clickHandler(event:MouseEvent):void
+			{
+				if("origin" == this.currentState)
+				{
+					_overviewEnabled = _customOverviewEnabled;
+					this.currentState = "expand";
+				}
+				else
+				{
+					_overviewEnabled = false;
+					this.currentState = "origin";
+				}
+			}
+			
+			//图层，要求用户设置，不会自动从Map中获取
+			/**
+			 * ${controls_OverviewMap_attribute_layers_D}
+			 **/
+			public function get layers():Object
+			{
+				return overviewMap.layers;
+			}
+			
+			public function set layers(value:Object):void
+			{
+				overviewMap.layers = value;
+			}
+
+			/**
+			 * @private
+			 **/
+			protected function currentStateChangeHandler(event:EffectEvent):void
+			{
+				if("expand" == currentState)
+					_iconImage.rotation = 180;
+				else if("origin" == currentState)
+					_iconImage.rotation = 0;
+				
+				if(_mapViewboundsChange)
+				{
+					refreshOverviewMap();
+					refreshIndexbox();
+				}
+			}
+
+			/**
+			 * @private
+			 **/
+			public function get mapEnable():Boolean
+			{
+				return _overviewEnabled;
+			}
+			
+			public function set mapEnable(value:Boolean):void
+			{
+				_customOverviewEnabled = _overviewEnabled = value;
+				if(_overviewEnabled)
+				{
+					refreshOverviewMap();
+					refreshIndexbox();
+				}
+			}
+			
+			/**
+			 * ${controls_OverviewMap_attribute_visible_D}
+			 **/
+			override public function set visible(value:Boolean):void
+			{
+				_overviewEnabled = super.visible = value;
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Metadata>
+		/**
+		 * ${controls_OverviewMap_attribute_borderAlpha_D}
+		 **/
+		[Style(name="borderAlpha", type="Number", inherit="no", theme="spark")]
+		/**
+		* ${controls_OverviewMap_attribute_borderColor_D}
+		**/
+		[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark")]
+		/**
+		* ${controls_OverviewMap_attribute_borderWidth_D}
+		**/
+		[Style(name="borderWidth", type="int",  inherit="no", theme="spark")]
+	</fx:Metadata>
+	<s:layout>
+		<s:BasicLayout clipAndEnableScrolling="true"/>
+	</s:layout>
+	
+	<s:states>
+		<s:State name="expand"/>
+		<s:State name="origin"/>
+	</s:states>
+	<s:transitions>
+		<!---
+		 @private
+		-->
+		<s:Transition id="trans" fromState="*" toState="*">
+			<s:Sequence effectEnd="currentStateChangeHandler(event)">
+				<s:Resize duration="800" target="{this}"/>
+				<s:Rotate  autoCenterTransform="true" duration="300" target="{_iconImage}"/>
+			</s:Sequence>
+		</s:Transition>
+	</s:transitions>
+</s:SkinnableContainer>

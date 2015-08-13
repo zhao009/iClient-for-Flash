@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+	${components_skins_Compass_Title}.
+	<p>${components_skins_Compass_Description}</p>
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:mx1="library://ns.adobe.com/flex/halo"   
+		toolTipCreate="skin_toolTipCreateHandler(event)"
+		>
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout> 
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace mx1 "library://ns.adobe.com/flex/halo";
+		
+		/* mx|ToolTip{
+		fontSize: 15;
+		background-alpha: 0.4;
+		background-color: 0;			
+		} */
+	</fx:Style>
+	
+	<fx:Metadata> 
+		/**
+		* ${components_skins_CompassSkin_attribute_HostComponent_D}
+		*/
+		[HostComponent("com.supermap.web.components.Compass")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.resources.SmResource;
+			
+			import mx.controls.ToolTip;
+			import mx.events.ToolTipEvent;
+ 
+			/**
+			 * @private
+			 */
+			protected function skin_toolTipCreateHandler(event:ToolTipEvent):void
+			{
+				var toolsss:ToolTip = event.toolTip as ToolTip;
+				toolsss.setStyle("fontSize",20);
+				toolsss.rotation = 40;
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/> 
+	</s:states> 
+	
+	<s:Ellipse bottom="0"
+			   left="0"  
+			   right="0"
+			   top="0">
+		<s:fill>
+			<s:SolidColor color="0x000000" alpha="0.7"/>
+		</s:fill> 
+	</s:Ellipse>
+	
+	<s:Ellipse bottom="2"
+			   left="2"  
+			   right="2"
+			   top="2">
+		<s:fill>
+			<s:SolidColor color="0xe0e0e0" alpha="0.3"/>
+		</s:fill> 
+	</s:Ellipse>
+     
+	<s:Group  width="70" height="70"> 
+		<!---
+		${components_skins_CompassSkin_attribute_panUpElement_D}.
+		-->
+		<s:Button id="panUpElement" width="20" height="20" top="0" horizontalCenter="0" label="panUpElement"
+				  skinClass="com.supermap.web.components.skins.PanUpButtonSkin" toolTip="{resourceManager.getString('SuperMapMessage', SmResource.TO_UP)}"/>			
+		<!---
+		${components_skins_CompassSkin_attribute_panDownElement_D}.
+		-->
+		<s:Button id="panDownElement" width="20" height="20" bottom="0" horizontalCenter="0" label="panDownElement" 
+				  skinClass="com.supermap.web.components.skins.PanDownButtonSkin" toolTip="{resourceManager.getString('SuperMapMessage', SmResource.TO_DOWN)}"/>
+		<!---
+		${components_skins_CompassSkin_attribute_panLeftElement_D}.
+		-->
+		<s:Button id="panLeftElement"  width="20" height="20" left="0" verticalCenter="0" label="panLeftElement"
+				  skinClass="com.supermap.web.components.skins.PanLeftButtonSkin" toolTip="{resourceManager.getString('SuperMapMessage', SmResource.TO_LEFT)}" />
+		<!---
+		${components_skins_CompassSkin_attribute_panRightElement_D}.
+		-->
+		<s:Button id="panRightElement"  width="20" height="20" right="0" verticalCenter="0" label="panRightElement"  
+				  skinClass="com.supermap.web.components.skins.PanRightButtonSkin" toolTip="{resourceManager.getString('SuperMapMessage', SmResource.TO_RIGHT)}"/>
+		<!---
+		${components_skins_CompassSkin_attribute_panCenterElement_D}.
+		-->
+		<s:Button id="panCenterElement" width="32" height="32" horizontalCenter="0" verticalCenter="0" label="panCenterElement"
+				   toolTip="{resourceManager.getString(SmResource.SUPERMAP_MESSAGES, SmResource.VIEW_ENTIRE)}" skinClass="com.supermap.web.components.skins.PanCenterButtonSkin"/>
+	</s:Group>
+</s:Skin>
+

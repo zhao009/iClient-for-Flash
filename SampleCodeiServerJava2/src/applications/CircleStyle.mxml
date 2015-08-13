@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   width="100%" height="100%"
+			   creationComplete="initApp()"
+			   pageTitle="填充样式示例">
+	
+	<!--定义面要素默认样式-->
+	<fx:Declarations>
+		<!--面要素样式1-->
+		<ic:PredefinedFillStyle id="myFillStyle"
+								alpha="{fillAlpha.value}"
+								color="{fillColor.selectedColor}"
+								symbol="{markerSymbol.selectedItem}" 
+								border="{myBorderStyle}"/>
+		<ic:PredefinedLineStyle id="myBorderStyle"
+								alpha="{lineAlpha.value}"
+								color="{lineColor.selectedColor}"
+								weight="{borderWeight.value}"/>
+		<!--面要素样式2-->
+		<ic:PictureFillStyle   id="myPictureFillStyle"
+							   alpha="{picAlpha.value}"
+							   width="{picWidth.value}"
+							   height="{picHeight.value}"
+							   xScale="{picXScale.value}"
+							   yScale="{picYScale.value}"
+							   angle="{picAngle.value}"
+							   source="../assets/sunny.png"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[ 
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.samples.geoCircle.GeoCircle;
+			
+			private var geoCircle:GeoCircle = new GeoCircle();
+			private var picGeoCircle:GeoCircle = new GeoCircle();
+			private var circleFeature:Feature;
+			
+			/* 添加面要素 */
+			private function main():void
+			{		
+				//面要素1
+				geoCircle = new GeoCircle();
+				geoCircle.circleCenter = new Point2D(-85,-30);
+				geoCircle.radius = this.circleRadius.value;
+				circleFeature = new Feature(geoCircle, myFillStyle);
+				fl.addFeature(circleFeature);
+				
+				//面要素2
+				picGeoCircle.circleCenter = new Point2D(40,30);
+				picGeoCircle.radius = 30;
+				var picCircleFeature:Feature = new Feature(picGeoCircle, myPictureFillStyle);
+				fl.addFeature(picCircleFeature);
+			}
+			
+			protected function circleRadius_changeHandler(event:Event):void
+			{
+				this.geoCircle.radius = (event.target as HSlider).value;
+				circleFeature.refresh();
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" load="main()" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}" 
+									 mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600" 
+									 mapName="World"/>
+		<ic:FeaturesLayer id="fl" />			
+	</ic:Map>
+	
+	<!--操作界面-->
+	<s:Panel left="5"
+			 title="普通填充样式"
+			 top="5"
+			 chromeColor="#E9E4E4"
+			 backgroundColor="#454343" 
+			 backgroundAlpha="0.5">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="right"
+							  paddingBottom="0"
+							  paddingTop="0"/>
+		</s:layout>
+		<mx:Form paddingBottom="4"
+				 paddingTop="4"
+				 width="100%">
+			<mx:FormItem label="填充颜色:">
+				<mx:ColorPicker id="fillColor" selectedColor="0x6633cc"/>
+			</mx:FormItem>
+			<mx:FormItem label="填充透明度:">
+				<s:HSlider id="fillAlpha"
+						   liveDragging="true"
+						   maximum="1"
+						   minimum="0"
+						   snapInterval="0.01"
+						   focusEnabled="false"
+						   value="0.3"
+						   width="100"/>
+			</mx:FormItem>
+			<mx:FormItem label="半径:">
+				<s:HSlider id="circleRadius"
+						   liveDragging="true"
+						   maximum="100"
+						   minimum="0"
+						   snapInterval="1"
+						   focusEnabled="false"
+						   value="30"
+						   width="100"
+						   change="circleRadius_changeHandler(event)"/>
+			</mx:FormItem>
+			<mx:FormItem label="填充样式:">
+				<s:DropDownList id="markerSymbol" selectedIndex="1">
+					<s:ArrayList>
+						<fx:String>null</fx:String>
+						<fx:String>solid</fx:String>
+						<fx:String>horizontal</fx:String>
+						<fx:String>vertical</fx:String>
+						<fx:String>cross</fx:String>
+						<fx:String>slash</fx:String>
+						<fx:String>backslash</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:Form label="边框样式"
+				 paddingBottom="4"
+				 paddingTop="4">
+			<mx:FormItem label="边框颜色:">
+				<mx:ColorPicker id="lineColor" selectedColor="0xcc6600"/>
+			</mx:FormItem>
+			<mx:FormItem label="边框宽度:">
+				<s:HSlider id="borderWeight"
+						   liveDragging="true"
+						   maximum="10"
+						   minimum="0"
+						   snapInterval="1"
+						   value="2"
+						   focusEnabled="false"
+						   width="100"/>
+			</mx:FormItem>
+			<mx:FormItem label="边框透明度:">
+				<s:HSlider id="lineAlpha"
+						   liveDragging="true"
+						   maximum="1"
+						   minimum="0"
+						   snapInterval="0.01"
+						   focusEnabled="false"
+						   value="1"
+						   width="100"/>
+			</mx:FormItem>
+			
+		</mx:Form>
+	</s:Panel>
+	<s:Panel right="5"
+			 title="图片填充样式"
+			 top="5"
+			 chromeColor="#E9E4E4"
+			 backgroundColor="#454343" 
+			 backgroundAlpha="0.5">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="right"
+							  paddingBottom="0"
+							  paddingTop="0"/>
+		</s:layout>
+		<mx:Form paddingBottom="4"
+				 paddingTop="4"
+				 width="100%">
+			<mx:FormItem label="宽度:">
+				<s:HSlider id="picWidth"
+						   liveDragging="true"
+						   maximum="80"
+						   minimum="0"
+						   snapInterval="1"
+						   focusEnabled="false"
+						   value="40"
+						   width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="高度:">
+				<s:HSlider id="picHeight"
+						   liveDragging="true"
+						   maximum="80"
+						   minimum="0"
+						   snapInterval="1"
+						   focusEnabled="false"
+						   value="40"
+						   width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="X缩放:">
+				<s:HSlider id="picXScale"
+						   liveDragging="true"
+						   maximum="10"
+						   minimum="0"
+						   focusEnabled="false"
+						   snapInterval="0.1"
+						   value="1"
+						   width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Y缩放:">
+				<s:HSlider id="picYScale"
+						   liveDragging="true"
+						   maximum="10"
+						   minimum="0"
+						   focusEnabled="false"
+						   snapInterval="0.1"
+						   value="1"
+						   width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="图片透明度:">
+				<s:HSlider id="picAlpha"
+						   liveDragging="true"
+						   maximum="1"
+						   minimum="0"
+						   focusEnabled="false"
+						   snapInterval="0.01"
+						   value="0.8"
+						   width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="旋转:">
+				<s:HSlider id="picAngle"
+						   liveDragging="true"
+						   maximum="360"
+						   minimum="0"
+						   focusEnabled="false"
+						   snapInterval="1"
+						   value="0"
+						   width="100%"/>
+			</mx:FormItem>
+		</mx:Form>
+	</s:Panel>
+</s:Application>

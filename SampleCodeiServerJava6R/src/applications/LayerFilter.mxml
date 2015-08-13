@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--子图层控制-->
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.iServerJava6R.layerServices.LayerStatus;
+			import com.supermap.web.iServerJava6R.layerServices.SetLayerResult;
+			import com.supermap.web.iServerJava6R.layerServices.SetLayerStatusParameters;
+			import com.supermap.web.iServerJava6R.layerServices.SetLayerStatusService;
+			import com.supermap.web.mapping.TiledDynamicRESTLayer;
+			
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			
+			//获取服务地址
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			}
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.JingJin_MAP;
+			}
+			
+			private var layer:TiledDynamicRESTLayer;
+			private function setLyrStatusCallback(result:SetLayerResult, mark:Object = null):void
+			{
+				if(!this.layer)
+				{
+					layer = new TiledDynamicRESTLayer();
+					layer.url = this.mapUrl;
+					layer.transparent = false;
+					layer.enableServerCaching = false;
+					layer.layersID = result.newResourceID;
+					map.addLayer(layer);
+				}
+			}
+			
+			private function setStatusError(object:Object, mark:Object = null):void
+			{
+				//				CommenCode.output("设置图层状态失败!");
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var lyrStatusN1:LayerStatus = new LayerStatus();
+				lyrStatusN1.layerName = "土地利用类型";
+				lyrStatusN1.displayFilter = "LANDTYPE='灌丛' or LANDTYPE='用材林' or LANDTYPE='经济林' or LANDTYPE='草地'";
+				
+				var setLyrStatusParam:SetLayerStatusParameters = new SetLayerStatusParameters();
+				setLyrStatusParam.layerStatusList = new Array(lyrStatusN1);
+				
+				var setLyrService:SetLayerStatusService = new SetLayerStatusService(this.mapUrl);
+				setLyrService.processAsync(setLyrStatusParam, new AsyncResponder(setLyrStatusCallback, setStatusError));
+			}
+			
+
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				this.map.removeLayer(this.layer);
+				this.layer = null;
+//				this.map.refresh();
+			}
+
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer url="{mapUrl}"/>
+	</ic:Map> 
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup verticalAlign="middle" height="100%" horizontalCenter="0" horizontalAlign="center" paddingBottom="5" paddingLeft="5" paddingTop="5">
+			<s:Button label="过滤显示植被"  fontSize="15" fontWeight="bold" fontFamily="宋体" click="button1_clickHandler(event)"/>
+			<mx:VRule height="21" y="4"/>
+			<s:Button label="复原"  fontSize="15" fontWeight="bold" fontFamily="宋体" click="button2_clickHandler(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

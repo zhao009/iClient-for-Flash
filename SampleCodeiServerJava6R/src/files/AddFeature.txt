@@ -1,0 +1,9 @@
+<font color="#0033FF">要素标绘——本示例为您展示在 FeaturesLayer 上绘制点、线、面、文本等操作。</font>
+<font color="#006633">1. 地图数据：</font>SuperMap iServer Java 服务器产品提供的地图——World Map。
+<font color="#006633">2. 操作指南：</font>点击绘图按钮，开始绘制。
+<font color="#006633">3. 实现方法：</font>
+    1）引用绘制操作所在的命名空间，如绘制点 （DrawPoint），则需添加代码： import com.supermap.web.actions.DrawPoint；
+    2）定义绘制操作类型，如 var drawPoint:DrawPoint = new DrawPoint(map)；
+    3）定义绘制风格，即绘制出的矢量要素样式。如 drawPoint.style = markerStyle。如不设置要素样式，则使用系统默认样式；
+    4）将绘制操作类型赋值于 Map 的 action 属性。如 map.action = drawPoint。
+<font color="#006633">4. 注意：</font>系统内部定义了临时的要素图层 tempLayer 用于加载绘制过程中的矢量要素，当矢量要素绘制完成时系统内部会自动清空此图层，并将绘制的要素传送至 DrawEvent.DrawEnd 事件中，因此用户若想在客户端显示绘制的矢量要素，需通过绘制操作监听该事件，从而获取要素并将其添加至客户端要素图层中。

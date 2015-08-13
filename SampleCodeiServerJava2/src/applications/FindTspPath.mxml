@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010" 
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.events.*;
+			import com.supermap.web.events.MapMouseEvent;
+			import com.supermap.web.iServerJava2.*;
+			import com.supermap.web.iServerJava2.mapServices.*;
+			import com.supermap.web.iServerJava2.networkAnalystServices.*;
+			import com.supermap.web.mapping.FeaturesLayer;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.ListEvent;
+			import mx.messaging.channels.StreamingAMFChannel;
+			import mx.rpc.*;
+			
+			private var DEFAULT_MAP_NAME:String = "Changchun";
+			
+			private var _tspPathPoints:Array = new Array();
+			private var fl:FeaturesLayer;
+			
+			private function palying():void
+			{
+				fl = new FeaturesLayer();
+				this.map.addLayer(fl);
+				titlewin.visible = true;
+				this.map.viewBounds = new Rectangle2D(-1740.7534752292868,-7668.24529207453,10748.00153953446,-77.42388466343982); 
+			}
+			
+			//选择用于旅行商分析的分析点
+			private function excuteChooseTSPPathPoint():void 
+			{
+				this.removeFeature();
+				var chooseTSPPathPoint:DrawPoint = new DrawPoint(map);
+				map.action = chooseTSPPathPoint;
+				chooseTSPPathPoint.addEventListener(DrawEvent.DRAW_END,addFeature);	
+			}
+			
+			//监听分析点绘制完毕事件 DrawEvent.DRAW_END
+			private function addFeature(event:DrawEvent):void
+			{
+				if(event.feature.geometry is GeoPoint)
+				{
+					var point:GeoPoint = event.feature.geometry as GeoPoint;
+					var point2D:Point2D = new Point2D(point.x, point.y);
+					_tspPathPoints.push(point2D);
+				}
+				
+				fl.addFeature(event.feature);
+			}
+			
+			//旅行商分析
+			private function excuteFindTSPPathAnalyst():void 
+			{
+				if(this._tspPathPoints.length < 2)
+				{
+					Alert.show("请输入至少两个分析点！");
+					return;
+				}
+			    this.map.action = new Pan(map);
+				
+				//定义用于最近设施查找的弧段权值信息
+				var weightFieldInfo:WeightFieldInfo = new WeightFieldInfo();
+				weightFieldInfo.name = "LENGTH";
+				weightFieldInfo.fTWeightField = "SMLENGTH";
+				weightFieldInfo.tFWeightField = "SMLENGTH";
+				
+				//定义网络模型：定义数据集、数据源、弧段字段、结点字段、权值信息、障碍边、障碍点字段等
+				var networkModelSetting:NetworkModelSetting = new NetworkModelSetting();
+				networkModelSetting.networkDatasetName = "RoadNet";
+				networkModelSetting.networkDataSourceName = "changchun";
+				networkModelSetting.tolerance = 100;
+				networkModelSetting.nodeIDField = "SMNODEID";
+				networkModelSetting.edgeIDField = "SMID";
+				networkModelSetting.tNodeIDField = "SMTNODE";
+				networkModelSetting.fNodeIDField = "SMFNODE";
+				networkModelSetting.weightFieldInfos = [weightFieldInfo];		
+				
+				//定义网络分析参数：路径途经结点集合、返回结果类型、障碍边、障碍点等
+				var networkAnalystParam:NetworkAnalystParam = new NetworkAnalystParam();
+				networkAnalystParam.point2Ds = this._tspPathPoints;
+				networkAnalystParam.isEdgesReturn = true;
+				networkAnalystParam.isNodesReturn = true;
+				networkAnalystParam.isPathGuidesReturn = true;
+				networkAnalystParam.isPathsReturn = true;
+				networkAnalystParam.isStopsReturn = true;
+				
+				//定义旅行商路径参数：网络分析参数、是否指定终点
+				var tspPathParam:TSPPathParam = new TSPPathParam();
+				tspPathParam.networkAnalystParam = networkAnalystParam;
+				tspPathParam.isEndNodeAssigned = this.isAssignEndPoint.selected;				
+				
+				//定义旅行商分析所需参数：网络模型、地图名称、旅行商路径参数
+				var findTSPPathParameters:FindTSPPathParameters = new FindTSPPathParameters();
+				findTSPPathParameters.mapName = "Changchun"
+				findTSPPathParameters.networkSetting = networkModelSetting;
+				findTSPPathParameters.tspPathParam = tspPathParam;
+				
+				//执行放行商分析，即将进行旅行商分析所需的所有参数传送至服务端，并获取服务端返回的结果数据
+				var findTSPPathService:FindTSPPathService = new FindTSPPathService(viewConfig.webUrl);
+				findTSPPathService.execute(new AsyncResponder(this.displayNetworkAnalystResult, excuteErros, null), findTSPPathParameters);
+			}
+			
+			//显示从服务端返回的分析结果
+			private function displayNetworkAnalystResult(networkAnalystResult:NetworkAnalystResult, mark:Object = null):void
+			{
+				if(networkAnalystResult.paths == null)
+				{
+					Alert.show("查询结果为空","抱歉",4,this);
+					return;
+				}
+				
+				var paths:Array = networkAnalystResult.paths;
+				this.commonDisplayNetworkAnalystResult(paths);							
+				this._tspPathPoints.splice(0);
+			}
+			
+			//旅行商分析错误时调用此函数
+			private function excuteErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("旅行商分析失败","抱歉",4,this);
+			}
+			
+			//将服务端几何对象转换为客户端几何对象
+			private function commonDisplayNetworkAnalystResult(paths:Array):void
+			{
+				if(paths.length > 0)
+				{
+					for(var i:int = 0; i < paths.length; i++)
+					{
+						var geo:ServerGeometry = paths[i] as ServerGeometry;
+						if(geo.feature == ServerFeatureType.LINE || geo.feature == ServerFeatureType.LINEM)
+						{
+							var geoLine:GeoLine = geo.toGeoLine();
+							var lineStyle:PredefinedLineStyle = new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID, 0, 1, 2);
+							var feature:Feature = new Feature();
+							
+							feature.geometry = geoLine;
+							feature.style = lineStyle;
+							this.fl.addFeature(feature);
+						}
+					}
+				}
+			}
+			
+			//清除分析结果
+			private function removeFeature():void
+			{				
+				this.fl.clear();
+				this.map.action = new Pan(this.map);
+				this._tspPathPoints = [];
+			}
+			
+			private function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(map);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<s:Panel fontFamily="宋体" fontWeight="bold" title="请首先选择分析点（至少两个），然后再点击“旅行商分析”" width="100%" height="100%" fontSize="18">
+		<ic:Map id="map" load="palying()">
+			<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}" 
+										   mapServiceAddress="{viewConfig.gisUrl}"
+										   mapServicePort="8600" 
+										   mapName="Changchun"/>
+		</ic:Map>
+	</s:Panel>
+	
+	<!--参数设置窗口-->
+	<s:Panel id="titlewin" title="旅行商分析" fontSize="15" right="5" top="10" backgroundColor="#454343" backgroundAlpha="0.48">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10">
+			<s:HGroup horizontalAlign="left" paddingLeft="48">
+				<s:Label text="指定终点："
+						  styleName="AboutVersion"
+						  color="0"/>
+				<s:CheckBox id="isAssignEndPoint"/>
+			</s:HGroup>
+			
+			<s:HGroup horizontalAlign="center" width="300">
+				<s:Button label="选择分析点"
+						   id="chooseTSPPathPoint"
+						   click="excuteChooseTSPPathPoint()"
+						   width="95"
+						   styleName="AboutVersion"
+						   color="0"/>
+				
+				<s:Button label="旅行商分析"
+						   id="submitFindTSPPathAnalyst"
+						   click="excuteFindTSPPathAnalyst()"
+						   width="95"
+						   styleName="AboutVersion"
+						   color="0"/>
+			</s:HGroup>
+			
+			<s:HGroup horizontalAlign="center" gap="10" width="100%">
+				<s:Button skinClass="skins.clearBtnSkin"
+						  id="AreaAnalyst"
+						  click="removeFeature()"/>
+				<s:Button skinClass="skins.panBtnSkin"
+						  click="panMap(event)"/>
+				
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+</s:Application>

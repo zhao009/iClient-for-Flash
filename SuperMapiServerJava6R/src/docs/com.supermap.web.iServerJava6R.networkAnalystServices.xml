@@ -1,0 +1,1214 @@
+<apiPackage id="com.supermap.web.iServerJava6R.networkAnalystServices"><apiName>com.supermap.web.iServerJava6R.networkAnalystServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:DirectionType"><apiName>DirectionType</apiName><shortdesc>
+	 方向常量.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 方向常量.
+	 <p>该常量用在行驶导引子项（PathGuideItem）中。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DirectionType:EAST"><apiName>EAST</apiName><shortdesc>
+		 东。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>EAST</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 东。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DirectionType:NONE"><apiName>NONE</apiName><shortdesc>
+		 无方向。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NONE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无方向。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DirectionType:NORTH"><apiName>NORTH</apiName><shortdesc>
+		 北。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NORTH</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 北。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DirectionType:SOURTH"><apiName>SOURTH</apiName><shortdesc>
+		 南。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SOURTH</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 南。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DirectionType:WEST"><apiName>WEST</apiName><shortdesc>
+		 西。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>WEST</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 西。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsService"><apiName>FindTSPPathsService</apiName><shortdesc>
+	 最佳路径分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最佳路径分析服务类.
+	 <p>最佳路径是在网络数据集中指定一些结点，按照顺序访问结点从而求解起止点之间阻抗最小的路径。例如如果要顺序访问1、2、3、4四个结点，则需要分别找到1、2结点间的最佳路径 R1—2，2、3 间的最佳路径 R2—3 和 3、4结点间的最佳路径 R3—4，顺序访问1、2、3、4四个结点的最佳路径就是 R= R1—2 + R2—3 + R3—4。<br/>阻抗就是指从一点到另一点的耗费，在实际应用中我们可以将距离、时间、花费等作为阻抗条件。阻抗最小也就可以理解为从一点到另一点距离最短、时间最少、花费最低等。当两点间距离最短时为最短路径，它是最佳路径问题的一个特例。阻抗值通过 <code>TransportationAnalystParameter.weightFieldName</code> 设置。<br/>计算最佳路径除了受阻抗影响外，还受转向字段的影响。转向值通过 <code>TransportationAnalystParameter.turnWeightField</code> 设置。<br/>最佳路径属于网络分析的一种。网络分析是针对网络数据集的应用。网络数据集为具有拓扑关系的包含了一个网络结点子数据集的线图层，因此网络数据集拥有两个属性表，一个是记录弧段信息的属性表，一个是记录结点信息的属性表。<br/>最佳路径分析和旅行商分析都是在网络中寻找遍历所有指定结点的最经济的路径，区别在于遍历所有结点的过程中对结点访问顺序不同。最佳路径分析必须按照指定顺序对站点进行访问，而旅行商分析是无序的路径分析。<br/>该类负责将客户端指定的最佳路径分析参数传递给服务端，并接收服务端返回的结果数据，将最终结果存储于 FindPathResult 中。用户若需获取服务端返回的原始结果，需监听 FindPathEvent.PROCESS_COMPLETE 事件。该事件中既存有服务端返回的原始结果，又存有可在客户端显示的最终结果（FindPathResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindPathResult"><linktext>FindPathResult</linktext></link><link href="com.supermap.web.iServerJava6R.serviceEvents.xml#FindTSPPathsEvent"><linktext>com.supermap.web.iServerJava6R.serviceEvents.FindTSPPathsEvent</linktext></link></related-links><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsService_com.supermap.web.iServerJava6R.serviceEvents.FindTSPPathsEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.FindTSPPathsEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsService:FindTSPPathsService"><apiName>FindTSPPathsService</apiName><shortdesc>
+		 使用网络分析服务地址 URL 实例化 FindPathService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的网络分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用网络分析服务地址 URL 实例化 FindPathService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 将客户端指定的旅行商分析参数传递给服务端，与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsParameters</apiOperationClassifier><apiDesc>旅行商分析参数类。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的旅行商分析参数传递给服务端，与服务端完成异步通讯。.
+		 <p>与服务端异步通讯成功后触发 FindTSPPathsEvent.PROCESS_COMPLETE 事件。获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 FindTSPPathsEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的旅行分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的旅行分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasResult"><apiName>FindServiceAreasResult</apiName><shortdesc>
+	 服务区分析结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务区分析结果类.
+	 <p>该类用于存储服务区分析结果。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasResult:FindServiceAreasResult"><apiName>FindServiceAreasResult</apiName><shortdesc>
+		 初始化 FindServiceAreasResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindServiceAreasResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasResult:serviceAreaList:get"><apiName>serviceAreaList</apiName><shortdesc>
+		 获取服务区对象（ServiceArea）数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取服务区对象（ServiceArea）数组.
+		 <p>该数组中记录了每个服务中心点所服务的区域，有几个中心点就有几个服务区对象 ServiceArea。数组中的第 i 个元素对应第 i 个服务中心的服务区。每个服务区对象又包含经过的结点、弧段、路径的路由、服务区域（面对象）等信息。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat"><apiName>OutputFormat</apiName><shortdesc>
+	 图片格式枚举类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图片格式枚举类 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:BINARY"><apiName>BINARY</apiName><shortdesc>
+		 BINARY 格式。只有当地图图片的格式设置为 “BINARY” 时，<code>NAResultMapImage.imageData</code> 中才会存储图片的二进制内容，如果地图图片的格式设置为其他格式，<code>MapImage.imageData</code> 的值为空。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>binary</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 BINARY 格式。只有当地图图片的格式设置为 “BINARY” 时，<code>NAResultMapImage.imageData</code> 中才会存储图片的二进制内容，如果地图图片的格式设置为其他格式，<code>MapImage.imageData</code> 的值为空。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:BMP"><apiName>BMP</apiName><shortdesc>
+		 BMP 格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>bmp</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 BMP 格式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:DEFAULT"><apiName>DEFAULT</apiName><shortdesc>
+		 默认的图片输出格式，即 PNG 格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>default</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 默认的图片输出格式，即 PNG 格式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:EMF"><apiName>EMF</apiName><shortdesc>
+		 EMF 格式，该格式暂不支持。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>emf</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 EMF 格式，该格式暂不支持。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:EPS"><apiName>EPS</apiName><shortdesc>
+		 EPS 格式，该格式暂不支持。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>eps</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 EPS 格式，该格式暂不支持。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:GIF"><apiName>GIF</apiName><shortdesc>
+		 GIF 格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>gif</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 GIF 格式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:JPG"><apiName>JPG</apiName><shortdesc>
+		 JPG 格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>jpg</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 JPG 格式。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:PDF"><apiName>PDF</apiName><shortdesc>
+		 {iServerJava6R_OutputFormat_attribute_PDF_D} 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>pdf</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 {iServerJava6R_OutputFormat_attribute_PDF_D} 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:OutputFormat:PNG"><apiName>PNG</apiName><shortdesc>
+		 PNG 格式。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>png</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 PNG 格式。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:PointWithMeasure"><apiName>PointWithMeasure</apiName><shortdesc>
+	 路由点类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 路由点类.
+	 <P>路由点是指具有线性度量值(Measure)的二维地理坐标点。</P> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:PointWithMeasure:PointWithMeasure"><apiName>PointWithMeasure</apiName><shortdesc>
+		 初始化 PointWithMeasure 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 PointWithMeasure 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PointWithMeasure:measure:get"><apiName>measure</apiName><shortdesc>
+		 路由点的度量值。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 路由点的度量值。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PointWithMeasure:x:get"><apiName>x</apiName><shortdesc>
+		 路由点的 x 坐标值。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 路由点的 x 坐标值。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PointWithMeasure:y:get"><apiName>y</apiName><shortdesc>
+		 路由点的 y 坐标值。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 路由点的 y 坐标值。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixService"><apiName>ComputeWeightMatrixService</apiName><shortdesc>
+	 耗费矩阵分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 耗费矩阵分析服务类. 
+	 <p>耗费矩阵是根据交通网络分析通用参数（TransportationAnalystParameter）来计算一个二维数组，用来存储任意两点间的资源消耗。<br/>该类负责将耗费矩阵分析参数传递到服务端，并获取服务端返回的分析结果，将其存放于 ComputeWeightMatrixResult 类中。用户若需获取服务端返回的原始结果，需监听 ComputeWeightMatrixEvent.PROCESS_COMPLETE 事件，该事件中即存有原始结果，又存有最终结果（ComputeWeightMatrixResult）。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystParameter"><linktext>TransportationAnalystParameter</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#ComputeWeightMatrixResult"><linktext>ComputeWeightMatrixResult</linktext></link><link href="com.supermap.web.iServerJava6R.serviceEvents.xml#ComputeWeightMatrixEvent"><linktext>com.supermap.web.iServerJava6R.serviceEvents.ComputeWeightMatrixEvent</linktext></link></related-links><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixService_com.supermap.web.iServerJava6R.serviceEvents.ComputeWeightMatrixEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.ComputeWeightMatrixEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixService:ComputeWeightMatrixService"><apiName>ComputeWeightMatrixService</apiName><shortdesc>
+		 使用耗费矩阵分析服务地址 URL 初始化 ComputeWeightMatrixService 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>耗费矩阵分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用耗费矩阵分析服务地址 URL 初始化 ComputeWeightMatrixService 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 将客户端指定的耗费矩阵分析参数传递给服务端，与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixParameters</apiOperationClassifier><apiDesc>耗费矩阵分析参数类。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的耗费矩阵分析参数传递给服务端，与服务端完成异步通讯。.
+		 <p>与服务端异步通讯成功后，触发 ComputeWeightMatrixEvent.PROCESS_COMPLETE 事件。获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 ComputeWeightMatrixEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 ComputeWeightMatrixResult 类，获取耗费矩阵分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixResult</apiValueClassifier></apiValueDef><apiDesc>
+		 ComputeWeightMatrixResult 类，获取耗费矩阵分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationResult"><apiName>FindLocationResult</apiName><shortdesc>
+	 选址分区分析服务结果数据类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 选址分区分析服务结果数据类.
+	 <p>该类用于存放选址分区分析结果。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindLocationService"><linktext>FindLocationService</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationResult:FindLocationResult"><apiName>FindLocationResult</apiName><shortdesc>
+		 初始化 FindLocationResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindLocationResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationResult:demandResults:get"><apiName>demandResults</apiName><shortdesc>
+		 需求结果（DemandResult）对象数组。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 需求结果（DemandResult）对象数组。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#DemandResult"><linktext>DemandResult</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationResult:supplyResults:get"><apiName>supplyResults</apiName><shortdesc>
+		 资源供给结果（SupplyResult 类）对象数组。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 资源供给结果（SupplyResult 类）对象数组。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#SupplyResult"><linktext>SupplyResult</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:Path"><apiName>Path</apiName><shortdesc>
+	  交通网络分析结果路径.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	  交通网络分析结果路径. 
+	  <p>从该类中可以获取对交通网络分析结果路径的信息，包括当前路径经过的结点、弧段、该路径的路由、行驶引导、耗费等信息。</p>
+	  </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:Path"><apiName>Path</apiName><shortdesc>
+		 初始化 Path 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Path 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:edgeFeatures:get"><apiName>edgeFeatures</apiName><shortdesc>
+		 分析结果路径途经弧段要素集合，每条弧段要素为 Feature 类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 分析结果路径途经弧段要素集合，每条弧段要素为 Feature 类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:edgeIDs:get"><apiName>edgeIDs</apiName><shortdesc>
+		 分析结果路径途经弧段 ID 号集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 分析结果路径途经弧段 ID 号集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:nodeFeatures:get"><apiName>nodeFeatures</apiName><shortdesc>
+		 分析结果路径途经结点要素集合。每个结点要素为 Feature 类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 分析结果路径途经结点要素集合。每个结点要素为 Feature 类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:nodeIDs:get"><apiName>nodeIDs</apiName><shortdesc>
+		 分析结果路径途经结点的 ID 号集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 分析结果路径途经结点的 ID 号集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:pathGuideItems:get"><apiName>pathGuideItems</apiName><shortdesc>
+		 行驶导引数组。其中每个对象为一个行驶导引子项（PathGuideItem）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 行驶导引数组。其中每个对象为一个行驶导引子项（PathGuideItem）。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#PathGuideItem"><linktext>PathGuideItem</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:route:get"><apiName>route</apiName><shortdesc>
+		 分析结果对应的路由对象，关于路由对象请参见 Route 类。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:Route</apiValueClassifier></apiValueDef><apiDesc>
+		 分析结果对应的路由对象，关于路由对象请参见 Route 类。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#Route"><linktext>Route</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:stopWeights:get"><apiName>stopWeights</apiName><shortdesc>
+		 分析结果路径途经结点间的耗费值数组。数组中每一个元素代表了从一个结点到下一个结点间的耗费值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 分析结果路径途经结点间的耗费值数组。数组中每一个元素代表了从一个结点到下一个结点间的耗费值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Path:weight:get"><apiName>weight</apiName><shortdesc>
+		 整条路径的总耗费。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 整条路径的总耗费。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnNodeWeightNamesResult"><apiName>TurnNodeWeightNamesResult</apiName><shortdesc>
+	 获取转向权重字段服务结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取转向权重字段服务结果类.
+	 <p>该类用于存储获取转向权重字段服务执行结果，即服务端发布的所有转向权重字段。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnNodeWeightNamesResult:TurnNodeWeightNamesResult"><apiName>TurnNodeWeightNamesResult</apiName><shortdesc>
+		 初始化 TurnNodeWeightNamesResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TurnNodeWeightNamesResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnNodeWeightNamesResult:turnNodeWeightNames:get"><apiName>turnNodeWeightNames</apiName><shortdesc>
+		 转向权值字段（string）列表。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 转向权值字段（string）列表。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:TSPPath"><apiName>TSPPath</apiName><shortdesc>
+	 旅行商分析结果路径对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:Path</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 旅行商分析结果路径对象.
+	 <p>该类对应于旅行商分析（FindTSPPathsService）的结果，即最佳旅行路线。其中包含了当前旅行路线途径结点的顺序。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:TSPPath:TSPPath"><apiName>TSPPath</apiName><shortdesc>
+		 初始化 MTSPPath 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 MTSPPath 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:TSPPath:fromJson"><apiName>fromJson</apiName><shortdesc>
+		 将从服务端获取的 JSON 对象转换为 TSPPath 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回 TSPPath 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TSPPath</apiOperationClassifier></apiReturn><apiParam><apiItemName>json</apiItemName><apiType value="Object"/><apiDesc>从服务端获取的 JSON 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将从服务端获取的 JSON 对象转换为 TSPPath 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TSPPath:stopIndexes"><apiName>stopIndexes</apiName><shortdesc>
+		 以索引表示的旅行商路径途径结点的顺序.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiType value="Array"/></apiValueDef><apiDesc>
+		 以索引表示的旅行商路径途径结点的顺序.
+		 <p>比如，在某次旅行商分析中，目标结点为 nodes = {1, 3, 5, 7}，分析得出的旅行商路径途径结点的顺序为 5, 3, 7, 1，则 stopIndexes = {2, 1, 3, 0}。因为其经过的第一个节点为5，在 nodes 数组中的索引为 2，第二个途经点为3，在 nodes 数组中的索引为 1，以此类推得到 stopIndexes = {2, 1, 3, 0}。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenter"><apiName>SupplyCenter</apiName><shortdesc>
+	 资源供给中心点.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 资源供给中心点.
+	 <p>资源供给中心点，在选址分区分析（FindLocationService）中使用。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenter:SupplyCenter"><apiName>SupplyCenter</apiName><shortdesc>
+		 初始化 SupplyCenter 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SupplyCenter 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenter:maxWeight:get"><apiName>maxWeight</apiName><shortdesc>
+		 资源供给中心的最大耗费值，必设参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 资源供给中心的最大耗费值，必设参数.
+		 <p>中心点最大耗费值设置越小，表示中心点所提供的资源可影响范围越大。最大耗费值是用来限制需求点到中心点的花费。如果需求点（弧段或结点）到此中心的花费大于最大耗费值，则该需求点不属于该资源供给中心提供资源的范围。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenter:nodeID:get"><apiName>nodeID</apiName><shortdesc>
+		 资源供给中心点的结点 ID 号，必设参数。资源供给中心必须是结点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 资源供给中心点的结点 ID 号，必设参数。资源供给中心必须是结点。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenter:resourceValue:get"><apiName>resourceValue</apiName><shortdesc>
+		 资源供给中心能提供的最大服务量或商品数量，必设参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 资源供给中心能提供的最大服务量或商品数量，必设参数.
+		 <p>例如资源中心为学校，资源中心资源量表示该学校能够接纳多少学生。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenter:type:get"><apiName>type</apiName><shortdesc>
+		 资源供给中心点的类型常量，由 SupplyCenterType 类定义。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 资源供给中心点的类型常量，由 SupplyCenterType 类定义。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#SupplyCenterType"><linktext>SupplyCenterType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting"><apiName>TransportationAnalystResultSetting</apiName><shortdesc>
+	 交通网络分析结果参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通网络分析结果参数类.
+	 <p>通过该类设置交通网络分析的结果参数，包括是否返回弧段、是否返回结点、是否返回行驶导引等。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystResultSetting"><linktext>TransportationAnalystResultSetting</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:TransportationAnalystResultSetting"><apiName>TransportationAnalystResultSetting</apiName><shortdesc>
+		 初始化 TransportationAnalystResultSetting 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransportationAnalystResultSetting 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnEdgeFeatures:get"><apiName>returnEdgeFeatures</apiName><shortdesc>
+		 交通网络分析结果参数类.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 交通网络分析结果参数类.
+		 <p>弧段要素包括弧段的几何信息和属性信息。其中返回的弧段要素是否包含几何信息可通过 returnEdgeGeometry 字段设置。默认为 false。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystResultSetting/returnEdgeGeometry"><linktext>returnEdgeGeometry</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnEdgeGeometry:get"><apiName>returnEdgeGeometry</apiName><shortdesc>
+		 获取或设置分析结果的弧段集合中是否包含各弧段的几何信息。默认为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置分析结果的弧段集合中是否包含各弧段的几何信息。默认为 false.
+		 <p>当 ReturnEdgeFeatures 属性值为 true 时，该属性有效。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystResultSetting/returnEdgeFeatures"><linktext>returnEdgeFeatures</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnEdgeIDs:get"><apiName>returnEdgeIDs</apiName><shortdesc>
+		 获取或设置分析结果中是否包含途经弧段的 ID 集合。默认为 false。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置分析结果中是否包含途经弧段的 ID 集合。默认为 false。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnNodeFeatures:get"><apiName>returnNodeFeatures</apiName><shortdesc>
+		 获取或设置分析结果中是否包含结点要素集合。默认为 false。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置分析结果中是否包含结点要素集合。默认为 false。.
+		 <p>结点要素包括结点的几何信息和属性信息。其中返回的结点要素是否包含几何信息可通过 returnNodeGeometry 字段设置。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystResultSetting/returnNodeGeometry"><linktext>returnNodeGeometry</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnNodeGeometry:get"><apiName>returnNodeGeometry</apiName><shortdesc>
+		 获取或设置分析结果的结点要素集合中是否包含各结点的几何信息。默认为 false。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置分析结果的结点要素集合中是否包含各结点的几何信息。默认为 false。.
+		 <p>当 ReturnNodeFeatures 属性值为 true 时，该属性有效。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystResultSetting/returnNodeFeatures"><linktext>returnNodeFeatures</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnNodeIDs:get"><apiName>returnNodeIDs</apiName><shortdesc>
+		 获取或设置分析结果中是否包含途经结点的 ID 集合。默认为 false。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置分析结果中是否包含途经结点的 ID 集合。默认为 false。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnPathGuides:get"><apiName>returnPathGuides</apiName><shortdesc>
+		 获取或设置分析结果中是否包含行驶导引（PathGuideItem）集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置分析结果中是否包含行驶导引（PathGuideItem）集合。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#PathGuideItem"><linktext>PathGuideItem</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting:returnRoutes:get"><apiName>returnRoutes</apiName><shortdesc>
+		 获取或设置分析结果中是否包含路由对象（Route）的集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置分析结果中是否包含路由对象（Route）的集合。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#Route"><linktext>Route</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnType"><apiName>TurnType</apiName><shortdesc>
+	 转弯方向枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 转弯方向枚举类.
+	 <p>该常量用在行驶导引子项类中。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnType:AHEAD"><apiName>AHEAD</apiName><shortdesc>
+		 向前直行。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>AHEAD</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 向前直行。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnType:BACK"><apiName>BACK</apiName><shortdesc>
+		 掉头。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BACK</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 掉头。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnType:END"><apiName>END</apiName><shortdesc>
+		 终点，不转弯。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>END</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 终点，不转弯。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnType:LEFT"><apiName>LEFT</apiName><shortdesc>
+		 左转弯。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LEFT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左转弯。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnType:NONE"><apiName>NONE</apiName><shortdesc>
+		 无效值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NONE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无效值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TurnType:RIGHT"><apiName>RIGHT</apiName><shortdesc>
+		 右转弯。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>RIGHT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 右转弯。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasService"><apiName>FindServiceAreasService</apiName><shortdesc>
+	 服务区分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务区分析服务类.
+	 <p>服务区分析属于网络分析的一种，是以指定服务站点为中心，在一定服务范围内查找网络上服务站点能够提供服务的区域范围。例如：计算某快餐店能够在30分钟内送达快餐的区域。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindServiceAreasResult"><linktext>FindServiceAreasResult</linktext></link><link href="com.supermap.web.iServerJava6R.serviceEvents.xml#FindServiceAreasEvent"><linktext>com.supermap.web.iServerJava6R.serviceEvents.FindServiceAreasEvent</linktext></link></related-links><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasService_com.supermap.web.iServerJava6R.serviceEvents.FindServiceAreasEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.FindServiceAreasEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasService:FindServiceAreasService"><apiName>FindServiceAreasService</apiName><shortdesc>
+		 使用网络分析服务地址初始化 FindServiceAreasService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>网络分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用网络分析服务地址初始化 FindServiceAreasService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 将客户端指定的服务区分析参数传递给服务端，与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters</apiOperationClassifier><apiDesc>服务区分析参数类。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的服务区分析参数传递给服务端，与服务端完成异步通讯。.
+		 <p>与服务端异步通讯成功后，触发 FindServiceAreasEvent.PROCESS_COMPLETE 事件。获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 FindServiceAreasEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 FindServiceAreasResult类，获取服务端返回的服务区分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasResult</apiValueClassifier></apiValueDef><apiDesc>
+		 FindServiceAreasResult类，获取服务端返回的服务区分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathParameters"><apiName>FindPathParameters</apiName><shortdesc>
+	 最佳路径分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最佳路径分析参数类.
+	 <p>该类用于设置进行最佳路径分析时所需的参数，如路径途经的结点、分析结果类型等信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathParameters:FindPathParameters"><apiName>FindPathParameters</apiName><shortdesc>
+		 初始化 FindPathParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindPathParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathParameters:hasLeastEdgeCount:get"><apiName>hasLeastEdgeCount</apiName><shortdesc>
+		 是否返回弧段数最少的路径。默认为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否返回弧段数最少的路径。默认为 false.
+		 <p>true 表示结果为最短且弧段数最少的路径。由于弧段数少并不代表弧段阻力最小，所以此时查出的结果可能不是最佳路径。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathParameters:isAnalyzeById:get"><apiName>isAnalyzeById</apiName><shortdesc>
+		 获取或设置最佳路径分析途经的结点（nodes）是否以 ID 的形式设置，默认为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置最佳路径分析途经的结点（nodes）是否以 ID 的形式设置，默认为 false.
+		 <p>最佳路径分析途经的结点可以使用两种方式设置：结点 ID 号或 点坐标（Point2D 类型）。当该字段为 true 时，表示通过结点 ID 指定途经结点，即 <code>FindPathParameters.nodes = [ID1,ID2,...]</code>；反之表示通过结点坐标指定途经点，即 <code>FindPathParameters.nodes = [new Point2D(x1,y1),new Point2D（x2,y2）,...]</code> 。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathParameters:nodes:get"><apiName>nodes</apiName><shortdesc>
+		 最佳路径分析经过的结点，必设字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 最佳路径分析经过的结点，必设字段.
+		 <P>该字段至少包含两个点。 当 <code>FindPathParameters.isAnalyzeById = false</code> 时，nodes 应为点的坐标数组；当 <code>FindPathParameters.isAnalyzeById = true</code> 时，nodes 应为点的 ID 数组。</P> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindPathParameters/isAnalyzeById"><linktext>isAnalyzeById</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathParameters:parameter:get"><apiName>parameter</apiName><shortdesc>
+		 TransportationAnalystParameter 对象，交通网络分析通用参数。必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 TransportationAnalystParameter 对象，交通网络分析通用参数。必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:EdgeWeightNamesResult"><apiName>EdgeWeightNamesResult</apiName><shortdesc>
+	 耗费字段分析服务结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 耗费字段分析服务结果类.
+	 <p>该类用于存储获取耗费字段服务执行结果，即服务端发布的所有耗费字段。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#GetEdgeWeightNamesService"><linktext>GetEdgeWeightNamesService</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:EdgeWeightNamesResult:EdgeWeightNamesResult"><apiName>EdgeWeightNamesResult</apiName><shortdesc>
+		 初始化 EdgeWeightNamesResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 EdgeWeightNamesResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:EdgeWeightNamesResult:edgeWeightNames:get"><apiName>edgeWeightNames</apiName><shortdesc>
+		 耗费字段（string）列表。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 耗费字段（string）列表。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesResult"><apiName>FindClosestFacilitiesResult</apiName><shortdesc>
+	 最近设施分析服务结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最近设施分析服务结果类.
+	 <p>该类用于存储最近设施分析结果，即事件点到最近设施点之间的路径。<br/>注意：最近设施分析结果可以有多条路径，这取决于 FindClosestFacilitiesParameters.expectFacilityCount 属性。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesParameters"><linktext>FindClosestFacilitiesParameters</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesResult:FindClosestFacilitiesResult"><apiName>FindClosestFacilitiesResult</apiName><shortdesc>
+		 初始化 FindClosestFacilitiesResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindClosestFacilitiesResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesResult:facilityPathList:get"><apiName>facilityPathList</apiName><shortdesc>
+		 获取最近设施分析结果路径集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取最近设施分析结果路径集合.
+		 <p>集合中的每个对象即为一条路径（ClosestFacilityPath），对象个数取决于 FindClosestFacilitiesParameters.expectFacilityCount 属性。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#ClosestFacilityPath"><linktext>ClosestFacilityPath</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathService"><apiName>FindPathService</apiName><shortdesc>
+	 最佳路径分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最佳路径分析服务类.
+	 <p>最佳路径是在网络数据集中指定一些结点，按照顺序访问结点从而求解起止点之间阻抗最小的路径。例如如果要顺序访问1、2、3、4四个结点，则需要分别找到1、2结点间的最佳路径 R1—2，2、3 间的最佳路径 R2—3 和 3、4结点间的最佳路径 R3—4，顺序访问1、2、3、4四个结点的最佳路径就是 R= R1—2 + R2—3 + R3—4。<br/>阻抗就是指从一点到另一点的耗费，在实际应用中我们可以将距离、时间、花费等作为阻抗条件。阻抗最小也就可以理解为从一点到另一点距离最短、时间最少、花费最低等。当两点间距离最短时为最短路径，它是最佳路径问题的一个特例。阻抗值通过 <code>TransportationAnalystParameter.weightFieldName</code> 设置。<br/>计算最佳路径除了受阻抗影响外，还受转向字段的影响。转向值通过 <code>TransportationAnalystParameter.turnWeightField</code> 设置。<br/>最佳路径属于网络分析的一种。网络分析是针对网络数据集的应用。网络数据集为具有拓扑关系的包含了一个网络结点子数据集的线图层，因此网络数据集拥有两个属性表，一个是记录弧段信息的属性表，一个是记录结点信息的属性表。<br/>最佳路径分析和旅行商分析都是在网络中寻找遍历所有指定结点的最经济的路径，区别在于遍历所有结点的过程中对结点访问顺序不同。最佳路径分析必须按照指定顺序对站点进行访问，而旅行商分析是无序的路径分析。<br/>该类负责将客户端指定的最佳路径分析参数传递给服务端，并接收服务端返回的结果数据，将最终结果存储于 FindPathResult 中。用户若需获取服务端返回的原始结果，需监听 FindPathEvent.PROCESS_COMPLETE 事件。该事件中既存有服务端返回的原始结果，又存有可在客户端显示的最终结果（FindPathResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindPathResult"><linktext>FindPathResult</linktext></link><link href="com.supermap.web.iServerJava6R.serviceEvents.xml#FindPathEvent"><linktext>com.supermap.web.iServerJava6R.serviceEvents.FindPathEvent</linktext></link></related-links><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathService_com.supermap.web.iServerJava6R.serviceEvents.FindPathEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.FindPathEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathService:FindPathService"><apiName>FindPathService</apiName><shortdesc>
+		 使用网络分析服务地址 URL 实例化 FindPathService 类的新实例。.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>与客户端交互的网络分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用网络分析服务地址 URL 实例化 FindPathService 类的新实例。.
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 将客户端指定的最佳路径分析参数传递给服务端，与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。有关 AsyncToken 类的详细信息请参见 “ActionScript 3.0 语言和组件参考”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindPathParameters</apiOperationClassifier><apiDesc>最佳路径分析参数类。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的最佳路径分析参数传递给服务端，与服务端完成异步通讯。.
+		 <p>与服务端异步通讯成功后，触发 FindPathEvent.PROCESS_COMPLETE 事件。因此获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 FindPathEvent.PROCESS_COMPLETE 事件获取。</p>
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 FindPathResult 类。获取服务端返回的最佳路径分析结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindPathResult</apiValueClassifier></apiValueDef><apiDesc>
+		 FindPathResult 类。获取服务端返回的最佳路径分析结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter"><apiName>TransportationAnalystParameter</apiName><shortdesc>
+	 交通网络分析通用参数.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 交通网络分析通用参数.
+	 <p>该类主要用来提供交通网络分析所需的通用参数。通过本类可以设置障碍边、障碍点、权值字段信息的名称标识、转向权值字段信息，以及分析结果参数。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystResultSetting"><linktext>TransportationAnalystResultSetting</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystParameter/weightFieldName"><linktext>weightFieldName</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystParameter/turnWeightField"><linktext>turnWeightField</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter:TransportationAnalystParameter"><apiName>TransportationAnalystParameter</apiName><shortdesc>
+		 初始化 TransportationAnalystParameter 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 TransportationAnalystParameter 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter:barrierEdgeIDs:get"><apiName>barrierEdgeIDs</apiName><shortdesc>
+		 网络分析中障碍弧段的 ID 数组。弧段设置为障碍边之后，表示双向都不通。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 网络分析中障碍弧段的 ID 数组。弧段设置为障碍边之后，表示双向都不通。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter:barrierNodeIDs:get"><apiName>barrierNodeIDs</apiName><shortdesc>
+		 网络分析中障碍点的 ID 数组。结点设置为障碍点之后，表示任何方向都不能通过此结点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 网络分析中障碍点的 ID 数组。结点设置为障碍点之后，表示任何方向都不能通过此结点。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter:resultSetting:get"><apiName>resultSetting</apiName><shortdesc>
+		 TransportationAnalystResultSetting 对象，设置分析结果的返回内容。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystResultSetting</apiValueClassifier></apiValueDef><apiDesc>
+		 TransportationAnalystResultSetting 对象，设置分析结果的返回内容。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter:turnWeightField:get"><apiName>turnWeightField</apiName><shortdesc>
+		 转向权重字段的名称.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 转向权重字段的名称.
+		 <p><strong>转向表介绍：</strong><br/>通常在网络图层中相交的弧段之间是可以连通的，比如 AE、BE、CE、DE 四个弧段相交于 E 点，这四个弧段呈十字交叉形状（通常可以代表一个十字路口）。如果在没有任何特殊设置的情况下，从 A 出发到达 E 结点然后可以向任意路口（B 点、C 点、D 点）转弯。但是在现实世界中，往往会有单行线，禁行线等的特殊情况，比如从结点 E 到 C 点是禁行的，从结点 E 到 B 点可以通行，但是通行的耗费比较大（比如堵车等情况），从结点 E 到 D 点可以畅通无阻的通行，那么如果从 A 出发所能通行的线路最优选择就是先到达结点 E 然后转向 ED 弧段，其次的选择就是到达 E 结点后转向 EB 弧段，其他的转弯方向都不可行。</p> 
+		 <p>为了能够准确的表达出与现实世界相同规则，在网络分析中专门提供了转向表，通过转向表来设置这些特殊规则。<br/>转向表是一个纯二维表格的属性表数据集，每一条记录都表达从一个弧段途经网络结点到达相连的另一弧段的相关信息。它一般包含起始弧段字段（FromArcID）,终止弧段字段（ToArcID）,结点标识字段（NodeID）,花费字段（Cost）四个字段（可以用多个花费字段），这些字段分别与网络数据的弧段、结点属性中的字段相关联。转弯耗费通常是有方向性的，转弯的负耗费或零耗费值一般为禁止转弯。关于如何构建和发布转向信息资源，请参见 《SuperMap iServer Java 6R 帮助文档》。</p>
+		 <p>转向表在服务端构建并发布，对于客户端而言，用户在设置该属性时，只需要从服务端发布的可用转向权重字段中选择其中之一即可。可以通过 GetTurnNodeWeightNamesService 服务功能获取服务端发布的所有转向权重字段。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter:weightFieldName:get"><apiName>weightFieldName</apiName><shortdesc>
+		 权重字段（也称作耗费字段、阻力字段）名称.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 权重字段（也称作耗费字段、阻力字段）名称.
+		 <p>标识了进行网络分析时所使用的权重字段，也称作阻力字段，例如表示时间、长度等的字段都可以用作阻力字段。该字段默认值为服务器发布的所有权重字段的第一个字段。</p> 
+		 <p>注意：该属性值必须是服务端发布的所有权重字段中的一个，若该属性值为空则默认为服务端发布的所有权重字段中的第一个。可以通过 GetEdgeWeightNamesService 服务功能获取服务端发布的所有权重字段。</p>
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult"><apiName>SupplyResult</apiName><shortdesc>
+	 选址分区的资源供给中心对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 选址分区的资源供给中心对象.
+	 <p>该类对应于选址分区分析中的资源提供者（DemandResult 为资源需求者），其中包括资源供给中心的类型、ID、最大阻值、资源量等信息。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindLocationService"><linktext>FindLocationService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#DemandResult"><linktext>DemandResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:SupplyResult"><apiName>SupplyResult</apiName><shortdesc>
+		 初始化 SupplyResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SupplyResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:actualResourceValue:get"><apiName>actualResourceValue</apiName><shortdesc>
+		 资源供给中心实际提供的资源量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 资源供给中心实际提供的资源量。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:averageWeight:get"><apiName>averageWeight</apiName><shortdesc>
+		 从该资源供给中心到每个需求对象的平均耗费（阻值）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 从该资源供给中心到每个需求对象的平均耗费（阻值）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:demandCount:get"><apiName>demandCount</apiName><shortdesc>
+		 该资源提供中心所服务的需求对象（点或弧段）的数量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 该资源提供中心所服务的需求对象（点或弧段）的数量。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:maxWeight:get"><apiName>maxWeight</apiName><shortdesc>
+		 各个需求对象到资源供给中心的最大耗费（阻值）.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 各个需求对象到资源供给中心的最大耗费（阻值）.
+		 <p>如果需求对象（如弧段或结点）到此中心的花费大于此值，则在分析时该对象不被该资源供给中心考虑。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:nodeID:get"><apiName>nodeID</apiName><shortdesc>
+		 资源供给中心在网络数据集中的 ID 号。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 资源供给中心在网络数据集中的 ID 号。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:resourceValue:get"><apiName>resourceValue</apiName><shortdesc>
+		 资源供给中心的资源量.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 资源供给中心的资源量.
+		 <p>资源量是表示中心点能提供的最大服务量或商品数量。例如资源中心为学校，资源中心资源量表示该学校能够接纳多少学生。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:totalWeights:get"><apiName>totalWeights</apiName><shortdesc>
+		 从当前资源供给中心到所有需求点的总耗费（阻值）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 从当前资源供给中心到所有需求点的总耗费（阻值）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyResult:type:get"><apiName>type</apiName><shortdesc>
+		 资源供给中心的类型常量，由 SupplyCenterType 类定义。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 资源供给中心的类型常量，由 SupplyCenterType 类定义。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#SupplyCenterType"><linktext>SupplyCenterType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixResult"><apiName>ComputeWeightMatrixResult</apiName><shortdesc>
+	 耗费矩阵分析服务结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 耗费矩阵分析服务结果类.
+	 <p>该类用于存储了指定的耗费矩阵结点数组（ComputeWeightMatrixParameters.nodes）中任意两点间的资源耗费。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixResult:ComputeWeightMatrixResult"><apiName>ComputeWeightMatrixResult</apiName><shortdesc>
+		 初始化 ComputeWeightMatrixResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ComputeWeightMatrixResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixResult:weightMatrix:get"><apiName>weightMatrix</apiName><shortdesc>
+		 耗费矩阵数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 耗费矩阵数组.
+		 <p>数组中每个元素代表矩阵中的一行。矩阵为 n*n 维，n 为 ComputeWeightMatrixParameters.nodes 中结点的个数。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:GetEdgeWeightNamesService"><apiName>GetEdgeWeightNamesService</apiName><shortdesc>
+	 获取耗费字段服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取耗费字段服务类.
+	 <p>用于网络分析的耗费字段由服务端发布，以资源的形式存储在服务器端。客户端通过耗费字段资源的 URL 就能获取到当前可用的所有耗费字段，然后从中选择本次网络分析需要的耗费字段即可。<br/>该类根据耗费字段资源的 URL 从服务端获取耗费字段，并将结果存放于 EdgeWeightNamesResult 类中。用户若需获取服务端返回的原始结果，需监听 EdgeWeightNamesEvent.PROCESS_COMPLETE 事件，该事件中即存有原始结果，又存有最终结果（EdgeWeightNamesResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#EdgeWeightNamesResult"><linktext>EdgeWeightNamesResult</linktext></link><link href="com.supermap.web.iServerJava6R.serviceEvents.xml#EdgeWeightNamesEvent"><linktext>com.supermap.web.iServerJava6R.serviceEvents.EdgeWeightNamesEvent</linktext></link></related-links><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:GetEdgeWeightNamesService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:GetEdgeWeightNamesService_com.supermap.web.iServerJava6R.serviceEvents.EdgeWeightNamesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.EdgeWeightNamesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:GetEdgeWeightNamesService:GetEdgeWeightNamesService"><apiName>GetEdgeWeightNamesService</apiName><shortdesc>
+		 使用服务地址 URL 初始化 GetEdgeWeightNamesService  类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>耗费字段资源地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务地址 URL 初始化 GetEdgeWeightNamesService  类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:GetEdgeWeightNamesService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据转向权重字段资源地址与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据转向权重字段资源地址与服务端完成异步通讯。.
+		  <p>与服务端异步通讯成功后，触发 TurnNodeWeightNamesEvent.PROCESS_COMPLETE 事件。获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 TurnNodeWeightNamesEvent.PROCESS_COMPLETE 事件获取。</p>
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:GetEdgeWeightNamesService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 EdgeWeightNamesResult 类，获取服务端返回的耗费字段信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:EdgeWeightNamesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 EdgeWeightNamesResult 类，获取服务端返回的耗费字段信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:Route"><apiName>Route</apiName><shortdesc>
+	 路由对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 路由对象.
+	 <p>路由对象为一系列有序的带有属性值 M 的 x，y 坐标对，其中 M 值为该结点的距离属性（到已知点的距离）。路由数据模型实际就是带 M 值的线性数据模型。交通部门一般用线性参考系来确定沿线道路、河流和管线等运输路径的事件（如事故、限速）和设施（如桥梁、交叉口）。线性参照系从已知点（如路径的起点、里程碑标记或道路交叉口）用距离测量来确定事件的位置。最常见的路由数据模型的例子就是高速公路上的里程碑，交通管制部门经常使用高速公路上的里程碑来标注并管理高速公路的路况、车辆的行驶限速和高速事故点等。基于路由数据模型，可以利用动态分段功能进行动态事件定位，即根据指定条件来定位点事件（如事故点、桥梁等）或者线事件（如限速路段、路况等）。<br/><img src="../../../../../images/Route.png"/><img src="../../../../../images/RouteTable.png"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:Route:Route"><apiName>Route</apiName><shortdesc>
+		 初始化 Route 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Route 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Route:length:get"><apiName>length</apiName><shortdesc>
+		 路由对象的长度，单位与数据集的单位相同。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 路由对象的长度，单位与数据集的单位相同。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Route:line:get"><apiName>line</apiName><shortdesc>
+		 路由对应的线几何对象，ServerGeometry 类型.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 路由对应的线几何对象，ServerGeometry 类型.
+		 <p>如果要将服务端返回的路由对象显示在客户端需使用 <code>ServerGeometry.toGeometry()</code> 方法转换为客户端几何对象。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Route:maxM:get"><apiName>maxM</apiName><shortdesc>
+		 最大线性度量值，即所有结点到起始点的量算距离中最大值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 最大线性度量值，即所有结点到起始点的量算距离中最大值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Route:minM:get"><apiName>minM</apiName><shortdesc>
+		 最小线性度量值，即所有结点到起始点的量算距离中最大值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 最小线性度量值，即所有结点到起始点的量算距离中最大值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Route:points:get"><apiName>points</apiName><shortdesc>
+		 路由点（PointWithMeasure）集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 路由点（PointWithMeasure）集合。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#PointWithMeasure"><linktext>PointWithMeasure</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:Route:region:get"><apiName>region</apiName><shortdesc>
+		 路由对应的面几何对象，Geometry 类型.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 路由对应的面几何对象，Geometry 类型.
+		 <p>对于没有封闭的路由对象，转换为面几何对象时，会把首尾自动连起来。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsResult"><apiName>FindMTSPPathsResult</apiName><shortdesc>
+	 多旅行商分析服务结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 多旅行商分析服务结果类.
+	 <p>该类用于存储多旅行商分析的结果，即从配送中心点依次向各个配送目标点配送物资的最佳路径。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsResult:FindMTSPPathsResult"><apiName>FindMTSPPathsResult</apiName><shortdesc>
+		 初始化 FindMTSPPathsResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindMTSPPathsResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsResult:mtspPathList:get"><apiName>mtspPathList</apiName><shortdesc>
+		 多旅行商分析结果路径数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 多旅行商分析结果路径数组.
+		 <p>该属性为多维数组，其中包含每个配送中心点依次向所负责的配送目标点配送物资的最佳路径（MTSPPath）。数组大小取决配送中心点的个数。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#MTSPPath"><linktext>MTSPPath</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters"><apiName>FindClosestFacilitiesParameters</apiName><shortdesc>
+	 最近设施分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最近设施分析参数类.
+	 <p>该类用于设置最近设施分析（FindClosestFacilitiesService）所需的参数。如：事件点、设施点、交通网络通用参数、分析半径等。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesService"><linktext>FindClosestFacilitiesService</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:FindClosestFacilitiesParameters"><apiName>FindClosestFacilitiesParameters</apiName><shortdesc>
+		 初始化 FindClosestFacilitiesParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindClosestFacilitiesParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:event:get"><apiName>event</apiName><shortdesc>
+		 事件点，一般为需要获得服务的事件位置，必设字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 事件点，一般为需要获得服务的事件位置，必设字段.
+		 <p>可以通过两种方式赋予事件点：当该类中属性 <code>isAnalyzeById = true</code> 时，则该属性值类型为事件点 ID 号；当 <code>isAnalyzeById = false</code> 时，则该属性值类型为事件点坐标（Point2D 类型）。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesParameters/isAnalyzeById"><linktext>isAnalyzeById</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:expectFacilityCount:get"><apiName>expectFacilityCount</apiName><shortdesc>
+		 期望返回的最近设施个数。默认值为 1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>1
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 期望返回的最近设施个数。默认值为 1。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:facilities:get"><apiName>facilities</apiName><shortdesc>
+		 设施点集合，一般为提供服务的服务设施位置，必设字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 设施点集合，一般为提供服务的服务设施位置，必设字段.
+		 <p>可以通过两种方式赋予设施点：当该类中属性 <code>isAnalyzeById = true</code> 时，则该属性值类型为设施点 ID 号集合；当 <code>isAnalyzeById = false</code> 时，则该属性值类型为设施点坐标（Point2D 类型）集合。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesParameters/isAnalyzeById"><linktext>isAnalyzeById</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:fromEvent:get"><apiName>fromEvent</apiName><shortdesc>
+		 是否从事件点到设施点进行查找，默认值为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否从事件点到设施点进行查找，默认值为 false.
+		 <p>最近设施分析主要是通过设施点和事件点之间最优的路线来分析在一定范围内哪个或哪些设施与事件点有最优路线的关系。这个行走线路是通过网络图层进行网络分析算法计算出来的两点间的最优路线。由于存在从 A 点到 B 点与从 B 点到 A 点的耗费不一样的情况，因此起止点不同可能会得到不同的最优路线。因此在进行最近设施分析之前，需要设置获取的最优路线的方向，即是以事件点作为起点到最近设施点的方向分析，还是以最近设施点为起点到事件点的方向分析。如果需要以事件点作为起点到设施点方向进行查找，设置该字段值为 true；默认为 false，表示从设施点到事件点进行查找。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:isAnalyzeById:get"><apiName>isAnalyzeById</apiName><shortdesc>
+		 获取或设置事件点（event）和设施点（facilities）是否以 ID 的形式设置，默认为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置事件点（event）和设施点（facilities）是否以 ID 的形式设置，默认为 false.
+		 <p>事件点和设施点可以使用两种方式设置：ID 号或坐标值（Point2D 类型）。当该字段为 true 时，表示通过 ID 指定事件点和设施点，如 <code>FindClosestFacilitiesParameters.event = ID</code>；反之表示通过坐标指定事件点和设施点，如<code>FindClosestFacilitiesParameters.event = new Point2D(x1,y1)</code>。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesParameters/event"><linktext>event</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesParameters/facilities"><linktext>facilities</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:maxWeight:get"><apiName>maxWeight</apiName><shortdesc>
+		 查找半径。单位与该类中 parameter 字段（交通网络分析通用参数）中设置的权重字段一致。默认值为0，表示查找全网络。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 查找半径。单位与该类中 parameter 字段（交通网络分析通用参数）中设置的权重字段一致。默认值为0，表示查找全网络。.
+		 <p>例如事件发生点是一起交通事故，要求查找在10分钟内能到达的最近医院，超过10分钟能到达的都不予考虑。那么需要将属中 parameter 的 weightFieldName 设置为表示时间的权重字段，然后设置查找范围的半径值为 10。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesParameters/parameter"><linktext>parameter</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters:parameter:get"><apiName>parameter</apiName><shortdesc>
+		 TransportationAnalystParameter 类。用于设置障碍边、障碍点、权重字段、转向权重字段、分析结果内容等信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 TransportationAnalystParameter 类。用于设置障碍边、障碍点、权重字段、转向权重字段、分析结果内容等信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsParameters"><apiName>FindTSPPathsParameters</apiName><shortdesc>
+	 旅行商分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 旅行商分析参数类.
+	 <p>该类用于设置旅行商分析所需的参数，包括分析站点、交通网络通用参数（TransportationAnalystParameter）等。<br/></p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystParameter"><linktext>TransportationAnalystParameter</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsParameters:FindTSPPathsParameters"><apiName>FindTSPPathsParameters</apiName><shortdesc>
+		 初始化 FindTSPPathParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindTSPPathParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsParameters:endNodeAssigned:get"><apiName>endNodeAssigned</apiName><shortdesc>
+		 是否指定终止点，默认为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否指定终止点，默认为 false.
+		 <p>true 表示指定终止点，即将 nodes 数组中的最后一个点作为终止点，则旅行商必须最后一个访问终止点</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindTSPPathsParameters/nodes"><linktext>nodes</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsParameters:isAnalyzeById:get"><apiName>isAnalyzeById</apiName><shortdesc>
+		 获取或设置配送中心点（centers）和配送目标点（nodes）是否以 ID 的形式设置，默认为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置配送中心点（centers）和配送目标点（nodes）是否以 ID 的形式设置，默认为 false.
+		 <p>可以使用两种方式设置：ID 号或坐标值（Point2D 类型）。当该字段为 true 时，表示通过 ID 指定分析点，如 <code>FindMTSPPathsParameters.nodes = [ID1,ID2,…]</code>；反之表示通过坐标指定分析点，如<code>FindMTSPPathsParameters.nodes = [new Point2D(x1,y1),new Point2D(x2,y2),…]</code>。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsParameters:nodes:get"><apiName>nodes</apiName><shortdesc>
+		 旅行商分析途经站点数组，必设字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 旅行商分析途经站点数组，必设字段.
+		 <p>当 <code>FindTSPPathsParameters.isAnalyzeById = false</code> 时，nodes 应为 Point2D 数组；当 <code>FindTSPPathsParameters.isAnalyzeById = true</code> 时，nodes 应为 ID 数组。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsParameters:parameter:get"><apiName>parameter</apiName><shortdesc>
+		 TransportationAnalystParameter 类。用于设置障碍边、障碍点、权重字段、转向权重字段、分析结果内容等信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 TransportationAnalystParameter 类。用于设置障碍边、障碍点、权重字段、转向权重字段、分析结果内容等信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsService"><apiName>FindMTSPPathsService</apiName><shortdesc>
+	 多旅行商分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 多旅行商分析服务类.
+	 <p>多旅行商分析属于网络分析的一种，也称为物流配送，是指在网络数据集中，给定 M 个配送中心点和 N 个配送目的地（M，N 为大于零的整数），查找经济有效的配送路径，并给出相应的行走路线。物流配送功能就是解决如何合理分配配送次序和送货路线，使配送总花费达到最小或每个配送中心的花费达到最小。<br/>例如：现在有50个报刊零售地（配送目的地），和4个报刊供应地（配送中心），现寻求这4个供应地向报刊零售地发送报纸的最优路线，属物流配送问题。下面的示意图展示了这个例子的情况以及进行多旅行商分析后的简图。<br/>如下图所示，左图中粉色大圆点代表4个报刊供应地（配送中心），而其他小圆点代表报刊零售地（配送目的地），共有50个；每一类颜色代表一个配送中心的配送方案，包括它所负责的配送目的地、配送次序以及配送线路。<br/>右图为左图中矩形框圈出的第2号配送中心的配送方案：蓝色的标有数字的小圆点是2号配送中心所负责的配送目的地（共有18个），2号配送中心将按照配送目的地上标有数字的顺序依次发送报纸，即先送1号报刊零售地，再送2号报刊零售地，依次类推，并且沿着分析得出的蓝色线路完成配送，回到配送中心。<br/>该类负责将客户端指定的多旅行商分析参数传递给服务端，并接收服务端返回的结果数据，将最终结果存放于 FindMTSPPathsResult 类中。用户若需获取服务端返回的原始结果，需监听 FindMTSPPathsEvent.PROCESS_COMPLETE 事件，该事件中即存有原始结果，又存有可在客户端显示的最终结果。<br/><img src="../../../../../images/MTSPPathsL.bmp"/><img src="../../../../../images/MTSPPathsR.bmp"/></p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsService_com.supermap.web.iServerJava6R.serviceEvents.FindMTSPPathsEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.FindMTSPPathsEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsService:FindMTSPPathsService"><apiName>FindMTSPPathsService</apiName><shortdesc>
+		 使用网络分析服务地址 URL 初始化 FindMTSPPathsService 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>网络分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用网络分析服务地址 URL 初始化 FindMTSPPathsService 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 将客户端指定的多旅行商分析参数传递给服务端，与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters</apiOperationClassifier><apiDesc>多旅行商分析参数类。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的多旅行商分析参数传递给服务端，与服务端完成异步通讯。.
+		 <p>与服务端异步通讯成功后，触发 FindMTSPPathsEvent.PROCESS_COMPLETE 事件。获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 FindMTSPPathsEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 FindMTSPPathsResult 类，获取服务端返回的多旅行分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsResult</apiValueClassifier></apiValueDef><apiDesc>
+		 FindMTSPPathsResult 类，获取服务端返回的多旅行分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters"><apiName>FindMTSPPathsParameters</apiName><shortdesc>
+	 多旅行商分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 多旅行商分析参数类.
+	 <p>该类用于设置多旅行商分析（FindMTSPPathsService）所需的参数，包括：配送中心点集合、配送目标点集合、配送模式、交通网络通用参数等信息。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindMTSPPathsService"><linktext>FindMTSPPathsService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystParameter"><linktext>TransportationAnalystParameter</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters:FindMTSPPathsParameters"><apiName>FindMTSPPathsParameters</apiName><shortdesc>
+		 初始化 FindMTSPPathsParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindMTSPPathsParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters:centers:get"><apiName>centers</apiName><shortdesc>
+		 配送中心集合，必设属性.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 配送中心集合，必设属性.
+		 <p>当 <code>FindMTSPPathsParameters.isAnalyzeById = false</code> 时，centers 应为配送中心点的坐标（Point2D）数组；当 <code>FindMTSPPathsParameters.isAnalyzeById = true</code> 时，centers 应为配送中心点的 ID 数组。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters:hasLeastTotalCost:get"><apiName>hasLeastTotalCost</apiName><shortdesc>
+		 配送模式是否为总耗费最小方案。默认为 false.]
+		 若为 true，则按照总花费最小的模式进行配送，此时可能会出现某几个配送中心点配送的花费较多而其他配送中心点的花费很少的情况。若为 false，则为局部最优，此方案会控制每个配送中心点的花费，使各个中心点花费相对平均，此时总花费不一定最小。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 配送模式是否为总耗费最小方案。默认为 false.]
+		 <p>若为 true，则按照总花费最小的模式进行配送，此时可能会出现某几个配送中心点配送的花费较多而其他配送中心点的花费很少的情况。若为 false，则为局部最优，此方案会控制每个配送中心点的花费，使各个中心点花费相对平均，此时总花费不一定最小。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters:isAnalyzeById:get"><apiName>isAnalyzeById</apiName><shortdesc>
+		 获取或设置配送中心点（centers）和配送目标点（nodes）是否以 ID 的形式设置，默认为 false.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置配送中心点（centers）和配送目标点（nodes）是否以 ID 的形式设置，默认为 false.
+		 <p>可以使用两种方式设置：ID 号或坐标值（Point2D 类型）。当该字段为 true 时，表示通过 ID 指定分析点，如 <code>FindMTSPPathsParameters.nodes = [ID1,ID2,…]</code>；反之表示通过坐标指定分析点，如<code>FindMTSPPathsParameters.nodes = [new Point2D(x1,y1),new Point2D(x2,y2),…]</code>。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava6R.networkAnalystServices.nodes.xml"><linktext>nodes</linktext></link><link href="" invalidHref="com.supermap.web.iServerJava6R.networkAnalystServices.centers.xml"><linktext>centers</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters:nodes:get"><apiName>nodes</apiName><shortdesc>
+		 配送目标点集合，必设属性.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 配送目标点集合，必设属性.
+		 <p>当 <code>FindMTSPPathsParameters.isAnalyzeById = false</code> 时，nodes 应为配送目标点的坐标（Point2D）数组；当 <code>FindMTSPPathsParameters.isAnalyzeById = true</code> 时，nodes 应为配送目标点的 ID 数组。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsParameters:parameter:get"><apiName>parameter</apiName><shortdesc>
+		 TransportationAnalystParameter 类，必设属性。用于设置障碍边、障碍点、权重字段、转向权重字段、分析结果内容等信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 TransportationAnalystParameter 类，必设属性。用于设置障碍边、障碍点、权重字段、转向权重字段、分析结果内容等信息。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystParameter"><linktext>TransportationAnalystParameter</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationService"><apiName>FindLocationService</apiName><shortdesc>
+	 选址分区分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 选址分区分析服务类.
+	 <p>选址分区分析是为了确定一个或多个待建设施的最佳或最优位置，使得设施可以用一种最经济有效的方式为需求方提供服务或者商品。选址分区不仅仅是一个选址过程，还要将需求点的需求分配到相应的新建设施的服务区中，因此称之为选址与分区。<br/>在分析过程中使用的需求点都为网络结点，即除了各种类型的中心点所对应的网络结点， 所有网络结点都作为资源需求点参与选址分区分析，如果要排除某部分结点，可以将其设置为障碍点。<br/>例子：如下图所示，某个区域还没有邮局，现在想在这个区域内建立邮局，有15个待选地点（如左图所示，蓝色方框代表 15个候选地点），将在这些待选点中选择7个最佳地点建立邮局。最佳选址要满足，居民点中的居民步行去邮局办理业务的 步行时间要在30分钟以内，同时每个邮局能够服务的居民总人数有限，在同时满足这两个条件的基础上，选址分区分析会 给出以个最佳的选址位置，并且圈出每个邮局的服务区域（如右图所示，红色点表示最后选出的7个建立邮局的最佳位置）。备注：下面两幅中的网络数据集的所有网络结点被看做是该区域的居民点全部参与选址分区分析，居民点中的居民数目即为该居民点所需服务的数量。<br/><img src="../../../../../images/Location1.bmp"/><img src="../../../../../images/Location2.bmp"/><br/>该类负责将选址分区分析所需的参数传递至服务端，并获取服务端返回的结果，将其存储于 FindLocationResult 类中。用户若需获取服务端返回的原始结果，需监听 FindLocationEvent.PROCESS_COMPLETE 事件，该事件中既存有原始结果，又存有最终结果（FindLocationResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindLocationResult"><linktext>FindLocationResult</linktext></link><link href="com.supermap.web.iServerJava6R.serviceEvents.xml#FindLocationEvent"><linktext>com.supermap.web.iServerJava6R.serviceEvents.FindLocationEvent</linktext></link></related-links><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationService_com.supermap.web.iServerJava6R.serviceEvents.FindLocationEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.FindLocationEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationService:FindLocationService"><apiName>FindLocationService</apiName><shortdesc>
+		 使用选址分区分析服务地址初始化 FindLocationService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>选址分区分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用选址分区分析服务地址初始化 FindLocationService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 将客户端指定的选址分区分析参数传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters</apiOperationClassifier><apiDesc>选址分区分析参数类。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的选址分区分析参数传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 FindLocationResult 类，获取选址分区分析结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationResult</apiValueClassifier></apiValueDef><apiDesc>
+		 FindLocationResult 类，获取选址分区分析结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:DemandResult"><apiName>DemandResult</apiName><shortdesc>
+	 选址分区分析中的需求对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 选址分区分析中的需求对象.
+	 <p>该类对应于选址分区分析中的资源需求对象（弧段或结点），其中包括需求结点或弧段的 ID、资源供给中心 ID、实际被分配的资源量以及需求结果是弧段还是结点信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:DemandResult:DemandResult"><apiName>DemandResult</apiName><shortdesc>
+		 初始化 DemandResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DemandResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DemandResult:actualResourceValue:get"><apiName>actualResourceValue</apiName><shortdesc>
+		 该需求对象实际被分配的资源量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 该需求对象实际被分配的资源量。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DemandResult:demandID:get"><apiName>demandID</apiName><shortdesc>
+		 需求结果对应的结点或弧段的 ID.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 需求结果对应的结点或弧段的 ID.
+		 <p>当该类中 isEdge 字段为 true 时，该需求对象为弧段的 ID，当 isEdge 为 false 时，为需求结点的 ID。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DemandResult:isEdge:get"><apiName>isEdge</apiName><shortdesc>
+		 true 表明需求结果对应的要素是弧段，false 表明需求结果对应的要素是结点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 true 表明需求结果对应的要素是弧段，false 表明需求结果对应的要素是结点。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:DemandResult:supplyCenter:get"><apiName>supplyCenter</apiName><shortdesc>
+		 该需求结果对象对应的资源供给中心。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenter</apiValueClassifier></apiValueDef><apiDesc>
+		 该需求结果对象对应的资源供给中心。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters"><apiName>FindServiceAreasParameters</apiName><shortdesc>
+	 服务区分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务区分析参数类.
+	 <p>该类用于设置进行服务区分析所需的参数。如：服务中心点（可多选）、中心点输入类型、中心点服务半径等信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters:FindServiceAreasParameters"><apiName>FindServiceAreasParameters</apiName><shortdesc>
+		 初始化 FindServiceAreasParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindServiceAreasParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters:centers:get"><apiName>centers</apiName><shortdesc>
+		 获取或设置服务站中心点集合。必设字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置服务站中心点集合。必设字段.
+		 <p>当该类的 IsAnalyzeById = true 时，通过结点 ID 号指定服务站点；当 ISAnalyzeById = false 时，通过点坐标（Point2D 类型）指定服务站点。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters:isAnalyzeById:get"><apiName>isAnalyzeById</apiName><shortdesc>
+		 $获取或设置是否通过节点 ID 指定服务区分析中心点，默认为 false。
+		 指定服务区分析中心点有两种方式：输入结点 ID 号或直接输入点坐标。当该字段为 true 时，表示通过结点 ID 指定服务区中心点，即 <code>FindServiceAreasParameters.Centers = [ID1,ID2,...]</code>；反之表示通过坐标（Point2D 类型）指定服务中心点，即 <code>FindServiceAreasParameters.Centers = [new Point2D(X1,Y1),new Point2D（X2,Y2）,...]</code>。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 $获取或设置是否通过节点 ID 指定服务区分析中心点，默认为 false。
+		 <p>指定服务区分析中心点有两种方式：输入结点 ID 号或直接输入点坐标。当该字段为 true 时，表示通过结点 ID 指定服务区中心点，即 <code>FindServiceAreasParameters.Centers = [ID1,ID2,...]</code>；反之表示通过坐标（Point2D 类型）指定服务中心点，即 <code>FindServiceAreasParameters.Centers = [new Point2D(X1,Y1),new Point2D（X2,Y2）,...]</code>。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters:isCenterMutuallyExclusive:get"><apiName>isCenterMutuallyExclusive</apiName><shortdesc>
+		 获取或设置是否对分析结果服务区进行互斥处理，可选参数，默认为 False 表示不进行互斥处理。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否对分析结果服务区进行互斥处理，可选参数，默认为 False 表示不进行互斥处理。.
+		 <p>若分析出的服务区有重叠的部分，则通过设置该参数进行互斥处理。如图所示左图未进行互斥处理，右图进行了互斥处理。<br/><img src="../../../../../images/ServiceAreasExclusive1.bmp"/><img src="../../../../../images/ServiceAreasExclusive2.bmp"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters:isFromCenter:get"><apiName>isFromCenter</apiName><shortdesc>
+		 获取或设置是否从中心点开始分析。默认为 false 表示不从中心点开始分析.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置是否从中心点开始分析。默认为 false 表示不从中心点开始分析.
+		 <p>从中心点开始分析和不从中心点开始分析，体现了服务中心和需要该服务的需求地的关系模式。从中心点开始分析，是一个服务中心向服务需求地提供服务；而不从中心点开始分析，是一个服务需求地主动到服务中心获得服务。例如：某个奶站向各个居民点送牛奶，如果要对这个奶站进行服务区分析，看这个奶站在允许的条件下所能服务的范围，那么在实际分析过程中就应当使用从中心点开始分析的模式；另一个例子，如果想分析一个区域的某个学校在允许的条件下所能服务的区域时，在现实中，都是学生主动来到学校学习，接受学校提供的服务，那么在实际分析过程中就应当使用不从中心点开始分析的模式。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters:parameter:get"><apiName>parameter</apiName><shortdesc>
+		 TransportationAnalystParameter 类，获取或设置交通网络分析通用参数。通过本类可以设置障碍边、障碍点、权值字段信息的名称标识、转向权值字段等信息。必设字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 TransportationAnalystParameter 类，获取或设置交通网络分析通用参数。通过本类可以设置障碍边、障碍点、权值字段信息的名称标识、转向权值字段等信息。必设字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasParameters:weights:get"><apiName>weights</apiName><shortdesc>
+		 获取或设置服务中心点的服务半径集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置服务中心点的服务半径集合.
+		 <p>该字段为一个数组，数组长度跟服务中心点个数（Centers）一致，数组中的元素与中心点集合（Centers）中的点一一对应，每个元素表示了对应的服务中心点的服务半径，超过这个服务半径的区域不予考虑，其单位与 TransportationAnalystParameter.weightFieldName 属性一致。</p>
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TransportationAnalystParameter/weightFieldName"><linktext>TransportationAnalystParameter.weightFieldName</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindServiceAreasParameters/centers"><linktext>centers</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:GetTurnNodeWeightNamesService"><apiName>GetTurnNodeWeightNamesService</apiName><shortdesc>
+	 获取转向权重字段服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取转向权重字段服务类.
+	 <p>用于从服务端获取网络分析中所需的转向权重字段，以资源的形式存储在服务器端。客户端通过转向权重字段资源的 URL 就能获取到当前可用的所有转向权重字段，然后从中选择本次网络分析所需的转向权重字段即可。<br/>该类转向权重字段资源的 URL 从服务端获取转向权重字段，并将结果存放于 TurnNodeWeightNamesResult 类中。用户若需获取服务端返回的原始结果，需监听 TurnNodeWeightNamesEvent.PROCESS_COMPLETE 事件，该事件中即存有原始结果，又存有最终结果（TurnNodeWeightNamesResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.serviceEvents.xml#TurnNodeWeightNamesEvent"><linktext>com.supermap.web.iServerJava6R.serviceEvents.TurnNodeWeightNamesEvent</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TurnNodeWeightNamesResult"><linktext>TurnNodeWeightNamesResult</linktext></link></related-links><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:GetTurnNodeWeightNamesService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:GetTurnNodeWeightNamesService_com.supermap.web.iServerJava6R.serviceEvents.TurnNodeWeightNamesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.TurnNodeWeightNamesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:GetTurnNodeWeightNamesService:GetTurnNodeWeightNamesService"><apiName>GetTurnNodeWeightNamesService</apiName><shortdesc>
+		 使用转向权重字段资源地址初始化 GetTurnNodeWeightNamesService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>转向权重字段资源地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用转向权重字段资源地址初始化 GetTurnNodeWeightNamesService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:GetTurnNodeWeightNamesService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据转向权重字段资源地址与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据转向权重字段资源地址与服务端完成异步通讯。.
+		 <p>与服务端异步通讯成功后，触发 TurnNodeWeightNamesEvent.PROCESS_COMPLETE 事件。获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 TurnNodeWeightNamesEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:GetTurnNodeWeightNamesService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 TurnNodeWeightNamesResult 类，获取转向权重字段服务结果信息，即从服务端返回的转向权重字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TurnNodeWeightNamesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 TurnNodeWeightNamesResult 类，获取转向权重字段服务结果信息，即从服务端返回的转向权重字段。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters"><apiName>FindLocationParameters</apiName><shortdesc>
+	 选址分区分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 选址分区分析参数类.
+	 <p>该类用于设置选址分区分析所需参数。包括资源供给中心点、返回结果内容、耗费定段、转向字段等。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindLocationService"><linktext>FindLocationService</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:FindLocationParameters"><apiName>FindLocationParameters</apiName><shortdesc>
+		 初始化 FindLocationParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindLocationParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:expectedSupplyCenterCount:get"><apiName>expectedSupplyCenterCount</apiName><shortdesc>
+		 期望选址分区分析结果中包含的资源供给点个数，默认值为 1.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 期望选址分区分析结果中包含的资源供给点个数，默认值为 1.
+		 <p>即通过分析，期望最终选择的资源供给点数量。当输入值为0时，最终选择的资源供给点数量默认为覆盖分析区域内所需的最少供给中心点数</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:isFromCenter:get"><apiName>isFromCenter</apiName><shortdesc>
+		 是否从中心点开始分配资源。默认为 false，表示从需求点向资源供给中心点分配.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否从中心点开始分配资源。默认为 false，表示从需求点向资源供给中心点分配.
+		 <p>由于网路数据中的弧段具有正反阻力，即弧段的正向阻力值与其反向阻力值可能不同，因此，在进行分析时，从资源供给中心开始分配资源到需求点与从需求点向资源供给中心分配这两种分配形式下，所得的分析结果会不同。<br/>下面例子说明了在实际应用中该字段的用处：<br/>* 从中心点开始分配（供给到需求）的例子：电能是从电站产生，并通过电网传送到客户那里去的。在这里，电站就是网络模型中的中心，因为它可以提供电力供应。电能的客户沿电网的线路（网络模型中的弧段）分布，他们产生了“需求”。在这种情况下，资源是通过网络由供方传输到需要来实现资源分配的。<br/>* 不从中心点开始分配（需求到供给）的例子：学校与学生的关系也构成一种在网络中供需分配关系。学校是资源提供方，它负责提供名额供适龄儿童入学。适龄儿童是资源的需求方，他们要求入学。作为需求方的适龄儿童沿街道网络分布，他们产生了对作为供给方的学校的资源--学生名额的需求。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:nodeDemandField:get"><apiName>nodeDemandField</apiName><shortdesc>
+		 资源需求量字段。必设参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 资源需求量字段。必设参数.
+		 <p>该字段是网络数据集中用于表示需求点所需资源量的字段名称。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:returnEdgeFeature:get"><apiName>returnEdgeFeature</apiName><shortdesc>
+		 是否在分析结果中包含弧段要素集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否在分析结果中包含弧段要素集合.
+		 <p>弧段要素包括弧段的空间信息和属性信息。其中返回的弧段要素是否包含空间信息可通过 returnEdgeGeometry 字段设置。默 认为 false。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:returnEdgeGeometry:get"><apiName>returnEdgeGeometry</apiName><shortdesc>
+		 分析结果中是否包含弧段的几何信息。默认为 false，表示不包含.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 分析结果中是否包含弧段的几何信息。默认为 false，表示不包含.
+		 <p>当 returnEdgeFeature 属性值为 true 时，该属性有效。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:returnNodeFeature:get"><apiName>returnNodeFeature</apiName><shortdesc>
+		 是否在分析结果中包含弧段要素集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否在分析结果中包含弧段要素集合.
+		  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:supplyCenters:get"><apiName>supplyCenters</apiName><shortdesc>
+		 资源供给中心点（SupplyCenter）集合，必设参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 资源供给中心点（SupplyCenter）集合，必设参数.
+		 <p>资源供给中心是提供资源和服务的设施，对应于网络结点，资源供给中心的相关信息包括资源量、最大阻力值、资源供给中心类型，资源供给中心在网络中所处结点的 ID 等，以便在进行选址分区分析时使用。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#SupplyCenter"><linktext>SupplyCenter</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:turnWeightField:get"><apiName>turnWeightField</apiName><shortdesc>
+		 转向权值字段的名称。可以通过 GetTurnNodeWeightNamesService 类获取服务端发布的所有转向权重字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 转向权值字段的名称。可以通过 GetTurnNodeWeightNamesService 类获取服务端发布的所有转向权重字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationParameters:weightName:get"><apiName>weightName</apiName><shortdesc>
+		 阻力字段的名称。必设参数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 阻力字段的名称。必设参数.
+		 <p>标识了进行网络分析时所使用的阻力字段，例如表示时间、长度等的字段都可以用作阻力字段。可以通过 GetEdgeWeightNamesService 类获取服务端发布的所有阻力字段。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:ClosestFacilityPath"><apiName>ClosestFacilityPath</apiName><shortdesc>
+	 最近设施分析结果路径.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:Path</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最近设施分析结果路径.
+	 <p>该类为最近设施分析结果中事件点到设施点的最佳路径。FindClosestFacilitiesResult.facilityPathList 属性中存储的对象即为 ClosestFacilityPath 的实例。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:ClosestFacilityPath:ClosestFacilityPath"><apiName>ClosestFacilityPath</apiName><shortdesc>
+		 初始化 ClosestFacilityPath 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ClosestFacilityPath 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ClosestFacilityPath:facilityIndex:get"><apiName>facilityIndex</apiName><shortdesc>
+		 该路径所到达的最近设施点在候选设施点序列（FindClosestFacilitiesParameters.facilities）中的索引号。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 该路径所到达的最近设施点在候选设施点序列（FindClosestFacilitiesParameters.facilities）中的索引号。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesParameters/facilities"><linktext>FindClosestFacilitiesParameters.facilities</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ClosestFacilityPath:facility:get"><apiName>facility</apiName><shortdesc>
+		 最近设施点.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 最近设施点.
+		 <p>当设置最近设施分析参数时，如果指定设施点时使用的是 ID 号，则返回结果也为 ID 号；如果使用的是坐标值，则返回结果也为坐标值。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesService"><apiName>FindClosestFacilitiesService</apiName><shortdesc>
+	 最近设施分析服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最近设施分析服务类.
+	 <p>最近设施分析是指在网络上给定一个事件点和一组设施点，查找从事件点到设施点(或从设施点到事件点)以最小耗费能到达的最佳路径。设施点一般为学校、超市、加油站等服务设施；事件点为需要服务设施的事件位置。例如事件发生点是一起交通事故，要求查找在10分钟内能到达的最近医院，超过10分钟能到达的都不予考虑。此例中，事故发生地即是一个事件点，周边的医院则是设施点。最近设施查找实际上也是一种路径分析，因此对路径分析起作用的障碍边、障碍点、转向表、耗费等属性在最近设施分析时同样可设置。<br/>最近设施查找属于网络分析的一种。网络分析是针对网络数据集的应用。网络数据集为具有拓扑关系的包含了一个网络结点子数据集的线图层，因此网络数据集拥有两个属性表，一个是记录弧段信息的属性表，一个是记录结点信息的属性表。<br/>该类负责将客户端指定的最近设施分析参数传递给服务端，并接收服务端返回的结果数据，将最终结果存放于 FindClosestFacilitiesResult 中。用户若需获取服务端返回的原始结果，需监听 FindClosestFacilitiesEvent.PROCESS_COMPLETE 事件。该事件中既存有服务端返回的原始结果，又存有可在客户端显示的最终结果（FindClosestFacilitiesResult）。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesService_com.supermap.web.iServerJava6R.serviceEvents.FindClosestFacilitiesEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.FindClosestFacilitiesEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesService:FindClosestFacilitiesService"><apiName>FindClosestFacilitiesService</apiName><shortdesc>
+		 使用网络分析服务地址 URL 初始化 FindClosestFacilitiesService 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>网络分析服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用网络分析服务地址 URL 初始化 FindClosestFacilitiesService 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 将客户端指定的最近设施查找参数传递给服务端，与服务端完成异步通讯。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesParameters</apiOperationClassifier><apiDesc>最近设施查找参数类。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/>public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/>public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的最近设施查找参数传递给服务端，与服务端完成异步通讯。.
+		 <p>与服务端完成异步通讯后，获取返回的结果有两种方式：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 FindClosestFacilitiesEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 FindClosestFacilitiesResult 类。获取服务端返回的最近设施查找分析结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 FindClosestFacilitiesResult 类。获取服务端返回的最近设施查找分析结果。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesResult"><linktext>FindClosestFacilitiesResult</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:SideType"><apiName>SideType</apiName><shortdesc>
+	 表示点在路的左边、右边还是在路上的枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 表示点在路的左边、右边还是在路上的枚举类.
+	 <p>该类用在行驶导引子项类中。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SideType:LEFT"><apiName>LEFT</apiName><shortdesc>
+		 路的左侧。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LEFT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 路的左侧。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SideType:MIDDLE"><apiName>MIDDLE</apiName><shortdesc>
+		 在路上（即路的中间）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>MIDDLE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 在路上（即路的中间）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SideType:NONE"><apiName>NONE</apiName><shortdesc>
+		 无效值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NONE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无效值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SideType:RIGHT"><apiName>RIGHT</apiName><shortdesc>
+		 路的右侧。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>RIGHT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 路的右侧。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem"><apiName>PathGuideItem</apiName><shortdesc>
+	 行驶导引子项类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 行驶导引子项类.
+	 <p>行驶导引由多个行驶导引子项构成，记录了如何一步步从起点行驶到终点，其中每一步就是一个行驶导引子项。每个分析结果路径中均包含该路径的行驶引导，每个行驶引导子项可以表示一个弧段，一个结点或一个站点，记录了在当前地点转弯情况、行驶方向、耗费等信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 行驶导引子项所代表的对象（弧段或结点或站点）的范围.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 行驶导引子项所代表的对象（弧段或结点或站点）的范围.
+		 <p>对弧段而言，为弧段的外接矩形；对点而言，为点本身。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:directionType:get"><apiName>directionType</apiName><shortdesc>
+		 行驶的方向.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 行驶的方向.
+		 <p>共有五个方向，即东、南、西、北、无方向。当该类中字段 isEdge 为 false 时，即为结点，则行驶方向的类型为无方向。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:distance:get"><apiName>distance</apiName><shortdesc>
+		 站点到弧段的距离.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 站点到弧段的距离.
+		 <p>该距离是指站点到最近一条弧段的距离。<br/>如下图所示，桔色点代表网络结点，蓝色代表弧段，灰色点为站点，红色线段代表距离。比如用户希望计算出从家里出发乘坐公交车去医院的最短路程，除了计算出公交线路的最短路程外，还需要计算出从家走到公交站的最短距离，这个距离就是该属性的值表示。<br/><img src="../../../../../images/tolerance.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:id:get"><apiName>id</apiName><shortdesc>
+		 行驶导引子项的 ID 号，即 edgeID 或 nodeID.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 行驶导引子项的 ID 号，即 edgeID 或 nodeID.
+		 <p>当子项所代表的对象不在网络数据上时，此值为-1。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:index:get"><apiName>index</apiName><shortdesc>
+		 行驶导引子项的序号.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 行驶导引子项的序号.
+		 <p>行驶导引子项为点时，其 Index 值用于确定在第几个路口拐弯或转向。若行驶导引对象子项为弧段时，其 Index 的值为-1。Index 指的是相对行使导引子项起点而言，在什么位置拐弯或转向进入下一个行驶导引子项（PathGuideItem）。例如：Index 的值为3时，表示从该行驶导引子项起点算起，在第3个网络结点处开始转向进入下一个行驶导引子项，如果相邻两个子项不存在转向或拐弯的情况（即属性 directionType 为 None 时），则 Index 的值为-1。 如图所示，从弧段3进入弧段4再进入弧段5，都不需要转向，那么子项结点 C、D 的 Index 值均为-1，子项结点E相对于子项起点（结点 A），其 Index 值为3。<img src="../../../../../images/PathGuideItemIndex.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:isEdge:get"><apiName>isEdge</apiName><shortdesc>
+		 判断本行驶导引子项是否是弧段。true 表示行驶导引子项是弧段，false 表示行驶导引子项不是弧段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 判断本行驶导引子项是否是弧段。true 表示行驶导引子项是弧段，false 表示行驶导引子项不是弧段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:isStop:get"><apiName>isStop</apiName><shortdesc>
+		 该子项是否为站点.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 该子项是否为站点.
+		 <p>站点为用户指定的用于做路径分析的点，站点可能与网络结点重合，也可能不在网络上。true 表示是站点，false 表示不是站点。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:length:get"><apiName>length</apiName><shortdesc>
+		 当行驶导引子项为弧段时表示弧段的长度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 当行驶导引子项为弧段时表示弧段的长度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:name:get"><apiName>name</apiName><shortdesc>
+		 行驶导引子项的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 行驶导引子项的名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:sideType:get"><apiName>sideType</apiName><shortdesc>
+		 站点是在路的左侧、右侧还是在路上的常量，由 SideType 为定义.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 站点是在路的左侧、右侧还是在路上的常量，由 SideType 为定义.
+		 <p>当该类的字段 isEdge 为 true 时将返回 <code>SideType.None</code>，表示无效值。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#SideType"><linktext>SideType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:turnAngle:get"><apiName>turnAngle</apiName><shortdesc>
+		 转弯角度。单位为度，精确到0.1度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 转弯角度。单位为度，精确到0.1度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:turnType:get"><apiName>turnType</apiName><shortdesc>
+		 转弯方向常量。当该类的字段 isEdge 为 true 时将返回 <code>TurnType.None</code>，表示无效值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 转弯方向常量。当该类的字段 isEdge 为 true 时将返回 <code>TurnType.None</code>，表示无效值。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TurnType"><linktext>TurnType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:PathGuideItem:weight:get"><apiName>weight</apiName><shortdesc>
+		 行驶导引子项的权值，即行使导引对象子项的耗费。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 行驶导引子项的权值，即行使导引对象子项的耗费。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:MTSPPath"><apiName>MTSPPath</apiName><shortdesc>
+	 多旅行商分析结果路径.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TSPPath</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 多旅行商分析结果路径.
+	 <p>该类为配送中心点依次向所负责的配送目标点发送物资的最佳路径。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:MTSPPath:MTSPPath"><apiName>MTSPPath</apiName><shortdesc>
+		 初始化 MTSPPath 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 MTSPPath 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:MTSPPath:fromJson"><apiName>fromJson</apiName><shortdesc>
+		 将从服务端返回的 JSON 对象转换为 MTSPPath 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回 MTSPPath 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:MTSPPath</apiOperationClassifier></apiReturn><apiParam><apiItemName>json</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的 JSON 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将从服务端返回的 JSON 对象转换为 MTSPPath 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:MTSPPath:center:get"><apiName>center</apiName><shortdesc>
+		 该路径对应的配送中心点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 该路径对应的配送中心点。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:MTSPPath:nodesVisited:get"><apiName>nodesVisited</apiName><shortdesc>
+		 该路径途径配送目标点集合，按访问的次序排列。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 该路径途径配送目标点集合，按访问的次序排列。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixParameters"><apiName>ComputeWeightMatrixParameters</apiName><shortdesc>
+	 耗费矩阵分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 耗费矩阵分析参数类. 
+	 <p>该类用于设置耗费矩阵分析（ComputeWeightMatrixService）所需的参数。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#ComputeWeightMatrixService"><linktext>ComputeWeightMatrixService</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixParameters:ComputeWeightMatrixParameters"><apiName>ComputeWeightMatrixParameters</apiName><shortdesc>
+		 初始化 ComputeWeightMatrixParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ComputeWeightMatrixParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixParameters:isAnalyzeById:get"><apiName>isAnalyzeById</apiName><shortdesc>
+		 是否通过结点 ID 号来指定耗费矩阵结点，默认为 false，即通过坐标指定。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 是否通过结点 ID 号来指定耗费矩阵结点，默认为 false，即通过坐标指定。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixParameters:nodes:get"><apiName>nodes</apiName><shortdesc>
+		 要计算耗费矩阵的点数组，必设字段.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 要计算耗费矩阵的点数组，必设字段.
+		 <p>当 <code>ComputeWeightMatrixParameters.isAnalyzeById = false</code> 时，nodes 应为点的坐标（Point2D）数组；当 <code>ComputeWeightMatrixParameters.isAnalyzeById = true</code> 时，nodes 应为结点的 ID 数组。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixParameters:parameter:get"><apiName>parameter</apiName><shortdesc>
+		 交通网络分析通用参数 TransportationAnalystParameter。通过本类设置耗费字段、障碍边、障碍点等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TransportationAnalystParameter</apiValueClassifier></apiValueDef><apiDesc>
+		 交通网络分析通用参数 TransportationAnalystParameter。通过本类设置耗费字段、障碍边、障碍点等。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea"><apiName>ServiceArea</apiName><shortdesc>
+	 服务区对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务区对象.
+	 <p>该类用于表示一个服务中心点对应的服务区数据，包括：服务范围内的相关结点、弧段、服务区域等。该类中所包含的结果内容与 TransportationAnalystResultSetting 类的设置相关。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:ServiceArea"><apiName>ServiceArea</apiName><shortdesc>
+		 初始化 FindServiceArea 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindServiceArea 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:fromJson"><apiName>fromJson</apiName><shortdesc>
+		 将从服务端获取的 JSON 对象转换为 ServiceArea 对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>返回 ServiceArea 对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea</apiOperationClassifier></apiReturn><apiParam><apiItemName>json</apiItemName><apiType value="Object"/><apiDesc>从服务端获取的 JSON 对象。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将从服务端获取的 JSON 对象转换为 ServiceArea 对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:edgeFeatures:get"><apiName>edgeFeatures</apiName><shortdesc>
+		 获取分析结果的途经弧段要素集合，每条弧段要素为 Feature 类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取分析结果的途经弧段要素集合，每条弧段要素为 Feature 类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:edgeIDs:get"><apiName>edgeIDs</apiName><shortdesc>
+		 获取分析结果的途经弧段 ID 号集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取分析结果的途经弧段 ID 号集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:nodeFeatures:get"><apiName>nodeFeatures</apiName><shortdesc>
+		 获取分析结果的途经结点要素集合。每个结点要素为 Feature 类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取分析结果的途经结点要素集合。每个结点要素为 Feature 类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:nodeIDs:get"><apiName>nodeIDs</apiName><shortdesc>
+		 获取分析结果的途经结点 ID 号集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取分析结果的途经结点 ID 号集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:routes:get"><apiName>routes</apiName><shortdesc>
+		 获取分析结果对应的路由对象数组，关于路由对象请参见 Route 类。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取分析结果对应的路由对象数组，关于路由对象请参见 Route 类。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#Route"><linktext>Route</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:ServiceArea:serviceRegion:get"><apiName>serviceRegion</apiName><shortdesc>
+		 获取中心点的服务区域，面对象，Geometry 类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取中心点的服务区域，面对象，Geometry 类型。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathResult"><apiName>FindPathResult</apiName><shortdesc>
+	 最佳路径分析结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最佳路径分析结果类.
+	 <p>该类用于存储从服务端获取的最佳路径分析结果，从中可以获取一条或多条结果路径（Path）。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathResult:FindPathResult"><apiName>FindPathResult</apiName><shortdesc>
+		 初始化 FindPathResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindPathResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindPathResult:pathList:get"><apiName>pathList</apiName><shortdesc>
+		 获取交通网络分析结果路径数组 Array[Path].</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取交通网络分析结果路径数组 Array[Path].
+		 <p>目前分析结果中只有一条路径（Path），其中包含路径途经的结点、弧段、该路径的路由、行驶引导、耗费等信息。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#Path"><linktext>Path</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenterType"><apiName>SupplyCenterType</apiName><shortdesc>
+	 资源供给中心点类型枚举类 
+	 
+	 </shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 资源供给中心点类型枚举类 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenterType:FIXEDCENTER"><apiName>FIXEDCENTER</apiName><shortdesc>
+		 固定中心点。固定中心是指网络中已经存在的、已建成的服务设施（扮演资源供给角色）。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>FIXEDCENTER</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 固定中心点。固定中心是指网络中已经存在的、已建成的服务设施（扮演资源供给角色）。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenterType:NULL"><apiName>NULL</apiName><shortdesc>
+		 非中心点。非中心点在分析时不予考虑，在实际中可能是不允许建立这项设施或者已经存在了其他设施的点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NULL</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 非中心点。非中心点在分析时不予考虑，在实际中可能是不允许建立这项设施或者已经存在了其他设施的点。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:SupplyCenterType:OPTIONALCENTER"><apiName>OPTIONALCENTER</apiName><shortdesc>
+		 可选中心点。可选中心点是指可以建立服务设施的资源供给中心，即待建服务设施将在这些可选中心间选址。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>OPTIONALCENTER</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 可选中心点。可选中心点是指可以建立服务设施的资源供给中心，即待建服务设施将在这些可选中心间选址。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsResult"><apiName>FindTSPPathsResult</apiName><shortdesc>
+	 旅行商分析服务结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 旅行商分析服务结果类.
+	 <p>该类用于存储旅行商分析结果，即旅行最佳路径。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsResult:FindTSPPathsResult"><apiName>FindTSPPathsResult</apiName><shortdesc>
+		 初始化 FindTSPPathsResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 FindTSPPathsResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsResult:tspPathList:get"><apiName>tspPathList</apiName><shortdesc>
+		 旅行商分析结果路径（TSPPath）数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 旅行商分析结果路径（TSPPath）数组.
+		 <p>结果中可能有一种或多种旅行最佳路径，每条路径又包含旅行商路径途径分析点的顺序、弧段、该路径的路由、行驶引导、耗费等信息。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TSPPath"><linktext>TSPPath</linktext></link></related-links></apiValue></apiClassifier></apiPackage>

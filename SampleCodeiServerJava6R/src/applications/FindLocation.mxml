@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.MarkerStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.DemandResult;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationParameters;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationResult;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationService;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.SupplyCenter;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.SupplyCenterType;
+			import com.supermap.web.iServerJava6R.networkAnalystServices.SupplyResult;
+			import com.supermap.web.iServerJava6R.serviceEvents.FindLocationEvent;
+			
+			import flash.utils.getTimer;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String; 
+			[Bindable]
+			private var netWorkAnalystUrl:String;
+			[Bindable]
+			private var supplyCounts:ArrayCollection = new ArrayCollection([
+				{label:1},{label:2},{label:3},{label:4},{label:5},{label:6},{label:7},{label:8}
+			]);
+			protected function initApp(event:FlexEvent):void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			}
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.ChangChun_MAP;
+				netWorkAnalystUrl = viewConfig.webUrl + ViewConfig.NetWorkAnalyst_Layer;
+			}
+			private function map_completedHandler():void
+			{
+				var features:Array = getFeatureUtil();
+				for(var i:int; i<features.length; i++)
+				{
+					fl.addFeature(features[i]);
+				}
+			}
+			private function getFeatureUtil():Array
+			{
+				var f1:Feature = new Feature();
+				f1.geometry = new GeoPoint(1675.9256791377206, -593.56822512495194);
+				var f2:Feature = new Feature();
+				f2.geometry = new GeoPoint(2820.35101097629, -2358.0414663985171);
+				var f3:Feature = new Feature();
+				f3.geometry = new GeoPoint(2909.4396668115278, -3647.0074300836109);
+				var f4:Feature = new Feature();
+				f4.geometry = new GeoPoint(1544.5037476378677 ,-5616.5950974905827);
+				var f5:Feature = new Feature();
+				f5.geometry = new GeoPoint(6623.5972101719526, -2130.4887600981415);
+				var f6:Feature = new Feature();
+				f6.geometry = new GeoPoint(5482.4979617984973 ,-4504.2328567816048);
+				var f7:Feature = new Feature();
+				f7.geometry = new GeoPoint(6940.6579024271468 ,-1627.6012900626256);
+				var f8:Feature = new Feature();
+				f8.geometry = new GeoPoint(8215.9188781715948 ,-5747.5063918659716);
+				var features:Array = [];
+				features.push(f1);features.push(f2);features.push(f3);features.push(f4);
+				features.push(f5);features.push(f6);features.push(f7);features.push(f8);
+				return features;
+			}
+			protected function findLocation():void
+			{
+				var param:FindLocationParameters = new FindLocationParameters();
+				param.returnEdgeFeature = true;
+				param.returnNodeFeature = true;
+				param.returnEdgeGeometry = true;
+				param.weightName = "length";
+				param.turnWeightField = "TurnCost";
+				param.expectedSupplyCenterCount = supplyComb.selectedIndex + 1;
+				param.supplyCenters = getArray();
+				var findLocationService:FindLocationService = new FindLocationService(netWorkAnalystUrl);
+				findLocationService.processAsync(param, new AsyncResponder(completedHandler, errorHandler, null));
+			}
+			private function completedHandler(_lastResult:FindLocationResult, mark:Object = null):void
+			{
+				this.removeFeature(null);
+				for each(var demandObj:DemandResult in _lastResult.demandResults)
+				{
+					var f:Feature = demandObj.feature;
+					var style:PredefinedMarkerStyle = new PredefinedMarkerStyle ();
+					style.color = 0xff0000;
+					f.style = style;
+					fl.addFeature(f);
+				}
+				for each(var supplyObj:SupplyResult in _lastResult.supplyResults)
+				{
+					var f2:Feature = supplyObj.feature;
+					var style2:PredefinedMarkerStyle = new PredefinedMarkerStyle ();
+					style2.color = 0x0000ff;
+					f2.style = style2;
+					fl.addFeature(f2);
+				}
+			}
+			private function errorHandler(event:FaultEvent, mark:Object = null):void
+			{
+				Alert.show("与服务端交互失败", "抱歉", 4, this);
+			}
+			private function getArray():Array
+			{
+				var center1:SupplyCenter = new SupplyCenter();
+				center1.nodeID = 139;
+				center1.maxWeight = 500;
+				center1.type = SupplyCenterType.OPTIONALCENTER;
+				center1.resourceValue = 100;
+				var center2:SupplyCenter = new SupplyCenter();
+				center2.nodeID = 1358;
+				center2.maxWeight = 500;
+				center2.type = SupplyCenterType.NULL;
+				center2.resourceValue = 100;
+				var center3:SupplyCenter = new SupplyCenter();
+				center3.nodeID = 2972;
+				center3.maxWeight = 500;
+				center3.type = SupplyCenterType.OPTIONALCENTER;
+				center3.resourceValue = 100;
+				var center4:SupplyCenter = new SupplyCenter();
+				center4.nodeID = 5523;
+				center4.maxWeight = 500;
+				center4.type = SupplyCenterType.OPTIONALCENTER;
+				center4.resourceValue = 100;
+				
+				var center5:SupplyCenter = new SupplyCenter();
+				center5.nodeID = 1161;
+				center5.maxWeight = 500;
+				center5.type = SupplyCenterType.OPTIONALCENTER;
+				center5.resourceValue = 100;
+				var center6:SupplyCenter = new SupplyCenter();
+				center6.nodeID = 4337;
+				center6.maxWeight = 500;
+				center6.type = SupplyCenterType.NULL;
+				center6.resourceValue = 100;
+				var center7:SupplyCenter = new SupplyCenter();
+				center7.nodeID = 5732;
+				center7.maxWeight = 500;
+				center7.type = SupplyCenterType.OPTIONALCENTER;
+				center7.resourceValue = 100;
+				var center8:SupplyCenter = new SupplyCenter();
+				center8.nodeID = 663;
+				center8.maxWeight = 500;
+				center8.type = SupplyCenterType.FIXEDCENTER;
+				center8.resourceValue = 100;
+				var arry:Array = [];
+				arry.push(center1);arry.push(center2);arry.push(center3);arry.push(center4);
+				arry.push(center5);arry.push(center6);arry.push(center7);arry.push(center8);
+				return arry;
+			}
+			//清除矢量图层
+			private function removeFeature(event:MouseEvent):void
+			{
+				this.fl.clear();
+			}
+			//平移地图
+			private function panMap(event:MouseEvent):void
+			{
+				this.map.action = new Pan(map);
+			}
+		]]>
+	</fx:Script>
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%" creationComplete="map_completedHandler()">
+		<ic:TiledDynamicRESTLayer  url="{this.restUrl}"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+	<!--参数设置窗口-->
+	<s:Panel id="titlewin" title="选址分区分析" fontSize="15" right="5" backgroundAlpha="0.5" backgroundColor="#454343" height="74">
+		<s:VGroup top="10" gap="10" horizontalCenter="0" bottom="5" right="5" left="5">
+			<s:HGroup horizontalAlign="center" gap="10" width="240">
+				<s:Label text="期望供给个数" />
+				<s:DropDownList id="supplyComb" dataProvider="{supplyCounts}" selectedIndex="0" width="46" x="93"/>
+				<s:Button label="开始分析"
+						  click="findLocation()"
+						  width="99"
+						  color="0"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel>
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:Label left="5" text="  选址分区分析:蓝色点为可选供给点,红色点表示需求点" textAlign="left" fontSize="15" height="40" 
+				 width="274" verticalAlign="middle" fontWeight="bold" fontFamily="宋体"/>
+		<s:HGroup horizontalAlign="center" gap="10" width="100%">
+			<s:Button skinClass="skins.clearBtnSkin"
+					  click="removeFeature(event)"/>
+			<s:Button skinClass="skins.panBtnSkin"
+					  click="panMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

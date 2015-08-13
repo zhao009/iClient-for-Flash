@@ -1,0 +1,3 @@
+<font color="#0033FF">可见性控制</font>
+<font color="#006633">1. 功能描述：</font>用于获取/设置地图中图层的可见性。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map。

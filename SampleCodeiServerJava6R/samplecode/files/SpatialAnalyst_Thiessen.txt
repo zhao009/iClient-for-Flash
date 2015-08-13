@@ -1,0 +1,15 @@
+<font color="#0033FF">邻近分析</font>
+<font color="#006633">1. 功能描述：</font>邻近分析是 GIS 领域里一个最为基础的分析功能之一，邻近分析是用来发现事物之间的某种邻近关系。进行邻近分析的方法是实现泰森多边形的建立，即根据所提供的点数据建立泰森多边形，从而获得点之间的邻近关系。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图 Changchun。
+<font color="#006633">3. 操作指南：</font>
+    1）点击“数据集邻近分析”，地图上显示数据集邻近分析结果图层；
+    2）点击“几何对象邻近分析”，地图上显示几何对象邻近分析结果图层。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义数据集邻近分析参数设置类DatasetThiessenAnalystParameters；
+    2）执行数据集邻近分析服务类DatasetThiessenAnalystService；
+    3）定义几何对象邻近分析参数设置类GeometryThiessenAnalystParameters；
+    4）执行几何对象邻近分析服务类GeometryThiessenAnalystService；
+    5）获取分析的最终结果，有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 SurfaceAnalystEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关数据集表面分析的详细参数介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

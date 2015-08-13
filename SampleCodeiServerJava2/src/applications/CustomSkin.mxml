@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="100%" height="100%"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="initApp()">
+	<!--皮肤切换-->
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			}  
+		]]>
+	</fx:Script>
+
+	<fx:Script>
+		<![CDATA[
+			import skins.ZoomSliderCustomSkin;
+			import com.supermap.web.components.skins.ZoomSliderSkin;
+			public var i:int;
+			//皮肤切换
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				i++;
+				if(i % 2 == 1)
+				{ 
+					//皮肤1（类库自带皮肤）
+					this.zoomSlider.setStyle("skinClass", ZoomSliderSkin);
+					this.btn.label = "自定义皮肤";
+				}
+				else 
+				{ 
+					//皮肤2（示例代码中的自定义皮肤）
+					this.zoomSlider.setStyle("skinClass", skins.ZoomSliderCustomSkin);
+					this.btn.label = "默认皮肤";
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<ic:Map scales="{[1e-9, 2e-9, 5e-9, 1e-8, 2e-8, 5e-8, 1e-7, 2e-7, 5e-7, 1e-6, 2e-6, 5e-6]}" id="map" x="0" y="0" width="100%" height="100%">
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}" 
+									 mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600" 
+									 mapName="World"/>
+	</ic:Map>
+	<s:VGroup top="10" width="100">
+		<s:Group width="100%" height="100%">
+			<s:layout>
+				<s:BasicLayout/>
+			</s:layout>
+			
+		</s:Group>
+		<s:Group width="100%" height="100%">
+			<ic:ZoomSlider id="zoomSlider" map="{map}" skinClass="skins.ZoomSliderCustomSkin" horizontalCenter="0"/>
+		</s:Group>
+	</s:VGroup>
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:Button id="btn" label="默认皮肤" click="button1_clickHandler(event)" cornerRadius="5" width="100" fontSize="15"
+				  textDecoration="none" fontStyle="normal" lineThrough="false" fontFamily="宋体" 
+				  focusColor="#DE6710" fontWeight="bold" horizontalCenter="0" height="30">
+		</s:Button>
+	</s:controlBarContent>
+</s:Application>

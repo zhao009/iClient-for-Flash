@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				width="100%"
+				click="itemrenderer1_clickHandler(event)">
+
+	<s:layout>
+		<s:VerticalLayout gap="3"
+						  paddingLeft="5"
+						  paddingRight="5"/>
+	</s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			private var isChosed:Boolean = false;
+
+			private const PATH_RESULT_CLICK:String = "pathResultClick";
+
+			protected function itemrenderer1_clickHandler(event:MouseEvent):void
+			{
+				if(this.selected)
+				{
+					if(isChosed)
+					{
+						isChosed = false;
+					}
+					else
+					{
+						isChosed = true;
+					}
+				}
+				dispatchEvent(new Event(PATH_RESULT_CLICK, true)); // bubbles
+			}
+
+			override protected function getCurrentRendererState():String
+			{
+				if(this.selected)
+				{
+					if(isChosed)
+					{
+						return "slectedHide";
+					}
+					else
+					{
+						return "selectedShow";
+					}
+				}
+				return "normalor";
+
+			}
+
+			override public function set selected(value:Boolean):void
+			{
+				if(selected == false)
+				{
+					isChosed = false;
+				}
+				super.selected = value;
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:states>
+		<s:State name="normalor"/>
+		<s:State name="slectedHide"/>
+		<s:State name="selectedShow"/>
+	</s:states>
+	<s:HGroup width="100%"
+			  height="33"
+			  verticalAlign="middle"
+			  contentBackgroundColor="0xff0000"
+			  fontWeight.normalor="bold">
+		<s:Label id="item1"
+				 text="{data.title }"
+				 verticalCenter="0"
+				 fontSize="16"
+				 width="85%"/>
+		<s:Label width="35"
+				 text="展开"
+				 verticalCenter="0"
+				 color="#3A7FF2"
+				 fontSize="12"
+				 fontWeight="bold"
+				 text.selectedShow="收起"/>
+	</s:HGroup>
+	<s:Label id="item2"
+			 fontSize="14"
+			 text="{data.detail}"
+			 includeIn="selectedShow"
+			 width="100%"/>
+</s:ItemRenderer>

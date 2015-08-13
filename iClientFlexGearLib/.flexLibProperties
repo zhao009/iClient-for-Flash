@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="SuperMapGearClasses"/>
+    <classEntry path="com.supermap.web.gears.events.LegendEvent"/>
+    <classEntry path="com.supermap.web.gears.components.Legend"/>
+    <classEntry path="com.supermap.web.gears.components.LegendItemInfo"/>
+    <classEntry path="com.supermap.web.gears.components.LegendTask"/>
+    <classEntry path="com.supermap.web.gears.components.TreeItem"/>
+    <classEntry path="com.supermap.web.gears.components.skins.LegendSkin"/>
+    <classEntry path="com.supermap.web.gears.components.skins.LegendTreeItemRenderer"/>
+    <classEntry path="com.supermap.web.gears.print.ImageLoadIOEvent"/>
+    <classEntry path="com.supermap.web.gears.print.MapInfo"/>
+    <classEntry path="com.supermap.web.gears.print.MapPrintContainer"/>
+    <classEntry path="com.supermap.web.gears.print.TiledInfo"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://www.supermap.com/gear/2010"/>
+  </namespaceManifests>
+</flexLibProperties>

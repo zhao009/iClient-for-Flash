@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	
+	<!--历史管理组件-->
+	<fx:Declarations>
+		<!--定义历史管理控件，该组件无外观-->
+		<ic:MapHistoryManager id="historyManager" map="{map}"/>
+	</fx:Declarations>
+ 
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.events.ViewBoundsEvent;
+			
+			import mx.controls.Alert;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private var viewedBounds:Rectangle2D = null;
+			private var isNewViewBounds:Boolean = true;
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				map.addEventListener(ViewBoundsEvent.VIEW_BOUNDS_CHANGE,viewChangeHandler);
+			}
+			
+			//地图可视范围改变事件 ViewBoundsEvent.VIEWBOUNDS_CHANGE 的侦听函数
+			private function viewChangeHandler(event:ViewBoundsEvent):void
+			{
+				if(!this.viewedBounds)
+				{
+					this.viewedBounds = event.viewBounds;
+				}
+				else
+				{
+					if(this.isNewViewBounds)
+					{
+						backButton.enabled = true;
+						forwardButton.enabled = false;
+					}
+					this.isNewViewBounds = true;
+				}
+			}			
+			//后一视图
+			private function back(event:MouseEvent):void
+			{
+				historyManager.viewPreViewBounds();
+				this.isNewViewBounds = false;
+				forwardButton.enabled = true;
+				if(historyManager.isFirstViewBounds)
+				{
+					backButton.enabled = false;
+				}
+			}
+
+			//前一视图
+			private function forward(event:MouseEvent):void
+			{
+				historyManager.viewNextViewBounds();
+				this.isNewViewBounds = false;
+				backButton.enabled = true;
+				if(historyManager.isLastViewBounds)
+				{
+					forwardButton.enabled = false;
+				}	
+			}
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<ic:Map id="map" panEasingFactor="0.5"
+			scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+	</ic:Map>
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup gap="10" verticalCenter="0" horizontalCenter="0">
+			<s:Button id="backButton" toolTip="后一视图" skinClass="skins.backViewSkin" click="back(event)" enabled="false"/>
+			<s:Button id="forwardButton" toolTip="前一视图" skinClass="skins.forwardViewSkin" click="forward(event)" enabled="false"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

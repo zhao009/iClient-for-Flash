@@ -1,0 +1,15 @@
+<font color="#0033FF">最佳路径分析</font>
+<font color="#006633">1. 功能描述：</font>在网络数据集中指定一些结点，按照结点的选择顺序，顺序访问这些结点从而求解起止点之间阻抗最小的路经。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层 Changchun 的数据集 RoadNet。
+<font color="#006633">3. 操作指南：</font>
+    1）设置参数：是否返回弧段数最少的路径。弧段数少并不代表阻抗小，所以此时查出的结果可能不是最佳路径；
+    2）选择分析点（多选）；
+    3）执行“最佳路径分析”；
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义用于最近设施查找的弧段权值信息 WeightFieldInfo；
+    2）定义网络模型 NetworkModelSetting；
+    3）定义网络分析参数 NetworkAnalystParam；
+    4）定义路径参数 PathParam；
+    5）定义最佳路径分析参数 FindPathParameters；
+    5）执行最佳路径分析 FindPathService；
+<font color="#006633">5. 其它说明：</font>有关最佳路径分析的详细参数介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

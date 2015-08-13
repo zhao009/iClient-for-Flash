@@ -1,0 +1,4 @@
+<font color="#0033FF">与 JS 交互</font>	
+<font color="#006633">1. 功能描述：</font>实现 Flex 与 JavaScript 之间的交互；
+<font color="#006633">1. 地图数据：</font>google Map；
+<font color="#006633">2. 操作指南：</font>点击“HTML”按钮，通过 JS 调用 Flash，弹出新的操作页面。

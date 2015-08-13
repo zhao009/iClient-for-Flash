@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.DataReturnMode;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.DataReturnOption;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.GenerateSpatialDataParameters;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.GenerateSpatialDataResult;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.GenerateSpatialDataService;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeParameters;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeResult;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeService;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeUnique;
+			import com.supermap.web.iServerJava6R.themeServices.ThemeUniqueItem;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var dataSetUrl:String;
+			
+			private var themeLayer:TiledDynamicRESTLayer;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.ChangChun_MAP;
+				dataSetUrl = viewConfig.webUrl + ViewConfig.SpatialAnylyat_Changchun;
+			}
+			
+			protected function generateBtn_clickHandler(event:MouseEvent):void
+			{
+				this.generateBtn.enabled = false;
+				// TODO Auto-generated method stub
+				var parameters:GenerateSpatialDataParameters = new GenerateSpatialDataParameters();
+				parameters.routeTable = "RouteDT_road@Changchun";
+				parameters.routeIDField = "RouteID";
+				parameters.eventTable = "LinearEventTabDT@Changchun";
+				parameters.eventRouteIDField = "RouteID";
+				parameters.measureStartField = "LineMeasureFrom";
+				parameters.measureEndField = "LineMeasureTo";
+				
+				var returnOption:DataReturnOption = new DataReturnOption();
+				returnOption.dataset = "generateSpatialData";
+				returnOption.dataReturnMode = DataReturnMode.DATASET_ONLY;
+				returnOption.deleteExistResultDataset = true;
+				returnOption.expectCount = 1000;
+				
+				parameters.dataReturnOption = returnOption;
+				
+				var generateSevice:GenerateSpatialDataService = new GenerateSpatialDataService(this.dataSetUrl);
+				generateSevice.processAsync(parameters,new AsyncResponder(generateCallBack, faultHandler, null));
+			}
+			
+			protected function clearBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(themeLayer)
+				{
+					map.removeLayer(themeLayer);
+					themeLayer = null;
+					this.generateBtn.enabled = true;
+				}
+			}
+			
+			private function generateCallBack(generateResult:GenerateSpatialDataResult, mark:Object = null):void
+			{
+				var items1:ThemeUniqueItem = new ThemeUniqueItem();
+				var style1:ServerStyle = new ServerStyle();
+				style1.fillForeColor = new ServerColor(242, 48, 48);
+				style1.lineColor = new ServerColor(242, 48, 48);
+				style1.lineWidth = 1;
+				items1.unique = "拥挤";
+				items1.style = style1;
+				
+				var items2:ThemeUniqueItem = new ThemeUniqueItem();
+				var style2:ServerStyle = new ServerStyle();
+				style2.fillForeColor = new ServerColor(255, 159, 25);
+				style2.lineColor = new ServerColor(255, 159, 25);
+				style2.lineWidth = 1;
+				items2.unique = "缓行";
+				items2.style = style2;
+				
+				var items3:ThemeUniqueItem = new ThemeUniqueItem();
+				var style3:ServerStyle = new ServerStyle();
+				style3.fillForeColor = new ServerColor(91, 195, 69);
+				style3.lineColor = new ServerColor(91, 195, 69);
+				style3.lineWidth = 1;
+				items3.unique = "畅通";
+				items3.style = style3;
+				
+				var themeUnique:ThemeUnique = new ThemeUnique();
+				themeUnique.uniqueExpression = "TrafficStatus";
+				themeUnique.items = [items1,items2, items3];
+				
+				var parameter:ThemeParameters = new ThemeParameters();
+				parameter.datasetNames = ["generateSpatialData"];
+				parameter.dataSourceNames = ["Changchun"];
+				parameter.themes = [themeUnique];
+				
+				var themeServie:ThemeService = new ThemeService(this.mapUrl);
+				themeServie.processAsync(parameter,new AsyncResponder(themeDisplay, themeFault, null));
+			}
+			
+			private function themeDisplay(themeResult:ThemeResult, mark:Object):void
+			{
+				themeLayer = new TiledDynamicRESTLayer();
+				themeLayer.url = this.mapUrl;
+				themeLayer.layersID = themeResult.resourceInfo.newResourceID;
+				themeLayer.transparent = true;
+				themeLayer.enableServerCaching = false;
+				map.addLayer(themeLayer);			
+			}
+			
+			private function themeFault(object:Object, mark:Object = null):void
+			{
+				Alert.show("生成专题图失败");
+			}
+			private function faultHandler(object:Object, mark:Object = null):void
+			{
+				Alert.show("分析失败");
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map"  height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer url="{this.mapUrl}" enableServerCaching="false"/>
+	</ic:Map> 
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup height="100%" verticalAlign="middle" left="10" fontSize="15" fontFamily="宋体" fontWeight="bold">
+			<s:Button id="generateBtn" label="动态分段" click="generateBtn_clickHandler(event)" height="26"/>
+			<s:Button id="clearBtn" label="清除" click="clearBtn_clickHandler(event)" height="26"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

@@ -1,0 +1,9 @@
+<font color="#0033FF">扩展服务端功能示例(统计图)</font>
+<font color="#006633">1. 功能描述：</font>该功能主要是展示对服务端扩展功能开发，这里用扩展统计专题图服务来具体实现。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 6R 服务器产品提供的分块动态图层——Changchun。
+<font color="#006633">3. 扩展服务关键步骤：</font>
+	1）定义扩展服务类 ExtendService；
+    2）定义扩展服务参数类 ExtendServiceParameters 传入相关参数；
+    3）实现扩展服务专题图；
+    4）实现移除扩展服务专题图；
+    5）其它说明：</font>有关统计专题图的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

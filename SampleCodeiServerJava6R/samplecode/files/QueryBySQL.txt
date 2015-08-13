@@ -1,0 +1,15 @@
+<font color="#0033FF">SQL 查询</font>
+<font color="#006633">1. 功能描述：</font>在指定的图层中查找满足 SQL 语句的地物对象。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map。查询的基准数据集为：Countries 和 Capitals。
+<font color="#006633">3. 操作指南：</font>
+    1）在右侧窗口设置中心点查询所需参数（可选步骤）；
+    2）点击“查询”按钮；
+    3）在地图上绘制查询几何对象，当几何对像绘制完成后将显示查询结果窗口。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义查询过滤参数 FilterParameter：其中包括所要查询的图层等属性。该参数不唯一，可设置多个 FilterParameter；
+    2）定义 SQL 查询所需参数 QueryBySQLParameters；
+    3）执行 SQL 查询 QueryBySQLService；
+    4）获取查询结果，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 QueryEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关 SQL 查询的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

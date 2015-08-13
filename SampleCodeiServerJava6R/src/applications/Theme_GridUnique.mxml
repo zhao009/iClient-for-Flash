@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:isj6="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%" creationComplete="initApp()">
+	<!--栅格单值专题图-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			import com.supermap.web.iServerJava6R.themeServices.*;
+			
+			import mx.rpc.*;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var isTheme:Boolean = false;//判断是否已制作专题图
+			private var _themeList:Array = new Array();			
+			private var layerid:String;
+			private var themeLayer:TiledDynamicRESTLayer;		
+			import com.supermap.web.core.Rectangle2D;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				this.map.viewBounds = new Rectangle2D(115, 38.5, 119, 41);
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.JingJin_MAP;
+			}
+			
+			//定义单值专题图子项
+			private function setItems():Array
+			{
+				var items:Array = new Array();
+				var	color0:ServerColor = new ServerColor(198,244,240);
+				var	color1:ServerColor = new ServerColor(176,244,188);
+				var	color2:ServerColor = new ServerColor(218,251,178);
+				var	color3:ServerColor = new ServerColor(220,236,145);
+				var	color4:ServerColor = new ServerColor(96,198,66);
+				var	color5:ServerColor = new ServerColor(20,142,53);
+				var	color6:ServerColor = new ServerColor(85,144,55);
+				var	color7:ServerColor = new ServerColor(171,168,38);
+				var	color8:ServerColor = new ServerColor(235,165,9);
+				var	color9:ServerColor = new ServerColor(203,89,2);
+				var	color10:ServerColor= new ServerColor(157,25,1);
+				var	color11:ServerColor= new ServerColor(118,15,3);
+				var	color12:ServerColor= new ServerColor(112,32,7);
+				var	color13:ServerColor= new ServerColor(106,45,12);
+				var	color14:ServerColor= new ServerColor(129,80,50);
+				var	color15:ServerColor= new ServerColor(160,154,146);
+				for(var i:int = -4; i < 2197; i++){
+					var num:int = i/135;
+					var item:ThemeGridUniqueItem = new ThemeGridUniqueItem();
+					item.caption="1";
+					item.unique = i;
+					item.visible = true;
+					switch(num)
+					{
+						case 0:
+							item.color = color0;
+							break;
+						case 1:
+							item.color = color1;
+							break;
+						case 2:
+							item.color = color2;
+							break;
+						case 3:
+							item.color = color3;
+							break;
+						case 4:
+							item.color = color4;
+							break;
+						case 5:
+							item.color = color5;
+							break;
+						case 6:
+							item.color = color6;
+							break;
+						case 7:
+							item.color = color7;
+							break;
+						case 8:
+							item.color = color8;
+							break;
+						case 9:
+							item.color = color9;
+							break;
+						case 10:
+							item.color = color10;
+							break;
+						case 11:
+							item.color = color11;
+							break;
+						case 12:
+							item.color = color12;
+							break;
+						case 13:
+							item.color = color13;
+							break;
+						case 14:
+							item.color = color14;
+							break;
+						case 15:
+							item.color = color15;
+							break;
+						default:
+							item.color = color0;
+							break;
+					}
+					items.push(item);
+				}		
+				return items;
+			}
+			
+			private function submitHandler():void
+			{  
+				if(this.isTheme == true)
+					return;
+				//定义单值专题图
+				var theme:ThemeGridUnique = new ThemeGridUnique();  
+				theme.items = this.setItems();
+				var color:ServerColor = new ServerColor(0, 0, 0); 
+				theme.defaultcolor = color;
+				
+				//定义获取专题图时所需参数
+				var themeGridUniqueParam:ThemeParameters = new ThemeParameters();
+				themeGridUniqueParam.themes = [theme];				
+				themeGridUniqueParam.dataSourceNames = ["Jingjin"];
+				themeGridUniqueParam.datasetNames =["JingjinTerrain"];
+				
+				//获取专题图
+				var themeservice:ThemeService = new ThemeService(this.mapUrl);
+				themeservice.processAsync(themeGridUniqueParam,new AsyncResponder(this.displayTheme, excuteThemeErros, null));
+			}			
+			
+			//与服务端交互失败时调用 的处理函数
+			private function excuteThemeErros(event:FaultEvent, mark:Object = null):void
+			{
+			}
+			
+			//专题图获取成功时调用的处理函数
+			private function displayTheme(themeresult:ThemeResult, mark:Object = null):void
+			{
+				this.isTheme = true;
+				themeLayer = new TiledDynamicRESTLayer();
+				themeLayer.enableServerCaching = false;
+				themeLayer.url = this.mapUrl;
+				themeLayer.transparent = true;
+				themeLayer.layersID = themeresult.resourceInfo.newResourceID;	
+				layerid = themeresult.resourceInfo.newResourceID;
+				this.map.addLayer(themeLayer);
+			}
+			
+			//删除专题图
+			private function deleteHandler():void
+			{
+				var themeRemove:RemoveThemeService = new RemoveThemeService(this.mapUrl); 
+				var themeRemoveParam:RemoveThemeParameters = new RemoveThemeParameters();
+				themeRemoveParam.id = layerid; 
+				themeRemove.processAsync(themeRemoveParam,new AsyncResponder(this.delTheme, excuteThemeErros, null));
+			}
+			
+			//专题图删除成功时调用的处理函数
+			private function delTheme(themeResult:RemoveThemeResult,mark:Object = null):void
+			{
+				this.isTheme = false;
+				if(themeResult.succeed = "true" && themeLayer)
+				{
+					this.map.removeLayer(themeLayer);
+				}
+			} 
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<s:Group width="100%" height="100%">	
+		<ic:Map id="map" x="0" y="0" width="100%" height="100%">
+			<ic:TiledDynamicRESTLayer enableServerCaching="false" url="{this.mapUrl}"/>
+		</ic:Map> 
+	</s:Group> 
+	
+	<!--操作窗口-->
+	<s:Panel id="titlewin" right="5" top="10" height="108" backgroundAlpha="0.48"
+			 backgroundColor="#454343" fontFamily="宋体" fontSize="12" title="栅格单值专题图">
+		<s:VGroup top="5" bottom="10" gap="10" horizontalCenter="0">  
+			<mx:Text text="根据京津地图中的JingjinTerrain数据集制作栅格单值专题图"/>
+			<s:HGroup width="100%" horizontalAlign="center">
+				<s:Button id="addButton" width="80" label="生成专题图" click="submitHandler()" color="0"/> 
+				<mx:Spacer width="10"/>
+				<s:Button id="deleteButton" width="80" label="移除专题图" click="deleteHandler()"
+						  color="0"/> 
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel> 
+</s:Application>

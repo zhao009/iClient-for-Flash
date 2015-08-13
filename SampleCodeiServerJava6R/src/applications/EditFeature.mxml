@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:isj6="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--与服务端交互的数据集编辑-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawLine;
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.Edit;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.iServerJava6R.dataServices.EditFeaturesParameters;
+			import com.supermap.web.iServerJava6R.dataServices.EditFeaturesResult;
+			import com.supermap.web.iServerJava6R.dataServices.EditFeaturesService;
+			import com.supermap.web.iServerJava6R.dataServices.EditType;
+			import com.supermap.web.iServerJava6R.dataServices.GetFeaturesByGeometryParameters;
+			import com.supermap.web.iServerJava6R.dataServices.GetFeaturesByGeometryService;
+			import com.supermap.web.iServerJava6R.dataServices.GetFeaturesResult;
+			import com.supermap.web.iServerJava6R.queryServices.SpatialQueryMode;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var addEntityAction:DrawPolygon;
+			private var selEntityAction:DrawPoint;
+			private var editAction:Edit;
+			private var _curSelectedEntityID:int;
+			private var selectedFeature:Feature;
+			private var isSelectedStatus:Boolean;
+			private var fillStyle:PredefinedFillStyle;
+			private var ids:Array = new Array();
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var featureResultUrl:String;
+			[Bindable]
+			private var editFeatureUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				this.map.viewBounds = new Rectangle2D(115, 38.5, 119, 41.5);
+				mapUrl = viewConfig.webUrl + ViewConfig.JingJin_MAP;
+				featureResultUrl = viewConfig.webUrl + ViewConfig.FeatureResults;
+				editFeatureUrl = viewConfig.webUrl + ViewConfig.DataSources;
+			}
+			
+			//单击操作按钮后的处理函数
+			private function featureActions(event:MouseEvent):void
+			{
+				var button:Button = event.target as Button;
+				if(button.id == "add")
+				{
+					addEntityAction = new DrawPolygon(map);      
+					map.action = addEntityAction;
+					addEntityAction.addEventListener(DrawEvent.DRAW_END, onGeometryAdded);
+					
+				}
+				else if(button.id == "edit")
+				{
+					if(this.isSelectedStatus == false)
+					{
+						Alert.show("请选择要编辑的地物！","提示",4,this);
+						return;
+					}
+					editAction = new Edit(map,fl);
+					editAction.addEventListener(DrawEvent.DRAW_END,executeEdit);
+					map.action = editAction;
+				}
+				else if(button.id == "del")
+				{
+					executeDel();
+				}
+				else
+				{
+					if(this.isSelectedStatus == true)
+					{
+						fl.clear();
+					}
+					else
+						this.isSelectedStatus = true;
+					selEntityAction = new DrawPoint(map);                 
+					selEntityAction.addEventListener(DrawEvent.DRAW_END,execute_geoSel);
+					map.action = selEntityAction;
+				}
+			}
+			
+			//添加地物
+			private function onGeometryAdded(event:DrawEvent):void
+			{
+				addEntityAction.removeEventListener(DrawEvent.DRAW_END, onGeometryAdded);
+				map.action = new Pan(map);
+				var addFeatureparam:EditFeaturesParameters = new EditFeaturesParameters();
+				addFeatureparam.editType = EditType.ADD;
+				addFeatureparam.features = [event.feature];
+				var feature:Feature = new Feature(event.feature.geometry, event.feature.style, event.feature.attributes);
+				fl.addFeature(feature);
+				
+				//与服务器交互
+				var editFeaturesUrl:String = this.editFeatureUrl;
+				var editFeaturesService:EditFeaturesService = new EditFeaturesService(editFeaturesUrl);
+				editFeaturesService.processAsync(addFeatureparam, new AsyncResponder(this.editComplete, excuteErros, "addEntity"));
+			}
+			
+			//选择地物
+			private function execute_geoSel(event:DrawEvent):void
+			{
+				map.action = new Pan(map);
+				selEntityAction.removeEventListener(DrawEvent.DRAW_END,execute_geoSel);
+				var queryParams:Array = ["Jingjin:Landuse_R"];
+				var queryByGeometryParameters:GetFeaturesByGeometryParameters = new GetFeaturesByGeometryParameters();
+				queryByGeometryParameters.datasetNames = queryParams;
+				queryByGeometryParameters.geometry = event.feature.geometry;
+				queryByGeometryParameters.spatialQueryMode = SpatialQueryMode.INTERSECT;
+				
+				var geoSelService:GetFeaturesByGeometryService = new GetFeaturesByGeometryService(this.featureResultUrl);
+				geoSelService.processAsync(queryByGeometryParameters, new AsyncResponder(this.dispalyQueryRecords, excuteErros, "selectEntity") );
+			}
+			
+			//高亮显示查询结果
+			private function dispalyQueryRecords(result:GetFeaturesResult, mark:Object = null):void
+			{
+				var features:Array = result.features;		
+				if(features.length == 0)
+				{
+					Alert.show("选取的地物为空对象", "提示", 4, this);
+					return; 
+				}
+				else
+				{
+					ids.length = 0;
+					for(var i:int = 0; i < result.features.length; i++)
+					{
+						var feature:Feature = result.features[i];
+						ids.push(feature.attributes.SMID);
+						this.fl.addFeature(feature);
+					}
+				}
+			}
+			
+			//删除地物
+			private function executeDel():void
+			{
+				if(this.isSelectedStatus == false)
+				{
+					Alert.show("请首先选择地物", "提示", 4, this);
+					return; 
+				}
+				var delParam:EditFeaturesParameters = new EditFeaturesParameters();
+				delParam.editType = EditType.DELETE;
+				delParam.IDs = this.ids;
+				var editFeaturesUrl:String = this.editFeatureUrl;
+				var editFeaturesService:EditFeaturesService = new EditFeaturesService(editFeaturesUrl);
+				editFeaturesService.processAsync(delParam, new AsyncResponder(this.editComplete, excuteErros, "deleteEntity"));
+			}
+			
+			//修改地物
+			private function executeEdit(event:DrawEvent):void
+			{
+				var editParams:EditFeaturesParameters = new EditFeaturesParameters();
+				editParams.features = [event.feature];
+				editParams.editType = EditType.UPDATE;
+				var editIDs:Array = new Array; 
+				for each(var i:int in this.ids)
+				{
+					var id:int = event.feature.attributes.SMID; 
+					if(id == i)
+						editIDs.push(i);
+				}
+				editParams.IDs = editIDs;
+				
+				var editService:EditFeaturesService = new EditFeaturesService(this.editFeatureUrl);
+				editService.processAsync(editParams, new AsyncResponder(editComplete, excuteErros, null));
+			}
+			
+			//地物编辑成功时的回调函数
+			private function editComplete(editRusult:EditFeaturesResult, mark:Object):void
+			{
+				this.iServerLayer.refresh();
+				this.isSelectedStatus = false;
+				if(mark == "addEntity")
+				{
+					ids.length = 0;
+					ids = editRusult.IDs;
+				}
+				fl.clear();
+			}
+			
+			//地物编辑失败时的回调函数
+			private function excuteErros(error:FaultEvent, mark:Object):void
+			{
+				Alert.show("地物编辑失败","抱歉",4,this);
+			}
+			
+			//平移
+			private function panAction(event:MouseEvent):void
+			{
+				map.action = new Pan(map);
+			}
+			
+			//清除要素图层
+			private function clearFeature(event:MouseEvent):void
+			{
+				this.fl.clear();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map">
+		<ic:TiledDynamicRESTLayer  url="{this.mapUrl}" id="iServerLayer"  enableServerCaching="false"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<!--操作按钮-->
+	<s:controlBarContent>
+		<s:HGroup gap="10" horizontalCenter="0" horizontalAlign="center" verticalCenter="0">	
+			<s:Button id="add" skinClass="skins.addEntityBtnSkin" toolTip="添加地物" click="featureActions(event)"/>
+			<s:Button id="sel" skinClass="skins.selEntity" toolTip="选择地物" click="featureActions(event)"/>
+			<s:Button id="edit" skinClass="skins.editEntityBtnSkin" toolTip="编辑地物" click="featureActions(event)"/>
+			<s:Button id="del" skinClass="skins.delEntityBtnSkin" toolTip="删除地物" click="featureActions(event)"/>
+			<s:Button id="pan" skinClass="skins.panBtnSkin" toolTip="平移" click="panAction(event)"/>
+			<s:Button id="clear" skinClass="skins.clearBtnSkin" toolTip="清除要素图层" click="clearFeature(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

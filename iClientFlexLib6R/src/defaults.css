@@ -1,0 +1,176 @@
+/* Defaults CSS file */
+
+@namespace ic "http://www.supermap.com/iclient/2010";
+@namespace mappingSuppClss "com.supermap.web.mapping.supportClasses.*";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+/*
+//------------------------------
+//  InfoContainer
+//------------------------------
+*/
+
+mappingSuppClss|InfoContainer
+{
+    borderSkin: ClassReference("com.supermap.web.mapping.supportClasses.InfoBorder");
+    verticalGap: 0;
+    paddingLeft: 3;
+    paddingRight: 3;
+    paddingTop: 3;
+    paddingBottom: 3;
+    backgroundColor: #999999;
+    backgroundAlpha: 1.0;
+	/*  borderThickness: 0;*/
+    borderColor: #000000;
+    borderAlpha: 1.0;    
+    upperLeftRadius: 5;
+    upperRightRadius: 5;
+    lowerLeftRadius: 5;
+    lowerRightRadius: 5;
+    infoPlacementMode: auto;
+    infoPlacement: upperRight;
+    infoOffsetX: 12;
+    infoOffsetY: 12;
+    infoOffsetW: 10;
+	/*  shadowDistance: 0.0;*/
+    shadowAlpha: 1.0;
+    shadowAngle: 45.0;
+    shadowColor: #000000;    
+}    
+
+
+/*
+//------------------------------
+//  InfoStyleContainer
+//------------------------------
+*/
+
+mappingSuppClss|InfoStyleContainer
+{
+    borderSkin: ClassReference("com.supermap.web.mapping.supportClasses.InfoBorder");
+    verticalGap: 0;
+    paddingLeft: 3;
+    paddingRight: 3;
+    paddingTop: 3;
+    paddingBottom: 3;
+    backgroundColor: #999999;
+    backgroundAlpha: 1.0;
+/*    borderThickness: 0;*/
+    borderColor: #000000;
+    borderAlpha: 1.0;        
+    upperLeftRadius: 5;
+    upperRightRadius: 5;
+    lowerLeftRadius: 5;
+    lowerRightRadius: 5;
+    infoPlacementMode: auto;
+    infoPlacement: upperRight;
+    infoOffsetX: 12;
+    infoOffsetY: 12;
+    infoOffsetW: 10;
+/*    shadowDistance: 0.0;*/
+    shadowAlpha: 1.0;
+    shadowAngle: 45.0;
+    shadowColor: #000000;    
+}    
+
+/*
+//------------------------------
+//  InfoWindowLabel
+//------------------------------
+*/
+
+mappingSuppClss|InfoWindowLabel
+{
+    fontWeight: bold;
+    fontSize: 12;
+}
+
+/*
+//------------------------------
+//  InfoWindowCloseButton
+//------------------------------
+*/
+
+mappingSuppClss|InfoWindowCloseButton
+{
+/*    disabledSkin: Embed(source="assets/callout_icons.swf",symbol="Callout_closeButtonDisabledSkin");
+    downSkin: Embed(source="assets/callout_icons.swf",symbol="Callout_closeButtonDownSkin");
+    overSkin: Embed(source="assets/callout_icons.swf",symbol="Callout_closeButtonOverSkin");
+    upSkin: Embed(source="assets/callout_icons.swf",symbol="Callout_closeButtonUpSkin");*/
+    width: 18;
+    height: 18;
+}
+
+/*
+//------------------------------
+//  Map
+//------------------------------
+*/
+
+ic|Map
+{
+	backgroundColor: #FFFFFF;
+	backgroundAlpha: 1.0;
+}
+
+
+/*
+//------------------------------
+//  ScaleBar
+//------------------------------
+*/
+
+ic|ScaleBar
+{
+    skinClass: ClassReference("com.supermap.web.components.skins.ScaleBarSkin");    
+}
+
+/*
+//------------------------------
+//  Compass
+//------------------------------
+*/
+
+ic|Compass
+{
+	skinClass: ClassReference("com.supermap.web.components.skins.CompassSkin");    
+}
+
+
+
+
+/*
+//------------------------------
+//  TimeSlider
+//------------------------------
+*/
+
+ic|TimeSlider
+{
+    skinClass: ClassReference("com.supermap.web.components.skins.TimeSliderSkin");
+}
+
+/*
+//------------------------------
+//  ZoomSlider
+//------------------------------
+*/
+
+ic|ZoomSlider
+{      
+	skinClass: ClassReference("com.supermap.web.components.skins.ZoomSliderSkin");    
+}
+
+/*
+//------------------------------
+//  ToolTip
+//------------------------------
+*/
+/*mx|ToolTip
+{
+	color: #FFFFFF;
+	backgroundColor: #000000;
+	backgroundAlpha: 0.5;
+}*/
+

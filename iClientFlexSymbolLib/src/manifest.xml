@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!--
+
+	SUPERMAP ICLIENT 6R FOR FLEX 
+	Copyright 2005-2010 SuperMap Software Co., Ltd
+	All Rights Reserved.
+
+-->
+
+<componentPackage>
+  
+	<!-- symbols -->
+	<component id="CloverStyle" class="com.supermap.web.symbol.clover.CloverStyle"/> 
+	<component id="SectorItem" class="com.supermap.web.symbol.clover.SectorItem"/>
+	<component id="GridStyle" class="com.supermap.web.symbol.grid.GridStyle"/> 
+	<component id="GridItem" class="com.supermap.web.symbol.grid.GridItem"/>
+	
+	<!--events-->
+	<component id="CloverEvent" class="com.supermap.web.symbol.event.CloverEvent"/>
+	<component id="GridEvent" class="com.supermap.web.symbol.event.GridEvent"/>
+</componentPackage>

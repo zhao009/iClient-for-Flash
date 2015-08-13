@@ -1,0 +1,5 @@
+<font color="#0033FF">热点图</font>
+<font color="#006633">1. 功能描述：</font>表示地图中事件发生频率或事物分布密度，亮色一般代表事件发生频率较高或事物分布密度较大，暗色反之。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map（World）。
+<font color="#006633">3. 操作指南：</font>滑动“热度”，改变热点的分布密度，范例中所有热点的热度是相对的，因此当滑动“热度”时，会出现一部分热点变亮，一部分热点变暗。勾选"地理半径"表示热点以地理半径显示，随地图缩放；默认为像素半径。
+<font color="#006633">3. 其它说明：</font>有关热点图（HeatMapLayer）的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

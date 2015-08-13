@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 height="44"
+		 xmlns:path="com.supermap.path.*"
+		 xmlns:containers="com.supermap.topbar.containers.*"
+		 xmlns:mobile160="com.supermap.components.skins.mobile160.*"
+		 xmlns:components="com.supermap.components.*" creationComplete="init(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.components.CoordinateSwitcher;
+			import com.supermap.components.serviceExtend.ExtendRecordSet;
+			import com.supermap.components.serviceExtend.ExtendService;
+			import com.supermap.events.ResultListClickEvent;
+			import com.supermap.views.MainView;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.PictureMarkerStyle;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.events.FaultEvent;
+
+			//起点查询结果数据
+			public var origins:Array;
+			//终点查询结果数据
+			public var destinations:Array;
+
+			//经纬度坐标的起点
+			public var originPoint:Point2D;
+			//经纬度坐标的终点
+			public var destPoint:Point2D;
+
+			public var origin:Feature;
+			public var destination:Feature;
+
+			private var _starService:ExtendService = new ExtendService();
+			private var _endService:ExtendService = new ExtendService();
+			//起点、终点选择弹窗
+			public var candidateList:PopUpWindow;
+
+			public var mainview:MainView = null;
+			//存放起点和终点查询结果站点名
+			public var resultObj:Object = new Object();
+
+			//结果展示窗口
+			public var pathWindow:ResultListWindow = new ResultListWindow();
+
+			private var pathWindowAdded:Boolean = false;
+			
+			public var queryed:Boolean = false;
+			/**
+			 * 查询开始
+			 * */
+			protected function query_clickHandler(event:MouseEvent):void
+			{
+				if(originText.text && destText.text)
+				{
+					query.enabled = false;
+					pathWindow.visible = false;
+//					mainview.alpha = 0.7;
+					mainview.tipBar.currentState = "loading";
+					mainview.tipBar.showTip(false);
+
+					_starService.queryByKeyWordExecu(originText.text, new AsyncResponder(stationRecordsHandler, faultHandler, "origStations"));
+					_endService.queryByKeyWordExecu(destText.text, new AsyncResponder(stationRecordsHandler, faultHandler, "destStations"));
+				}
+			}
+
+			private function faultHandler(event:FaultEvent, mark:Object = null):void
+			{
+				mainview.tipBar.currentState = "netWorkFault";
+				mainview.tipBar.showTip(true);
+				query.enabled = true;
+				mainview.alpha = 1;
+				if(resultObj)
+				{
+					resultObj.srcArr = null;
+					resultObj.destArr = null;
+				}
+			}
+
+			/**
+			 * 开始处理模糊匹配的结果
+			 * */
+			private function handleResult():void
+			{
+				if(resultObj.srcArr && resultObj.destArr)
+				{
+					candidateList = PopUpManager.createPopUp(mainview, PopUpWindow, true) as PopUpWindow;
+					candidateList.data = resultObj.srcArr as Array;
+					candidateList.code = "start";
+					candidateList.title = "起点";
+					candidateList.addEventListener(ResultListClickEvent.ORINGIN_SELECTED, originPointHandler);
+					PopUpManager.centerPopUp(candidateList);
+				}
+			}
+
+			private function stationRecordsHandler(resultSet:ExtendRecordSet, mark:Object = null):void
+			{
+				if(resultSet && resultSet.features)
+				{
+					var tempFeaturesAry:Array = resultSet.features;
+					var resultAry:Array = new Array();
+					for each(var tempFeature:Feature in tempFeaturesAry)
+					{
+						resultAry.push(tempFeature.attributes.NAME);
+					}
+					
+					if(mark=="origStations")
+					{
+						this.origins = tempFeaturesAry;
+						resultObj.srcArr = resultAry;
+					}
+					else if(mark=="destStations")
+					{
+						this.destinations = tempFeaturesAry;
+						resultObj.destArr = resultAry;
+					}
+					
+					handleResult();
+				}
+				else
+				{
+					query.enabled = true;
+					mainview.alpha = 1;
+					mainview.tipBar.currentState = "nullResult";
+					mainview.tipBar.showTip(true);
+				}
+			}
+
+			private function originPointHandler(event:ResultListClickEvent):void
+			{
+				candidateList.removeEventListener(ResultListClickEvent.ORINGIN_SELECTED, originPointHandler);
+
+				var x:Number = origins[event.index].geometry.x;
+				var y:Number = origins[event.index].geometry.y;
+
+				this.mainview.featuresLayer.clear();
+
+				origin = new Feature(new GeoPoint(x, y));
+				var attr:Object = new Object();
+				attr["name"] = origins[event.index].attributes.NAME as String;
+				origin.attributes = attr;
+				origin.style = new PictureMarkerStyle("assets/path/startSign.png");
+
+				this.mainview.featuresLayer.addFeature(origin);
+
+				originPoint = CoordinateSwitcher.metersToLatLon(new Point2D(x, y));
+
+				if(candidateList)
+				{
+					candidateList.list.selectedIndex = -1;
+					candidateList.data = resultObj.destArr as Array;
+					candidateList.code = "终点";
+					candidateList.title = "终点";
+					candidateList.addEventListener(ResultListClickEvent.DEST_SELECTED, destPointHandler);
+				}
+			}
+
+			private function destPointHandler(event:ResultListClickEvent):void
+			{
+				candidateList.removeEventListener(ResultListClickEvent.DEST_SELECTED, destPointHandler);
+
+				PopUpManager.removePopUp(candidateList);
+				candidateList = null;
+				resultObj.srcArr = null;
+				resultObj.destArr = null;
+
+				var x:Number = destinations[event.index].geometry.x;
+				var y:Number = destinations[event.index].geometry.y;
+
+				destination = new Feature(new GeoPoint(x, y));
+				destination.style = new PictureMarkerStyle("assets/path/endSign.png");
+				var attr:Object = new Object();
+				attr["name"] = destinations[event.index].attributes.NAME as String;
+				destination.attributes = attr;
+				this.mainview.featuresLayer.addFeature(destination);
+
+				this.originText.text = origin.attributes.name;
+				this.destText.text = destination.attributes.name;
+
+				destPoint = CoordinateSwitcher.metersToLatLon(new Point2D(x, y));
+				var pathService:FindPathService = new FindPathService();
+				//起始点为经纬度的，经过转换的
+				pathService.pathExecu(originPoint, destPoint, new AsyncResponder(pathResultHandler, faultHandler, null));
+			}
+
+			private function pathResultHandler(resultSet:FindPathRecordSet, mark:Object = null):void
+			{
+				query.enabled = true;
+				var recordSet:FindPathRecordSet = resultSet;
+				var geometrys:Array = [];
+
+				if(recordSet)
+				{
+					mainview.tipBar.showTip(true); //??
+					for(var i:int = 0; i < recordSet.features.length; i++)
+					{
+						mainview.featuresLayer.addFeature(recordSet.features[i]);
+						geometrys.push(recordSet.features[i].geometry);
+					}
+					if(geometrys.length > 0)
+					{
+						ZoomToScaleUtil.zoomToScale(geometrys, this.mainview.map);
+					}
+
+					//添加路径结果列表
+					pathWindow.subDistance = recordSet.distance;
+					pathWindow.pathResult = recordSet.pathInfo;
+					pathWindow.features = recordSet.features;
+					pathWindow.mainView = this.mainview;
+					pathWindow.startPoint = origin;
+					pathWindow.endPoint = destination;
+					pathWindow.x = 20;
+					pathWindow.visible = true;
+					pathWindow.refresh();
+					this.queryed = true;
+					alpha = 1;
+				}
+				else
+				{
+					mainview.tipBar.currentState = "nullResult";
+					mainview.tipBar.showTip(true);
+					query.enabled = true;
+					mainview.alpha = 1;
+				}
+			}
+
+			protected function quit_clickHandler(event:MouseEvent):void
+			{
+				if(pathWindow != null)
+				{
+					pathWindow.visible = false;
+				}
+				this.mainview.currentState = "main";
+				this.mainview.alpha = 1;
+				query.enabled = true;
+			}
+			
+			protected function init(event:FlexEvent):void
+			{
+				pathWindow.visible = false;
+				if(!pathWindowAdded)
+				{
+					this.mainview.addElement(pathWindow);
+					pathWindowAdded = true;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<mobile160:TopBar width="100%"
+					  height="100%"/>
+
+	<s:HGroup width="100%"
+			  height="100%"
+			  verticalAlign="middle"
+			  paddingLeft="5"
+			  paddingRight="5">
+		<s:TextInput id="originText"
+					 prompt="起点"
+					 height="33"
+					 width="35%"
+					 borderVisible="false"
+					 returnKeyLabel="done"/>
+		<s:Spacer width="20"/>
+		<s:TextInput id="destText"
+					 prompt="终点"
+					 height="33"
+					 width="35%"
+					 borderVisible="false"
+					 returnKeyLabel="done"/>
+		<s:HGroup left="10"
+				  width="100%"
+				  right="10">
+			<!--  -->
+			<components:IconButton id="query"
+								   click="query_clickHandler(event)"
+								   up="@Embed('assets/search/search.png')"
+								   down="@Embed('assets/search/search2.png')"
+								   skinClass="com.supermap.components.skins.IconButtonSkin"/>
+			<s:Spacer width="100%"/>
+			<!--  -->
+			<s:Button id="quit"
+					  label="关闭"
+					  color="0xFFFFFF"
+					  click="quit_clickHandler(event)"
+					  skinClass="com.supermap.components.skins.CustomButtonSkin2"/>
+		</s:HGroup>
+	</s:HGroup>
+</s:Group>

@@ -1,0 +1,12 @@
+<font color="#0033FF">栅格单值专题图（ThemeUnique  ）</font>
+<font color="#006633">1. 功能描述：</font>将单元格值相同的归为一类，为每一类设定一种颜色，从而用来区分不同的类别。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 服务器产品提供的栅格图层——京津地形高程图。
+<font color="#006633">3. 实现的关键步骤：</font>
+    1）定义单值专题图子项 ThemeGridUniqueItem；
+    2）定义标签专题图 ThemeGridUnique;
+    3）定义专题图参数 ThemeParameters；
+    4）制作专题图 ThemeService；
+    5）获取专题图，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 ThemeEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">4. 其它说明：</font>有关栅格单值专题图的详细介绍请参见 "SuperMap iClient for Flash 帮助文档"。

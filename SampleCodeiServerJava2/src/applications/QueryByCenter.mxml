@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.map.addEventListener(MouseEvent.CLICK, mouseClick);
+			} 
+			
+			private function mouseClick(event:MouseEvent):void
+			{
+				var j:int = 1;
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.components.FeatureDataGrid;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.events.FeatureDataGridEvent;
+			import com.supermap.web.iServerJava2.ServerFeatureType;
+			import com.supermap.web.iServerJava2.queryServices.QueryByCenterParameters;
+			import com.supermap.web.iServerJava2.queryServices.QueryByCenterService;
+			import com.supermap.web.iServerJava2.queryServices.QueryLayerParam;
+			import com.supermap.web.iServerJava2.queryServices.QueryParam;
+			import com.supermap.web.iServerJava2.queryServices.RecordSet;
+			import com.supermap.web.iServerJava2.queryServices.ResultSet;
+			import com.supermap.web.iServerJava2.queryServices.ReturnResultSetInfo;
+			import com.supermap.web.iServerJava2.queryServices.SqlParam;
+			import com.supermap.web.mapping.FeaturesLayer;
+			import com.supermap.web.mapping.Map;
+			
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.ListEvent;
+			import mx.rpc.AsyncResponder;
+		
+			//当前查询图层
+			private var currentQueryLayer:String = "World@world";
+			//定义图层数组
+			[Bindable]
+			private var queryLayers:Array = ["World@world","Capital@world"];
+			//定义查询类型数组
+			[Bindable]
+			private var subCenterQyeryTypes:Array = ["最近查找", "距离查找"];
+				
+			private var _isNearest:Boolean = false;//指定是否为最近查找 
+			private var resultFeatures:Array = [];
+			private var recordGrid:FeatureDataGrid;
+			
+			private function main():void
+			{
+				titlewin.visible = true;
+			}
+			
+			//响应 DrawEvent.Draw_End 事件
+			private function queryExecute(event:DrawEvent):void
+			{
+				if (event.feature == null)
+					return;
+				
+				//定义 sql 查询语句
+				var sqlParam:SqlParam = new SqlParam();
+				sqlParam.whereClause = txtSQLExpress.text;
+				
+				//定义所要查询的图层参数,包括：指定的查询图层及 sql
+				var queryLayerParam:QueryLayerParam = new QueryLayerParam(currentQueryLayer, sqlParam);
+				
+				//定义查询参数，包括：期望返回结果个数、网络图层类型（一般用于网络分析）、返回结果类型、图层参数
+				var queryParam:QueryParam = new QueryParam();
+				queryParam.expectCount = (Number)(txtReturnCount.text);//默认为所有
+				queryParam.networkType = ServerFeatureType.LINE;
+				queryParam.returnResultSetInfo = ReturnResultSetInfo.RETURN_RESULT_ATTRIBUTEANDGEOMETRY;
+				queryParam.queryLayerParams = [queryLayerParam];
+				
+				//定义中心点查询参数，包括：所要查询的地图、查询参数（如上）、指定是否为最近点查询（默认为否）、指定的几何中心点
+				//查询范围（地图单位），注意：此属性不作用于最近点查询。
+				var queryByCenterParam:QueryByCenterParameters = new QueryByCenterParameters("World",queryParam);
+				queryByCenterParam.isNearest = _isNearest;
+				queryByCenterParam.center = event.feature.geometry as GeoPoint;
+				txtQueryParam.text = (txtQueryParam.text == "" ? "50" : txtQueryParam.text);
+				queryByCenterParam.tolerance = (Number)(txtQueryParam.text);//默认 50（地图单位）
+				
+				//向指定服务端地址提交查询相关参数，执行查询操作
+				var centerQuery:QueryByCenterService = new QueryByCenterService(viewConfig.webUrl);
+				centerQuery.execute(new AsyncResponder(this.dispalyQueryRecords, 
+				function (object:Object, mark:Object = null):void
+				{
+					Alert.show("查询失败。");
+				}, null),queryByCenterParam);	
+				
+				map.action = new Pan(map);
+			
+			}
+			
+			private function dispalyQueryRecords(resultSet:ResultSet, mark:Object = null):void
+			{
+				if(!bQueryResultSaved.selected)
+				{
+					resultFeatures = [];
+					if(this.recordGrid)
+					{
+						this.recordGrid.clear();
+					}
+					this.featuresLayer.clear();
+				}
+				
+				if(!resultSet || !resultSet.recordSets)
+				{
+					Alert.show("查询结果为空", "提示", 4, this);
+					return;
+				}
+				
+				var features:Array = (resultSet.recordSets[0] as RecordSet).toFeatureSet(); 
+				
+				
+				//剔除重复元素
+				outerLoop:
+				for each (var feature:Feature in features)
+				{
+					for each(var value:Feature in resultFeatures)
+					{
+						if(value.attributes.SMID == feature.attributes.SMID)
+						{
+							break outerLoop;
+						}
+					}
+					resultFeatures.push(feature);
+				}
+				if(!this.recordGrid)
+				{
+					this.recordGrid = new FeatureDataGrid(this.featuresLayer, resultFeatures, this.resultWin); 
+				}
+				else
+					this.recordGrid.features = resultFeatures;
+				this.recordGrid.addEventListener(MouseEvent.MOUSE_DOWN, this.recordGridMouseDown); 
+				this.recordGrid.addEventListener(FeatureDataGridEvent.FEATURE_SELECTED, featureSelectedHandler);
+				this.resultWin.removeAllChildren();
+				this.resultWin.addElement(recordGrid); 
+				resultWin.visible = true; 							
+			}
+	 
+			private function featureSelectedHandler(event:FeatureDataGridEvent):void
+			{
+				this.map.panTo(event.feature.geometry.bounds.center);
+			}
+			//button点击事件
+			private function onExcuteQueryClick(event:MouseEvent):void 
+			{ 
+				var subQueryTypeStr:String = subQueryType.selectedItem.toString();
+				var drawPoint:DrawPoint = new DrawPoint(map);
+				drawPoint.addEventListener(DrawEvent.DRAW_END,queryExecute);
+				
+				if(subQueryTypeStr == "最近查找")
+				{
+					_isNearest = true;
+				}
+				else if(subQueryTypeStr == "距离查找")
+				{
+					_isNearest = false;
+				} 
+				map.action = drawPoint;
+			}
+			
+			//查询类型改变事件
+			private function subQueryTypeChanged(event:ListEvent):void 
+			{
+				map.action = null;
+			}
+			
+			//查询图层改变事件
+			private function onQueryLayerChange(event:ListEvent):void 
+			{
+				clearFeature(null);
+				var queryLayer:String = ComboBox(event.target).selectedItem.toString();
+				currentQueryLayer = queryLayer;
+			}
+			
+			//查询参数设置窗口关闭事件
+			private function titleWinClose(event:CloseEvent):void 
+			{ 
+				this.resultWin.visible = false;
+			}
+		  
+			private function clearFeature(event:MouseEvent):void
+			{
+				map.action = new Pan(map);
+				resultFeatures = [];
+				if(this.recordGrid)
+				{
+					this.recordGrid.clear();
+				}
+				featuresLayer.clear(); 
+				this.titleWinClose(event as CloseEvent);
+			}
+			
+			private function pan(event:MouseEvent):void
+			{
+				map.action = new Pan(map);;
+			}
+			
+			private function resultWin_mouseUp(event:MouseEvent):void
+			{
+				resultWin.stopDrag();
+			}
+			
+			private function resultWin_mouseDown(event:MouseEvent):void
+			{
+				this.resultWin.startDrag();  
+			}
+ 
+			private function recordGridMouseDown(event:MouseEvent):void
+			{ 
+				event.stopPropagation();
+				this.resultWin.stopDrag();  
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<!--地图地址(url)、名称(mapName)、比例尺(scales)用户可更改-->
+	<!--例如：url="您的地图所在服务器地址"，mapName="您的地图名称"，scales="您的地图比例尺"-->
+	<s:Panel fontFamily="宋体" width="100%" height="100%" fontSize="18" title="操作指南：在完成参数设置后请先点击“查询”按钮，再绘制查询基点">
+		<ic:Map id="map" load="main()" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}"
+										 mapName="World"
+										 mapServiceAddress="{viewConfig.gisUrl}"
+										 mapServicePort="8600"/>
+			<ic:FeaturesLayer id="featuresLayer"/> 
+		</ic:Map>
+	</s:Panel>
+	
+	<!--定义结果显示窗口-->
+	<mx:TitleWindow id="resultWin" title="查询结果："  mouseDown="resultWin_mouseDown(event)" showCloseButton="true" close="titleWinClose(event)" layout="absolute" 
+					bottom="10" horizontalCenter="10" backgroundColor="#737171" backgroundAlpha="0.60" visible="false" mouseUp="resultWin_mouseUp(event)">
+ 
+	</mx:TitleWindow>
+	
+	<!--定义查询参数设置窗口-->
+	<s:Panel id="titlewin" title="中心点查询" fontSize="12" fontFamily="宋体" right="5" top="10" backgroundColor="#454343" backgroundAlpha="0.48">
+		<s:Label x="10" y="38" text="子查询类型：" id="lblTypeOrSql"/>
+		<mx:ComboBox x="93" y="35" id="subQueryType" dataProvider="{subCenterQyeryTypes}" width="160" change="subQueryTypeChanged(event)"/>
+		<s:Label x="10" y="10" text="查询图层："/>
+		<mx:ComboBox x="93" y="7" dataProvider="{queryLayers}" change="onQueryLayerChange(event)" width="160"/>
+		<s:Label x="10" y="66" text="距离容限："/>
+		<s:TextInput id="txtQueryParam" toolTip="地图单位" text="30" x="93" y="63" width="160"/>
+		<s:Label x="10" y="94" text="SQL 语句："/>
+		<s:TextInput x="93" y="91" id="txtSQLExpress" text="smid &lt; 270"/>
+		<s:Label x="10" y="122" text="返回记录数："/>
+		<s:TextInput x="93" y="119" id="txtReturnCount" text="10000"/>
+		<s:CheckBox  x="10" y="152" id="bQueryResultSaved" label="保留查询结果" selected="false" />
+		<s:Button x="15" y="178" label="查询" id="excuteQuery" click="onExcuteQueryClick(event)"/>
+		<s:Button x="183" y="178" label="清除" id="clear" click="clearFeature(event)"/>
+		<s:Button x="99" y="178" label="平移" id="panMap" click="pan(event)"/>
+		
+	</s:Panel>
+</s:Application>

@@ -1,0 +1,483 @@
+<apiPackage id="com.supermap.web.iServerJava6R.serviceEvents"><apiName>com.supermap.web.iServerJava6R.serviceEvents</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:GetFeaturesEvent"><apiName>GetFeaturesEvent</apiName><shortdesc>
+	 数据集查找服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集查找服务事件类.
+	 <p>当数据集查找（GetFeaturesService）成功时即会派发 GetFeaturesEvent 对象。只有一种类型的事件：GetFeaturesEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（GetFeaturesResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#GetFeaturesResult"><linktext>com.supermap.web.iServerJava6R.dataServices.GetFeaturesResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:GetFeaturesEvent:GetFeaturesEvent"><apiName>GetFeaturesEvent</apiName><shortdesc>
+		 初始化 GetFeaturesEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult</apiOperationClassifier><apiDesc>分析结果，GetFeaturesResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GetFeaturesEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GetFeaturesEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 GetFeaturesEvent.PROCESS_COMPLETE 事件的 type 属性值。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 GetFeaturesEvent.PROCESS_COMPLETE 事件的 type 属性值。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GetFeaturesEvent:result:get"><apiName>result</apiName><shortdesc>
+		 数据集查找结果信息，GetFeaturesResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.dataServices:GetFeaturesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 数据集查找结果信息，GetFeaturesResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:MeasureEvent"><apiName>MeasureEvent</apiName><shortdesc>
+	 量算服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 量算服务事件类.
+	 <p>当量算（MeasureService）成功时即会派发 MeasureEvent 对象。只有一种类型的事件：MeasureEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（MeasureResult）。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.measureServices.xml#MeasureService"><linktext>com.supermap.web.iServerJava6R.measureServices.MeasureService</linktext></link><link href="com.supermap.web.iServerJava6R.measureServices.xml#MeasureResult"><linktext>com.supermap.web.iServerJava6R.measureServices.MeasureResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:MeasureEvent:MeasureEvent"><apiName>MeasureEvent</apiName><shortdesc>
+		 初始化 MeasureEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.measureServices:MeasureResult</apiOperationClassifier><apiDesc>分析结果，MeasureResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 MeasureEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:MeasureEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 MeasureEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 MeasureEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:MeasureEvent:result:get"><apiName>result</apiName><shortdesc>
+		 量算结果信息，MeasureResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.measureServices:MeasureResult</apiValueClassifier></apiValueDef><apiDesc>
+		 量算结果信息，MeasureResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:DatasetOverlayAnalystEvent"><apiName>DatasetOverlayAnalystEvent</apiName><shortdesc>
+	 数据集叠加分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集叠加分析服务事件类.
+	 <p>当数据集叠加分析（DatasetOverlayAnalystService）成功时即会派发 DatasetOverlayAnalystEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：DatasetOverlayAnalystEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（DatasetOverlayAnalystResult）。</p>
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:DatasetOverlayAnalystEvent:DatasetOverlayAnalystEvent"><apiName>DatasetOverlayAnalystEvent</apiName><shortdesc>
+		 初始化 DatasetOverlayAnalystEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystResult</apiOperationClassifier><apiDesc>数据集叠加分析的结果信息，DatasetOverlayAnalystResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DatasetOverlayAnalystEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:DatasetOverlayAnalystEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 DatasetOverlayAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 DatasetOverlayAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:DatasetOverlayAnalystEvent:result:get"><apiName>result</apiName><shortdesc>
+		 数据集叠加分析的结果信息，DatasetOverlayAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetOverlayAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 数据集叠加分析的结果信息，DatasetOverlayAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:FindLocationEvent"><apiName>FindLocationEvent</apiName><shortdesc>
+	 选址分区分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 选址分区分析服务事件类.
+	 <p>当选址分区分析（FindLocationService）成功时即会派发 FindLocationEvent 对象。只有一种类型的事件：FindLocationEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（FindLocationResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindLocationService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindLocationResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindLocationResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:FindLocationEvent:FindLocationEvent"><apiName>FindLocationEvent</apiName><shortdesc>
+		 初始化 FindLocationEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationResult</apiOperationClassifier><apiDesc>分析结果，FindLocationResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FindLocationEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindLocationEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 FindLocationEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FindLocationEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindLocationEvent:result:get"><apiName>result</apiName><shortdesc>
+		 选址分区分析结果信息，FindLocationResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindLocationResult</apiValueClassifier></apiValueDef><apiDesc>
+		 选址分区分析结果信息，FindLocationResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:SurfaceAnalystEvent"><apiName>SurfaceAnalystEvent</apiName><shortdesc>
+	 表面分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 表面分析服务事件类.
+	 <p>当表面分析（GeometrySurfaceAnalystParameters、DatasetSurfaceAnalystParameters）成功时即会派发 SurfaceAnalystEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：SurfaceAnalystEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（SpatialAnalystResult）。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:SurfaceAnalystEvent:SurfaceAnalystEvent"><apiName>SurfaceAnalystEvent</apiName><shortdesc>
+		 初始化 SurfaceAnalystEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystResult</apiOperationClassifier><apiDesc>表面分析的结果信息，SpatialAnalystResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 SurfaceAnalystEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:SurfaceAnalystEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 SurfaceAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 SurfaceAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:SurfaceAnalystEvent:result:get"><apiName>result</apiName><shortdesc>
+		 表面分析的结果信息，SpatialAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:SurfaceAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 表面分析的结果信息，SpatialAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:TurnNodeWeightNamesEvent"><apiName>TurnNodeWeightNamesEvent</apiName><shortdesc>
+	 获取转向字段服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取转向字段服务事件类.
+	 <p>当获取转向字段（GetTurnNodeWeightNamesService）成功时即会派发 TurnNodeWeightNamesEvent 对象。只有一种类型的事件：TurnNodeWeightNamesEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（TurnNodeWeightNamesResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#GetTurnNodeWeightNamesService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.GetTurnNodeWeightNamesService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#TurnNodeWeightNamesResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.TurnNodeWeightNamesResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:TurnNodeWeightNamesEvent:TurnNodeWeightNamesEvent"><apiName>TurnNodeWeightNamesEvent</apiName><shortdesc>
+		 初始化 TurnNodeWeightNamesEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TurnNodeWeightNamesResult</apiOperationClassifier><apiDesc>获取转向字段的结果信息，TurnNodeWeightNamesResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 TurnNodeWeightNamesEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:TurnNodeWeightNamesEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 TurnNodeWeightNamesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 TurnNodeWeightNamesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:TurnNodeWeightNamesEvent:result:get"><apiName>result</apiName><shortdesc>
+		 获取转向字段的结果信息，TurnNodeWeightNamesResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:TurnNodeWeightNamesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取转向字段的结果信息，TurnNodeWeightNamesResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:FindMTSPPathsEvent"><apiName>FindMTSPPathsEvent</apiName><shortdesc>
+	 多旅行商分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 多旅行商分析服务事件类.
+	 <p>当多旅行商分析（FindMTSPPathsService）成功时即会派发 FindMTSPPathsEvent 对象。只有一种类型的事件：FindMTSPPathsEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（FindMTSPPathsResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindMTSPPathsService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindMTSPPathsService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindMTSPPathsResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindMTSPPathsResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:FindMTSPPathsEvent:FindMTSPPathsEvent"><apiName>FindMTSPPathsEvent</apiName><shortdesc>
+		 初始化 FindMTSPPathsEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsResult</apiOperationClassifier><apiDesc>分析结果，FindMTSPPathsResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FindMTSPPathsEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindMTSPPathsEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 FindMTSPPathsEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FindMTSPPathsEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindMTSPPathsEvent:result:get"><apiName>result</apiName><shortdesc>
+		 多旅行商分析结果信息，FindMTSPPathsResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindMTSPPathsResult</apiValueClassifier></apiValueDef><apiDesc>
+		 多旅行商分析结果信息，FindMTSPPathsResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:DatasetBufferAnalystEvent"><apiName>DatasetBufferAnalystEvent</apiName><shortdesc>
+	 数据集缓冲区分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据集缓冲区分析服务事件类.
+	 <p>当数据集缓冲区分析（DatasetBufferAnalystService）成功时即会派发 DatasetBufferAnalystEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：DatasetBufferAnalystEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（DatasetBufferAnalystResult）。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.spatialAnalystServices.xml#DatasetBufferAnalystResult"><linktext>com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetBufferAnalystResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:DatasetBufferAnalystEvent:DatasetBufferAnalystEvent"><apiName>DatasetBufferAnalystEvent</apiName><shortdesc>
+		 初始化 DatasetBufferAnalystEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystResult</apiOperationClassifier><apiDesc>数据集缓冲区分析的结果信息，DatasetBufferAnalystResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 DatasetBufferAnalystEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:DatasetBufferAnalystEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 DatasetBufferAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 DatasetBufferAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:DatasetBufferAnalystEvent:result:get"><apiName>result</apiName><shortdesc>
+		 数据集缓冲区分析的结果信息，DatasetBufferAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:DatasetBufferAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 数据集缓冲区分析的结果信息，DatasetBufferAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:SetLayerEvent"><apiName>SetLayerEvent</apiName><shortdesc>
+	 子图层控制服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 子图层控制服务事件类.
+	 <p>当子图层控制（SetLayerStatusService、SetLayerStyleService）成功时即会派发 SetLayerEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：SetLayerEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（SetLayerResult）。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:SetLayerEvent:SetLayerEvent"><apiName>SetLayerEvent</apiName><shortdesc>
+		 初始化 SetLayerEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.layerServices:SetLayerResult</apiOperationClassifier><apiDesc>子图层控制的结果信息，SetLayerResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 SetLayerEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:SetLayerEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 SetLayerEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 SetLayerEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:SetLayerEvent:result:get"><apiName>result</apiName><shortdesc>
+		 子图层控制的结果信息，SetLayerResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.layerServices:SetLayerResult</apiValueClassifier></apiValueDef><apiDesc>
+		 子图层控制的结果信息，SetLayerResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:FindTSPPathsEvent"><apiName>FindTSPPathsEvent</apiName><shortdesc>
+	 旅行商分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 旅行商分析服务事件类.
+	 <p>当旅行商分析（FindTSPPathsService）成功时即会派发 FindTSPPathsEvent 对象。只有一种类型的事件：FindTSPPathsEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（FindTSPPathsResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindTSPPathsService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindTSPPathsService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindTSPPathsResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindTSPPathsResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:FindTSPPathsEvent:FindTSPPathsEvent"><apiName>FindTSPPathsEvent</apiName><shortdesc>
+		 初始化 FindTSPPathsEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsResult</apiOperationClassifier><apiDesc>分析结果，FindTSPPathsResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FindTSPPathsEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindTSPPathsEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 FindTSPPathsEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FindTSPPathsEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindTSPPathsEvent:result:get"><apiName>result</apiName><shortdesc>
+		 旅行商分析结果信息，FindTSPPathsResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindTSPPathsResult</apiValueClassifier></apiValueDef><apiDesc>
+		 旅行商分析结果信息，FindTSPPathsResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:FindPathEvent"><apiName>FindPathEvent</apiName><shortdesc>
+	 最佳路径分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最佳路径分析服务事件类.
+	 <p>当最佳路径分析（FindPathService）成功时即会派发 FindPathEvent 对象。只有一种类型的事件：FindPathEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（FindPathResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindPathService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindPathService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindPathResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindPathResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:FindPathEvent:FindPathEvent"><apiName>FindPathEvent</apiName><shortdesc>
+		 初始化 FindPathEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindPathResult</apiOperationClassifier><apiDesc>分析结果，FindPathResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FindPathEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindPathEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 FindPathEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FindPathEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindPathEvent:result:get"><apiName>result</apiName><shortdesc>
+		 最佳路径分析结果信息，FindPathResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindPathResult</apiValueClassifier></apiValueDef><apiDesc>
+		 最佳路径分析结果信息，FindPathResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:RemoveThemeEvent"><apiName>RemoveThemeEvent</apiName><shortdesc>
+	 删除专题图服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 删除专题图服务事件类.
+	 <p>当删除专题图（RemoveThemeService）成功时即会派发 RemoveThemeEvent 对象。只有一种类型的事件：RemoveThemeEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（RemoveThemeResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.themeServices.xml#RemoveThemeService"><linktext>com.supermap.web.iServerJava6R.themeServices.RemoveThemeService</linktext></link><link href="com.supermap.web.iServerJava6R.themeServices.xml#RemoveThemeResult"><linktext>com.supermap.web.iServerJava6R.themeServices.RemoveThemeResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:RemoveThemeEvent:RemoveThemeEvent"><apiName>RemoveThemeEvent</apiName><shortdesc>
+		 初始化 RemoveThemeEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.themeServices:RemoveThemeResult</apiOperationClassifier><apiDesc>删除专题图结果信息，RemoveThemeResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 RemoveThemeEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:RemoveThemeEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 RemoveThemeEvent.PROCESS_COMPLETE 事件的 type 属性值。 Theme 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 RemoveThemeEvent.PROCESS_COMPLETE 事件的 type 属性值。 Theme 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:RemoveThemeEvent:result:get"><apiName>result</apiName><shortdesc>
+		 删除专题图结果信息，RemoveThemeResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.themeServices:RemoveThemeResult</apiValueClassifier></apiValueDef><apiDesc>
+		 删除专题图结果信息，RemoveThemeResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:FindServiceAreasEvent"><apiName>FindServiceAreasEvent</apiName><shortdesc>
+	 服务区分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务区分析服务事件类.
+	 <p>当服务区分析（FindServiceAreasService）成功时即会派发 FindServiceAreasEvent 对象。只有一种类型的事件：FindServiceAreasEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（FindServiceAreasResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindServiceAreasService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindServiceAreasResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindServiceAreasResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:FindServiceAreasEvent:FindServiceAreasEvent"><apiName>FindServiceAreasEvent</apiName><shortdesc>
+		 初始化 FindServiceAreasEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasResult</apiOperationClassifier><apiDesc>分析结果，FindServiceAreasResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FindServiceAreasEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindServiceAreasEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 FindServiceAreasEvent.PROCESS_COMPLETE 事件的 type 属性值。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FindServiceAreasEvent.PROCESS_COMPLETE 事件的 type 属性值。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindServiceAreasEvent:result:get"><apiName>result</apiName><shortdesc>
+		 服务区分析结果信息，FindServiceAreasResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindServiceAreasResult</apiValueClassifier></apiValueDef><apiDesc>
+		 服务区分析结果信息，FindServiceAreasResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:GeometryOverlayAnalystEvent"><apiName>GeometryOverlayAnalystEvent</apiName><shortdesc>
+	 几何对象叠加区分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象叠加区分析服务事件类.
+	 <p>当几何对象叠加区分析（GeometryOverlayAnalystService）成功时即会派发 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：GeometryOverlayAnalystEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（GeometryOverlayAnalystResult）。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:GeometryOverlayAnalystEvent:GeometryOverlayAnalystEvent"><apiName>GeometryOverlayAnalystEvent</apiName><shortdesc>
+		 初始化 GeometryOverlayAnalystEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystResult</apiOperationClassifier><apiDesc>几何对象叠加区分析的结果信息，GeometryOverlayAnalystResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GeometryOverlayAnalystEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GeometryOverlayAnalystEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 GeometryOverlayAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GeometryOverlayAnalystEvent:result:get"><apiName>result</apiName><shortdesc>
+		 几何对象叠加区分析的结果信息，GeometryOverlayAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryOverlayAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 几何对象叠加区分析的结果信息，GeometryOverlayAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:GetLayersInfoEvent"><apiName>GetLayersInfoEvent</apiName><shortdesc>
+	 图层信息获取服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图层信息获取服务事件类.
+	 <p>当图层信息获取（GetLayersInfoService）成功时即会派发 GetLayersInfoEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：GetLayersInfoEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（GetLayersInfoResult）。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:GetLayersInfoEvent:GetLayersInfoEvent"><apiName>GetLayersInfoEvent</apiName><shortdesc>
+		 初始化 GetLayersInfoEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.layerServices:GetLayersInfoResult</apiOperationClassifier><apiDesc>图层信息获取的结果信息，GetLayersInfoResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GetLayersInfoEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GetLayersInfoEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 GetLayersInfoEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 GetLayersInfoEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GetLayersInfoEvent:result:get"><apiName>result</apiName><shortdesc>
+		 图层信息获取的结果信息，GetLayersInfoResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.layerServices:GetLayersInfoResult</apiValueClassifier></apiValueDef><apiDesc>
+		 图层信息获取的结果信息，GetLayersInfoResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:GetMapStatusEvent"><apiName>GetMapStatusEvent</apiName><shortdesc>
+	 地图信息获取服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地图信息获取服务事件类.
+	 <p>当地图信息获取（GetMapStatusService）成功时即会派发 GetMapStatusEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：GetMapStatusEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（GetMapStatusResult）。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:GetMapStatusEvent:GetMapStatusEvent"><apiName>GetMapStatusEvent</apiName><shortdesc>
+		 初始化 GetMapStatusEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult</apiOperationClassifier><apiDesc>地图信息获取的结果信息，GetMapStatusResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GetMapStatusEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GetMapStatusEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 GetMapStatusEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 GetMapStatusEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GetMapStatusEvent:result:get"><apiName>result</apiName><shortdesc>
+		 地图信息获取的结果信息，GetMapStatusResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.mapServices:GetMapStatusResult</apiValueClassifier></apiValueDef><apiDesc>
+		 地图信息获取的结果信息，GetMapStatusResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent"><apiName>ServiceEvent</apiName><shortdesc>
+	 服务事件基类类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 服务事件基类类.
+	 <p>所有服务事件类均继承于该类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent:ServiceEvent"><apiName>ServiceEvent</apiName><shortdesc>
+		 初始化 ServiceEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 ServiceEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent:originResult:get"><apiName>originResult</apiName><shortdesc>
+		 从服务端返回的原始结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 从服务端返回的原始结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:QueryEvent"><apiName>QueryEvent</apiName><shortdesc>
+	 查询服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询服务事件类.
+	 <p>当查询（QueryService）成功时即会派发 QueryEvent 对象。只有一种类型的事件：QueryEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（QueryResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#QueryService"><linktext>com.supermap.web.iServerJava6R.queryServices.QueryService</linktext></link><link href="com.supermap.web.iServerJava6R.queryServices.xml#QueryResult"><linktext>com.supermap.web.iServerJava6R.queryServices.QueryResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:QueryEvent:QueryEvent"><apiName>QueryEvent</apiName><shortdesc>
+		 初始化 QueryEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.queryServices:QueryResult</apiOperationClassifier><apiDesc>分析结果，QueryResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 QueryEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:QueryEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 QueryEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 QueryEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:QueryEvent:result:get"><apiName>result</apiName><shortdesc>
+		 {iServerJava6R_serviceEvents_QueryEvent_attribute_result_D} 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.queryServices:QueryResult</apiValueClassifier></apiValueDef><apiDesc>
+		 {iServerJava6R_serviceEvents_QueryEvent_attribute_result_D} 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:ComputeWeightMatrixEvent"><apiName>ComputeWeightMatrixEvent</apiName><shortdesc>
+	 耗费矩阵分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 耗费矩阵分析服务事件类.
+	 <p>当耗费矩阵分析（ComputeWeightMatrixService）成功时即会派发 ComputeWeightMatrixEvent 对象。只有一种类型的事件：ComputeWeightMatrixEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（ComputeWeightMatrixResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#ComputeWeightMatrixService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.ComputeWeightMatrixService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#ComputeWeightMatrixResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.ComputeWeightMatrixResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:ComputeWeightMatrixEvent:ComputeWeightMatrixEvent"><apiName>ComputeWeightMatrixEvent</apiName><shortdesc>
+		 初始化 ComputeWeightMatrixEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixResult</apiOperationClassifier><apiDesc>分析结果，ComputeWeightMatrixResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 ComputeWeightMatrixEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:ComputeWeightMatrixEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 ComputeWeightMatrixEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 ComputeWeightMatrixEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:ComputeWeightMatrixEvent:result:get"><apiName>result</apiName><shortdesc>
+		 耗费矩阵分析结果信息， ComputeWeightMatrixResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:ComputeWeightMatrixResult</apiValueClassifier></apiValueDef><apiDesc>
+		 耗费矩阵分析结果信息， ComputeWeightMatrixResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:FindClosestFacilitiesEvent"><apiName>FindClosestFacilitiesEvent</apiName><shortdesc>
+	 最近设施查找服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 最近设施查找服务事件类.
+	 <p>当最近设施查找（FindClosestFacilitiesService）成功时即会派发 FindClosestFacilitiesEvent 对象。只有一种类型的事件：FindClosestFacilitiesEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（FindClosestFacilitiesResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindClosestFacilitiesService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#FindClosestFacilitiesResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.FindClosestFacilitiesResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:FindClosestFacilitiesEvent:FindClosestFacilitiesEvent"><apiName>FindClosestFacilitiesEvent</apiName><shortdesc>
+		 初始化 FindClosestFacilitiesEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesResult</apiOperationClassifier><apiDesc>分析结果，FindClosestFacilitiesResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 FindClosestFacilitiesEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindClosestFacilitiesEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 FindClosestFacilitiesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 FindClosestFacilitiesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:FindClosestFacilitiesEvent:result:get"><apiName>result</apiName><shortdesc>
+		 最近设施查找结果信息，FindClosestFacilitiesResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:FindClosestFacilitiesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 最近设施查找结果信息，FindClosestFacilitiesResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:EdgeWeightNamesEvent"><apiName>EdgeWeightNamesEvent</apiName><shortdesc>
+	 获取耗费字段服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 获取耗费字段服务事件类.
+	 <p>当获取耗费字段（GetEdgeWeightNamesService）成功时即会派发 EdgeWeightNamesEvent 对象。只有一种类型的事件：EdgeWeightNamesEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（EdgeWeightNamesResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#GetEdgeWeightNamesService"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.GetEdgeWeightNamesService</linktext></link><link href="com.supermap.web.iServerJava6R.networkAnalystServices.xml#EdgeWeightNamesResult"><linktext>com.supermap.web.iServerJava6R.networkAnalystServices.EdgeWeightNamesResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:EdgeWeightNamesEvent:EdgeWeightNamesEvent"><apiName>EdgeWeightNamesEvent</apiName><shortdesc>
+		 初始化 EdgeWeightNamesEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:EdgeWeightNamesResult</apiOperationClassifier><apiDesc>获取耗费字段的结果信息，EdgeWeightNamesResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 EdgeWeightNamesEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:EdgeWeightNamesEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 EdgeWeightNamesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 EdgeWeightNamesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:EdgeWeightNamesEvent:result:get"><apiName>result</apiName><shortdesc>
+		 获取耗费字段的结果信息，EdgeWeightNamesResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.networkAnalystServices:EdgeWeightNamesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 获取耗费字段的结果信息，EdgeWeightNamesResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:ThemeEvent"><apiName>ThemeEvent</apiName><shortdesc>
+	 专题图服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 专题图服务事件类.
+	 <p>当获取专题图（ThemeService）成功时即会派发 ThemeEvent 对象。只有一种类型的事件：ThemeEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（ThemeResult）。</p>
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.themeServices.xml#ThemeService"><linktext>com.supermap.web.iServerJava6R.themeServices.ThemeService</linktext></link><link href="com.supermap.web.iServerJava6R.themeServices.xml#ThemeResult"><linktext>com.supermap.web.iServerJava6R.themeServices.ThemeResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:ThemeEvent:ThemeEvent"><apiName>ThemeEvent</apiName><shortdesc>
+		 初始化 ThemeEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.themeServices:ThemeResult</apiOperationClassifier><apiDesc>专题图结果信息，ThemeResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 ThemeEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:ThemeEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 ThemeEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 ThemeEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:ThemeEvent:result:get"><apiName>result</apiName><shortdesc>
+		 专题图结果信息，ThemeResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.themeServices:ThemeResult</apiValueClassifier></apiValueDef><apiDesc>
+		 专题图结果信息，ThemeResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:EditFeaturesEvent"><apiName>EditFeaturesEvent</apiName><shortdesc>
+	 初始化 EditFeaturesEvent 类的新实例。.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 初始化 EditFeaturesEvent 类的新实例。.
+	 <p>当数据集编辑（EditFeaturesService）成功时即会派发 EditFeaturesEvent 对象。只有一种类型的事件：EditFeaturesEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及可在客户端显示的最终结果（EditFeaturesResult）。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.dataServices.xml#EditFeaturesService"><linktext>com.supermap.web.iServerJava6R.dataServices.EditFeaturesService</linktext></link><link href="com.supermap.web.iServerJava6R.dataServices.xml#EditFeaturesResult"><linktext>com.supermap.web.iServerJava6R.dataServices.EditFeaturesResult</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:EditFeaturesEvent:EditFeaturesEvent"><apiName>EditFeaturesEvent</apiName><shortdesc>
+		 初始化 EditFeaturesEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult</apiOperationClassifier><apiDesc>分析结果，EditFeaturesResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 EditFeaturesEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:EditFeaturesEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 EditFeaturesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 EditFeaturesEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:EditFeaturesEvent:result:get"><apiName>result</apiName><shortdesc>
+		 数据集编辑结果信息，EditFeaturesResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.dataServices:EditFeaturesResult</apiValueClassifier></apiValueDef><apiDesc>
+		 数据集编辑结果信息，EditFeaturesResult 对象。通过该类能够获取可在客户端直接显示分析结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.serviceEvents:GeometryBufferAnalystEvent"><apiName>GeometryBufferAnalystEvent</apiName><shortdesc>
+	 几何对象缓冲区分析服务事件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.serviceEvents:ServiceEvent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象缓冲区分析服务事件类.
+	 <p>当几何对象缓冲区分析（GeometryBufferAnalystService）成功时即会派发 GeometryBufferAnalystEvent.PROCESS_COMPLETE 事件。该类只包含一种类型的事件：GeometryBufferAnalystEvent.PROCESS_COMPLETE。<br/>通过该类用户可获取从服务端返回的原始结果（originResult，继承自 ServiceEvent），以及最终结果（GeometryBufferAnalystResult）。</p>
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.serviceEvents:GeometryBufferAnalystEvent:GeometryBufferAnalystEvent"><apiName>GeometryBufferAnalystEvent</apiName><shortdesc>
+		 初始化 GeometryBufferAnalystEvent 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>事件类型。
+		 </apiDesc></apiParam><apiParam><apiItemName>result</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystResult</apiOperationClassifier><apiDesc>几何对象缓冲区分析的结果信息，GeometryBufferAnalystResult 对象。
+		 </apiDesc></apiParam><apiParam><apiItemName>originResult</apiItemName><apiType value="Object"/><apiDesc>从服务端返回的原始结果。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 GeometryBufferAnalystEvent 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GeometryBufferAnalystEvent:PROCESS_COMPLETE"><apiName>PROCESS_COMPLETE</apiName><shortdesc>
+		 定义 GeometryBufferAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>processComplete</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义 GeometryBufferAnalystEvent.PROCESS_COMPLETE 事件的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.serviceEvents:GeometryBufferAnalystEvent:result:get"><apiName>result</apiName><shortdesc>
+		 几何对象缓冲区分析的结果信息，GeometryBufferAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.spatialAnalystServices:GeometryBufferAnalystResult</apiValueClassifier></apiValueDef><apiDesc>
+		 几何对象缓冲区分析的结果信息，GeometryBufferAnalystResult 对象。通过该类能够获取最终的结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

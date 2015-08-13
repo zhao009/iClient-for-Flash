@@ -1,0 +1,3 @@
+﻿<font color="#0033FF">Bezier曲线</font>
+<font color="#006633">1. Bezier：</font>通过Bezier曲线拟合的军标箭头效果；
+<font color="#006633">2. 其它说明：</font>有关 Map/Layer 参数的详细介绍，请参见 Flash 帮助文档。

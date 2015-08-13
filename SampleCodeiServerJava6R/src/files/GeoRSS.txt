@@ -1,0 +1,2 @@
+<font color="#0033FF">GeoRSS</font>
+<font color="#006633">描述：</font>GeoRSS是一种描述和查明互联网内容所在物理位置的方法。通过使用GeoRSS，可以搜索web站点或者与地理位置有关的项目。

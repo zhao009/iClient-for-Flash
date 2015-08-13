@@ -1,0 +1,14 @@
+<font color="#0033FF">动态分段</font>
+<font color="#006633">1. 功能描述：</font>动态分段是在地图上动态显示线性参考要素的过程，在不改变要素原有空间数据结构的条件下，建立线性要素上任意路段与多重属性信息之间关联关系。动态分段的实时路况展示是用不同的颜色表示不同的路况信息，其中，红色表示交通堵塞，黄色表示缓行，绿色表示交通畅通。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图 Changchun。
+<font color="#006633">3. 操作指南：</font>
+    1）点击 “动态分段” 按钮，地图上显示动态分段实时路况；
+    2）点击 “清除” 按钮，清除当前的显示。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义动态分段分析参数 GenerateSpatialDataParameters；
+    2）执行动态分段分析GenerateSpatialDataService；
+    3）获取分析的结果数据集。有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 GenerateSpatialDataEvent.PROCESS_COMPLETE 事件获取。
+    4）对动态分段结果数据集制作单值专题图（单值表达式为动态分段相应事件表的M字段）并叠加到当前地图窗口显示。
+<font color="#006633">5. 其它说明：</font>有关动态分段的详细参数介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

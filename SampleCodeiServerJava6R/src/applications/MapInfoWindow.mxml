@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()"
+			   width="100%" height="100%">
+	<!--信息窗口-->
+	
+	<!--发光动画-->
+	<fx:Declarations>
+		<s:GlowFilter id="myGF" color="0xfbfe02" alpha="1" />
+		<s:AnimateFilter id="myFilter"  
+						 target="{this.fl}"
+						 repeatCount="0"
+						 duration="1000"
+						 repeatBehavior="loop"
+						 bitmapFilter="{this.myGF}">
+			<s:SimpleMotionPath property="blurX" valueFrom="0" valueTo="70"/>
+			<s:SimpleMotionPath property="blurY" valueFrom="0" valueTo="70"/>
+		</s:AnimateFilter>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.Geometry;
+			import com.supermap.web.core.styles.PictureMarkerStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.mapping.InfoWindow;
+			
+			import mx.controls.Image;
+			import mx.controls.Text;
+			import mx.core.IFactory;
+			import spark.components.HGroup;
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			private var infoWindow:InfoWindow;
+			private var text:Text;
+			[Bindable]
+			private var restUrl:String;
+			private var point:Point;
+			[Bindable]
+			private var imgX:Number;
+			[Bindable]
+			private var imgY:Number;
+			//初始化
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				map.viewBounds = new Rectangle2D(80,0,140,60);
+			}
+			
+			//通过 Map 定义信息窗口 InfoWindow 并显示
+			private function showInfoWindow(event:MouseEvent):void
+			{
+				this.myFilter.end();
+				this.myFilter.play();
+				var txt:Text = new Text();
+				txt.text = "千岛湖是世界上岛屿最多的湖。2009 年，千岛湖以 1078 个岛屿入选中国世界纪录协会世界上最多岛屿的湖，创造了世界之最。 ";
+				txt.width = 130;
+				txt.setStyle('color',255);
+				txt.setStyle('fontSize',15);
+				var img:Image = new Image();
+				img.source = "../assets/MapInfoWindow_Large.jpg";
+				var hGroup:HGroup = new HGroup();
+				hGroup.addElement(img);
+				hGroup.addElement(txt);
+				map.infoWindow.content = hGroup;
+				map.infoWindow.label = "千岛湖";
+				map.infoWindow.showShadow = true;
+				map.infoWindow.infoWindowLabel.setStyle('color', 0x0000ff);
+				map.infoWindow.infoWindowLabel.setStyle('fontFamily', "华文新魏");
+				map.infoWindow.infoWindowLabel.setStyle('fontSize', "20");
+				var point2D:Point2D = new Point2D(119,29);
+				map.infoWindow.show(point2D); 
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<s:Panel fontFamily="宋体" width="100%" height="100%" title="点击图片，您可获取更多信息" textAlign="center" fontSize="18">
+		<ic:Map id="map" x="0" y="0" height="100%" width="100%" dropShadowVisible="true"
+				scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+			<ic:FeaturesLayer id="fl"  addedEffect="{this.myFilter.end(), this.myFilter.play()}">
+				<ic:Feature id="fea" click="showInfoWindow(event)">
+					<ic:style>
+						<ic:PictureMarkerStyle source="../assets/MapInfoWindow_Small.jpg" />
+					</ic:style>
+					<ic:geometry>
+						<ic:GeoPoint x="119" y="29" />
+					</ic:geometry>		
+				</ic:Feature>
+			</ic:FeaturesLayer>
+		</ic:Map>
+	</s:Panel>
+</s:Application>

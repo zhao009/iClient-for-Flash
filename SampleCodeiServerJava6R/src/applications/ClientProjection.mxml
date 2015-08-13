@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   minWidth="955" minHeight="600" 
+			   creationComplete="init()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			
+			import mx.controls.Alert;
+			
+			import org.openscales.proj4as.Proj4as;
+			import org.openscales.proj4as.ProjPoint;
+			import org.openscales.proj4as.ProjProjection;
+			
+			import utilEvent.ReadURLEvent;
+			
+			[Bindable]
+			private var restUrl:String;
+
+			private var viewConfig:ViewConfig;
+			
+			protected function init():void
+			{
+				// TODO Auto-generated method stub
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+				
+				this.map.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			}
+			
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.China_Map;
+			}
+			
+			private function mouseMoveHandler(event:MouseEvent):void
+			{
+				//获取当前鼠标位置的舞台坐标并转换为地图坐标
+				var mouseStagePoint:Point = new Point(event.stageX,event.stageY);
+				var mouseMapPoint:Point2D = this.map.stageToMap(mouseStagePoint);
+				
+				//地图投影
+				var projSource:ProjProjection = ProjProjection.getProjProjection("EPSG:3857");
+				//客户端目标投影
+				var projDest:ProjProjection = ProjProjection.getProjProjection("EPSG:4326");
+				//坐标投影转换
+				if(projSource&&projDest)
+				{
+					var sourceProj:ProjPoint = new ProjPoint(mouseMapPoint.x, mouseMapPoint.y);
+					//使用类Proj4as提供的静态方法transform(source:ProjProjection, dest:ProjProjection, point:ProjPoint):ProjPoint，将地图投影：EPSG:3857的地图坐标转换为EPSG:4326的经纬度坐标
+					var destProj:ProjPoint = Proj4as.transform(projSource, projDest, sourceProj);
+					
+					var xIndex:int = destProj.x.toString().indexOf(".");
+					var yIndex:int = destProj.y.toString().indexOf(".");
+					var xStr:String = destProj.x.toString().slice(0,xIndex+3);
+					var yStr:String = destProj.y.toString().slice(0,yIndex+3);
+					this.coordInfo.text = "客户端地图坐标投影转换：\n地图投影：EPSG:3857\n鼠标坐标：EPSG:4326 X="+xStr + ", Y=" + yStr;
+				}
+				else
+				{
+					Alert.show("openscales不支持此投影，请使用自定义投影！");
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<ic:Map id="map">
+		<ic:TiledDynamicRESTLayer id="tiledLayer" url="{restUrl}"/>
+	</ic:Map>
+	<s:Label id="coordInfo" top="5" horizontalCenter="0" height="50" width="260"/>
+</s:Application>

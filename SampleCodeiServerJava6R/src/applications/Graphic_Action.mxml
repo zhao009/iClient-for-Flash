@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   creationComplete="initApp()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	<fx:Declarations>
+		<!-- 定义InfoWindow内容 -->
+		<s:VGroup id="content" horizontalCenter="0" paddingLeft="8" paddingRight="8" paddingTop="2"> 
+			<s:Label text="{smId}"/>
+			<s:Label text="{xCoord}"/>
+			<s:Label text="{yCoord}"/>
+			<!--<s:Group width="100%" horizontalCenter="0">
+				<s:Button label="" toolTip="是否删除？" horizontalCenter="0" cornerRadius="20" width="32" alpha="0.6" height="16" color="#010101" fontFamily="宋体" click="button3_clickHandler(event)" fontWeight="bold" textDecoration="none"/>
+			</s:Group>-->
+			<s:Group width="100%" horizontalCenter="0">
+				<!--<s:Button label="" toolTip="是否删除？" horizontalCenter="0" cornerRadius="20" width="32" alpha="0.6" height="16" color="#010101" fontFamily="宋体" click="button3_clickHandler(event)" fontWeight="bold" textDecoration="none"/>-->
+				<s:BorderContainer width="38" right="0" height="20" borderColor="#494848" borderWeight="1" click="bordercontainer1_clickHandler(event)" backgroundAlpha="0" verticalCenter="0">
+					<s:Label text="删除？" height="18" verticalAlign="middle" width="37" fontFamily="宋体" left="2"/>
+				</s:BorderContainer>
+			</s:Group>
+		</s:VGroup>
+		
+		<!--鹰眼所需图层-->
+		<ic:TiledDynamicRESTLayer url="{mapUrl}" id="tilelayer"/>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.Edit;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Graphic;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.Geometry;
+			import com.supermap.web.core.styles.PictureMarkerStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.core.styles.graphicStyles.GraphicMarkerStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.iServerJava6R.FilterParameter;
+			import com.supermap.web.iServerJava6R.Recordset;
+			import com.supermap.web.iServerJava6R.queryServices.QueryBySQLParameters;
+			import com.supermap.web.iServerJava6R.queryServices.QueryBySQLService;
+			import com.supermap.web.iServerJava6R.queryServices.QueryResult;
+			import com.supermap.web.mapping.FeaturesLayer;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			[Bindable]
+			private var namess:String = "";
+			[Bindable]
+			private var xCoord:String = "";
+			[Bindable]
+			private var yCoord:String = "";
+			[Bindable]
+			private var smId:String = "";
+			
+			private var featureLayer:FeaturesLayer;
+			private var editGraphic:Graphic;
+			private var selGraphic:Graphic;
+			private var isEditing:Boolean;
+			
+			[Embed(source = "assets/markerbig_select.png")]
+			public static var Icon4:Class;
+			[Embed(source = "assets/marker.png")]
+			public static var Icon1:Class;
+			[Embed(source = "assets/markerbig.png")]
+			public static var Icon2:Class;
+			[Embed(source = "assets/marker_select.png")]
+			public static var Icon3:Class;
+			
+			private var queryCount:int = 0;
+			private var cityCount:Number = 0;
+			private var townCount:Number = 0;
+			private var capitalCount:Number = 0;
+			private var tempPoints:Array = new Array;
+			
+			[Bindable]
+			private var currentStateTest:String = "状态信息显示位置……";
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.China_Map;
+			}
+			
+			//点击Graphic后的侦听函数，可对数据进行编辑/信息显示操作
+			protected function graphicClickHandler(gf:Graphic):void
+			{
+				if(gf)
+				{
+					//编辑状态
+					if(isedit.selected)
+					{
+						if(isEditing)
+							return;
+						isEditing = true;
+						editGraphic = gf;
+						
+						featureLayer = new FeaturesLayer();
+						var feature:Feature = new Feature();
+						feature.geometry = gf.geometry;
+						featureLayer.addFeature(feature);
+						
+						map.addLayer(featureLayer);
+						var edit:Edit = new Edit(map,featureLayer);
+						var mStyle:PredefinedMarkerStyle = new PredefinedMarkerStyle("circle",8,0xfb9b60);
+						mStyle.border = new PredefinedLineStyle("solid", 0, 1, 1);
+						edit.vertexStyle = mStyle;
+						map.action = edit;
+						
+						edit.addEventListener(DrawEvent.DRAW_END, editEndHandler);
+						feature.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+						currentStateTest = "当前进入编辑状态，坐标：" + geometryToString(gf.geometry);
+					}
+					//弹窗状态
+					else
+					{
+						selGraphic = gf;
+						if(gf.attributes)
+						{
+							if(gf.attributes.type != "town")
+							{
+								namess = gf.attributes.ADMINNAME;
+							}
+							else
+							{
+								namess = gf.attributes.NAME;
+							}
+							smId = "SmID：" + gf.attributes.SmID;
+						}
+						xCoord = "x 坐标：" + (gf.geometry as GeoPoint).x.toFixed(2).toString();
+						yCoord = "y 坐标：" + (gf.geometry as GeoPoint).y.toFixed(2).toString();
+						
+						map.infoWindow.content = content;
+						map.infoWindow.show(new Point2D(gf.geometry.center.x, gf.geometry.center.y));
+						map.infoWindow.label = namess;
+
+						map.infoWindow.infoWindowLabel.setStyle('color', 0x000000); 
+						map.infoWindow.infoWindowLabel.setStyle('fontSize', "14");
+						map.infoWindow.infoWindowLabel.setStyle('paddingBottom', "15");
+						map.infoWindow.infoWindowLabel.setStyle('fontFamily', "微软雅黑");
+						map.infoWindow.infoWindowLabel.setStyle("lineBreak","toFit");
+						map.infoWindow.infoWindowLabel.maxDisplayedLines = -1;
+						
+						map.infoWindow.infoWindowLabel.showTruncationTip = true;
+						map.infoWindow.showShadow = true;
+						currentStateTest = "当前选中1个点，坐标：" + geometryToString(gf.geometry);
+					}
+				}
+			}
+			
+			//编辑结束处理
+			private function editEndHandler(event:DrawEvent):void
+			{
+				map.action = new Pan(map);
+				editGraphic.geometry = event.feature.geometry;
+				this.graphicslayer.refresh();
+				featureLayer.clear();
+				map.removeLayer(featureLayer);
+				isEditing = false;
+				currentStateTest = "编辑结束，新坐标：" + geometryToString(editGraphic.geometry);
+			}
+			
+			//查询：数据分三批渲染，包括：省会、城市、乡镇
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				currentStateTest = "数据分三批进行查询，请等待……"
+				queryCapital();
+				queryCity();
+				queryTown();
+			}
+			
+			//查询乡镇
+			private function queryTown():void
+			{
+				var queryBySQLParam:QueryBySQLParameters = new QueryBySQLParameters();
+				var filter:FilterParameter = new FilterParameter();
+				filter.name = "China_Town_P@China400";
+				filter.attributeFilter = "smid < 10000";
+				queryBySQLParam.filterParameters = [filter];
+				
+				var queryBySqlService:QueryBySQLService = new QueryBySQLService(mapUrl);
+				queryBySqlService.showBusyCursor = true;
+				queryBySqlService.processAsync(queryBySQLParam, new AsyncResponder(this.dispalyQueryRecords, 
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("与服务端交互失败", "抱歉", 4, this);
+					}, "town"));
+			}
+			
+			//查询省会
+			private function queryCapital():void
+			{
+				var queryBySQLParam:QueryBySQLParameters = new QueryBySQLParameters();
+				var filter:FilterParameter = new FilterParameter();
+				filter.name = "China_Capital_P@China400";
+				queryBySQLParam.filterParameters = [filter];
+				
+				var queryBySqlService:QueryBySQLService = new QueryBySQLService(mapUrl);
+				queryBySqlService.processAsync(queryBySQLParam, new AsyncResponder(this.dispalyQueryRecords, 
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("与服务端交互失败", "抱歉", 4, this);
+					}, "capital"));
+			}
+			
+			//查询城市
+			private function queryCity():void
+			{
+				var queryBySQLParam:QueryBySQLParameters = new QueryBySQLParameters();
+				var filter:FilterParameter = new FilterParameter();
+				filter.name = "China_PreCenCity_P@China400";
+				queryBySQLParam.filterParameters = [filter];
+				
+				var queryBySqlService:QueryBySQLService = new QueryBySQLService(mapUrl);
+				queryBySqlService.processAsync(queryBySQLParam, new AsyncResponder(this.dispalyQueryRecords, 
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("与服务端交互失败", "抱歉", 4, this);
+					}, "city"));
+			}
+			
+			//查询结束处理函数
+			private function dispalyQueryRecords(queryResult:QueryResult, mark:Object = null):void
+			{
+				if(queryResult.recordsets == null || queryResult.recordsets.length == 0)
+				{
+					Alert.show("查询结果为空", null, 4, this);
+					return;
+				}
+				var recordSets:Array = queryResult.recordsets;
+				var gArr:Array = new Array;
+				if(recordSets.length != 0)
+				{
+					var gMS:GraphicMarkerStyle = new GraphicMarkerStyle();
+					if(mark == "town")
+					{
+						gMS.symbol = "icon";
+						gMS.icon = Icon1;
+						gMS.yOffset = -6;
+					}
+					else if(mark == "capital")
+					{
+						gMS.symbol = "icon";
+						gMS.icon = Icon2;
+						gMS.yOffset = -16;
+					}
+					else if(mark == "city")
+					{
+						gMS.symbol = "icon";
+						gMS.icon = Icon3;
+						gMS.yOffset = -6;
+						gMS.xOffset = 1;
+					}
+					for each(var recordSet:Recordset in recordSets)
+					{
+						if(!recordSet.features || recordSet.features.length == 0)
+						{
+							Alert.show("当前图层查询结果为空", null, 4, this);
+							return;
+						}
+						var features:Array = recordSet.features
+						for each (var feature:Feature in features)
+						{
+							var g:Graphic = new Graphic;
+							g.geometry = feature.geometry;
+							g.attributes = feature.attributes;
+							g.attributes.type = mark;
+							g.style = gMS;
+							gArr.push(g);
+						}
+					}
+				}
+				queryCount += gArr.length;
+				if(mark == "capital")
+				{
+					capitalCount = gArr.length;
+				}
+				else if(mark == "city")
+				{
+					cityCount = gArr.length;
+				}
+				else if(mark == "town")
+				{
+					townCount = gArr.length;
+					currentStateTest = "查询完毕！当前查询结果共 " + (capitalCount + cityCount + townCount).toString() + " 数据量，其中包括全国城镇(桔红色图标)：" + townCount.toString() 
+						+ "个，城市(蓝色图标)：" +  cityCount.toString() + "个，省会(桃红色大图标)：" + capitalCount.toString() + "个。" + "总数据量：" + queryCount.toString(); 
+				}
+				this.tempPoints =this.tempPoints.concat(gArr);
+				this.graphicslayer.add(gArr);
+			}
+			
+			//标记操作
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				var drawPoint:DrawPoint = new DrawPoint(map);
+				var gMS:PictureMarkerStyle = new PictureMarkerStyle(Icon1);
+				gMS.yOffset = 6;
+				drawPoint.style = gMS;
+				drawPoint.addEventListener(DrawEvent.DRAW_END, drawPointHandler);
+				map.action = drawPoint;
+			}
+			
+			//标记结束
+			private function drawPointHandler(event:DrawEvent):void
+			{
+				map.action = new Pan(map)
+				var gf:Graphic = new Graphic();
+				gf.geometry = event.feature.geometry;
+				currentStateTest = "当前标记 1 个点，坐标：" + geometryToString(gf.geometry);
+				gf.attributes = {
+					NAME:"custom",
+					type:"town",
+					SmID:"custom"
+				};
+				var gMS:GraphicMarkerStyle = new GraphicMarkerStyle("icon");
+				gMS.icon = Icon1;
+				gMS.yOffset = -6;
+				gf.style = gMS;
+				this.graphicslayer.add([gf]);
+				this.tempPoints.push(gf);
+				queryCount += 1;
+			}
+			
+			//删除单个Graphic
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				this.graphicslayer.remove([this.selGraphic]);
+				queryCount -= 1;
+				if(queryCount<0)
+					queryCount = 0;
+				currentStateTest = "当前删除1个点，坐标：" + geometryToString(selGraphic.geometry) + "，剩余数据量：" + queryCount.toString();
+				this.map.infoWindow.hide();
+			}
+			
+			//删除指定个数的数据
+			protected function remove_clickHandler(event:Event):void
+			{
+				var dels:Array = [];
+				var tt:Number = Number(delNum.text);
+				
+				graphicslayer.remove(tempPoints.splice(0,tt));
+				queryCount -= tt;
+				if(queryCount<0)
+					queryCount = 0;
+				currentStateTest = "当前删除" + tt.toString() + "个点，" + "剩余数据量：" + queryCount.toString();
+			} 
+			
+			
+			//将Geometry转换为字符串
+			private function geometryToString(geometry:Geometry):String
+			{
+				if(geometry is GeoPoint)
+				{
+					return (geometry as GeoPoint).x.toString() + "," + (geometry as GeoPoint).y.toString();
+				}
+				return "";
+			}
+			
+			//删除单个Graphic
+			protected function bordercontainer1_clickHandler(event:MouseEvent):void
+			{
+				this.graphicslayer.remove([this.selGraphic]);
+				queryCount -= 1;
+				if(queryCount<0)
+					queryCount = 0;
+				currentStateTest = "当前删除1个点，坐标：" + geometryToString(selGraphic.geometry) + "，剩余数据量：" + queryCount.toString();
+				this.map.infoWindow.hide();
+			}
+			
+			protected function cbxEditChangeHandler():void
+			{
+				if(!isedit.selected)
+				{
+					map.action = new Pan(map);
+				}
+			}
+
+		]]>
+	</fx:Script>
+	<ic:Map id="map" viewBounds="{new Rectangle2D(7754440.5411,1816976.7392,15605544.8421,7247678.6297)}"
+				    doubleClickZoomEnabled="false"
+				    resolutions="{[78271.5, 39135.8, 19567.9,12000.94, 6500, 2445.98, 1222.99,  611.496, 305.748, 152.874, 76.437, 
+					38.2185, 19.1093, 9.55463, 4.77731,2.38866, 1.19433]}">
+		<ic:TiledDynamicRESTLayer url="{mapUrl}"/>
+		<ic:GraphicsLayer id="graphicslayer" graphicClickHandler="graphicClickHandler"/>
+	</ic:Map>
+	
+	<!--罗盘-->
+	<ic:Compass map="{map}" left="10" top="10"/>
+	<!--导航条控件-->
+	<ic:ZoomSlider map="{map}" x="30" y="84"/>
+	<!--鹰眼控件--> 
+	<ic:OverviewMap right="5" bottom="5" map="{map}" width="150" height="150"
+					id="oviewer"
+				    layers="{tilelayer}"
+					zoomMode="indexBoxSizeCanChange"
+					borderWidth="1"
+					borderColor="0"
+					overviewMode="rect"
+					indexBoxAlpha="0.5"
+					indexBoxColor="0x00cccc"
+					indexBoxBorderAlpha="1">
+	</ic:OverviewMap>
+	
+	<!--状态信息条-->
+	<s:BorderContainer backgroundColor="0" horizontalCenter="0" height="{currentStateInfo.height+10}" backgroundAlpha="0" width="{currentStateInfo.width+10}" cornerRadius="5" borderColor="#ADABAB" top="5">
+		<s:Label maxWidth="500" fontFamily="宋体" toolTip="{currentStateTest}" id="currentStateInfo" text="{currentStateTest}" horizontalCenter="0" verticalCenter="0"/>
+	</s:BorderContainer>
+	
+	<!--功能操作面板-->
+	<s:BorderContainer backgroundColor="0" backgroundAlpha="0" right="5" top="0" width="296" height="40" cornerRadius="5" borderColor="#ADABAB" dropShadowVisible="true">
+		<s:HGroup gap="0" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" right="5" left="5">
+			<s:Button label="查 询" click="button1_clickHandler(event)" alpha="1" width="55" x="13" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体">
+			</s:Button>
+			<s:Button label="标 记" alpha="1" click="button2_clickHandler(event)" width="55" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体"/>
+			<s:Button label="删 除:" toolTip="{&quot;删除索引小于&quot; + delNum.text + &quot;的数据&quot;}"
+					  click="remove_clickHandler(event)" width="58" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体"/>
+			<s:TextInput id="delNum" toolTip="输入删除个数" width="44"  text="1000" x="197" chromeColor="#3D3D3D" contentBackgroundColor="#ffffff" color="0" fontFamily="Times New Roman" height="25" textAlign="center" />
+			<mx:Spacer width="5"/>
+			<s:CheckBox label="编 辑" change="cbxEditChangeHandler()" id="isedit" color="#3B3B3B" alpha="1" height="22" y="6" fontFamily="宋体"/>
+		</s:HGroup>
+	</s:BorderContainer>
+</s:Application>

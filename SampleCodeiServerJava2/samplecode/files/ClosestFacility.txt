@@ -1,0 +1,15 @@
+<font color="#0033FF">最近设施查找</font>
+<font color="#006633">1. 功能描述：</font>在网络上给定一个事件点和一组设施点，查找从事件点到各设施点(或从设施点到事件点)以耗费最小能到达的最佳路径。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层（Changchun）。
+<font color="#006633">3. 操作指南：</font>
+    1）设置参数：查找半径、返回设施点个数、是否从事件点开始；
+    2）选择事件点（唯一）、设施点（可多选）；
+    3）查询；
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义用于最近设施查找的弧段权值信息 WeightFieldInfo；
+    2）定义网络模型 NetworkModelSetting；
+    3）定义网络分析参数 NetworkAnalystParam；
+    4）定义最近设施参数 ProximityParam；
+    5）定义最近设施查找参数 ClosestFacilityParameters；
+    5）执行最近设施查找 ClosestFacilityService；
+<font color="#006633">5. 其它说明：</font>有关最近设施的详细参数介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

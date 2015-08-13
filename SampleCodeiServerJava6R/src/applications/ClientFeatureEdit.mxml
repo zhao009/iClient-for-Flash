@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Edit;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.core.styles.PredefinedMarkerStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.themes.RawTheme;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				Map.theme = new RawTheme();
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+			}
+			
+			//初始化
+			private function init():void
+			{
+				this.addRegion();
+				this.addComplexRegion();
+				addLine();
+				//创建客户端编辑对象
+				var edit:Edit = new Edit(map, this.clientFeatureLayer);
+				map.action = edit;
+			}
+			
+			private function addLine():void
+			{
+				var lineStyle:PredefinedLineStyle = new PredefinedLineStyle();
+				var points:Array = new Array(new Point2D(60,0),new Point2D(60,90));
+				var line:GeoLine = new GeoLine();
+				line.addPart(points);
+				
+				var lineFeature:Feature = new Feature(line,lineStyle);
+				clientFeatureLayer.addFeature(lineFeature);
+			}
+			//添加面
+			private function addRegion():void
+			{
+				//定义面要素样式
+				var regionStyle:PredefinedFillStyle = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_HORIZONTAL, 0x00ff00, 1, new PredefinedLineStyle());
+				
+				//定义面要素几何信息——结点
+				var regionPoints:Array = new Array();
+				regionPoints.push(new Point2D(-15, 30));
+				regionPoints.push(new Point2D(15, 30));
+				regionPoints.push(new Point2D(30, 0));
+				regionPoints.push(new Point2D(-30, 0));
+				regionPoints.push(new Point2D(-15, 30));
+				var region:GeoRegion = new GeoRegion();
+				region.addPart(regionPoints);
+				
+				//定义面要素
+				var regionFeature:Feature = new Feature();
+				regionFeature.style = regionStyle;
+				regionFeature.geometry = region;
+				
+				//将面要素添加至要素图层 clientFeatureLayer 中
+				clientFeatureLayer.addFeature(regionFeature);
+			}
+			
+			//添加复杂面（由多个单连通面组成）
+			private function addComplexRegion():void
+			{
+				//定义复杂面要素显示样式
+				var complexRegionStyle:PredefinedFillStyle = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_CROSS, 
+					0xff00ff, 1, new PredefinedLineStyle());
+				
+				//定义复杂面要素几何信息
+				var complexRegion:GeoRegion = new GeoRegion();
+				var part1:Array = new Array();
+				part1.push(new Point2D(-15, -30));
+				part1.push(new Point2D(15, -30));
+				part1.push(new Point2D(30, -60));
+				part1.push(new Point2D(-30, -60));
+				part1.push(new Point2D(-15, -30));
+				var part2:Array = new Array();
+				part2.push(new Point2D(60, -30));
+				part2.push(new Point2D(75, -60));
+				part2.push(new Point2D(45, -60));
+				part2.push(new Point2D(60, -30));
+				complexRegion.addPart(part1);
+				complexRegion.addPart(part2);
+				
+				//定义复杂面要素
+				var complexRegionFeature:Feature = new Feature();
+				complexRegionFeature.geometry = complexRegion;
+				complexRegionFeature.style = complexRegionStyle;
+				
+				//将复杂面要素添加至要素图层 clientFeatureLayer 中
+				clientFeatureLayer.addFeature(complexRegionFeature);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<s:Panel fontFamily="宋体" width="100%" height="100%" title="单击要素开始进行编辑，双击结束编辑" textAlign="center" fontSize="18">
+		<ic:Map id="map" x="0" y="0" height="100%" width="100%" load="init()"
+				scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+			<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+			<ic:FeaturesLayer id="clientFeatureLayer"/>
+		</ic:Map>
+	</s:Panel>
+</s:Application>

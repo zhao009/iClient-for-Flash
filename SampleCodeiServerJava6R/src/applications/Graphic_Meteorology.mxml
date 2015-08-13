@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   xmlns:supermap="http://www.supermap.com/iclient/2010"
+			   creationComplete="initApp()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				timer.stop();
+				timerIndex = 0;
+			}
+		]]>
+	</fx:Script>
+
+
+
+	<fx:Script>
+		<![CDATA[
+			private var timer:Timer;
+			private var timerIndex:int = 1;
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				timer = new Timer(1000);
+				timer.addEventListener(TimerEvent.TIMER, run);
+				timer.addEventListener(TimerEvent.TIMER_COMPLETE, runComplete);
+				timer.start();
+			}
+			
+			private function runComplete(event:TimerEvent):void
+			{
+				timerIndex = 0;
+				timer.stop();
+			}
+			
+			private function run(event:TimerEvent):void
+			{
+				timerIndex++;
+				if(timerIndex<=8)
+				{
+					this.graphicsLayer.removeAll();
+				}
+				else
+				{
+					timerIndex = 0;
+				}
+					
+				
+				if(timerIndex == 1)
+				{
+					this.graphicsLayer.add(graphics1);
+				}
+				else if(timerIndex == 2)
+				{
+					this.graphicsLayer.add(graphics2);
+				}
+				else if(timerIndex == 3)
+				{
+					this.graphicsLayer.add(graphics3);
+				}
+				else if(timerIndex == 4)
+				{
+					this.graphicsLayer.add(graphics4);
+				}
+				else if(timerIndex == 5)
+				{
+					this.graphicsLayer.add(graphics5);
+				}
+				else if(timerIndex == 6)
+				{
+					this.graphicsLayer.add(graphics6);
+				}
+				else if(timerIndex == 7)
+				{
+					this.graphicsLayer.add(graphics7);
+				}
+				else if(timerIndex == 8)
+				{
+					this.graphicsLayer.add(graphics8);
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Graphic;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.graphicStyles.GraphicFillStyle;
+			import com.supermap.web.core.styles.graphicStyles.GraphicLineStyle;
+			import com.supermap.web.utils.serverTypes.ServerGeometry;
+			import com.supermap.web.serialization.json.JSONDecoder;
+			
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.HTTPService;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+			}
+
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var service:HTTPService = new HTTPService();   
+				service.showBusyCursor = true;
+				service.url = "com/supermap/web/samples/graphicData/temperation1.txt";   
+				service.addEventListener(ResultEvent.RESULT, resultHandler);   
+				service.send();
+				
+				var service2:HTTPService = new HTTPService();   
+				service2.showBusyCursor = true;
+				service2.url = "com/supermap/web/samples/graphicData/temperation2.txt";   
+				service2.addEventListener(ResultEvent.RESULT, resultHandler2);   
+				service2.send();
+				
+				var service3:HTTPService = new HTTPService();   
+				service3.showBusyCursor = true;
+				service3.url = "com/supermap/web/samples/graphicData/temperation3.txt";   
+				service3.addEventListener(ResultEvent.RESULT, resultHandler3);   
+				service3.send();
+
+				var service4:HTTPService = new HTTPService();   
+				service4.showBusyCursor = true;
+				service4.url = "com/supermap/web/samples/graphicData/temperation4.txt";   
+				service4.addEventListener(ResultEvent.RESULT, resultHandler4);   
+				service4.send();
+
+				var service5:HTTPService = new HTTPService();   
+				service5.showBusyCursor = true;
+				service5.url = "com/supermap/web/samples/graphicData/temperation5.txt";   
+				service5.addEventListener(ResultEvent.RESULT, resultHandler5);   
+				service5.send();
+				
+				var service6:HTTPService = new HTTPService();   
+				service6.showBusyCursor = true;
+				service6.url = "com/supermap/web/samples/graphicData/temperation6.txt";   
+				service6.addEventListener(ResultEvent.RESULT, resultHandler6);   
+				service6.send();
+				
+				var service7:HTTPService = new HTTPService();   
+				service7.showBusyCursor = true;
+				service7.url = "com/supermap/web/samples/graphicData/temperation7.txt";   
+				service7.addEventListener(ResultEvent.RESULT, resultHandler7);   
+				service7.send();
+				
+				var service8:HTTPService = new HTTPService();   
+				service8.showBusyCursor = true;
+				service8.url = "com/supermap/web/samples/graphicData/temperation8.txt";   
+				service8.addEventListener(ResultEvent.RESULT, resultHandler8);   
+				service8.send();
+			}
+			private var graphics1:Array = new Array;
+			private var graphics2:Array = new Array;
+			private var graphics3:Array = new Array;
+			private var graphics4:Array = new Array;
+			private var graphics5:Array = new Array;
+			private var graphics6:Array = new Array;
+			private var graphics7:Array = new Array;
+			private var graphics8:Array = new Array;
+			private function resultHandler(event:ResultEvent):void
+			{
+				this.getGraphic(graphics1,event.result as String);
+				this.graphicsLayer.add(graphics1);
+			}
+			
+			private function resultHandler2(event:ResultEvent):void
+			{
+				this.getGraphic(graphics2,event.result as String);
+			}
+			
+			private function resultHandler3(event:ResultEvent):void
+			{
+				this.getGraphic(graphics3,event.result as String);
+			}
+			
+			private function resultHandler4(event:ResultEvent):void
+			{
+				this.getGraphic(graphics4,event.result as String);
+			}
+			
+			private function resultHandler5(event:ResultEvent):void
+			{
+				this.getGraphic(graphics5,event.result as String);
+			}
+			
+			private function resultHandler6(event:ResultEvent):void
+			{
+				this.getGraphic(graphics6,event.result as String);
+			}
+			
+			private function resultHandler7(event:ResultEvent):void
+			{
+				this.getGraphic(graphics7,event.result as String);
+			}
+			
+			private function resultHandler8(event:ResultEvent):void
+			{
+				this.getGraphic(graphics8,event.result as String);
+			}
+			
+			private function getGraphic(graphics:Array,result:String):void
+			{
+				var result0:Array = result.split(";");
+				for(var n:int = 0; n<result0.length; n++)
+				{
+					var feature:Graphic = new Graphic;
+					var result1:Array = (result0[n] as String).split(":");
+					var feaId:String = result1[0];
+					var result2:Array = (result1[1] as String).split("&");
+					var temperValue:Number = Number(result2[0]);
+					feature.attributes = {
+						DMAXVALUE:temperValue
+					};
+					var style:GraphicFillStyle = new GraphicFillStyle("solid");
+					style.alpha = 0.6;
+					var num:Number = Number(feature.attributes.DMAXVALUE);
+					if(num>-50 && num<-30)
+					{
+						style.color = 0x1553ff;//0xf7db3f;
+					}
+					else if(num>=-30 && num<-10)
+					{
+						style.color = 0x1abefd;//0xef511a;
+					}
+					else if(num>=-10 && num<0)
+					{
+						style.color = 0x1bfed1;//0xef511a;
+					}
+					else if(num>=0 && num<5)
+					{
+						style.color = 0x1aff64//0xef511a;
+					}
+					else if(num>=5 && num<10)
+					{
+						style.color = 0x72ff1c;//0xef511a;
+					}
+					else if(num>=10 && num<15)
+					{
+						style.color = 0xa9ff18;//0xef511a;
+					}
+					else if(num>=15 && num<20)
+					{
+						style.color = 0xffe61a;;//0xef511a;
+					}
+					else if(num>=20 && num<40)
+					{
+						style.color = 0xff781c;//0xff781c;//0x01b917;
+					}
+					style.border = new GraphicLineStyle("solid",0xc3b191,1,1);
+					feature.style = style;
+						
+					var result3:Array = (result2[1] as String).split("|");
+					var parts:Array = new Array;//所有part集合
+					//遍历每一个part
+					for(var i:int = 0; i<result3.length; i++)
+					{
+						var coordArr:Array = (result3[i] as String).split(" ");
+						var parti:Array = new Array;//每一个part对象
+						//遍历part中的每个点
+						for(var j:int = 0; j<coordArr.length; j++)
+						{
+							var point:Point2D = new Point2D;
+							var coords:Array = (coordArr[j] as String).split(",");
+							point.x = Number(coords[0]);
+							point.y = Number(coords[1]);
+							parti.push(point);
+						}
+						parts.push(parti);
+					}
+					var geo:GeoRegion = new GeoRegion;
+					geo.parts = parts;
+					feature.geometry = geo;
+					graphics.push(feature);
+				}
+			}
+			
+			private function fromJson(object:Object):ServerGeometry
+			{
+				if(object)
+				{
+					return ServerGeometry.fromJson(object.geometry); 
+				}
+				return null;
+			}
+			
+			private function attributesFromJson(object:Object):Object
+			{
+				var attributes:Object = new Object();
+				if(object)
+				{
+					attributes[object.fieldNames[10]] = object.fieldValues[10];
+					return attributes; 
+				}
+				return null;
+			}
+			
+		]]>
+	</fx:Script>
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%" viewBounds="{new Rectangle2D(80,0,140,60)}">
+		<ic:TiledDynamicRESTLayer url="{this.mapUrl}" />
+		<supermap:GraphicsLayer id="graphicsLayer"/>
+	</ic:Map>
+	
+	<s:BorderContainer backgroundColor="0" backgroundAlpha="0" right="5" top="0" width="200" height="40" cornerRadius="5" borderColor="#ADABAB" dropShadowVisible="true">
+		<s:HGroup gap="5" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" right="5" left="5">
+			<s:Button label="等温面" click="button1_clickHandler(event)" alpha="1" width="60" x="13" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体">
+			</s:Button>
+			<s:Button label="更新" alpha="1" click="button2_clickHandler(event)" width="50" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体"/>
+			<s:Button label="停止" click="button3_clickHandler(event)" width="50" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体"/>
+			<!--<mx:Spacer width="5"/>-->
+			<!--<s:HGroup gap="0">
+				<s:Label text="更新速度：" height="22" textAlign="left" verticalAlign="middle" fontFamily="宋体"/>
+				<s:TextInput id="rate" text="100" height="22" width="40"/>
+				<s:Label text="ms" height="22" fontSize="15" textAlign="left" verticalAlign="middle" fontFamily="宋体"/>
+			</s:HGroup>-->
+		</s:HGroup>
+	</s:BorderContainer>
+	<s:BorderContainer backgroundColor="0" horizontalCenter="0" height="{currentStateInfo.height+10}" backgroundAlpha="0" width="{currentStateInfo.width+10}" cornerRadius="5" borderColor="#ADABAB" top="5">
+		<s:Label id="currentStateInfo" text="清晨2点至晚上11点全国温度变化情况" height="22" textAlign="left" verticalAlign="middle" fontFamily="宋体" horizontalCenter="0" verticalCenter="0"/>
+	</s:BorderContainer>
+</s:Application>

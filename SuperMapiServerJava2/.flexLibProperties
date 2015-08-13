@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" version="3">
+  <includeClasses>
+    <classEntry path="com.supermap.web.iServerJava2.ParametersBase"/>
+    <classEntry path="com.supermap.web.iServerJava2.ServerFeatureType"/>
+    <classEntry path="com.supermap.web.iServerJava2.ServerGeometry"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.AddEntityParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.AddEntityService"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.DeleteEntityParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.DeleteEntityService"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.EditResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.Entity"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.GetEntityParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.GetEntityService"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.UpdateEntityParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.editServices.UpdateEntityService"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.GetMapStatusParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.GetMapStatusResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.GetMapStatusService"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.LayerStatus"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.ServerLayer"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.ServerLayerSetting"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.ServerLayerSettingType"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.SetLayerStatusParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.SetLayerStatusResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.SetLayerStatusService"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.SuperMapCollectionLayerSetting"/>
+    <classEntry path="com.supermap.web.iServerJava2.mapServices.SuperMapLayerType"/>
+    <classEntry path="com.supermap.web.iServerJava2.measureServices.MeasureParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.measureServices.MeasureResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.measureServices.MeasureService"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.ClosestFacilityParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.ClosestFacilityService"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.DirectionType"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.FindPathParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.FindPathService"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.FindTSPPathParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.FindTSPPathService"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.NetworkAnalystParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.NetworkAnalystResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.NetworkModelSetting"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.PathGuide"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.PathGuideItem"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.PathParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.ProximityParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaService"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.SideType"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.TSPPathParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.TurnTableSetting"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.TurnType"/>
+    <classEntry path="com.supermap.web.iServerJava2.networkAnalystServices.WeightFieldInfo"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.BufferAnalystParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.BufferEndType"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.BufferQueryParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.BufferQueryService"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.BufferSideType"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.EntityBufferQueryParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.EntityBufferQueryService"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryByCenterParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryByCenterService"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryByGeometryParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryByGeometryService"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryBySqlParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryBySqlService"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryLayerParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.QueryParametersBase"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.Record"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.RecordSet"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.ResultSet"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.ReturnResultSetInfo"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.SpatialQueryMode"/>
+    <classEntry path="com.supermap.web.iServerJava2.queryServices.SqlParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ColorGradientType"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.FillGradientMode"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.GraduatedMode"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.GraphTextFormat"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.GraphType"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.LabelBackShape"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.OverLengthLabelMode"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.RangeMode"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.RemoveThemesParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.RemoveThemesResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.RemoveThemesService"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ServerColor"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ServerStyle"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ServerTextAlignment"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ServerTextStyle"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.Theme"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeDotDensity"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeGraduatedSymbol"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeGraph"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeGraphItem"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeLabel"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeLabelItem"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeParameters"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeRange"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeRangeItem"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeRangeParam"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeResult"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeService"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeType"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeUnique"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeUniqueItem"/>
+    <classEntry path="com.supermap.web.iServerJava2.themeServices.ThemeUniqueParam"/>
+    <classEntry path="com.supermap.web.mapping.DynamicIServerLayer"/>
+    <classEntry path="com.supermap.web.mapping.TiledCachedIServerLayer"/>
+    <classEntry path="com.supermap.web.mapping.TiledDynamicIServerLayer"/>
+    <classEntry path="com.supermap.web.resources.SmServerResource"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.networkAnalystServices.xml" sourcePath="docs/com.supermap.web.iServerJava2.networkAnalystServices.xml"/>
+    <resourceEntry destPath="docs/packages.dita" sourcePath="docs/packages.dita"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.measureServices.xml" sourcePath="docs/com.supermap.web.iServerJava2.measureServices.xml"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.xml" sourcePath="docs/com.supermap.web.iServerJava2.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.components.skins.xml" sourcePath="docs/com.supermap.web.iServerJava2.components.skins.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.components.xml" sourcePath="docs/com.supermap.web.iServerJava2.components.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.editServices.xml" sourcePath="docs/com.supermap.web.iServerJava2.editServices.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.mapServices.xml" sourcePath="docs/com.supermap.web.iServerJava2.mapServices.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.queryServices.xml" sourcePath="docs/com.supermap.web.iServerJava2.queryServices.xml"/>
+    <resourceEntry destPath="docs/com.supermap.web.iServerJava2.themeServices.xml" sourcePath="docs/com.supermap.web.iServerJava2.themeServices.xml"/>
+    <resourceEntry destPath="packageDescription.xml" sourcePath="packageDescription.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://www.supermap.com/iserverjava/2008"/>
+  </namespaceManifests>
+</flexLibProperties>

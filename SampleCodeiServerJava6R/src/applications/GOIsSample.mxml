@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.utils.Unit;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.PictureMarkerStyle;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			import com.supermap.web.iServerJava6R.serviceEvents.GOIsEvent;
+			import com.supermap.web.mapping.GOIs;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			[Bindable]
+			private var Name:String;//点数据信息的NAME字段值
+			
+			private var myGOIs:GOIs;
+			
+			//初始化
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLConpelte);
+			}
+			
+			//获取服务地址
+			private function readURLConpelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、网络分析服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-china400/rest/maps/China
+				restUrl = "http://localhost:8090/iserver/services/map-china400/rest/maps/China";				
+				map.addEventListener(MapEvent.LOAD,maploaded);
+			}
+			
+			//设置地图初始中心点
+			private function maploaded(event:MapEvent):void
+			{
+				map.zoomToLevel(5,new Point2D(11782422.179601, 4717749.8315665));
+			}
+			
+			//创建麻点图
+			private function createLayer():void
+			{
+				if(myGOIs) clearLayer(); //如果已经存在麻点图实例，先清除
+				myGOIs = new GOIs(restUrl,"China_Town_P@China400");
+				myGOIs.style = new ServerStyle();
+				myGOIs.style.markerSymbolID =72;
+				myGOIs.style.markerSize = 4;
+				myGOIs.isHighlight = true;//鼠标移到点上时高亮显示，需要同时设置麻点图的高亮显示风格highlightMarkerStyle后才能有高亮效果。
+				myGOIs.highlightMarkerStyle = new PictureMarkerStyle("../assets/circlepoi.png",16,16,2,-2);
+				
+				myGOIs.addEventListener(GOIsEvent.INITIALIZED,GOIsInitialized);
+			}
+			
+			//麻点图初始化完成后使用getLayers（）方法取出麻点图图层数组，并将图层加到地图中。
+			private function GOIsInitialized(event:GOIsEvent):void
+			{
+				var layers:Array = myGOIs.getLayers();
+				
+				for(var i:int = 0;i < layers.length ;i++ )
+				{
+					map.addLayer(layers[i],-1);
+				}
+				
+				myGOIs.addEventListener(GOIsEvent.CLICK,openInfoWin);//监听鼠标点击事件。
+			}
+			
+			private function openInfoWin(event:GOIsEvent):void
+			{
+				//取数据
+				var info:Object = event.poiInfo;
+				var data:Object = info.data;
+				if (data)
+				{
+					if (data.NAME)
+					{
+						this.Name = data.NAME;
+						map.infoWindow.label = this.Name;
+					}
+					var point:GeoPoint = new GeoPoint(data.SmX, data.SmY);
+					
+					map.infoWindow.content = content;
+					map.infoWindow.show(new Point2D(point.x, point.y));
+					
+					//弹窗样式
+					map.infoWindow.infoWindowLabel.setStyle('color', 0x000000);
+					map.infoWindow.infoWindowLabel.setStyle('fontSize', "14");
+					map.infoWindow.infoWindowLabel.setStyle('paddingBottom', "15");
+					map.infoWindow.infoWindowLabel.setStyle('fontFamily', "微软雅黑");
+					map.infoWindow.infoWindowLabel.setStyle("lineBreak", "toFit");
+					map.infoWindow.infoWindowLabel.maxDisplayedLines = -1;
+					
+					map.infoWindow.infoWindowLabel.showTruncationTip = true;
+					map.infoWindow.closeButton.addEventListener(MouseEvent.CLICK,removeClickedFea);//关闭弹窗时同时取消由点击产生的高亮点
+				}
+				else
+				{
+					if (this.map.infoWindow)
+					{
+						this.map.infoWindow.hide();
+					}
+					else
+					{
+						return;
+					}
+				}
+				
+			}
+			
+			//移除点击后产生的高亮点
+			protected function removeClickedFea(event:MouseEvent):void
+			{
+				myGOIs.removeClickedPoint();
+			}
+			
+			//清除麻点图
+			private function clearLayer():void
+			{
+				if (this.map.infoWindow)
+				{
+					this.map.infoWindow.hide();
+				}
+				
+				if(myGOIs)
+				{
+					//从地图中移除麻点图
+					var layers:Array = myGOIs.getLayers();
+					for(var i:int = 0;i < layers.length ;i++ )
+					{
+						map.removeLayer(layers[i]);
+					}
+				 	myGOIs.destroy();//销毁实例
+					myGOIs = null;
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 定义InfoWindow内容 -->
+		<s:VGroup id = "content"
+				  horizontalCenter = "0"
+				  paddingLeft = "8"
+				  paddingRight = "8"
+				  paddingTop = "2">
+		</s:VGroup>
+	</fx:Declarations>
+	<ic:Map id="map" x="0" y="0" height="100%" width="100%" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7,1.28e-6,2.56e-6,5.12e-6,1.024e-5]}">
+		<ic:TiledDynamicRESTLayer url="{restUrl}" id="mapBaseLayer"/>
+	</ic:Map>
+	
+	<!--量算控制按钮-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup gap="5" width="400" height="30" verticalAlign="middle" horizontalAlign="left" right="5" left="5">
+			<s:Button label="渲染麻点图" alpha="1" click="createLayer()" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体"/>
+			<s:Button label="清除" click="clearLayer()" height="25" skinClass="skins.GraphicBtnSkin" fontFamily="宋体"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>
+

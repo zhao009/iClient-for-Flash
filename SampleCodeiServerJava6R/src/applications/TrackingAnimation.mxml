@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<!--导航动画-->
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace ic "http://www.supermap.com/iclient/2010";
+		@namespace is "http://www.supermap.com/iserverjava/2010";
+		s|Button{
+			fontSize:15;
+			fontWeight:bold;
+			fontFamily:宋体;
+		}
+	</fx:Style>
+	<fx:Declarations>
+		<ic:PictureMarkerStyle id="trackerStyle" source="../assets/sunny2.gif" />
+		<s:RadioButtonGroup id="focusMode" selectedValue="viewfocus" />
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawLine;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.*;
+			import com.supermap.web.core.styles.*;
+			import com.supermap.web.events.*;
+			import com.supermap.web.mapping.*;
+			
+			import mx.events.EffectEvent;
+			
+			import spark.effects.Animate;
+			import spark.effects.animation.Keyframe;
+			import spark.effects.animation.MotionPath;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+			}
+		
+			private var trackingLine:Feature;
+			private var tracker:Feature = new Feature(new GeoPoint());
+			private var lineStyle:PredefinedLineStyle = new PredefinedLineStyle("solid", 0xffff, 1, 3);
+			private var markerStyle:PredefinedMarkerStyle = new PredefinedMarkerStyle(PredefinedMarkerStyle.SYMBOL_STAR, 20, 0xff0000);
+			private var compositeStyle:CompositeStyle = new CompositeStyle([lineStyle, markerStyle]);
+			
+			private var trackingstops:Array;		
+			private var totalDis:Number = 0;
+			private var totalTime:Number = 0;
+			private var trackAnimate:Animate;
+			private var xtrackerPath:MotionPath;
+			private var ytrackerPath:MotionPath;
+			private var keyTimes:Array;
+			private var stopCount:int;
+			private var isAnimPaused:Boolean = false;
+			
+			//绘制跟踪线
+			private function onDrawLine(event:MouseEvent):void
+			{
+				fl.clear();
+				var drawLine:DrawLine = new DrawLine(map);
+				this.map.action = drawLine;
+				drawLine.addEventListener(DrawEvent.DRAW_END,addFeature);		
+			}
+			
+			//将跟踪线加入featureslayer中
+			private function addFeature(event:DrawEvent):void
+			{
+				fl.clear();
+				this.map.action = new Pan(this.map);
+				trackAnimate = null;
+				xtrackerPath = null;
+				ytrackerPath = null;
+				trackingstops = [];
+				if(trackAnimate)
+				{
+					trackAnimate.end();
+					trackAnimate = null;
+					isAnimPaused = false;
+					animpauseBtn.label = "暂停";
+				}
+				
+				trackingLine = event.feature;
+				trackingLine.autoMoveToTop = false;
+				trackingLine.style = compositeStyle;
+				fl.addFeature(trackingLine);
+				var line:GeoLine = trackingLine.geometry as GeoLine;
+				trackingstops = line.getPart(0);
+				stopCount = trackingstops.length;
+				tracker.style = this.trackerStyle;
+				tracker.visible = false;
+				tracker.isRealtimeRefresh = true;
+
+				fl.addFeature(tracker);
+				
+				for(var i:int = 0; i < stopCount-1;)
+				{
+					var startPnt:Point2D = trackingstops[i];
+					var endPnt:Point2D = trackingstops[++i];
+					totalDis += Math.sqrt(Math.pow(startPnt.y - endPnt.y, 2) + Math.pow(startPnt.x - endPnt.x, 2));
+				}
+			}
+			
+			//动画过程
+			private function onMovingTracker(event:EffectEvent) : void
+			{
+				var animate:Animate =  event.currentTarget as Animate;
+				var pnt2D:GeoPoint = animate.target as GeoPoint;
+				tracker.geometry = pnt2D;
+				
+				if(this.focusMode.selectedValue == "viewfocus" && !map.viewBounds.contains(pnt2D.x, pnt2D.y))
+				{
+					map.panTo(new Point2D(pnt2D.x, pnt2D.y));
+				}
+			}
+		
+			private var res:Number = 0;
+			//地图图层可视范围改变事件的侦听函数
+			private function onViewBoundsChange(event:ViewBoundsEvent) : void
+			{	
+				if(Math.abs(res - map.resolution) < 1E-06)
+				{				
+					return;
+				}
+				if(event.levelChange && trackAnimate && trackAnimate.isPlaying)
+				{
+					trackAnimate.pause();
+					var motions:Vector.<MotionPath> = trackAnimate.motionPaths.concat();
+					for each(var motionPath:MotionPath in motions)
+					{
+						for each(var keyframe:Keyframe in motionPath.keyframes)
+						{
+							keyframe.time *= 20000;
+						}
+					}
+					trackAnimate.motionPaths = motions;
+					if(this.isAnimPaused)
+					{
+						trackAnimate.pause();
+					}
+					else
+					{
+						trackAnimate.resume();
+					}
+				}
+				
+			}
+			
+			protected function animplay_clickHandler(event:MouseEvent):void
+			{
+				if(totalDis <= 0)
+				{
+					trackAnimate = null;
+					return;
+				}
+
+				totalTime = totalDis * 1000 / this.speed.value;
+				
+				keyTimes = [0];
+				var i:int = 0;
+				var currentTotalTime:Number = 0;
+				for(i = 0; i < stopCount-1;)
+				{
+					var startPnt:Point2D = trackingstops[i];
+					var endPnt:Point2D = trackingstops[++i];
+					currentTotalTime += Math.sqrt(Math.pow(startPnt.y - endPnt.y, 2) + Math.pow(startPnt.x - endPnt.x, 2)) * totalTime / totalDis;
+					keyTimes.push(currentTotalTime);
+				}
+				
+				xtrackerPath = new MotionPath();
+				xtrackerPath.property = "x";
+				ytrackerPath = new MotionPath();
+				ytrackerPath.property = "y";
+				var xkeyFrames:Vector.<Keyframe> = new Vector.<Keyframe>;
+				var ykeyFrames:Vector.<Keyframe> = new Vector.<Keyframe>;
+				for(i = 0; i < stopCount; i++)
+				{		
+					var keyframe:Keyframe = new Keyframe(keyTimes[i], trackingstops[i].x);
+					xkeyFrames.push(keyframe);
+					keyframe = new Keyframe(keyTimes[i], trackingstops[i].y);
+					ykeyFrames.push(keyframe);
+				}
+				xtrackerPath.keyframes = xkeyFrames;
+				ytrackerPath.keyframes = ykeyFrames;
+				
+				
+				if(trackAnimate)
+				{
+					trackAnimate.end();
+					isAnimPaused = false;
+					animpauseBtn.label = "暂停";
+				}
+				trackAnimate = new Animate(this.tracker.geometry);
+
+				var motionsVec:Vector.<MotionPath> = new Vector.<MotionPath>();
+				motionsVec.push(xtrackerPath, ytrackerPath);
+				trackAnimate.motionPaths = motionsVec;
+				trackAnimate.target = this.tracker.geometry;
+				trackAnimate.addEventListener(EffectEvent.EFFECT_UPDATE, onMovingTracker, false, 0, true);
+				trackAnimate.repeatCount = this.isReplay.selected ? 0 : 1;
+
+				tracker.visible = true;
+				trackAnimate.play();
+			}
+
+			
+			protected function animpause_clickHandler(event:MouseEvent):void
+			{
+				if(trackAnimate && trackAnimate.isPlaying)
+				{
+					if(this.isAnimPaused)
+					{
+						trackAnimate.resume();
+						isAnimPaused = false;
+						animpauseBtn.label = "暂停";
+					}
+					else
+					{
+						trackAnimate.pause();
+						isAnimPaused = true;
+						animpauseBtn.label = "继续";
+					}
+					
+				}
+			}
+			protected function animstop_clickHandler(event:MouseEvent):void
+			{
+				if(trackAnimate && trackAnimate.isPlaying)
+				{
+					trackAnimate.stop();
+				}		
+			}
+		
+			protected function isReplay_changeHandler():void
+			{
+				if(trackAnimate)
+				{
+					trackAnimate.repeatCount = this.isReplay.selected ? 0 : 1;
+				}					
+			}
+
+		]]>
+	</fx:Script>
+	
+	<!--加载地图-->
+	<s:Panel title="先添加动画路线，设置好动画速度，再运行导航动画。" fontFamily="宋体" fontSize="18" width="100%" height="100%">
+		<ic:Map id="map" viewBoundsChange="onViewBoundsChange(event)"  zoomDuration="1" panDuration="1" panEasingFactor="1">
+			<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+			<ic:FeaturesLayer id="fl" />			
+		</ic:Map>
+	</s:Panel>
+	<s:Panel right="5"
+			 title="动画属性设置"
+			 top="30"
+			 fontFamily="宋体"
+			 fontSize="15"
+			 chromeColor="#E9E4E4"
+			 backgroundAlpha="0.81" backgroundColor="#D2D2D2">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="right"
+							  paddingBottom="0"
+							  paddingTop="0"/>
+		</s:layout>
+		<mx:Form paddingBottom="4"
+				 paddingTop="4"
+				 width="100%">
+			<mx:FormItem id="speeditem" label="移动速度:">
+				<s:HGroup>
+					<s:HSlider id="speed"
+							   liveDragging="true"
+							   maximum="100"
+							   minimum="1"
+							   snapInterval="0.1"
+							   value="10"
+							   width="100%"/>
+					<s:Label text=" 倍" />
+				</s:HGroup>
+			</mx:FormItem>
+			<mx:FormItem>
+				<s:CheckBox id="isReplay" label="是否重播" selected="true" change="isReplay_changeHandler()" />
+			</mx:FormItem>
+			<mx:FormItem label="焦点模式:">
+				<s:HGroup>
+					<s:RadioButton groupName="focusMode" label="非视图焦点模式" value="noviewfocus" />
+					<s:RadioButton  groupName="focusMode" label="视图焦点模式" value="viewfocus" />
+				</s:HGroup>
+			</mx:FormItem>
+			<s:HGroup horizontalAlign="center">
+				<s:Button id="addTrackingLineBtn" label="添加导航路径" click="onDrawLine(event)" />
+				<s:Button id="animplayBtn" label="播放" click="animplay_clickHandler(event)" />
+				<s:Button id="animpauseBtn" label="暂停" click="animpause_clickHandler(event)" />
+				<s:Button id="animstopBtn" label="停止" click="animstop_clickHandler(event)" />
+			</s:HGroup>	
+		</mx:Form>
+	</s:Panel>
+</s:Application>

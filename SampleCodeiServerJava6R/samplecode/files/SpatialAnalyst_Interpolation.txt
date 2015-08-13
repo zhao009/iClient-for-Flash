@@ -1,0 +1,13 @@
+﻿<font color="#0033FF">插值分析</font>
+<font color="#006633">1. 功能描述：</font>插值分析是用于对离散的点数据（可为点数据集或者离散的点数组）进行插值得到栅格数据集。插值分析可以将有限的采样点数据，通过插值对采样点周围的数值情况进行预测，从而掌握研究区域内数据的总体分布状况，而使采样的离散点不仅仅反映其所在位置的数值情况，而且可以反映区域的数值分布。插值方法主要有：反距离权重插值法（IDW）、 点密度插值法（Density）、克吕金（Kriging）内插法、径向基函数RBF（Radial Basis Function）插值法等。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——全国温度变化图。
+<font color="#006633">3. 操作指南：</font>
+    1）此范例是对离散的点数组进行IDW插值分析，点数组是已经写好在范例中的，表示在地图上为蓝色的离散点
+    2）点击“IDW插值”即可看到插值结果。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义插值分析参数类 InterpolationIDWAnalystParameters、InterpolationIDWAnalystParameters、InterpolationIDWAnalystParameters、InterpolationIDWAnalystParameters等；
+    2）执行插值分析—— InterpolationAnalystService；
+    3）获取分析的最终结果，有两种方式：
+		（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 SurfaceAnalystEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关插值分析的详细参数介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

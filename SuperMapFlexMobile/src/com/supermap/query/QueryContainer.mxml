@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:renderers="com.supermap.query.renderers.*"
+		 xmlns:topbar="com.supermap.topbar.*"
+		 xmlns:components="com.supermap.components.*"
+		 width="100%"
+		 height="100%" creationComplete="init(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.events.*;
+			import com.supermap.views.MainView;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.utils.StringUtil;
+			
+			[Bindable]
+			private var _category:ArrayCollection;
+			public var mainview:MainView;
+
+			public function get category():ArrayCollection
+			{
+				return _category;
+			}
+
+			public function set category(value:ArrayCollection):void
+			{
+				_category = value;
+			}
+
+			/**
+			 * 根据 选中 内容进行查询。
+			 */
+			protected function categoryItemClickHandler(event:CategoryItemClickEvent):void
+			{
+				queryByName(event.data, event.subCategory.name);
+			}
+
+			/**
+			 * 根据 输入 的内容进行查询。
+			 */
+			protected function query(event:MouseEvent):void
+			{
+				var keyword:String = StringUtil.trim(topBar.textInput.text);
+				queryByName(keyword);
+			}
+
+			protected function queryByName(keyword:String, title:String = null):void
+			{
+				var data:Object = this.mainview.data == null?new Object():this.mainview.data;
+				if(keyword != null && keyword.length > 0)
+				{
+					mainview.queryContainer.visible = false;
+					mainview.currentState = "query";
+					data.itemName = (title == null) ? keyword : title;
+					data.mapViewBounds = mainview.map.viewBounds;
+					this.mainview.navigator.pushView(DetailListView, data);
+				}
+			}
+
+			protected function returnMainPage(event:MouseEvent):void
+			{
+				mainview.queryContainer.visible = false;
+				mainview.currentState = "query";
+			}
+
+			 protected function view1_viewActivateHandler():void
+			{
+//				ViewerEventDispatcher.addEventListener("categoryItemClick", categoryItemClickHandler);
+//				topBar.textInput.setFocus();
+			}
+
+			protected function view1_viewDeactivateHandler():void
+			{
+//				ViewerEventDispatcher.removeEventListener("categoryItemClick", categoryItemClickHandler);
+			} 
+			
+			protected function init(event:FlexEvent):void
+			{
+				ViewerEventDispatcher.addEventListener("categoryItemClick", categoryItemClickHandler);
+			}
+			
+		]]>
+	</fx:Script>
+	<topbar:TopNavigatorBar id="topBar"/>
+	<!-- 查询按钮 -->
+	<components:IconButton y="7"
+						   x="520"
+						   click="query(event)"
+						   up="@Embed('assets/search/search.png')"
+						   down="@Embed('assets/search/search2.png')"
+						   skinClass="com.supermap.components.skins.IconButtonSkin"/>
+	<!-- 返回按钮-->
+	<s:Button y="7"
+			  right="20"
+			  label="返回"
+			  color="0xFFFFFF"
+			  height="30"
+			  click="returnMainPage(event)"
+			  skinClass="com.supermap.components.skins.CustomButtonSkin2"/>
+	<renderers:CategoryList id="categoryList"
+							y="{topBar.height }"
+							width="100%"
+							height="100%"
+							dataProvider="{_category}"/>
+</s:Group>

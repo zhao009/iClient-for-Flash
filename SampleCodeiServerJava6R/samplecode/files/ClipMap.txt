@@ -1,0 +1,4 @@
+<font color="#0033FF">截屏</font>
+<font color="#006633">1. 功能描述：</font>对鼠标绘制的矩形框范围内的地图进行预览、打印、保存。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World Map。
+<font color="#006633">3. 操作指南：</font>鼠标点击“截屏”按钮-->绘制矩形-->执行操作。

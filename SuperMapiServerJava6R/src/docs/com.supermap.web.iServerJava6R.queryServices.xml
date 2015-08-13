@@ -1,0 +1,473 @@
+<apiPackage id="com.supermap.web.iServerJava6R.queryServices"><apiName>com.supermap.web.iServerJava6R.queryServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryByDistanceService"><apiName>QueryByDistanceService</apiName><shortdesc>
+	 距离查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.queryServices:QueryService</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 距离查询服务类.
+	 <p>距离查询就是查询距离几何对象一定范围内符合指定条件的地物。对于点几何对象，则查询以该点为圆心，距离为半径的圆内地物；对于线和面几何对象，则查询距离对像边界上一定范围内的地物。<br/>该类负责将距离查询所需参数（QueryByDistanceParameters）传递至服务端，并获取服务端的返回结果。<br/>用户可以通过两种方式获取距离查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 QueryEvent.PROCESS_COMPLETE 事件获取。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryByDistanceService:QueryByDistanceService"><apiName>QueryByDistanceService</apiName><shortdesc>
+		 使用服务器的 URL 参数实例化 QueryByDistanceService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>服务访问地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器的 URL 参数实例化 QueryByDistanceService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryResult"><apiName>QueryResult</apiName><shortdesc>
+	 查询结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询结果类.
+	 <p>该类用于存储服务端返回的查询结果，其中包含了查询结果记录集（Recordset）或查询结果资源（ResourceInfo）等相关信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryResult:QueryResult"><apiName>QueryResult</apiName><shortdesc>
+		 初始化 QueryResult 类的新实例 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 QueryResult 类的新实例 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryResult:currentCount:get"><apiName>currentCount</apiName><shortdesc>
+		 获取当次查询返回的记录数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取当次查询返回的记录数.
+		 <p>如果期望返回的记录条数小于满足查询条件的所有记录，即 <code>ExpectCount &lt;= TotalCount</code>，则 CurrentCount 就等于 ExpectCount 的值；如果 <code>ExpectCount > TotalCount</code>，则 CurrentCount 就等于 TotalCount 的值。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryResult:customResponse:get"><apiName>customResponse</apiName><shortdesc>
+		 获取自定义操作处理的结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取自定义操作处理的结果。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryResult:recordsets:get"><apiName>recordsets</apiName><shortdesc>
+		 获取查询结果记录集（Recordset）数组.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取查询结果记录集（Recordset）数组.
+		 <p>每一个查询图层对应一个 Recordset。Recordset 中的每条记录代表一个对象。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava6R.queryServices.Recordset.xml"><linktext>Recordset</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryResult:resourceInfo:get"><apiName>resourceInfo</apiName><shortdesc>
+		 获取查询结果资源 ResourceInfo。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.queryServices:ResourceInfo</apiValueClassifier></apiValueDef><apiDesc>
+		 获取查询结果资源 ResourceInfo。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryResult:totalCount:get"><apiName>totalCount</apiName><shortdesc>
+		 获取符合查询条件的记录总数。每条记录代表一个 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取符合查询条件的记录总数。每条记录代表一个 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:LinkItem"><apiName>LinkItem</apiName><shortdesc>
+	 关联信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 关联信息类.
+	 <p>该类用于定义矢量数据集与外部表之间的关联信息。外部表可以为另一个矢量数据集（其中纯属性数据集中没有空间几何信息）所对应的 DBMS 表，也可以是用户自建的业务表。需要注意的是，矢量数据集与外部表可以属于不同的数据源。<br/>使用 LinkItem 的约束条件：空间数据和属性数据必须有关联条件，即主空间数据集与外部属性表之间存在关联字段。主空间数据集：用来与外部表进行关联的数据集。外部属性表：用户通过 Oracle 或者 SQL Server 创建的数据表，或者是另一个矢量数据集所对应的 DBMS(Database Management System，数据库管理系统)表。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:LinkItem:LinkItem"><apiName>LinkItem</apiName><shortdesc>
+		 初始化 LinkItem 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 LinkItem 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:LinkItem:datasourceConnectionInfo:get"><apiName>datasourceConnectionInfo</apiName><shortdesc>
+		 获取或设置关联的外部数据源信息 DatasourceConnectionInfo 。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置关联的外部数据源信息 DatasourceConnectionInfo 。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:LinkItem:foreignKeys:get"><apiName>foreignKeys</apiName><shortdesc>
+		 获取或设置主空间数据集的外键。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置主空间数据集的外键。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:LinkItem:foreignTable:get"><apiName>foreignTable</apiName><shortdesc>
+		 获取或设置关联的外部属性表的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置关联的外部属性表的名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:LinkItem:linkFields:get"><apiName>linkFields</apiName><shortdesc>
+		 获取或设置欲保留的外部属性表的字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置欲保留的外部属性表的字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:LinkItem:linkFilter:get"><apiName>linkFilter</apiName><shortdesc>
+		 获取或设置与外部属性表的连接条件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置与外部属性表的连接条件。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:LinkItem:name:get"><apiName>name</apiName><shortdesc>
+		 获取或设置此关联信息对象的名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置此关联信息对象的名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:LinkItem:primaryKeys:get"><apiName>primaryKeys</apiName><shortdesc>
+		 获取或设置需要关联的外部属性表的主键。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置需要关联的外部属性表的主键。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:ResourceInfo"><apiName>ResourceInfo</apiName><shortdesc>
+	 结果资源信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 结果资源信息类.
+	 <p>所有对象在服务器都是以资源的形式存储，每个资源会有一个唯一标识的 ID，同时还有一个该资源在服务器存储的位置，即 URL。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:ResourceInfo:ResourceInfo"><apiName>ResourceInfo</apiName><shortdesc>
+		 初始化 ResourceInfo 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ResourceInfo 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:ResourceInfo:newResourceID:get"><apiName>newResourceID</apiName><shortdesc>
+		 获取或设置资源的 ID 。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置资源的 ID 。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:ResourceInfo:newResourceLocation:get"><apiName>newResourceLocation</apiName><shortdesc>
+		 获取或设置资源的 URL。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置资源的 URL。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:ResourceInfo:succeed:get"><apiName>succeed</apiName><shortdesc>
+		 获取或设置资源创建是否成功。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置资源创建是否成功。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo"><apiName>DatasourceConnectionInfo</apiName><shortdesc>
+	 数据源连接信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据源连接信息类.
+	 <p>该类包含了数据源名称、数据源连接的数据库或文件等相关信息。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:DatasourceConnectionInfo"><apiName>DatasourceConnectionInfo</apiName><shortdesc>
+		 初始化 DatasourceConnectionInfo 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 DatasourceConnectionInfo 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:alias:get"><apiName>alias</apiName><shortdesc>
+		 获取或设置数据源别名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置数据源别名。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:connect:get"><apiName>connect</apiName><shortdesc>
+		 获取或设置数据源是否自动连接数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置数据源是否自动连接数据。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:dataBase:get"><apiName>dataBase</apiName><shortdesc>
+		 获取或设置数据源连接的数据库名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置数据源连接的数据库名。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:driver:get"><apiName>driver</apiName><shortdesc>
+		 获取或设置使用 ODBC(Open Database Connectivity，开放数据库互连)的数据库的驱动程序名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置使用 ODBC(Open Database Connectivity，开放数据库互连)的数据库的驱动程序名。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:engineType:get"><apiName>engineType</apiName><shortdesc>
+		 获取或设置数据源连接的引擎类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置数据源连接的引擎类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:exclusive:get"><apiName>exclusive</apiName><shortdesc>
+		 获取或设置是否以独占方式打开数据源。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否以独占方式打开数据源。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:openLinkTable:get"><apiName>openLinkTable</apiName><shortdesc>
+		 获取或设置是否把数据库中的其他非 SuperMap 数据表作为 LinkTable 打开。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否把数据库中的其他非 SuperMap 数据表作为 LinkTable 打开。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:password:get"><apiName>password</apiName><shortdesc>
+		 获取或设置登录数据源连接的数据库或文件的密码。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置登录数据源连接的数据库或文件的密码。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:readOnly:get"><apiName>readOnly</apiName><shortdesc>
+		 获取或设置是否以只读方式打开数据源。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否以只读方式打开数据源。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:server:get"><apiName>server</apiName><shortdesc>
+		 获取或设置数据库服务器名或 SDB 文件名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置数据库服务器名或 SDB 文件名。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:DatasourceConnectionInfo:user:get"><apiName>user</apiName><shortdesc>
+		 获取或设置登录数据库的用户名。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置登录数据库的用户名。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryOption"><apiName>QueryOption</apiName><shortdesc>
+	 查询结果类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询结果类型枚举类.
+	 <p>该类描述查询结果返回类型，包括只返回属性、只返回几何实体以及返回属性和几何实体。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryOption:ATTRIBUTE_AND_GEOMETRY"><apiName>ATTRIBUTE_AND_GEOMETRY</apiName><shortdesc>
+		 属性和空间几何类型，返回地物的属性信息和空间几何信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ATTRIBUTEANDGEOMETRY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 属性和空间几何类型，返回地物的属性信息和空间几何信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryOption:ATTRIBUTE"><apiName>ATTRIBUTE</apiName><shortdesc>
+		 属性类型，只返回地物的属性信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ATTRIBUTE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 属性类型，只返回地物的属性信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryOption:GEOMETRY"><apiName>GEOMETRY</apiName><shortdesc>
+		 空间几何类型，只返回地物的空间几何信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>GEOMETRY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 空间几何类型，只返回地物的空间几何信息。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:FieldType"><apiName>FieldType</apiName><shortdesc>
+	 字段类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 字段类型枚举类.
+	 <p>该类定义了一系列的字段类型。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:BOOLEAN"><apiName>BOOLEAN</apiName><shortdesc>
+		 布尔类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BOOLEAN</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 布尔类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:BYTE"><apiName>BYTE</apiName><shortdesc>
+		 字节类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>BYTE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 字节类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:CHAR"><apiName>CHAR</apiName><shortdesc>
+		 字符类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CHAR</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 字符类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:DATETIME"><apiName>DATETIME</apiName><shortdesc>
+		 日期类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>DATETIME</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 日期类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:DOUBLE"><apiName>DOUBLE</apiName><shortdesc>
+		 双精度浮点类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>DOUBLE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 双精度浮点类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:INT16"><apiName>INT16</apiName><shortdesc>
+		 16 位整数类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>INT16</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 16 位整数类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:INT32"><apiName>INT32</apiName><shortdesc>
+		 32 位整数类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>INT32</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 32 位整数类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:LONGBINARY"><apiName>LONGBINARY</apiName><shortdesc>
+		 任意长度的二进制数据类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LONGBINARY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 任意长度的二进制数据类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:SINGLE"><apiName>SINGLE</apiName><shortdesc>
+		 单精度浮点类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SINGLE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 单精度浮点类型。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:FieldType:TEXT"><apiName>TEXT</apiName><shortdesc>
+		 文本类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TEXT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 文本类型。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:EngineType"><apiName>EngineType</apiName><shortdesc>
+	 数据源引擎类型枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 数据源引擎类型枚举类.
+	 <p>SuperMap SDX+ 是 SuperMap 的空间引擎技术，它提供了一种通用的访问机制（或模式）来访问存储在不同引擎里的数据。引擎类型包括数据库引擎、文件引擎和 Web 引擎。<br/>1. 数据库引擎类型主要包括 Oracle 引擎（ORACLEPLUS）、SQL Server 引擎（SQLPLUS）;<br/>2. 文件引擎主要包括 SDB 引擎（SDBPLUS）、UDB 引擎（UDB）、影像只读引擎（IMAGEPLUGINS）;<br/>3. Web 引擎主要有 OGC 引擎（OGC）。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.queryServices:EngineType:IMAGE_PLUGINS"><apiName>IMAGE_PLUGINS</apiName><shortdesc>
+		 影像只读引擎类型，文件引擎，针对通用影像格式如 BMP，JPG，TIFF 以及超图自定义影像格式 SIT 等。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>IMAGEPLUGINS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 影像只读引擎类型，文件引擎，针对通用影像格式如 BMP，JPG，TIFF 以及超图自定义影像格式 SIT 等。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:EngineType:OGC"><apiName>OGC</apiName><shortdesc>
+		 OGC 引擎类型，针对于 Web 数据源，Web 引擎，目前支持的类型有 WMS，WFS，WCS。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>OGC</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 OGC 引擎类型，针对于 Web 数据源，Web 引擎，目前支持的类型有 WMS，WFS，WCS。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:EngineType:ORACLE_PLUS"><apiName>ORACLE_PLUS</apiName><shortdesc>
+		 Oracle 引擎类型，针对 Oracle 数据源，数据库引擎。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>ORACLEPLUS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 Oracle 引擎类型，针对 Oracle 数据源，数据库引擎。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:EngineType:SDB_PLUS"><apiName>SDB_PLUS</apiName><shortdesc>
+		 SDB 引擎类型，文件引擎，即 SDB 数据源。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SDBPLUS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 SDB 引擎类型，文件引擎，即 SDB 数据源。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:EngineType:SQL_PLUS"><apiName>SQL_PLUS</apiName><shortdesc>
+		 SQL Server 引擎类型，针对 SQL Server 数据源，数据库引擎。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SQLPLUS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 SQL Server 引擎类型，针对 SQL Server 数据源，数据库引擎。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:EngineType:UDB"><apiName>UDB</apiName><shortdesc>
+		 UDB 引擎类型，文件引擎。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>UDB</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 UDB 引擎类型，文件引擎。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryBySQLParameters"><apiName>QueryBySQLParameters</apiName><shortdesc>
+	 SQL 查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.queryServices:QueryParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SQL 查询参数类.
+	 <p>该类用于设置 SQL 查询的相关参数。<br/>SQL 查询就是查询符合 SQL 条件的地物。其中 SQL 条件通过 filterParameters 属性（该属性继承于 QueryParameters）设置。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryBySQLParameters:QueryBySQLParameters"><apiName>QueryBySQLParameters</apiName><shortdesc>
+		 初始化 QueryBySQLParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 QueryBySQLParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryByDistanceParameters"><apiName>QueryByDistanceParameters</apiName><shortdesc>
+	 距离查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.queryServices:QueryParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 距离查询参数类.
+	 <p>该类用于设置距离查询时的相关查询参数。<br/>必设属性有：FilterParameters 和 Geometry。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryByDistanceParameters:QueryByDistanceParameters"><apiName>QueryByDistanceParameters</apiName><shortdesc>
+		 初始化 QueryByDistanceParameters 类。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 QueryByDistanceParameters 类。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryByDistanceParameters:distance:get"><apiName>distance</apiName><shortdesc>
+		 获取或设置查询距离，地图单位。无论 isNearest 属性为 true 或 false 时，该属性均为必设。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置查询距离，地图单位。无论 isNearest 属性为 true 或 false 时，该属性均为必设。
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#QueryByDistanceParameters/isNearest"><linktext>isNearest</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryByDistanceParameters:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 获取或设置用于查询的几何对象，必设属性。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置用于查询的几何对象，必设属性。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryByDistanceParameters:isNearest:get"><apiName>isNearest</apiName><shortdesc>
+		 获取或设置是否为最近距离查询，默认为 false，即根据距离查找地物.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是否为最近距离查询，默认为 false，即根据距离查找地物.
+		 <p>建议该属性与 ExpectCount（继承自 QueryParameters） 属性联合使用。当该属性为 true 时，即表示查找最近地物，ExpectCount 表示期望返回几个最近地物，地物返回的先后顺序按距离从近到远排列。</p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode"><apiName>SpatialQueryMode</apiName><shortdesc>
+	 空间查询模式枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 空间查询模式枚举类.
+	 <p>该类定义了空间查询操作模式常量。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:CONTAIN"><apiName>CONTAIN</apiName><shortdesc>
+		 包含空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CONTAIN</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 包含空间查询模式.
+		 <p>返回被搜索图层中完全被搜索对象包含的对象。搜索对象和被搜索对象的边界交集可以不为空；点查线/点查面/线查面，不存在包含情况。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。<br/><img src="../../../../../images/CONTAIN.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:CROSS"><apiName>CROSS</apiName><shortdesc>
+		 交叉空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>CROSS</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 交叉空间查询模式.
+		 <p>返回被搜索图层中与搜索对象相交的所有对象。搜索对象和被搜索对象内部的交集不能为空；参与交叉（Cross）关系运算的两个对象必须有一个是线对象。该关系适合的对象类型：搜索对象——线；被搜索对象——线、面。<br/><img src="../../../../../images/CROSS1.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:DISJOINT"><apiName>DISJOINT</apiName><shortdesc>
+		 分离空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>DISJOINT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 分离空间查询模式.
+		 <p>返回被搜索图层中与搜索对象相离的对象。搜索对象和被搜索对象相离，即无任何交集。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。<br/><img src="../../../../../images/DISJOINT.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:IDENTITY"><apiName>IDENTITY</apiName><shortdesc>
+		 重合空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>IDENTITY</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 重合空间查询模式.
+		 <p>返回被搜索图层中与搜索对象完全重合的对象，包括对象类型和坐标。搜索对象与被搜索对象的类型必须相同；且两个对象的交集不为空，搜索对象的边界及内部分别和被搜索对象的外部交集为空。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。<br/><img src="../../../../../images/identity.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:INTERSECT"><apiName>INTERSECT</apiName><shortdesc>
+		 相交空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>INTERSECT</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 相交空间查询模式.
+		 <p>返回与搜索对象相交的所有对象。如果搜索对象是面，返回全部或部分被搜索对象包含的对象以及全部或部分包含搜索对象的对象；如果搜索对象不是面，返回全部或部分包含搜索对象的对象。该关系适合的对象类型：搜索对象：点、线、面；被搜索对象：点、线、面。<br/><img src="../../../../../images/INTERSECT.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:NONE"><apiName>NONE</apiName><shortdesc>
+		 无空间查询。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>NONE</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 无空间查询。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:OVERLAP"><apiName>OVERLAP</apiName><shortdesc>
+		 叠加空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>OVERLAP</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 叠加空间查询模式.
+		 <p>返回被搜索图层中与搜索对象部分重叠的对象。该关系适合的对象类型为：线/线，面/面。点与任何一种几何对象都不存在部分重叠的情况。<br/><img src="../../../../../images/OVERLAP.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:TOUCH"><apiName>TOUCH</apiName><shortdesc>
+		 邻接空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>TOUCH</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 邻接空间查询模式.
+		 <p>返回被搜索图层中其边界与搜索对象边界相触的对象。搜索对象和被搜索对象的内部交集为空。该关系不适合的对象类型为：点查询点的空间关系。<br/><img src="../../../../../images/TOUCH.png"/></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:SpatialQueryMode:WITHIN"><apiName>WITHIN</apiName><shortdesc>
+		 被包含空间查询模式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>WITHIN</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 被包含空间查询模式.
+		 <p>返回被搜索图层中完全包含搜索对象的对象。如果返回的对象是面，其必须全部包含（包括边接触）搜索对象；如果返回的对象是线，其必须完全包含搜索对象；如果返回的对象是点，其必须与搜索对象重合。该类型与包含（Contain）的查询模式正好相反。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。线查询点，面查询线或面查询点都不存在被包含的情况。<br/><img src="../../../../../images/WITHIN.png"/></p>
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryByGeometryService"><apiName>QueryByGeometryService</apiName><shortdesc>
+	 几何查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.queryServices:QueryService</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何查询服务类.
+	 <p>几何查询即查找与指定的几何对象符合查询条件和某种空间查询模式（SpatialQueryMode）的地物。<br/>该类负责将距离查询所需参数（QueryByGeometryParameters）传递至服务端，并获取服务端的返回结果。<br/>用户可以通过两种方式获取查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 QueryEvent.PROCESS_COMPLETE 事件获取。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#QueryByGeometryParameters"><linktext>QueryByGeometryParameters</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryByGeometryService:QueryByGeometryService"><apiName>QueryByGeometryService</apiName><shortdesc>
+		 使用服务地址 URL 参数实例化 QueryByGeometryService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>服务访问地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务地址 URL 参数实例化 QueryByGeometryService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryService"><apiName>QueryService</apiName><shortdesc>
+	 查询服务基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询服务基类.
+	 <p>距离、几何、SQL 等查询服务类均继承了该类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava6R.queryServices:QueryService_mx.rpc.events.FaultEvent_fault"><apiName>fault</apiName><shortdesc>
+	 当与服务端交互失败时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>mx.rpc.events.FaultEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互失败时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><adobeApiEvent id="com.supermap.web.iServerJava6R.queryServices:QueryService_com.supermap.web.iServerJava6R.serviceEvents.QueryEvent_processComplete"><apiName>processComplete</apiName><shortdesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>com.supermap.web.iServerJava6R.serviceEvents.QueryEvent</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当与服务端交互成功完成时触发该事件。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryService:QueryService"><apiName>QueryService</apiName><shortdesc>
+		 使用服务地址 URL 参数实例化 QueryService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>服务地址。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务地址 URL 参数实例化 QueryService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava6R.queryServices:QueryService:processAsync"><apiName>processAsync</apiName><shortdesc>
+		 根据服务地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回 AsyncToken 对象，它为异步 RPC 操作提供设置额外数据或标记级别数据的位置。它也允许为单独的调用附加 IResponder。可从 token 属性的 ResultEvent 和 FaultEvent 中引用 AsyncToken。有关 AsyncToken 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava6R.queryServices:QueryParameters</apiOperationClassifier><apiDesc>查询参数 QueryParameters。
+		 </apiDesc></apiParam><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiData>null</apiData><apiDesc>由 AsyncResponder 类实现。远程或异步请求服务完成时将调用的处理函数。使用方法为<br/>AsyncResponder(result:Function, fault:Function, token:Object = null)<br/>result:Function — 成功完成请求时应调用的函数。必须具有以下签名：<br/> public function (result:Object, token:Object = null):void;   <br/>fault:Function — 请求完成但出错时应调用的函数。必须具有以下签名：<br/> public function (error:FaultEvent, token:Object = null):void;  <br/>token:Object (default = null) — 与此请求相关的其他信息。  <br/>有关 AsyncResponder 类的详细信息请参见 “ActionScript 语言帮助文档”。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据服务地址与服务端完成异步通讯，即发送查询参数，并获取查询结果。.
+		 <p>当查询成功时，触发 QueryEvent.PROCESS_COMPLETE 事件。因此用户可以通过两种方式获取距离查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 QueryEvent.PROCESS_COMPLETE 事件获取。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 QueryResult 对象。获取服务端返回的查询结果数据。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava6R.queryServices:QueryResult</apiValueClassifier></apiValueDef><apiDesc>
+		 QueryResult 对象。获取服务端返回的查询结果数据。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryByGeometryParameters"><apiName>QueryByGeometryParameters</apiName><shortdesc>
+	 几何查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.queryServices:QueryParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何查询参数类.
+	 <p>该类用于设置几何查询时的相关查询参数。<br/>几何查询就是查询与指定几何对象符合某种空间关系和查询条件的地物。<br/>必设属性有：FilterParameters（继承于 QueryParameters）、Geometry 和 SpatialQueryMode。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.xml#FilterParameter"><linktext>com.supermap.web.iServerJava6R.FilterParameter</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryByGeometryParameters:QueryByGeometryParameters"><apiName>QueryByGeometryParameters</apiName><shortdesc>
+		 初始化 QueryByGeometryParameters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 QueryByGeometryParameters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryByGeometryParameters:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 获取或设置用于查询的几何对象（点/线/面），必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置用于查询的几何对象（点/线/面），必设属性。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryByGeometryParameters:spatialQueryMode:get"><apiName>spatialQueryMode</apiName><shortdesc>
+		 获取或设置空间查询模式（ SpatialQueryMode ），必设属性.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置空间查询模式（ SpatialQueryMode ），必设属性.
+		 <p>通过空间查询模式设置几何对象与地物满足的空间关系，如相交、相离等。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#SpatialQueryMode"><linktext>SpatialQueryMode</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:JoinItem"><apiName>JoinItem</apiName><shortdesc>
+	 连接信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 连接信息类.
+	 <p>该类用于定义矢量数据集与外部表的连接信息。外部表可以为另一个矢量数据集（其中纯属性数据集中没有空间几何信息）所对应的 DBMS(Database Management System，数据库管理系统)表，也可以是用户自建的业务表。需要注意的是，矢量数据集与外部表必须属于同一数据源。用于连接两个表的字段的名称不一定相同，但类型必须一致。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:JoinItem:JoinItem"><apiName>JoinItem</apiName><shortdesc>
+		 初始化 JoinItem 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 JoinItem 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:JoinItem:foreignTableName:get"><apiName>foreignTableName</apiName><shortdesc>
+		 获取或设置外部表的名称.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置外部表的名称.
+		 <p>如果外部表的名称是以“表名@数据源名”命名方式，则该属性只需赋值表名。例如：外部表 Name@changchun，Name 为表名，changchun 为数据源名称，则该属性的赋值应为：Name。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:JoinItem:joinFilter:get"><apiName>joinFilter</apiName><shortdesc>
+		 获取或设置矢量数据集与外部表之间的连接表达式.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置矢量数据集与外部表之间的连接表达式.
+		 <p>即设定两个表之间关联的字段。例如，将房屋面数据集（Building）的 district 字段与房屋拥有者的纯属性数据集（Owner）的 region 字段相连接，两个数据集对应的表名称分别为 Table_Building 和 Table_Owner，则连接表达式为 Table_Building.district = Table_Owner.region。当有多个字段相连接时，用 AND 将多个表达式相连。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:JoinItem:joinType:get"><apiName>joinType</apiName><shortdesc>
+		 获取或设置两个表之间的连接类型，JoinType 常量.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置两个表之间的连接类型，JoinType 常量.
+		 <p>连接类型决定了对两个表进行连接查询后返回的记录情况。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#JoinType"><linktext>JoinType</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryBySQLService"><apiName>QueryBySQLService</apiName><shortdesc>
+	 SQL 查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava6R.queryServices:QueryService</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SQL 查询服务类.
+	 <p>SQL 查询是指在一个或多个指定的图层上查询符合 SQL 条件的空间地物信息。其中 SQL 条件通过 QueryBySQLParameters.filterParameters 属性设置。<br/>该类负责将 SQL 查询所需参数（QueryBySQLParameters）传递至服务端，并获取服务端的返回结果。<br/>用户可以通过两种方式获取查询结果：<br/>1. 通过 AsyncResponder 类获取（推荐使用）；<br/>2. 通过监听 QueryEvent.PROCESS_COMPLETE 事件获取。</p> 
+	 </apiDesc></apiClassifierDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#QueryBySQLParameters"><linktext>QueryBySQLParameters</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryBySQLService:QueryBySQLService"><apiName>QueryBySQLService</apiName><shortdesc>
+		 使用服地址 URL 参数实例化 QueryBySQlService 对象。.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>	 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服地址 URL 参数实例化 QueryBySQlService 对象。.
+		 <p>服务访问地址。</p> 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:QueryParameters"><apiName>QueryParameters</apiName><shortdesc>
+	 查询参数基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询参数基类.
+	 <p>距离查询、SQL 查询、几何查询等各自的参数类都继承该类。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:QueryParameters"><apiName>QueryParameters</apiName><shortdesc>
+		 初始化 QueryParamerters 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 QueryParamerters 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:customParams:get"><apiName>customParams</apiName><shortdesc>
+		 自定义参数，供扩展使用。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 自定义参数，供扩展使用。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:expectCount:get"><apiName>expectCount</apiName><shortdesc>
+		 获取或设置期望返回结果记录个数，默认返回 100000 .</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置期望返回结果记录个数，默认返回 100000 .
+		 <p>如果实际不足 100000 条则返回实际记录条数。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:filterParameters:get"><apiName>filterParameters</apiName><shortdesc>
+		 获取或设置查询过滤参数（FilterParameter）数组，必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置查询过滤参数（FilterParameter）数组，必设属性。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava6R.queryServices.FilterParameter.xml"><linktext>FilterParameter</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:holdTime:get"><apiName>holdTime</apiName><shortdesc>
+		 获取或设置资源在服务端保存的时间。默认为 15 （分钟）。.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置资源在服务端保存的时间。默认为 15 （分钟）。.
+		 <p>查询结果以资源的形式存储于服务端，该属性用于设置资源在服务端缓存的时间。</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:networkType:get"><apiName>networkType</apiName><shortdesc>
+		 网络数据集对应的查询类型（点和线两种），默认为线几何对象类型，即GeometryType.LINE。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 网络数据集对应的查询类型（点和线两种），默认为线几何对象类型，即GeometryType.LINE。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:queryOption:get"><apiName>queryOption</apiName><shortdesc>
+		 获取或设置查询结果返回类型，QueryOption 枚举类常量，默认为 QueryOption.ATTRIBUTE_AND_GEOMETRY，即返回对象的属性信息和几何信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置查询结果返回类型，QueryOption 枚举类常量，默认为 QueryOption.ATTRIBUTE_AND_GEOMETRY，即返回对象的属性信息和几何信息。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#QueryOption"><linktext>QueryOption</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:returnContent:get"><apiName>returnContent</apiName><shortdesc>
+		 获取或设置是返回查询结果记录集 recordsets，还是返回查询结果的资源 resourceInfo。默认为 true，表示返回 recordsets.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置是返回查询结果记录集 recordsets，还是返回查询结果的资源 resourceInfo。默认为 true，表示返回 recordsets.
+		 <p>Recordsets 和 ResourceInfo 都存储在查询结果类 QueryResult 中。<br/>当 <code>ReturnContent = true</code>，表示返回查询记录集，这时查询结果存储在 <code>QueryResult.Recordsets</code> 中，而 <code>QueryResult.ResourceInfo</code> 为空；<br/>当 <code>ReturnContent = false</code> 时，表示返回查询结果资源，这时查询结果存储在 <code>QueryResult.ResourceInfo</code> 中，而 <code>QueryResult.Recordsets</code> 为空。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava6R.queryServices.xml#QueryResult"><linktext>QueryResult</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:QueryParameters:startRecord:get"><apiName>startRecord</apiName><shortdesc>
+		 获取或设置查询起始记录位置，默认值为0.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置查询起始记录位置，默认值为0.
+		 <p>例如：若有 10 个对象符合查询条件，但该属性字段值为 2，则从第 3 个对象（索引值为 2）开始返回。最终结果为 8 条记录（对象）。 </p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava6R.queryServices:JoinType"><apiName>JoinType</apiName><shortdesc>
+	 关联查询时的关联类型常量.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 关联查询时的关联类型常量.
+	 <p>该类定义了两个表之间的连接类型常量，决定了对两个表之间进行连接查询时，查询结果中得到的记录的情况。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava6R.queryServices:JoinType:INNER_JOIN"><apiName>INNER_JOIN</apiName><shortdesc>
+		 内连接。只有两个表中都有相关的记录才加入查询结果集。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>INNERJOIN</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 内连接。只有两个表中都有相关的记录才加入查询结果集。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava6R.queryServices:JoinType:LEFT_JOIN"><apiName>LEFT_JOIN</apiName><shortdesc>
+		 左连接。左边表中所有相关记录进入查询结果集，右边表中无相关的记录字段显示为空。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>LEFTJOIN</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 左连接。左边表中所有相关记录进入查询结果集，右边表中无相关的记录字段显示为空。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

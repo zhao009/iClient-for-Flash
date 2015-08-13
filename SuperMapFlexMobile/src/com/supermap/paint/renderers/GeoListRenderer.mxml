@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+					xmlns:s="library://ns.adobe.com/flex/spark"
+					iconHeight="64" iconWidth="64" labelFunction="labelFun"
+					click="iconitemrenderer1_clickHandler(event)" >
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			
+			private var feature:Feature;
+			
+			private function labelFun(item:Object):Object
+			{
+				feature = item as Feature;
+				if(feature.geometry is GeoPoint)
+				{
+					this.decorator = "assets/draws/circle.png";
+				}
+				if(feature.geometry is GeoLine)
+				{
+					this.decorator = "assets/draws/solid.png";
+				}
+				if(feature.geometry is GeoRegion)
+				{
+					this.decorator = "assets/draws/horizontal.png";
+				}
+				//显示控制
+				var name:String = ((feature.attributes["name"] == null)?"":feature.attributes["name"]);
+				if(name.length > 0)
+				{
+					return name;
+				}
+				else
+				{
+					return feature.id;
+				}
+			}
+			
+			protected function iconitemrenderer1_clickHandler(event:MouseEvent):void
+			{
+				this.dispatchEvent(new Event("geoItemClick", true));
+			}
+			
+		]]>
+	</fx:Script>
+</s:IconItemRenderer>

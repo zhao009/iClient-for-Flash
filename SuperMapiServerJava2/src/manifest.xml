@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<!--
+
+	SUPERMAP ICLIENT FOR FLEX 6R
+	Copyright 2005-2010 SuperMap Software Co., Ltd
+	All Rights Reserved.
+
+-->
+
+<componentPackage>
+<!--resources -->
+	<component id="SmServerResource" class="com.supermap.web.resources.SmServerResource"/>
+	
+<!--common -->
+	<component id="JoinItem" class="com.supermap.web.iServerJava2.JoinItem"/>
+	<component id="JoinType" class="com.supermap.web.iServerJava2.JoinType"/>
+	
+<!-- component -->
+	<component id="Legend" class="com.supermap.web.iServerJava2.components.Legend"/>
+	<component id="LegendSkin" class="com.supermap.web.iServerJava2.components.skins.LegendSkin"/>
+	<component id="LegendItemInfo" class="com.supermap.web.iServerJava2.components.LegendItemInfo"/>
+	<component id="LegendEvent" class="com.supermap.web.iServerJava2.components.LegendEvent"/>
+
+<!-- mapping -->
+	<component id="DynamicIServerLayer" class="com.supermap.web.mapping.DynamicIServerLayer"/>
+	<component id="TiledCachedIServerLayer" class="com.supermap.web.mapping.TiledCachedIServerLayer"/>
+	<component id="TiledDynamicIServerLayer" class="com.supermap.web.mapping.TiledDynamicIServerLayer"/>
+	<component id="DynamicHighlightLayer" class="com.supermap.web.mapping.DynamicHighlightLayer"/>
+	
+	<!--iserverjava2-->
+	<component id="ServerGeometry" class="com.supermap.web.iServerJava2.ServerGeometry"/>
+	<component id="ServerFeatureType" class="com.supermap.web.iServerJava2.ServerFeatureType"/>
+	
+	<!-- mapServices -->
+	<component id="GetMapStatusParameters" class="com.supermap.web.iServerJava2.mapServices.GetMapStatusParameters"/>
+	<component id="GetMapStatusResult" class="com.supermap.web.iServerJava2.mapServices.GetMapStatusResult"/>
+	<component id="GetMapStatusService" class="com.supermap.web.iServerJava2.mapServices.GetMapStatusService"/>
+	<component id="ServerLayer" class="com.supermap.web.iServerJava2.mapServices.ServerLayer"/>
+	<component id="ServerLayerSettingType" class="com.supermap.web.iServerJava2.mapServices.ServerLayerSettingType"/>
+	<component id="SuperMapCollectionLayerSetting" class="com.supermap.web.iServerJava2.mapServices.SuperMapCollectionLayerSetting"/>
+	<component id="SuperMapLayerType" class="com.supermap.web.iServerJava2.mapServices.SuperMapLayerType"/>
+	<component id="LayerStatus" class="com.supermap.web.iServerJava2.mapServices.LayerStatus"/>
+	<component id="SetLayerStatusParameters" class="com.supermap.web.iServerJava2.mapServices.SetLayerStatusParameters"/>
+	<component id="SetLayerStatusResult" class="com.supermap.web.iServerJava2.mapServices.SetLayerStatusResult"/>
+	<component id="SetLayerStatusService" class="com.supermap.web.iServerJava2.mapServices.SetLayerStatusService"/>
+	
+	<!-- queryServices -->
+	<component id="QueryByCenterParameters" class="com.supermap.web.iServerJava2.queryServices.QueryByCenterParameters"/>
+	<component id="QueryByCenterService" class="com.supermap.web.iServerJava2.queryServices.QueryByCenterService"/>
+	<component id="QueryByGeometryParameters" class="com.supermap.web.iServerJava2.queryServices.QueryByGeometryParameters"/>
+	<component id="QueryByGeometryService" class="com.supermap.web.iServerJava2.queryServices.QueryByGeometryService"/>
+	<component id="QueryBySqlParameters" class="com.supermap.web.iServerJava2.queryServices.QueryBySqlParameters"/>
+	<component id="QueryBySqlService" class="com.supermap.web.iServerJava2.queryServices.QueryBySqlService"/>
+	<component id="ReturnResultSetInfo" class="com.supermap.web.iServerJava2.queryServices.ReturnResultSetInfo"/>
+	<component id="QueryLayerParam" class="com.supermap.web.iServerJava2.queryServices.QueryLayerParam"/>
+	<component id="QueryParam" class="com.supermap.web.iServerJava2.queryServices.QueryParam"/>
+	<component id="QueryParametersBase" class="com.supermap.web.iServerJava2.queryServices.QueryParametersBase"/>
+	<component id="Record" class="com.supermap.web.iServerJava2.queryServices.Record"/>
+	<component id="RecordSet" class="com.supermap.web.iServerJava2.queryServices.RecordSet"/>
+	<component id="ResultSet" class="com.supermap.web.iServerJava2.queryServices.ResultSet"/>
+	<component id="SqlParam" class="com.supermap.web.iServerJava2.queryServices.SqlParam"/>
+	<component id="BufferAnalystParam" class="com.supermap.web.iServerJava2.queryServices.BufferAnalystParam"/>
+	<component id="BufferEndType" class="com.supermap.web.iServerJava2.queryServices.BufferEndType"/>
+	<component id="BufferQueryParameters" class="com.supermap.web.iServerJava2.queryServices.BufferQueryParameters"/>
+	<component id="BufferQueryService" class="com.supermap.web.iServerJava2.queryServices.BufferQueryService"/>
+	<component id="BufferSideType" class="com.supermap.web.iServerJava2.queryServices.BufferSideType"/>
+	<component id="EntityBufferQueryParameters" class="com.supermap.web.iServerJava2.queryServices.EntityBufferQueryParameters"/>
+	<component id="EntityBufferQueryService" class="com.supermap.web.iServerJava2.queryServices.EntityBufferQueryService"/>
+	<component id="SpatialQueryMode" class="com.supermap.web.iServerJava2.queryServices.SpatialQueryMode"/>
+	
+	<!-- measureServices -->
+	<component id="MeasureService" class="com.supermap.web.iServerJava2.measureServices.MeasureService"/>
+	<component id="MeasureParameters" class="com.supermap.web.iServerJava2.measureServices.MeasureParameters"/>
+	<component id="MeasureResult" class="com.supermap.web.iServerJava2.measureServices.MeasureResult"/>
+	
+	<!-- networkAnalystServices -->	
+	
+	<component id="ClosestFacilityParameters" class="com.supermap.web.iServerJava2.networkAnalystServices.ClosestFacilityParameters"/>
+	<component id="ClosestFacilityService" class="com.supermap.web.iServerJava2.networkAnalystServices.ClosestFacilityService"/>
+	<component id="FindPathParameters" class="com.supermap.web.iServerJava2.networkAnalystServices.FindPathParameters"/>
+	<component id="FindPathService" class="com.supermap.web.iServerJava2.networkAnalystServices.FindPathService"/>
+	<component id="FindTSPPathParameters" class="com.supermap.web.iServerJava2.networkAnalystServices.FindTSPPathParameters"/>
+	<component id="FindTSPPathService" class="com.supermap.web.iServerJava2.networkAnalystServices.FindTSPPathService"/>
+	<component id="NetworkAnalystParam" class="com.supermap.web.iServerJava2.networkAnalystServices.NetworkAnalystParam"/>
+	<component id="NetworkAnalystResult" class="com.supermap.web.iServerJava2.networkAnalystServices.NetworkAnalystResult"/>
+	<component id="NetworkModelSetting" class="com.supermap.web.iServerJava2.networkAnalystServices.NetworkModelSetting"/>
+	<component id="PathGuide" class="com.supermap.web.iServerJava2.networkAnalystServices.PathGuide"/>
+	
+	<component id="PathGuideItem" class="com.supermap.web.iServerJava2.networkAnalystServices.PathGuideItem"/>
+	<component id="PathParam" class="com.supermap.web.iServerJava2.networkAnalystServices.PathParam"/>
+	<component id="ProximityParam" class="com.supermap.web.iServerJava2.networkAnalystServices.ProximityParam"/>
+	<component id="ServiceAreaParam" class="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaParam"/>
+	<component id="ServiceAreaParameters" class="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaParameters"/>
+	<component id="ServiceAreaResult" class="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaResult"/>
+	<component id="ServiceAreaService" class="com.supermap.web.iServerJava2.networkAnalystServices.ServiceAreaService"/>
+	<component id="SideType" class="com.supermap.web.iServerJava2.networkAnalystServices.SideType"/>
+	<component id="TSPPathParam" class="com.supermap.web.iServerJava2.networkAnalystServices.TSPPathParam"/>
+	<component id="TurnTableSetting" class="com.supermap.web.iServerJava2.networkAnalystServices.TurnTableSetting"/>
+	<component id="TurnType" class="com.supermap.web.iServerJava2.networkAnalystServices.TurnType"/>
+	<component id="WeightFieldInfo" class="com.supermap.web.iServerJava2.networkAnalystServices.WeightFieldInfo"/>
+	
+	<!-- themeServices -->
+	<component id="ColorGradientType" class="com.supermap.web.iServerJava2.themeServices.ColorGradientType"/>
+	<component id="FillGradientMode" class="com.supermap.web.iServerJava2.themeServices.FillGradientMode"/>
+	<component id="GraduatedMode" class="com.supermap.web.iServerJava2.themeServices.GraduatedMode"/>
+	<component id="GraphTextFormat" class="com.supermap.web.iServerJava2.themeServices.GraphTextFormat"/>
+	<component id="GraphType" class="com.supermap.web.iServerJava2.themeServices.GraphType"/>
+	<component id="LabelBackShape" class="com.supermap.web.iServerJava2.themeServices.LabelBackShape"/>
+	<component id="OverLengthLabelMode" class="com.supermap.web.iServerJava2.themeServices.OverLengthLabelMode"/>
+	<component id="RangeMode" class="com.supermap.web.iServerJava2.themeServices.RangeMode"/>
+	<component id="RemoveThemesParameters" class="com.supermap.web.iServerJava2.themeServices.RemoveThemesParameters"/>
+	<component id="RemoveThemesResult" class="com.supermap.web.iServerJava2.themeServices.RemoveThemesResult"/>
+	
+	<component id="RemoveThemesService" class="com.supermap.web.iServerJava2.themeServices.RemoveThemesService"/>
+	<component id="ServerColor" class="com.supermap.web.iServerJava2.themeServices.ServerColor"/>
+	<component id="ServerStyle" class="com.supermap.web.iServerJava2.themeServices.ServerStyle"/>
+	<component id="ServerTextAlignment" class="com.supermap.web.iServerJava2.themeServices.ServerTextAlignment"/>
+	<component id="ServerTextStyle" class="com.supermap.web.iServerJava2.themeServices.ServerTextStyle"/>
+	<component id="Theme" class="com.supermap.web.iServerJava2.themeServices.Theme"/>
+	
+	<component id="ThemeDotDensity" class="com.supermap.web.iServerJava2.themeServices.ThemeDotDensity"/>
+	<component id="ThemeGraduatedSymbol" class="com.supermap.web.iServerJava2.themeServices.ThemeGraduatedSymbol"/>
+	<component id="ThemeGraph" class="com.supermap.web.iServerJava2.themeServices.ThemeGraph"/>
+	<component id="ThemeGraphItem" class="com.supermap.web.iServerJava2.themeServices.ThemeGraphItem"/>
+	<component id="ThemeLabel" class="com.supermap.web.iServerJava2.themeServices.ThemeLabel"/>
+	<component id="ThemeLabelItem" class="com.supermap.web.iServerJava2.themeServices.ThemeLabelItem"/>
+	
+	<component id="ThemeParameters" class="com.supermap.web.iServerJava2.themeServices.ThemeParameters"/>
+	<component id="ThemeRange" class="com.supermap.web.iServerJava2.themeServices.ThemeRange"/>
+	<component id="ThemeRangeItem" class="com.supermap.web.iServerJava2.themeServices.ThemeRangeItem"/>
+	<component id="ThemeRangeParam" class="com.supermap.web.iServerJava2.themeServices.ThemeRangeParam"/>
+	<component id="ThemeResult" class="com.supermap.web.iServerJava2.themeServices.ThemeResult"/>
+	<component id="ThemeService" class="com.supermap.web.iServerJava2.themeServices.ThemeService"/>
+	
+	<component id="ThemeType" class="com.supermap.web.iServerJava2.themeServices.ThemeType"/>
+	<component id="ThemeUnique" class="com.supermap.web.iServerJava2.themeServices.ThemeUnique"/>
+	<component id="ThemeUniqueItem" class="com.supermap.web.iServerJava2.themeServices.ThemeUniqueItem"/>
+	<component id="ThemeUniqueParam" class="com.supermap.web.iServerJava2.themeServices.ThemeUniqueParam"/>
+	
+	<!-- editServices -->
+	<component id="AddEntityParameters" class="com.supermap.web.iServerJava2.editServices.AddEntityParameters"/>
+	<component id="AddEntityService" class="com.supermap.web.iServerJava2.editServices.AddEntityService"/>
+	<component id="DeleteEntityParameters" class="com.supermap.web.iServerJava2.editServices.DeleteEntityParameters"/>
+	<component id="DeleteEntityService" class="com.supermap.web.iServerJava2.editServices.DeleteEntityService"/>
+	<component id="EditResult" class="com.supermap.web.iServerJava2.editServices.EditResult"/>
+	<component id="Entity" class="com.supermap.web.iServerJava2.editServices.Entity"/>
+	<component id="GetEntityParameters" class="com.supermap.web.iServerJava2.editServices.GetEntityParameters"/>
+	<component id="GetEntityService" class="com.supermap.web.iServerJava2.editServices.GetEntityService"/>
+	<component id="UpdateEntityParameters" class="com.supermap.web.iServerJava2.editServices.UpdateEntityParameters"/>
+	<component id="UpdateEntityService" class="com.supermap.web.iServerJava2.editServices.UpdateEntityService"/>
+	
+</componentPackage>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+					xmlns:s="library://ns.adobe.com/flex/spark"
+					iconHeight="64" iconWidth="64" labelField=""
+					creationComplete="initRenderer(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function initRenderer(event:FlexEvent):void
+			{
+				if(data.name == "circle")
+				{
+					this.decorator = "assets/draws/circle.png";
+				}
+				if(data.name == "star")
+				{
+					this.decorator = "assets/draws/star.png";
+				}
+				if(data.name == "square")
+				{
+					this.decorator = "assets/draws/square.png";
+				}
+				if(data.name == "diamond")
+				{
+					this.decorator = "assets/draws/diamond.png";
+				}
+				if(data.name == "triangle")
+				{
+					this.decorator = "assets/draws/triangle.png";
+				}
+				if(data.name == "x")
+				{
+					this.decorator = "assets/draws/x.png";
+				}
+				if(data.name == "sector")
+				{
+					this.decorator = "assets/draws/sector.png";
+				}
+				if(data.name == "square")
+				{
+					this.decorator = "assets/draws/square.png";
+				}
+			}
+			
+		]]>
+	</fx:Script>
+</s:IconItemRenderer>

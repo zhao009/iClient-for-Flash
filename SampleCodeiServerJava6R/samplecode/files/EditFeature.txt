@@ -1,0 +1,12 @@
+<font color="#0033FF">数据集地物编辑（dataServices）</font>
+<font color="#006633">1. 功能描述：</font>基于数据集与服务端交互完成地物的添加、选择、删除、修改操作；
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——京津地区土地利用现状图；
+<font color="#006633">3. 操作指南：</font>鼠标左键单击相应的操作，开始地物编辑操作。本示例中所使用的选择方法为：使用几何点对象查询，空间关系条件为相交；
+<font color="#006633">4. 实现步骤：</font>无论对于添加、选择、删除、修改哪种操作，都有各自对应的参数类（*Parameters），和执行服务类（*Service）
+	1）定义参数 *Parameters；
+	2）执行操作 *Service；
+	3）获取编辑结果，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 *Event.PROCESS_COMPLETE 事件获取。
+	添加、删除、修改操作共用同一个参数类（EditFeaturesParameters）、同一个服务类（EditFeaturesService）、同一个事件类（EditEvent）、同一个结果类（EditFeaturesResult）。而选择操作拥有其独立的参数、服务、事件、结果类。选择操作的目的是为了获取服务端的几何对象，SuperMap iClient for Flash 为您提供了四种方法：几何查询、SQL 查询、缓冲区查询、ID 查询。
+<font color="#006633">5. 其它说明：</font>有关数据集地物编辑的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

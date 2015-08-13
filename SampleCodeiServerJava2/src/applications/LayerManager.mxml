@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="main()"
+			   width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.events.LayerEvent;
+			import com.supermap.web.events.MapEvent;
+			import com.supermap.web.iServerJava2.mapServices.GetMapStatusParameters;
+			import com.supermap.web.iServerJava2.mapServices.GetMapStatusResult;
+			import com.supermap.web.iServerJava2.mapServices.GetMapStatusService;
+			import com.supermap.web.iServerJava2.mapServices.LayerStatus;
+			import com.supermap.web.iServerJava2.mapServices.ServerLayer;
+			import com.supermap.web.iServerJava2.mapServices.SetLayerStatusParameters;
+			import com.supermap.web.iServerJava2.mapServices.SetLayerStatusResult;
+			import com.supermap.web.iServerJava2.mapServices.SetLayerStatusService;
+			import com.supermap.web.mapping.Layer;
+			import com.supermap.web.mapping.TiledDynamicIServerLayer;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import spark.components.CheckBox;
+			import spark.components.HGroup;
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			
+			private var _checkLabels:Array = new Array();
+			private var _checkBoxes:Array = new Array();
+			
+			private var btmLayer:TiledDynamicIServerLayer;
+			
+			private function main():void
+			{
+				subLayerPanel.visible = true;
+				viewConfig = new ViewConfig(this);
+				this.map.addEventListener(MapEvent.LOAD,map_loadHandler);
+			}			
+			
+			protected function map_loadHandler(event:MapEvent):void
+			{								
+				getMapStatus();
+				this.map.removeEventListener(MapEvent.LOAD,map_loadHandler);				
+				
+				btmLayer = new TiledDynamicIServerLayer();	
+				btmLayer.id = "btmlayer";
+				btmLayer.url = viewConfig.webUrl;
+				btmLayer.mapName = "World";
+				btmLayer.mapServiceAddress = viewConfig.gisUrl;
+				btmLayer.mapServicePort = "8600";
+			}
+			
+			public function getMapStatus():void
+			{
+				var getMapStatusParam:GetMapStatusParameters = new GetMapStatusParameters();
+				getMapStatusParam.mapName = "World";
+				var getMapStatusService:GetMapStatusService = new GetMapStatusService(viewConfig.webUrl);
+				
+				getMapStatusService.execute(new AsyncResponder(this.getStatusResult, null, null), getMapStatusParam);
+			}
+			
+			public function getStatusResult(statusResult:GetMapStatusResult, mark:Object = null):void
+			{
+				var subLayers:Array = new Array();
+				if(statusResult.serverLayers)
+				{
+					for(var i:int; i < statusResult.serverLayers.length; i++)
+					{
+						var serverLayer:ServerLayer = statusResult.serverLayers[i];
+						if(serverLayer)
+						{
+							for(var j:int; j < serverLayer.serverSubLayers.length; j++)
+							{
+								subLayers.push(serverLayer.serverSubLayers[j]);
+							}
+						}
+					}
+				}
+				this.displayStatusResult(subLayers);
+			}
+			
+			public function displayStatusResult(subLayers:Array):void
+			{
+				if(subLayers)
+				{
+					for(var i:int; i < subLayers.length; i++)
+					{
+						var serverLayer:ServerLayer = subLayers[i];
+						var checkBox:CheckBox = new CheckBox();
+						checkBox.label = serverLayer.name;
+						this._checkLabels.push(serverLayer.name);
+						if(serverLayer.visible)
+						{
+							checkBox.selected = true;
+						}
+						else
+						{
+							checkBox.selected = false;
+						}
+						checkBox.addEventListener(Event.CHANGE,onCheckChange);
+						this._checkBoxes.push(checkBox);
+						subLayerBox.addElement(checkBox);
+					}
+				}
+			}
+			
+			public function onCheckChange(event:Event):void
+			{
+				var changeIndex:int = this._checkLabels.indexOf(event.target.label);
+				(this._checkBoxes[changeIndex] as CheckBox).selected = event.target.selected;
+				refreshLayers();
+			}
+			
+			public function refreshLayers():void
+			{
+				var layerStatusList:Array = new Array();
+				
+				for(var i:int; i < _checkBoxes.length; i++)
+				{
+					var layerStatus:LayerStatus = new LayerStatus();
+					layerStatus.isVisible = this._checkBoxes[i].selected;
+					layerStatus.layerName = this._checkBoxes[i].label;
+					layerStatusList.push(layerStatus);
+				}
+				
+				var setLayerStatusParam:SetLayerStatusParameters = new SetLayerStatusParameters("World");
+				setLayerStatusParam.layerStatusList = layerStatusList;
+				var setLayerStatusService:SetLayerStatusService = new SetLayerStatusService(viewConfig.webUrl);
+				setLayerStatusService.execute(new AsyncResponder(this.refreshMapLayer, null, null), setLayerStatusParam);
+			}
+			
+			private var isLayerLoaded:Boolean = false;
+			
+			public function refreshMapLayer(layerStatusResult:SetLayerStatusResult, mark:Object = null):void
+			{
+				if(!isLayerLoaded)
+				{
+					btmLayer.layersKey = layerStatusResult.layerKey;				
+					this.map.addLayer(btmLayer);
+					btmLayer.addEventListener(LayerEvent.UPDATE_END,layerIserveLayerloaded);
+					isLayerLoaded = true;
+				}
+				else
+				{
+					iservelayer.layersKey = layerStatusResult.layerKey;	
+					this.map.addLayer(iservelayer);
+					iservelayer.addEventListener(LayerEvent.UPDATE_END,layerloaded);
+					isLayerLoaded = false;
+				}	
+
+			}
+			
+			//删除新添加的图层
+			private function layerloaded(event:LayerEvent):void
+			{
+				if(btmLayer.parent)
+				{
+					this.map.removeLayer(btmLayer);
+				}
+			}
+			
+			//移除底图层			
+			private function layerIserveLayerloaded(event:LayerEvent):void
+			{
+				if(iservelayer.parent)
+				{
+					this.map.removeLayer(iservelayer);
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%" 
+			scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<is:TiledDynamicIServerLayer  url="{viewConfig.webUrl}" id="iservelayer"
+									  mapName="World"
+									  mapServiceAddress="{viewConfig.gisUrl}"
+									  mapServicePort="8600"/>
+	</ic:Map>
+	
+	<s:Panel id="subLayerPanel" visible="false" width="200" height="{subLayerBox.height + 40}" title="服务端子图层控制"  top="10" right="10"
+			 fontSize="15" textAlign="center" chromeColor="#686767" backgroundAlpha="0.6" cornerRadius="5">
+		<s:VGroup id="subLayerBox" horizontalCenter="0"/>	
+	</s:Panel>
+</s:Application>

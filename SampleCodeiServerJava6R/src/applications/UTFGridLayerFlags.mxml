@@ -1,0 +1,98 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<s:Application xmlns:fx = "http://ns.adobe.com/mxml/2009"
+			   xmlns:s = "library://ns.adobe.com/flex/spark"
+			   xmlns:mx = "library://ns.adobe.com/flex/mx"
+			   xmlns:ic = "http://www.supermap.com/iclient/2010"
+			   xmlns:is = "http://www.supermap.com/iserverjava/2010"
+			   width = "100%"
+			   height = "100%"
+			   creationComplete="initApp()"
+			   xmlns:mapping = "com.supermap.web.samples.mapping.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var countryName:String;//UTFGrid返回数据的COUNTRY字段值
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+				flag.addEventListener(IOErrorEvent.IO_ERROR,ifNoFlag);//监听图片读取失败	
+			}
+			
+			private var tmp:String = "";//临时存储countryName（用于回避在同一区域移动图片的图片闪烁问题）
+			protected function moveHandler(data:Object, x:Number, y:Number):void
+			{
+				if (data)
+				{
+					if (data.COUNTRY)
+					{					
+						this.countryName = data.COUNTRY;
+						countryName = countryName.replace(/\s/g,"");//去掉空格
+						showFlagWin.title = countryName;//显示国家名称
+						showFlagWin.visible = true;
+						
+						if(tmp != countryName){	
+							//通过国家名称显示图片
+							flag.source = "../assets/flags/" + countryName+ ".png";
+							tmp = countryName;
+						}
+					}
+				}	
+					
+				else
+				{
+					showFlagWin.visible = false;
+					tmp = "";
+				}
+			}
+		
+			private function ifNoFlag(e:IOErrorEvent):void
+			{	
+				flag.source = "../assets/flags/noflag.png";//如果没有相应的国旗图片，显示此图片资源
+			}
+		]]>
+	</fx:Script>
+	<ic:Map id = "map"
+			horizontalCenter = "0"
+			bottom = "0"
+			top = "0">
+		<ic:TiledDynamicRESTLayer url = "{this.mapUrl}"
+								  tileSize = "256"/>
+		<ic:UTFGridLayer url = "{this.mapUrl}"
+						 layerName = "Countries@World"
+						 tileSize = "256"
+						 UTFGridMouseMoveHandler = "moveHandler"
+						 />
+	</ic:Map>		
+	<s:Panel id="showFlagWin" 	
+			 top="5" 
+			 left="5" 			 
+			 chromeColor="#E9E4E4"
+			 backgroundColor="#454343" 
+			 backgroundAlpha="0.5"
+			 width="250" 
+			 height="200"
+			 enabled="true"
+			 visible="false">
+		<s:Image id="flag" x="0" y="0" width="248" height="167"/>
+	</s:Panel>
+</s:Application>

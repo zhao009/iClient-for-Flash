@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   width="100%" height="100%"
+			   creationComplete="initApp()"
+			   pageTitle="线样式示例">
+	<fx:Declarations>
+		<ic:PredefinedLineStyle id="myLineStyle"
+								alpha="{lineAlpha.value}"
+								color="{lineColor.selectedColor}"
+								symbol="{lineSymbol.selectedItem}"
+								weight="{lineWeight.value}"
+								cap="{lineCap.selectedItem}"
+								join="{lineJoin.selectedItem}"/>
+		
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+			} 
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoRegion;
+			
+			import mx.controls.ToolTip;
+			
+			private function main():void
+			{
+				
+				var geoLine:GeoLine = new GeoLine();
+				geoLine.addPart([new Point2D(-50,50), new Point2D(-50,-50), new Point2D(50,-50)]);
+				var lineFeature:Feature = new Feature(geoLine, myLineStyle);
+				fl.addFeature(lineFeature);
+				
+				
+				var geoRegion:GeoRegion = new GeoRegion();
+				geoRegion.addPart([new Point2D(-30,30), new Point2D(-30,-30), new Point2D(30,-30), new Point2D(30,30)]);
+				var regionFeature:Feature = new Feature(geoRegion, myLineStyle);
+				regionFeature.toolTip = "其实面也支持线样式";
+				fl.addFeature(regionFeature);
+			}
+		]]>
+	</fx:Script>
+	
+	<ic:Map id="map" load="main()">
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}" mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600" mapName="World"/>
+		<ic:FeaturesLayer id="fl"/>
+	</ic:Map>
+	<s:Panel  left="5"
+			  title="预定义线样式属性"
+			  top="5"
+			  chromeColor="#E9E4E4"
+			  backgroundColor="#454343" 
+			  backgroundAlpha="0.5">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="right"
+							  paddingBottom="0"
+							  paddingTop="0"/>
+		</s:layout>
+		<mx:Form  paddingBottom="5"
+				  paddingTop="5"
+				  width="100%">
+			
+			<mx:FormItem label="颜色:">
+				<mx:ColorPicker id="lineColor" selectedColor="0xcc6666"/>
+			</mx:FormItem>
+			<mx:FormItem label="宽度:">
+				<s:HSlider id="lineWeight"
+						   liveDragging="true"
+						   maximum="20"
+						   minimum="0"
+						   snapInterval="1"
+						   value="4"
+						   width="100"/>
+			</mx:FormItem>
+			<mx:FormItem label="透明度:">
+				<s:HSlider id="lineAlpha"
+						   liveDragging="true"
+						   maximum="1"
+						   minimum="0"
+						   snapInterval="0.01"
+						   value="1"
+						   width="100"/>
+			</mx:FormItem>
+			<mx:FormItem label="线符号:">
+				<s:DropDownList id="lineSymbol"
+								cornerRadius="0"
+								fontWeight="normal"
+								horizontalCenter="0"
+								selectedIndex="4"
+								top="35">
+					<s:ArrayList>
+						<fx:String>dash</fx:String>
+						<fx:String>dashdot</fx:String>
+						<fx:String>dashdotdot</fx:String>
+						<fx:String>dot</fx:String>
+						<fx:String>solid</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+			</mx:FormItem>
+		</mx:Form>
+		
+		<mx:Form paddingBottom="5"
+				 paddingTop="5">
+			<mx:FormItem label="端点类型:">
+				<s:DropDownList id="lineCap"
+								cornerRadius="0"
+								fontWeight="normal"
+								horizontalCenter="0"
+								selectedIndex="0"
+								top="35">
+					<s:ArrayList>
+						<fx:String>null</fx:String>
+						<fx:String>round</fx:String>
+						<fx:String>square</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+			</mx:FormItem>
+			<mx:FormItem label="拐角类型:">
+				<s:DropDownList id="lineJoin"
+								cornerRadius="0"
+								fontWeight="normal"
+								horizontalCenter="0"
+								selectedIndex="1"
+								top="35">
+					<s:ArrayList>
+						<fx:String>bevel</fx:String>
+						<fx:String>miter</fx:String>
+						<fx:String>round</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+			</mx:FormItem>
+		</mx:Form>
+	</s:Panel>
+</s:Application>

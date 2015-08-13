@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:components="com.supermap.components.*"
+		 xmlns:mobile160="com.supermap.paint.skins.mobile160.*">
+	<mobile160:infoWin width="100%"
+					   height="100%"/>
+	<s:HGroup width="100%"
+			  height="40"
+			  horizontalAlign="center"
+			  verticalAlign="middle">
+		<s:Label text="操作对象"
+				 fontSize="18"
+				 fontWeight="bold"
+				 color="0xFFFFFF"/>
+	</s:HGroup>
+	<components:StyledSkinnableContainer left="10"
+										 right="10"
+										 top="50"
+										 bottom="10"
+										 borderColor="0xBBBBBB"
+										 cornorRadius="6"
+										 topLeftRadius="0"
+										 firstBackColor="0xDAE4D9"
+										 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin">
+		<s:VGroup gap="5"
+				  height="100%"
+				  width="100%"
+				  horizontalAlign="center"
+				  verticalAlign="middle">
+			<s:Group width="100%">
+				<s:Label y="5"
+						 width="50"
+						 text="名字："/>
+				<s:TextInput id="title"
+							 left="50"
+							 right="0"
+							 width="100"
+							 text=""
+							 skinClass="spark.skins.mobile.TextInputSkin"/>
+			</s:Group>
+			<s:Group width="100%">
+				<s:Label y="10"
+						 width="50"
+						 text="描述："/>
+				<s:TextArea id="description"
+							left="50"
+							right="0"
+							width="100"
+							height="70"
+							text=""
+							skinClass="spark.skins.mobile.TextAreaSkin"/>
+			</s:Group>
+			<s:Group width="100%">
+				<s:Button id="deleteSingle"
+						  right="75"
+						  width="60"
+						  height="30"
+						  label="删除"
+						  skinClass="com.supermap.components.skins.ContentButtonSkin"/>
+				<s:Button id="save"
+						  right="5"
+						  width="60"
+						  height="30"
+						  label="保存"
+						  skinClass="com.supermap.components.skins.ContentButtonSkin"/>
+			</s:Group>
+		</s:VGroup>
+	</components:StyledSkinnableContainer>
+</s:Group>

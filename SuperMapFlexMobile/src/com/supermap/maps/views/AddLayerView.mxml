@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="添加图层"
+		creationComplete="initView(event)"
+		destructionPolicy="never"
+		xmlns:skins="com.supermap.paint.skins.*"
+		viewActivate="view1_viewActivateHandler(event)"
+		xmlns:components="com.supermap.components.*">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.components.MessageType;
+			import com.supermap.maps.LayerManager;
+			import com.supermap.web.utils.CoordinateReferenceSystem;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.events.LayerEvent;
+			import com.supermap.web.mapping.Layer;
+			import com.supermap.web.mapping.Map;
+			import com.supermap.web.mapping.OfflineStorage;
+			import com.supermap.web.mapping.TiledDynamicRESTLayer;
+			import com.supermap.web.mapping.TiledLayer;
+			import com.supermap.web.mapping.TiledWMSLayer;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.utils.StringUtil;
+			
+			import spark.events.ViewNavigatorEvent;
+
+			private var layers:ArrayCollection;
+			private var map:Map;
+			private var layer:TiledDynamicRESTLayer;
+			private var wmsLayer:TiledWMSLayer;
+			private var timer:Timer = new Timer(5000);
+
+			import spark.components.ViewNavigator;
+
+			protected function initView(event:FlexEvent):void
+			{
+				this.layers = data.layers;
+			}
+
+			protected function iServer6R_clickHandler(event:MouseEvent):void
+			{
+				iserver6Group.visible = true;
+				wmsGroup.visible = false;
+			}
+
+			protected function WMSLayer_clickHandler(event:MouseEvent):void
+			{
+				iserver6Group.visible = false;
+				wmsGroup.visible = true;
+			}
+
+			protected function addBtn_clickHandler(event:MouseEvent):void
+			{
+				addBtn.enabled = false;
+				loading.visible = true;
+				timer.addEventListener(TimerEvent.TIMER, timerHandler);
+				timer.start();
+				if(map)
+				{
+					layer = new TiledDynamicRESTLayer();
+					layer.addEventListener(LayerEvent.LOAD, layerAdd);
+					layer.id = "layer" + getTimer();
+					layer.url = urlText.text;
+					map.addLayer(layer);
+					
+					setCache(nameText.text, layer);
+				}
+			}
+
+			protected function addBtn_clickHandler2(event:MouseEvent):void
+			{
+				addBtn2.enabled = false;
+				loading2.visible = true;
+				timer.addEventListener(TimerEvent.TIMER, timerHandler);
+				timer.start();
+				if(map)
+				{
+					wmsLayer = new TiledWMSLayer();
+					wmsLayer.addEventListener(LayerEvent.LOAD, layerAdd);
+					wmsLayer.addEventListener(LayerEvent.LOAD_ERROR, layerAddError);
+					wmsLayer.addEventListener(LayerEvent.UPDATE_END, layerUpdateEnd);
+					wmsLayer.id = "layer" + getTimer();
+					wmsLayer.url = urlText2.text;
+					wmsLayer.version = "1.3.0";
+					wmsLayer.layers = ["0"] ;
+					var crs:CoordinateReferenceSystem = new CoordinateReferenceSystem(3857);
+					wmsLayer.CRS = crs;
+					map.addLayer(wmsLayer);
+					
+					setCache(nameText2.text, wmsLayer);
+				}
+			}
+
+			protected function timerHandler(event:TimerEvent):void
+			{
+				timer.stop();
+				showTip();
+				addBtn.enabled = true;
+				addBtn2.enabled = true;
+				loading.visible = false;
+				loading2.visible = false;
+//				this.navigator.popView();
+			}
+
+			private function showTip():void
+			{
+				tipWindow.x = this.parentDocument.parentDocument.width / 2 - 150;
+				tipWindow.y = this.parentDocument.parentDocument.height / 2 - 80;
+				PopUpManager.addPopUp(tipWindow, this, true);
+			}
+
+			protected function layerAdd(event:LayerEvent):void
+			{
+				timer.removeEventListener(TimerEvent.TIMER, timerHandler);
+				timer.stop();
+				var name:String;
+				if(event.layer is TiledDynamicRESTLayer)
+					name = nameText.text;
+				else
+					name = nameText2.text;
+				if(map.CRS && map.CRS.wkid != 0)
+				{
+					if(event.layer.CRS.wkid == map.CRS.wkid || event.layer.CRS.wkid <= 0)
+					{
+						layers.addItem({id: event.layer.id, name: name, state: "open"});
+						layers.refresh();
+						//setCache(name, event.layer as TiledLayer);
+					}
+				}
+				else
+				{
+					layers.addItem({id: event.layer.id, name: name, state: "open"});
+					layers.refresh();
+					//setCache(name, event.layer as TiledLayer);
+				}
+				this.navigator.popView();
+			}
+
+			/**
+			 * 本地缓存设置
+			 **/
+			protected function setCache(name:String, layer:TiledLayer):void
+			{
+				if(name && layer)
+				{
+					var osLayer:OfflineStorage = new OfflineStorage();
+					osLayer.userRootDirectory = "osLayer_" + name;
+					layer.offlineStorage = osLayer;
+				}
+			}
+
+			protected function layerAddError(event:LayerEvent):void
+			{
+				showTip();
+				this.navigator.popView();
+			}
+
+			protected function layerUpdateEnd(event:Event):void
+			{
+			}
+
+			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+				if(!map)
+					map = ((this.owner as ViewNavigator).owner as LayerManager).map;
+				nameText.text = "iserver_China";
+				//http://support.supermap.com.cn:8090/iserver/services/map-china400/rest/maps/China
+				urlText.text = "http://192.168.168.61:8090/iserver/services/map-china400/rest/maps/China";
+					
+				nameText2.text = "World+Map";
+				urlText2.text = "http://support.supermap.com.cn:8090/iserver/services/map-world/wms130/World+Map";
+				//layers2.text = "China";
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<components:MessageBox id="tipWindow"
+							   message="添加图层失败！"
+							   messageType="{MessageType.ADDLA_FAIL}"/>
+	</fx:Declarations>
+	<s:navigationContent>
+		<s:Button label="返回"
+				  fontSize="14"
+				  click="{this.navigator.popView();}"
+				  color="0xffffff"
+				  skinClass="com.supermap.maps.skins.GoOutButtonSkin"/>
+	</s:navigationContent>
+
+	<s:SkinnableContainer left="0"
+						  right="0"
+						  top="0"
+						  bottom="0"
+						  backgroundColor="0xDAE4D9">
+		<components:StyledSkinnableContainer left="10"
+											 right="10"
+											 top="40"
+											 bottom="10"
+											 borderColor="0xBBBBBB"
+											 cornorRadius="6"
+											 topLeftRadius="0"
+											 firstBackColor="0xFFFFFF"
+											 skinClass="com.supermap.components.skins.StyleSkinnableContainerSkin">
+			<s:Group left="5"
+					 right="5"
+					 top="5"
+					 bottom="5"
+					 height="100%"
+					 width="100%">
+				<s:Group top="5"
+						 bottom="5"
+						 left="5"
+						 right="5">
+					<s:Group id="iserver6Group"
+							 visible="false"
+							 height="250">
+						<s:layout>
+							<s:VerticalLayout/>
+						</s:layout>
+						<s:HGroup verticalAlign="middle">
+							<s:Label text="名字"
+									 width="50"/>
+							<s:TextInput id="nameText"
+										 returnKeyLabel="done"
+										 width="200"/>
+						</s:HGroup>
+						<s:HGroup>
+							<s:Label text="URL"
+									 width="50"/>
+							<s:TextArea id="urlText"
+										width="200"
+										height="100"
+										returnKeyLabel="done"/>
+						</s:HGroup>
+						<s:Group width="100%">
+							<s:Button right="0"
+									  id="addBtn"
+									  label="添加"
+									  fontSize="14"
+									  click="addBtn_clickHandler(event)"
+									  color="0xffffff"
+									  skinClass="com.supermap.components.skins.ContentButtonSkin"/>
+							<s:SWFLoader id="loading"
+										 visible="false"
+										 top="3"
+										 right="10"
+										 height="30"
+										 width="30"
+										 source="assets/loader.swf"/>
+
+						</s:Group>
+					</s:Group>
+					<s:Group id="wmsGroup"
+							 visible="true">
+						<s:layout>
+							<s:VerticalLayout/>
+						</s:layout>
+						<s:HGroup verticalAlign="middle">
+							<s:Label text="名字"
+									 width="50"/>
+							<s:TextInput id="nameText2"
+										 returnKeyLabel="done"
+										 width="200"/>
+						</s:HGroup>
+						<s:HGroup>
+							<s:Label text="URL"
+									 width="50"/>
+							<s:TextArea id="urlText2"
+										width="200"
+										height="100"
+										returnKeyLabel="done"/>
+						</s:HGroup>
+						<!--<s:HGroup verticalAlign="middle">
+							<s:Label text="Layers"
+									 width="50"/>
+							<s:TextInput id="layers2"
+										 returnKeyLabel="done"
+										 width="200"/>
+						</s:HGroup>-->
+						<s:Group width="100%">
+							<s:Button right="0"
+									  id="addBtn2"
+									  fontSize="14"
+									  label="添加"
+									  click="addBtn_clickHandler2(event)"
+									  color="0xffffff"
+									  skinClass="com.supermap.components.skins.ContentButtonSkin"/>
+							<s:SWFLoader id="loading2"
+										 visible="false"
+										 top="3"
+										 right="10"
+										 height="30"
+										 width="30"
+										 source="assets/loader.swf"/>
+						</s:Group>
+					</s:Group>
+				</s:Group>
+			</s:Group>
+		</components:StyledSkinnableContainer>
+		<s:HGroup width="100%"
+				  left="10"
+				  height="41"
+				  verticalAlign="bottom"
+				  horizontalAlign="left">
+			<s:RadioButton groupName="layersChose"
+						   label="WMSLayer"
+						   height="32"
+						   width="35%"
+						   skinClass="com.supermap.components.TabBarButtonSkin"
+						   click="WMSLayer_clickHandler(event)"
+						   selected="true"/>
+			<s:RadioButton groupName="layersChose"
+						   label="iServer6R"
+						   height="32"
+						   width="35%"
+						   skinClass="com.supermap.components.TabBarButtonSkin"
+						   click="iServer6R_clickHandler(event)"/>
+		</s:HGroup>
+	</s:SkinnableContainer>
+
+</s:View>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   xmlns:flash="flash.text.*"
+			   width="100%" height="100%"
+			   creationComplete="initApp()"
+			   pageTitle="文本样式示例">
+	<fx:Declarations>
+		<ic:TextStyle    id="myTextStyle"
+						 background="{tsBackground.selected}"
+						 backgroundColor="{tsColor2.selectedColor}"
+						 border="{tsBorder.selected}"
+						 borderColor="{tsBorderColor.selectedColor}"
+						 color="{tsColor1.selectedColor}"
+						 text="北京欢迎你！"
+						 xOffset="{xoffset.value}"
+						 yOffset="{yoffset.value}" 
+						 textFormat="{textFromat}"/>		
+		<flash:TextFormat id="textFromat"
+						  bold="{tfBold.selected}"
+						  font="{myFont.selectedItem}"						 
+						  leftMargin="0"
+						  rightMargin="0"
+						  size="{tfSize.value}"
+						  underline="{tfUnderline.selected}"/>
+
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var textFeature:Feature;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+			}
+			
+			private function main():void
+			{		
+				textFeature = new Feature(new GeoPoint(116,40), myTextStyle);
+				fl.addFeature(textFeature);
+			}
+
+			protected function theText_changeHandler(event:Event):void
+			{
+				trace(event.target.text);
+				myTextStyle.text = event.target.text;
+			}
+
+		]]>
+	</fx:Script>
+	
+	<ic:Map id="map" load="main()" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.restUrl}"/>
+		<ic:FeaturesLayer id="fl" />			
+	</ic:Map>
+	<s:Panel left="5"
+			 title="文本样式属性"
+			 top="5"
+			 chromeColor="#E9E4E4"
+			 backgroundColor="#454343" 
+			 backgroundAlpha="0.5">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="right"
+							  paddingBottom="0"
+							  paddingTop="0"/>
+		</s:layout>
+		<mx:Form alpha="0.9"
+				 paddingBottom="5"
+				 paddingLeft="5"
+				 paddingRight="5"
+				 paddingTop="5">
+			<s:HGroup>
+				<s:VGroup>
+					<mx:FormItem label="X偏移:">
+						<mx:NumericStepper id="xoffset"
+										   maximum="30"
+										   minimum="-30"
+										   stepSize="1"
+										   value="0"
+										   width="47"/>
+					</mx:FormItem>
+				</s:VGroup>
+				<s:VGroup>
+					<mx:FormItem label="Y偏移:">
+						<mx:NumericStepper id="yoffset"
+										   maximum="30"
+										   minimum="-30"
+										   stepSize="1"
+										   value="0"
+										   width="47"/>
+					</mx:FormItem>
+				</s:VGroup>
+			</s:HGroup>
+			<mx:FormItem label="字体颜色">
+				<mx:ColorPicker id="tsColor1"
+								change="{textFeature.refresh()}"
+								selectedColor="0x0000FF"/>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:Form alpha="0.8"
+				 backgroundColor="0xEEEEEE"
+				 paddingBottom="5"
+				 paddingLeft="5"
+				 paddingRight="5"
+				 paddingTop="5"
+				 width="100%">
+			<mx:FormItem label="字体:">
+				<s:DropDownList id="myFont"
+								change="{textFeature.refresh()}"
+								horizontalCenter="0"
+								selectedIndex="1">
+					<s:ArrayList>
+						<fx:String>黑体</fx:String>
+						<!--<fx:String>楷体</fx:String>-->
+						<fx:String>宋体</fx:String>
+						<fx:String>微软雅黑</fx:String>
+						<fx:String>仿宋</fx:String>
+					</s:ArrayList>
+				</s:DropDownList>
+			</mx:FormItem>
+			<mx:FormItem label="字号:">
+				<s:HSlider id="tfSize"
+						   change="{textFeature.refresh()}"
+						   liveDragging="true"
+						   maximum="80"
+						   focusEnabled="false"
+						   minimum="0"
+						   snapInterval="1"
+						   value="30"
+						   width="80"/>
+			</mx:FormItem>
+			<s:HGroup width="100%">
+				<s:HGroup width="100%">
+					<s:CheckBox id="tsBackground"
+								change="textFeature.refresh()"
+								label="背 景"
+								selected="false"/>
+					<mx:ColorPicker id="tsColor2"
+									change="textFeature.refresh()"
+									selectedColor="0xFF0000"
+									toolTip="背景颜色"
+									visible="{tsBackground.selected}"/>
+				</s:HGroup>
+				<s:HGroup width="100%">
+					<mx:CheckBox id="tsBorder"
+								 change="textFeature.refresh()"
+								 label="边 界"
+								 paddingBottom="0"
+								 paddingTop="0"
+								 selected="false"/>
+					<mx:ColorPicker id="tsBorderColor"
+									change="textFeature.refresh()"
+									selectedColor="0x000000"
+									toolTip="Border Color"
+									visible="{tsBorder.selected}"/>
+				</s:HGroup>
+			</s:HGroup>
+			
+			<s:HGroup width="100%" gap="72">
+				<s:CheckBox id="tfBold"
+							change="textFeature.refresh()"
+							label="粗 体"
+							selected="true"/>
+				<s:CheckBox id="tfUnderline"
+							change="textFeature.refresh()"
+							label="下划线"
+							selected="false"/>
+			</s:HGroup>
+			
+		</mx:Form>
+	</s:Panel>
+</s:Application>

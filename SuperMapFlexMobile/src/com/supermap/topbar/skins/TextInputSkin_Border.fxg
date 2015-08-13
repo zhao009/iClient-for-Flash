@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+	ADOBE SYSTEMS INCORPORATED
+	Copyright 2010 Adobe Systems Incorporated
+	All Rights Reserved.
+
+	NOTICE: Adobe permits you to use, modify, and distribute this file
+	in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<Graphic version="2.0" xmlns="http://ns.adobe.com/fxg/2008" 
+		 scaleGridLeft="15" scaleGridTop="12" scaleGridRight="245" scaleGridBottom="24">
+
+	<!-- border -->
+	<Path data="M 15 1 C 15 1 245 1 245 1 C 247 1 259 3 259 15 C 259 15 259 19 259 19 C 259 19 257 32 247 32 C 245 32 15 32 15 32 C 13 32 1 30 1 19 C 1 19 1 15 1 15 C 1 15 3 1 13 1 Z M 15 0 C 15 0 0 3 0 15 C 0 15 0 19 0 19 C 0 19 3 33 15 33 C 15 33 245 33 245 33 C 245 33 260 30 260 19 C 260 19 260 15 260 15 C 260 15 257 0 245 0 C 245 0 15 0 15 0 Z " alpha="1">
+		<fill>
+			<SolidColor color="#505050"/>
+		</fill>
+	</Path>
+	
+	<!-- inner shadow
+	<Path data="M 15 3 C 15 3 245 3 245 3 C 246 3 258 5 258 15 C 258 15 258 19 258 19 C 258 19 256 31 246 31 C 245 31 15 31 15 31 C 14 31 2 29 2 19 C 2 19 2 15 2 15 C 2 15 4 3 14 3" alpha="0.26">
+		<stroke>
+			<SolidColorStroke color="#030303"/>
+		</stroke>
+	</Path> -->
+
+</Graphic>

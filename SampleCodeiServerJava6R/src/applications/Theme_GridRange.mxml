@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="100%" height="100%"
+			   xmlns:ic="http://www.supermap.com/iclient/2010" 
+			   xmlns:isj6="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()">
+	<!--栅格分段专题图-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.iServerJava6R.queryServices.JoinItem;
+			import com.supermap.web.iServerJava6R.queryServices.JoinType;
+			import com.supermap.web.utils.serverTypes.ColorGradientType;
+			import com.supermap.web.utils.serverTypes.ServerColor;
+			import com.supermap.web.utils.serverTypes.ServerStyle;
+			import com.supermap.web.iServerJava6R.themeServices.*;
+			import com.supermap.web.mapping.Map;
+			import com.supermap.web.mapping.TiledDynamicRESTLayer;
+			import mx.rpc.*;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			private var isTheme:Boolean = false;//判断是否已制作专题图
+			private var themeLayer:TiledDynamicRESTLayer;
+			private var layerid:String;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				//mapUrl = "http://localhost:8090/iserver/services/map-jingjin/rest/maps/京津地区人口分布图_专题图";
+				mapUrl = viewConfig.webUrl + ViewConfig.JingJin_MAP;
+			}
+			//定义范围分段专题图子项
+			private function setItems():Array
+			{
+				var items:Array = new Array(); 
+				var item:ThemeGridRangeItem;
+				var color1:ServerColor = new ServerColor(198,244,240);
+				var color2:ServerColor = new ServerColor(176,244,188);
+				var	color3:ServerColor = new ServerColor(218,251,178);
+				var	color4:ServerColor = new ServerColor(220,236,145);
+				var	color5:ServerColor = new ServerColor(96,198,66);
+				var	color6:ServerColor = new ServerColor(20,142,53);
+				var	color7:ServerColor = new ServerColor(85,144,55);
+				var	color8:ServerColor = new ServerColor(171,168,38);
+				var	color9:ServerColor = new ServerColor(235,165,9);
+				var	color10:ServerColor= new ServerColor(203,89,2);
+				var	color11:ServerColor= new ServerColor(157,25,1);
+				var	color12:ServerColor= new ServerColor(118,15,3);
+				var	color13:ServerColor= new ServerColor(112,32,7);
+				var	color14:ServerColor= new ServerColor(106,45,12);
+				var	color15:ServerColor= new ServerColor(129,80,50);
+				var	color16:ServerColor= new ServerColor(160,154,146);
+				//子项1
+				item = new ThemeGridRangeItem();
+				item.start = -4;
+				item.end = 120;
+				item.visible = true;
+				item.color = color1;
+				items.push(item);
+				//子项2
+				item = new ThemeGridRangeItem();
+				item.start = 120;
+				item.end = 240;
+				item.visible = true;
+				item.color = color2;
+				items.push(item);
+				//子项3
+				item = new ThemeGridRangeItem();
+				item.start =240;
+				item.end = 360;
+				item.visible = true;
+				item.color = color3;
+				items.push(item);
+				//子项4
+				item = new ThemeGridRangeItem();
+				item.start = 360;
+				item.end = 480;
+				item.visible = true;
+				item.color = color4;
+				items.push(item);
+				//子项5
+				item = new ThemeGridRangeItem();
+				item.start = 480;
+				item.end = 600;
+				item.visible = true;
+				item.color = color5;
+				items.push(item);
+				//子项6
+				item = new ThemeGridRangeItem();
+				item.start = 600;
+				item.end = 720;
+				item.visible = true;
+				item.color = color6;
+				items.push(item);
+				//子项7
+				item = new ThemeGridRangeItem();
+				item.start = 720;
+				item.end = 840;
+				item.visible = true;
+				item.color = color7;
+				items.push(item);
+				//子项8
+				item = new ThemeGridRangeItem();
+				item.start = 840;
+				item.end = 960;
+				item.visible = true;
+				item.color = color8;
+				items.push(item);
+				//子项9
+				item = new ThemeGridRangeItem();
+				item.start = 960;
+				item.end = 1100;
+				item.visible = true;
+				item.color = color9;
+				items.push(item);
+				//子项10
+				item = new ThemeGridRangeItem();
+				item.start =1100;
+				item.end = 1220;
+				item.visible = true;
+				item.color = color10;
+				items.push(item);
+				//子项11
+				item = new ThemeGridRangeItem();
+				item.start =1220;
+				item.end = 1340;
+				item.visible = true;
+				item.color = color11;
+				items.push(item);
+				//子项12
+				item = new ThemeGridRangeItem();
+				item.start =1340;
+				item.end = 1460;
+				item.visible = true;
+				item.color = color12;
+				items.push(item);
+				//子项13
+				item = new ThemeGridRangeItem();
+				item.start =1460;
+				item.end = 1600;
+				item.visible = true;
+				item.color = color13;
+				items.push(item);
+				//子项14
+				item = new ThemeGridRangeItem();
+				item.start =1600;
+				item.end = 1800;
+				item.visible = true;
+				item.color = color14;
+				items.push(item);
+				//子项15
+				item = new ThemeGridRangeItem();
+				item.start =1800;
+				item.end = 2000;
+				item.visible = true;
+				item.color = color15;
+				items.push(item);
+				//子项16
+				item = new ThemeGridRangeItem();
+				item.start =2000;
+				item.end = 2167;
+				item.visible = true;
+				item.color = color16;
+				items.push(item);
+				return items;	
+			}
+			private function submitHandler():void
+			{
+				if(this.isTheme == true)
+					return;
+				//定义栅格分段专题图
+				var theme:ThemeGridRange = new ThemeGridRange();
+				theme.rangeMode = RangeMode.EQUALINTERVAL;//EQUAL_INTERVAL:等距离分段法，对应值为0. 
+				//theme.rangeMode = RangeMode.STDDEVIATION; //STDDEVIATION:标准差分段法，对应值为2
+				theme.items = this.setItems();
+				theme.rangeParameter = 16;
+				//定义获取专题图时所需参数
+				var themeGridRangeParam:ThemeParameters = new ThemeParameters();
+				themeGridRangeParam.themes = [theme];
+				themeGridRangeParam.dataSourceNames = ["Jingjin"];
+				themeGridRangeParam.datasetNames =["JingjinTerrain"];
+				//获取专题图
+				var themeService:ThemeService = new ThemeService(this.mapUrl);
+				themeService.processAsync(themeGridRangeParam, new AsyncResponder(this.displayTheme, excuteThemeErros, null));
+			}
+			//与服务端交互失败时调用 的处理函数
+			private function excuteThemeErros(event:FaultEvent, mark:Object = null):void
+			{
+			}
+			//专题图获取成功时调用的处理函数
+			private function displayTheme(themeresult:ThemeResult, mark:Object = null):void
+			{
+				this.isTheme = true;
+				themeLayer = new TiledDynamicRESTLayer();
+				themeLayer.url = this.mapUrl;
+				themeLayer.transparent = true;
+				themeLayer.enableServerCaching = false;
+				themeLayer.layersID = themeresult.resourceInfo.newResourceID;
+				layerid = themeresult.resourceInfo.newResourceID;
+				this.map.addLayer(themeLayer);
+			}
+			//删除专题图
+			private function deleteHandler():void
+			{
+				var themeRemove:RemoveThemeService = new RemoveThemeService(this.mapUrl); 
+				var themeRemoveParam:RemoveThemeParameters = new RemoveThemeParameters();
+				themeRemoveParam.id = layerid; 
+				themeRemove.processAsync(themeRemoveParam,new AsyncResponder(this.delTheme, excuteThemeErros, null));
+			}
+			
+			//专题图删除成功时调用的处理函数
+			private function delTheme(themeResult:RemoveThemeResult,mark:Object = null):void
+			{
+				this.isTheme = false;
+				if(themeResult.succeed = "true" && themeLayer)
+				{
+					this.map.removeLayer(themeLayer);
+				}
+			}
+		]]>
+	</fx:Script>
+	<!--加载地图-->
+	<s:Group width="100%" height="100%" >	
+		<ic:Map id="map" x="0" y="0"  height="100%" width="100%">
+			<ic:TiledDynamicRESTLayer url="{this.mapUrl}" enableServerCaching="false" />
+		</ic:Map> 
+	</s:Group> 
+	
+	<!--操作窗口-->
+	<s:Panel id="titlewin" title="栅格分段专题图" fontFamily="宋体" fontSize="12" right="5" top="10" 
+			 backgroundColor="#454343" backgroundAlpha="0.48" height="108">
+		<s:VGroup top="5" gap="10" horizontalCenter="0" bottom="10"> 
+			<mx:Text text="根据京津地图中的JingjinTerrain数据集制作栅格分段专题图"/>
+			<s:HGroup horizontalAlign="center" width="100%">
+				<s:Button id="addButton" label="生成专题图" click="submitHandler()" width="80" color="0"/> 
+				<mx:Spacer width="10"/>
+				<s:Button id="deleteButton" label="移除专题图" click="deleteHandler()" width="80" color="0"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Panel> 
+</s:Application>

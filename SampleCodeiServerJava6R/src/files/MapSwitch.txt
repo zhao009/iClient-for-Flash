@@ -1,0 +1,3 @@
+<font color="#0033FF">切换地图</font>
+<font color="#006633">1. 功能描述：</font>在不同的地图之间进行切换。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——World_Night 和 World_Day。

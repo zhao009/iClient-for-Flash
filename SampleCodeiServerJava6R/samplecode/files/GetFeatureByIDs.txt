@@ -1,0 +1,13 @@
+﻿<font color="#0033FF">数据集 ID 查询</font>
+<font color="#006633">1. 功能描述：</font>在数据集集合中查找指定 ID 号的要素。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World Map。查询的基准数据集为：Capitals。
+<font color="#006633">3. 操作指南：</font>
+    1）在输入框中输入所要查询的要素 ID，注意要素 ID 间要以“,”分隔；
+    2）点击“查询”按钮，显示查询结果。
+<font color="#006633">4. 实现的关键步骤：</font>
+    1）定义数据集 ID 查询所需参数 GetFeaturesByIDsParameters；
+    2）执行数据集 ID 查询 GetFeaturesByIDsService；
+    3）获取查询结果，有两种方式：
+      （1） 通过 AsyncResponder 类获取（推荐使用）；
+	  （2） 使用 GetFeaturesByIDsService 对象监听 GetFeaturesEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">5. 其它说明：</font>有关数据集 ID 查询的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

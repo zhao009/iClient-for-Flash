@@ -1,0 +1,12 @@
+<font color="#0033FF">单值专题图（ThemeUnique  ）</font>
+<font color="#006633">1. 功能描述：</font>利用不同的颜色或符号（线型、填充）表示图层中某一属性信息的不同属性值，属性值相同的要素具有相同的渲染风格。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的分块动态图层——World Map。
+<font color="#006633">3. 实现的关键步骤：</font>
+    1）定义单值专题图子项 ThemeUniqueItem；
+    2）定义标签专题图 ThemeUnique：该参数不唯一，可设置多个 ThemeUnique，即针对多个字段制作专题图。当然也可以定义不同类型的专题图对象，即制作复合专题图；
+    3）定义专题图参数 ThemeParameters；
+    4）制作专题图 ThemeService；
+    5）获取专题图，有两种方式：
+    	（1） 通过 AsyncResponder 类获取（推荐使用）；
+		（2） 通过监听 ThemeEvent.PROCESS_COMPLETE 事件获取。
+<font color="#006633">4. 其它说明：</font>有关单值专题图的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

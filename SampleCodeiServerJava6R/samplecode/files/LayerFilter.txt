@@ -1,0 +1,3 @@
+<font color="#0033FF">图层过滤</font>
+<font color="#006633">1. 功能描述：</font>过滤图层，仅显示所需部分。该示例过滤显示绿色植被。
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java  服务器产品提供的地图——京津地区土地利用现状图。

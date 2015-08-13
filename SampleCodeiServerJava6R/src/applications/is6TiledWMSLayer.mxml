@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"  
+			   width="100%" height="100%"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   creationComplete="initApp()">
+	
+	<fx:Script>
+		<![CDATA[
+			import utilEvent.ReadURLEvent;
+			import mx.collections.ArrayCollection;
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var restUrl:String;
+			private var layers:Object;
+			//private var layers:ArrayCollection;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				restUrl = viewConfig.webUrl + ViewConfig.WMS_MAP;
+				//tild.layers = "Capitals@World";
+				tild.layers = ["Capitals@World","Countries@World"];//layers为数组形式
+				//tild.layers = new ArrayCollection(["Capitals@World","Countries@World"]);//layers为集合形式
+				
+			}
+		]]>
+	</fx:Script>
+	<ic:Map id="map" width="1187" height="708"> 	
+		<ic:TiledWMSLayer id="tild" url="{restUrl}"  />
+		
+	</ic:Map>
+</s:Application>

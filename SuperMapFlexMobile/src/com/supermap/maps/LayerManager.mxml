@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Callout xmlns:fx="http://ns.adobe.com/mxml/2009"
+		   xmlns:s="library://ns.adobe.com/flex/spark"
+		   xmlns:skins="com.supermap.paint.skins.*"
+		   contentBackgroundAppearance="none"
+		   backgroundColor="0xBAD9B4"
+		   verticalPosition="after"
+		   skinClass="com.supermap.components.skins.CustomCalloutSkin">
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.mapping.Map;
+
+			private var _map:Map;
+
+			public function get map():Map
+			{
+				return _map;
+			}
+
+			public function set map(value:Map):void
+			{
+				_map = value;
+			}
+		]]>
+	</fx:Script>
+	<s:ViewNavigator width="100%"
+					 height="100%"
+					 firstView="com.supermap.maps.views.LayerListView">
+		<s:navigationContent>
+			<s:Button label="关闭"
+					  width="50"
+					  fontSize="14"
+					  color="0xffffff"
+					  click="close(false)"
+					  skinClass="com.supermap.components.skins.CustomButtonSkin2"/>
+		</s:navigationContent>
+	</s:ViewNavigator>
+</s:Callout>

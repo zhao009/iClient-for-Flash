@@ -1,0 +1,4 @@
+<font color="#0033FF">图层叠加</font>
+<font color="#006633">1. 功能描述：</font>WMS 图层与 SuperMap iServer Java  分块动态 REST 图层叠加。
+<font color="#006633">2. 地图数据：</font>WMS 图层、SuperMap iServer Java  服务器产品提供的地图。
+<font color="#006633">3. 其它说明：</font>有关地图 Map 和 图层 Layer 的详细介绍请参见 "SuperMap iClient  for Flash 帮助文档"。

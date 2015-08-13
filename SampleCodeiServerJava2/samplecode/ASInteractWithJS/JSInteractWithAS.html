@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">	
+
+    <head>
+        <title>AS与JS交互示例</title>         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css" media="screen"> 
+			html, body	{ height:100%; }
+			body { margin:0; padding:0; overflow:auto; text-align:center; 
+			       background-color: ${bgcolor}; }   
+			#flashContent { display:none; }
+        </style>
+		    
+        <script type="text/javascript">
+            <!-- For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
+            var swfVersionStr = "${version_major}.${version_minor}.${version_revision}";
+            <!-- To use express install, set to playerProductInstall.swf, otherwise the empty string. -->
+            var xiSwfUrlStr = "${expressInstallSwf}";
+            var flashvars = {};
+            var params = {};
+            params.quality = "high";
+            params.bgcolor = "${bgcolor}";
+            params.allowscriptaccess = "sameDomain";
+            params.allowfullscreen = "true";
+          
+			<!-- JavaScript enabled so display the flashContent div in case it is not replaced with a swf object. -->
+			
+        </script>
+    </head>
+    <body onload=getSWF("FlexProject")>   	
+       	<noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="${width}" height="${height}" id="${application}">
+                <param name="movie" value="${swf}.swf" />
+                <param name="quality" value="high" />
+                <param name="bgcolor" value="${bgcolor}" />
+                <param name="allowScriptAccess" value="sameDomain" />
+                <param name="allowFullScreen" value="true" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="${swf}.swf" width="${width}" height="${height}">
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="${bgcolor}" />
+                    <param name="allowScriptAccess" value="sameDomain" />
+                    <param name="allowFullScreen" value="true" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                	<p> 
+                		Either scripts and active content are not permitted to run or Adobe Flash Player version
+                		${version_major}.${version_minor}.${version_revision} or greater is not installed.
+                	</p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+	    </noscript>		
+	    
+	    <script type="text/javascript">
+			var flexElement;
+			function getSWF(flexId) {
+			    if (navigator.appName.indexOf("Microsoft") != -1) {
+			        flexElement = document.getElementById(flexId);
+			    }
+			    else {
+			        flexElement = document.getElementsByTagName("embed")[0];
+		    	}
+		    	
+			}
+
+			function onZoomIn(){
+				flexElement.zoomIn();
+			}
+
+			function onZoomOut(){
+				flexElement.zoomOut();
+			}
+
+			function showResolution(resolution){
+				flexElement.removeAsBtn();
+				document.getElementById("output").innerHTML = "<p>当前分辨率：" + resolution + "</p>";
+			}
+			
+
+		</script>
+		<div id="tools" style="width:100%; height:15%">
+			<input type="button" id="zoomin" value="放大" style="width:80px; height:40px" onClick="onZoomIn()" />
+			<input type="button" id="zoomout" value="缩小" style="width:80px; height:40px" onClick="onZoomOut()" />
+			<div id="output">
+				<p>当前分辨率：</p>
+			</div>	
+		</div>		
+		<div id="map"  style="top:15%; width:100%; height:70%">
+		     <object id="FlexProject" width="100%" height="100%"
+			    classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" name="FlexProject">
+		        <param name="movie" value="../ASInteractWithJS.swf" />
+		        <param name="quality" value="high" />
+		        <param name="bgcolor" value="#869ca7" />		        
+		        <param name="allowScriptAccess" value="always" />
+		        <embed src="../ASInteractWithJS.swf" width="800"; height="600" 
+		            quality="high" type="application/x-shockwave-flash">
+		        </embed>
+		    </object>
+		</div>
+		
+   </body>
+</html>

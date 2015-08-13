@@ -1,0 +1,383 @@
+<apiPackage id="com.supermap.web.core.geometry"><apiName>com.supermap.web.core.geometry</apiName><apiDetail/><apiClassifier id="com.supermap.web.core.geometry:GeoPoint"><apiName>GeoPoint</apiName><shortdesc>
+	 几何点对象.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.geometry:Geometry</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何点对象.
+	 <p>该对象用 X、Y 坐标对确定一个位置。可用来表示国家的首都、饭店、公交站点等点状地物。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.core.geometry:GeoPoint:GeoPoint"><apiName>GeoPoint</apiName><shortdesc>
+		 使用 X、Y 坐标对初始 GeoPoint 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>x</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>x 坐标。
+		 </apiDesc></apiParam><apiParam><apiItemName>y</apiItemName><apiType value="Number"/><apiData>0</apiData><apiDesc>y 坐标。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用 X、Y 坐标对初始 GeoPoint 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.geometry:GeoPoint:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆几何对象.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆几何对象. 
+		 clone 与 copy 的区别：clone要创建一个新的与原对象一样的对象；而 copy 则是将原对象中的值复制到现在的对象中，不需要重新创建一个对象。
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoPoint:equals"><apiName>equals</apiName><shortdesc>
+		 
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.geometry:GeoPoint:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:GeoPoint:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 
+		 获取指定对象的默认样式。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 获取指定对象的默认样式。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:GeoPoint:type:get"><apiName>type</apiName><shortdesc>
+		 
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#Geometry"><linktext>Geometry</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.geometry:GeoPoint:x:get"><apiName>x</apiName><shortdesc>
+		 获取或设置几何点的 x 坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置几何点的 x 坐标。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:GeoPoint:y:get"><apiName>y</apiName><shortdesc>
+		 获取或设置几何点的 y 坐标。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置几何点的 y 坐标。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.geometry:GeoLine"><apiName>GeoLine</apiName><shortdesc>
+	 几何线对象.</shortdesc><prolog><asMetadata><DefaultProperty name="parts"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.geometry:Geometry</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何线对象.
+	 <p>几何线对象由点对象集合组成，集合中存储了一个或多个组成线对象的子对象，各个子对象又由若干个线节点 Point2D 组成。该对象可用来表示河流、道路、国家边界线等线状地物。</p> 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.core.geometry:GeoLine_flash.events.Event_geometryChange"><apiName>geometryChange</apiName><shortdesc>
+	 当线对象的几何属性发生改变时解发该事件。如：删除线结点、增加线结点。 
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当线对象的几何属性发生改变时解发该事件。如：删除线结点、增加线结点。 
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.core.geometry:GeoLine:GeoLine"><apiName>GeoLine</apiName><shortdesc>
+		 初始化（ GeoLine ）的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化（ GeoLine ）的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.geometry:GeoLine:addPart"><apiName>addPart</apiName><shortdesc>
+		 向线对象追加一个子对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如果成功添加子对象则返回该子对象在线对象中的序号。 
+		 
+		 </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成子对象的点对象集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向线对象追加一个子对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆几何对象.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆几何对象. 
+		 clone 与 copy 的区别：clone要创建一个新的与原对象一样的对象；而 copy 则是将原对象中的值复制到现在的对象中，不需要重新创建一个对象。
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:deletePoint"><apiName>deletePoint</apiName><shortdesc>
+		 删除子对象中指定位置上的点。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>partIndex</apiItemName><apiType value="int"/><apiDesc>子对象的索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pointIndex</apiItemName><apiType value="int"/><apiDesc>指定的删除位置。 
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 删除子对象中指定位置上的点。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:equals"><apiName>equals</apiName><shortdesc>
+		 
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>如果两个几何对象具有相同坐标值，返回 true；否则返回 false。 
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>与当前几何对象进行比较的几何对象。 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:getPart"><apiName>getPart</apiName><shortdesc>
+		 从线对象中获取指定索引值的子对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回与指定索引值对应的子对象。由于子对象又由若干个线结点（ Point2D ）组成，因此返回类型为 Array，即点集合。
+		 
+		 </apiDesc><apiType value="Array"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的索引值。 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 从线对象中获取指定索引值的子对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:indexOf"><apiName>indexOf</apiName><shortdesc>
+		 获取指定子对象在线对象中的索引位置。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若获取成功，则返回指定对象在线对象中的索引位置，否则返回 -1.
+		 
+		 </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成子对象的点对象集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定子对象在线对象中的索引位置。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:insertPart"><apiName>insertPart</apiName><shortdesc>
+		 向线对象中的指定位置插入一个子对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若插入成功则返回 true，否则返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成子对象的点对象集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向线对象中的指定位置插入一个子对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:insertPoint"><apiName>insertPoint</apiName><shortdesc>
+		 向子对象的指定位置插入一个点。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>partIndex</apiItemName><apiType value="int"/><apiDesc>子对象的索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pointIndex</apiItemName><apiType value="int"/><apiDesc>指定的插入位置。 
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>要插入的点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向子对象的指定位置插入一个点。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:removePart"><apiName>removePart</apiName><shortdesc>
+		 根据指定的索引值删除线对象中的子对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如果成功删除指定索引的子对象则返回 true，否则返回 false。   
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>要删除的子对象的索引值。 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据指定的索引值删除线对象中的子对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:setPart"><apiName>setPart</apiName><shortdesc>
+		 用新的子对象替换线对象中指定的子对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如果成功替换子对象则返回 true，否则返回 false。 
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的子对象索引值。 
+		 </apiDesc></apiParam><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成新的子对象的点对象集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 用新的子对象替换线对象中指定的子对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoLine:setPoint"><apiName>setPoint</apiName><shortdesc>
+		 替换子对象中指定位置上的点。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>partIndex</apiItemName><apiType value="int"/><apiDesc>子对象的索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pointIndex</apiItemName><apiType value="int"/><apiDesc>指定的替换位置。 
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>替换点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 替换子对象中指定位置上的点。
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.geometry:GeoLine:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:GeoLine:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 
+		 获取指定对象的默认样式。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 获取指定对象的默认样式。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:GeoLine:partCount:get"><apiName>partCount</apiName><shortdesc>
+		 获取几何线对象中的子对象个数。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取几何线对象中的子对象个数。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#GeoLine/parts"><linktext>parts</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.geometry:GeoLine:parts:set"><apiName>parts</apiName><shortdesc>
+		 组成几何线对象的子对象集合.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 组成几何线对象的子对象集合.
+		 <p>几何线对象由一个或多个子对象组成，各个子对象又由若干个线节点 Point2D 组成。该数组中的对象个数与属性 partCount 相同。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#GeoLine/partCount"><linktext>partCount</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.geometry:GeoLine:type:get"><apiName>type</apiName><shortdesc>
+		 
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#Geometry"><linktext>Geometry</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.geometry:GeoRegion"><apiName>GeoRegion</apiName><shortdesc>
+	 几何面对象.</shortdesc><prolog><asMetadata><DefaultProperty name="parts"/></asMetadata></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.core.geometry:Geometry</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何面对象.
+	 <p>几何面对象由点对象集合组成，集合中存储了一个或多个组成面对象的子对象，各个子对象又由若干个面节点 Point2D 组成。该对象可用来表示国家区域、地块、房屋等面状地物。<br/>定义一个面对象至少需要三个已知坐标的 Point2D。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.core.geometry:GeoRegion_flash.events.Event_geometryChange"><apiName>geometryChange</apiName><shortdesc>
+	 当面对象的几何空间信息发生变化时触发该事件。如：删除面节点、添加面节点。
+	 </shortdesc><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.Event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc>
+	 当面对象的几何空间信息发生变化时触发该事件。如：删除面节点、添加面节点。
+	 </apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.core.geometry:GeoRegion:GeoRegion"><apiName>GeoRegion</apiName><shortdesc>
+		 初始化（ GeoRegion ）的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化（ GeoRegion ）的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.core.geometry:GeoRegion:addPart"><apiName>addPart</apiName><shortdesc>
+		 向面对象追加一个子对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如果成功添加子对象则返回该子对象在线对象中的索引值。
+		 
+		 </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成子对象的点对象集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向面对象追加一个子对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:clone"><apiName>clone</apiName><shortdesc>
+		 
+		 克隆几何对象.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 克隆几何对象. 
+		 clone 与 copy 的区别：clone要创建一个新的与原对象一样的对象；而 copy 则是将原对象中的值复制到现在的对象中，不需要重新创建一个对象。
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:contains"><apiName>contains</apiName><shortdesc>
+		 判断面对象中是否包含某个点。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若包含则返回 true，否则返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:GeoPoint</apiOperationClassifier><apiDesc>被判断的点。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断面对象中是否包含某个点。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:deletePoint"><apiName>deletePoint</apiName><shortdesc>
+		 删除子对象中指定位置上的点。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>partIndex</apiItemName><apiType value="int"/><apiDesc>子对象的索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pointIndex</apiItemName><apiType value="int"/><apiDesc>指定的删除位置。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 删除子对象中指定位置上的点。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:equals"><apiName>equals</apiName><shortdesc>
+		 
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>	 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:getPart"><apiName>getPart</apiName><shortdesc>
+		 从面对象中获取指定索引值的子对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回与指定索引值对应的子对象。
+		 
+		 </apiDesc><apiType value="Array"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的索引值。 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 从面对象中获取指定索引值的子对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:indexOf"><apiName>indexOf</apiName><shortdesc>
+		 获取指定子对象在面对象中的索引位置。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若获取成功，则返回指定对象在线对象中的索引位置，否则返回 -1.
+		 
+		 </apiDesc><apiType value="int"/></apiReturn><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成子对象的点对象集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 获取指定子对象在面对象中的索引位置。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:insertPart"><apiName>insertPart</apiName><shortdesc>
+		 向面对象中的指定位置插入一个子对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>若插入成功则返回 true，否则返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成子对象的点对象（Point2D）集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向面对象中的指定位置插入一个子对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:insertPoint"><apiName>insertPoint</apiName><shortdesc>
+		 向子对象的指定位置插入一个点。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>partIndex</apiItemName><apiType value="int"/><apiDesc>子对象的索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pointIndex</apiItemName><apiType value="int"/><apiDesc>子对象中指定的插入位置。 
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>要插入的点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 向子对象的指定位置插入一个点。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:removePart"><apiName>removePart</apiName><shortdesc>
+		 根据指定的索引值删除面对象中的子对象。  
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如果成功删除指定索引的子对象则返回 true，否则返回 false。 
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>要删除的子对象的索引值。 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 根据指定的索引值删除面对象中的子对象。  
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:setPart"><apiName>setPart</apiName><shortdesc>
+		 用新的子对象替换面对象中指定的子对象。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如果成功替换子对象则返回 true，否则返回 false。
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>index</apiItemName><apiType value="int"/><apiDesc>指定的子对象索引值。 
+		 </apiDesc></apiParam><apiParam><apiItemName>pts</apiItemName><apiType value="Array"/><apiDesc>组成新的子对象的点对象集合。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 用新的子对象替换面对象中指定的子对象。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:GeoRegion:setPoint"><apiName>setPoint</apiName><shortdesc>
+		 替换子对象中指定位置上的点。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>partIndex</apiItemName><apiType value="int"/><apiDesc>子对象的索引位置。
+		 </apiDesc></apiParam><apiParam><apiItemName>pointIndex</apiItemName><apiType value="int"/><apiDesc>指定的替换位置。 
+		 </apiDesc></apiParam><apiParam><apiItemName>point</apiItemName><apiOperationClassifier>com.supermap.web.core:Point2D</apiOperationClassifier><apiDesc>替换点。
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 替换子对象中指定位置上的点。
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.geometry:GeoRegion:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:GeoRegion:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 
+		 获取指定对象的默认样式。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 获取指定对象的默认样式。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:GeoRegion:partCount:get"><apiName>partCount</apiName><shortdesc>
+		 获取几何面对象中的子对象个数.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取几何面对象中的子对象个数.
+		 一个面对象可以由多个面子对象组成。各个子对象又由若干个面节点 Point2D 组成。该属性值与数组属性 parts 的长度相同。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#GeoRegion/parts"><linktext>parts</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.geometry:GeoRegion:parts:set"><apiName>parts</apiName><shortdesc>
+		 组成几何面对象的子对象几何.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 组成几何面对象的子对象几何.
+		 <p>一个面对象可以由一个或多个面子对象组成。各个子对象又由若干个面节点 Point2D 组成。该属性中的子对象个数与属性 partCount 相同。</p> 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#GeoRegion/partCount"><linktext>partCount</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.core.geometry:GeoRegion:type:get"><apiName>type</apiName><shortdesc>
+		 
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.core.geometry.xml#Geometry"><linktext>Geometry</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.core.geometry:Geometry"><apiName>Geometry</apiName><shortdesc>
+	 几何对象基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何对象基类.
+	 <p>几何对象基类用于描述几何对象的空间信息（如坐标点对、几何线对象等）以及相关的处理方法。几何对象通常可用于空间分析、空间关系运算、缓冲区分析等。其子类包括： GeoPoint, GeoLine, GeoRegion。<br/>Feature 与 Geometry 的主要区别 ：Geometry 是 Feature 的属性之一，仅表示几何对象空间形状信息。而 Feature 不仅包括实体的空间信息，还包含实体的属性信息等。如果希望获取地图图层中某个几何实体，可以通过 FeaturesLayer 的 Features 属性，首先获取几何对象对应的实体 Feature，然后通过 Feature 的 Geometry 属性从而获取对应的几何对象。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiOperation id="com.supermap.web.core.geometry:Geometry:clone"><apiName>clone</apiName><shortdesc>
+		 克隆几何对象.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回克隆后的几何对象。
+		 
+		 </apiDesc><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 克隆几何对象. 
+		 clone 与 copy 的区别：clone要创建一个新的与原对象一样的对象；而 copy 则是将原对象中的值复制到现在的对象中，不需要重新创建一个对象。
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.supermap.web.core.geometry:Geometry:equals"><apiName>equals</apiName><shortdesc>
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>如果两个几何对象具有相同坐标值，返回 true；否则返回 false。 
+		 
+		 </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>geometry</apiItemName><apiOperationClassifier>com.supermap.web.core.geometry:Geometry</apiOperationClassifier><apiDesc>与当前几何对象进行比较的几何对象。 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 判断指定的几何对象是否与当前几何对象具有相同坐标值。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.core.geometry:Geometry:GEOLINE"><apiName>GEOLINE</apiName><shortdesc>
+		 定义常量 GEOLINE 的 type 属性值，表示几何对象类型——线。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SmGeoLine</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义常量 GEOLINE 的 type 属性值，表示几何对象类型——线。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:Geometry:GEOMETRY_CHANGE"><apiName>GEOMETRY_CHANGE</apiName><shortdesc>
+		 定义常量 GEOMETRY_CHANGE 的 type 属性值。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>geometryChange</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义常量 GEOMETRY_CHANGE 的 type 属性值。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:Geometry:GEOPOINT"><apiName>GEOPOINT</apiName><shortdesc>
+		 定义常量 GEOPOINT 的 type 属性值，表示几何对象类型——点。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SmGeoPoint</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义常量 GEOPOINT 的 type 属性值，表示几何对象类型——点。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:Geometry:GEOREGION"><apiName>GEOREGION</apiName><shortdesc>
+		 定义常量 GEOREGION 的 type 属性值，表示几何对象类型——面。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>SmGeoRegion</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 定义常量 GEOREGION 的 type 属性值，表示几何对象类型——面。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:Geometry:bounds:get"><apiName>bounds</apiName><shortdesc>
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Rectangle2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取地理坐标系下几何对象的范围，也就是几何对象的最小外接矩形。GeoPoint 的最小外接矩形就是其本身，即 Rectangle2D(x, y, x, y)。  
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:Geometry:defaultStyle:get"><apiName>defaultStyle</apiName><shortdesc>
+		 获取指定对象的默认样式。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core.styles:Style</apiValueClassifier></apiValueDef><apiDesc>
+		 获取指定对象的默认样式。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.core.geometry:Geometry:type:get"><apiName>type</apiName><shortdesc>
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置几何对象类型。对应于 Geometry 类中的常量。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

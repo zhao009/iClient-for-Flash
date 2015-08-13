@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010"
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.samples.serviceExtend.*;
+			
+			import mx.controls.Alert;
+			import mx.controls.Text;
+			import mx.rpc.AsyncResponder;
+			import utilEvent.ReadURLEvent;
+			
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			private var extendServiceUrl:String;
+			private var cities:Array = ["北京","伦敦","巴黎"];
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入地图服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP;
+				extendServiceUrl = viewConfig.webUrl + ViewConfig.ExtendService;
+			}
+
+			//与服务端交互，获取服务返回的结果
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				//定义参数
+				var param:ExtendServiceParameters = new ExtendServiceParameters();
+				param.arg = this.citiesName.selectedItem;
+				//定义服务
+				var service:ExtendService = new ExtendService(this.extendServiceUrl);
+				service.processAsync(param,new AsyncResponder(this.result, this.error, null));
+			}
+			
+			//与服务端交互成功时调用的处理函数
+			private function result(object:ExtendServiceResult, mark:Object = null):void
+			{
+				var str:String = object.result;
+				var point1:Point2D = new Point2D();
+				var txt:Text = new Text();
+				txt.text = str;
+				if(this.citiesName.selectedItem == "北京")
+				{
+					point1.x = 116.38;
+					point1.y = 39.9;
+				}
+				else if(this.citiesName.selectedItem == "伦敦")
+				{
+					point1.x = 0;
+					point1.y = 51.5;
+				}
+				else
+				{
+					point1.x = 2.3;
+					point1.y = 48.8;
+				} 
+				this.map.infoWindow.setStyle('backgroundColor', 0x44d6fa);
+				this.map.infoWindow.content = txt;
+				this.map.infoWindow.closeButtonVisible = false;
+				this.map.infoWindow.label = this.citiesName.selectedItem;
+				this.map.infoWindow.show(point1); 
+			}
+			
+			//与服务端交互失败时调用的处理函数
+			private function error(object:Object, mark:Object = null):void 
+			{
+				Alert.show("与服务端交互失败", null, 4, this);
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<ic:TiledDynamicRESTLayer url="{this.mapUrl}"/>
+		<ic:FeaturesLayer id="featuresLayer"/>		 
+	</ic:Map>
+	
+	<!--操作窗口-->
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup height="100%" verticalCenter="0" verticalAlign="middle" gap="10" left="10" top="5" bottom="5">
+			<s:Label text="获取指定城市的天气情况（非实时）" fontFamily="宋体" height="26" fontSize="15" verticalAlign="middle" fontWeight="bold"/>
+			<mx:VRule height="30"/>
+			<s:Label text="选择城市：" fontFamily="宋体" height="26" fontSize="15" verticalAlign="middle" fontWeight="bold"/>
+			<s:DropDownList id="citiesName" selectedIndex="0" height="26" fontSize="15" fontWeight="bold" fontFamily="宋体" textAlign="center">
+				<s:ArrayList>
+					<fx:String>北京</fx:String>
+					<fx:String>伦敦</fx:String>
+					<fx:String>巴黎</fx:String>
+				</s:ArrayList>
+			</s:DropDownList>
+			<mx:VRule height="30"/>
+			<s:Button label="天气预报" height="26" fontFamily="宋体" click="button1_clickHandler(event)" fontSize="15" fontWeight="bold"/>
+		</s:HGroup>
+		<s:Label text=" 提示：在体验该功能之前请确保您的服务器上已配置 SuperMap iServerJava提供的领域扩展服务" 
+				 textAlign="left" fontSize="15" height="40" right="5" 
+				 verticalAlign="middle" fontWeight="bold" fontFamily="宋体" width="367"/>
+	</s:controlBarContent>
+</s:Application>

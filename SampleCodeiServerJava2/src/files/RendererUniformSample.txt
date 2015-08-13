@@ -1,0 +1,5 @@
+<font color="#0033FF">统一渲染（UniformRenderer）</font>
+<font color="#006633">1. 功能描述：</font>将图层中所有要素统一渲染为一种样式；
+<font color="#006633">2. 地图数据：</font>SuperMap iServer Java 2008 服务器产品提供的分块动态图层——World。
+<font color="#006633">3. 操作指南：</font>点击“统一渲染”；
+<font color="#006633">4. 其它说明：</font>有关统一渲染（UniformRenderer）的详细介绍请参见 "SuperMap iClient 6R for Flex 帮助文档"。

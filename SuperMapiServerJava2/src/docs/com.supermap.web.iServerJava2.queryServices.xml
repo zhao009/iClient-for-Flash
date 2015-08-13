@@ -1,0 +1,987 @@
+<apiPackage id="com.supermap.web.iServerJava2.queryServices"><apiName>com.supermap.web.iServerJava2.queryServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryByCenterParameters"><apiName>QueryByCenterParameters</apiName><shortdesc>
+	 中心点查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.queryServices:QueryParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 中心点查询参数类.
+	  在地图中指定某一点位置，以该位置（点） centerPoint 为圆心，以容限 tolerance 的地理长度为半径的圆的范围内，查询指定的一个或多个图层上的符合查询条件的空间地物信息。指定的查询图层与查询范围有交集的符合查询条件的几何对象都会被查询出来。必设参数有：centerPoint、指定地图MapName （ParametersBase类的属性）和 QueryParam，其用于指定查询的一个或多个图层以及过滤条件。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryByCenterParameters:QueryByCenterParameters"><apiName>QueryByCenterParameters</apiName><shortdesc>
+		 使用地图名称、查询参数初使化 QueryByCenterParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称（ParametersBase类的属性）。
+		 </apiDesc></apiParam><apiParam><apiItemName>queryParam</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryParam</apiOperationClassifier><apiData>null</apiData><apiDesc>查询参数。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称、查询参数初使化 QueryByCenterParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryByCenterParameters:center:get"><apiName>center</apiName><shortdesc>
+		  获取或设置中心点查询的点坐标，必设属性。 
+		  
+		  </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:GeoPoint</apiValueClassifier></apiValueDef><apiDesc>
+		  获取或设置中心点查询的点坐标，必设属性。 
+		  
+		  </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryByCenterParameters:isNearest:get"><apiName>isNearest</apiName><shortdesc>
+		 获取或设置查询类型是否为最近地物查询。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/><apiDefaultValue>false 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置查询类型是否为最近地物查询。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryByCenterParameters:tolerance:get"><apiName>tolerance</apiName><shortdesc>
+		 获取或设置查询容限值。默认值为50（地图单位）。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置查询容限值。默认值为50（地图单位）。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:BufferEndType"><apiName>BufferEndType</apiName><shortdesc>
+	 线缓冲区端点类型.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 线缓冲区端点类型.
+	 <p>线缓冲区端点类型分为圆头和平头两种，目前仅支持圆头缓冲。圆头缓冲只支持左右相等的缓冲和单边的缓冲，不支持左右不等的缓冲。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:BufferEndType:BufferEndType"><apiName>BufferEndType</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferEndType:ROUND"><apiName>ROUND</apiName><shortdesc>
+		 圆头缓冲，对应值为1。<br/>圆头缓冲区是在生成缓冲区时，在线段的端点处做半圆弧处理。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 圆头缓冲，对应值为1。<br/>圆头缓冲区是在生成缓冲区时，在线段的端点处做半圆弧处理。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:ResultSet"><apiName>ResultSet</apiName><shortdesc>
+	 查询结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询结果类. 
+	  查询结果类中包含了查询记录集的相关信息。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:ResultSet:ResultSet"><apiName>ResultSet</apiName><shortdesc>
+		 初始化 ResultSet 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 ResultSet 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:ResultSet:currentCount:get"><apiName>currentCount</apiName><shortdesc>
+		 获取当前查询类的记录数。<br/>当查询得到的记录较多时，可将记录分页显示。该属性表示当前页的记录条数。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取当前查询类的记录数。<br/>当查询得到的记录较多时，可将记录分页显示。该属性表示当前页的记录条数。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:ResultSet:customResponse:get"><apiName>customResponse</apiName><shortdesc>
+		 获取自定义操作处理的结果。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取自定义操作处理的结果。  
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:ResultSet:recordSets:get"><apiName>recordSets</apiName><shortdesc>
+		 获取查询记录集合。每一个查询图层对应一个 Recordset。每个 Recordset 中记录了图层名、空间信息和属性值、属性字段以及字段值的类型等。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取查询记录集合。每一个查询图层对应一个 Recordset。每个 Recordset 中记录了图层名、空间信息和属性值、属性字段以及字段值的类型等。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:ResultSet:totalCount:get"><apiName>totalCount</apiName><shortdesc>
+		 获取查询到的记录的总数。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取查询到的记录的总数。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryParametersBase"><apiName>QueryParametersBase</apiName><shortdesc>
+	 查询参数基类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询参数基类. 
+	  中心点查询、SQL 查询、几何地物查询以及缓冲区查询各自的参数类都继承该类。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryParametersBase:QueryParametersBase"><apiName>QueryParametersBase</apiName><shortdesc>
+		 初始化 QueryParamertersBase 的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称（ParametersBase类的属性）。
+		 </apiDesc></apiParam><apiParam><apiItemName>queryParam</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryParam</apiOperationClassifier><apiData>null</apiData><apiDesc>查询参数。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 QueryParamertersBase 的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryParametersBase:queryParam:get"><apiName>queryParam</apiName><shortdesc>
+		 获取或设置查询参数。在各种查询参数类中该属性为必设属性。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:QueryParam</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置查询参数。在各种查询参数类中该属性为必设属性。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:BufferAnalystParam"><apiName>BufferAnalystParam</apiName><shortdesc>
+	 缓冲区分析参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 缓冲区分析参数类.
+	 <p>缓冲区实际上是在基本空间要素周围建立的具有一定宽度的邻近区域。缓冲区分析可以有以下应用，比如确定街道拓宽的范围，确定放射源影响的范围等。<br/>1.对于生成线对象的缓冲区，用户可以对缓冲边的方向进行设置，可以选择是在这条线的左边或右边生成缓冲区。线对象的左右与线对象的方向密切相关。<br/>2.对于点和面对象而言，只有左缓冲区没有右缓冲区。<br/>3.对于面对象而言，在做缓冲区分析前最好先经过拓扑检查，排除面内相交的情况，所谓面内相交，指的是面对象自身相交。如下图情况：</p>
+	 <p><adobeimage href="../../../../../images/BufferAnalyst.bmp"/></p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferAnalystParam:bufferEndType:get"><apiName>bufferEndType</apiName><shortdesc>
+		 线缓冲区分析的端点类型常量，目前支持圆头缓冲。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 线缓冲区分析的端点类型常量，目前支持圆头缓冲。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferAnalystParam:bufferSideType:get"><apiName>bufferSideType</apiName><shortdesc>
+		 线缓冲区分析的缓冲边的类型，默认为两边缓冲。<br/>目前支持左缓冲、右缓冲、两边缓冲三种类型:<br/>1.当该属性值为 LEFT 时，通过 leftDistance 属性设置线对象左边缓冲距离，而此时 rightDistance 属性无效；<br/>2.当该属性值为 RIGHT 时，通过 RightDistance 属性设置线对象右边缓冲距离，而此时 leftDistance 属性无效；<br/>3.当该属性值为 FULL 时，通过 LeftDistance 属性设置线对象的缓冲距离，而此时 rightDistance 属性无效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 线缓冲区分析的缓冲边的类型，默认为两边缓冲。<br/>目前支持左缓冲、右缓冲、两边缓冲三种类型:<br/>1.当该属性值为 LEFT 时，通过 leftDistance 属性设置线对象左边缓冲距离，而此时 rightDistance 属性无效；<br/>2.当该属性值为 RIGHT 时，通过 RightDistance 属性设置线对象右边缓冲距离，而此时 leftDistance 属性无效；<br/>3.当该属性值为 FULL 时，通过 LeftDistance 属性设置线对象的缓冲距离，而此时 rightDistance 属性无效。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferAnalystParam:leftDistance:get"><apiName>leftDistance</apiName><shortdesc>
+		 左边缓冲区的距离。<br/>1.线缓冲区分析时，表示左边缓冲区的距离（当 BufferSideType = LEFT 时）或者表示线对象的缓冲距离（当 BufferSideType = FULL 时，即左右两边的缓冲距离都为 leftDistance），该值必须大于0；当 BufferSideType =RIGHT 时，该值无效。<br/>2.面缓冲区分析时，代表缓冲区半径，大于0时表示向外缓冲(面膨胀)，小于0时表示向内缓冲(面紧缩)。<br/>3.点缓冲区分析时，代表缓冲半径，必须大于0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 左边缓冲区的距离。<br/>1.线缓冲区分析时，表示左边缓冲区的距离（当 BufferSideType = LEFT 时）或者表示线对象的缓冲距离（当 BufferSideType = FULL 时，即左右两边的缓冲距离都为 leftDistance），该值必须大于0；当 BufferSideType =RIGHT 时，该值无效。<br/>2.面缓冲区分析时，代表缓冲区半径，大于0时表示向外缓冲(面膨胀)，小于0时表示向内缓冲(面紧缩)。<br/>3.点缓冲区分析时，代表缓冲半径，必须大于0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferAnalystParam:rightDistance:get"><apiName>rightDistance</apiName><shortdesc>
+		 右边缓冲区的距离。<br/>1.线缓冲区分析时，表示右边缓冲区的距离（当 BufferSideType = RIGHT 时）。该值必须大于或等于0，等于0时右边没有缓冲区。当 BufferSideType = LEFT 时，该值无效。<br/>2.点或面缓冲区分析时该参数无效。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 右边缓冲区的距离。<br/>1.线缓冲区分析时，表示右边缓冲区的距离（当 BufferSideType = RIGHT 时）。该值必须大于或等于0，等于0时右边没有缓冲区。当 BufferSideType = LEFT 时，该值无效。<br/>2.点或面缓冲区分析时该参数无效。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferAnalystParam:semicircleLineSegment:get"><apiName>semicircleLineSegment</apiName><shortdesc>
+		 线段拟合半圆弧的线段数，默认值为12。<br/>在保存结果面时，表示半圆弧采用多少条线段来进行拟合。拟合线段数太小，结果面误差较大；拟合线段数量太大，结果面占用较大存储空间。该数值必须大于等于4小于200。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 线段拟合半圆弧的线段数，默认值为12。<br/>在保存结果面时，表示半圆弧采用多少条线段来进行拟合。拟合线段数太小，结果面误差较大；拟合线段数量太大，结果面占用较大存储空间。该数值必须大于等于4小于200。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:BufferQueryService"><apiName>BufferQueryService</apiName><shortdesc>
+	 缓冲区查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 缓冲区查询服务类.
+	 <p>缓冲区查询就是对指定几何对象做缓冲区后，再将缓冲区结果与查询图层按某种空间关系进行地物查询。<br/>该类负责将客户端指定的缓冲区查询参数传递给服务端，并接收服务端返回的结果数据。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:BufferQueryService:BufferQueryService"><apiName>BufferQueryService</apiName><shortdesc>
+		 使用服务器的 URL 参数实例化 BufferQueryService 对象。
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器 URL。
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器的 URL 参数实例化 BufferQueryService 对象。
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.queryServices:BufferQueryService:execute"><apiName>execute</apiName><shortdesc>
+		 将客户端指定的缓冲区查询参数传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>远程或异步请求服务完成时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:BufferQueryParameters</apiOperationClassifier><apiDesc>缓冲区查询参数类。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的缓冲区查询参数传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferQueryService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的缓冲区查询结果数据。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:ResultSet</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的缓冲区查询结果数据。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:ReturnResultSetInfo"><apiName>ReturnResultSetInfo</apiName><shortdesc>
+	 查询返回结果枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询返回结果枚举类.
+	 <P>查询返回的结果可以分为三个类型，仅返回属性信息，仅返回空间信息，返回属性和空间信息。 </P> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiValue id="com.supermap.web.iServerJava2.queryServices:ReturnResultSetInfo:RETURN_RESULT_ATTRIBUTEANDGEOMETRY"><apiName>RETURN_RESULT_ATTRIBUTEANDGEOMETRY</apiName><shortdesc>
+		 属性和空间信息，对应值为2。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 属性和空间信息，对应值为2。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:ReturnResultSetInfo:RETURN_RESULT_ATTRIBUTE"><apiName>RETURN_RESULT_ATTRIBUTE</apiName><shortdesc>
+		 属性信息，对应值为0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 属性信息，对应值为0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:ReturnResultSetInfo:RETURN_RESULT_GEOMETRY"><apiName>RETURN_RESULT_GEOMETRY</apiName><shortdesc>
+		 空间信息，对应值为1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="String"/></apiValueDef><apiDesc>
+		 空间信息，对应值为1。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:EntityBufferQueryService"><apiName>EntityBufferQueryService</apiName><shortdesc>
+	 地物缓冲区查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地物缓冲区查询服务类.
+	 <p>地物缓冲查询就是将指定几何对象与指定图层先进行求交查询得到几何对象，再对得到的几何对象生成缓冲区，最后将缓冲区与查询图层按某种空间关系进行地物查询。<br/>该类负责将客户端指定的地物缓冲区查询参数传递给服务端，并接收服务端返回的结果数据。</p>
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:EntityBufferQueryService:EntityBufferQueryService"><apiName>EntityBufferQueryService</apiName><shortdesc>
+		 使用服务器的 URL 参数实例化 EntityBufferQueryService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器 URL。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器的 URL 参数实例化 EntityBufferQueryService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.queryServices:EntityBufferQueryService:execute"><apiName>execute</apiName><shortdesc>
+		 将客户端指定的地物缓冲区查询参数传递给服务端，与服务端完成异步通讯。
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>远程或异步请求服务完成时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:EntityBufferQueryParameters</apiOperationClassifier><apiDesc>地物缓冲区查询参数类。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 将客户端指定的地物缓冲区查询参数传递给服务端，与服务端完成异步通讯。
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.queryServices:EntityBufferQueryService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 
+		 获取服务端返回的地物缓冲区查询结果数据。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:ResultSet</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 获取服务端返回的地物缓冲区查询结果数据。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryBySqlService"><apiName>QueryBySqlService</apiName><shortdesc>
+	 SQL 语句查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SQL 语句查询服务类.
+	  SQL 查询就是在指定的一个或多个图层中查找满足 SQL 语句的地物。<br/>该类负责将客户端指定的 SQL 查询参数传递给服务端，并接收服务端返回的结果数据。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryBySqlService:QueryBySqlService"><apiName>QueryBySqlService</apiName><shortdesc>
+		 使用服务器的 URL 参数实例化 QueryBySQLService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器 URL。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器的 URL 参数实例化 QueryBySQLService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.queryServices:QueryBySqlService:execute"><apiName>execute</apiName><shortdesc>
+		 执行查询服务。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>远程或异步请求服务完成时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryBySqlParameters</apiOperationClassifier><apiDesc>SQL 查询参数类。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行查询服务。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryBySqlService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的 SQL 查询结果数据。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:ResultSet</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的 SQL 查询结果数据。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:BufferSideType"><apiName>BufferSideType</apiName><shortdesc>
+	 线缓冲的缓冲边类型.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 线缓冲的缓冲边类型.
+	 <p>对于线对象的缓冲区，可以对缓冲边的方向进行设置，选择在这条线的左边或右边生成缓冲区，也可以选择在这条线的左右两边都生成缓冲区。线对象的左右与线对象的方向密切相关，下图的箭头代表线的方向，灯泡所在的那一侧代表该线段的左侧，如图所示：</p>
+	 <p><adobeimage href="../../../../../images/lineBufferDirection.bmp"/></p> 
+	  
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:BufferSideType:BufferSideType"><apiName>BufferSideType</apiName><shortdesc>
+		 初始化 BufferSideType 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 BufferSideType 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferSideType:FULL"><apiName>FULL</apiName><shortdesc>
+		 以 LeftDistance 为距离，向线对象的左右双边等距缓冲。对应值为0。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 以 LeftDistance 为距离，向线对象的左右双边等距缓冲。对应值为0。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferSideType:LEFT"><apiName>LEFT</apiName><shortdesc>
+		 以 LeftDistance 为距离，向线对象的左边缓冲。对应值为1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 以 LeftDistance 为距离，向线对象的左边缓冲。对应值为1。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferSideType:RIGHT"><apiName>RIGHT</apiName><shortdesc>
+		 以 RightDistance 为距离，向线对象的右边缓冲。对应值为2。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 以 RightDistance 为距离，向线对象的右边缓冲。对应值为2。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode"><apiName>SpatialQueryMode</apiName><shortdesc>
+	 空间查询操作模式枚举类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 空间查询操作模式枚举类.
+	 <p>空间查询是通过几何对象之间的空间位置关系来构建过滤条件的一种查询方式。例如：通过空间查询可以找到被包含在面中的空间对象，相离或者相邻的空间对象等。当前版本提供对点、线、面和文本类型数据的空间查询，其中文本类型仅支持相交和包含两种空间查询模式，而且只能作为被搜索对象不能作为搜索对象。对每个枚举值给出了图例，其中黑色代表搜索对象、绿色代表被搜索对象、红色表示搜索结果。<br/>点、线、面空间几何对象都有明确的边界矩形、边界、内部和外部。几何对象的空间位置关系比较，实质上就是对相互间边界矩形、边界、内部和外部关系的比较。</p>
+	 <p><adobetable>
+	<tgroup cols="5"><tbody><TBODY>
+	<row>
+	<entry>几何对象</entry>
+	<entry>边界矩形（Boundary or Extent）</entry>
+	<entry>边界（Outline）</entry>
+	<entry>内部（Interior）</entry>
+	<entry>外部（Exterior）</entry></row>
+	<row>
+	<entry>点</entry>
+	<entry>无</entry>
+	<entry>无</entry>
+	<entry>点对象本身</entry>
+	<entry>点对象本身外的区域</entry></row>
+	<row>
+	<entry>线</entry>
+	<entry>线对象的最小外接矩形</entry>
+	<entry>线对象的端点</entry>
+	<entry>线对象本身除去端点的部分</entry>
+	<entry>线对象本身外的区域</entry></row>
+	<row>
+	<entry>面</entry>
+	<entry>面对象的最小外接矩形</entry>
+	<entry>面对象控制边的并集</entry>
+	<entry>面对象边界围成的区域</entry>
+	<entry>面对象本身外的区域</entry></row></TBODY></tbody></tgroup></adobetable></p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:SpatialQueryMode"><apiName>SpatialQueryMode</apiName><shortdesc>
+		 初始化 SpatialQueryMode 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SpatialQueryMode 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:CONTAIN"><apiName>CONTAIN</apiName><shortdesc>
+		 包含空间查询模式，对应值为7。<br/>返回被搜索图层中完全被搜索对象包含的对象。搜索对象和被搜索对象的边界交集可以不为空；点查线/点查面/线查面，不存在包含情况。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>7</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 包含空间查询模式，对应值为7。<br/>返回被搜索图层中完全被搜索对象包含的对象。搜索对象和被搜索对象的边界交集可以不为空；点查线/点查面/线查面，不存在包含情况。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Contain_PP.png"/></entry>
+<entry/>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Contain_LP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Contain_LL.png"/></entry>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry><adobeimage href="../../../../../images/Contain_RP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Contain_RL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Contain_RR.png"/></entry></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:CROSS"><apiName>CROSS</apiName><shortdesc>
+		 交叉空间查询模式，对应值为5。<br/>返回被搜索图层中与搜索对象相交的所有对象。搜索对象和被搜索对象内部的交集不能为空；参与交叉（Cross）关系运算的两个对象必须有一个是线对象。该关系适合的对象类型：搜索对象——线；被搜索对象——线、面。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 交叉空间查询模式，对应值为5。<br/>返回被搜索图层中与搜索对象相交的所有对象。搜索对象和被搜索对象内部的交集不能为空；参与交叉（Cross）关系运算的两个对象必须有一个是线对象。该关系适合的对象类型：搜索对象——线；被搜索对象——线、面。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry/>
+<entry/>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry/>
+<entry><adobeimage href="../../../../../images/Cross_LL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Cross_LR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry/>
+<entry/>
+<entry/></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:DISJOINT"><apiName>DISJOINT</apiName><shortdesc>
+		 分离空间查询模式，对应值为1。<br/>返回被搜索图层中与搜索对象相离的对象。搜索对象和被搜索对象相离，即无任何交集。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 分离空间查询模式，对应值为1。<br/>返回被搜索图层中与搜索对象相离的对象。搜索对象和被搜索对象相离，即无任何交集。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_PP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_PL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_PR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_LP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_LL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_LR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_RP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_RL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Disjoint_RR.png"/></entry></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:IDENTITY"><apiName>IDENTITY</apiName><shortdesc>
+		 重合空间查询模式，对应值为0。<br/>返回被搜索图层中与搜索对象完全重合的对象，包括对象类型和坐标。搜索对象与被搜索对象的类型必须相同；且两个对象的交集不为空，搜索对象的边界及内部分别和被搜索对象的外部交集为空。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>0</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 重合空间查询模式，对应值为0。<br/>返回被搜索图层中与搜索对象完全重合的对象，包括对象类型和坐标。搜索对象与被搜索对象的类型必须相同；且两个对象的交集不为空，搜索对象的边界及内部分别和被搜索对象的外部交集为空。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Identity_PP.png"/></entry>
+<entry/>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry/>
+<entry><adobeimage href="../../../../../images/Identity_LL.png"/></entry>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry/>
+<entry/>
+<entry><adobeimage href="../../../../../images/Identity_RR.png"/></entry></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:INTERSECT"><apiName>INTERSECT</apiName><shortdesc>
+		 相交空间查询模式，对应值为2。<br/>返回与搜索对象相交的所有对象。如果搜索对象是面，返回全部或部分被搜索对象包含的对象以及全部或部分包含搜索对象的对象；如果搜索对象不是面，返回全部或部分包含搜索对象的对象。该关系适合的对象类型：搜索对象：点、线、面；被搜索对象：点、线、面。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>2</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 相交空间查询模式，对应值为2。<br/>返回与搜索对象相交的所有对象。如果搜索对象是面，返回全部或部分被搜索对象包含的对象以及全部或部分包含搜索对象的对象；如果搜索对象不是面，返回全部或部分包含搜索对象的对象。该关系适合的对象类型：搜索对象：点、线、面；被搜索对象：点、线、面。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Intersect_PP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Intersect_PL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Intersect_PR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry/>
+<entry/>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry><adobeimage href="../../../../../images/Intersect_RP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Intersect_RL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Intersect_RR.png"/></entry></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:NONE"><apiName>NONE</apiName><shortdesc>
+		 无空间查询，对应值为-1。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>-1</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 无空间查询，对应值为-1。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:OVERLAP"><apiName>OVERLAP</apiName><shortdesc>
+		 叠加空间查询模式，对应值为4。<br/>返回被搜索图层中与搜索对象部分重叠的对象。该关系适合的对象类型为：线/线，面/面。其中，两个几何对象的维数必须一致，而且他们交集的维数也应该和几何对象的维数一样。点与任何一种几何对象都不存在部分重叠的情况。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>4</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 叠加空间查询模式，对应值为4。<br/>返回被搜索图层中与搜索对象部分重叠的对象。该关系适合的对象类型为：线/线，面/面。其中，两个几何对象的维数必须一致，而且他们交集的维数也应该和几何对象的维数一样。点与任何一种几何对象都不存在部分重叠的情况。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry/>
+<entry/>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry/>
+<entry><adobeimage href="../../../../../images/Overlap_LL.png"/></entry>
+<entry/></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry/>
+<entry/>
+<entry><adobeimage href="../../../../../images/Overlap_RR.png"/></entry></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:TOUCH"><apiName>TOUCH</apiName><shortdesc>
+		 邻接空间查询模式,对应值为3。<br/>返回被搜索图层中其边界与搜索对象边界相触的对象。搜索对象和被搜索对象的内部交集为空。该关系不适合的对象类型为：点查询点的空间关系。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>3</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 邻接空间查询模式,对应值为3。<br/>返回被搜索图层中其边界与搜索对象边界相触的对象。搜索对象和被搜索对象的内部交集为空。该关系不适合的对象类型为：点查询点的空间关系。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry/>
+<entry><adobeimage href="../../../../../images/Touch_PL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Touch_PR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Touch_LP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Touch_LL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Touch_LR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry><adobeimage href="../../../../../images/Touch_RP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Touch_RL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Touch_RR.png"/></entry></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SpatialQueryMode:WITHIN"><apiName>WITHIN</apiName><shortdesc>
+		 被包含空间查询模式，对应值为6。<br/>返回被搜索图层中完全包含搜索对象的对象。如果返回的对象是面，其必须全部包含（包括边接触）搜索对象；如果返回的对象是线，其必须完全包含搜索对象；如果返回的对象是点，其必须与搜索对象重合。该类型与包含（Contain）的查询模式正好相反。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。线查询点，面查询线或面查询点都不存在被包含的情况。
+		 
+
+
+几何对象
+边界矩形（Boundary or Extent）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>6</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 被包含空间查询模式，对应值为6。<br/>返回被搜索图层中完全包含搜索对象的对象。如果返回的对象是面，其必须全部包含（包括边接触）搜索对象；如果返回的对象是线，其必须完全包含搜索对象；如果返回的对象是点，其必须与搜索对象重合。该类型与包含（Contain）的查询模式正好相反。该关系适合的对象类型：搜索对象——点、线、面；被搜索对象——点、线、面。线查询点，面查询线或面查询点都不存在被包含的情况。
+		 <p><adobetable>
+<tgroup cols="4"><tbody><TBODY>
+<row>
+<entry rowSpan="2">几何对象</entry>
+<entry colSpan="3">边界矩形（Boundary or Extent）</entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SdP.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdL.png"/></entry>
+<entry><adobeimage href="../../../../../images/SdR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Within_PP.png"/></entry>
+<entry><adobeimage href="../../../../../images/Within_PL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Within_PR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SL.png"/></entry>
+<entry/>
+<entry><adobeimage href="../../../../../images/Within_LL.png"/></entry>
+<entry><adobeimage href="../../../../../images/Within_LR.png"/></entry></row>
+<row>
+<entry><adobeimage href="../../../../../images/SR.png"/></entry>
+<entry/>
+<entry/>
+<entry><adobeimage href="../../../../../images/Within_RR.png"/></entry></row></TBODY></tbody></tgroup></adobetable></p> 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryParam"><apiName>QueryParam</apiName><shortdesc>
+	 查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询参数类.
+	 <p>进行地图查询时设置条件的类。诸如进行中心点查询、缓冲区查询、SQL 查询等，都需要通过设置查询参数然后进行查询。通过该类可以设置查询图层和对应的过滤条件、设置返回的结果类型 returnResultSetInfo 枚举类（包括只返回属性、只返回空间属性、全部都返回）等。<br/>其中每一个查询图层的过滤条件需要通过对应的 QueryLayerParam 进行设置，包括查询图层名称 Name （必设属性）和 SqlParam 查询条件（当使用 QueryBySqlParameters 类时，它为必设属性）。最后通过 QueryLayerParams 属性将要查询的所有图层的 QueryLayerParam 形成列表。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryParam:QueryParam"><apiName>QueryParam</apiName><shortdesc>
+		 初始化 QueryParam 的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 QueryParam 的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryParam:expectCount:get"><apiName>expectCount</apiName><shortdesc>
+		 获取或设置期望返回的查询记录个数。<br/>1.当该属性小于等于0时，表示返回所有记录的个数，这时与结果记录集 ResultSet 中的查询记录总数 totalCount 相等。<br/>2.假设将 ExpectCount 设为10，当查询三个图层时，如果第一个图层的查询结果超过了10条记录，则后两个图层就无返回的查询结果。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>-1 
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置期望返回的查询记录个数。<br/>1.当该属性小于等于0时，表示返回所有记录的个数，这时与结果记录集 ResultSet 中的查询记录总数 totalCount 相等。<br/>2.假设将 ExpectCount 设为10，当查询三个图层时，如果第一个图层的查询结果超过了10条记录，则后两个图层就无返回的查询结果。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryParam:networkType:get"><apiName>networkType</apiName><shortdesc>
+		 获取或设置网络图层子图层。如果对网络图层进行查询，通过 ServerFeatureType 服务端几何对象枚举类设置子图层类型：线（Serverfeaturetype.Line）或点（Serverfeaturetype.Point）。默认为线子图层类型。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/><apiDefaultValue>ServerFeatureType.LINE
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置网络图层子图层。如果对网络图层进行查询，通过 ServerFeatureType 服务端几何对象枚举类设置子图层类型：线（Serverfeaturetype.Line）或点（Serverfeaturetype.Point）。默认为线子图层类型。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava2.queryServices.ServerFeatureType.xml"><linktext>ServerFeatureType</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryParam:queryLayerParams:get"><apiName>queryLayerParams</apiName><shortdesc>
+		 获取或设置待查询图层参数列表。一个待查图层对应一个 queryLayerParam 类。在 queryLayerParam 类中为相应的待查图层设置图层名和过滤条件。最后将全部待查图层以列表的形式赋予 queryLayerParams 属性。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置待查询图层参数列表。一个待查图层对应一个 queryLayerParam 类。在 queryLayerParam 类中为相应的待查图层设置图层名和过滤条件。最后将全部待查图层以列表的形式赋予 queryLayerParams 属性。
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryParam:returnResultSetInfo:get"><apiName>returnResultSetInfo</apiName><shortdesc>
+		 获取或设置返回结果类型。 ReturnResultSetInfo 类中包括三种返回结果类型：只返回属性、只返回空间属性、属性和空间属性都返回。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/><apiDefaultValue>ReturnResultSetInfo.RETURN_RESULT_ATTRIBUTE
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置返回结果类型。 ReturnResultSetInfo 类中包括三种返回结果类型：只返回属性、只返回空间属性、属性和空间属性都返回。 
+		 </apiDesc></apiValueDetail><related-links><link href="com.supermap.web.iServerJava2.queryServices.xml#ReturnResultSetInfo"><linktext>ReturnResultSetInfo</linktext></link></related-links></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryParam:startCount:get"><apiName>startCount</apiName><shortdesc>
+		 获取或设置起始记录号，默认值为0。当该属性的值小于0或未设置时，每个图层的起始记录从0开始。
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/><apiDefaultValue>0
+		 </apiDefaultValue></apiValueDef><apiDesc>
+		 获取或设置起始记录号，默认值为0。当该属性的值小于0或未设置时，每个图层的起始记录从0开始。
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryByGeometryService"><apiName>QueryByGeometryService</apiName><shortdesc>
+	 几何查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何查询服务类. 
+	  几何查询就是在指定的几何对象范围内查询一个或多个图层上符合查询条件的空间地物信息。在指定的查询图层上，与几何对象有交集的符合查询条件的地物都会被查询出来。<br/>该类负责将客户端指定的几何查询参数传递给服务端，并接收服务端返回的结果数据。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryByGeometryService:QueryByGeometryService"><apiName>QueryByGeometryService</apiName><shortdesc>
+		 使用服务器的 URL 参数实例化 QueryByGeometryService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器 URL。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器的 URL 参数实例化 QueryByGeometryService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.queryServices:QueryByGeometryService:execute"><apiName>execute</apiName><shortdesc>
+		 执行查询操作。即，将客户端指定的几何查询参数传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		  
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>远程或异步请求服务完成时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryByGeometryParameters</apiOperationClassifier><apiDesc>几何查询参数类。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行查询操作。即，将客户端指定的几何查询参数传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryByGeometryService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的几何查询结果数据。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:ResultSet</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的几何查询结果数据。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryByGeometryParameters"><apiName>QueryByGeometryParameters</apiName><shortdesc>
+	 几何查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.queryServices:QueryParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 几何查询参数类.
+	  在指定的几何对象范围内查询一个或多个图层上符合查询条件的空间地物信息。指定查询图层与几何对象有交集的符合查询条件的地物都会被查询出来。其中几何对象包括点线面。<br/>必设参数有：Geometry、指定地图 MapName（ ParametersBase 类的属性）和 QueryParam（QueryParametersBase 类的属性），其用于指定查询的一个或多个图层以及过滤条件 SqlParam。
+	 </apiDesc></apiClassifierDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava2.queryServices.ParametersBase.xml"><linktext>ParametersBase</linktext></link><link href="com.supermap.web.iServerJava2.queryServices.xml#QueryParam"><linktext>QueryParam</linktext></link></related-links><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryByGeometryParameters:QueryByGeometryParameters"><apiName>QueryByGeometryParameters</apiName><shortdesc>
+		 初始化 QueryByGeometryParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称(ParametersBase 类的属性)。
+		 </apiDesc></apiParam><apiParam><apiItemName>queryParam</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryParam</apiOperationClassifier><apiData>null</apiData><apiDesc>查询参数(QueryParametersBase 类的属性）。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 QueryByGeometryParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryByGeometryParameters:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 获取或设置用于查询的几何对象。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置用于查询的几何对象。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:RecordSet"><apiName>RecordSet</apiName><shortdesc>
+	 查询结果记录集.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询结果记录集. 
+	  将查询出来的地物按照图层进行划分，一个查询记录集集合存放一个图层的查询结果。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:RecordSet:RecordSet"><apiName>RecordSet</apiName><shortdesc>
+		 初始化 Recordset 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Recordset 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.queryServices:RecordSet:toFeatureSet"><apiName>toFeatureSet</apiName><shortdesc>
+		 将记录集集合 Recordset 转化为矢量要素集合。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>返回矢量要素集合。
+		 
+		 </apiDesc><apiType value="Array"/></apiReturn></apiOperationDef><apiDesc>
+		 将记录集集合 Recordset 转化为矢量要素集合。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.queryServices:RecordSet:layerName:get"><apiName>layerName</apiName><shortdesc>
+		 获取结果记录集合对应的图层名。一个 Recordset 对应一个图层名。  
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取结果记录集合对应的图层名。一个 Recordset 对应一个图层名。  
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:RecordSet:records:get"><apiName>records</apiName><shortdesc>
+		 获取结果记录集合。一个地物对应一个 Record，每个 Record  中包含了空间信息、地物属性值及几何中心点。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取结果记录集合。一个地物对应一个 Record，每个 Record  中包含了空间信息、地物属性值及几何中心点。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:RecordSet:returnFieldCaptions:get"><apiName>returnFieldCaptions</apiName><shortdesc>
+		 获取属性记录集合中属性字段的标题集合，即属性表中各个字段的标题。例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取属性记录集合中属性字段的标题集合，即属性表中各个字段的标题。例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:RecordSet:returnFieldTypes:get"><apiName>returnFieldTypes</apiName><shortdesc>
+		 获取属性记录集合中各字段值的类型。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取属性记录集合中各字段值的类型。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:RecordSet:returnFields:get"><apiName>returnFields</apiName><shortdesc>
+		 获取属性记录集合中属性字段的名称集合。例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”，则 Area 即为该字段的名称。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取属性记录集合中属性字段的名称集合。例如在属性表中有一个名为 Area 属性字段，在属性表中标题为“面积”，则 Area 即为该字段的名称。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:SqlParam"><apiName>SqlParam</apiName><shortdesc>
+	 查询图层的属性过滤条件类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询图层的属性过滤条件类.
+	  该类用于设置查询的属性过滤条件。查询后将返回满足过滤条件的地物。 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:SqlParam:SqlParam"><apiName>SqlParam</apiName><shortdesc>
+		 初始化 SqlParam 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 SqlParam 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:SqlParam:groupClause:get"><apiName>groupClause</apiName><shortdesc>
+		 获取或设置 Group By 语句。如设置 groupClause = "District"，即 group by District，表示按区域 District 字段进行分组查询。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 Group By 语句。如设置 groupClause = "District"，即 group by District，表示按区域 District 字段进行分组查询。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SqlParam:ids:get"><apiName>ids</apiName><shortdesc>
+		 获取或设置要查询地物的 SMID 数组。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置要查询地物的 SMID 数组。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SqlParam:returnFields:get"><apiName>returnFields</apiName><shortdesc>
+		 获取或设置要返回的字段名称数组。默认返回全部非二进制字段。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置要返回的字段名称数组。默认返回全部非二进制字段。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SqlParam:sortClause:get"><apiName>sortClause</apiName><shortdesc>
+		 获取或设置 Order By 语句。如设置 sortClause = "SmID desc"，即 order by SmID desc，表示将SMID 值按降序排列。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置 Order By 语句。如设置 sortClause = "SmID desc"，即 order by SmID desc，表示将SMID 值按降序排列。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:SqlParam:whereClause:get"><apiName>whereClause</apiName><shortdesc>
+		 获取或设置图层查询条件语句。即 SQL 语句中 Where 条件语句。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置图层查询条件语句。即 SQL 语句中 Where 条件语句。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryLayerParam"><apiName>QueryLayerParam</apiName><shortdesc>
+	 查询图层参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询图层参数类. 
+	 该类用于设置查询图层的查询参数。包括图层名称和属性过滤条件。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryLayerParam:QueryLayerParam"><apiName>QueryLayerParam</apiName><shortdesc>
+		 使用图层名称 name 和 查询过滤条件 sqlParam 初始化 QueryLayerParam 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>name</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>图层名称。
+		 </apiDesc></apiParam><apiParam><apiItemName>sqlParam</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:SqlParam</apiOperationClassifier><apiData>null</apiData><apiDesc>查询过滤条件。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用图层名称 name 和 查询过滤条件 sqlParam 初始化 QueryLayerParam 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryLayerParam:name:get"><apiName>name</apiName><shortdesc>
+		 获取或设置查询图层名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置查询图层名称。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryLayerParam:sqlParam:get"><apiName>sqlParam</apiName><shortdesc>
+		 获取或设置属性查询过滤条件。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:SqlParam</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置属性查询过滤条件。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:Record"><apiName>Record</apiName><shortdesc>
+	 查询结果记录集.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 查询结果记录集. 
+	  查询结果记录集存放查询到的地物信息的记录。一般查询等操作返回的符合条件的每个地物都以记录集的形式放在各自的 Record 中，查询出多少地物就有多少条 Record 记录。在 Record 中记录了空间几何对象的中心点位置 Center，地物空间信息 Shape 和地物的属性信息集合 FieldValues。
+	  Record 和 Recordset 的关系：对于每一个图层，符合条件的每一个地物的记录（包括查询的属性信息和几何信息）都存放在一个 Record 中，同一图层上的所有这些 Record 集合就构成一个 Recordset。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:Record:Record"><apiName>Record</apiName><shortdesc>
+		 初始化 Record 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Record 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:Record:center:get"><apiName>center</apiName><shortdesc>
+		 获取地物的几何中心点。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.core:Point2D</apiValueClassifier></apiValueDef><apiDesc>
+		 获取地物的几何中心点。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:Record:fieldValues:get"><apiName>fieldValues</apiName><shortdesc>
+		 获取地物的属性值集合。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取地物的属性值集合。 
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:Record:shape:get"><apiName>shape</apiName><shortdesc>
+		 获取地物的空间信息，ServerGeometry 类。<br/>ServerGeometry 类是用于描述服务端几何对象的类。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2:ServerGeometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取地物的空间信息，ServerGeometry 类。<br/>ServerGeometry 类是用于描述服务端几何对象的类。 
+		 </apiDesc></apiValueDetail><related-links><link href="" invalidHref="com.supermap.web.iServerJava2.queryServices.ServerGeometry.xml"><linktext>ServerGeometry Class</linktext></link></related-links></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:BufferQueryParameters"><apiName>BufferQueryParameters</apiName><shortdesc>
+	 缓冲区查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.queryServices:QueryParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 缓冲区查询参数类. 
+	 该类主要用于设置缓冲区查询的参数，包括缓冲区对象和空间查询方式。缓冲区查询就是利用缓冲区参数 BufferAnalstParam 对指定几何对象 Geometry 做缓冲区后，再将缓冲区结果与查询图层进行指定空间查询模式 QueryMode 的空间查询。该类中的三个属性都为必设属性以及地图名 MapName（继承自 ParametersBase 类）和 QueryParam（继承自 QueryParametersBase 类）。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:BufferQueryParameters:BufferQueryParameters"><apiName>BufferQueryParameters</apiName><shortdesc>
+		 初始化 BufferQueryParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名。
+		 </apiDesc></apiParam><apiParam><apiItemName>queryParam</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryParam</apiOperationClassifier><apiData>null</apiData><apiDesc>公用查询参数类。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 BufferQueryParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferQueryParameters:bufferParam:get"><apiName>bufferParam</apiName><shortdesc>
+		 获取或设置缓冲区参数信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:BufferAnalystParam</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置缓冲区参数信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferQueryParameters:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 获取或设置用做缓冲区的几何对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置用做缓冲区的几何对象。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.queryServices:BufferQueryParameters:queryMode:get"><apiName>queryMode</apiName><shortdesc>
+		 获取或设置空间查询操作模式常量。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="int"/></apiValueDef><apiDesc>
+		 获取或设置空间查询操作模式常量。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryByCenterService"><apiName>QueryByCenterService</apiName><shortdesc>
+	 中心点查询服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 中心点查询服务类.
+	  中心点查询就是在地图中一个或多个图层中查找以指定点（即中心点）为中心的一定范围内的所有对象。<br/>该类负责将客户端指定的中心点查询参数传递给服务端，并接收服务端返回的结果数据。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryByCenterService:QueryByCenterService"><apiName>QueryByCenterService</apiName><shortdesc>
+		 使用服务器的 URL 参数实例化 QueryByCenterService 对象。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>与客户端交互的服务器 URL。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用服务器的 URL 参数实例化 QueryByCenterService 对象。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.queryServices:QueryByCenterService:execute"><apiName>execute</apiName><shortdesc>
+		 执行查询操作。即，将客户端指定的中心点查询参数传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>远程或异步请求服务完成时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryByCenterParameters</apiOperationClassifier><apiDesc>中心点查询参数类。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行查询操作。即，将客户端指定的中心点查询参数传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.queryServices:QueryByCenterService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取服务端返回的中心点查询结果数据。 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.supermap.web.iServerJava2.queryServices:ResultSet</apiValueClassifier></apiValueDef><apiDesc>
+		 获取服务端返回的中心点查询结果数据。 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:QueryBySqlParameters"><apiName>QueryBySqlParameters</apiName><shortdesc>
+	 SQL 查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.queryServices:QueryParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SQL 查询参数类. 
+	  在一个或多个指定的图层上查询符合 SQL 条件的空间地物信息。必设参数有：地图名 MapName (ParametersBase 类的属性)和 QueryParam (QueryParametersBase 类的属性），其用于指定查询的一个或多个图层以及过滤条件 SqlParam。
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:QueryBySqlParameters:QueryBySqlParameters"><apiName>QueryBySqlParameters</apiName><shortdesc>
+		 初始化 QueryBySqlParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名称(ParametersBase 类的属性)。
+		 </apiDesc></apiParam><apiParam><apiItemName>queryParam</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryParam</apiOperationClassifier><apiData>null</apiData><apiDesc>查询参数(QueryParametersBase 类的属性）。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 QueryBySqlParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.queryServices:EntityBufferQueryParameters"><apiName>EntityBufferQueryParameters</apiName><shortdesc>
+	 地物缓冲查询参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2.queryServices:BufferQueryParameters</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 地物缓冲查询参数类.
+	 <p>该类继承 BufferQueryParameters 类，用于设置地物缓冲查询的参数。地物缓冲查询就是将指定几何对象 geometry 与指定图层 fromLayer 先进行求交查询得交集中的地物，再利用 BufferAnalystParam 对得到的地物生成缓冲区，最后将缓冲区对查询图层进行指定空间查询模式 QueryMode 的空间查询。<br/>必设参数有：fromLayer 和 BufferQueryParameters 中要求的必设参数。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.queryServices:EntityBufferQueryParameters:EntityBufferQueryParameters"><apiName>EntityBufferQueryParameters</apiName><shortdesc>
+		 初始化 EntityBufferQueryParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>地图名。
+		 </apiDesc></apiParam><apiParam><apiItemName>queryParam</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.queryServices:QueryParam</apiOperationClassifier><apiData>null</apiData><apiDesc>共用查询参数。
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 初始化 EntityBufferQueryParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.queryServices:EntityBufferQueryParameters:fromLayer:get"><apiName>fromLayer</apiName><shortdesc>
+		 与指定对象进行求交查询的服务器图层名称。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 与指定对象进行求交查询的服务器图层名称。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

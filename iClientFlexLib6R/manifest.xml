@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+
+    ADOBE SYSTEMS INCORPORATED
+    Copyright 2008 Adobe Systems Incorporated
+    All Rights Reserved.
+
+    NOTICE: Adobe permits you to use, modify, and distribute this file
+    in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--
+
+    Spark Components
+
+-->
+<componentPackage>
+
+	<!-- Flex4 Framework -->
+  
+    <component id="XMLListCollection" class="mx.collections.XMLListCollection" lookupOnly="true"/>
+
+    <!-- Special Components -->
+    <component id="State" class="mx.states.State" lookupOnly="true"/>
+	<component id="AddItems" class="mx.states.AddItems" lookupOnly="true"/>
+ 
+	<!-- Text Layout Framework (TLF) -->
+	<component id="a" class="flashx.textLayout.elements.LinkElement" lookupOnly="true"/>
+	<component id="br" class="flashx.textLayout.elements.BreakElement" lookupOnly="true"/>
+	<component id="div" class="flashx.textLayout.elements.DivElement" lookupOnly="true"/>
+	<component id="img" class="flashx.textLayout.elements.InlineGraphicElement" lookupOnly="true"/>
+	<component id="p" class="flashx.textLayout.elements.ParagraphElement" lookupOnly="true"/>
+	<component id="span" class="flashx.textLayout.elements.SpanElement" lookupOnly="true"/>
+	<component id="tab" class="flashx.textLayout.elements.TabElement" lookupOnly="true"/>
+	<component id="tcy" class="flashx.textLayout.elements.TCYElement" lookupOnly="true"/>
+	<component id="TextFlow" class="flashx.textLayout.elements.TextFlow" lookupOnly="true"/>
+	<component id="TextLayoutFormat" class="flashx.textLayout.formats.TextLayoutFormat" lookupOnly="true"/>
+    
+    <!-- rpc -->
+    <component id="AMFChannel" class="mx.messaging.channels.AMFChannel" lookupOnly="true"/>
+    <component id="CallResponder" class="mx.rpc.CallResponder" lookupOnly="true"/>
+    <component id="ChannelSet" class="mx.messaging.ChannelSet" lookupOnly="true"/>
+    <component id="Consumer" class="mx.messaging.Consumer" lookupOnly="true"/>
+    <component id="HTTPChannel" class="mx.messaging.channels.HTTPChannel" lookupOnly="true"/>
+    <component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" lookupOnly="true"/>
+    <component id="Producer" class="mx.messaging.Producer" lookupOnly="true"/>
+    <component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" lookupOnly="true"/>
+    <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation" lookupOnly="true"/>
+    <component id="RTMPChannel" class="mx.messaging.channels.RTMPChannel" lookupOnly="true"/>
+    <component id="SecureAMFChannel" class="mx.messaging.channels.SecureAMFChannel" lookupOnly="true"/>
+    <component id="SecureStreamingAMFChannel" class="mx.messaging.channels.SecureStreamingAMFChannel" lookupOnly="true"/>
+    <component id="SecureHTTPChannel" class="mx.messaging.channels.SecureHTTPChannel" lookupOnly="true"/>
+    <component id="SecureStreamingHTTPChannel" class="mx.messaging.channels.SecureStreamingHTTPChannel" lookupOnly="true"/>
+    <component id="SecureRTMPChannel" class="mx.messaging.channels.SecureRTMPChannel" lookupOnly="true"/>
+    <component id="StreamingAMFChannel" class="mx.messaging.channels.StreamingAMFChannel" lookupOnly="true"/>
+    <component id="StreamingHTTPChannel" class="mx.messaging.channels.StreamingHTTPChannel" lookupOnly="true"/>
+    <component id="WebService" class="mx.rpc.soap.mxml.WebService" lookupOnly="true"/>
+    <component id="WebServiceOperation" class="mx.rpc.soap.mxml.Operation" lookupOnly="true"/>
+
+    <!-- LCDS (formerly known as FDS) -->
+    <component id="DataService" class="mx.data.mxml.DataService" lookupOnly="true"/>
+	
+	<!-- Flex 3 Graphics -->
+    <component id="BitmapFill" class="mx.graphics.BitmapFill" lookupOnly="true"/>
+    <component id="BitmapFillMode" class="mx.graphics.BitmapFillMode" lookupOnly="true"/>
+    <component id="CompoundTransform" class="mx.geom.CompoundTransform" lookupOnly="true"/>
+    <component id="GradientEntry" class="mx.graphics.GradientEntry" lookupOnly="true"/>
+    <component id="LinearGradient" class="mx.graphics.LinearGradient" lookupOnly="true"/>
+    <component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke" lookupOnly="true"/>
+    <component id="RadialGradient" class="mx.graphics.RadialGradient" lookupOnly="true"/>
+    <component id="RadialGradientStroke" class="mx.graphics.RadialGradientStroke" lookupOnly="true"/>
+    <component id="SolidColor" class="mx.graphics.SolidColor" lookupOnly="true"/>
+    <component id="SolidColorStroke" class="mx.graphics.SolidColorStroke" lookupOnly="true"/>
+    <component id="Stroke" class="mx.graphics.Stroke" lookupOnly="true"/>
+    <component id="Transform" class="mx.geom.Transform" lookupOnly="true"/>
+
+    <!-- Flex 3 Effects -->
+    <component id="Parallel" class="mx.effects.Parallel" lookupOnly="true"/>
+    <component id="Sequence" class="mx.effects.Sequence" lookupOnly="true"/>
+    <component id="Transition" class="mx.states.Transition" lookupOnly="true"/>
+    <component id="Pause" class="mx.effects.Pause" lookupOnly="true"/>
+
+    <!-- Flex 3 Miscellaneous -->
+    <component id="MiniDebugTarget" class="mx.logging.targets.MiniDebugTarget" lookupOnly="true"/>
+    <component id="TraceTarget" class="mx.logging.targets.TraceTarget" lookupOnly="true"/>
+ 
+</componentPackage>

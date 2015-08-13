@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"  
+			   width="100%" height="100%"
+			   creationComplete="main(event)" 
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   xmlns:gear="http://www.supermap.com/gear/2010" 
+			   >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[ 
+			import com.supermap.web.gears.components.LegendItemInfo;
+			import com.supermap.web.gears.events.LegendEvent;
+			
+			import mx.events.FlexEvent;
+			import mx.events.TreeEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			[Bindable]
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var worldUrl:String; 
+			
+			private function main(event:FlexEvent):void
+			{
+				viewConfig = new ViewConfig(this); 
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);  
+			}
+	 	
+			private function legendLoadedHandler(event:LegendEvent):void
+			{
+			   	var legendItemInfo:LegendItemInfo = this.legend.layerItems[0] as LegendItemInfo;
+				legendItemInfo.imageSource	 = "../assets/world.png";
+				legendItemInfo.imageWidth	 = 24;
+				legendItemInfo.imageHeight	 = 24;
+			}
+		    	    
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				this.worldUrl = viewConfig.webUrl + ViewConfig.World_MAP;   
+			}
+		    
+		]]>
+	</fx:Script>
+	
+    <fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace ic "http://www.supermap.com/iclient/2010";
+		@namespace is "http://www.supermap.com/iserverjava/2010";
+        mx|HScrollBar
+		{
+			chrome-color: #ffffff; 
+		} 
+		mx|VScrollBar
+		{
+			chrome-color: #ffffff;	 
+		}
+	</fx:Style>
+	    
+	<fx:Declarations>
+		<!--filters-->
+		<s:GlowFilter id="glow" blurX="8" blurY="8" color="0x666666" quality="2" strength="1"/>   
+	</fx:Declarations>
+	
+	<!--添加地图-->
+	<s:Group id="container" width="100%" height="100%"> 
+		<ic:Map id="map" width="100%" height="100%" x="0" y="0"  panEasingFactor="0.4" zoomDuration="200"> 
+			<ic:TiledDynamicRESTLayer  id="worldMap" url="{this.worldUrl}" />	 
+		</ic:Map>  
+		<s:BorderContainer minHeight="102" cornerRadius="10"  right="10" borderColor="0x5676ed" filters="{[glow]}"
+						   borderAlpha="0.55" borderWeight="2" bottom="10" contentBackgroundAlpha="0.95">
+			 <s:Rect width="100%" height="100%" radiusX="9.0" radiusY="9.0">
+				<s:fill>
+					<s:SolidColor color="0x4096EE"/>
+				</s:fill> 
+			 </s:Rect>
+			 <s:VGroup left="5" right="5" top="5" bottom="5">
+				 <mx:Text text="图例" height="24" width="50" color="0xffffff" fontSize="16" fontFamily="微软雅黑"/>
+				 <gear:Legend top="0" id="legend" height="300"  width="200" 
+							legendLoaded="legendLoadedHandler(event)"    
+							map="{this.map}" 
+							layerIDs="{[this.worldMap.id]}"   skinClass="com.supermap.web.gears.components.skins.LegendSkin"
+							> 
+				 </gear:Legend>
+			 </s:VGroup>
+			 
+		</s:BorderContainer>
+  
+	</s:Group>  
+</s:Application>

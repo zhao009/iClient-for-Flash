@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!--
+
+	SUPERMAP ICLIENT 6R FOR FLEX 
+	Copyright 2005-2010 SuperMap Software Co., Ltd
+	All Rights Reserved.
+
+-->
+
+<componentPackage>
+
+		<!-- print -->
+	<component id="ImageLoadIOEvent" class="com.supermap.web.gears.print.ImageLoadIOEvent"/>
+	<component id="MapPrintContainer" class="com.supermap.web.gears.print.MapPrintContainer"/>
+	
+	<!-- legend -->
+	<component id="Legend" class="com.supermap.web.gears.components.Legend"/>
+	<component id="LegendItemInfo" class="com.supermap.web.gears.components.LegendItemInfo"/>
+	
+	<component id="LegendSkin" class="com.supermap.web.gears.components.skins.LegendSkin"/>
+	
+	<!-- events -->
+	<component id="LegendEvent" class="com.supermap.web.gears.events.LegendEvent"/>
+</componentPackage>

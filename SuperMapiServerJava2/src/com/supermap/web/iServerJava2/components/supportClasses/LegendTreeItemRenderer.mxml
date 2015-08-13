@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+@private
+-->
+<s:MXTreeItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					  xmlns:s="library://ns.adobe.com/flex/spark" 
+					  xmlns:mx="library://ns.adobe.com/flex/mx" 
+					  xmlns:supportClasses="com.supermap.web.iServerJava2.components.supportClasses.*" 
+					  >
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.sm_internal;
+			
+			import mx.controls.Tree;
+		
+		    use namespace sm_internal;
+			
+			[Embed(source="/../assets/legend/line.png")]
+			private var linePng:Class;
+			
+			[Embed(source="/../assets/legend/cad.png")]
+			private var cadPng:Class;
+			
+			[Embed(source="/../assets/legend/grid.png")]
+			private var gridPng:Class;
+			
+			[Embed(source="/../assets/legend/image.png")]
+			private var imagePng:Class;
+			
+			[Embed(source="/../assets/legend/linem.png")]
+			private var linemPng:Class;
+			
+			[Embed(source="/../assets/legend/network.png")]
+			private var networkPng:Class;
+			
+			[Embed(source="/../assets/legend/point.png")]
+			private var pointPng:Class;
+			
+			[Embed(source="/../assets/legend/region.png")]
+			private var regionPng:Class;
+			
+			[Embed(source="/../assets/legend/tabular.png")]
+			private var tabularPng:Class;			
+			
+			[Embed(source="/../assets/legend/text.png")]
+			private var textPng:Class;
+			
+			[Embed(source="/../assets/legend/undefined.png")]
+			private var undefinedPng:Class;
+			  
+			protected function image1_ioErrorHandler(event:IOErrorEvent):void
+			{
+				this.pngIcon.removeChild(this.pngIcon.content); 
+			}
+  
+			private function getImageType(data:TreeItem):Class
+			{ 
+		
+				var type:int = data.legendItemInfo.layerSettingType;
+				switch(type)
+				{
+					case 149:
+						return this.cadPng;
+					case 83:
+						return this.gridPng;
+					case 81:
+						return this.imagePng;
+					case 3:
+						return this.linePng;
+					case 35:
+						return this.linemPng;
+					case 4:
+						return this.networkPng;
+					case 1:
+						return this.pointPng;
+					case 5:
+						return this.regionPng;
+					case 0:
+						return this.tabularPng;
+					case 7:						
+//						data.legendItemInfo.imageSource = "/../assets/legend/text.png";
+						return this.textPng;						
+					case -1: 
+						return this.undefinedPng;
+						
+					default:
+						return this.undefinedPng; 
+				}
+			}  
+			
+			private function isUseDefaultImage():Boolean
+			{ 
+				if((this.data as TreeItem).legendItemInfo.imageSource == null || (this.data as TreeItem).legendItemInfo.imageSource.length == 0)
+				{
+					
+					return true;
+				}
+//				for(var i:int = 0; i < (this.data as TreeItem).length; i++)
+//				{
+//					(this.data as TreeItem);
+//				}
+			 	return false;
+			}
+		]]>
+	</fx:Script>
+                          
+	<s:states>
+		<s:State name="normal" />            
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>
+	<s:HGroup id="hGroup" height="24" left="0" right="0" top="0" bottom="0" verticalAlign="middle" 
+			  >
+		<s:Rect id="indentationSpacer" width="{treeListData.indent}" alpha="0">
+			<s:fill>
+				<s:SolidColor color="0" />
+			</s:fill>
+		</s:Rect>
+		<s:Group id="disclosureGroup">
+			<s:BitmapImage source="{treeListData.disclosureIcon}" visible="{(this.data as TreeItem).legendItemInfo.isHasChildren}" />
+		</s:Group>
+		<s:Group height="{(this.data as TreeItem).legendItemInfo.imageHeight > 24 ? 24 : (this.data as TreeItem).legendItemInfo.imageHeight}">
+			<s:layout>
+				<s:BasicLayout/>
+			</s:layout>
+			<mx:Image id="pngIcon" source="{this.isUseDefaultImage() == true ? this.getImageType(data as TreeItem) : (this.data as TreeItem).legendItemInfo.imageSource}" 
+					  width="{(this.data as TreeItem).legendItemInfo.imageWidth > 24 ? 24 : (this.data as TreeItem).legendItemInfo.imageWidth}" 
+					  alpha="1"
+					  height="{(this.data as TreeItem).legendItemInfo.imageHeight}" ioError="image1_ioErrorHandler(event)"/>
+                      
+		</s:Group> 
+		<s:Label id="labelField" text="{(this.data as TreeItem).legendItemInfo.name}" paddingTop="2"/>
+	</s:HGroup>
+</s:MXTreeItemRenderer>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2008"
+			   creationComplete="main()"
+			   width="100%" height="100%">
+	<!--地图切换-->
+	<fx:Script>
+		<![CDATA[		
+			[Bindable]private var viewConfig:ViewConfig;
+			
+			private function main():void
+			{
+				viewConfig = new ViewConfig(this);
+				
+				world_check.selected = world.visible;
+				world_day_check.selected = world_day.visible;
+				
+				world_slider.value = world.alpha * 100;
+				world_day_slider.value = world_day.alpha * 100;
+				
+				world_slider.enabled = world.visible;
+				world_day_slider.enabled = world_day.visible;
+			}
+			
+			//CheckBox选择事件，根据选择的CheckBox显示相应的地图
+			private function onCheckBoxClick():void
+			{
+				world.visible = world_check.selected;
+				world_day.visible = world_day_check.selected;
+				world_slider.enabled = world.visible;
+				world_day_slider.enabled = world_day.visible;
+			}
+			
+			//Slider滑动事件，定义地图的不透明度
+			private function onSliderChange():void
+			{
+				world.alpha = world_slider.value / 100;
+				world_day.alpha = world_day_slider.value / 100;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}">
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}"
+									 id="world"
+									 mapName="World_Night"
+									 mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600"/>
+		<is:TiledDynamicIServerLayer url="{viewConfig.webUrl}"
+									 mapName="World_Day"
+									 id="world_day"
+									 mapServiceAddress="{viewConfig.gisUrl}"
+									 mapServicePort="8600"
+									 alpha="0.5"/>
+	</ic:Map>
+	
+	<!--定义地图切换窗口-->
+	<s:Panel id="titlewin" title="地图切换：" fontSize="12" right="5" top="10" backgroundColor="#454343" backgroundAlpha="0.48">
+		<s:VGroup width="100%" height="100%" gap="10" x="0">
+			<mx:Spacer height="3"/>
+			<s:HGroup top="5" width="100%" verticalAlign="middle">
+				<mx:Spacer height="3"/>
+				<mx:Label text="选择地图：" width="90"/>
+				<s:HGroup gap="30">
+					<s:CheckBox id="world_check" label="World_Night" click="onCheckBoxClick()" />
+					<s:CheckBox id="world_day_check" label="World_Day" click="onCheckBoxClick()"/>
+				</s:HGroup>
+			</s:HGroup>
+			<mx:Spacer height="3"/>
+			<s:HGroup width="100%" left="5" verticalAlign="middle">
+				<mx:Spacer height="3"/>
+				<s:Label text="World_Night：" width="90"/>
+				<s:HSlider id="world_slider" minimum="0" maximum="100" focusEnabled="false"
+						   liveDragging="true" width="197" change="onSliderChange()"/>
+			</s:HGroup>
+			<mx:Spacer height="3"/>
+			<s:HGroup width="100%" bottom="5" left="5" verticalAlign="middle">
+				<mx:Spacer height="3"/>
+				<s:Label text="World_Day" width="90"/>
+				<s:HSlider id="world_day_slider" minimum="0" maximum="100" focusEnabled="false"
+						   liveDragging="true" width="197" change="onSliderChange()"/>
+			</s:HGroup>
+			<mx:Spacer height="3"/>
+		</s:VGroup>
+	</s:Panel>
+</s:Application>

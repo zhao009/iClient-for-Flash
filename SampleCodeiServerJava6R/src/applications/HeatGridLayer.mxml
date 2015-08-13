@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<!-- 定义InfoWindow内容 -->
+		<s:VGroup id="content" horizontalCenter="0" paddingLeft="8" paddingRight="8" paddingTop="2"> 
+			<s:Label text="{smId}"/>
+			<s:Label text="{country}"/>
+			<s:Label text="{xCoord}"/>
+			<s:Label text="{yCoord}"/>
+			
+		</s:VGroup>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.DrawLine;
+			import com.supermap.web.actions.DrawPoint;
+			import com.supermap.web.actions.DrawPolygon;
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.core.styles.TextStyle;
+			import com.supermap.web.events.DrawEvent;
+			import com.supermap.web.events.ZoomEvent;
+			import com.supermap.web.iServerJava6R.dataServices.GetFeaturesByGeometryParameters;
+			import com.supermap.web.iServerJava6R.dataServices.GetFeaturesByGeometryService;
+			import com.supermap.web.iServerJava6R.dataServices.GetFeaturesResult;
+			import com.supermap.web.iServerJava6R.queryServices.SpatialQueryMode;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.events.FaultEvent;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var dataSetUrl:String;
+			[Bindable]
+			private var namess:String = "";
+			[Bindable]
+			private var xCoord:String = "";
+			[Bindable]
+			private var yCoord:String = "";
+			[Bindable]
+			private var smId:String = "";
+			[Bindable]
+			private var country:String = "";
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.World_MAP1;
+				dataSetUrl = viewConfig.webUrl + ViewConfig.GetFeatures;
+				queryPoint();
+			}
+			//向服务器发送请求，获取数据
+			private function queryPoint():void
+			{
+				var points:Array = [
+					new Point2D(-180,90),
+					new Point2D(180,90),
+					new Point2D(180,-90),
+					new Point2D(-180,-90),
+					new Point2D(-180,90)
+				];
+				var geoRegion:GeoRegion = new GeoRegion();
+				geoRegion.addPart(points);
+				//设置查询的数据
+				var queryParams:Array = ["World:Capitals"];
+				var queryByGeometryParameters:GetFeaturesByGeometryParameters = new GetFeaturesByGeometryParameters();
+				queryByGeometryParameters.datasetNames = queryParams;
+				queryByGeometryParameters.geometry = geoRegion;
+				//空间查询模式设为相交空间查询模式
+				queryByGeometryParameters.spatialQueryMode = SpatialQueryMode.INTERSECT;
+				queryByGeometryParameters.fromIndex = 0;
+				queryByGeometryParameters.toIndex = -1;
+				
+				var geoSelService:GetFeaturesByGeometryService = new GetFeaturesByGeometryService(this.dataSetUrl);
+				geoSelService.processAsync(queryByGeometryParameters, new AsyncResponder(this.dispalyQueryRecords, excuteErros) );
+			}
+			//展示查询结果
+			private function dispalyQueryRecords(result:GetFeaturesResult, mark:Object = null):void
+			{
+				var features:Array = result.features;		
+				if(features.length == 0)
+				{
+					Alert.show("查询结果为空", "提示", 4, this);
+					return; 
+				}
+				else
+				{
+					this.hgl.features = result.features;
+					//定义网格style
+					hgl.items = [
+						{
+							start:0,
+							end:1,
+							textStyle:new TextStyle(null,0xff0000),//网格Label的Style
+							gridStyle:new PredefinedFillStyle("solid",0xB8E4B8)//网格的Style
+						},
+						{
+							start:1,
+							end:2,
+							textStyle:new TextStyle(null,0xff0000),
+							gridStyle:new PredefinedFillStyle("solid",0x66dd66)
+						},
+						{
+							start:2,
+							end:3,
+							textStyle:new TextStyle(null,0xff0000),
+							gridStyle:new PredefinedFillStyle("solid",0x00ee00)
+						},
+						{
+							start:3,
+							end:4,
+							textStyle:new TextStyle(null,0xff0000),
+							gridStyle:new PredefinedFillStyle("solid",0x008800)
+						},
+						{
+							start:4,
+							end:5,
+							textStyle:new TextStyle(null,0xff0000),
+							gridStyle:new PredefinedFillStyle("solid",0xdf8505)
+						},
+						{
+							start:5,
+							end:6,
+							textStyle:new TextStyle(null,0xff0000),
+							gridStyle:new PredefinedFillStyle("solid",0xCC9933)
+						},
+						{
+							start:6,
+							end:100,
+							textStyle:new TextStyle(null,0xff0000),
+							gridStyle:new PredefinedFillStyle("solid",0xFF0000)
+						}
+					];
+					
+					for each(var feature:Feature in result.features)
+					{
+						feature.addEventListener(MouseEvent.CLICK,clickFeature);
+					}
+				}
+			}
+			//点击feature
+			private function clickFeature(event:MouseEvent):void
+			{
+				
+				var feature:Feature = event.target as Feature;
+				this.namess = feature.attributes["CAPITAL"];
+				this.smId = "SMID：" + feature.attributes["SMID"];
+				this.country = "国家：" + feature.attributes["COUNTRY"];
+				this.xCoord = "x 坐标：" + feature.attributes["SMX"];
+				this.yCoord = "y 坐标：" + feature.attributes["SMY"];
+				
+				map.infoWindow.content = content;
+				map.infoWindow.show(new Point2D(feature.geometry.center.x, feature.geometry.center.y));
+				map.infoWindow.label = namess;
+				map.infoWindow.showShadow=true;
+				map.infoWindow.infoWindowLabel.setStyle('color', 0x000000); 
+				map.infoWindow.infoWindowLabel.setStyle('fontSize', "14");
+				map.infoWindow.infoWindowLabel.setStyle('paddingBottom', "15");
+				map.infoWindow.infoWindowLabel.setStyle('fontFamily', "微软雅黑");
+				map.infoWindow.infoWindowLabel.setStyle("lineBreak","toFit");
+				map.infoWindow.infoWindowLabel.maxDisplayedLines = -1;
+				
+				map.infoWindow.infoWindowLabel.showTruncationTip = true;
+			}
+			
+			private function excuteErros(error:FaultEvent, mark:Object):void
+			{
+				Alert.show("查询失败","抱歉",4,this);
+			}
+			//隐藏infoWindow
+			protected function map_zoomEndHandler(event:ZoomEvent):void
+			{
+				if(event.level<=hgl.spreadZoom)
+				{
+					map.infoWindow.hide();
+				}
+			}
+			
+		
+			
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%" 
+			scales="{[1.25e-9, 2.5e-9, 5e-9, 1e-8, 2e-8, 4e-8, 8e-8, 1.6e-7, 3.205e-7, 6.4e-7]}"
+			zoomEnd="map_zoomEndHandler(event)">
+		<ic:TiledDynamicRESTLayer url="{this.mapUrl}" />
+		<ic:HeatGridLayer id="hgl"/>
+	</ic:Map> 
+</s:Application>

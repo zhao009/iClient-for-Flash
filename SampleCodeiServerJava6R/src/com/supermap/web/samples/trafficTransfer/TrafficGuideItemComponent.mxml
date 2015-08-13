@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="100%" currentState="selectedHide">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.geometry.GeoLine;
+			import com.supermap.web.core.geometry.GeoPoint;
+			import com.supermap.web.core.styles.PictureMarkerStyle;
+			import com.supermap.web.core.styles.PredefinedLineStyle;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferGuideItem;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferPathParameters;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferPathResult;
+			import com.supermap.web.iServerJava6R.trafficTransferAnalystServices.TransferPathService;
+			import com.supermap.web.mapping.FeaturesLayer;
+			import com.supermap.web.mapping.Map;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			[Bindable]
+			public static var startStopName:String;
+			[Bindable]
+			public static var endStopName:String;
+			[Bindable]
+			public static var selectedStartStopID:int;
+			[Bindable]
+			public static var selectedEndStopID:int;
+			[Bindable]
+			public static var trafficTransferUrl:String;
+			[Bindable]
+			public static var featuresLayer:FeaturesLayer;
+			[Bindable]
+			public static var map:Map;
+			
+			[Bindable]
+			public var pathListData:ArrayCollection;
+			[Bindable]
+			public var transferLinesForPath:Array = [];
+			[Bindable]
+			public var transferLineName:String;
+			
+			public var isShowedTransferLines:Boolean;
+			
+			
+			protected function group1_clickHandler(event:MouseEvent):void
+			{
+				if(this.currentState == "selectedShow")
+				{
+					this.currentState = "selectedHide";
+				}
+				else
+				{
+					this.currentState = "selectedShow";
+					if(!isShowedTransferLines)
+					{
+						this.excuteTransferPathService();
+					}
+					
+				}
+				
+				if(isShowedTransferLines)
+					this.displayTransferLines();
+				event.stopPropagation();
+			}
+			
+			//执行交通换乘路径分析服务
+			private function excuteTransferPathService():void
+			{
+				var transferPathService:TransferPathService = new TransferPathService(trafficTransferUrl);
+				var transferPathParameters:TransferPathParameters = new TransferPathParameters();
+				transferPathParameters.transferLines = transferLinesForPath;
+				
+				transferPathParameters.points = [selectedStartStopID, selectedEndStopID];
+				
+				transferPathService.processAsync(transferPathParameters, new AsyncResponder(this.displayAnalystResult, 
+					function (object:Object, mark:Object = null):void
+					{
+						Alert.show("公交换乘分析失败！");
+					}, null));
+			}
+			
+			private function displayAnalystResult(queryResult:TransferPathResult, mark:Object = null):void
+			{
+				pathListData = new ArrayCollection(queryResult.transferGuide.items);
+				this.isShowedTransferLines = true;
+				// 点击换乘路线面板，地图上高亮其对应的路线
+				this.displayTransferLines();
+			}
+			
+			private function displayTransferLines():void
+			{
+				if(featuresLayer.numFeatures)
+					featuresLayer.clear();
+				
+				// 取出起点和终点坐标
+				var guideItems:Array = pathListData.toArray();
+				var startStop:Point2D = (guideItems[0] as TransferGuideItem).startPosition;
+				var endStop:Point2D = (guideItems[guideItems.length - 1] as TransferGuideItem).endPosition;
+				
+				var startStopStyle:PictureMarkerStyle = new PictureMarkerStyle("../assets/path/startSign.png");
+				var endStopStyle:PictureMarkerStyle = new PictureMarkerStyle("../assets/path/endSign.png");
+				startStopStyle.yOffset = 20;
+				endStopStyle.yOffset = 20;
+				
+				// 构建起点和终点的图片要素对象
+				var startStopFeature:Feature = new Feature(new GeoPoint(startStop.x, startStop.y), startStopStyle);
+				var endStopFeature:Feature = new Feature(new GeoPoint(endStop.x, endStop.y), endStopStyle);
+				
+				// 构建换乘导引所有路径的要素对象，并添加到要素图层上
+				for(var i:int = 0; i < guideItems.length; i++)
+				{
+					var tgi:TransferGuideItem = guideItems[i] as TransferGuideItem;
+					var geoline:GeoLine = tgi.route;
+					var lineFeature:Feature = new Feature(geoline, new PredefinedLineStyle(PredefinedLineStyle.SYMBOL_SOLID, 5276389,1,4));
+					featuresLayer.addFeature(lineFeature);
+				}
+				
+				featuresLayer.addFeature(startStopFeature);
+				featuresLayer.addFeature(endStopFeature);
+				
+				// 计算起点和终点的外接矩形，用来作为地图的显示范围
+				var startStopPoint:GeoPoint = startStopFeature.geometry as GeoPoint;
+				var endStopPoint:GeoPoint = endStopFeature.geometry as GeoPoint;
+				
+				var left:Number = Math.min(startStopPoint.x,  endStopPoint.x);
+				var right:Number = Math.max(startStopPoint.x, endStopPoint.x);
+				var top:Number = Math.max(startStopPoint.y, endStopPoint.y);
+				var bottom:Number = Math.min(startStopPoint.y, endStopPoint.y);
+				
+				map.viewBounds = new Rectangle2D(left, bottom, right, top).expand(3);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="selectedHide"/>
+		<s:State name="selectedShow"/>
+	</s:states>
+	
+	<s:Rect width="100%"
+			height="100%">
+		<s:fill>
+			<s:SolidColor color="#e5f0ff"/>
+		</s:fill>
+	</s:Rect>
+	<s:Rect width="100%"
+			height="8">
+		<s:fill>
+			<s:SolidColor color="#ffffff"/>
+		</s:fill>
+	</s:Rect>
+		
+	<s:Label width="100%"
+			 fontSize="15"
+			 left="3"
+			 right="3"
+			 top="3"
+			 bottom="3"
+			 text= "{this.transferLineName}"
+			 paddingTop="10"
+			 click="group1_clickHandler(event)"
+			 verticalCenter="0"
+			 backgroundColor="#b2d2ff"/>
+	
+	<s:VGroup width="100%"
+			  height="100%"
+			  left="3"
+			  right="3"
+			  top="3"
+			  includeIn="selectedShow"
+			  bottom="3" horizontalAlign="center">
+		
+		<s:Label width="100%"
+				 fontSize="15"
+				 text= "{this.transferLineName}"
+				 paddingTop="10"
+				 click="group1_clickHandler(event)"
+				 verticalCenter="0"
+				 backgroundColor="#b2d2ff"/>
+		
+		<s:HGroup id="startGroup"
+				  width="100%"
+				  height="50%"
+				  verticalAlign="middle">
+			<mx:Image source="../assets/path/start.png"/>
+			<s:Label id="startInfo"
+					 height="30"
+					 text="{startStopName}"
+					 fontSize="15"
+					 paddingTop="8"
+					 backgroundColor="#b2d2ff"/>
+		</s:HGroup>
+		<s:List id="pathList" itemRenderer="com.supermap.web.samples.trafficTransfer.PathListRenderer" verticalScrollPolicy="off"
+				contentBackgroundColor="0xffffff" width="100%" dataProvider="{pathListData}" height="{pathListData.length * 32}"/>
+		<s:HGroup id="endGroup"
+				  width="100%"
+				  height="50%"
+				  verticalAlign="middle">
+			<mx:Image source="../assets/path/end.png" />
+			<s:Label id="endInfo"
+					 height="30"
+					 text="{endStopName}"
+					 fontSize="15"
+					 right="0"
+					 paddingTop="8"
+					 backgroundColor="#b2d2ff"/>
+		</s:HGroup>
+	</s:VGroup>
+</s:Group>

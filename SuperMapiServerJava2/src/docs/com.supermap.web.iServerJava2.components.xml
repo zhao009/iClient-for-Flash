@@ -1,0 +1,96 @@
+<apiPackage id="com.supermap.web.iServerJava2.components"><apiName>com.supermap.web.iServerJava2.components</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava2.components:Legend"><apiName>Legend</apiName><shortdesc>
+	 SuperMap iServer Java 2008 地图图例控件.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>spark.components.supportClasses:SkinnableComponent</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 SuperMap iServer Java 2008 地图图例控件.
+	 <p>图例控件用于显示与之关联的地图中所有图层及其子图层的标题及符号。其中图层将以一级结点显示于图例控件中，图层中所包含的子图层将以二级结点显示于控件中。若图层中包含专题图类型子图层，则该专题图所包含的专题子项以三级结点显示于控件中。<br/>目前该控件支持 SuperMap iServer Java 6R 服务提供的动态分块 REST 图层（TiledDynamicRESTLayer）和动态 REST 图层（DynamicRESTLayer）两种。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><adobeApiEvent id="com.supermap.web.iServerJava2.components:Legend_flash.events.event_legendLoaded"><apiName>legendLoaded</apiName><shortdesc/><prolog/><adobeApiEventDetail><adobeApiEventDef><adobeApiEventClassifier>flash.events.event</adobeApiEventClassifier><apiGeneratedEvent/></adobeApiEventDef><apiDesc></apiDesc></adobeApiEventDetail></adobeApiEvent><apiConstructor id="com.supermap.web.iServerJava2.components:Legend:Legend"><apiName>Legend</apiName><shortdesc>
+		 初始化 Legend 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 Legend 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.components:Legend:protected:getCurrentSkinState"><apiName>getCurrentSkinState</apiName><shortdesc>
+		 获取图例控件当前的状态，包括：disabled 和 normal 两种值.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiDesc>
+		 
+		 </apiDesc><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 获取图例控件当前的状态，包括：disabled 和 normal 两种值.
+		 <p>当属性 map 为 null，或 map.layers 为 null，或 Legend.enabled = false 时，图例控件的状态为 disabled，否则为 normal。</p> 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.components:Legend:LEGEND_LOADED"><apiName>LEGEND_LOADED</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>legendLoaded</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:Legend:dataProvider:get"><apiName>dataProvider</apiName><shortdesc>
+		 获取图例控件用于设置tree组件dataProvider的数据源. .</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取图例控件用于设置tree组件dataProvider的数据源. . 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:Legend:isExpandChildrenItem:get"><apiName>isExpandChildrenItem</apiName><shortdesc>
+		 展开Legend组件所有节点。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 展开Legend组件所有节点。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:Legend:isShowOnlyVisibleLayers:get"><apiName>isShowOnlyVisibleLayers</apiName><shortdesc>
+		 获取或设置图例控件中是否只显示可见图层，ture 表示仅显示可见图层，false 反之。默认值为 false。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置图例控件中是否只显示可见图层，ture 表示仅显示可见图层，false 反之。默认值为 false。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:Legend:layerIDs:get"><apiName>layerIDs</apiName><shortdesc>
+		 获取或设置显示于图例控件中的图层 ID 集合。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 获取或设置显示于图例控件中的图层 ID 集合。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:Legend:layerItems:get"><apiName>layerItems</apiName><shortdesc>
+		 获取或设置图例控件的数据集。ArrayCollection中每个元素为一个LegendItemInfo对象,对应图例控件树形外观的一个结点. .</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="mx.collections:ArrayCollection"/></apiValueDef><apiDesc>
+		 获取或设置图例控件的数据集。ArrayCollection中每个元素为一个LegendItemInfo对象,对应图例控件树形外观的一个结点. .
+		 <p>即 layerItems = [Object_1,object_2,…,object_i]，而 object_i = {serverLayer_1,serverLayer_2,…serverLayer_n}。</p>
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:Legend:map:get"><apiName>map</apiName><shortdesc>
+		 获取或设置与图例控件绑定的地图组件——Map。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.mapping:Map</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置与图例控件绑定的地图组件——Map。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.components:LegendItemInfo"><apiName>LegendItemInfo</apiName><shortdesc>
+	 图例控件子项信息类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>flash.events:IEventDispatcher</apiBaseInterface><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 图例控件子项信息类.
+	 <p>LegendItemInfo 与图例控件（Legend）中的每个结点（所有结点，包括子结点）是一一对应的，而每个结点与地图中的图层（包括子图层）也是一一对应的。因此，结点、LegendItemInfo、图层三者均是 1：1：1 的关系。总之， LegendItemInfo 是用于描述图例控件中的结点及结点所对应的图层信息。<br/>该类用于描述每个结点的信息，包括结点名称、与结点关联的图层（或子图层）是否可见等等。</p> 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.components:LegendItemInfo:LegendItemInfo"><apiName>LegendItemInfo</apiName><shortdesc>
+		 初始化 LegendItemInfo 类的新实例。   
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 LegendItemInfo 类的新实例。   
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.components:LegendItemInfo:addEventListener"><apiName>addEventListener</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam><apiParam><apiItemName>listener</apiItemName><apiType value="Function"/></apiParam><apiParam><apiItemName>useCapture</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam><apiParam><apiItemName>priority</apiItemName><apiType value="int"/><apiData>0</apiData></apiParam><apiParam><apiItemName>weakRef</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.iServerJava2.components:LegendItemInfo:dispatchEvent"><apiName>dispatchEvent</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiType value="flash.events:Event"/></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.iServerJava2.components:LegendItemInfo:hasEventListener"><apiName>hasEventListener</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.iServerJava2.components:LegendItemInfo:removeEventListener"><apiName>removeEventListener</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam><apiParam><apiItemName>listener</apiItemName><apiType value="Function"/></apiParam><apiParam><apiItemName>useCapture</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.supermap.web.iServerJava2.components:LegendItemInfo:willTrigger"><apiName>willTrigger</apiName><shortdesc>
+ </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam></apiOperationDef><apiDesc>
+ </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:description:get"><apiName>description</apiName><shortdesc>
+		 获取或设置图例子项描述信息。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置图例子项描述信息。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:imageHeight:get"><apiName>imageHeight</apiName><shortdesc>
+		 获取或设置图层标识符号的高度。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置图层标识符号的高度。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:imageSource:get"><apiName>imageSource</apiName><shortdesc>
+		 获取或设置与当前 LegendItemInfo 对象关联的图层（或子图层）的图片路径.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置与当前 LegendItemInfo 对象关联的图层（或子图层）的图片路径.
+		 <p>例如，SuperMap 桌面产品中用如下图所示的图片来表示单值专题图：<br/><img src="../../../../../images/legendImage.png"/><br/>用户可通过该属性使用图片作为图层图例.</p> 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:imageWidth:get"><apiName>imageWidth</apiName><shortdesc>
+		 获取或设置图层标识符号的宽度。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 获取或设置图层标识符号的宽度。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:isHasChildren:get"><apiName>isHasChildren</apiName><shortdesc>
+		 判断与当前 LegendItemInfo 对象对应的图层是否有子图层。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 判断与当前 LegendItemInfo 对象对应的图层是否有子图层。  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:isVisible:get"><apiName>isVisible</apiName><shortdesc>
+		 获取或设置当前 LegendItemInfo 对象对应的图例结点是否可见。由服务端返回的子图层visible字段作为初始值。 
+		  如果用户设置此属性，会立即改变客户端图例的显示样式而不改变服务端的信息。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 获取或设置当前 LegendItemInfo 对象对应的图例结点是否可见。由服务端返回的子图层visible字段作为初始值。 
+		  <p>如果用户设置此属性，会立即改变客户端图例的显示样式而不改变服务端的信息。</p>  
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:layerItems:get"><apiName>layerItems</apiName><shortdesc>
+		 获取当前LegendItemInfo的子节点 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="mx.collections:ArrayCollection"/></apiValueDef><apiDesc>
+		 获取当前LegendItemInfo的子节点 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.components:LegendItemInfo:name:get"><apiName>name</apiName><shortdesc>
+		 获取或设置图例子项对应的结点名称。  
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty isBindable="true"/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 获取或设置图例子项对应的结点名称。  
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>

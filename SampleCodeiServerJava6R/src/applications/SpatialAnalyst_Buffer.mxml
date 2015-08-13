@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Rectangle2D;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.iServerJava6R.FilterParameter;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.BufferDistance;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.BufferEndType;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.BufferSetting;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetBufferAnalystParameters;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetBufferAnalystResult;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetBufferAnalystService;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var dataSetUrl:String;
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE, readURLCompelte);
+			} 
+			
+			//获取服务地址
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.JingJin_MAP;
+				dataSetUrl = viewConfig.webUrl + ViewConfig.SpatialAnylyat_DataSet;
+			}
+			
+			//清除缓冲区
+			private function removeFeature():void
+			{
+				this.bufferLayer.clear();
+			}
+			
+			//平移
+			private function panMap():void
+			{
+				this.map.action = new Pan(this.map);
+			} 
+			
+			//执行缓冲区分析
+			private function dataSetBuffer_clickHandler(event:MouseEvent):void
+			{
+				//缓冲距离
+				var bufferDistance:BufferDistance = new BufferDistance();
+				bufferDistance.value = (Number)(this.bufferdist.text);
+				
+				//定义缓冲区分析通用参数
+				var bufferSetting:BufferSetting = new BufferSetting();
+				bufferSetting.leftDistance = bufferDistance;
+				bufferSetting.endType = BufferEndType.ROUND; 
+				bufferSetting.semicircleLineSegment = 12;
+				
+				//缓冲过滤条件
+				var filterParameter:FilterParameter = new FilterParameter();
+				filterParameter.attributeFilter = "SmID=19";
+				
+				//数据集缓冲区分析参数设置
+				var datasetBufferAnalystParameters:DatasetBufferAnalystParameters = new DatasetBufferAnalystParameters();
+				datasetBufferAnalystParameters.bufferSetting = bufferSetting;
+				datasetBufferAnalystParameters.filterQueryParameter = filterParameter;
+				datasetBufferAnalystParameters.dataset = "Landuse_R@Jingjin";
+				
+				var datasetBufferService:DatasetBufferAnalystService = new DatasetBufferAnalystService(this.dataSetUrl);
+				datasetBufferService.processAsync(datasetBufferAnalystParameters, new AsyncResponder(processCompleted, excuteErros, null));
+			}
+			
+			//分析成功时调用的处理函数
+			private function processCompleted(result:DatasetBufferAnalystResult, mark:Object = null):void
+			{
+				if(result.recordset.features.length != 0)
+				{
+					for each(var feature:Feature in result.recordset.features)
+					{
+						feature.style = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_SOLID, 0x0099ff, 0.7);
+						this.bufferLayer.addFeature(feature);
+					}
+					
+					this.map.viewBounds = new Rectangle2D(116, 40, 117, 41);
+				}
+			}
+			
+			//分析失败时调用的处理函数
+			private function excuteErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("缓冲区分析失败",null,4,this);
+			}
+			
+			//全幅
+			private function viewEntireMap(event:MouseEvent):void
+			{
+				map.viewEntire();
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map"  height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer url="{this.mapUrl}" enableServerCaching="false"/>
+		<ic:FeaturesLayer id="bufferLayer"/>
+	</ic:Map> 
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup height="100%" verticalAlign="middle" left="10">
+			<s:Label text="SmID=19 的经济林缓冲距离:" fontSize="15" fontWeight="bold" height="26" top="100" verticalAlign="middle" fontFamily="宋体"/>
+			<s:TextInput id="bufferdist" text="2000" fontSize="15" fontWeight="bold" toolTip="单位：米" width="45"/>
+			<s:Label text="米" fontSize="15" fontWeight="bold" height="26" top="100" verticalAlign="middle" fontFamily="宋体"/>
+			<mx:VRule height="40" chromeColor="#434242"/>
+			<s:Button label="缓冲区分析" click="dataSetBuffer_clickHandler(event)" fontSize="15" height="26" fontFamily="宋体" fontWeight="bold"/>
+		</s:HGroup>
+		<s:HGroup height="100%" verticalAlign="middle" right="10">
+			<s:Button skinClass="skins.clearBtnSkin"
+					  id="AreaAnalyst" toolTip="移除" 
+					  click="removeFeature()"/>
+			<s:Button skinClass="skins.panBtnSkin" toolTip="平移" 
+					  click="panMap()"/>
+			<s:Button id="entire" toolTip="全幅显示" 
+					  skinClass="skins.viewEntireSkin" click="viewEntireMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:ic="http://www.supermap.com/iclient/2010"
+			   xmlns:is="http://www.supermap.com/iserverjava/2010" 
+			   width="100%" height="100%"
+			   creationComplete="initApp()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.supermap.web.actions.Pan;
+			import com.supermap.web.core.Feature;
+			import com.supermap.web.core.Point2D;
+			import com.supermap.web.core.geometry.GeoRegion;
+			import com.supermap.web.core.styles.PredefinedFillStyle;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetThiessenAnalystParameters;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.DatasetThiessenAnalystService;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryThiessenAnalystParameters;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.GeometryThiessenAnalystService;
+			import com.supermap.web.iServerJava6R.spatialAnalystServices.ThiessenAnalystResult;
+			
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			
+			import utilEvent.ReadURLEvent;
+			
+			private var viewConfig:ViewConfig;
+			[Bindable]
+			private var mapUrl:String;
+			[Bindable]
+			private var dataSetUrl:String;
+			
+			private function initApp():void
+			{
+				viewConfig = new ViewConfig(this);
+				this.addEventListener(ReadURLEvent.READ_COMPLETE,readURLCompelte);
+			}
+			
+			private function readURLCompelte(event:ReadURLEvent):void
+			{
+				//获取地图服务、数据集服务地址，默认 IP 为：localhost
+				//用户若要更改服务地址，直接修改服务地址配置文件 mapUrlConfig.xml
+				//或直接在此输入服务地址
+				//格式如：restUrl = http://localhost:8090/iserver/services/map-world/rest/maps/World Map
+				mapUrl = viewConfig.webUrl + ViewConfig.ChangChun_MAP;
+				dataSetUrl = viewConfig.webUrl + ViewConfig.SpatialAnylyat_Changchun;
+				
+			}
+			
+			//清除结果
+			private function removeFeature():void
+			{
+				this.resultLayer.clear();
+			}
+			
+			//平移
+			private function panMap():void
+			{
+				this.map.action = new Pan(this.map);
+			} 
+			
+			//数据集邻近分析
+			private function DatasetThiessen_clickHandler(event:MouseEvent):void
+			{
+				resultLayer.clear();
+				//定义数据集邻近分析参数
+				var datasetThiessenAnalystParameters:DatasetThiessenAnalystParameters = new DatasetThiessenAnalystParameters();
+				datasetThiessenAnalystParameters.dataset = "Factory@Changchun";
+				//执行数据集邻近分析
+				var datasetThiessenAnalystService:DatasetThiessenAnalystService = new DatasetThiessenAnalystService(this.dataSetUrl);
+				datasetThiessenAnalystService.processAsync(datasetThiessenAnalystParameters, new AsyncResponder(processCompleted,excuteErros, null));
+			}
+			
+			//几何邻近分析
+			private function geometryThiessen_clickHandler(event:MouseEvent):void
+			{
+				resultLayer.clear();
+				var points:Array = [
+					new Point2D(5238.998556,-1724.229865),
+					new Point2D(4996.270055,-2118.538477),
+					new Point2D(5450.34263,-2070.794081),
+					new Point2D(5317.70775,-2521.162355),
+					new Point2D(5741.149405,-1970.130198),
+					new Point2D(4716.133098,-1575.858795),
+					new Point2D(5447.671615,-2255.928819),
+					new Point2D(4783.423507,-1135.598744),
+					new Point2D(5472.712382,-2189.15344),
+					new Point2D(5752.716961,-2425.40363)
+				];
+				//定义几何对象邻近分析参数
+				var geometryThiessenAnalystParameters:GeometryThiessenAnalystParameters = new GeometryThiessenAnalystParameters();
+				geometryThiessenAnalystParameters.points = points;
+				//执行几何对象邻近分析
+				var geometryThiessenAnalystService:GeometryThiessenAnalystService = new GeometryThiessenAnalystService(this.dataSetUrl);
+				geometryThiessenAnalystService.processAsync(geometryThiessenAnalystParameters, new AsyncResponder(processCompleted,excuteErros, null));
+			}
+			
+			//分析成功
+			private function processCompleted(result:ThiessenAnalystResult, mark:Object = null):void
+			{
+				resultLayer.clear();
+				
+				for(var i:int=0;i<result.regions.length;i++){
+					var feature:Feature = new Feature();
+					feature.geometry = result.regions[i];
+					feature.style = new PredefinedFillStyle(PredefinedFillStyle.SYMBOL_SOLID, 0x99cc33);
+					resultLayer.addFeature(feature);
+				}
+			}
+			
+			//分析失败
+			private function excuteErros(object:Object, mark:Object = null):void
+			{
+				Alert.show("邻近分析失败",null,4,this);
+			}
+			
+			//全幅
+			private function viewEntireMap(event:MouseEvent):void
+			{
+				map.viewEntire();
+			}
+		]]>
+	</fx:Script>
+	
+	<!--添加地图-->
+	<ic:Map id="map" x="0" y="0"  height="100%" width="100%">
+		<ic:TiledDynamicRESTLayer url="{this.mapUrl}" />
+		<ic:FeaturesLayer id="resultLayer"/>
+	</ic:Map> 
+	
+	<s:controlBarLayout>
+		<s:BasicLayout/>
+	</s:controlBarLayout>
+	<s:controlBarContent>
+		<s:HGroup height="100%" verticalAlign="middle" left="10">
+			<s:Button label="数据集邻近分析" click="DatasetThiessen_clickHandler(event)" fontSize="15" height="26" fontFamily="宋体" fontWeight="bold"/>
+			<mx:VRule height="40" chromeColor="#434242"/>
+			<s:Button label="几何对象邻近分析" click="geometryThiessen_clickHandler(event)" fontSize="15" height="26" fontFamily="宋体" fontWeight="bold"/>
+			<mx:VRule height="40" chromeColor="#434242"/>
+			<s:Button label="移除结果" click="removeFeature()" fontSize="15" height="26" fontFamily="宋体" fontWeight="bold"/>
+		</s:HGroup>
+		<s:HGroup height="100%" verticalAlign="middle" right="10">
+			<s:Button skinClass="skins.panBtnSkin"
+					  click="panMap()"/>
+			<s:Button id="entire" toolTip="全幅显示" 
+					  skinClass="skins.viewEntireSkin" click="viewEntireMap(event)"/>
+		</s:HGroup>
+	</s:controlBarContent>
+</s:Application>
+

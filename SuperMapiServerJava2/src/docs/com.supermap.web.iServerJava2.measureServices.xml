@@ -1,0 +1,63 @@
+<apiPackage id="com.supermap.web.iServerJava2.measureServices"><apiName>com.supermap.web.iServerJava2.measureServices</apiName><apiDetail/><apiClassifier id="com.supermap.web.iServerJava2.measureServices:MeasureResult"><apiName>MeasureResult</apiName><shortdesc>
+	 量算结果类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 量算结果类.
+	 <p>该类用于存储从服务器端返回的距离/面积量算结果。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.measureServices:MeasureResult:MeasureResult"><apiName>MeasureResult</apiName><shortdesc>
+		 初始化 measureResult 类的新实例。 
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 初始化 measureResult 类的新实例。 
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.measureServices:MeasureResult:area:get"><apiName>area</apiName><shortdesc>
+		 面积量算结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 面积量算结果。 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.supermap.web.iServerJava2.measureServices:MeasureResult:distance:get"><apiName>distance</apiName><shortdesc>
+		 距离量算结果。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 距离量算结果。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.measureServices:MeasureParameters"><apiName>MeasureParameters</apiName><shortdesc>
+	 量算参数类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.iServerJava2:ParametersBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 量算参数类.
+	 <p>客户端要量算的地物间的距离或某个区域的面积需要向服务端传递一个几何对象 Geometry （线/面），该类用于设置此参数。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.measureServices:MeasureParameters:MeasureParameters"><apiName>MeasureParameters</apiName><shortdesc>
+		 使用地图名称初始化 MeasureParameters 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>mapName</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>查询的地图名称。 
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图名称初始化 MeasureParameters 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiValue id="com.supermap.web.iServerJava2.measureServices:MeasureParameters:geometry:get"><apiName>geometry</apiName><shortdesc>
+		 获取或设置用于查询的几何对象。 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiValueClassifier>com.supermap.web.core.geometry:Geometry</apiValueClassifier></apiValueDef><apiDesc>
+		 获取或设置用于查询的几何对象。 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.supermap.web.iServerJava2.measureServices:MeasureService"><apiName>MeasureService</apiName><shortdesc>
+	 量算服务类.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.supermap.web.service:ServiceBase</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 量算服务类.
+	 <p>该类负责将客户端创建的 MeasureParameters 对象传入服务器端进行距离/面积查询，并将服务器端返回的结果保存在 MeasureResult 对象中。</p> 
+	 
+	 
+	 </apiDesc></apiClassifierDetail><apiConstructor id="com.supermap.web.iServerJava2.measureServices:MeasureService:MeasureService"><apiName>MeasureService</apiName><shortdesc>
+		 使用地图 web 服务地址初始化 measureService 类的新实例。 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>url</apiItemName><apiType value="String"/><apiDesc>地图 web 服务地址。 
+		 
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 使用地图 web 服务地址初始化 measureService 类的新实例。 
+		 </apiDesc></apiConstructorDetail></apiConstructor><apiOperation id="com.supermap.web.iServerJava2.measureServices:MeasureService:execute"><apiName>execute</apiName><shortdesc>
+		 执行量算操作。将客户端指定的参数 MeasureParameters 传递给服务端，与服务端完成异步通讯。 
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiDesc>该返回类型为异步 RPC 操作提供设置额外数据或标记级别数据的位置。
+		 
+		 </apiDesc><apiType value="mx.rpc:AsyncToken"/></apiReturn><apiParam><apiItemName>responder</apiItemName><apiType value="mx.rpc:IResponder"/><apiDesc>与服务端完成异步通讯时将调用的处理函数。
+		 </apiDesc></apiParam><apiParam><apiItemName>parameters</apiItemName><apiOperationClassifier>com.supermap.web.iServerJava2.measureServices:MeasureParameters</apiOperationClassifier><apiDesc>进行量算时所需的参数。
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 执行量算操作。将客户端指定的参数 MeasureParameters 传递给服务端，与服务端完成异步通讯。 
+		 </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.supermap.web.iServerJava2.measureServices:MeasureService:lastResult:get"><apiName>lastResult</apiName><shortdesc>
+		 获取从服务端返回的量算， 
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Object"/></apiValueDef><apiDesc>
+		 获取从服务端返回的量算， 
+		 
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>
