@@ -7,6 +7,9 @@ SuperMap iClient 7C for Flash是一套基于 Adobe Flex技术和 Adobe Flash Bui
 产品包的获取：
 http://support.supermap.com.cn/ProductCenter/DownloadCenter/ProductPlatform.aspx
 
+示范程序：
+http://support.supermap.com.cn:8090/iserver/iClient/forFlash/samples/samplecode_iServerJava6R/samplecode/samplecode.html
+
 二、	接口变更列表
 
 SuperMap iClient 7C for Flash 从7.1 SP1 到 7.1 SP2 接口变更情况如下：
